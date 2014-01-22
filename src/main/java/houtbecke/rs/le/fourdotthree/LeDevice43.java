@@ -11,17 +11,16 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 
-import com.splendo.ble.BleException;
-import com.splendo.ble.BleWrapperUiCallbacks;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+
 import javax.inject.Inject;
 
+import houtbecke.rs.le.BleException;
 import houtbecke.rs.le.LeDefinedUUIDs;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
@@ -30,13 +29,6 @@ import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeGattStatus;
 
 public class LeDevice43 implements LeDevice {
-	/* defines (in milliseconds) how often RSSI should be updated */
-    private static final int RSSI_UPDATE_TIME_INTERVAL = 1500; // 1.5 seconds
-
-    /* callback object through which we are returning results to the caller */
-    //private BleWrapperUiCallbacks mUiCallback = null;
-    /* define NULL object for UI callbacks */
-    private static final BleWrapperUiCallbacks NULL_CALLBACK = new BleWrapperUiCallbacks.Null();
 
     final Context context;
 
