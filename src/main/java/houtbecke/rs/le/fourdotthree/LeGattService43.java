@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
+import android.util.Log;
 
 import java.util.UUID;
 
@@ -34,11 +35,15 @@ class LeGattService43 implements LeGattService {
 
     @Override
     public boolean enableCharacteristicNotification(UUID characteristic) {
+        Log.i("LeBlue", "enable "+characteristic);
         BluetoothGattCharacteristic characteristic43 = gattService.getCharacteristic(characteristic);
         if(gatt.setCharacteristicNotification(characteristic43, true)) {
 
+            Log.i("LeBlue", "enabling "+characteristic);
+
             BluetoothGattDescriptor descriptor = characteristic43.getDescriptor(LeDefinedUUIDs.Descriptor.CHAR_CLIENT_CONFIG);
             if (descriptor != null) {
+                Log.i("LeBlue", "client config "+characteristic);
                 descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
                 gatt.writeDescriptor(descriptor);
                 // boolean waitForDescriptorWrite(10000)

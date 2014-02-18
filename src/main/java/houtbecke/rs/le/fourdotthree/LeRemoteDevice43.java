@@ -86,7 +86,6 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             gatt.discoverServices();
     }
 
-
     @Override
     public void setCharacteristicListener(LeCharacteristicListener listener, UUID... uuids) {
 
@@ -135,6 +134,12 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
         UUID uuid = characteristic.getUuid();
 
+        byte[] bytes = characteristic.getValue();
+        StringBuilder data = new StringBuilder();
+        for (byte b: bytes)
+            data.append("[").append(b).append("]");
+        Log.i("LeBlue", characteristic.getUuid()+" data: "+data);
+
 
         LeCharacteristicListener nullListener = uuidCharacteristicListeners.get(null);
         LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(uuid);
@@ -146,15 +151,6 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             if (uuidListener != null)
                 uuidListener.leCharacteristicChanged(uuid, this, characteristic43);
         }
-
-        byte[] raw = characteristic.getValue();
-        int index = ((raw[0] & 0x01) == 1) ? 2 : 1;
-        int format = (index == 1) ? BluetoothGattCharacteristic.FORMAT_UINT8 : BluetoothGattCharacteristic.FORMAT_UINT16;
-        int value = characteristic.getIntValue(format, index);
-        final String description = value + " bpm";
-        Log.d("meh", description);
-
-        remoteDevice43.getName();
     }
 
     @Override
