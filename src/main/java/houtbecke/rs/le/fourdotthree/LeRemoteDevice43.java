@@ -28,7 +28,6 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
     final Map<UUID, LeCharacteristicListener> uuidCharacteristicListeners = new HashMap<UUID, LeCharacteristicListener>(0);
 
-
     public LeRemoteDevice43(LeDevice43 leDevice43, BluetoothDevice device)  {
         this.leDevice43 = leDevice43;
         this.remoteDevice43 = device;
