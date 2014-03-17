@@ -35,6 +35,7 @@ public abstract class LeInterceptor {
     public InterceptingLeDevice getLeDevice(LeDevice leDevice) {
         InterceptingLeDevice device = iDevices.get(leDevice);
         if (device == null) {
+
             System.out.println("Warning: unknown LeDevice");
         }
         return device;
@@ -60,7 +61,7 @@ public abstract class LeInterceptor {
 
     }
 
-    public InterceptingLeGattCharacteristic gotCharacteristic(InterceptingLeGattService iLeGattService, LeGattCharacteristic leGattCharacteristic) {
+    public InterceptingLeGattCharacteristic serviceGotCharacteristic(InterceptingLeGattService iLeGattService, LeGattCharacteristic leGattCharacteristic) {
         InterceptingLeGattCharacteristic iLeGattCharacteristic = iGattCharacteristics.get(leGattCharacteristic);
         if (iLeGattCharacteristic == null) {
             iLeGattCharacteristic = new InterceptingLeGattCharacteristic(leGattCharacteristic, this);
@@ -80,23 +81,23 @@ public abstract class LeInterceptor {
 
     public volatile int counter = 0;
 
-    public abstract void deviceListenerAdded(InterceptingLeDevice iLeDevice, InterceptingLeDeviceListener iListener);
+    public abstract void listenerAdded(InterceptingLeDevice iLeDevice, InterceptingLeDeviceListener iListener);
 
-    public abstract void deviceFound(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, byte[] scanRecord);
+    public abstract void remoteDeviceFound(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, byte[] scanRecord);
 
-    public abstract void remoteDeviceConnected(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
+    public abstract void connected(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
 
-    public abstract void deviceDisconnected(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
+    public abstract void disconnected(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
 
-    public abstract void deviceClosed(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
+    public abstract void closed(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
 
     public abstract void gotUUID(InterceptingLeGattService iLeGattService, UUID uuid);
 
     public abstract void enabledCharacteristicNotification(InterceptingLeGattService iLeGattService, UUID characteristic, boolean enabled);
 
-    public abstract void servicesDiscovered(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattService[] iLeGattServices, LeGattStatus status);
+    public abstract void servicesDiscovered(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, LeGattStatus status, InterceptingLeGattService[] iLeGattServices);
 
-    public abstract void deviceListenerRemoved(InterceptingLeDevice iLeDevice);
+    public abstract void listenerRemoved(InterceptingLeDevice iLeDevice);
 
     public abstract void checkedBleHardwareAvailable(InterceptingLeDevice iLeDevice, boolean bleHardwareEnabled);
 
@@ -108,21 +109,21 @@ public abstract class LeInterceptor {
 
     public abstract void stoppedScanning(InterceptingLeDevice iLeDevice);
 
-    public abstract void gotCharacteristicValue(InterceptingLeGattCharacteristic iLeGattCharacteristic, byte[] value);
+    public abstract void gotValue(InterceptingLeGattCharacteristic iLeGattCharacteristic, byte[] value);
 
-    public abstract void gotCharacteristicIntValue(InterceptingLeGattCharacteristic iLeGattCharacteristic, LeFormat format, int value);
+    public abstract void gotIntValue(InterceptingLeGattCharacteristic iLeGattCharacteristic, LeFormat format, int value);
 
-    public abstract void remoteDeviceListenerAdded(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeRemoteDeviceListener iListener);
+    public abstract void remoteListenerAdded(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeRemoteDeviceListener iListener);
 
-    public abstract void remoteDeviceListenerRemoved(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeRemoteDeviceListener iListener);
+    public abstract void remoteListenerRemoved(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeRemoteDeviceListener iListener);
 
-    public abstract void gotRemoteDeviceAddress(InterceptingLeRemoteDevice iLeRemoteDevice, String address);
+    public abstract void gotAddress(InterceptingLeRemoteDevice iLeRemoteDevice, String address);
 
-    public abstract void remoteDeviceConnected(InterceptingLeRemoteDevice iLeRemoteDevice);
+    public abstract void remoteDeviceConnecting(InterceptingLeRemoteDevice iLeRemoteDevice);
 
-    public abstract void remoteDeviceDisconnected(InterceptingLeRemoteDevice iLeRemoteDevice);
+    public abstract void remoteDeviceDisconnecting(InterceptingLeRemoteDevice iLeRemoteDevice);
 
-    public abstract void remoteDeviceClosed(InterceptingLeRemoteDevice iLeRemoteDevice);
+    public abstract void remoteDeviceClosing(InterceptingLeRemoteDevice iLeRemoteDevice);
 
     public abstract void remoteDeviceServiceDiscoveryStarted(InterceptingLeRemoteDevice iLeRemoteDevice);
 

@@ -6,54 +6,50 @@ import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
 
-public class InterceptingLeRemoteDevice implements LeRemoteDevice {
+public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRemoteDevice {
 
     LeRemoteDevice leRemoteDevice;
-    LeInterceptor leInterceptor;
 
     public InterceptingLeRemoteDevice(LeRemoteDevice leRemoteDevice, LeInterceptor leInterceptor) {
+        super(leInterceptor);
         this.leRemoteDevice = leRemoteDevice;
-        this.leInterceptor = leInterceptor;
     }
-
-
-
     @Override
     public void addListener(LeRemoteDeviceListener listener) {
         InterceptingLeRemoteDeviceListener iListener = new InterceptingLeRemoteDeviceListener(listener, leInterceptor);
-        leInterceptor.remoteDeviceListenerAdded(this, iListener);
+        leInterceptor.remoteListenerAdded(this, iListener);
         leRemoteDevice.addListener(iListener);
     }
 
     @Override
     public void removeListener(LeRemoteDeviceListener listener) {
         InterceptingLeRemoteDeviceListener iListener = new InterceptingLeRemoteDeviceListener(listener, leInterceptor);
-        leInterceptor.remoteDeviceListenerRemoved(this, iListener);
+        leInterceptor.remoteListenerRemoved(this, iListener);
         leRemoteDevice.removeListener(iListener);
     }
 
     @Override
     public String getAddress() {
         String address = leRemoteDevice.getAddress();
-        leInterceptor.gotRemoteDeviceAddress(this, address);
+        leInterceptor.gotAddress(this, address);
         return address;
     }
 
     @Override
     public void connect() {
-        leInterceptor.remoteDeviceConnected(this);
+        leInterceptor.remoteDeviceConnecting(this);
         leRemoteDevice.connect();
     }
 
     @Override
     public void disconnect() {
-        leInterceptor.remoteDeviceDisconnected(this);
+        leInterceptor.remoteDeviceDisconnecting(this);
         leRemoteDevice.disconnect();
     }
 
     @Override
     public void close() {
-        leInterceptor.remoteDeviceClosed(this);
+        leInterceptor.remoteDeviceClosing(this);
         leRemoteDevice.close();
     }
 

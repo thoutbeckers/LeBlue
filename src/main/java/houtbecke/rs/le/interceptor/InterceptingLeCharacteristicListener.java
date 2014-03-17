@@ -6,16 +6,13 @@ import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeRemoteDevice;
 
-public class InterceptingLeCharacteristicListener implements LeCharacteristicListener {
+public class InterceptingLeCharacteristicListener extends BaseIntercepting implements LeCharacteristicListener {
 
     public final LeCharacteristicListener leCharacteristicListener;
-    final LeInterceptor leInterceptor;
-    final public int id;
 
     public InterceptingLeCharacteristicListener(LeCharacteristicListener leCharacteristicListener, LeInterceptor leInterceptor) {
+        super(leInterceptor);
         this.leCharacteristicListener = leCharacteristicListener;
-        this.leInterceptor = leInterceptor;
-        id = ++leInterceptor.counter;
     }
 
     @Override

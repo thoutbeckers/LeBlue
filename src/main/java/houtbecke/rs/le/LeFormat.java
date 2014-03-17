@@ -18,12 +18,14 @@ public enum LeFormat {
 
     LeFormat(int value) {
         format = value;
-
     }
 
+    public static LeFormat fromString(String status) {
 
-
-    
-
+        for (LeFormat leFormat: LeFormat.values())
+            if (leFormat.toString().equals(status))
+                return leFormat;
+        return null;
+    }
 
 }

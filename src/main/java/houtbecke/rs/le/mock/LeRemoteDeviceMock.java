@@ -15,50 +15,48 @@ import houtbecke.rs.le.LeRemoteDeviceListener;
 
 public class LeRemoteDeviceMock implements LeRemoteDevice {
 
-    LeMockListener mockListener;
+    LeMockController mockController;
     LeDeviceMock leDeviceMock;
-    public LeRemoteDeviceMock(LeMockListener mockListener, LeDeviceMock leDeviceMock) {
-        this.mockListener = mockListener;
+    public LeRemoteDeviceMock(LeMockController mockController, LeDeviceMock leDeviceMock) {
+        this.mockController = mockController;
         this.leDeviceMock = leDeviceMock;
     }
 
-    Set<LeRemoteDeviceListener> listeners = new LinkedHashSet<>();
 
     @Override
     public void addListener(LeRemoteDeviceListener listener) {
-        listeners.add(listener);
+        mockController.remoteDeviceAddListener(this, listener);
     }
 
     @Override
     public void removeListener(LeRemoteDeviceListener listener) {
-        listeners.remove(listener);
+        mockController.remoteDeviceRemoveListener(this, listener);
     }
 
-    public String address = "0000:0000:0000:0000";
     @Override
     public String getAddress() {
-        return address;
+        return mockController.remoteDeviceGetAddress(this);
     }
 
     @Override
     public void connect() {
-        mockListener.connect(this);
+        mockController.remoteDeviceConnect(this);
     }
 
     @Override
     public void disconnect() {
-        mockListener.disconnect(this);
+        mockController.remoteDeviceDisconnect(this);
 
     }
 
     @Override
     public void close() {
-        mockListener.close(this);
+        mockController.remoteDeviceClose(this);
     }
 
     @Override
     public void startServicesDiscovery() {
-        mockListener.startServiceDiscovery(this);
+        mockController.remoteDeviceStartServiceDiscovery(this);
     }
 
     final Map<UUID, LeCharacteristicListener> uuidCharacteristicListeners = new HashMap<>(0);
@@ -71,30 +69,9 @@ public class LeRemoteDeviceMock implements LeRemoteDevice {
             uuidCharacteristicListeners.put(uuid, listener);
     }
 
-    public String name = "remoteDevice";
     @Override
     public String getName() {
-        return name;
-    }
-
-    public void connectLeDevice() {
-        for (LeRemoteDeviceListener listener: listeners)
-            listener.leDeviceConnected(leDeviceMock, this);
-    }
-
-    public void DeviceDisconnected() {
-        for (LeRemoteDeviceListener listener: listeners)
-            listener.leDeviceDisconnected(leDeviceMock, this);
-    }
-
-    public void closeDevice() {
-        for (LeRemoteDeviceListener listener: listeners)
-            listener.leDeviceClosed(leDeviceMock, this);
-    }
-
-    public void discoverService(LeGattService[] gatts, LeGattStatus status) {
-        for (LeRemoteDeviceListener listener: listeners)
-            listener.serviceDiscovered(leDeviceMock, this, gatts, status);
+        return mockController.remoteDeviceGetName(this);
     }
 
     public void changeCharacteristic(UUID uuid, LeGattCharacteristic characteristic) {

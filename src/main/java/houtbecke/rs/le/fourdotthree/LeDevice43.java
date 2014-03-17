@@ -116,6 +116,24 @@ public class LeDevice43 implements LeDevice {
 		bluetoothAdapter.stopLeScan(deviceFoundCallback);
 	}
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        LeDevice43 that = (LeDevice43) o;
+
+        if (!that.bluetoothAdapter.getAddress().equals(bluetoothAdapter.getAddress())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return bluetoothAdapter.getAddress().hashCode();
+    }
+
     private Map<String, LeRemoteDevice43> remoteDevices = new LinkedHashMap<String, LeRemoteDevice43>();
 
     final BluetoothManager mBluetoothManager;

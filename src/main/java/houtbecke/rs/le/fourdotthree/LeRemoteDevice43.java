@@ -1,6 +1,5 @@
 package houtbecke.rs.le.fourdotthree;
 
-import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCallback;
@@ -28,10 +27,13 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
     final Map<UUID, LeCharacteristicListener> uuidCharacteristicListeners = new HashMap<UUID, LeCharacteristicListener>(0);
 
+
     public LeRemoteDevice43(LeDevice43 leDevice43, BluetoothDevice device)  {
         this.leDevice43 = leDevice43;
         this.remoteDevice43 = device;
     }
+
+
 
     List<LeRemoteDeviceListener> listeners = new ArrayList<LeRemoteDeviceListener>();
     @Override
@@ -64,7 +66,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         if (gatt != null) {
             gatt.disconnect();
             for (LeRemoteDeviceListener listener: listeners)
-                listener.leDeviceDisconnected(leDevice43, this);
+                listener.leDevicesDisconnected(leDevice43, this);
         }
     }
 
@@ -74,7 +76,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             gatt.close();
             gatt = null;
             for (LeRemoteDeviceListener listener: listeners)
-                listener.leDeviceClosed(leDevice43, this);
+                listener.leDevicesClosed(leDevice43, this);
 
         }
     }
@@ -101,12 +103,12 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         if (newState == BluetoothProfile.STATE_CONNECTED) {
             this.gatt = gatt;
             for (LeRemoteDeviceListener listener: listeners)
-                listener.leDeviceConnected(leDevice43, this);
+                listener.leDevicesConnected(leDevice43, this);
         }
         else if  (newState == BluetoothProfile.STATE_DISCONNECTED) {
             this.gatt = null;
             for (LeRemoteDeviceListener listener: listeners)
-                listener.leDeviceDisconnected(leDevice43, this);
+                listener.leDevicesDisconnected(leDevice43, this);
         }
     }
 
@@ -119,7 +121,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             services[i] = new LeGattService43(leDevice43, gatt, services43.get(i));
 
         for (LeRemoteDeviceListener listener: listeners)
-            listener.serviceDiscovered(leDevice43, this, services, leDevice43.toGattStatus(status));
+            listener.serviceDiscovered(leDevice43, this, leDevice43.toGattStatus(status), services);
     }
 
     @Override
@@ -162,13 +164,13 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         if (this == o) return true;
         if (o == null || LeRemoteDevice43.class != o.getClass()) return false;
         LeRemoteDevice43 that = (LeRemoteDevice43) o;
-        if (!remoteDevice43.equals(that.remoteDevice43)) return false;
+        if (!remoteDevice43.getAddress().equals(that.remoteDevice43.getAddress())) return false;
         return true;
     }
 
     @Override
     public int hashCode() {
-        return remoteDevice43.hashCode();
+        return remoteDevice43.getAddress().hashCode();
     }
 
     // boolean waitForDescriptorWrite

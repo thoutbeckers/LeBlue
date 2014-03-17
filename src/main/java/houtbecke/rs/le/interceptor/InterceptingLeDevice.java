@@ -5,16 +5,14 @@ import java.util.UUID;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
 
-public class InterceptingLeDevice implements LeDevice {
+public class InterceptingLeDevice extends  BaseIntercepting implements LeDevice {
 
-    public final int id;
 
     LeDevice leDevice;
-    LeInterceptor leInterceptor;
     public InterceptingLeDevice(LeDevice leDevice, LeInterceptor leInterceptor) {
-        leDevice = leDevice;
-        this.leInterceptor = leInterceptor;
-        id = ++leInterceptor.counter;
+        super(leInterceptor);
+        this.leDevice = leDevice;
+        leInterceptor.iDevices.put(leDevice, this);
     }
 
 
@@ -22,13 +20,13 @@ public class InterceptingLeDevice implements LeDevice {
     public void addListener(LeDeviceListener listener) {
         InterceptingLeDeviceListener iListener = leInterceptor.getLeDeviceListener(listener);
         leDevice.addListener(iListener);
-        leInterceptor.deviceListenerAdded(this, iListener);
+        leInterceptor.listenerAdded(this, iListener);
     }
 
     @Override
     public void removeListener(LeDeviceListener listener) {
         leDevice.removeListener(leInterceptor.getLeDeviceListener(listener));
-        leInterceptor.deviceListenerRemoved(this);
+        leInterceptor.listenerRemoved(this);
 
     }
 

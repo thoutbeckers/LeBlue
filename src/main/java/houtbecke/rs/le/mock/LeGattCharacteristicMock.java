@@ -5,15 +5,19 @@ import houtbecke.rs.le.LeGattCharacteristic;
 
 public class LeGattCharacteristicMock implements LeGattCharacteristic {
 
-    public byte[] value;
+    LeMockController mockController;
+
+    public LeGattCharacteristicMock(LeMockController mockController) {
+        this.mockController = mockController;
+    }
 
     @Override
     public byte[] getValue() {
-        return value;
+        return mockController.characteristicGetValue(this);
     }
 
     @Override
     public int getIntValue(LeFormat format, int index) {
-        throw new RuntimeException("getIntValue() not supported yet");
+        return mockController.characteristicGetIntValue(this, format, index);
     }
 }

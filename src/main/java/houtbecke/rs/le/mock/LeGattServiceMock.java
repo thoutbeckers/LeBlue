@@ -1,34 +1,29 @@
 package houtbecke.rs.le.mock;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 
 public class LeGattServiceMock implements LeGattService {
-    public UUID uuid;
 
-    LeMockListener mockListener;
-    public LeGattServiceMock(LeMockListener mockListener) {
-        this.mockListener = mockListener;
+    LeMockController mockController;
+    public LeGattServiceMock(LeMockController mockController) {
+        this.mockController = mockController;
     }
 
     @Override
     public UUID getUuid() {
-        return uuid;
+        return mockController.serviceGetUuid(this);
     }
 
-
-    public Map<UUID, LeGattCharacteristic> characteristicMap = new HashMap<>();
     @Override
     public LeGattCharacteristic getCharacteristic(UUID uuid) {
-        return characteristicMap.get(uuid);
+        return mockController.serviceGetCharacteristic(this, uuid);
     }
 
     @Override
     public boolean enableCharacteristicNotification(UUID characteristic) {
-        return mockListener.enableCharacteristicNotification(this, characteristic);
+        return mockController.serviceEnableCharacteristicNotification(this, characteristic);
     }
 }

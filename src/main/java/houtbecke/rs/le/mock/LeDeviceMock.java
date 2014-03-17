@@ -1,66 +1,57 @@
 package houtbecke.rs.le.mock;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
-import houtbecke.rs.le.LeRemoteDevice;
 
 public class LeDeviceMock implements LeDevice {
 
-
-
-    LeMockListener mockListener;
-    public LeDeviceMock(LeMockListener mockListener) {
-        this.mockListener = mockListener;
+    public LeDeviceMock(LeMockController leMockController) {
+        this.controller = leMockController;
     }
 
-    Set<LeDeviceListener> listeners = new LinkedHashSet<>();
+    LeMockController controller;
 
     @Override
     public void addListener(LeDeviceListener listener) {
-        listeners.add(listener);
+        controller.deviceAddListener(this, listener);
     }
 
     @Override
     public void removeListener(LeDeviceListener listener) {
-        listeners.remove(listener);
+        controller.deviceRemoveListener(this, listener);
     }
 
-    public boolean bleHardwareAvailable = true;
 
     @Override
     public boolean checkBleHardwareAvailable() {
-        return bleHardwareAvailable;
+        return controller.deviceCheckBleHardwareAvailable(this);
     }
-
-    public boolean btEnabled = true;
 
     @Override
     public boolean isBtEnabled() {
-        return btEnabled;
+        return controller.deviceIsBtEnabled(this);
     }
 
     @Override
     public void startScanning() {
-        mockListener.startScanning(this);
+        controller.deviceStartScanning(this);
     }
 
     @Override
     public void startScanning(UUID... uuids) {
-        mockListener.startScanning(this, uuids);
+        controller.deviceStartScanning(this, uuids);
     }
 
     @Override
     public void stopScanning() {
-        mockListener.stopScanning(this);
+        controller.deviceStopScanning(this);
     }
 
-    public void findLeDevice(LeRemoteDevice remoteDevice, int rssi, byte[] scanRecord) {
-        for (LeDeviceListener listener: listeners)
-            listener.leDeviceFound(this, remoteDevice, rssi, scanRecord);
-    }
+//    public void findLeDevice(LeRemoteDevice remoteDevice, int rssi, byte[] scanRecord) {
+//        for (LeDeviceListener listener: listeners)
+//            listener.leDeviceFound(this, remoteDevice, rssi, scanRecord);
+//    }
 
 }

@@ -1,144 +1,172 @@
 package houtbecke.rs.le.interceptor;
 
-import android.util.Log;
-
 import java.util.UUID;
 
 import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattStatus;
 import houtbecke.rs.le.LeRemoteDevice;
+import houtbecke.rs.le.session.EventSink;
+import houtbecke.rs.le.session.EventType;
 
-public class LeLogCatInterceptor extends LeInterceptor {
-    public final String TAG = "LeBlueInterceptor";
+import static houtbecke.rs.le.session.EventType.*;
 
+public class LeSessionInterceptor extends LeInterceptor {
+
+    protected EventSink sink;
+    public void LeSessionInterceptor(EventSink sink) {
+        this.sink = sink;
+    }
     @Override
     public void listenerAdded(InterceptingLeDevice iLeDevice, InterceptingLeDeviceListener iListener) {
-        Log.i(TAG, "deviceListenerAdded: ");
+        drainEvent(deviceAddListener, iLeDevice, iListener.id+"");
+    }
+
+    private void drainEvent(EventType type, BaseIntercepting interceptor, String... values) {
+        drainEvent(type, interceptor, values);
     }
 
     @Override
-    public void remoteDeviceFound(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, byte[] scanRecord) {
-        Log.i(TAG, "remoteDeviceFound: ");
+    public void remoteDeviceFound(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, int rssi, byte[] scanRecord) {
+        drainEvent(remoteDeviceFound, iLeDevice, iLeRemoteDevice.id+"", rssi+"", bytesToString(scanRecord));
     }
 
     @Override
     public void connected(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
-        Log.i(TAG, "remoteDeviceConnected: ");
+        drainEvent(remoteDeviceConnect, iLeDevice, iLeRemoteDevice.id+"");
     }
 
     @Override
     public void disconnected(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
-        Log.i(TAG, "deviceDisconnected: ");
+        drainEvent(remoteDeviceDisconnect, iLeDevice, iLeRemoteDevice.id + "");
     }
 
     @Override
     public void closed(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
-        Log.i(TAG, "deviceClosed: ");
+        drainEvent(remoteDeviceClose, iLeDevice, iLeRemoteDevice.id + "");
     }
 
     @Override
     public void gotUUID(InterceptingLeGattService iLeGattService, UUID uuid) {
-        Log.i(TAG, "gotUUID: ");
+        drainEvent(serviceGetUUID, iLeGattService, uuid.toString());
     }
 
     @Override
     public void enabledCharacteristicNotification(InterceptingLeGattService iLeGattService, UUID characteristic, boolean enabled) {
-        Log.i(TAG, "enabledCharacteristicNotification: ");
+        drainEvent(serviceEnableCharacteristicNotification, iLeGattService, characteristic.toString(), Boolean.toString(enabled));
     }
 
     @Override
     public void servicesDiscovered(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, LeGattStatus status, InterceptingLeGattService[] iLeGattServices) {
-        Log.i(TAG, "servicesDiscovered: ");
+        String[] params = new String[2 + iLeGattServices.length];
+        params[0] = iLeRemoteDevice.id+"";
+        params[1] = status.toString();
+        for (int k = 0; k < iLeGattServices.length; k++)
+            params[2+k] = iLeGattServices[k].id+"";
+        drainEvent(remoteDeviceServicesDiscovered, iLeDevice, params);
     }
 
     @Override
     public void listenerRemoved(InterceptingLeDevice iLeDevice) {
-        Log.i(TAG, "deviceListenerRemoved: ");
+        drainEvent(deviceRemoveListener, iLeDevice);
     }
 
     @Override
     public void checkedBleHardwareAvailable(InterceptingLeDevice iLeDevice, boolean bleHardwareEnabled) {
-        Log.i(TAG, "checkedBleHardwareAvailable: ");
+        drainEvent(deviceCheckBleHardwareAvailable, iLeDevice, Boolean.toString(bleHardwareEnabled));
     }
 
     @Override
     public void wasBtEnabled(InterceptingLeDevice iLeDevice, boolean btEnabled) {
-        Log.i(TAG, "wasBtEnabled: ");
+         drainEvent(deviceIsBtEnabled, iLeDevice, Boolean.toString(btEnabled));
     }
 
     @Override
     public void startedScanning(InterceptingLeDevice iLeDevice) {
-        Log.i(TAG, "startedScanning: ");
+        drainEvent(deviceStartScanning, iLeDevice);
     }
 
     @Override
     public void startedScanning(InterceptingLeDevice iLeDevice, UUID[] uuids) {
-        Log.i(TAG, "startedScanning: ");
+        String[] params = new String[uuids.length];
+        for (int k=0; k < uuids.length; k++)
+            params[k] = uuids[k].toString();
+        drainEvent(deviceStartScanning, iLeDevice, params);
     }
 
     @Override
     public void stoppedScanning(InterceptingLeDevice iLeDevice) {
-        Log.i(TAG, "stoppedScanning: ");
+        drainEvent(deviceStopScanning, iLeDevice);
     }
 
     @Override
     public void gotValue(InterceptingLeGattCharacteristic iLeGattCharacteristic, byte[] value) {
-        Log.i(TAG, "gotCharacteristicValue: ");
+        drainEvent(characteristicGetValue, iLeGattCharacteristic, bytesToString(value));
     }
 
     @Override
     public void gotIntValue(InterceptingLeGattCharacteristic iLeGattCharacteristic, LeFormat format, int value) {
-        Log.i(TAG, "gotCharacteristicIntValue: ");
+        drainEvent(characteristicGetIntValue, iLeGattCharacteristic, format.toString(), value+"");
     }
 
     @Override
     public void remoteListenerAdded(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeRemoteDeviceListener iListener) {
-        Log.i(TAG, "remoteDeviceListenerAdded: ");
+        drainEvent(remoteDeviceAddListener, iLeRemoteDevice, iListener.id+"");
     }
 
     @Override
     public void remoteListenerRemoved(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeRemoteDeviceListener iListener) {
-        Log.i(TAG, "remoteDeviceListenerRemoved: ");
+        drainEvent(remoteDeviceRemoveListener, iLeRemoteDevice, iLeRemoteDevice.id+"");
     }
 
     @Override
     public void gotAddress(InterceptingLeRemoteDevice iLeRemoteDevice, String address) {
-        Log.i(TAG, "gotRemoteDeviceAddress: ");
+        drainEvent(remoteDeviceGetAddress, iLeRemoteDevice, address);
     }
 
     @Override
     public void remoteDeviceConnecting(InterceptingLeRemoteDevice iLeRemoteDevice) {
-        Log.i(TAG, "remoteDeviceConnected: ");
+        drainEvent(remoteDeviceConnect, iLeRemoteDevice);
     }
 
     @Override
     public void remoteDeviceDisconnecting(InterceptingLeRemoteDevice iLeRemoteDevice) {
-        Log.i(TAG, "remoteDeviceDisconnected: ");
+        drainEvent(remoteDeviceDisconnect, iLeRemoteDevice);
     }
 
     @Override
     public void remoteDeviceClosing(InterceptingLeRemoteDevice iLeRemoteDevice) {
-        Log.i(TAG, "remoteDeviceClosed: ");
+        drainEvent(remoteDeviceClose, iLeRemoteDevice);
     }
 
     @Override
     public void remoteDeviceServiceDiscoveryStarted(InterceptingLeRemoteDevice iLeRemoteDevice) {
-        Log.i(TAG, "remoteDeviceServiceDiscoveryStarted: ");
+        drainEvent(startServicesDiscovery, iLeRemoteDevice);
     }
 
     @Override
     public void gotRemoteDeviceName(InterceptingLeRemoteDevice iLeRemoteDevice, String name) {
-        Log.i(TAG, "gotRemoteDeviceName: ");
+        drainEvent(remoteDeviceGetName, iLeRemoteDevice, name);
     }
 
     @Override
     public void characteristicChanged(InterceptingLeCharacteristicListener iLeCharacteristicListener, UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic) {
-        Log.i(TAG, "characteristicChanged: ");
+
     }
 
     @Override
     public void remoteDeviceCharacteristicListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicListener iCharacteristicsListener, UUID[] uuids) {
-        Log.i(TAG, "remoteDeviceCharacteristicListenerSet: ");
+
+    }
+
+    private String bytesToString(byte[] scanRecord) {
+        StringBuilder builder = new StringBuilder();
+        for (byte b: scanRecord) {
+            builder.append(b).append(",");
+        }
+        String bytes = builder.toString();
+        if (bytes.length() > 0)
+            return bytes.substring(0, bytes.length() - 1);
+        return bytes;
     }
 }
