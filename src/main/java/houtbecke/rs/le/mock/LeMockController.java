@@ -2,6 +2,7 @@ package houtbecke.rs.le.mock;
 
 import java.util.UUID;
 
+import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeDeviceListener;
 import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
@@ -48,4 +49,6 @@ public interface LeMockController {
     byte[] characteristicGetValue(LeGattCharacteristicMock leGattCharacteristicMock);
 
     int characteristicGetIntValue(LeGattCharacteristicMock leGattCharacteristicMock, LeFormat format, int index);
+
+    void remoteDeviceSetCharacteristicListener(LeRemoteDeviceMock leRemoteDeviceMock, LeCharacteristicListener listener, UUID[] uuids);
 }

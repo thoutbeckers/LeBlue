@@ -15,6 +15,7 @@ public enum EventType {
     remoteDeviceGetAddress,
     remoteDeviceAddListener,
     remoteDeviceRemoveListener,
+    remoteDeviceSetCharacteristicListener,
     serviceGetUUID,
     characteristicGetValue,
     characteristicGetIntValue,
@@ -26,6 +27,7 @@ public enum EventType {
     remoteDeviceFound,
     remoteDeviceConnected,
     remoteDeviceServicesDiscovered,
+    characteristicChanged
 
 
 

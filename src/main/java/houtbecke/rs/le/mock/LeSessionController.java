@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.UUID;
 
+import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeDeviceListener;
 import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
@@ -27,7 +28,10 @@ public class LeSessionController  implements LeMockController {
     int source;
     String[] values;
     protected String eventValue() {
-        return values[0];
+        return eventValue(0);
+    }
+    protected String eventValue(int seq) {
+        return values[seq];
     }
 
     protected int eventIntValue() {
@@ -36,8 +40,12 @@ public class LeSessionController  implements LeMockController {
 
 
     protected boolean eventBooleanValue() {
-        return Boolean.parseBoolean(eventValue());
+        return eventBooleanValue(0);
     }
+    protected boolean eventBooleanValue(int seq) {
+        return Boolean.parseBoolean(eventValue(seq));
+    }
+
 
     Event currentEvent;
     boolean waitingForEvent = false;
@@ -118,6 +126,7 @@ public class LeSessionController  implements LeMockController {
                     case serviceGetCharacteristic:
                     case characteristicGetValue:
                     case characteristicGetIntValue:
+                    case remoteDeviceSetCharacteristicListener:
                         waitForEvent(event);
                         break;
                     case remoteDeviceFound:
@@ -143,6 +152,17 @@ public class LeSessionController  implements LeMockController {
                                 getRemoteDevice(event.values[1]),
                                 LeGattStatus.fromString(event.values[2]),
                                 services
+                        );
+                        break;
+
+                    case characteristicChanged:
+                        UUID uuid = null;
+                        if (event.values[0] != null && !event.values[0].equals("null"))
+                            uuid = UUID.fromString(event.values[0]);
+                        getCharacteristicListener(event.source).leCharacteristicChanged(
+                            uuid,
+                            getRemoteDevice(event.values[1]),
+                            getCharacteristic(event.values[2])
                         );
                         break;
 
@@ -238,12 +258,26 @@ public class LeSessionController  implements LeMockController {
         checkEvent(remoteDeviceDisconnect, leRemoteDeviceMock);
     }
 
+
+    Map<Integer, LeCharacteristicListener> characteristicListeners = new HashMap<>();
+    protected LeCharacteristicListener getCharacteristicListener(String key) {
+        return getCharacteristicListener(Integer.valueOf(key));
+    }
+    protected LeCharacteristicListener getCharacteristicListener(int key) {
+        return characteristicListeners.get(key);
+    }
+
+    @Override
+    public void remoteDeviceSetCharacteristicListener(LeRemoteDeviceMock leRemoteDeviceMock, LeCharacteristicListener listener, UUID[] uuids) {
+        checkEvent(remoteDeviceSetCharacteristicListener, leRemoteDeviceMock);
+        characteristicListeners.put(eventIntValue(), listener);
+    }
+
     @Override
     public synchronized boolean serviceEnableCharacteristicNotification(LeGattServiceMock leGattServiceMock, UUID characteristic) {
         checkEvent(serviceEnableCharacteristicNotification, leGattServiceMock);
-        return eventBooleanValue();
+        return eventBooleanValue(1);
     }
-
 
     Map<Integer, LeDeviceMock> devices = new HashMap<>();
     Map<LeDeviceMock, Integer> deviceKeys = new HashMap<>();
@@ -306,6 +340,12 @@ public class LeSessionController  implements LeMockController {
     }
     protected int getCharacteristicKey(LeGattCharacteristicMock characteristic) {
         return characteristicsKeys.get(characteristic);
+    }
+    protected LeGattCharacteristicMock getCharacteristic(String key) {
+        return getCharacteristic(Integer.valueOf(key));
+    }
+    protected LeGattCharacteristicMock getCharacteristic(int key) {
+        return characteristics.get(key);
     }
 
     @Override
