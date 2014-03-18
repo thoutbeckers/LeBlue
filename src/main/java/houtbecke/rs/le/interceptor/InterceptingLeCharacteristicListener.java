@@ -18,7 +18,7 @@ public class InterceptingLeCharacteristicListener extends BaseIntercepting imple
     @Override
     public void leCharacteristicChanged(UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic) {
         leCharacteristicListener.leCharacteristicChanged(uuid, remoteDevice, characteristic);
-        leInterceptor.characteristicChanged(this, uuid, remoteDevice, characteristic);
+        leInterceptor.characteristicChanged(this, uuid, leInterceptor.getInterceptingLeRemoteDevice(remoteDevice), leInterceptor.getInterceptingLeGattCharacteristic(characteristic));
 
     }
 }

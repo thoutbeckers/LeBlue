@@ -18,14 +18,14 @@ public class InterceptingLeDevice extends  BaseIntercepting implements LeDevice 
 
     @Override
     public void addListener(LeDeviceListener listener) {
-        InterceptingLeDeviceListener iListener = leInterceptor.getLeDeviceListener(listener);
+        InterceptingLeDeviceListener iListener = leInterceptor.getInterceptingLeDeviceListener(listener);
         leDevice.addListener(iListener);
         leInterceptor.listenerAdded(this, iListener);
     }
 
     @Override
     public void removeListener(LeDeviceListener listener) {
-        leDevice.removeListener(leInterceptor.getLeDeviceListener(listener));
+        leDevice.removeListener(leInterceptor.getInterceptingLeDeviceListener(listener));
         leInterceptor.listenerRemoved(this);
 
     }

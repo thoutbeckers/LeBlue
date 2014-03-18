@@ -133,7 +133,7 @@ public class LeLogCatInterceptor extends LeInterceptor {
     }
 
     @Override
-    public void characteristicChanged(InterceptingLeCharacteristicListener iLeCharacteristicListener, UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic) {
+    public void characteristicChanged(InterceptingLeCharacteristicListener iLeCharacteristicListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic) {
         Log.i(TAG, "characteristicChanged: ");
     }
 

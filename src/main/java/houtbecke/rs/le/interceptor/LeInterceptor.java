@@ -22,8 +22,10 @@ public abstract class LeInterceptor {
     public Map<LeGattService, InterceptingLeGattService> iGattServices = new HashMap<>();
     public Map<LeGattCharacteristic, InterceptingLeGattCharacteristic> iGattCharacteristics = new HashMap<>();
     public Map<LeCharacteristicListener, InterceptingLeCharacteristicListener> iCharacteristicListeners = new HashMap<>();
+    public Map<LeGattCharacteristic, InterceptingLeGattCharacteristic> iCharacteristics = new HashMap<>();
 
-    public InterceptingLeRemoteDevice getLeRemoteDevice(LeRemoteDevice leRemoteDevice) {
+
+    public InterceptingLeRemoteDevice getInterceptingLeRemoteDevice(LeRemoteDevice leRemoteDevice) {
         InterceptingLeRemoteDevice iRemoteDevice = iRemoteDevices.get(leRemoteDevice);
         if (iRemoteDevice == null) {
             iRemoteDevice = new InterceptingLeRemoteDevice(leRemoteDevice, this);
@@ -32,7 +34,7 @@ public abstract class LeInterceptor {
         return iRemoteDevice;
     }
 
-    public InterceptingLeDevice getLeDevice(LeDevice leDevice) {
+    public InterceptingLeDevice getInterceptingLeDevice(LeDevice leDevice) {
         InterceptingLeDevice device = iDevices.get(leDevice);
         if (device == null) {
 
@@ -41,7 +43,7 @@ public abstract class LeInterceptor {
         return device;
     }
 
-    public InterceptingLeDeviceListener getLeDeviceListener(LeDeviceListener listener) {
+    public InterceptingLeDeviceListener getInterceptingLeDeviceListener(LeDeviceListener listener) {
         InterceptingLeDeviceListener iDeviceListener= iDeviceListeners.get(listener);
         if (iDeviceListener == null) {
             iDeviceListener = new InterceptingLeDeviceListener(listener, this);
@@ -49,7 +51,6 @@ public abstract class LeInterceptor {
         }
         return iDeviceListener;
     }
-
 
     public InterceptingLeGattService getInterceptingLeGattService(LeGattService leGattService) {
         InterceptingLeGattService iLeGattService = iGattServices.get(leGattService);
@@ -77,6 +78,15 @@ public abstract class LeInterceptor {
             iCharacteristicListeners.put(listener, iLeCharacteristicListener);
         }
         return iLeCharacteristicListener;
+    }
+
+    public InterceptingLeGattCharacteristic getInterceptingLeGattCharacteristic(LeGattCharacteristic characteristic) {
+        InterceptingLeGattCharacteristic iLeGattCharacteristic = iCharacteristics.get(characteristic);
+        if (iLeGattCharacteristic == null) {
+            iLeGattCharacteristic = new InterceptingLeGattCharacteristic(characteristic, this);
+            iCharacteristics.put(characteristic, iLeGattCharacteristic);
+        }
+        return iLeGattCharacteristic;
     }
 
     public volatile int counter = 0;
@@ -129,7 +139,7 @@ public abstract class LeInterceptor {
 
     public abstract void gotRemoteDeviceName(InterceptingLeRemoteDevice iLeRemoteDevice, String name);
 
-    public abstract void characteristicChanged(InterceptingLeCharacteristicListener iLeCharacteristicListener, UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic);
+    public abstract void characteristicChanged(InterceptingLeCharacteristicListener iLeCharacteristicListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic);
 
     public abstract void remoteDeviceCharacteristicListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicListener iCharacteristicsListener, UUID[] uuids);
 

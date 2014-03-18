@@ -6,6 +6,7 @@ import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattStatus;
 import houtbecke.rs.le.LeRemoteDevice;
+import houtbecke.rs.le.mock.LeRemoteDeviceMock;
 import houtbecke.rs.le.session.EventSink;
 import houtbecke.rs.le.session.EventType;
 
@@ -88,10 +89,19 @@ public class LeSessionInterceptor extends LeInterceptor {
 
     @Override
     public void startedScanning(InterceptingLeDevice iLeDevice, UUID[] uuids) {
-        String[] params = new String[uuids.length];
-        for (int k=0; k < uuids.length; k++)
-            params[k] = uuids[k].toString();
+        String[] params = getStringsFromUUIDs(uuids);
         drainEvent(deviceStartScanning, iLeDevice, params);
+    }
+
+    private String[] getStringsFromUUIDs(UUID[] uuids) {
+        String[] params = new String[uuids.length];
+        return putUUIDsInStringArray(uuids, params, 0);
+    }
+
+    private String[] putUUIDsInStringArray(UUID[] uuids, String[] params, int start) {
+        for (int k=0; k < uuids.length; k++)
+            params[k+start] = uuids[k].toString();
+        return params;
     }
 
     @Override
@@ -150,13 +160,16 @@ public class LeSessionInterceptor extends LeInterceptor {
     }
 
     @Override
-    public void characteristicChanged(InterceptingLeCharacteristicListener iLeCharacteristicListener, UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic) {
-
+    public void characteristicChanged(InterceptingLeCharacteristicListener iLeCharacteristicListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic) {
+        drainEvent(characteristicChanged, iLeCharacteristicListener, uuid.toString(), iLeRemoteDevice.id+"", iLeGattCharacteristic.id+"");
     }
 
     @Override
     public void remoteDeviceCharacteristicListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicListener iCharacteristicsListener, UUID[] uuids) {
-
+        String[] args = new String[1 + uuids.length];
+        args[0] = iCharacteristicsListener.id+"";
+        putUUIDsInStringArray(uuids, args, 1);
+        drainEvent(remoteDeviceSetCharacteristicListener, iLeRemoteDevice, args);
     }
 
     private String bytesToString(byte[] scanRecord) {
