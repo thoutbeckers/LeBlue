@@ -6,6 +6,7 @@ import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattStatus;
 import houtbecke.rs.le.LeRemoteDevice;
+import houtbecke.rs.le.LeUtil;
 import houtbecke.rs.le.mock.LeRemoteDeviceMock;
 import houtbecke.rs.le.session.EventSink;
 import houtbecke.rs.le.session.EventType;
@@ -28,8 +29,8 @@ public class LeSessionInterceptor extends LeInterceptor {
     }
 
     @Override
-    public void remoteDeviceFound(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, int rssi, byte[] scanRecord) {
-        drainEvent(remoteDeviceFound, iLeDevice, iLeRemoteDevice.id+"", rssi+"", bytesToString(scanRecord));
+    public void deviceFound(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, int rssi, byte[] scanRecord) {
+        drainEvent(remoteDeviceFound, iLeDevice, iLeRemoteDevice.id+"", rssi+"", LeUtil.bytesToString(scanRecord));
     }
 
     @Override
@@ -111,7 +112,7 @@ public class LeSessionInterceptor extends LeInterceptor {
 
     @Override
     public void gotValue(InterceptingLeGattCharacteristic iLeGattCharacteristic, byte[] value) {
-        drainEvent(characteristicGetValue, iLeGattCharacteristic, bytesToString(value));
+        drainEvent(characteristicGetValue, iLeGattCharacteristic, LeUtil.bytesToString(value));
     }
 
     @Override
@@ -135,22 +136,22 @@ public class LeSessionInterceptor extends LeInterceptor {
     }
 
     @Override
-    public void remoteDeviceConnecting(InterceptingLeRemoteDevice iLeRemoteDevice) {
+    public void connecting(InterceptingLeRemoteDevice iLeRemoteDevice) {
         drainEvent(remoteDeviceConnect, iLeRemoteDevice);
     }
 
     @Override
-    public void remoteDeviceDisconnecting(InterceptingLeRemoteDevice iLeRemoteDevice) {
+    public void disconnecting(InterceptingLeRemoteDevice iLeRemoteDevice) {
         drainEvent(remoteDeviceDisconnect, iLeRemoteDevice);
     }
 
     @Override
-    public void remoteDeviceClosing(InterceptingLeRemoteDevice iLeRemoteDevice) {
+    public void closing(InterceptingLeRemoteDevice iLeRemoteDevice) {
         drainEvent(remoteDeviceClose, iLeRemoteDevice);
     }
 
     @Override
-    public void remoteDeviceServiceDiscoveryStarted(InterceptingLeRemoteDevice iLeRemoteDevice) {
+    public void serviceDiscoveryStarted(InterceptingLeRemoteDevice iLeRemoteDevice) {
         drainEvent(startServicesDiscovery, iLeRemoteDevice);
     }
 
@@ -165,21 +166,15 @@ public class LeSessionInterceptor extends LeInterceptor {
     }
 
     @Override
-    public void remoteDeviceCharacteristicListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicListener iCharacteristicsListener, UUID[] uuids) {
+    public void characteristicListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicListener iCharacteristicsListener, UUID[] uuids) {
         String[] args = new String[1 + uuids.length];
         args[0] = iCharacteristicsListener.id+"";
         putUUIDsInStringArray(uuids, args, 1);
         drainEvent(remoteDeviceSetCharacteristicListener, iLeRemoteDevice, args);
     }
 
-    private String bytesToString(byte[] scanRecord) {
-        StringBuilder builder = new StringBuilder();
-        for (byte b: scanRecord) {
-            builder.append(b).append(",");
-        }
-        String bytes = builder.toString();
-        if (bytes.length() > 0)
-            return bytes.substring(0, bytes.length() - 1);
-        return bytes;
+    @Override
+    public void setValue(InterceptingLeGattCharacteristic iLeGattCharacteristic, byte[] value) {
+        drainEvent(characteristicSetValue, iLeGattCharacteristic, LeUtil.bytesToString(value));
     }
 }

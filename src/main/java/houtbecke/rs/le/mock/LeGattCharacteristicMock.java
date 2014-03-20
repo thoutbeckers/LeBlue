@@ -20,4 +20,9 @@ public class LeGattCharacteristicMock implements LeGattCharacteristic {
     public int getIntValue(LeFormat format, int index) {
         return mockController.characteristicGetIntValue(this, format, index);
     }
+
+    @Override
+    public void setValue(byte[] value) {
+        mockController.characteristicSetValue(this, value);
+    }
 }

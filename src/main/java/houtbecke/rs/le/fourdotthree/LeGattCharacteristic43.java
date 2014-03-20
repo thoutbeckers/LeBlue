@@ -21,4 +21,9 @@ class LeGattCharacteristic43 implements LeGattCharacteristic {
     public int getIntValue(LeFormat format, int index) {
         return characteristic.getIntValue(format.format(), index);
     }
+
+    @Override
+    public void setValue(byte[] value) {
+        characteristic.setValue(value);
+    }
 }

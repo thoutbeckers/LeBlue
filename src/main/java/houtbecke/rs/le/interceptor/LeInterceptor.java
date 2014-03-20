@@ -93,7 +93,7 @@ public abstract class LeInterceptor {
 
     public abstract void listenerAdded(InterceptingLeDevice iLeDevice, InterceptingLeDeviceListener iListener);
 
-    public abstract void remoteDeviceFound(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, byte[] scanRecord);
+    public abstract void deviceFound(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, byte[] scanRecord);
 
     public abstract void connected(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
 
@@ -129,18 +129,19 @@ public abstract class LeInterceptor {
 
     public abstract void gotAddress(InterceptingLeRemoteDevice iLeRemoteDevice, String address);
 
-    public abstract void remoteDeviceConnecting(InterceptingLeRemoteDevice iLeRemoteDevice);
+    public abstract void connecting(InterceptingLeRemoteDevice iLeRemoteDevice);
 
-    public abstract void remoteDeviceDisconnecting(InterceptingLeRemoteDevice iLeRemoteDevice);
+    public abstract void disconnecting(InterceptingLeRemoteDevice iLeRemoteDevice);
 
-    public abstract void remoteDeviceClosing(InterceptingLeRemoteDevice iLeRemoteDevice);
+    public abstract void closing(InterceptingLeRemoteDevice iLeRemoteDevice);
 
-    public abstract void remoteDeviceServiceDiscoveryStarted(InterceptingLeRemoteDevice iLeRemoteDevice);
+    public abstract void serviceDiscoveryStarted(InterceptingLeRemoteDevice iLeRemoteDevice);
 
     public abstract void gotRemoteDeviceName(InterceptingLeRemoteDevice iLeRemoteDevice, String name);
 
     public abstract void characteristicChanged(InterceptingLeCharacteristicListener iLeCharacteristicListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic);
 
-    public abstract void remoteDeviceCharacteristicListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicListener iCharacteristicsListener, UUID[] uuids);
+    public abstract void characteristicListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicListener iCharacteristicsListener, UUID[] uuids);
 
+    public abstract void setValue(InterceptingLeGattCharacteristic interceptingLeGattCharacteristic, byte[] value);
 }

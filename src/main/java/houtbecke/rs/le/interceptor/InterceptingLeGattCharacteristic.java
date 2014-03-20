@@ -25,4 +25,10 @@ public class InterceptingLeGattCharacteristic extends BaseIntercepting implement
         leInterceptor.gotIntValue(this, format, value);
         return value;
     }
+
+    @Override
+    public void setValue(byte[] value) {
+        leGattCharacteristic.setValue(value);
+        leInterceptor.setValue(this, value);
+    }
 }

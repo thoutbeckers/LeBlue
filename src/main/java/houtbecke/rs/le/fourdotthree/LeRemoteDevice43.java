@@ -19,6 +19,7 @@ import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
+import houtbecke.rs.le.LeUtil;
 
 public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteDevice {
 
@@ -136,11 +137,8 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         UUID uuid = characteristic.getUuid();
 
         byte[] bytes = characteristic.getValue();
-        StringBuilder data = new StringBuilder();
-        for (byte b: bytes)
-            data.append("[").append(b).append("]");
-        Log.i("LeBlue", characteristic.getUuid()+" data: "+data);
 
+        Log.i("LeBlue", characteristic.getUuid()+" data: ["+ LeUtil.bytesToString(bytes)+"]");
 
         LeCharacteristicListener nullListener = uuidCharacteristicListeners.get(null);
         LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(uuid);

@@ -1,8 +1,12 @@
 package houtbecke.rs.le.mock;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.StringTokenizer;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
@@ -11,18 +15,28 @@ import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattStatus;
 import houtbecke.rs.le.LeRemoteDeviceListener;
+import houtbecke.rs.le.LeUtil;
 import houtbecke.rs.le.session.Event;
 import houtbecke.rs.le.session.EventSource;
 import houtbecke.rs.le.session.EventType;
 
 import static houtbecke.rs.le.session.EventType.*;
 
-public class LeSessionController  implements LeMockController {
+public class LeSessionController implements LeMockController {
+
+    Handler handler = null;
 
     final static String TAG = "LeBlueController";
     int counter = 0;
 
     public LeSessionController() {
+        try {
+            handler = new Handler(Looper.getMainLooper());
+        } catch (Exception e) {
+            // Failure of the handler to initialize means we're probably running
+            // in a JDK environment
+            System.out.println("Not using handler for posting events!");
+        }
     }
 
     int source;
@@ -96,15 +110,27 @@ public class LeSessionController  implements LeMockController {
         }).start();
     }
 
+   private void runOnUiThread(Runnable runnable) {
+       if (handler != null) {
+           handler.post(runnable);
+       }
+       else {
+           runnable.run();
+       }
+   }
+
 
     boolean sessionIsRunning = false;
     public synchronized void startSession(EventSource source) {
         sessionIsRunning = true;
+        sessionException = null;
         this.notifyAll();
+        Event currentEvent = null;
         try {
 
             while (source.hasMoreEvent()) {
-                Event event = source.nextEvent();
+                final Event event = source.nextEvent();
+                currentEvent = event;
 
                 switch (event.type) {
                     case deviceAddListener:
@@ -127,43 +153,63 @@ public class LeSessionController  implements LeMockController {
                     case characteristicGetValue:
                     case characteristicGetIntValue:
                     case remoteDeviceSetCharacteristicListener:
+                    case characteristicSetValue:
                         waitForEvent(event);
                         break;
                     case remoteDeviceFound:
-                        getDeviceListener(event.source).leDeviceFound(
-                                getDevice(event.values[0]),
-                                createRemoteDevice(Integer.valueOf(event.values[1]), getDevice(event.source)),
-                                Integer.valueOf(event.values[2]),
-                                toBytes(event.values[3]));
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                getDeviceListener(event.source).leDeviceFound(
+                                        getDevice(event.values[0]),
+                                        createRemoteDevice(Integer.valueOf(event.values[1]), getDevice(event.source)),
+                                        Integer.valueOf(event.values[2]),
+                                        LeUtil.stringToBytes(event.values[3]));
+                            }
+                        });
                         break;
                     case remoteDeviceConnected:
-                        getRemoteDeviceListener(event.source).leDevicesConnected(
-                                getDevice(event.values[0]),
-                                getRemoteDevice(event.values[1]));
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                getRemoteDeviceListener(event.source).leDevicesConnected(
+                                        getDevice(event.values[0]),
+                                        getRemoteDevice(event.values[1]));
+                            }
+                        });
                         break;
                     case remoteDeviceServicesDiscovered:
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                LeGattServiceMock[] services = new LeGattServiceMock[event.values.length - 3];
+                                for (int k = 0; k < services.length; k++)
+                                    services[k] = createGattService(event.values[k + 3]);
 
-                        LeGattServiceMock[] services = new LeGattServiceMock[event.values.length - 3];
-                        for (int k = 0; k < services.length; k++)
-                            services[k] = createGattService(event.values[k+3]);
-
-                        getRemoteDeviceListener(event.source).serviceDiscovered(
-                                getDevice(event.values[0]),
-                                getRemoteDevice(event.values[1]),
-                                LeGattStatus.fromString(event.values[2]),
-                                services
-                        );
+                                getRemoteDeviceListener(event.source).serviceDiscovered(
+                                        getDevice(event.values[0]),
+                                        getRemoteDevice(event.values[1]),
+                                        LeGattStatus.fromString(event.values[2]),
+                                        services);
+                            }
+                        });
                         break;
 
                     case characteristicChanged:
-                        UUID uuid = null;
-                        if (event.values[0] != null && !event.values[0].equals("null"))
-                            uuid = UUID.fromString(event.values[0]);
-                        getCharacteristicListener(event.source).leCharacteristicChanged(
-                            uuid,
-                            getRemoteDevice(event.values[1]),
-                            getCharacteristic(event.values[2])
-                        );
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                UUID uuid = null;
+                                if (event.values[0] != null && !event.values[0].equals("null"))
+                                    uuid = UUID.fromString(event.values[0]);
+                                getCharacteristicListener(event.source).leCharacteristicChanged(
+                                        uuid,
+                                        getRemoteDevice(event.values[1]),
+                                        getCharacteristic(event.values[2])
+                                );
+                            }
+                        });
                         break;
 
                     default:
@@ -171,12 +217,18 @@ public class LeSessionController  implements LeMockController {
                 }
             }
         } catch (Exception e) {
-            throw new RuntimeException("error processing session", e);
+            sessionException = e;
+            throw new RuntimeException("error processing session at event "+currentEvent, e);
         }
         finally {
             sessionIsRunning = false;
             this.notifyAll();
         }
+    }
+
+    Exception sessionException = null;
+    public Exception getSessionException() {
+        return sessionException;
     }
     
     public boolean checkEvent(EventType event, LeDeviceMock source) {
@@ -195,11 +247,9 @@ public class LeSessionController  implements LeMockController {
         return checkEventWithSourceId(event, getCharacteristicKey(source));
     }
 
+    public synchronized boolean checkEventWithSourceId(EventType eventType, int source) {
 
-
-    public synchronized boolean checkEventWithSourceId(EventType event, int source) {
-
-        if (currentEvent != null && event == currentEvent.type) {
+        if (currentEvent != null && eventType == currentEvent.type) {
             this.source = currentEvent.source;
             this.values = currentEvent.values;
             currentEvent = null;
@@ -212,16 +262,17 @@ public class LeSessionController  implements LeMockController {
                 }
 
             if (this.source == source) {
-//                Log.i(TAG, event+"("+ source != null ? source : "no source"+") is happening "+ this.value != null ? " with value:["+this.value+"]" : "");
+                Log.i(TAG, eventType + "("+source+") is happening " + Arrays.toString(this.values));
                 return true;
             }
+            else {
+                Log.w(TAG, "Mismatch source: For event "+ eventType +" source not correct: "+source+" expected "+this.source);
+                return false;
+            }
         }
-//        Log.w(TAG, event+"("+ source != null ? source : "no source" + " happened, expected " + currentEvent +" ("+ source != null ? source : "no source"+")");
-        currentEvent = null;
-        this.notifyAll();
+        Log.w(TAG, "Mismatch, expected "+ (currentEvent != null ? currentEvent.type : "nothing") + " got :"+ eventType + "(" + source + ") is happening (session running? :" + sessionIsRunning + ") with values" + Arrays.toString(this.values) + " full event: " + currentEvent);
         return false;
     }
-
 
     @Override
     public synchronized void deviceStartScanning(LeDeviceMock leDeviceMock) {
@@ -401,8 +452,7 @@ public class LeSessionController  implements LeMockController {
 
     @Override
     public String remoteDeviceGetAddress(LeRemoteDeviceMock leRemoteDeviceMock) {
-        checkEvent(remoteDeviceGetAddress, leRemoteDeviceMock);
-        return eventValue();
+        return checkEvent(remoteDeviceGetAddress, leRemoteDeviceMock) ? eventValue() : "0:0:0:0";
     }
 
     @Override
@@ -413,14 +463,13 @@ public class LeSessionController  implements LeMockController {
 
     @Override
     public UUID serviceGetUuid(LeGattServiceMock leGattServiceMock) {
-        checkEvent(serviceGetUUID, leGattServiceMock);
-        return UUID.fromString(eventValue());
+        return checkEvent(serviceGetUUID, leGattServiceMock) ? UUID.fromString(eventValue()) : UUID.randomUUID();
     }
 
     @Override
     public byte[] characteristicGetValue(LeGattCharacteristicMock leGattCharacteristicMock) {
         checkEvent(characteristicGetValue, leGattCharacteristicMock);
-        return toBytes(eventValue());
+        return LeUtil.stringToBytes(eventValue());
     }
 
     @Override
@@ -429,12 +478,9 @@ public class LeSessionController  implements LeMockController {
         return eventIntValue();
     }
 
-    protected byte[] toBytes(String string) {
-        StringTokenizer tokenizer = new StringTokenizer(string, ",");
-
-        byte[] bytes = new byte[tokenizer.countTokens()];
-        for (int k=0; k<bytes.length; k++)
-            bytes[k] = Byte.valueOf(tokenizer.nextToken());
-        return bytes;
+    @Override
+    public void characteristicSetValue(LeGattCharacteristicMock leGattCharacteristicMock, byte[] value) {
+        checkEvent(characteristicSetValue, leGattCharacteristicMock);
     }
+
 }

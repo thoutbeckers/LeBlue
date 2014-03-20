@@ -9,4 +9,10 @@ public class BaseIntercepting {
         this.leInterceptor = leInterceptor;
         id = ++leInterceptor.counter;
     }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName().replace("Intercepting", "")+
+                '[' + id + "] ";
+    }
 }

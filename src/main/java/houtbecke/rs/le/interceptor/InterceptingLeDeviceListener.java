@@ -16,7 +16,7 @@ public class InterceptingLeDeviceListener extends BaseIntercepting implements Le
     public void leDeviceFound(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi, byte[] scanRecord) {
         InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
         InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(leRemoteDevice);
-        leInterceptor.remoteDeviceFound(iLeDevice, iLeRemoteDevice, rssi, scanRecord);
+        leInterceptor.deviceFound(iLeDevice, iLeRemoteDevice, rssi, scanRecord);
         leDeviceListener.leDeviceFound(iLeDevice, iLeRemoteDevice, rssi, scanRecord);
     }
 }

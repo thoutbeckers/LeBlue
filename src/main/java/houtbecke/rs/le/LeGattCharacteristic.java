@@ -10,4 +10,6 @@ public interface LeGattCharacteristic {
 
     int getIntValue(LeFormat format, int index);
 
+    void setValue(byte[] value);
+
 }

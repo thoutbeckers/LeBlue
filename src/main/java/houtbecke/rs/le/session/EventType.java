@@ -22,6 +22,7 @@ public enum EventType {
     startServicesDiscovery,
     remoteDeviceGetName,
     serviceGetCharacteristic,
+    characteristicSetValue,
 
 
     remoteDeviceFound,

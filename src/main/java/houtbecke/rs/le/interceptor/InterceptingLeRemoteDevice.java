@@ -37,32 +37,32 @@ public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRe
 
     @Override
     public void connect() {
-        leInterceptor.remoteDeviceConnecting(this);
+        leInterceptor.connecting(this);
         leRemoteDevice.connect();
     }
 
     @Override
     public void disconnect() {
-        leInterceptor.remoteDeviceDisconnecting(this);
+        leInterceptor.disconnecting(this);
         leRemoteDevice.disconnect();
     }
 
     @Override
     public void close() {
-        leInterceptor.remoteDeviceClosing(this);
+        leInterceptor.closing(this);
         leRemoteDevice.close();
     }
 
     @Override
     public void startServicesDiscovery() {
-        leInterceptor.remoteDeviceServiceDiscoveryStarted(this);
+        leInterceptor.serviceDiscoveryStarted(this);
         leRemoteDevice.startServicesDiscovery();
     }
 
     @Override
     public void setCharacteristicListener(LeCharacteristicListener listener, UUID... uuids) {
         InterceptingLeCharacteristicListener iCharacteristicsListener = leInterceptor.getInterceptingCharacteristicsListener(listener);
-        leInterceptor.remoteDeviceCharacteristicListenerSet(this, iCharacteristicsListener, uuids);
+        leInterceptor.characteristicListenerSet(this, iCharacteristicsListener, uuids);
         leRemoteDevice.setCharacteristicListener(iCharacteristicsListener, uuids);
     }
 
