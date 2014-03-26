@@ -144,7 +144,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(uuid);
 
         if (nullListener != null || uuidListener != null) {
-            LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(characteristic);
+            LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic);
             if (nullListener != null)
                 nullListener.leCharacteristicChanged(uuid, this, characteristic43);
             if (uuidListener != null)

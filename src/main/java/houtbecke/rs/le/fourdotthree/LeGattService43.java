@@ -30,7 +30,7 @@ class LeGattService43 implements LeGattService {
 
     @Override
     public LeGattCharacteristic getCharacteristic(UUID uuid) {
-        return new LeGattCharacteristic43(gattService.getCharacteristic(uuid));
+        return new LeGattCharacteristic43(gatt, gattService.getCharacteristic(uuid));
     }
 
     @Override

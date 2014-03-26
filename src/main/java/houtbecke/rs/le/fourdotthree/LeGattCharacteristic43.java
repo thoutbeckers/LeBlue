@@ -1,5 +1,6 @@
 package houtbecke.rs.le.fourdotthree;
 
+import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 
 import houtbecke.rs.le.LeFormat;
@@ -7,9 +8,11 @@ import houtbecke.rs.le.LeGattCharacteristic;
 
 class LeGattCharacteristic43 implements LeGattCharacteristic {
     BluetoothGattCharacteristic characteristic;
+    BluetoothGatt gatt;
 
-    LeGattCharacteristic43(BluetoothGattCharacteristic characteristic) {
+    LeGattCharacteristic43(BluetoothGatt gatt,BluetoothGattCharacteristic characteristic) {
         this.characteristic = characteristic;
+        this.gatt = gatt;
     }
 
     @Override
@@ -25,5 +28,6 @@ class LeGattCharacteristic43 implements LeGattCharacteristic {
     @Override
     public void setValue(byte[] value) {
         characteristic.setValue(value);
+        gatt.writeCharacteristic(characteristic);
     }
 }
