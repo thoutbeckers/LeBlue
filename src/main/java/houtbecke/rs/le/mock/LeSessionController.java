@@ -24,6 +24,10 @@ import static houtbecke.rs.le.session.EventType.*;
 
 public class LeSessionController implements LeMockController {
 
+
+    // temp workaround for LogCat crashing tests
+    boolean shouldLog() { return !"true".equals(System.getProperty("doNotLog"));}
+
     Handler handler = null;
 
     final static String TAG = "LeBlueController";
@@ -262,15 +266,15 @@ public class LeSessionController implements LeMockController {
                 }
 
             if (this.source == source) {
-                Log.i(TAG, eventType + "("+source+") is happening " + Arrays.toString(this.values));
+                if (shouldLog()) Log.i(TAG, eventType + "("+source+") is happening " + Arrays.toString(this.values));
                 return true;
             }
             else {
-                Log.w(TAG, "Mismatch source: For event "+ eventType +" source not correct: "+source+" expected "+this.source);
+                if (shouldLog()) Log.w(TAG, "Mismatch source: For event "+ eventType +" source not correct: "+source+" expected "+this.source);
                 return false;
             }
         }
-        Log.w(TAG, "Mismatch, expected "+ (currentEvent != null ? currentEvent.type : "nothing") + " got :"+ eventType + "(" + source + ") is happening (session running? :" + sessionIsRunning + ") with values" + Arrays.toString(this.values) + " full event: " + currentEvent);
+        if (shouldLog()) Log.w(TAG, "Mismatch, expected "+ (currentEvent != null ? currentEvent.type : "nothing") + " got :"+ eventType + "(" + source + ") is happening (session running? :" + sessionIsRunning + ") with values" + Arrays.toString(this.values) + " full event: " + currentEvent);
         return false;
     }
 
@@ -326,8 +330,10 @@ public class LeSessionController implements LeMockController {
 
     @Override
     public synchronized boolean serviceEnableCharacteristicNotification(LeGattServiceMock leGattServiceMock, UUID characteristic) {
-        checkEvent(serviceEnableCharacteristicNotification, leGattServiceMock);
-        return eventBooleanValue(1);
+        if (checkEvent(serviceEnableCharacteristicNotification, leGattServiceMock))
+            return eventBooleanValue(1);
+        else
+            return true;
     }
 
     Map<Integer, LeDeviceMock> devices = new HashMap<>();
@@ -401,8 +407,10 @@ public class LeSessionController implements LeMockController {
 
     @Override
     public LeGattCharacteristic serviceGetCharacteristic(LeGattServiceMock leGattServiceMock, UUID uuid) {
-        checkEvent(serviceGetCharacteristic, leGattServiceMock);
-        return createCharacteristic(eventIntValue());
+        if (checkEvent(serviceGetCharacteristic, leGattServiceMock))
+            return createCharacteristic(eventIntValue());
+        else
+            return null;
     }
 
     @Override
