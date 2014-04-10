@@ -72,4 +72,14 @@ public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRe
         leInterceptor.gotRemoteDeviceName(this, name);
         return name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return leRemoteDevice.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return leRemoteDevice.hashCode();
+    }
 }

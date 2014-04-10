@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.util.Log;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -104,19 +105,28 @@ public class LeSessionController implements LeMockController {
 
     }
 
+
     public synchronized void startSessionThread(final EventSource source) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 Thread.currentThread().setName("LeSessionController");
                 startSession(source);
+
             }
         }).start();
+
     }
 
-   private void runOnUiThread(Runnable runnable) {
+   private void runOnUiThread(final Runnable runnable) {
        if (handler != null) {
-           handler.post(runnable);
+           // robolectric workaround
+           new Thread(new Runnable() {
+               @Override
+               public void run() {
+                   handler.post(runnable);
+               }
+           }).start();
        }
        else {
            runnable.run();
@@ -349,7 +359,7 @@ public class LeSessionController implements LeMockController {
     }
 
     Map<Integer, LeRemoteDeviceMock> remoteDevices = new HashMap<>();
-    Map<LeRemoteDeviceMock, Integer> remoteDeviceKeys = new HashMap<>();
+    Map<LeRemoteDeviceMock, Integer> remoteDeviceKeys = Collections.synchronizedMap(new HashMap<LeRemoteDeviceMock, Integer>());
     protected LeRemoteDeviceMock createRemoteDevice(int key, LeDeviceMock deviceMock) {
         remoteDevices.put(key, new LeRemoteDeviceMock(this, deviceMock));
         remoteDeviceKeys.put(remoteDevices.get(key), key);
@@ -436,14 +446,14 @@ public class LeSessionController implements LeMockController {
 
     @Override
     public void remoteDeviceAddListener(LeRemoteDeviceMock leRemoteDeviceMock, LeRemoteDeviceListener listener) {
-        checkEvent(remoteDeviceAddListener, leRemoteDeviceMock);
-        remoteDeviceListeners.put(eventIntValue(), listener);
+        if (checkEvent(remoteDeviceAddListener, leRemoteDeviceMock))
+            remoteDeviceListeners.put(eventIntValue(), listener);
     }
 
     @Override
     public void remoteDeviceRemoveListener(LeRemoteDeviceMock leRemoteDeviceMock, LeRemoteDeviceListener listener) {
         checkEvent(remoteDeviceRemoveListener, leRemoteDeviceMock);
-        remoteDeviceKeys.remove(eventIntValue());
+        remoteDeviceListeners.remove(eventIntValue());
     }
 
     @Override

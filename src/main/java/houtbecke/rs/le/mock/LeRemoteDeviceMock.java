@@ -61,4 +61,16 @@ public class LeRemoteDeviceMock implements LeRemoteDevice {
         return mockController.remoteDeviceGetName(this);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o != null && o instanceof LeRemoteDevice)
+            return true;
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        // bad for performance but workaround for not calling back
+        return 0; //getAddress().hashCode();
+    }
 }
