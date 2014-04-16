@@ -7,7 +7,7 @@ repositories {
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.1"
+    buildToolsVersion "19.0.3"
 
     defaultConfig {
         minSdkVersion 18
@@ -30,5 +30,5 @@ android {
 
 dependencies {
     compile 'javax.inject:javax.inject:1'
-    compile 'com.google.code.gson:gson:2.2.4'
+    provided 'com.google.code.gson:gson:2.2.4'
 }
