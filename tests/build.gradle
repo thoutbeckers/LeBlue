@@ -1,0 +1,111 @@
+def sdkDir = "";
+File local = new File("$project.rootDir/local.properties")
+if (local.exists()) {
+    def props = new Properties();
+    local.withInputStream
+        { props.load(it) }
+    sdkDir = props["sdk.dir"]
+    println "using sdk dir: $sdkDir"
+    }
+    else
+        println "WARNING: no SDK directory found"
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'com.novoda:gradle-android-test-plugin:0.9.8-SNAPSHOT'
+    }
+}
+
+apply plugin: 'android-test'
+apply plugin: 'groovy'
+apply plugin: 'jacoco'
+apply plugin: 'coveralls'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+    maven {
+        url "file://$sdkDir/extras/android/m2repository/"
+
+    }
+
+}
+
+test {
+
+    //    this can be used to execute tests in parallel. whether this is beneficial will be more
+    //    clear once there are more tests available
+    
+    //    forkEvery = 0
+    //    maxParallelForks = 100;
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+android {
+    projectUnderTest ':example'
+}
+
+// main source set is used for code coverage files
+if ("$System.env.CI" == "true") {
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['../LeBlue/src/main/java']
+            }
+        }
+    }
+}
+
+// to prevent accidental building of the above defined main source set skip this task
+compileJava {
+    enabled = false
+}
+
+dependencies {
+
+    testCompile "org.codehaus.groovy:groovy-all:2.1.2"
+    testCompile 'junit:junit:4.11'
+    //testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
+}
+
+assemble {
+    doLast() {
+        def source = new File("$buildDir/test-classes/defaultFlavor/debug")
+        println "fixing location of classes? "+source.isDirectory();
+        if (source.isDirectory())
+            new groovy.util.AntBuilder().copy( todir:"$buildDir/classes/test" ) {
+                fileset( dir:"$buildDir/test-classes/defaultFlavor/debug" )
+            }
+    }
+}
+
+jacoco {
+    toolVersion = "0.7.0.201403182114"
+}
+
+// to include androidTest coverage for now run jacocoTestReport seperatly (executionData will not be added if the file does not exist at the beginning of the build)
+jacocoTestReport {
+
+    reports {
+        xml.enabled true
+    }
+
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+
+    additionalSourceDirs = files("$buildDir/../../LeBlue/src/main/java")
+    additionalClassDirs = files("$buildDir/classes/defaultFlavor/debug/")
+
+    executionData = files("$buildDir/jacoco/testDefaultFlavorDebug.exec")
+
+}
