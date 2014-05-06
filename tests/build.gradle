@@ -51,9 +51,6 @@ test {
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-android {
-    projectUnderTest ':example'
-}
 
 // main source set is used for code coverage files
 if ("$System.env.CI" == "true") {
@@ -72,11 +69,15 @@ compileJava {
 }
 
 dependencies {
-
-    testCompile "org.codehaus.groovy:groovy-all:2.1.2"
     testCompile 'junit:junit:4.11'
+    testCompile "org.codehaus.groovy:groovy-all:2.1.2"
     //testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
 }
+
+android {
+    projectUnderTest ':example'
+}
+
 
 assemble {
     doLast() {

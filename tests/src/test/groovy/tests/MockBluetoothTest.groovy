@@ -6,11 +6,12 @@ import houtbecke.rs.le.mock.LeSessionController
 import houtbecke.rs.le.session.Event
 import houtbecke.rs.le.session.EventSinkFiller
 import houtbecke.rs.le.session.ListEventSinkSource
+import org.junit.Before
 import org.junit.Test
 
 import static houtbecke.rs.le.session.EventType.*
 
-class TestMockBluetooth extends GroovyTestCase {
+class MockBluetoothTest  {
 
     LeSessionController sessionController = new LeSessionController()
     LeDevice device = new LeDeviceMock(sessionController)
@@ -24,8 +25,8 @@ class TestMockBluetooth extends GroovyTestCase {
     final int LE_CHARACTERISTIC_1_2 = 7;
     final int LE_CHARACTERISTIC_LISTENER = 8;
 
-    @Override
-    protected void setUp() throws Exception {
+    @Before
+    void setUp() throws Exception {
         System.setProperty "doNotLog", "true"
     }
 
