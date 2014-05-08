@@ -105,7 +105,7 @@ jacocoTestReport {
     description = "Generate Jacoco coverage reports after running tests."
 
     additionalSourceDirs = files("$buildDir/../../LeBlue/src/main/java")
-    additionalClassDirs = files("$buildDir/classes/defaultFlavor/debug/")
+    additionalClassDirs = files("$buildDir/../../LeBlue/build/classes/debug/")
 
     executionData = files("$buildDir/jacoco/testDefaultFlavorDebug.exec")
 
