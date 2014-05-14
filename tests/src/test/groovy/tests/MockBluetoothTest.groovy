@@ -6,6 +6,7 @@ import houtbecke.rs.le.mock.LeSessionController
 import houtbecke.rs.le.session.Event
 import houtbecke.rs.le.session.EventSinkFiller
 import houtbecke.rs.le.session.ListEventSinkSource
+import houtbecke.rs.le.session.SessionObject
 import org.junit.Before
 import org.junit.Test
 
@@ -13,8 +14,8 @@ import static houtbecke.rs.le.session.EventType.*
 
 class MockBluetoothTest  {
 
-    LeSessionController sessionController = new LeSessionController()
-    LeDevice device = new LeDeviceMock(sessionController)
+    LeSessionController sessionController;
+    LeDevice device
 
     final int LE_DEVICE = 1
     final int LE_REMOTE_DEVICE = 3
@@ -87,6 +88,12 @@ class MockBluetoothTest  {
                     "$LE_CHARACTERISTIC_1_1",
                     UUID.fromString("12345678-1234-1234-1234-123456789bbbb").toString())
 
+        filler.addEvent(serviceGetCharacteristic,
+                LE_SERVICE_1,
+                "$LE_CHARACTERISTIC_1_2",
+                UUID.fromString("12345678-1234-1234-1234-123456789eeee").toString())
+
+
         filler.addEvent(characteristicGetValue,
                 LE_CHARACTERISTIC_1_1,
                     "0,1,2")
@@ -119,8 +126,11 @@ class MockBluetoothTest  {
     @Test
     void testController() {
         def events = createSource();
-        sessionController.startSessionThread(events)
+        sessionController = new LeSessionController(SessionObject.newSession().withDefaultSessionSource(events), true)
+        device = new LeDeviceMock(sessionController)
+        sessionController.startSessionThread()
         assert sessionController.waitForSessionToWait();
+
         def foundRemoteDevice = false
 
         device.addListener(new LeDeviceListener() {
@@ -188,6 +198,9 @@ class MockBluetoothTest  {
         def characteristic = service.getCharacteristic(UUID.fromString("12345678-1234-1234-1234-123456789bbbb"))
         assert characteristic != null
 
+        def characteristic2 = service.getCharacteristic(UUID.fromString("12345678-1234-1234-1234-123456789eeee"))
+        assert characteristic2 != null
+
         assert characteristic.getValue() == [0, 1, 2]
 
         def changed = false
@@ -205,7 +218,7 @@ class MockBluetoothTest  {
         service.enableCharacteristicNotification(UUID.fromString("12345678-1234-1234-1234-123456789cccc"))
         assert changed;
 
-        characteristic.setValue([3, 4, 5] as byte[]);
+        characteristic2.setValue([3, 4, 5] as byte[]);
 
         assert !events.hasMoreEvent()
 

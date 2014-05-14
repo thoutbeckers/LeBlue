@@ -26,10 +26,12 @@ public enum EventType {
 
 
     remoteDeviceFound,
+    deviceRemoteDeviceFound,
     remoteDeviceConnected,
+    remoteDeviceRemoteDeviceConnected,
     remoteDeviceServicesDiscovered,
-    characteristicChanged
-
-
-
+    remoteDeviceRemoteDeviceServicesDiscovered,
+    deviceRemoteDeviceServicesDiscovered,
+    characteristicChanged,
+    remoteDeviceCharacteristicChanged
 }

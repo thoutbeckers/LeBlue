@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import houtbecke.rs.le.mock.LeDeviceMock;
 import houtbecke.rs.le.mock.LeSessionController;
+import houtbecke.rs.le.session.SessionObject;
 
 
 public class MainActivity extends Activity {
@@ -15,7 +16,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new LeDeviceMock(new LeSessionController());
+        new LeDeviceMock(new LeSessionController(SessionObject.newSession()));
     }
 
 

@@ -38,9 +38,13 @@ public interface LeMockController {
 
     String remoteDeviceGetName(LeRemoteDeviceMock leRemoteDeviceMock);
 
+    LeRemoteDeviceListener getRemoteDeviceListener(int key);
+
     void remoteDeviceAddListener(LeRemoteDeviceMock leRemoteDeviceMock, LeRemoteDeviceListener listener);
 
     void remoteDeviceRemoveListener(LeRemoteDeviceMock leRemoteDeviceMock, LeRemoteDeviceListener listener);
+
+    LeDeviceListener getDeviceListener(int key);
 
     LeGattCharacteristic serviceGetCharacteristic(LeGattServiceMock leGattServiceMock, UUID uuid);
 
@@ -49,6 +53,8 @@ public interface LeMockController {
     byte[] characteristicGetValue(LeGattCharacteristicMock leGattCharacteristicMock);
 
     int characteristicGetIntValue(LeGattCharacteristicMock leGattCharacteristicMock, LeFormat format, int index);
+
+    LeCharacteristicListener getCharacteristicListener(int key);
 
     void remoteDeviceSetCharacteristicListener(LeRemoteDeviceMock leRemoteDeviceMock, LeCharacteristicListener listener, UUID[] uuids);
 
