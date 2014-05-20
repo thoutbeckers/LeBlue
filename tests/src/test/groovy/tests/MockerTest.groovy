@@ -5,6 +5,7 @@ import houtbecke.rs.le.mock.LeDeviceMock
 import houtbecke.rs.le.mock.LeSessionController
 import houtbecke.rs.le.session.EventSinkFiller
 import houtbecke.rs.le.session.ListEventSinkSource
+import houtbecke.rs.le.session.Mocker
 import houtbecke.rs.le.session.MockerObject
 import houtbecke.rs.le.session.SessionObject
 import org.junit.Before
@@ -42,6 +43,8 @@ class MockerTest {
                     "123",
                     "0,1,2")
 
+        filler.addDeviceEvent(deviceStartScanning);
+
         return source
     }
 
@@ -51,20 +54,27 @@ class MockerTest {
     void testController() {
         def events = createSource();
         sessionController = new LeSessionController(
-                SessionObject.newSession()
+            SessionObject.newSession()
                 .withDefaultSessionSource(events)
+
+                .withDeviceMocker(
+                    MockerObject.newMocker()
+                    .withFakeDeviceListeners()
+                )
+
                 .withRemoteDeviceMocker(
                     LE_REMOTE_DEVICE,
                     MockerObject.newMocker()
-                    .withMockRemoteDevice(LE_REMOTE_DEVICE, "0001:0002:0003:0004", "d1234")
-                    .withFakeDeviceListeners()
+                    .withMockRemoteDevice(LE_REMOTE_DEVICE, "0001:0002:0003:0004", "d1234", true)
+                    .withFakeRemoteDeviceListeners()
+
                 )
         )
 
         device = new LeDeviceMock(sessionController)
         sessionController.startSessionThread()
         assert sessionController.waitForSessionToWait();
-        def foundRemoteDevice = false
+        def foundRemoteDevice = false, foundRemoteDevice2 = false
 
         device.addListener(new LeDeviceListener() {
             @Override
@@ -79,54 +89,63 @@ class MockerTest {
                 foundRemoteDevice = true
             }
         })
+
+        device.addListener(new LeDeviceListener() {
+            @Override
+            void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, byte[] scanRecord) {
+                foundRemoteDevice2 = true
+            }
+        })
+
         device.startScanning()
-        assert foundRemoteDevice
+        assert foundRemoteDevice && foundRemoteDevice2, "check both listeners are notified"
 
         assert remoteDevice.getAddress() == "0001:0002:0003:0004"
         assert remoteDevice.getName() == "d1234"
 
-//        def connected = false, disconnected = false, closed = false, discovered = false;
-//
-//        LeGattService service;
-//        remoteDevice.addListener(new LeRemoteDeviceListener() {
-//
-//            @Override
-//            void leDevicesConnected(LeDevice leDeviceFoundOn, LeRemoteDevice leRemoteDevice) {
-//                assert device == leDeviceFoundOn
-//                assert remoteDevice == leRemoteDevice
-//                connected = true;
-//            }
-//
-//            @Override
-//            void leDevicesDisconnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
-//
-//            }
-//
-//            @Override
-//            void leDevicesClosed(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
-//
-//            }
-//
-//            @Override
-//            void serviceDiscovered(LeDevice leDevice, LeRemoteDevice leRemoteDevice, LeGattStatus status, LeGattService[] gatts) {
-//                discovered = true;
-//                assert device == leDevice;
-//                assert leRemoteDevice == remoteDevice
-//                assert LeGattStatus.SUCCESS == status;
-//                assert gatts.length == 1
-//                service = gatts[0]
-//            }
-//        })
-//
-//        remoteDevice.connect();
-//
-//        assert connected
-//
+        def connected = false, disconnected = false, closed = false, discovered = false;
+
+        LeGattService service;
+        remoteDevice.addListener(new LeRemoteDeviceListener() {
+
+            @Override
+            void leDevicesConnected(LeDevice leDeviceFoundOn, LeRemoteDevice leRemoteDevice) {
+                assert device == leDeviceFoundOn
+                assert remoteDevice == leRemoteDevice
+                connected = true;
+            }
+
+            @Override
+            void leDevicesDisconnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+
+            }
+
+            @Override
+            void leDevicesClosed(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+
+            }
+
+            @Override
+            void serviceDiscovered(LeDevice leDevice, LeRemoteDevice leRemoteDevice, LeGattStatus status, LeGattService[] gatts) {
+                discovered = true;
+                assert device == leDevice;
+                assert leRemoteDevice == remoteDevice
+                assert LeGattStatus.SUCCESS == status;
+                assert gatts.length == 1
+                service = gatts[0]
+            }
+        })
+
+        remoteDevice.connect();
+
+        Thread.sleep(200);
+        assert connected
+
 //        remoteDevice.startServicesDiscovery()
 //
 //        assert discovered
-//
-//        service.getUuid() == UUID.fromString("12345678-1234-1234-1234-123456789aaaa")
+
+        //service.getUuid() == UUID.fromString("12345678-1234-1234-1234-123456789aaaa")
 //
 //        def characteristic = service.getCharacteristic(UUID.fromString("12345678-1234-1234-1234-123456789bbbb"))
 //        assert characteristic != null

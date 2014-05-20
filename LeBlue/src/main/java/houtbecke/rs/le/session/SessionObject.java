@@ -15,6 +15,11 @@ public class SessionObject implements Session {
         return this;
     }
 
+    public SessionObject withDeviceMocker(Mocker device) {
+        devices.put(EventSinkFiller.DEFAULT_DEVICE_ID, device);
+        return this;
+    }
+
     public SessionObject withRemoteDeviceMocker(int id, Mocker remoteDevice) {
         remoteDevices.put(id, remoteDevice);
         return this;

@@ -15,35 +15,65 @@ import static houtbecke.rs.le.session.EventType.*;
 
 public class MockerObject implements Mocker {
 
-    Map<Integer, Map<EventType, String[]>> mocks = new HashMap<>();
+    Map<Integer, Map<EventType, MockedResponse>> mocks = new HashMap<>();
 
     Map<Integer, Set<Integer>> listeners = new HashMap<>();
     volatile int sourceCounter = 0;
-
 
     boolean mockDeviceListeners = false;
     boolean mockRemoteDeviceListeners = false;
     boolean mockCharacteristicsListeners = false;
 
+    int delay = 0;
+
     public static MockerObject newMocker() {
         return new MockerObject();
     }
 
+    /**
+     * Mock responses followed by a mocked event defined after calling this method will delay the mock event with the supplied.
+     *
+     * @param delay delay in ms
+     * @return the same instance of this MockerObject
+     */
+    public MockerObject withDelay(int delay) {
+        this.delay = delay;
+        return this;
+    }
+
     public MockerObject withMock(int source, EventType type, String... values) {
-        getMocks(source).put(type, values);
+        getMocks(source).put(type, new MockedResponse(values));
+        return this;
+    }
+
+    public MockerObject withMock(int source, EventType type, Event event, String... values) {
+        getMocks(source).put(type, new MockedResponse(event, values));
         return this;
     }
 
     public MockerObject withMockRemoteDevice(int source, String address, String name) {
+        return withMockRemoteDevice(source, address, name, true);
+    }
+
+    public MockerObject withMockRemoteDevice(int source, String address, String name, boolean connects) {
+        return withMockRemoteDevice(source, EventSinkFiller.DEFAULT_DEVICE_ID, address, name, connects);
+    }
+
+    public MockerObject withMockRemoteDevice(int source, int deviceId, String address, String name, boolean connects) {
         addMock(remoteDeviceGetAddress, source, address);
         addMock(remoteDeviceGetName, source, name);
+        if (connects)
+            addMock(remoteDeviceConnect, source, new MockedResponse(new Event(remoteDeviceRemoteDeviceConnected, source, delay, deviceId+"")));
         return this;
     }
 
     protected void addMock(EventType method, int source, String value) {
-        getMocks(source).put(method, new String[] {value});
+        getMocks(source).put(method, new MockedResponse(new String[] {value}));
     }
 
+    protected void addMock(EventType method, int source, MockedResponse response) {
+        getMocks(source).put(method, response);
+    }
 
     public MockerObject withFakeDeviceListeners() {
         mockDeviceListeners = true;
@@ -60,8 +90,8 @@ public class MockerObject implements Mocker {
         return this;
     }
 
-    Map<EventType, String[]> getMocks(int source) {
-        Map<EventType, String[]> ret = mocks.get(source);
+    Map<EventType, MockedResponse> getMocks(int source) {
+        Map<EventType, MockedResponse> ret = mocks.get(source);
         if (ret == null) {
             ret = new HashMap<>();
             mocks.put(source, ret);
@@ -87,7 +117,7 @@ public class MockerObject implements Mocker {
 
 
     @Override
-    public String[] mock(LeMockController controller, EventType type, int source, String... arguments) {
+    public MockedResponse mock(LeMockController controller, EventType type, int source, String... arguments) {
 
         boolean mock = false;
 
@@ -99,11 +129,13 @@ public class MockerObject implements Mocker {
             case remoteDeviceSetCharacteristicListener:
                 mock |= mockCharacteristicsListeners;
                 if (mock)
-                    return new String[] { addListener(source) };
+                    return new MockedResponse(new String[] { addListener(source) });
                 break;
 
         }
-        return mocks.get(source).get(type);
+        if (mocks.get(source) != null)
+            return mocks.get(source).get(type);
+        return null;
     }
 
     @Override
