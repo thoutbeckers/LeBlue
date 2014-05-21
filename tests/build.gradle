@@ -92,9 +92,9 @@ assemble {
 
 jacoco {
     toolVersion = "0.7.0.201403182114"
+
 }
 
-// to include androidTest coverage for now run jacocoTestReport seperatly (executionData will not be added if the file does not exist at the beginning of the build)
 jacocoTestReport {
 
     reports {
@@ -105,7 +105,7 @@ jacocoTestReport {
     description = "Generate Jacoco coverage reports after running tests."
 
     additionalSourceDirs = files("$buildDir/../../LeBlue/src/main/java")
-    additionalClassDirs = files("$buildDir/../../LeBlue/build/classes/debug/")
+    additionalClassDirs = fileTree("$buildDir/../../LeBlue/build/classes/debug/").exclude([ "houtbecke/rs/le/fourdotthree/**"])
 
     executionData = files("$buildDir/jacoco/testDefaultFlavorDebug.exec")
 
