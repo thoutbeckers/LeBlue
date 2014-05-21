@@ -1,6 +1,7 @@
 package houtbecke.rs.le.session;
 
 public enum EventType {
+
     deviceStartScanning,
     deviceStopScanning,
     deviceRemoveListener,
@@ -34,4 +35,7 @@ public enum EventType {
     deviceRemoteDeviceServicesDiscovered,
     characteristicChanged,
     remoteDeviceCharacteristicChanged
+
+
+
 }

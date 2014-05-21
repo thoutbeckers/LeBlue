@@ -1,21 +1,11 @@
 package houtbecke.rs.le.session;
 
-public class MockedResponse {
+public interface MockedResponse {
+    String[] getMockedResultValues();
 
-    final public String[] mockedResultValues;
+    Event getNextMockedEvent();
 
-    final public Event nextMockedEvent;
+    boolean isSelfDestroying();
 
-    public MockedResponse(Event nextMockedEvent) {
-        this(nextMockedEvent, null);
-    }
-
-    public MockedResponse(String[] mockedResultValues) {
-        this (null, mockedResultValues);
-    }
-
-    public MockedResponse(Event nextMockedEvent, String[] mockedResultValues) {
-        this.mockedResultValues = mockedResultValues == null ? new String[] {} : mockedResultValues;
-        this.nextMockedEvent = nextMockedEvent;
-    }
+    boolean isForArguments(String[] values);
 }

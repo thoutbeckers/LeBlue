@@ -21,6 +21,7 @@ import houtbecke.rs.le.session.Event;
 import houtbecke.rs.le.session.EventSource;
 import houtbecke.rs.le.session.EventType;
 import houtbecke.rs.le.session.MockedResponse;
+import houtbecke.rs.le.session.MockedResponseObject;
 import houtbecke.rs.le.session.Mocker;
 import houtbecke.rs.le.session.Session;
 
@@ -392,8 +393,8 @@ public class LeSessionController implements LeMockController {
 
             if (mockedResponse != null) {
 
-                mockedEvent = mockedResponse.nextMockedEvent;
-                values = mockedResponse.mockedResultValues;
+                mockedEvent = mockedResponse.getNextMockedEvent();
+                values = mockedResponse.getMockedResultValues();
                 if (mockedEvent != null) {
                     stackedEvent = currentEvent;
                     currentEvent = null;
