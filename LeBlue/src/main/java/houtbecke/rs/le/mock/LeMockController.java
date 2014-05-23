@@ -10,6 +10,12 @@ import houtbecke.rs.le.LeRemoteDeviceListener;
 
 public interface LeMockController {
 
+    void pointReached(String point);
+
+    void waitForPoint(String point);
+
+    void waitForFinishedRun();
+
     void deviceStartScanning(LeDeviceMock leDeviceMock);
 
     void deviceStartScanning(LeDeviceMock leDeviceMock, UUID[] uuids);

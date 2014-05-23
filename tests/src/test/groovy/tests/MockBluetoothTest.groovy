@@ -1,9 +1,11 @@
 package tests
 
 import houtbecke.rs.le.*
+import houtbecke.rs.le.interceptor.InterceptingLeDevice
+import houtbecke.rs.le.interceptor.LeSessionInterceptor
 import houtbecke.rs.le.mock.LeDeviceMock
 import houtbecke.rs.le.mock.LeSessionController
-import houtbecke.rs.le.session.Event
+import houtbecke.rs.le.session.EventSink
 import houtbecke.rs.le.session.EventSinkFiller
 import houtbecke.rs.le.session.ListEventSinkSource
 import houtbecke.rs.le.session.SessionObject
@@ -85,7 +87,7 @@ class MockBluetoothTest  {
 
         filler.addEvent(serviceGetCharacteristic,
                 LE_SERVICE_1,
-                    "$LE_CHARACTERISTIC_1_1",
+                    LE_CHARACTERISTIC_1_1,
                     UUID.fromString("12345678-1234-1234-1234-123456789bbbb").toString())
 
         filler.addEvent(serviceGetCharacteristic,
@@ -127,9 +129,12 @@ class MockBluetoothTest  {
     void testController() {
         def events = createSource();
         sessionController = new LeSessionController(SessionObject.newSession().withDefaultSessionSource(events), true)
-        device = new LeDeviceMock(sessionController)
+
+        EventSink sink = new ListEventSinkSource();
+        LeSessionInterceptor sessionInterceptor = new LeSessionInterceptor(sink);
+        device = new InterceptingLeDevice(new LeDeviceMock(sessionController), sessionInterceptor);
         sessionController.startSessionThread()
-        assert sessionController.waitForSessionToWait();
+        assert sessionController.waitTillSessionStarted();
 
         def foundRemoteDevice = false
 
@@ -224,4 +229,5 @@ class MockBluetoothTest  {
 
         assert sessionController.getSessionException() == null
     }
+
 }

@@ -9,4 +9,7 @@ public interface Session {
     EventSource getDefaultSource();
     EventSource getNamedEventSource(String source);
 
+    String getSourceIdentification(int source);
+
+    void setSourceIdentification(int source, String identification);
 }

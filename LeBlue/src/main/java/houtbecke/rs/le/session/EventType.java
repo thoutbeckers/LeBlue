@@ -27,14 +27,17 @@ public enum EventType {
 
 
     remoteDeviceFound,
-    deviceRemoteDeviceFound,
+    mockRemoteDeviceFound,
     remoteDeviceConnected,
-    remoteDeviceRemoteDeviceConnected,
+    mockRemoteDeviceConnected,
     remoteDeviceServicesDiscovered,
-    remoteDeviceRemoteDeviceServicesDiscovered,
+    mockRemoteDeviceServicesDiscovered,
     deviceRemoteDeviceServicesDiscovered,
     characteristicChanged,
-    remoteDeviceCharacteristicChanged
+    mockCharacteristicChanged,
+
+    mockWaitForPoint,
+    mockPointReached
 
 
 

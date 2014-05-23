@@ -22,4 +22,21 @@ public class LeUtil {
             bytes[k] = Byte.valueOf(tokenizer.nextToken());
         return bytes;
     }
+
+    public static byte[] intsToBytes(int[] values) {
+        byte[] ret = new byte[values.length];
+        for (int k = 0,len = values.length; k < len; k++)
+            ret[k] =  (byte)values[k];
+        return ret;
+    }
+
+    public static String[] extend(String[] args, int... paramsInFront) {
+        String[] ret = new String[args.length+paramsInFront.length];
+        for (int k = 0; k < paramsInFront.length; k++)
+            ret[k] = paramsInFront[k]+"";
+
+        System.arraycopy(args, 0, ret, paramsInFront.length, args.length);
+           return ret;
+    }
+
 }

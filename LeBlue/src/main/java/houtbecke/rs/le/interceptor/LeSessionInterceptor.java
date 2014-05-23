@@ -8,6 +8,7 @@ import houtbecke.rs.le.LeGattStatus;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeUtil;
 import houtbecke.rs.le.mock.LeRemoteDeviceMock;
+import houtbecke.rs.le.session.Event;
 import houtbecke.rs.le.session.EventSink;
 import houtbecke.rs.le.session.EventType;
 
@@ -16,7 +17,7 @@ import static houtbecke.rs.le.session.EventType.*;
 public class LeSessionInterceptor extends LeInterceptor {
 
     protected EventSink sink;
-    public void LeSessionInterceptor(EventSink sink) {
+    public LeSessionInterceptor(EventSink sink) {
         this.sink = sink;
     }
     @Override
@@ -25,7 +26,7 @@ public class LeSessionInterceptor extends LeInterceptor {
     }
 
     private void drainEvent(EventType type, BaseIntercepting interceptor, String... values) {
-        drainEvent(type, interceptor, values);
+        sink.addEvent(new Event(type, interceptor, values));
     }
 
     @Override
