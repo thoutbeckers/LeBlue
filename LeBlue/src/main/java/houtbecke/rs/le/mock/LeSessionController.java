@@ -127,9 +127,16 @@ public class LeSessionController implements LeMockController {
                 waitingForEvent = true;
                 this.notifyAll();
                 this.wait();
+                ;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+        try {
+            // TODO XXX if an interceptor used in conjunction with this class, give it some time to handle the event
+            Thread.sleep(50);
+        } catch (InterruptedException ignore) {
+        }
 
         waitingForEvent = false;
         this.notifyAll();
@@ -161,7 +168,7 @@ public class LeSessionController implements LeMockController {
            }).start();
        }
        else {
-           runnable.run();
+           (new Thread(runnable)).start();
        }
    }
 
@@ -626,10 +633,13 @@ public class LeSessionController implements LeMockController {
 
     Map<Integer, LeGattCharacteristicMock> characteristics = new HashMap<>();
     Map<LeGattCharacteristicMock, Integer> characteristicsKeys = new HashMap<>();
-    protected LeGattCharacteristicMock createCharacteristic(String key) {
-        return createCharacteristic(Integer.valueOf(key));
+    protected LeGattCharacteristicMock createOrReturnCharacteristic(String key) {
+        return createOrReturnCharacteristic(Integer.valueOf(key));
     }
-    protected LeGattCharacteristicMock createCharacteristic(int key) {
+    protected LeGattCharacteristicMock createOrReturnCharacteristic(int key) {
+        LeGattCharacteristicMock mock = characteristics.get(key);
+        if (mock != null)
+            return mock;
         characteristics.put(key, new LeGattCharacteristicMock(this));
         characteristicsKeys.put(characteristics.get(key), key);
         return characteristics.get(key);
@@ -647,7 +657,7 @@ public class LeSessionController implements LeMockController {
     @Override
     public LeGattCharacteristic serviceGetCharacteristic(LeGattServiceMock leGattServiceMock, UUID uuid) {
         if (checkEvent(serviceGetCharacteristic, leGattServiceMock, uuid.toString()))
-            return createCharacteristic(eventIntValue());
+            return createOrReturnCharacteristic(eventIntValue());
         else
             return null;
     }

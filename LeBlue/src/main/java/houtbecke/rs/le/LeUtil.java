@@ -39,4 +39,12 @@ public class LeUtil {
            return ret;
     }
 
+    public static String[] extend(String[] args, String paramInFront) {
+        String[] ret = new String[args.length+1];
+        ret[0] = paramInFront;
+        System.arraycopy(args, 0, ret, 1, args.length);
+        return ret;
+    }
+
+
 }

@@ -16,22 +16,29 @@ public class InterceptingLeGattService extends BaseIntercepting implements LeGat
 
     @Override
     public UUID getUuid() {
-        UUID uuid = leGattService.getUuid();
-        leInterceptor.gotUUID(this, uuid);
-        return uuid;
+        synchronized(leInterceptor) {
+            UUID uuid = leGattService.getUuid();
+            leInterceptor.gotUUID(this, uuid);
+            return uuid;
+        }
     }
 
     @Override
     public LeGattCharacteristic getCharacteristic(UUID uuid) {
-        LeGattCharacteristic leGattCharacteristic = leGattService.getCharacteristic(uuid);
-        InterceptingLeGattCharacteristic iLeGattCharacteristic = leInterceptor.serviceGotCharacteristic(this, leGattCharacteristic);
-        return iLeGattCharacteristic;
+        synchronized(leInterceptor) {
+            LeGattCharacteristic leGattCharacteristic = leGattService.getCharacteristic(uuid);
+            InterceptingLeGattCharacteristic iLeGattCharacteristic = leInterceptor.serviceGotCharacteristic(this, leGattCharacteristic);
+            leInterceptor.gotCharacteristic(this, iLeGattCharacteristic);
+            return iLeGattCharacteristic;
+        }
     }
 
     @Override
     public boolean enableCharacteristicNotification(UUID characteristic) {
-        boolean enabled = leGattService.enableCharacteristicNotification(characteristic);
-        leInterceptor.enabledCharacteristicNotification(this, characteristic, enabled);
-        return enabled;
+        synchronized(leInterceptor) {
+            boolean enabled = leGattService.enableCharacteristicNotification(characteristic);
+            leInterceptor.enabledCharacteristicNotification(this, characteristic, enabled);
+            return enabled;
+        }
     }
 }

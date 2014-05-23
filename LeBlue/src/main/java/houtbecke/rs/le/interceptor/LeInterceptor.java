@@ -22,7 +22,6 @@ public abstract class LeInterceptor {
     public Map<LeGattService, InterceptingLeGattService> iGattServices = new HashMap<>();
     public Map<LeGattCharacteristic, InterceptingLeGattCharacteristic> iGattCharacteristics = new HashMap<>();
     public Map<LeCharacteristicListener, InterceptingLeCharacteristicListener> iCharacteristicListeners = new HashMap<>();
-    public Map<LeGattCharacteristic, InterceptingLeGattCharacteristic> iCharacteristics = new HashMap<>();
 
 
     public InterceptingLeRemoteDevice getInterceptingLeRemoteDevice(LeRemoteDevice leRemoteDevice) {
@@ -81,10 +80,10 @@ public abstract class LeInterceptor {
     }
 
     public InterceptingLeGattCharacteristic getInterceptingLeGattCharacteristic(LeGattCharacteristic characteristic) {
-        InterceptingLeGattCharacteristic iLeGattCharacteristic = iCharacteristics.get(characteristic);
+        InterceptingLeGattCharacteristic iLeGattCharacteristic = iGattCharacteristics.get(characteristic);
         if (iLeGattCharacteristic == null) {
             iLeGattCharacteristic = new InterceptingLeGattCharacteristic(characteristic, this);
-            iCharacteristics.put(characteristic, iLeGattCharacteristic);
+            iGattCharacteristics.put(characteristic, iLeGattCharacteristic);
         }
         return iLeGattCharacteristic;
     }
@@ -93,11 +92,11 @@ public abstract class LeInterceptor {
 
     public abstract void listenerAdded(InterceptingLeDevice iLeDevice, InterceptingLeDeviceListener iListener);
 
-    public abstract void deviceFound(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, byte[] scanRecord);
+    public abstract void deviceFound(InterceptingLeDeviceListener iLeDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, byte[] scanRecord);
 
-    public abstract void connected(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
+    public abstract void connected(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
 
-    public abstract void disconnected(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
+    public abstract void disconnected(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
 
     public abstract void closed(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
 
@@ -105,7 +104,7 @@ public abstract class LeInterceptor {
 
     public abstract void enabledCharacteristicNotification(InterceptingLeGattService iLeGattService, UUID characteristic, boolean enabled);
 
-    public abstract void servicesDiscovered(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, LeGattStatus status, InterceptingLeGattService[] iLeGattServices);
+    public abstract void servicesDiscovered(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, LeGattStatus status, InterceptingLeGattService[] iLeGattServices);
 
     public abstract void listenerRemoved(InterceptingLeDevice iLeDevice);
 
@@ -144,4 +143,6 @@ public abstract class LeInterceptor {
     public abstract void characteristicListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicListener iCharacteristicsListener, UUID[] uuids);
 
     public abstract void setValue(InterceptingLeGattCharacteristic interceptingLeGattCharacteristic, byte[] value);
+
+    public abstract void gotCharacteristic(InterceptingLeGattService iLeGattService, InterceptingLeGattCharacteristic iLeGattCharacteristic);
 }

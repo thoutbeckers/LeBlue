@@ -17,36 +17,48 @@ import static houtbecke.rs.le.session.EventType.*;
 public class LeSessionInterceptor extends LeInterceptor {
 
     protected EventSink sink;
+
+    void drainEvent(EventType type, BaseIntercepting interceptor, BaseIntercepting secondSource, BaseIntercepting thirdSource, String... values) {
+        values = LeUtil.extend(values, secondSource.id, thirdSource.id);
+        drainEvent(type, interceptor, values);
+    }
+
+
+    void drainEvent(EventType type, BaseIntercepting interceptor, BaseIntercepting secondSource, String... values) {
+        values = LeUtil.extend(values, secondSource.id);
+        drainEvent(type, interceptor, values);
+    }
+
+    void drainEvent(EventType type, BaseIntercepting interceptor, String... values) {
+        sink.addEvent(new Event(type, interceptor, values));
+    }
+
     public LeSessionInterceptor(EventSink sink) {
         this.sink = sink;
     }
     @Override
     public void listenerAdded(InterceptingLeDevice iLeDevice, InterceptingLeDeviceListener iListener) {
-        drainEvent(deviceAddListener, iLeDevice, iListener.id+"");
-    }
-
-    private void drainEvent(EventType type, BaseIntercepting interceptor, String... values) {
-        sink.addEvent(new Event(type, interceptor, values));
+        drainEvent(deviceAddListener, iLeDevice, iListener);
     }
 
     @Override
-    public void deviceFound(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, int rssi, byte[] scanRecord) {
-        drainEvent(remoteDeviceFound, iLeDevice, iLeRemoteDevice.id+"", rssi+"", LeUtil.bytesToString(scanRecord));
+    public void deviceFound(InterceptingLeDeviceListener iLeDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, int rssi, byte[] scanRecord) {
+        drainEvent(remoteDeviceFound, iLeDeviceListener, iLeDevice, iLeRemoteDevice, rssi+"", LeUtil.bytesToString(scanRecord));
     }
 
     @Override
-    public void connected(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
-        drainEvent(remoteDeviceConnect, iLeDevice, iLeRemoteDevice.id+"");
+    public void connected(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
+        drainEvent(remoteDeviceConnected, iLeRemoteDeviceListener, iLeDevice, iLeRemoteDevice);
     }
 
     @Override
-    public void disconnected(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
-        drainEvent(remoteDeviceDisconnect, iLeDevice, iLeRemoteDevice.id + "");
+    public void disconnected(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
+        drainEvent(remoteDeviceDisconnect, iLeRemoteDeviceListener, iLeDevice, iLeRemoteDevice);
     }
 
     @Override
     public void closed(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
-        drainEvent(remoteDeviceClose, iLeDevice, iLeRemoteDevice.id + "");
+        drainEvent(remoteDeviceClose, iLeDevice, iLeRemoteDevice);
     }
 
     @Override
@@ -55,18 +67,22 @@ public class LeSessionInterceptor extends LeInterceptor {
     }
 
     @Override
+    public void gotCharacteristic(InterceptingLeGattService iLeGattService, InterceptingLeGattCharacteristic iLeGattCharacteristic) {
+        drainEvent(serviceGetCharacteristic, iLeGattService, iLeGattCharacteristic);
+    }
+
+    @Override
     public void enabledCharacteristicNotification(InterceptingLeGattService iLeGattService, UUID characteristic, boolean enabled) {
         drainEvent(serviceEnableCharacteristicNotification, iLeGattService, characteristic.toString(), Boolean.toString(enabled));
     }
 
     @Override
-    public void servicesDiscovered(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, LeGattStatus status, InterceptingLeGattService[] iLeGattServices) {
-        String[] params = new String[2 + iLeGattServices.length];
-        params[0] = iLeRemoteDevice.id+"";
-        params[1] = status.toString();
+    public void servicesDiscovered(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, LeGattStatus status, InterceptingLeGattService[] iLeGattServices) {
+        String[] params = new String[1 + iLeGattServices.length];
+        params[0] = status.toString();
         for (int k = 0; k < iLeGattServices.length; k++)
-            params[2+k] = iLeGattServices[k].id+"";
-        drainEvent(remoteDeviceServicesDiscovered, iLeDevice, params);
+            params[1+k] = iLeGattServices[k].id+"";
+        drainEvent(remoteDeviceServicesDiscovered, iLeRemoteDeviceListener, iLeDevice, iLeRemoteDevice, params);
     }
 
     @Override
@@ -153,7 +169,7 @@ public class LeSessionInterceptor extends LeInterceptor {
 
     @Override
     public void serviceDiscoveryStarted(InterceptingLeRemoteDevice iLeRemoteDevice) {
-        drainEvent(startServicesDiscovery, iLeRemoteDevice);
+        drainEvent(remoteDeviceStartServiceDiscovery, iLeRemoteDevice);
     }
 
     @Override
@@ -178,4 +194,5 @@ public class LeSessionInterceptor extends LeInterceptor {
     public void setValue(InterceptingLeGattCharacteristic iLeGattCharacteristic, byte[] value) {
         drainEvent(characteristicSetValue, iLeGattCharacteristic, LeUtil.bytesToString(value));
     }
+
 }

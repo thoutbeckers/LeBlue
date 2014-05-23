@@ -7,7 +7,7 @@ public class BaseIntercepting {
 
     public BaseIntercepting(LeInterceptor leInterceptor) {
         this.leInterceptor = leInterceptor;
-        id = ++leInterceptor.counter;
+        id = leInterceptor.counter++;
     }
 
     @Override

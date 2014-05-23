@@ -33,7 +33,7 @@ public class RemoteDeviceMockerObject extends MockerObject {
         withMock(remoteDeviceGetAddress, address);
         withMock(remoteDeviceGetName, name);
         if (connects)
-            withMock(remoteDeviceConnect, new MockedResponseObject(new Event(mockRemoteDeviceConnected, sessionSource, getDelay(), deviceId + "")));
+            withMock(remoteDeviceConnect, new MockedResponseObject(new Event(mockRemoteDeviceConnected, getDelay(), sessionSource, deviceId + "")));
         return this;
     }
 
@@ -46,7 +46,7 @@ public class RemoteDeviceMockerObject extends MockerObject {
             params.add(service+"");
         }
 
-        withMock(remoteDeviceStartServiceDiscovery, new MockedResponseObject(new Event(mockRemoteDeviceServicesDiscovered, sessionSource, getDelay(), params.toArray(new String[params.size()]))));
+        withMock(remoteDeviceStartServiceDiscovery, new MockedResponseObject(new Event(mockRemoteDeviceServicesDiscovered, getDelay(), sessionSource, params.toArray(new String[params.size()]))));
         return this;
     }
 

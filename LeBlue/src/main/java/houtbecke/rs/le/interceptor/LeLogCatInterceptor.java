@@ -20,18 +20,18 @@ public class LeLogCatInterceptor extends LeInterceptor {
     }
 
     @Override
-    public void deviceFound(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, byte[] scanRecord) {
-         Log.i(TAG, "deviceFound: "+iLeDevice+ileRemoteDevice+rssi+ LeUtil.bytesToString(scanRecord));
+    public void deviceFound(InterceptingLeDeviceListener iLeDeviceListener,InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, byte[] scanRecord) {
+         Log.i(TAG, "deviceFound: "+iLeDeviceListener+iLeDevice+ileRemoteDevice+rssi+ LeUtil.bytesToString(scanRecord));
     }
 
     @Override
-    public void connected(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
-        Log.i(TAG, "connected: "+iLeDevice+iLeRemoteDevice);
+    public void connected(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
+        Log.i(TAG, "connected: "+iLeRemoteDeviceListener+iLeDevice+iLeRemoteDevice);
     }
 
     @Override
-    public void disconnected(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
-        Log.i(TAG, "disconnected: "+iLeDevice+iLeRemoteDevice);
+    public void disconnected(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
+        Log.i(TAG, "disconnected: "+iLeRemoteDeviceListener+iLeDevice+iLeRemoteDevice);
     }
 
     @Override
@@ -45,13 +45,19 @@ public class LeLogCatInterceptor extends LeInterceptor {
     }
 
     @Override
+    public void gotCharacteristic(InterceptingLeGattService iLeGattService, InterceptingLeGattCharacteristic iLeGattCharacteristic) {
+        Log.i(TAG, "gotCharacteristic: "+iLeGattService+iLeGattCharacteristic);
+    }
+
+
+    @Override
     public void enabledCharacteristicNotification(InterceptingLeGattService iLeGattService, UUID characteristic, boolean enabled) {
         Log.i(TAG, "enabledCharacteristicNotification: "+iLeGattService+characteristic+enabled);
     }
 
     @Override
-    public void servicesDiscovered(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, LeGattStatus status, InterceptingLeGattService[] iLeGattServices) {
-        Log.i(TAG, "servicesDiscovered: "+iLeDevice+iLeRemoteDevice+status+ Arrays.toString(iLeGattServices));
+    public void servicesDiscovered(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, LeGattStatus status, InterceptingLeGattService[] iLeGattServices) {
+        Log.i(TAG, "servicesDiscovered: "+iLeRemoteDeviceListener+iLeDevice+iLeRemoteDevice+status+ Arrays.toString(iLeGattServices));
     }
 
     @Override
@@ -148,4 +154,5 @@ public class LeLogCatInterceptor extends LeInterceptor {
     public void setValue(InterceptingLeGattCharacteristic iLeGattCharacteristic, byte[] value) {
         Log.i(TAG, "setValue"+iLeGattCharacteristic+LeUtil.bytesToString(value));
     }
+
 }

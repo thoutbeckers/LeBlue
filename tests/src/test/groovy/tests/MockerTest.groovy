@@ -16,13 +16,13 @@ class MockerTest {
     LeSessionController sessionController
     LeDevice device
 
-    final int LE_REMOTE_DEVICE = 11
+    final int LE_REMOTE_DEVICE = 2
 
-    final int LE_SERVICE_2 = 21;
-    final int LE_SERVICE_1 = 22;
+    final int LE_SERVICE_2 = 4;
+    final int LE_SERVICE_1 = 3;
 
-    final int LE_CHARACTERISTIC_1_1 = 31;
-    final int LE_CHARACTERISTIC_1_2 = 32;
+    final int LE_CHARACTERISTIC_1_1 = 5;
+    final int LE_CHARACTERISTIC_1_2 = 6;
 
     @Before
     void setUp() throws Exception {
@@ -119,7 +119,7 @@ class MockerTest {
         })
 
         device.startScanning()
-
+        Thread.sleep(100)
         assert foundRemoteDevice && foundRemoteDevice2, "check both listeners are notified"
 
         assert remoteDevice.getAddress() == "0001:0002:0003:0004"
@@ -165,6 +165,7 @@ class MockerTest {
 
         remoteDevice.startServicesDiscovery()
 
+        Thread.sleep(200);
         assert discovered
 
         service.getUuid() == UUID.fromString("12345678-1234-1234-1234-123456789aaaa")
@@ -195,6 +196,7 @@ class MockerTest {
 
         sessionController.waitForFinishedRun()
 
+        Thread.sleep(100);
         assert changed;
 
         characteristic.setValue([3, 4, 5] as byte[]);

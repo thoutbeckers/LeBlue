@@ -18,7 +18,7 @@ public class InterceptingLeRemoteDeviceListener extends BaseIntercepting impleme
     public void leDevicesConnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
         InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
         InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(leRemoteDevice);
-        leInterceptor.connected(iLeDevice, iLeRemoteDevice);
+        leInterceptor.connected(this, iLeDevice, iLeRemoteDevice);
         leRemoteDeviceListener.leDevicesConnected(iLeDevice, iLeRemoteDevice);
     }
 
@@ -26,7 +26,7 @@ public class InterceptingLeRemoteDeviceListener extends BaseIntercepting impleme
     public void leDevicesDisconnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
         InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
         InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(leRemoteDevice);
-        leInterceptor.disconnected(iLeDevice, iLeRemoteDevice);
+        leInterceptor.disconnected(this, iLeDevice, iLeRemoteDevice);
         leRemoteDeviceListener.leDevicesDisconnected(iLeDevice, iLeRemoteDevice);
     }
 
@@ -47,7 +47,7 @@ public class InterceptingLeRemoteDeviceListener extends BaseIntercepting impleme
         for (int k=0; k < gatts.length; k++)
             iLeGattServices[k] = leInterceptor.getInterceptingLeGattService(gatts[k]);
 
-        leInterceptor.servicesDiscovered(iLeDevice, iLeRemoteDevice, status, iLeGattServices);
+        leInterceptor.servicesDiscovered(this, iLeDevice, iLeRemoteDevice, status, iLeGattServices);
         leRemoteDeviceListener.serviceDiscovered(iLeDevice, iLeRemoteDevice, status, iLeGattServices);
 
     }

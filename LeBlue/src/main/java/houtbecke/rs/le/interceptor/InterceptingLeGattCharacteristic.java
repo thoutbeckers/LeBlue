@@ -14,21 +14,27 @@ public class InterceptingLeGattCharacteristic extends BaseIntercepting implement
 
     @Override
     public byte[] getValue() {
-        byte[] value = leGattCharacteristic.getValue();
-        leInterceptor.gotValue(this, value);
-        return value;
+        synchronized(leInterceptor) {
+            byte[] value = leGattCharacteristic.getValue();
+            leInterceptor.gotValue(this, value);
+            return value;
+        }
     }
 
     @Override
     public int getIntValue(LeFormat format, int index) {
-        int value = leGattCharacteristic.getIntValue(format, index);
-        leInterceptor.gotIntValue(this, format, value);
-        return value;
+        synchronized(leInterceptor) {
+            int value = leGattCharacteristic.getIntValue(format, index);
+            leInterceptor.gotIntValue(this, format, value);
+            return value;
+        }
     }
 
     @Override
     public void setValue(byte[] value) {
-        leGattCharacteristic.setValue(value);
-        leInterceptor.setValue(this, value);
+        synchronized(leInterceptor) {
+            leGattCharacteristic.setValue(value);
+            leInterceptor.setValue(this, value);
+        }
     }
 }
