@@ -16,13 +16,17 @@ class MockerTest {
     LeSessionController sessionController
     LeDevice device
 
-    final int LE_REMOTE_DEVICE = 2
+    final int LE_REMOTE_DEVICE = 11
+    final int LE_REMOTE_DEVICE_2 = 12
 
-    final int LE_SERVICE_2 = 4;
-    final int LE_SERVICE_1 = 3;
+    final int LE_SERVICE_1_1 = 101
+    final int LE_SERVICE_1_2 = 102
+    final int LE_SERVICE_2_1 = 201
 
-    final int LE_CHARACTERISTIC_1_1 = 5;
-    final int LE_CHARACTERISTIC_1_2 = 6;
+    final int LE_CHARACTERISTIC_1_1 = 1001
+    final int LE_CHARACTERISTIC_1_2 = 1002
+    final int LE_CHARACTERISTIC_2_1 = 2001
+
 
     @Before
     void setUp() throws Exception {
@@ -45,7 +49,17 @@ class MockerTest {
 
         filler.addEvent(mockCharacteristicChanged, LE_REMOTE_DEVICE, LE_CHARACTERISTIC_1_2)
 
-        filler.pointReached("characteristicsChanged");
+
+        filler.addDeviceEvent(mockRemoteDeviceFound,
+                LE_REMOTE_DEVICE_2,
+                "123",
+                "0,1,2")
+
+
+        filler.pointReached("secondDevice")
+
+
+        filler.waitForPoint("done")
 
         return source
     }
@@ -69,9 +83,17 @@ class MockerTest {
                     .mocksRemoteDevice("0001:0002:0003:0004", "d1234", true)
                     .withFakeRemoteDeviceListeners()
                     .withFakeCharacteristicsListeners()
-                    .hasServices(LeGattStatus.SUCCESS, LE_SERVICE_1, LE_SERVICE_2)
+                    .hasServices(LeGattStatus.SUCCESS, LE_SERVICE_1_1, LE_SERVICE_1_2)
 
-                .and.withGattServiceMocker(LE_SERVICE_1)
+                 .and.withRemoteDeviceMocker(
+                     LE_REMOTE_DEVICE_2)
+                     .mocksRemoteDevice("0005:0006:0007:0008", "d5678", true)
+                     .withFakeRemoteDeviceListeners()
+                     .withFakeCharacteristicsListeners()
+                     .hasServices(LeGattStatus.SUCCESS, LE_SERVICE_2_1)
+
+
+                     .and.withGattServiceMocker(LE_SERVICE_1_1)
                     .mocksService(UUID.fromString("12345678-1234-1234-1234-123456789aaaa"))
                     .hasCharacteristic(LE_CHARACTERISTIC_1_1, UUID.fromString("12345678-1234-1234-1234-123456789bbbb"))
 
@@ -81,11 +103,23 @@ class MockerTest {
                     .hasFixedValue(0, 1, 2)
 
                 .and.withGattCharacteristicsMocker(
-                    LE_CHARACTERISTIC_1_2)
-                    .mocksCharacteristic(UUID.fromString("12345678-1234-1234-1234-123456789cccc"))
-                    .hasValue(0, 1, 2)
-                    .hasValue(3, 4, 5)
-                    .hasFixedValue(6, 7, 8)
+                     LE_CHARACTERISTIC_1_2)
+                     .mocksCharacteristic("12345678-1234-1234-1234-123456789bbcc")
+                     .hasFixedValue(0, 1, 2)
+
+
+                .and.withGattCharacteristicsMocker(
+                     LE_CHARACTERISTIC_2_1)
+                     .mocksCharacteristic(UUID.fromString("12345678-1234-1234-1234-123456789eeee"))
+                     .hasValue(0, 1, 2)
+                     .hasValue(3, 4, 5)
+                     .hasFixedValue(6, 7, 8)
+
+                .and.withGattServiceMocker(LE_SERVICE_2_1)
+                    .mocksService(UUID.fromString("12345678-1234-1234-1234-123456789dddd"))
+                    .hasCharacteristic(LE_CHARACTERISTIC_2_1)
+
+
                 .end()
         )
 
@@ -160,12 +194,12 @@ class MockerTest {
 
         remoteDevice.connect();
 
-        Thread.sleep(200);
+        Thread.sleep(100);
         assert connected
 
         remoteDevice.startServicesDiscovery()
 
-        Thread.sleep(200);
+        Thread.sleep(1000);
         assert discovered
 
         service.getUuid() == UUID.fromString("12345678-1234-1234-1234-123456789aaaa")
@@ -175,14 +209,12 @@ class MockerTest {
         assert characteristic.getValue() == [0, 1, 2]
         assert characteristic.getValue() == [0, 1, 2]
 
-
-
         def changed = false
 
         remoteDevice.setCharacteristicListener(new LeCharacteristicListener() {
             @Override
             void leCharacteristicChanged(UUID uuid, LeRemoteDevice leRemoteDevice, LeGattCharacteristic leCharacteristic) {
-                assert uuid == UUID.fromString("12345678-1234-1234-1234-123456789cccc")
+                assert uuid == UUID.fromString("12345678-1234-1234-1234-123456789bbcc")
                 assert remoteDevice == leRemoteDevice
                 assert leCharacteristic != characteristic, "make sure this is a different characteristic"
                 changed = true;
@@ -194,12 +226,53 @@ class MockerTest {
         // signal to the script that we are at the point where our listeners etc are working.
         sessionController.pointReached("ready")
 
-        sessionController.waitForFinishedRun()
 
         Thread.sleep(100);
         assert changed;
 
         characteristic.setValue([3, 4, 5] as byte[]);
+
+
+        sessionController.waitForPoint("secondDevice")
+
+        assert remoteDevice.getAddress() ==  "0005:0006:0007:0008"
+
+        remoteDevice.addListener(new LeRemoteDeviceListener() {
+            @Override
+            void leDevicesConnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+
+            }
+
+            @Override
+            void leDevicesDisconnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+
+            }
+
+            @Override
+            void leDevicesClosed(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+
+            }
+
+            @Override
+            void serviceDiscovered(LeDevice leDevice, LeRemoteDevice leRemoteDevice, LeGattStatus status, LeGattService[] gatts) {
+                service = gatts[0]
+            }
+        })
+        remoteDevice.startServicesDiscovery()
+        Thread.sleep(100)
+
+        def char21 = service.getCharacteristic(UUID.fromString("12345678-1234-1234-1234-123456789eeee"))
+
+        changed = false;
+
+        assert char21.getValue() == [0, 1, 2]
+        assert char21.getValue() == [3, 4, 5]
+        assert char21.getValue() == [6, 7, 8]
+        assert char21.getValue() == [6, 7, 8]
+
+        sessionController.pointReached("done")
+
+        sessionController.waitForFinishedRun()
 
         assert !events.hasMoreEvent()
         assert sessionController.getSessionException() == null
