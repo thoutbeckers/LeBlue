@@ -134,7 +134,7 @@ class MockBluetoothTest  {
         EventSink sink = new ListEventSinkSource();
         LeSessionInterceptor sessionInterceptor = new LeSessionInterceptor(sink);
         device = new InterceptingLeDevice(new LeDeviceMock(sessionController), sessionInterceptor);
-        sessionController.startSessionThread()
+        sessionController.startDefaultSession()
         assert sessionController.waitTillSessionStarted();
 
         def foundRemoteDevice = false

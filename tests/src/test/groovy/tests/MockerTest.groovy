@@ -127,8 +127,8 @@ class MockerTest {
 
 
         device = new LeDeviceMock(sessionController)
-        sessionController.startSessionThread()
-        assert sessionController.waitTillSessionStarted();
+        sessionController.startDefaultSession()
+        assert sessionController.waitTillSessionStarted()
         def foundRemoteDevice = false, foundRemoteDevice2 = false
 
         device.addListener(new LeDeviceListener() {
@@ -272,7 +272,7 @@ class MockerTest {
 
         sessionController.pointReached("done")
 
-        sessionController.waitForFinishedRun()
+        sessionController.waitForFinishedSession()
 
         assert !events.hasMoreEvent()
         assert sessionController.getSessionException() == null

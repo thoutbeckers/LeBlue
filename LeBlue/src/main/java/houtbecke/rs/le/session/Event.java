@@ -8,7 +8,7 @@ public class Event {
 
     public EventType type;
     public int source;
-    int delay = 0;
+    public final int delay;
     public String[] values;
 
     public Event(EventType type, BaseIntercepting source, String... values) {
@@ -41,6 +41,7 @@ public class Event {
                 "type=" + type +
                 ", source=" + source +
                 ", values=" + Arrays.toString(values) +
+                ", delay="+ delay +
                 '}';
     }
 

@@ -99,7 +99,7 @@ public class SessionObject implements Session {
 
     EventSource defaultSource;
 
-    Map<String, EventSource> eventSources;
+    Map<String, EventSource> eventSources = new HashMap<>(0);
 
     @Override
     public Mocker getGattCharacteristicMocker(int id) {
