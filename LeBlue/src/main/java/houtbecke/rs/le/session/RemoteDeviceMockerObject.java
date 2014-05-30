@@ -36,7 +36,9 @@ public class RemoteDeviceMockerObject extends MockerObject {
             withMock(remoteDeviceConnect, new MockedResponseObject(new Event(mockRemoteDeviceConnected, getDelay(), sessionSource, deviceId + "")));
         return this;
     }
-
+    public RemoteDeviceMockerObject hasServices(int... services) {
+        return hasServices(LeGattStatus.SUCCESS, services);
+    }
     public RemoteDeviceMockerObject hasServices(LeGattStatus status, int... services) {
 
         List<String> params = new ArrayList<>();

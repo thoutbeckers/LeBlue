@@ -1,5 +1,9 @@
 package houtbecke.rs.le.session;
 
+import houtbecke.rs.le.LeUtil;
+
+import static houtbecke.rs.le.session.EventType.*;
+
 public class DeviceMockerObject extends MockerObject {
 
     public DeviceMockerObject(SessionObject sessionObject, int sessionSource) {
@@ -11,5 +15,17 @@ public class DeviceMockerObject extends MockerObject {
         return this;
     }
 
+    public DeviceMockerObject hasRemoteDevices(int... remoteDevices) {
+        return hasRemoteDevices(123, new byte[] {1, 2, 3}, remoteDevices);
+    }
+    public DeviceMockerObject hasRemoteDevices(int rssi, byte[] scanRecord, int... remoteDevices) {
+
+        Event[] events = new Event[remoteDevices.length];
+        for (int k = 0; k < remoteDevices.length; k++)
+            events[k] = new Event(mockRemoteDeviceFound, EventSinkFiller.DEFAULT_DEVICE_ID, remoteDevices[k]+"", rssi+"", LeUtil.bytesToString(scanRecord));
+
+        withMock(deviceStartScanning, new MockedResponseObject(events));
+        return this;
+    }
 
 }

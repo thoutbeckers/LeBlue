@@ -3,7 +3,7 @@ package houtbecke.rs.le.session;
 public interface MockedResponse {
     String[] getMockedResultValues();
 
-    Event getNextMockedEvent();
+    Event[] getNextMockedEvents();
 
     boolean isSelfDestroying();
 

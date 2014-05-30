@@ -1,10 +1,12 @@
 package houtbecke.rs.le.session;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class ListEventSinkSource implements EventSink, EventSource {
 
     LinkedList<Event> events = new LinkedList<>();
+    Iterator<Event> iterator = null;
 
     @Override
     public void addEvent(Event event) {
@@ -13,11 +15,20 @@ public class ListEventSinkSource implements EventSink, EventSource {
 
     @Override
     public Event nextEvent() {
-        return events.removeFirst();
+        if (iterator == null)
+            iterator = events.iterator();
+
+        return iterator.next();
     }
 
     @Override
     public boolean hasMoreEvent() {
-        return !events.isEmpty();
+        return (iterator == null && events.size() > 0) || iterator.hasNext();
+    }
+
+    @Override
+    public void reset() {
+        iterator = null;
+
     }
 }

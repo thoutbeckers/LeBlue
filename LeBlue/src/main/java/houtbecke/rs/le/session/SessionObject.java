@@ -2,6 +2,7 @@ package houtbecke.rs.le.session;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class SessionObject implements Session {
 
@@ -87,9 +88,23 @@ public class SessionObject implements Session {
         return this;
     }
 
-    public SessionObject withDefaultSessionSource(EventSource defaultSource) {
+    public EventSinkFiller withNamedEventSourceFiller(String name) {
+        ListEventSinkSource source = new ListEventSinkSource();
+        EventSinkFiller filler = new EventSinkFiller(source, this);
+        eventSources.put(name, source);
+        return filler;
+    }
+
+    public SessionObject withDefaultEventSource(EventSource defaultSource) {
         this.defaultSource = defaultSource;
         return this;
+    }
+
+    public EventSinkFiller withDefaultEventSourceFiller() {
+        ListEventSinkSource source = new ListEventSinkSource();
+        EventSinkFiller filler = new EventSinkFiller(source, this);
+        defaultSource = source;
+        return filler;
     }
 
     Map<Integer, Mocker> devices = new HashMap<>();
@@ -129,6 +144,12 @@ public class SessionObject implements Session {
     @Override
     public EventSource getNamedEventSource(String source) {
         return eventSources.get(source);
+    }
+
+    @Override
+    public String[] getEventSourceNames() {
+        Set<String> strings = eventSources.keySet();
+        return strings.toArray(new String[strings.size()]);
     }
 
 

@@ -4,7 +4,7 @@ public class MockedResponseObject implements MockedResponse {
 
     final private String[] mockedResultValues;
 
-    final private Event nextMockedEvent;
+    final private Event[] nextMockedEvents;
 
     @Override
     public String[] getMockedResultValues() {
@@ -12,8 +12,8 @@ public class MockedResponseObject implements MockedResponse {
     }
 
     @Override
-    public Event getNextMockedEvent() {
-        return nextMockedEvent;
+    public Event[] getNextMockedEvents() {
+        return nextMockedEvents;
     }
 
     int pos = -1;
@@ -48,15 +48,23 @@ public class MockedResponseObject implements MockedResponse {
     }
 
     public MockedResponseObject(Event nextMockedEvent) {
-        this(nextMockedEvent, null);
+        this(new Event[] {nextMockedEvent}, null);
     }
 
-    public MockedResponseObject(String[] mockedResultValues) {
-        this (null, mockedResultValues);
+    public MockedResponseObject(String... mockedResultValues) {
+        this (new Event[]{}, mockedResultValues);
     }
 
     public MockedResponseObject(Event nextMockedEvent, String[] mockedResultValues) {
+        this(new Event[]{nextMockedEvent}, mockedResultValues);
+    }
+
+    public MockedResponseObject(Event... nextMockedEvents) {
+        this(nextMockedEvents, new String[] {});
+    }
+
+    public MockedResponseObject(Event nextMockedEvents[], String[] mockedResultValues) {
         this.mockedResultValues = mockedResultValues == null ? new String[] {} : mockedResultValues;
-        this.nextMockedEvent = nextMockedEvent;
+        this.nextMockedEvents = nextMockedEvents;
     }
 }

@@ -129,7 +129,7 @@ class MockBluetoothTest  {
     @Test
     void testController() {
         def events = createSource();
-        sessionController = new LeSessionController(SessionObject.newSession().withDefaultSessionSource(events), true)
+        sessionController = new LeSessionController(SessionObject.newSession().setDefaultSource(events), true)
 
         EventSink sink = new ListEventSinkSource();
         LeSessionInterceptor sessionInterceptor = new LeSessionInterceptor(sink);

@@ -63,7 +63,7 @@ class SessionSwitchingTest {
         sessionController = new LeSessionController(
 
                 SessionObject.newSession()
-                        .withDefaultSessionSource(events1)
+                        .setDefaultSource(events1)
                         .withNamedEventSource("values", events2)
 
                         .withDeviceMocker()

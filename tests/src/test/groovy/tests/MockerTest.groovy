@@ -18,6 +18,7 @@ class MockerTest {
 
     final int LE_REMOTE_DEVICE = 11
     final int LE_REMOTE_DEVICE_2 = 12
+    final int LE_REMOTE_DEVICE_3 = 13
 
     final int LE_SERVICE_1_1 = 101
     final int LE_SERVICE_1_2 = 102
@@ -37,13 +38,6 @@ class MockerTest {
         def source = new ListEventSinkSource();
         def filler = new EventSinkFiller(source)
 
-        filler.addDeviceEvent(deviceStartScanning);
-
-        filler.addDeviceEvent(mockRemoteDeviceFound,
-                    LE_REMOTE_DEVICE,
-                    "123",
-                    "0,1,2")
-
         // the test will tell us to wait for the ready signal before going on
         filler.waitForPoint("ready")
 
@@ -53,7 +47,7 @@ class MockerTest {
         filler.addDeviceEvent(mockRemoteDeviceFound,
                 LE_REMOTE_DEVICE_2,
                 "123",
-                "0,1,2")
+                "1,2,3")
 
 
         filler.pointReached("secondDevice")
@@ -72,55 +66,53 @@ class MockerTest {
 
         sessionController = new LeSessionController(
 
-             SessionObject.newSession()
-                 .withDefaultSessionSource(events)
+                SessionObject.newSession()
+                        .setDefaultSource(events)
 
-                .withDeviceMocker()
-                    .withFakeDeviceListeners()
+                        .withDeviceMocker()
+                        .withFakeDeviceListeners()
+                        .hasRemoteDevices(LE_REMOTE_DEVICE_3, LE_REMOTE_DEVICE)
 
-                .and.withRemoteDeviceMocker(
-                    LE_REMOTE_DEVICE)
-                    .mocksRemoteDevice("0001:0002:0003:0004", "d1234", true)
-                    .withFakeRemoteDeviceListeners()
-                    .withFakeCharacteristicsListeners()
-                    .hasServices(LeGattStatus.SUCCESS, LE_SERVICE_1_1, LE_SERVICE_1_2)
+                        .and.withRemoteDeviceMocker(
+                        LE_REMOTE_DEVICE)
+                        .mocksRemoteDevice("0001:0002:0003:0004", "d1234", true)
+                        .withFakeRemoteDeviceListeners()
+                        .withFakeCharacteristicsListeners()
+                        .hasServices(LeGattStatus.SUCCESS, LE_SERVICE_1_1, LE_SERVICE_1_2)
 
-                 .and.withRemoteDeviceMocker(
-                     LE_REMOTE_DEVICE_2)
-                     .mocksRemoteDevice("0005:0006:0007:0008", "d5678", true)
-                     .withFakeRemoteDeviceListeners()
-                     .withFakeCharacteristicsListeners()
-                     .hasServices(LeGattStatus.SUCCESS, LE_SERVICE_2_1)
+                        .and.withRemoteDeviceMocker(
+                        LE_REMOTE_DEVICE_2)
+                        .mocksRemoteDevice("0005:0006:0007:0008", "d5678", true)
+                        .withFakeRemoteDeviceListeners()
+                        .withFakeCharacteristicsListeners()
+                        .hasServices(LeGattStatus.SUCCESS, LE_SERVICE_2_1)
 
+                        .and.withGattServiceMocker(LE_SERVICE_1_1)
+                        .mocksService(UUID.fromString("12345678-1234-1234-1234-123456789aaaa"))
+                        .hasCharacteristic(LE_CHARACTERISTIC_1_1, UUID.fromString("12345678-1234-1234-1234-123456789bbbb"))
 
-                     .and.withGattServiceMocker(LE_SERVICE_1_1)
-                    .mocksService(UUID.fromString("12345678-1234-1234-1234-123456789aaaa"))
-                    .hasCharacteristic(LE_CHARACTERISTIC_1_1, UUID.fromString("12345678-1234-1234-1234-123456789bbbb"))
+                        .and.withGattCharacteristicsMocker(
+                        LE_CHARACTERISTIC_1_1)
+                        .mocksCharacteristic()
+                        .hasFixedValue(0, 1, 2)
 
-                .and.withGattCharacteristicsMocker(
-                    LE_CHARACTERISTIC_1_1)
-                    .mocksCharacteristic()
-                    .hasFixedValue(0, 1, 2)
+                        .and.withGattCharacteristicsMocker(
+                        LE_CHARACTERISTIC_1_2)
+                        .mocksCharacteristic("12345678-1234-1234-1234-123456789bbcc")
+                        .hasFixedValue(0, 1, 2)
 
-                .and.withGattCharacteristicsMocker(
-                     LE_CHARACTERISTIC_1_2)
-                     .mocksCharacteristic("12345678-1234-1234-1234-123456789bbcc")
-                     .hasFixedValue(0, 1, 2)
+                        .and.withGattCharacteristicsMocker(
+                        LE_CHARACTERISTIC_2_1)
+                        .mocksCharacteristic(UUID.fromString("12345678-1234-1234-1234-123456789eeee"))
+                        .hasValue(0, 1, 2)
+                        .hasValue(3, 4, 5)
+                        .hasFixedValue(6, 7, 8)
 
+                        .and.withGattServiceMocker(LE_SERVICE_2_1)
+                        .mocksService(UUID.fromString("12345678-1234-1234-1234-123456789dddd"))
+                        .hasCharacteristic(LE_CHARACTERISTIC_2_1)
 
-                .and.withGattCharacteristicsMocker(
-                     LE_CHARACTERISTIC_2_1)
-                     .mocksCharacteristic(UUID.fromString("12345678-1234-1234-1234-123456789eeee"))
-                     .hasValue(0, 1, 2)
-                     .hasValue(3, 4, 5)
-                     .hasFixedValue(6, 7, 8)
-
-                .and.withGattServiceMocker(LE_SERVICE_2_1)
-                    .mocksService(UUID.fromString("12345678-1234-1234-1234-123456789dddd"))
-                    .hasCharacteristic(LE_CHARACTERISTIC_2_1)
-
-
-                .end()
+                        .end()
         )
 
 
@@ -129,7 +121,8 @@ class MockerTest {
         device = new LeDeviceMock(sessionController)
         sessionController.startDefaultSession()
         assert sessionController.waitTillSessionStarted()
-        def foundRemoteDevice = false, foundRemoteDevice2 = false
+        int foundRemoteDevices = 0
+        def foundRemoteDevice2 = false
 
         device.addListener(new LeDeviceListener() {
             @Override
@@ -137,11 +130,14 @@ class MockerTest {
                 assert device == leDeviceFound
                 assert leFoundRemoteDevice != null
                 assert rssi == 123
-                assert scanRecord == [0, 1, 2]
+                assert scanRecord == [1, 2, 3]
 
                 remoteDevice = leFoundRemoteDevice
 
-                foundRemoteDevice = true
+                synchronized (MockerTest.this) {
+                    foundRemoteDevices++
+                    MockerTest.this.notify();
+                }
             }
         })
 
@@ -153,8 +149,13 @@ class MockerTest {
         })
 
         device.startScanning()
-        Thread.sleep(100)
-        assert foundRemoteDevice && foundRemoteDevice2, "check both listeners are notified"
+
+        synchronized (this) {
+            while (foundRemoteDevices < 2)
+                this.wait()
+        }
+
+        assert foundRemoteDevices == 2 && foundRemoteDevice2, "check both listeners are notified"
 
         assert remoteDevice.getAddress() == "0001:0002:0003:0004"
         assert remoteDevice.getName() == "d1234"
@@ -168,7 +169,10 @@ class MockerTest {
             void leDevicesConnected(LeDevice leDeviceFoundOn, LeRemoteDevice leRemoteDevice) {
                 assert device == leDeviceFoundOn
                 assert remoteDevice == leRemoteDevice
-                connected = true;
+                synchronized(MockerTest.this) {
+                    connected = true;
+                    MockerTest.this.notifyAll()
+                }
             }
 
             @Override
@@ -194,7 +198,10 @@ class MockerTest {
 
         remoteDevice.connect();
 
-        Thread.sleep(100);
+        while (!connected)
+            synchronized (this) {
+                wait()
+            }
         assert connected
 
         remoteDevice.startServicesDiscovery()
@@ -227,7 +234,7 @@ class MockerTest {
         sessionController.pointReached("ready")
 
 
-        Thread.sleep(100);
+        Thread.sleep(1000);
         assert changed;
 
         characteristic.setValue([3, 4, 5] as byte[]);

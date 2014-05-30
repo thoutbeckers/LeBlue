@@ -8,6 +8,7 @@ public interface Session {
     Mocker getRemoteDeviceMocker(int id);
     EventSource getDefaultSource();
     EventSource getNamedEventSource(String source);
+    String[] getEventSourceNames();
 
     String getSourceIdentification(int source);
 

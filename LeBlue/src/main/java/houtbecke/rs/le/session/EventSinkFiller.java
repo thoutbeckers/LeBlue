@@ -7,8 +7,18 @@ public class EventSinkFiller {
     public final static int DEFAULT_DEVICE_ID = 0;
 
     ListEventSinkSource listEventSinkSource;
+
+    public final SessionObject and;
+    public SessionObject end() {
+        return and;
+    }
+
     public EventSinkFiller(ListEventSinkSource listEventSinkSource) {
+        this(listEventSinkSource, null);
+    }
+    public EventSinkFiller(ListEventSinkSource listEventSinkSource, SessionObject sessionObject) {
         this.listEventSinkSource = listEventSinkSource;
+        and = sessionObject;
     }
 
     public EventSinkFiller addEvent(EventType type, int source, int secondSource, String... args) {

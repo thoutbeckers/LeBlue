@@ -4,9 +4,11 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -49,7 +51,7 @@ public class LeSessionController implements LeMockController {
         } catch (Exception e) {
             // Failure of the handler to initialize means we're probably running
             // in a JDK environment
-            System.out.println("Not using handler for posting events!");
+            System.out.println("Not using handler for posting events. You're likely running in a JDK environment");
         }
     }
 
@@ -81,9 +83,13 @@ public class LeSessionController implements LeMockController {
     }
 
     protected synchronized void waitForPointOrEvent(String point) throws InterruptedException {
+        waitingForEvent = true;
+        this.notifyAll();
         while (!point.equals(this.point) && sessionIsRunning && !stopSession  && currentEvent != null && currentEvent.type == mockWaitForPoint) {
             this.wait();
         }
+        waitingForEvent = false;
+        this.notifyAll();
     }
 
     public synchronized void waitForPoint(String point) {
@@ -121,7 +127,7 @@ public class LeSessionController implements LeMockController {
         currentEvent = event;
         this.notifyAll();
 
-        while (currentEvent == event && mockedEvent == null && sessionIsRunning && !stopSession)
+        while (currentEvent == event && mockedEvents.size() == 0 && sessionIsRunning && !stopSession)
             try {
                 waitingForEvent = true;
                 this.notifyAll();
@@ -160,25 +166,55 @@ public class LeSessionController implements LeMockController {
 
     }
 
-   private synchronized void runCurrentEventOnUiThread(final Runnable runnable) {
+    private class RunnableWrapper implements Runnable {
+
+        final Runnable runnable;
+        public RunnableWrapper(Runnable runnable) {
+            this.runnable = runnable;
+        }
+        public boolean started = false;
+
+        @Override
+        public void run() {
+            synchronized (LeSessionController.this) {
+                started = true;
+                LeSessionController.this.notifyAll();
+            }
+            runnable.run();
+
+        }
+    }
+
+   private synchronized void runCurrentEventOnUiThread(final Runnable runnable) throws InterruptedException {
+
+       RunnableWrapper wrapper = null;
 
        if (handler != null) {
-           // robolectric workaround
-           new Thread(new Runnable() {
+
+           // robolectric workaround, post to handler from a separate thread
+           wrapper = new RunnableWrapper(new Runnable() {
                @Override
                public void run() {
                    handler.post(runnable);
                }
-           }).start();
+           });
+           new Thread(wrapper).start();
        }
        else {
-           (new Thread(runnable)).start();
+
+           wrapper = new RunnableWrapper(runnable);
+           (new Thread(wrapper)).start();
+       }
+
+       synchronized (this) {
+           while (!wrapper.started)
+               wait();
        }
    }
 
     Session session;
 
-    volatile Event mockedEvent = null;
+    volatile List<Event> mockedEvents = new ArrayList<>();
     volatile Event stackedEvent = null;
 
     boolean sessionIsRunning = false;
@@ -191,14 +227,14 @@ public class LeSessionController implements LeMockController {
         Event executingEvent = null;
 
         EventSource source = (sessionName == null) ? session.getDefaultSource() : session.getNamedEventSource(sessionName);
+        source.reset();
 
         try {
 
-            while (!stopSession && (source.hasMoreEvent() || mockedEvent != null || stackedEvent != null)) {
+            while (!stopSession && (source.hasMoreEvent() || mockedEvents.size() > 0 || stackedEvent != null)) {
                 final Event event;
-                if (mockedEvent != null) {
-                    event = mockedEvent;
-                    mockedEvent = null;
+                if (mockedEvents.size() > 0) {
+                    event = mockedEvents.remove(0);
                 }
                 else if (stackedEvent != null) {
                     event = stackedEvent;
@@ -211,7 +247,7 @@ public class LeSessionController implements LeMockController {
                 executingEvent = event;
 
                 long current = System.currentTimeMillis();
-                long executeAt = System.currentTimeMillis() + event.delay;
+                long executeAt = current + event.delay;
 
                 while (current < executeAt && !stopSession) {
                     wait(executeAt - current);
@@ -248,19 +284,18 @@ public class LeSessionController implements LeMockController {
                         break;
 
                     case mockRemoteDeviceFound:
-                        for (LeDeviceListener leListener: session.getDeviceMocker(event.source).getDeviceListeners(this, event.source)) {
-                           final LeDeviceListener listener = leListener;
-                            runCurrentEventOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    listener.leDeviceFound(
+                        runCurrentEventOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                for (LeDeviceListener leListener : session.getDeviceMocker(event.source).getDeviceListeners(LeSessionController.this, event.source)) {
+                                    leListener.leDeviceFound(
                                             getDevice(event.source),
-                                            createRemoteDevice(Integer.valueOf(event.values[0]), getDevice(event.source)),
+                                            createOrReturnRemoteDevice(Integer.valueOf(event.values[0]), getDevice(event.source)),
                                             Integer.valueOf(event.values[1]),
                                             LeUtil.stringToBytes(event.values[2]));
                                 }
-                            });
-                        }
+                            }
+                        });
                         break;
                     case remoteDeviceFound:
                         runCurrentEventOnUiThread(new Runnable() {
@@ -268,7 +303,7 @@ public class LeSessionController implements LeMockController {
                             public void run() {
                                 getDeviceListener(event.source).leDeviceFound(
                                         getDevice(event.values[0]),
-                                        createRemoteDevice(Integer.valueOf(event.values[1]), getDevice(event.source)),
+                                        createOrReturnRemoteDevice(Integer.valueOf(event.values[1]), getDevice(event.source)),
                                         Integer.valueOf(event.values[2]),
                                         LeUtil.stringToBytes(event.values[3]));
                             }
@@ -432,6 +467,10 @@ public class LeSessionController implements LeMockController {
         return checkEventWithSourceId(event, SourceType.gattCharacteristic, getCharacteristicKey(source), arguments);
     }
 
+    public Session getSession() {
+        return session;
+    }
+
     protected static enum SourceType {
         device,
         remoteDevice,
@@ -470,18 +509,19 @@ public class LeSessionController implements LeMockController {
 
             if (mockedResponse != null) {
 
-                mockedEvent = mockedResponse.getNextMockedEvent();
+                mockedEvents.addAll(Arrays.asList(mockedResponse.getNextMockedEvents()));
                 values = mockedResponse.getMockedResultValues();
-                if (mockedEvent != null) {
+                if (mockedEvents.size() > 0) {
                     stackedEvent = currentEvent;
                     currentEvent = null;
                     this.notifyAll();
-                    while (currentEvent == null && sessionIsRunning)
+                    while (sessionIsRunning && (currentEvent == null || mockedEvents.size() > 0))
                         try {
                             wait();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+
                 }
                 return true;
 
@@ -609,6 +649,11 @@ public class LeSessionController implements LeMockController {
         remoteDeviceKeys.put(remoteDevices.get(key), key);
         return remoteDevices.get(key);
     }
+    protected LeRemoteDeviceMock createOrReturnRemoteDevice(int key, LeDeviceMock deviceMock) {
+        LeRemoteDeviceMock mock = remoteDevices.get(key);
+        return mock != null ? mock : createRemoteDevice(key, deviceMock);
+    }
+
     protected int getRemoteDeviceKey(LeRemoteDeviceMock leRemoteDeviceMock) {
         return remoteDeviceKeys.get(leRemoteDeviceMock);
     }
