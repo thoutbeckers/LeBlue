@@ -204,7 +204,7 @@ public class LeSessionController implements LeMockController {
         }
     }
 
-   private synchronized void runCurrentEventOnUiThread(final Runnable runnable) throws InterruptedException {
+   synchronized void runCurrentEventOnUiThread(final Runnable runnable) throws InterruptedException {
 
        RunnableWrapper wrapper = null;
 
