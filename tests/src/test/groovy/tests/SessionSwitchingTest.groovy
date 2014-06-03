@@ -88,7 +88,7 @@ class SessionSwitchingTest {
                         .end()
         )
 
-        device = new LeDeviceMock(sessionController)
+        device = new LeDeviceMock(EventSinkFiller.DEFAULT_DEVICE_ID, sessionController)
         sessionController.startDefaultSession()
         assert sessionController.waitTillSessionStarted()
         def foundRemoteDevice = false

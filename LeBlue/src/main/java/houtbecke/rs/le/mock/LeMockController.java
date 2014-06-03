@@ -44,6 +44,8 @@ public interface LeMockController {
 
     void remoteDeviceRemoveListener(LeRemoteDeviceMock leRemoteDeviceMock, LeRemoteDeviceListener listener);
 
+    void addDevice(int key, LeDeviceMock mock);
+
     LeDeviceListener getDeviceListener(int key);
 
     LeGattCharacteristic serviceGetCharacteristic(LeGattServiceMock leGattServiceMock, UUID uuid);

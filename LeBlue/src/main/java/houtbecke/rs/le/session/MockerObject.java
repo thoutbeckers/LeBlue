@@ -92,7 +92,7 @@ public class MockerObject implements Mocker {
             case remoteDeviceSetCharacteristicListener:
                 mock |= mockCharacteristicsListeners;
                 if (mock)
-                    return new MockedResponseObject(new String[] { addListener(source) });
+                    return new MockedResponseObject(addListener(source));
                 break;
 
         }

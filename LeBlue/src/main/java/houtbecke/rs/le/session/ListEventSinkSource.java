@@ -29,6 +29,9 @@ public class ListEventSinkSource implements EventSink, EventSource {
     @Override
     public void reset() {
         iterator = null;
+    }
 
+    public Event lastEvent() {
+        return events.getLast();
     }
 }

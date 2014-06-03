@@ -133,7 +133,7 @@ class MockBluetoothTest  {
 
         EventSink sink = new ListEventSinkSource();
         LeSessionInterceptor sessionInterceptor = new LeSessionInterceptor(sink);
-        device = new InterceptingLeDevice(new LeDeviceMock(sessionController), sessionInterceptor);
+        device = new InterceptingLeDevice(new LeDeviceMock(EventSinkFiller.DEFAULT_DEVICE_ID, sessionController), sessionInterceptor);
         sessionController.startDefaultSession()
         assert sessionController.waitTillSessionStarted();
 

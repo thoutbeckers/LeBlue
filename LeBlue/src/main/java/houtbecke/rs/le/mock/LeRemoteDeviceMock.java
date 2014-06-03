@@ -63,9 +63,7 @@ public class LeRemoteDeviceMock implements LeRemoteDevice {
 
     @Override
     public boolean equals(Object o) {
-        if (o != null && o instanceof LeRemoteDevice)
-            return true;
-        return false;
+        return o == this;
     }
 
     @Override

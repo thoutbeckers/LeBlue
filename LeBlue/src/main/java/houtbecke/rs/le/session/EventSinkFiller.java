@@ -8,6 +8,8 @@ public class EventSinkFiller {
 
     ListEventSinkSource listEventSinkSource;
 
+    int defaultDelay;
+
     public final SessionObject and;
     public SessionObject end() {
         return and;
@@ -22,17 +24,17 @@ public class EventSinkFiller {
     }
 
     public EventSinkFiller addEvent(EventType type, int source, int secondSource, String... args) {
-        listEventSinkSource.addEvent(new Event(type, source, LeUtil.extend(args, secondSource)));
+        listEventSinkSource.addEvent(new Event(type, defaultDelay, source, LeUtil.extend(args, secondSource)));
         return this;
     }
 
     public EventSinkFiller addEvent(EventType type, int source, int secondSource, int thirdSource, String... args) {
-        listEventSinkSource.addEvent(new Event(type, source, LeUtil.extend(args, secondSource, thirdSource)));
+        listEventSinkSource.addEvent(new Event(type, defaultDelay, source, LeUtil.extend(args, secondSource, thirdSource)));
         return this;
     }
 
     public EventSinkFiller addEvent(EventType type, int source, String... args) {
-        listEventSinkSource.addEvent(new Event(type, source, args));
+        listEventSinkSource.addEvent(new Event(type, defaultDelay, source, args));
         return this;
     }
 
@@ -51,6 +53,11 @@ public class EventSinkFiller {
         return this;
     }
 
+    public EventSinkFiller mockCharacteristicChange(int remoteDevice, int characteristic, byte[] value) {
+        addEvent(EventType.mockCharacteristicChangedWithMockedValue, remoteDevice, characteristic, LeUtil.bytesToString(value));
+        return this;
+    }
+
     public EventSinkFiller waitForPoint(String point) {
         addEvent(EventType.mockWaitForPoint, 0, point);
         return this;
@@ -58,6 +65,20 @@ public class EventSinkFiller {
 
     public EventSinkFiller pointReached(String point) {
         addEvent(EventType.mockPointReached, 0, point);
+        return this;
+    }
+
+    public EventSinkFiller andNoDelay() {
+        return andDelay(0);
+    }
+
+    public EventSinkFiller andDelay(int delay) {
+        listEventSinkSource.lastEvent().delay = delay;
+        return this;
+    }
+
+    public EventSinkFiller hasDefaultDelay(int delay) {
+        defaultDelay = delay;
         return this;
     }
 }

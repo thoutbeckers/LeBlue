@@ -53,7 +53,7 @@ public class InterceptingLeDevice extends BaseIntercepting implements LeDevice {
     @Override
     public synchronized void startScanning() {
         synchronized(leInterceptor) {
-   leInterceptor.startedScanning(this);
+            leInterceptor.startedScanning(this);
             leDevice.startScanning();
         }
     }

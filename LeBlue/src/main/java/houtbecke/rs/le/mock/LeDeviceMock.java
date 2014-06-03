@@ -7,8 +7,9 @@ import houtbecke.rs.le.LeDeviceListener;
 
 public class LeDeviceMock implements LeDevice {
 
-    public LeDeviceMock(LeMockController leMockController) {
+    public LeDeviceMock(int key, LeMockController leMockController) {
         this.controller = leMockController;
+        leMockController.addDevice(key, this);
     }
 
     LeMockController controller;

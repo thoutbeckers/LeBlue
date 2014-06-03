@@ -34,6 +34,9 @@ public enum EventType {
     deviceRemoteDeviceServicesDiscovered,
     characteristicChanged,
     mockCharacteristicChanged,
+    mockCharacteristicChangedWithMockedValue,
+    mockCharacteristicMockedValue,
+    mockCharacteristicClearMockedValue,
 
     mockWaitForPoint,
     mockPointReached

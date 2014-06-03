@@ -118,7 +118,7 @@ class MockerTest {
 
 
 
-        device = new LeDeviceMock(sessionController)
+        device = new LeDeviceMock(EventSinkFiller.DEFAULT_DEVICE_ID, sessionController)
         sessionController.startDefaultSession()
         assert sessionController.waitTillSessionStarted()
         int foundRemoteDevices = 0
@@ -126,17 +126,20 @@ class MockerTest {
 
         device.addListener(new LeDeviceListener() {
             @Override
-            void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, byte[] scanRecord) {
-                assert device == leDeviceFound
-                assert leFoundRemoteDevice != null
-                assert rssi == 123
-                assert scanRecord == [1, 2, 3]
-
-                remoteDevice = leFoundRemoteDevice
-
+            synchronized void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, byte[] scanRecord) {
                 synchronized (MockerTest.this) {
+                    assert device == leDeviceFound
+                    assert leFoundRemoteDevice != null
+                    assert rssi == 123
+                    assert scanRecord == [1, 2, 3]
+
+                    System.out.println(leFoundRemoteDevice.getAddress())
+
+                    if (leFoundRemoteDevice.getAddress() == "0001:0002:0003:0004" || leFoundRemoteDevice.getAddress() ==  "0005:0006:0007:0008")
+                        remoteDevice = leFoundRemoteDevice
+
                     foundRemoteDevices++
-                    MockerTest.this.notify();
+                    MockerTest.this.notify()
                 }
             }
         })
@@ -156,6 +159,8 @@ class MockerTest {
         }
 
         assert foundRemoteDevices == 2 && foundRemoteDevice2, "check both listeners are notified"
+
+        Thread.sleep(100)
 
         assert remoteDevice.getAddress() == "0001:0002:0003:0004"
         assert remoteDevice.getName() == "d1234"
