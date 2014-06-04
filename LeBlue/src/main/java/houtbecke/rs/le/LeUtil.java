@@ -1,6 +1,7 @@
 package houtbecke.rs.le;
 
 import java.util.StringTokenizer;
+import java.util.UUID;
 
 public class LeUtil {
     public static String bytesToString(byte[] bytes) {
@@ -22,6 +23,18 @@ public class LeUtil {
             bytes[k] = Byte.valueOf(tokenizer.nextToken());
         return bytes;
     }
+
+    public static String[] getStringsFromUUIDs(UUID[] uuids) {
+        String[] params = new String[uuids.length];
+        return putUUIDsInStringArray(uuids, params, 0);
+    }
+
+    public static String[] putUUIDsInStringArray(UUID[] uuids, String[] params, int start) {
+        for (int k=0; k < uuids.length; k++)
+            params[k+start] = uuids[k].toString();
+        return params;
+    }
+
 
     public static byte[] intsToBytes(int[] values) {
         byte[] ret = new byte[values.length];

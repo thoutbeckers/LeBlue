@@ -286,7 +286,7 @@ public class LeSessionController implements LeMockController {
         }
     }
 
-    private void workOnEvent(final Event event) throws InterruptedException {
+    protected void workOnEvent(final Event event) throws InterruptedException {
         if (shouldLog()) Log.i(TAG, "Working on event " + event + " (current event: " + currentEvent + ")");
 
         switch (event.type) {

@@ -18,18 +18,18 @@ public class LeSessionInterceptor extends LeInterceptor {
 
     protected EventSink sink;
 
-    void drainEvent(EventType type, BaseIntercepting interceptor, BaseIntercepting secondSource, BaseIntercepting thirdSource, String... values) {
+    protected void drainEvent(EventType type, BaseIntercepting interceptor, BaseIntercepting secondSource, BaseIntercepting thirdSource, String... values) {
         values = LeUtil.extend(values, secondSource.id, thirdSource.id);
         drainEvent(type, interceptor, values);
     }
 
 
-    void drainEvent(EventType type, BaseIntercepting interceptor, BaseIntercepting secondSource, String... values) {
+    protected void drainEvent(EventType type, BaseIntercepting interceptor, BaseIntercepting secondSource, String... values) {
         values = LeUtil.extend(values, secondSource.id);
         drainEvent(type, interceptor, values);
     }
 
-    void drainEvent(EventType type, BaseIntercepting interceptor, String... values) {
+    protected void drainEvent(EventType type, BaseIntercepting interceptor, String... values) {
         sink.addEvent(new Event(type, interceptor, values));
     }
 
@@ -107,20 +107,10 @@ public class LeSessionInterceptor extends LeInterceptor {
 
     @Override
     public void startedScanning(InterceptingLeDevice iLeDevice, UUID[] uuids) {
-        String[] params = getStringsFromUUIDs(uuids);
+        String[] params = LeUtil.getStringsFromUUIDs(uuids);
         drainEvent(deviceStartScanning, iLeDevice, params);
     }
 
-    private String[] getStringsFromUUIDs(UUID[] uuids) {
-        String[] params = new String[uuids.length];
-        return putUUIDsInStringArray(uuids, params, 0);
-    }
-
-    private String[] putUUIDsInStringArray(UUID[] uuids, String[] params, int start) {
-        for (int k=0; k < uuids.length; k++)
-            params[k+start] = uuids[k].toString();
-        return params;
-    }
 
     @Override
     public void stoppedScanning(InterceptingLeDevice iLeDevice) {
@@ -186,7 +176,7 @@ public class LeSessionInterceptor extends LeInterceptor {
     public void characteristicListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicListener iCharacteristicsListener, UUID[] uuids) {
         String[] args = new String[1 + uuids.length];
         args[0] = iCharacteristicsListener.id+"";
-        putUUIDsInStringArray(uuids, args, 1);
+        LeUtil.putUUIDsInStringArray(uuids, args, 1);
         drainEvent(remoteDeviceSetCharacteristicListener, iLeRemoteDevice, args);
     }
 
