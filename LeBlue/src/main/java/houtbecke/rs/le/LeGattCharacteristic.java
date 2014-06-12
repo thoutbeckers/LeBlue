@@ -1,7 +1,5 @@
 package houtbecke.rs.le;
 
-import android.bluetooth.BluetoothGattCharacteristic;
-
 import java.util.UUID;
 
 public interface LeGattCharacteristic {
