@@ -572,8 +572,18 @@ public class LeSessionController implements LeMockController {
                 mockedEvents.addAll(Arrays.asList(mockedResponse.getNextMockedEvents()));
                 values = mockedResponse.getMockedResultValues();
                 if (mockedEvents.size() > 0) {
-                    stackedEvent = currentEvent;
+                    while (sessionIsRunning && currentEvent != null && stackedEvent != null)
+                        try {
+                            wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    if (currentEvent != null)
+                        stackedEvent = currentEvent;
+
                     updateCurrentEvent(null);
+
                     while (sessionIsRunning && (currentEvent == null || mockedEvents.size() > 0))
                         try {
                             wait();
