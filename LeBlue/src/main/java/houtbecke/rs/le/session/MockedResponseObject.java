@@ -1,5 +1,7 @@
 package houtbecke.rs.le.session;
 
+import java.util.Arrays;
+
 public class MockedResponseObject implements MockedResponse {
 
     final private String[] mockedResultValues;
@@ -8,6 +10,12 @@ public class MockedResponseObject implements MockedResponse {
 
     @Override
     public String[] getMockedResultValues() {
+        //      TODO: allow lazy getting of results
+        //        String[] ret = new String[mockedResultValues.length];
+        //        for (int k = 0; k < mockedResultValues.length; k++)
+        //            ret[k] = mockedResultValues[k].toString();
+        //        return ret;
+
         return mockedResultValues;
     }
 
@@ -52,7 +60,7 @@ public class MockedResponseObject implements MockedResponse {
     }
 
     public MockedResponseObject(String... mockedResultValues) {
-        this (new Event[]{}, mockedResultValues);
+        this(new Event[]{}, mockedResultValues);
     }
 
     public MockedResponseObject(Event nextMockedEvent, String[] mockedResultValues) {

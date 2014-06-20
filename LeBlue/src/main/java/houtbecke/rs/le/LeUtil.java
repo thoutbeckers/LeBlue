@@ -59,5 +59,16 @@ public class LeUtil {
         return ret;
     }
 
+    public static String fourDigitString(int value) {
+        String ret = value+"";
+        if (ret.length() > 4)
+            return ret.substring(0, 4);
+
+        while (ret.length() < 4)
+            ret = "0"+ret;
+        return ret;
+    }
+
+
 
 }
