@@ -244,6 +244,7 @@ public class LeSessionController implements LeMockController {
     Map<Integer, byte[]> characteristicsValues = new HashMap<>();
 
     protected synchronized void startSessionInThread() {
+        characteristicsValues.clear();
         sessionIsRunning = true;
         sessionException = null;
         this.notifyAll();
@@ -281,7 +282,6 @@ public class LeSessionController implements LeMockController {
         finally {
             sessionIsRunning = false;
             stopSession = true;
-            characteristicsValues.clear();
             updateCurrentEvent(null);
         }
     }
@@ -721,7 +721,7 @@ public class LeSessionController implements LeMockController {
     Map<Integer, LeRemoteDeviceMock> remoteDevices = new HashMap<>();
     Map<LeRemoteDeviceMock, Integer> remoteDeviceKeys = Collections.synchronizedMap(new HashMap<LeRemoteDeviceMock, Integer>());
     protected LeRemoteDeviceMock createRemoteDevice(int key, LeDeviceMock deviceMock) {
-        remoteDevices.put(key, new LeRemoteDeviceMock(this, deviceMock));
+        remoteDevices.put(key, new LeRemoteDeviceMock(key, this, deviceMock));
         remoteDeviceKeys.put(remoteDevices.get(key), key);
         return remoteDevices.get(key);
     }

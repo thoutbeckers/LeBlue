@@ -5,12 +5,16 @@ import java.util.UUID;
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
+import houtbecke.rs.le.interceptor.InterceptingLeRemoteDevice;
 
 public class LeRemoteDeviceMock implements LeRemoteDevice {
 
     LeMockController mockController;
     LeDeviceMock leDeviceMock;
-    public LeRemoteDeviceMock(LeMockController mockController, LeDeviceMock leDeviceMock) {
+    final Integer key;
+
+    public LeRemoteDeviceMock(int key, LeMockController mockController, LeDeviceMock leDeviceMock) {
+        this.key = key;
         this.mockController = mockController;
         this.leDeviceMock = leDeviceMock;
     }
@@ -63,12 +67,16 @@ public class LeRemoteDeviceMock implements LeRemoteDevice {
 
     @Override
     public boolean equals(Object o) {
+        // if the device we are comparing with is wrapped by an intercepting device use the root device to compare
+        while (o instanceof InterceptingLeRemoteDevice)
+            o = ((InterceptingLeRemoteDevice)o).leRemoteDevice;
+        if (o instanceof LeRemoteDeviceMock)
+            return ((LeRemoteDeviceMock) o).key.equals(key);
         return o == this;
     }
 
     @Override
     public int hashCode() {
-        // bad for performance but workaround for not calling back
-        return 0; //getAddress().hashCode();
+        return key.hashCode();
     }
 }

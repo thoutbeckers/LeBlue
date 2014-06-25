@@ -18,7 +18,7 @@ public class MockerObject implements Mocker {
     Map<Integer, Map<EventType, List<MockedResponse>>> mocks = new HashMap<>();
 
     Map<Integer, Set<Integer>> listeners = new HashMap<>();
-    volatile int sourceCounter = 0;
+    volatile static int sourceCounter = 0;
 
     boolean mockDeviceListeners = false;
     boolean mockRemoteDeviceListeners = false;
