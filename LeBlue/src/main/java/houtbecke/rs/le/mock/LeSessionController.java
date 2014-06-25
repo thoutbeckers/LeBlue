@@ -539,6 +539,17 @@ public class LeSessionController implements LeMockController {
             }
         }
 
+        if (eventType == characteristicGetIntValue) {
+            byte[] value = characteristicsValues.get(source);
+            if (value != null) {
+                values = new String[]{
+                        value[0]+""
+                };
+                return true;
+            }
+        }
+
+
         Mocker mocker;
         switch (sourceType) {
             case device:
