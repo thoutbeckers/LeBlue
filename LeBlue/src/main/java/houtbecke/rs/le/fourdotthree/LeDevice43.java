@@ -120,13 +120,10 @@ public class LeDevice43 implements LeDevice {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (o == null || !(o instanceof LeDevice43)) return false;
         LeDevice43 that = (LeDevice43) o;
+        return that.bluetoothAdapter.getAddress().equals(bluetoothAdapter.getAddress());
 
-        if (!that.bluetoothAdapter.getAddress().equals(bluetoothAdapter.getAddress())) return false;
-
-        return true;
     }
 
     @Override

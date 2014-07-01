@@ -7,7 +7,7 @@ import houtbecke.rs.le.LeGattService;
 
 public class InterceptingLeGattService extends BaseIntercepting implements LeGattService {
 
-    LeGattService leGattService;
+    public final LeGattService leGattService;
 
     public InterceptingLeGattService(LeGattService leGattService, LeInterceptor leInterceptor) {
         super(leInterceptor);
@@ -40,5 +40,21 @@ public class InterceptingLeGattService extends BaseIntercepting implements LeGat
             leInterceptor.enabledCharacteristicNotification(this, characteristic, enabled);
             return enabled;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (o == this) return true;
+
+        while (o instanceof InterceptingLeGattService)
+            o = ((InterceptingLeGattService)o).leGattService;
+
+        return (o instanceof LeGattService) && o.equals(leGattService);
+    }
+
+    @Override
+    public int hashCode() {
+        return leGattService.hashCode();
     }
 }

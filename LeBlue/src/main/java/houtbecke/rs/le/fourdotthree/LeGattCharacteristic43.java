@@ -30,4 +30,12 @@ class LeGattCharacteristic43 implements LeGattCharacteristic {
         characteristic.setValue(value);
         gatt.writeCharacteristic(characteristic);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof LeGattCharacteristic43)) return false;
+
+        return ((LeGattCharacteristic43) o).characteristic.getUuid().equals(characteristic.getUuid());
+    }
 }

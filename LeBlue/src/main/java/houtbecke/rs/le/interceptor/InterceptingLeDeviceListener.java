@@ -6,7 +6,7 @@ import houtbecke.rs.le.LeRemoteDevice;
 
 public class InterceptingLeDeviceListener extends BaseIntercepting implements LeDeviceListener {
 
-    LeDeviceListener leDeviceListener;
+    final LeDeviceListener leDeviceListener;
     public InterceptingLeDeviceListener(LeDeviceListener leDeviceListener, LeInterceptor leInterceptor) {
         super(leInterceptor);
         this.leDeviceListener = leDeviceListener;
@@ -20,5 +20,21 @@ public class InterceptingLeDeviceListener extends BaseIntercepting implements Le
             leInterceptor.deviceFound(this, iLeDevice, iLeRemoteDevice, rssi, scanRecord);
             leDeviceListener.leDeviceFound(iLeDevice, iLeRemoteDevice, rssi, scanRecord);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+
+        while (o instanceof InterceptingLeDeviceListener)
+            o = ((InterceptingLeDeviceListener) o).leDeviceListener;
+
+        return o instanceof LeDeviceListener && leDeviceListener.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return leDeviceListener.hashCode();
     }
 }

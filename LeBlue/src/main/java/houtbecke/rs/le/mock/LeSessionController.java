@@ -758,7 +758,7 @@ public class LeSessionController implements LeMockController {
         return createGattService(Integer.valueOf(key));
     }
     protected LeGattServiceMock createGattService(int key) {
-        gattServices.put(key, new LeGattServiceMock(this));
+        gattServices.put(key, new LeGattServiceMock(key, this));
         gattServicesKeys.put(gattServices.get(key), key);
         return gattServices.get(key);
     }
