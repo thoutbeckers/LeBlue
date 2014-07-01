@@ -11,14 +11,10 @@ if (local.exists()) {
         println "WARNING: no SDK directory found"
 
 buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            url "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-    }
     dependencies {
-        classpath 'com.novoda:gradle-android-test-plugin:0.9.8-SNAPSHOT'
+        // replaced until novoda mergers their PR #11
+        // classpath 'com.novoda:gradle-android-test-plugin:0.9.8-SNAPSHOT'
+        classpath name:'gradle-android-test-plugin', version:'0.9.9-SNAPSHOT'
     }
 }
 
