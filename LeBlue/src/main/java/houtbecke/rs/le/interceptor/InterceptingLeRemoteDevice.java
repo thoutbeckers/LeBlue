@@ -103,4 +103,11 @@ public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRe
     public int hashCode() {
         return leRemoteDevice.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return "InterceptingLeRemoteDevice{" +
+                "leRemoteDevice=" + leRemoteDevice +
+                '}';
+    }
 }

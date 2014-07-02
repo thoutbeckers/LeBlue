@@ -11,6 +11,7 @@ import android.bluetooth.BluetoothProfile;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -35,7 +36,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         this.remoteDevice43 = device;
     }
 
-    Set<LeRemoteDeviceListener> listeners = new HashSet<>();
+    Set<LeRemoteDeviceListener> listeners = new LinkedHashSet<>();
     @Override
     public void addListener(LeRemoteDeviceListener listener) {
         if (listeners.contains(listener))
@@ -172,6 +173,11 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     @Override
     public int hashCode() {
         return remoteDevice43.getAddress().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "remote device: "+getAddress()+" "+getName();
     }
 
     // boolean waitForDescriptorWrite
