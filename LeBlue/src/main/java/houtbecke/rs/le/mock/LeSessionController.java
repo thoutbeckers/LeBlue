@@ -417,19 +417,18 @@ public class LeSessionController implements LeMockController {
                         final LeGattCharacteristic characteristic = createOrReturnCharacteristic(event.values[0]);
                         final UUID uuid = UUID.fromString(session.getSourceIdentification(Integer.valueOf(event.values[0])));
 
-                        for (LeCharacteristicListener leCharacteristicListener : session.getRemoteDeviceMocker(event.source).getCharacteristicListeners(this, event.source)) {
-                            final LeCharacteristicListener listener = leCharacteristicListener;
-                            runCurrentEventOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    listener.leCharacteristicChanged(
+                        runCurrentEventOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                for (LeCharacteristicListener leCharacteristicListener : session.getRemoteDeviceMocker(event.source).getCharacteristicListeners(LeSessionController.this, event.source)) {
+                                    leCharacteristicListener.leCharacteristicChanged(
                                             uuid,
                                             getRemoteDevice(event.source),
                                             characteristic
                                     );
                                 }
-                            });
-                        }
+                            }
+                        });
                         break;
 
                     case characteristicChanged:
