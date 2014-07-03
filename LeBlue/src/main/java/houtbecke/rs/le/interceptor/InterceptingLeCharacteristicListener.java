@@ -31,7 +31,7 @@ public class InterceptingLeCharacteristicListener extends BaseIntercepting imple
         while (o instanceof InterceptingLeCharacteristicListener)
             o = ((InterceptingLeCharacteristicListener) o).leCharacteristicListener;
 
-        return o instanceof LeCharacteristicListener && leCharacteristicListener.equals(o);
+        return o instanceof LeCharacteristicListener && o.equals(leCharacteristicListener);
     }
 
     @Override
