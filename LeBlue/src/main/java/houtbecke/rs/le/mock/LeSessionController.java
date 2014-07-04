@@ -852,7 +852,7 @@ public class LeSessionController implements LeMockController {
     public synchronized boolean deviceCheckBleHardwareAvailable(LeDeviceMock leDeviceMock) {
         if (checkEvent(deviceCheckBleHardwareAvailable, leDeviceMock))
             return eventBooleanValue();
-        return false;
+        return true;
     }
 
     @Override
