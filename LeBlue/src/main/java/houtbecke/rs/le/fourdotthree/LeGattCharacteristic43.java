@@ -7,8 +7,8 @@ import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
 
 class LeGattCharacteristic43 implements LeGattCharacteristic {
-    BluetoothGattCharacteristic characteristic;
-    BluetoothGatt gatt;
+    final BluetoothGattCharacteristic characteristic;
+    final BluetoothGatt gatt;
 
     LeGattCharacteristic43(BluetoothGatt gatt,BluetoothGattCharacteristic characteristic) {
         this.characteristic = characteristic;
