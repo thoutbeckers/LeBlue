@@ -61,7 +61,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             return;
         }
 
-        remoteDevice43.connectGatt(leDevice43.context, true, this);
+        remoteDevice43.connectGatt(leDevice43.context, false, this);
 
     }
 
