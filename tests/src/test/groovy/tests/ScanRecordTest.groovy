@@ -1,0 +1,29 @@
+package tests
+
+import houtbecke.rs.le.LeDefinedUUIDs
+import houtbecke.rs.le.LeUtil
+import org.junit.Test;
+
+class ScanRecordTest {
+
+    @Test
+    void testScanRecord() {
+
+        def scanrecord = LeUtil.stringToBytes(
+        '2,1,6,3,2,13,24,15,9,87,97,104,111,111,32,72,82,77,32,118,50,46,49,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0'
+        )
+
+        def leScanRecord = LeUtil.parseLeScanRecord(scanrecord)
+
+        assert leScanRecord.getServices().contains(LeDefinedUUIDs.Service.HEART_RATE);
+
+        scanrecord = LeUtil.stringToBytes("15,9,84,97,99,120,32,65,78,84,32,66,114,97,107,101,2,1,5,17,7,95,103,98,80,-83,-122,17,-30,-98,-106,8,12,5,-92,-102,102,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
+        leScanRecord = LeUtil.parseLeScanRecord(scanrecord)
+        assert leScanRecord.getServices().contains(UUID.fromString("669aa405-0c08-969e-e211-86ad5062675f"))
+
+        leScanRecord = LeUtil.parseLeScanRecord([] as byte[])
+
+        assert leScanRecord.getServices().length == 0
+
+    }
+}

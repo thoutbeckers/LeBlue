@@ -3,6 +3,7 @@ package houtbecke.rs.le.interceptor;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
 import houtbecke.rs.le.LeRemoteDevice;
+import houtbecke.rs.le.LeScanRecord;
 
 public class InterceptingLeDeviceListener extends BaseIntercepting implements LeDeviceListener {
 
@@ -13,7 +14,7 @@ public class InterceptingLeDeviceListener extends BaseIntercepting implements Le
     }
 
     @Override
-    public void leDeviceFound(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi, byte[] scanRecord) {
+    public void leDeviceFound(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi, LeScanRecord scanRecord) {
         synchronized(leInterceptor) {
             InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
             InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(leRemoteDevice);

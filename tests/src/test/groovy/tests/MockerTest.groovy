@@ -47,7 +47,7 @@ class MockerTest {
         filler.addDeviceEvent(mockRemoteDeviceFound,
                 LE_REMOTE_DEVICE_2,
                 "123",
-                "1,2,3")
+                "")
 
 
         filler.pointReached("secondDevice")
@@ -115,9 +115,6 @@ class MockerTest {
                         .end()
         )
 
-
-
-
         device = new LeDeviceMock(EventSinkFiller.DEFAULT_DEVICE_ID, sessionController)
         sessionController.startDefaultSession()
         assert sessionController.waitTillSessionStarted()
@@ -126,12 +123,11 @@ class MockerTest {
 
         device.addListener(new LeDeviceListener() {
             @Override
-            synchronized void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, byte[] scanRecord) {
+            synchronized void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, LeScanRecord scanRecord) {
                 synchronized (MockerTest.this) {
                     assert device == leDeviceFound
                     assert leFoundRemoteDevice != null
                     assert rssi == 123
-                    assert scanRecord == [1, 2, 3]
 
                     System.out.println(leFoundRemoteDevice.getAddress())
 
@@ -146,7 +142,7 @@ class MockerTest {
 
         device.addListener(new LeDeviceListener() {
             @Override
-            void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, byte[] scanRecord) {
+            void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, LeScanRecord scanRecord) {
                 foundRemoteDevice2 = true
             }
         })

@@ -6,7 +6,7 @@ public class MockedResponseObject implements MockedResponse {
 
     final private String[] mockedResultValues;
 
-    final private Event[] nextMockedEvents;
+    private Event[] nextMockedEvents;
 
     @Override
     public String[] getMockedResultValues() {
@@ -17,6 +17,13 @@ public class MockedResponseObject implements MockedResponse {
         //        return ret;
 
         return mockedResultValues;
+    }
+
+    public void addEvents(Event... events) {
+        Event[] newEvents = new Event[events.length + nextMockedEvents.length];
+        System.arraycopy(nextMockedEvents, 0, newEvents, 0, nextMockedEvents.length);
+        System.arraycopy(events, 0, newEvents, nextMockedEvents.length, events.length);
+        nextMockedEvents = newEvents;
     }
 
     @Override

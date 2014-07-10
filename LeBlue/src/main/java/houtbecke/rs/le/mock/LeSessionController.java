@@ -330,7 +330,7 @@ public class LeSessionController implements LeMockController {
                                             getDevice(event.source),
                                             createOrReturnRemoteDevice(Integer.valueOf(event.values[0]), getDevice(event.source)),
                                             Integer.valueOf(event.values[1]),
-                                            LeUtil.stringToBytes(event.values[2]));
+                                            LeUtil.parseLeScanRecord(LeUtil.stringToBytes(event.values[2])));
                                 }
                             }
                         });
@@ -343,7 +343,7 @@ public class LeSessionController implements LeMockController {
                                         getDevice(event.values[0]),
                                         createOrReturnRemoteDevice(Integer.valueOf(event.values[1]), getDevice(event.source)),
                                         Integer.valueOf(event.values[2]),
-                                        LeUtil.stringToBytes(event.values[3]));
+                                        LeUtil.parseLeScanRecord(LeUtil.stringToBytes(event.values[3])));
                             }
                         });
                         break;

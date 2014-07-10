@@ -40,6 +40,17 @@ public class SessionObject implements Session {
 
     }
 
+    public DeviceMockerObject withFakeDevices(int[] remoteDevices, byte[]... scanRecords) {
+        if (remoteDevices.length != scanRecords.length)
+            throw new RuntimeException("scanRecords and remoteDevices differ in number");
+        DeviceMockerObject ret = withDeviceMocker().withFakeDeviceListeners();
+        for (int k=0; k < remoteDevices.length; k++)
+            ret.hasRemoteDevice(scanRecords[k], remoteDevices[k]);
+
+        return ret;
+    }
+
+
     public DeviceMockerObject withDeviceMocker() {
         return withDeviceMocker(EventSinkFiller.DEFAULT_DEVICE_ID);
     }

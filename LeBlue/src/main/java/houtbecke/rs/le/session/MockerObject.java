@@ -185,6 +185,18 @@ public class MockerObject implements Mocker {
         return this;
     }
 
+    public MockedResponseObject getFirstMockObject(EventType method) {
+        return getFirstMockObject(sessionSource, method);
+    }
+
+    public MockedResponseObject getFirstMockObject(int source, EventType method) {
+        if (getMocksList(source, method).size() == 0)
+            return null;
+        MockedResponse mr = getMocksList(source, method).get(0);
+        return mr instanceof MockedResponseObject ? (MockedResponseObject) mr : null;
+
+    }
+
     Collection<Integer> getListenersSet(int source) {
         Set<Integer> listenersForSource = listeners.get(source);
         if (listenersForSource == null) {

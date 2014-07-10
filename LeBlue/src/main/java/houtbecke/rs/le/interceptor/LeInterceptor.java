@@ -12,6 +12,7 @@ import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeGattStatus;
 import houtbecke.rs.le.LeRemoteDevice;
+import houtbecke.rs.le.LeScanRecord;
 
 public abstract class LeInterceptor {
 
@@ -92,7 +93,7 @@ public abstract class LeInterceptor {
 
     public abstract void listenerAdded(InterceptingLeDevice iLeDevice, InterceptingLeDeviceListener iListener);
 
-    public abstract void deviceFound(InterceptingLeDeviceListener iLeDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, byte[] scanRecord);
+    public abstract void deviceFound(InterceptingLeDeviceListener iLeDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, LeScanRecord scanrecord);
 
     public abstract void connected(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
 

@@ -50,7 +50,7 @@ class MockBluetoothTest  {
                     LE_DEVICE,
                     LE_REMOTE_DEVICE,
                     "123",
-                    "0,1,2")
+                    "")
 
         filler.addEvent(remoteDeviceGetAddress,
                 LE_REMOTE_DEVICE,
@@ -141,11 +141,10 @@ class MockBluetoothTest  {
 
         device.addListener(new LeDeviceListener() {
             @Override
-            void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, byte[] scanRecord) {
+            void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, LeScanRecord scanRecord) {
                 assert device == leDeviceFound
                 assert leFoundRemoteDevice != null
                 assert rssi == 123
-                assert scanRecord == [0, 1, 2]
 
                 remoteDevice = leFoundRemoteDevice
 
