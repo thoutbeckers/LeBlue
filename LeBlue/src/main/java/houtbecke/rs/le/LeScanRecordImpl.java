@@ -5,6 +5,7 @@ import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 public class LeScanRecordImpl implements LeScanRecord {
@@ -45,27 +46,25 @@ public class LeScanRecordImpl implements LeScanRecord {
         LeRecord[] uuids16 = getRecords(2, 3);
         LeRecord[] uuids128 = getRecords(6, 7);
 
-        UUID[] uuids = new UUID[uuids16.length + uuids128.length];
-        for (int k = 0; k < uuids.length; k++) {
-            if (k < uuids16.length) {
-                ByteBuffer buffer = ByteBuffer.wrap(uuids16[k].getRecordContent()).order(ByteOrder.LITTLE_ENDIAN);
+        List<UUID> uuidList = new ArrayList<>();
+        for (LeRecord record: uuids16) {
+            ByteBuffer buffer = ByteBuffer.wrap(record.getRecordContent()).order(ByteOrder.LITTLE_ENDIAN);
 
-                while (buffer.remaining() >= 2 ) {
-                    uuids[k] = UUID.fromString(String.format(
-                            "%08x-0000-1000-8000-00805f9b34fb", buffer.getShort()));
-                }
-                break;
-            }
-            else {
-                ByteBuffer buffer = ByteBuffer.wrap(uuids128[k - uuids16.length].getRecordContent()).order(ByteOrder.LITTLE_ENDIAN);
-                while (buffer.remaining() >= 16) {
-                    long lsb = buffer.getLong();
-                    long msb = buffer.getLong();
-                    uuids[k + uuids16.length] = new UUID(msb, lsb);
-                }
+            while (buffer.remaining() >= 2)
+                uuidList.add(UUID.fromString(String.format(
+                        "%08x-0000-1000-8000-00805f9b34fb", buffer.getShort())));
+
+        }
+        for (LeRecord record: uuids128) {
+            ByteBuffer buffer = ByteBuffer.wrap(record.getRecordContent()).order(ByteOrder.LITTLE_ENDIAN);
+            while (buffer.remaining() >= 16) {
+                long lsb = buffer.getLong();
+                long msb = buffer.getLong();
+                uuidList.add(new UUID(msb, lsb));
             }
         }
-        return uuids;
+        UUID[] uuids = new UUID[uuidList.size()];
+        return uuidList.toArray(uuids);
     }
 
     @Override
