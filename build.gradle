@@ -37,3 +37,63 @@ buildscript {
 
     }
 }
+task translateJava(type:Exec) {
+    FileTree tree = fileTree(dir: 'LeBLue/src/main/java')
+    tree.include '**/*.java'
+    tree.exclude '**/fourdotthree*'
+    executable System.getenv()['J2OBJC_HOME'] + '/j2objc'
+    args '--prefixes', file('LeBLue/src/main/resources/prefixes.properties').path
+    //  args '--mapping', file('mapping.properties').path
+    args '-use-arc',''// '--no-package-directories'
+    args '-d', file('build/generated/objc').path
+    args '-sourcepath', tree.dir
+    args tree
+}
+
+task translateTestJava(type:Exec, dependsOn: translateJava) {
+    FileTree mainTree = fileTree(dir: 'LeBLue/src/main/java')
+    mainTree.include '**/*.java'
+    mainTree.exclude '**/fourdotthree*'
+    FileTree tree = fileTree(dir: 'tests/src/test/java')
+    tree.include '**/*.java'
+    executable System.getenv()['J2OBJC_HOME'] + '/j2objc'
+    args '--prefixes', file('LeBLue/src/main/resources/prefixes.properties').path
+    args '-use-arc','' //'--no-package-directories'
+    args '-d', file('build/generated/objc').path
+    String dir1 = tree.dir
+    String dir2 = mainTree.dir
+    args '-sourcepath',dir1 + ":" + dir2
+    args '-classpath', System.getenv()['J2OBJC_HOME'] + '/lib/junit-4.10.jar'
+    args tree
+}
+task list {
+    println "test"
+    FileTree tree = fileTree(dir: 'build/generated/objc', include: '**/*Test.m')
+    tree.each { File file ->
+        println file.name.replace(".m","")
+    }
+
+}
+
+task compileTestObjC(type:Exec, dependsOn: translateTestJava) {
+
+    executable System.getenv()['J2OBJC_HOME'] + '/j2objcc'
+    workingDir buildDir
+    args "", "-I${file('build/generated/objc').path}"
+    args "-ObjC", "-ljunit"
+    args "-o", "testrunner"
+    FileTree tree = fileTree(dir: 'build/generated/objc', include: '**/*.m')
+    tree.each { File file ->
+        args file
+    }
+
+}
+
+task testObjC(type:Exec, dependsOn: compileTestObjC) {
+    executable file("$buildDir/testrunner")
+    args 'org.junit.runner.JUnitCore'
+    FileTree tree = fileTree(dir: 'build/generated/objc', include: '**/*Test.m')
+    tree.each { File file ->
+        args file.name.replace(".m","")
+    }
+}
