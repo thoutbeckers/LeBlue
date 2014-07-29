@@ -66,8 +66,8 @@ task translateTestJava(type:Exec, dependsOn: translateJava) {
     args '-classpath', System.getenv()['J2OBJC_HOME'] + '/lib/junit-4.10.jar'
     args tree
 }
+
 task list {
-    println "test"
     FileTree tree = fileTree(dir: 'build/generated/objc', include: '**/*Test.m')
     tree.each { File file ->
         println file.name.replace(".m","")
@@ -75,17 +75,14 @@ task list {
 
 }
 
-task compileTestObjC(type:Exec, dependsOn: translateTestJava) {
-
+task compileTestObjC(type:Exec,dependsOn:translateTestJava) {
     executable System.getenv()['J2OBJC_HOME'] + '/j2objcc'
     workingDir buildDir
     args "", "-I${file('build/generated/objc').path}"
     args "-ObjC", "-ljunit"
     args "-o", "testrunner"
     FileTree tree = fileTree(dir: 'build/generated/objc', include: '**/*.m')
-    tree.each { File file ->
-        args file
-    }
+    args tree
 
 }
 
@@ -94,6 +91,7 @@ task testObjC(type:Exec, dependsOn: compileTestObjC) {
     args 'org.junit.runner.JUnitCore'
     FileTree tree = fileTree(dir: 'build/generated/objc', include: '**/*Test.m')
     tree.each { File file ->
+        println file
         args file.name.replace(".m","")
     }
 }
