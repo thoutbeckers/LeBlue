@@ -17,9 +17,10 @@ import houtbecke.rs.le.session.EventSinkFiller;
 import houtbecke.rs.le.session.EventType;
 import houtbecke.rs.le.session.ListEventSinkSource;
 import houtbecke.rs.le.session.SessionObject;
+import org.junit.Before;
 
 public class MockerTest {
-    @org.junit.Before
+    @Before
     public void setUp() throws Exception {
         System.setProperty("doNotLog", "true");
     }
@@ -47,12 +48,15 @@ public class MockerTest {
 
     @org.junit.Test
     public void testController() throws InterruptedException {
+
+
         ListEventSinkSource events = createSource();
 
         sessionController = new LeSessionController(SessionObject.newSession().setDefaultSource(events).withDeviceMocker().withFakeDeviceListeners().hasRemoteDevices(LE_REMOTE_DEVICE_3, LE_REMOTE_DEVICE).and.withRemoteDeviceMocker(LE_REMOTE_DEVICE).mocksRemoteDevice("0001:0002:0003:0004", "d1234", true).withFakeRemoteDeviceListeners().withFakeCharacteristicsListeners().hasServices(LeGattStatus.SUCCESS, LE_SERVICE_1_1, LE_SERVICE_1_2).and.withRemoteDeviceMocker(LE_REMOTE_DEVICE_2).mocksRemoteDevice("0005:0006:0007:0008", "d5678", true).withFakeRemoteDeviceListeners().withFakeCharacteristicsListeners().hasServices(LeGattStatus.SUCCESS, LE_SERVICE_2_1).and.withGattServiceMocker(LE_SERVICE_1_1).mocksService(UUID.fromString("12345678-1234-1234-1234-123456789aaaa")).hasCharacteristic(LE_CHARACTERISTIC_1_1, UUID.fromString("12345678-1234-1234-1234-123456789bbbb")).and.withGattCharacteristicsMocker(LE_CHARACTERISTIC_1_1).mocksCharacteristic().hasFixedValue(0, 1, 2).and.withGattCharacteristicsMocker(LE_CHARACTERISTIC_1_2).mocksCharacteristic("12345678-1234-1234-1234-123456789bbcc").hasFixedValue(0, 1, 2).and.withGattCharacteristicsMocker(LE_CHARACTERISTIC_2_1).mocksCharacteristic(UUID.fromString("12345678-1234-1234-1234-123456789eeee")).hasValue(0, 1, 2).hasValue(3, 4, 5).hasFixedValue(6, 7, 8).and.withGattServiceMocker(LE_SERVICE_2_1).mocksService(UUID.fromString("12345678-1234-1234-1234-123456789dddd")).hasCharacteristic(LE_CHARACTERISTIC_2_1).end());
 
         device = new LeDeviceMock(EventSinkFiller.DEFAULT_DEVICE_ID, sessionController);
         sessionController.startDefaultSession();
+
         assert sessionController.waitTillSessionStarted();
 
         final int[] foundRemoteDevices  = new int[1];
@@ -73,7 +77,7 @@ public class MockerTest {
                     if (leFoundRemoteDevice.getAddress().equals("0001:0002:0003:0004") || leFoundRemoteDevice.getAddress().equals("0005:0006:0007:0008"))
                         setRemoteDevice(leFoundRemoteDevice);
 
-                    foundRemoteDevices[0] = foundRemoteDevices[0]++;
+                    foundRemoteDevices[0]++;
                     MockerTest.this.notify();
                 }
 
@@ -88,8 +92,7 @@ public class MockerTest {
             }
 
         });
-
-        ((LeDeviceMock) device).startScanning();
+        device.startScanning();
 
         synchronized (this) {
             while (foundRemoteDevices[0] < 2) this.wait();
@@ -111,7 +114,7 @@ public class MockerTest {
         final Boolean[] discovered  = new Boolean[1];
         discovered[0] =false;
 
-                final LeGattService[] service  = new LeGattService[1];
+       final LeGattService[] service  = new LeGattService[1];
 
 
 
@@ -166,8 +169,16 @@ public class MockerTest {
 
         final LeGattCharacteristic characteristic = service[0].getCharacteristic(UUID.fromString("12345678-1234-1234-1234-123456789bbbb"));
         assert characteristic != null;
-      //  assert characteristic.getValue().equals(new ArrayList<Integer>(Arrays.asList(0, 1, 2)));
-     //   assert characteristic.getValue().equals(new ArrayList<Integer>(Arrays.asList(0, 1, 2)));
+
+        byte[] byteArray1 = characteristic.getValue();
+        assert byteArray1[0] == 0;
+        assert byteArray1[1] == 1;
+        assert byteArray1[2] == 2;
+
+        byteArray1 = characteristic.getValue();
+        assert byteArray1[0] == 0;
+        assert byteArray1[1] == 1;
+        assert byteArray1[2] == 2;
 
         final Boolean[] changed  = new Boolean[1];
         changed[0] =false;
@@ -177,7 +188,7 @@ public class MockerTest {
             @Override
             public void leCharacteristicChanged(UUID uuid, LeRemoteDevice leRemoteDevice, LeGattCharacteristic leCharacteristic) {
                 assert uuid.equals(UUID.fromString("12345678-1234-1234-1234-123456789bbcc"));
-                assert getRemoteDevice().equals(leRemoteDevice);
+                assert remoteDevice.equals(leRemoteDevice);
                 assert !leCharacteristic.equals(characteristic) : "make sure this is a different characteristic";
                 changed[0]=true;
             }
@@ -218,7 +229,7 @@ public class MockerTest {
 
             @Override
             public void serviceDiscovered(LeDevice leDevice, LeRemoteDevice leRemoteDevice, LeGattStatus status, LeGattService[] gatts) {
-                service[0]=(gatts[0]);
+                service[0] = gatts[0];
             }
 
         });
@@ -229,10 +240,26 @@ public class MockerTest {
 
         changed[0]=false;
 
-       // assert char21.getValue().equals( new ArrayList<Integer>(Arrays.asList(0, 1, 2)));
-       // assert char21.getValue().equals( new ArrayList<Integer>(Arrays.asList(3, 4, 5)));
-      //  assert char21.getValue().equals( new ArrayList<Integer>(Arrays.asList(6, 7, 8)));
-     //   assert char21.getValue().equals( new ArrayList<Integer>(Arrays.asList(6, 7, 8)));
+        byte[] byteArray2 = char21.getValue();
+        assert byteArray2[0] == 0;
+        assert byteArray2[1] == 1;
+        assert byteArray2[2] == 2;
+
+        byteArray2 = char21.getValue();
+        assert byteArray2[0] == 3;
+        assert byteArray2[1] == 4;
+        assert byteArray2[2] == 5;
+
+        byteArray2 = char21.getValue();
+        assert byteArray2[0] == 6;
+        assert byteArray2[1] == 7;
+        assert byteArray2[2] == 8;
+
+        byteArray2 = char21.getValue();
+        assert byteArray2[0] == 6;
+        assert byteArray2[1] == 7;
+        assert byteArray2[2] == 8;
+
 
         sessionController.pointReached("done");
 

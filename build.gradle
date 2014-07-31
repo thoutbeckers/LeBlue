@@ -44,7 +44,7 @@ task translateJava(type:Exec) {
     executable System.getenv()['J2OBJC_HOME'] + '/j2objc'
     args '--prefixes', file('LeBLue/src/main/resources/prefixes.properties').path
     //  args '--mapping', file('mapping.properties').path
-    args '-use-arc',''// '--no-package-directories'
+    args '-use-arc', '--no-package-directories'
     args '-d', file('build/generated/objc').path
     args '-sourcepath', tree.dir
     args tree
@@ -58,7 +58,7 @@ task translateTestJava(type:Exec, dependsOn: translateJava) {
     tree.include '**/*.java'
     executable System.getenv()['J2OBJC_HOME'] + '/j2objc'
     args '--prefixes', file('LeBLue/src/main/resources/prefixes.properties').path
-    args '-use-arc','' //'--no-package-directories'
+    args '-use-arc','--no-package-directories'
     args '-d', file('build/generated/objc').path
     String dir1 = tree.dir
     String dir2 = mainTree.dir
@@ -72,7 +72,6 @@ task list {
     tree.each { File file ->
         println file.name.replace(".m","")
     }
-
 }
 
 task compileTestObjC(type:Exec,dependsOn:translateTestJava) {
@@ -95,3 +94,4 @@ task testObjC(type:Exec, dependsOn: compileTestObjC) {
         args file.name.replace(".m","")
     }
 }
+

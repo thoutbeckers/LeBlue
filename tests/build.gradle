@@ -18,6 +18,7 @@ buildscript {
     }
 }
 
+apply plugin: 'java'
 apply plugin: 'android-test'
 apply plugin: 'groovy'
 apply plugin: 'jacoco'
@@ -64,6 +65,13 @@ if ("$System.env.CI" == "true") {
     }
 }
 
+sourceSets {
+    //set the sourcesets to joint-compile
+    sourceSets.test.java.srcDirs = []
+    sourceSets.test.groovy.srcDirs += ["src/test/java"]
+    //sourceSets.main.output.classesDir = 'src/main/webapp/WEB-INF/classes'
+}
+
 // to prevent accidental building of the above defined main source set skip this task
 compileJava {
     enabled = false
@@ -99,3 +107,27 @@ jacocoTestReport {
     executionData = files("$buildDir/jacoco/testDefaultFlavorDebug.exec")
 
 }
+
+
+task copy(type: Copy) {
+    from "$project.rootDir/tests/build/test-classes/defaultFlavor/debug"
+    into "$project.rootDir/tests/build/classes/test"
+    include('**/*.class')
+}
+
+assemble {
+    doLast() {
+        tasks.build.execute()
+        tasks.compileTestDefaultFlavorDebugJava.execute()
+
+        def source = new File("$project.rootDir/tests/build/test-classes/defaultFlavor/debug")
+        println "fixing location of classes? "+source.isDirectory();
+
+        if (source.isDirectory()){
+            tasks.copy.execute()
+        }
+
+    }
+}
+
+

@@ -1,3 +1,6 @@
+import org.junit.Before;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
@@ -17,14 +20,12 @@ import houtbecke.rs.le.mock.LeDeviceMock;
 import houtbecke.rs.le.mock.LeSessionController;
 import houtbecke.rs.le.session.EventSink;
 import houtbecke.rs.le.session.EventSinkFiller;
+import houtbecke.rs.le.session.EventType;
 import houtbecke.rs.le.session.ListEventSinkSource;
 import houtbecke.rs.le.session.SessionObject;
-import houtbecke.rs.le.session.EventType;
-
-
 
 public class MockBluetoothTest {
-    @org.junit.Before
+    @Before
     public void setUp() throws Exception {
         System.setProperty("doNotLog", "true");
     }
@@ -68,12 +69,11 @@ public class MockBluetoothTest {
         filler.addEvent(EventType.characteristicChanged, LE_CHARACTERISTIC_LISTENER, UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString(), String.valueOf(LE_REMOTE_DEVICE), String.valueOf(LE_CHARACTERISTIC_1_2));
 
         filler.addEvent(EventType.characteristicSetValue, LE_CHARACTERISTIC_1_2, "3,4,5");
-        filler.addEvent(EventType.characteristicSetValue, LE_CHARACTERISTIC_1_2, "3,4,5");
 
         return source;
     }
 
-    @org.junit.Test
+    @Test
     public void testController() throws InterruptedException {
         ListEventSinkSource events = createSource();
         sessionController = new LeSessionController(SessionObject.newSession().setDefaultSource(events), true);
@@ -83,8 +83,9 @@ public class MockBluetoothTest {
         device = new InterceptingLeDevice(new LeDeviceMock(EventSinkFiller.DEFAULT_DEVICE_ID, sessionController), sessionInterceptor);
         sessionController.startDefaultSession();
         assert sessionController.waitTillSessionStarted();
-        final Boolean[] foundRemoteDevice  = new Boolean[1];
-        foundRemoteDevice[0] =false;
+
+        final Boolean[] foundRemoteDevice = new Boolean[]{false};
+
 
         ((InterceptingLeDevice) device).addListener(new LeDeviceListener() {
             @Override
@@ -95,7 +96,7 @@ public class MockBluetoothTest {
 
                 setRemoteDevice(leFoundRemoteDevice);
 
-                foundRemoteDevice[0]= true;
+                foundRemoteDevice[0] = (true);
             }
 
         });
@@ -106,13 +107,13 @@ public class MockBluetoothTest {
         assert remoteDevice.getAddress().equals("0001:0002:0003:0004");
         assert remoteDevice.getName().equals("test device");
 
-        final Boolean[] connected = new Boolean[1];
-        connected[0] =false;
+        final Boolean[] connected = new Boolean[]{false};
+
         Boolean disconnected = false;
         Boolean closed = false;
-        final Boolean[] discovered = new Boolean[1];
-        discovered[0] =false;
-        final LeGattService[] service = new LeGattService[1];
+        final Boolean[] discovered = new Boolean[]{false};
+
+        final LeGattService[] service = new LeGattService[]{null};
 
         remoteDevice.addListener(new LeRemoteDeviceListener() {
             @Override
@@ -139,14 +140,13 @@ public class MockBluetoothTest {
                 assert leRemoteDevice.equals(getRemoteDevice());
                 assert LeGattStatus.SUCCESS.equals(status);
                 assert gatts.length == 1;
-                service[0] = (gatts[0]);
+                service[0] = gatts[0];
             }
 
         });
 
         remoteDevice.connect();
         Thread.sleep(100);
-
         assert connected[0];
 
         remoteDevice.startServicesDiscovery();
@@ -161,11 +161,11 @@ public class MockBluetoothTest {
         LeGattCharacteristic characteristic2 = service[0].getCharacteristic(UUID.fromString("12345678-1234-1234-1234-123456789eeee"));
         assert characteristic2 != null;
 
-       // assert  characteristic.getValue().equals(new ArrayList<Integer>(Arrays.asList(0, 1, 2)));
-
-        final Boolean[] changed = new Boolean[1];
-        changed[0] =false;
-
+        byte[] byteArray1 = characteristic.getValue();
+        assert byteArray1[0] == 0;
+        assert byteArray1[1] == 1;
+        assert byteArray1[2] == 2;
+        final Boolean[] changed = new Boolean[]{false};
 
         remoteDevice.setCharacteristicListener(new LeCharacteristicListener() {
             @Override
@@ -173,13 +173,13 @@ public class MockBluetoothTest {
                 assert uuid.equals(UUID.fromString("12345678-1234-1234-1234-123456789cccc"));
                 assert getRemoteDevice().equals(leRemoteDevice);
                 assert !leCharacteristic.equals(characteristic) : "make sure this is a different characteristic";
-                changed[0] = true;
+                changed[0]= true;
             }
 
         }, UUID.fromString("12345678-1234-1234-1234-123456789cccc"));
 
         service[0].enableCharacteristicNotification(UUID.fromString("12345678-1234-1234-1234-123456789cccc"));
-       // Thread.sleep(100);
+        Thread.sleep(100);
         assert changed[0];
 
         characteristic2.setValue(new byte[]{3, 4, 5});
