@@ -21,8 +21,12 @@ public class MockedResponseTest {
         assert !mr.isForArguments(new String[]{"merp"});
 
         mr.forArguments("merp", 1);
-        assert !mr.isForArguments(new String[]{"merp"});
-        assert mr.isForArguments(new String[]{null, "merp"});
+
+        String[] merp = new String[]{"merp"};
+        String[] nullmerp = new String[]{null,"merp"};
+
+        assert !mr.isForArguments(merp);
+        assert mr.isForArguments(nullmerp);
 
         mr.destroyAfterUse();
 

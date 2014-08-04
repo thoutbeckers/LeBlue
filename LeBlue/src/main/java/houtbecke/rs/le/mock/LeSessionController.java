@@ -67,45 +67,42 @@ public class LeSessionController implements LeMockController {
 
     private String point = "";
 
-    public synchronized void pointReached(String point) {
+    public void pointReached(String point) {
         this.point = point;
-        this.notifyAll();
+        this.simpleNotifyAll();
     }
 
-    protected synchronized void waitForPointOrEvent(String point) throws InterruptedException {
+    protected void waitForPointOrEvent(String point) throws InterruptedException {
         waitingForEvent = true;
-        this.notifyAll();
+        this.simpleNotifyAll();
         while (!point.equals(this.point) && sessionIsRunning && !stopSession  && currentEvent != null && currentEvent.type == mockWaitForPoint) {
-            this.wait();
+            this.simpleWait();
         }
         waitingForEvent = false;
         updateCurrentEvent(null);
     }
 
-    protected synchronized void updateCurrentEvent(Event newCurrentEvent) {
+    protected void updateCurrentEvent(Event newCurrentEvent) {
         currentEvent = newCurrentEvent;
-        this.notifyAll();
+        this.simpleNotifyAll();
     }
 
     protected void checkPause() {
         long current = System.currentTimeMillis();
         while (current < executeNextEventAfter && !stopSession) {
             if (shouldLog()) Log.i(TAG, "delaying "+currentEvent+" by "+(executeNextEventAfter - current)+ "ms");
-            try {
-                wait(executeNextEventAfter - current);
-            } catch (InterruptedException ignore) {
-            }
+            simpleWait();
+                //wait(executeNextEventAfter - current);
+
             current = System.currentTimeMillis();
         }
 
     }
 
-    public synchronized void waitForPoint(String point) {
+    public void waitForPoint(String point) {
         while (!point.equals(this.point) && sessionIsRunning && !stopSession) {
-            try {
-                this.wait();
-            } catch (InterruptedException ignore) {
-            }
+                this.simpleWait();
+
         }
     }
 
@@ -113,55 +110,47 @@ public class LeSessionController implements LeMockController {
     Event currentEvent;
     boolean waitingForEvent = false;
 
-    public synchronized boolean waitTillSessionStarted() {
+    public boolean waitTillSessionStarted() {
         while (!waitingForEvent && !stopSession) {
-            try {
-                this.wait(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+               // this.wait(10000);
+            simpleWait();
+
         }
         return waitingForEvent;
     }
 
-    public synchronized void waitForEvent(Event event) throws InterruptedException {
+    public void waitForEvent(Event event) throws InterruptedException {
         while (currentEvent != null && sessionIsRunning && !stopSession)
-            try {
-                this.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                this.simpleWait();
+
 
         updateCurrentEvent(event);
         checkPause();
 
-        while (currentEvent == event && mockedEvents.size() == 0 && sessionIsRunning && !stopSession)
-            try {
-                waitingForEvent = true;
-                this.notifyAll();
-                this.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        while (currentEvent == event && mockedEvents.size() == 0 && sessionIsRunning && !stopSession) {
+            waitingForEvent = true;
+            this.simpleNotifyAll();
+            this.simpleWait();
+        }
 
         waitingForEvent = false;
-        this.notifyAll();
+        this.simpleNotifyAll();
 
     }
 
 
     String sessionName = null;
-    public synchronized void startDefaultSession() {
+    public void startDefaultSession() {
         startSession(null);
     }
 
-    public synchronized void startSession(String sessionName) {
+    public void startSession(String sessionName) {
         stopSession();
         this.waitForFinishedSession();
         stopSession = false;
 
         this.sessionName = sessionName;
-        this.notifyAll();
+        this.simpleNotifyAll();
 
         new Thread(new Runnable() {
             @Override
@@ -187,14 +176,14 @@ public class LeSessionController implements LeMockController {
             synchronized (LeSessionController.this) {
                 started = true;
                 updateCurrentEvent(null);
-                LeSessionController.this.notifyAll();
+                LeSessionController.this.simpleNotifyAll();
             }
 
             runnable.run();
         }
     }
 
-   synchronized void runCurrentEventOnUiThread(final Runnable runnable) throws InterruptedException {
+    void runCurrentEventOnUiThread(final Runnable runnable) throws InterruptedException {
 
        RunnableWrapper wrapper = null;
 
@@ -203,10 +192,8 @@ public class LeSessionController implements LeMockController {
        wrapper = new RunnableWrapper(runnable);
        (new Thread(wrapper)).start();
 
-       synchronized (this) {
            while (!wrapper.started)
-               wait();
-       }
+               simpleWait();
    }
 
     Session session;
@@ -221,11 +208,11 @@ public class LeSessionController implements LeMockController {
 
     Map<Integer, byte[]> characteristicsValues = new HashMap<>();
 
-    protected synchronized void startSessionInThread() {
+    protected void startSessionInThread() {
         characteristicsValues.clear();
         sessionIsRunning = true;
         sessionException = null;
-        this.notifyAll();
+        this.simpleNotifyAll();
 
         EventSource source = (sessionName == null) ? session.getDefaultSource() : session.getNamedEventSource(sessionName);
         source.reset();
@@ -459,17 +446,15 @@ public class LeSessionController implements LeMockController {
         executeNextEventAfter = System.currentTimeMillis() + event.delay;
     }
 
-    public synchronized void waitForFinishedSession() {
+    public void waitForFinishedSession() {
         while (sessionIsRunning)
-            try {
-                wait();
-            } catch (InterruptedException ignored) {
-            }
+                simpleWait();
+
     }
 
-    public synchronized void stopSession() {
+    public void stopSession() {
         stopSession = true;
-        this.notifyAll();
+        this.simpleNotifyAll();
     }
 
     Exception sessionException = null;
@@ -504,7 +489,7 @@ public class LeSessionController implements LeMockController {
         gattCharacteristic
     }
 
-    public synchronized boolean checkEventWithSourceId(EventType eventType, SourceType sourceType, int source, String... arguments) {
+    public  boolean checkEventWithSourceId(EventType eventType, SourceType sourceType, int source, String... arguments) {
 
         if (eventType == characteristicGetValue) {
             byte[] value = characteristicsValues.get(source);
@@ -561,11 +546,8 @@ public class LeSessionController implements LeMockController {
                 values = mockedResponse.getMockedResultValues();
                 if (mockedEvents.size() > 0) {
                     while (sessionIsRunning && currentEvent != null && stackedEvent != null)
-                        try {
-                            wait();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                            simpleWait();
+
 
                     if (currentEvent != null)
                         stackedEvent = currentEvent;
@@ -573,11 +555,8 @@ public class LeSessionController implements LeMockController {
                     updateCurrentEvent(null);
 
                     while (sessionIsRunning && (currentEvent == null || mockedEvents.size() > 0))
-                        try {
-                            wait();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                            simpleWait();
+
 
                 }
                 return true;
@@ -586,20 +565,16 @@ public class LeSessionController implements LeMockController {
         }
 
         while (!waitingForEvent && sessionIsRunning)
-            try {
-                this.wait();
-            } catch (InterruptedException ignored) {
-            }
+                this.simpleWait();
+
 
         if (currentEvent != null && eventType == currentEvent.type) {
             this.source = currentEvent.source;
             this.values = currentEvent.values;
             updateCurrentEvent(null);
             while (currentEvent == null && sessionIsRunning)
-                try {
-                    wait();
-                } catch (InterruptedException ignored) {
-                }
+                    simpleWait();
+
 
             if (this.source == source) {
                 if (shouldLog()) Log.i(TAG, eventType + "("+source+") is happening " + Arrays.toString(this.values));
@@ -630,38 +605,38 @@ public class LeSessionController implements LeMockController {
     }
 
     @Override
-    public synchronized void deviceStartScanning(LeDeviceMock leDeviceMock) {
+    public void deviceStartScanning(LeDeviceMock leDeviceMock) {
         checkEvent(deviceStartScanning, leDeviceMock);
     }
 
     @Override
-    public synchronized void deviceStartScanning(LeDeviceMock leDeviceMock, UUID[] uuids) {
+    public void deviceStartScanning(LeDeviceMock leDeviceMock, UUID[] uuids) {
         checkEvent(deviceStartScanning, leDeviceMock);
     }
 
     @Override
-    public synchronized void deviceStopScanning(LeDeviceMock leDeviceMock) {
+    public void deviceStopScanning(LeDeviceMock leDeviceMock) {
         checkEvent(deviceStopScanning, leDeviceMock);
     }
 
     @Override
-    public synchronized void remoteDeviceConnect(LeRemoteDeviceMock leRemoteDeviceMock) {
+    public void remoteDeviceConnect(LeRemoteDeviceMock leRemoteDeviceMock) {
         checkEvent(remoteDeviceConnect, leRemoteDeviceMock);
     }
 
     @Override
-    public synchronized void remoteDeviceStartServiceDiscovery(LeRemoteDeviceMock leRemoteDeviceMock) {
+    public void remoteDeviceStartServiceDiscovery(LeRemoteDeviceMock leRemoteDeviceMock) {
         checkEvent(remoteDeviceStartServiceDiscovery, leRemoteDeviceMock);
     }
 
     @Override
-    public synchronized void remoteDeviceClose(LeRemoteDeviceMock leRemoteDeviceMock) {
+    public void remoteDeviceClose(LeRemoteDeviceMock leRemoteDeviceMock) {
         checkEvent(remoteDeviceClose, leRemoteDeviceMock);
 
     }
 
     @Override
-    public synchronized void remoteDeviceDisconnect(LeRemoteDeviceMock leRemoteDeviceMock) {
+    public void remoteDeviceDisconnect(LeRemoteDeviceMock leRemoteDeviceMock) {
         checkEvent(remoteDeviceDisconnect, leRemoteDeviceMock);
     }
 
@@ -681,7 +656,7 @@ public class LeSessionController implements LeMockController {
     }
 
     @Override
-    public synchronized boolean serviceEnableCharacteristicNotification(LeGattServiceMock leGattServiceMock, UUID characteristic) {
+    public boolean serviceEnableCharacteristicNotification(LeGattServiceMock leGattServiceMock, UUID characteristic) {
         if (checkEvent(serviceEnableCharacteristicNotification, leGattServiceMock, characteristic.toString()))
             return eventBooleanValue(1);
         else
@@ -794,14 +769,14 @@ public class LeSessionController implements LeMockController {
     }
 
     @Override
-    public synchronized void deviceAddListener(LeDeviceMock leDeviceMock, LeDeviceListener listener) {
+    public void deviceAddListener(LeDeviceMock leDeviceMock, LeDeviceListener listener) {
         if (checkEventWithSourceId(deviceAddListener, SourceType.device, getDeviceKey(leDeviceMock))) {
             addDeviceListener(eventIntValue(), listener);
         }
     }
 
     @Override
-    public synchronized void deviceRemoveListener(LeDeviceMock leDeviceMock, LeDeviceListener listener) {
+    public void deviceRemoveListener(LeDeviceMock leDeviceMock, LeDeviceListener listener) {
         checkEvent(deviceRemoveListener, leDeviceMock);
     }
 
@@ -827,14 +802,14 @@ public class LeSessionController implements LeMockController {
     }
 
     @Override
-    public synchronized boolean deviceCheckBleHardwareAvailable(LeDeviceMock leDeviceMock) {
+    public boolean deviceCheckBleHardwareAvailable(LeDeviceMock leDeviceMock) {
         if (checkEvent(deviceCheckBleHardwareAvailable, leDeviceMock))
             return eventBooleanValue();
         return true;
     }
 
     @Override
-    public synchronized boolean deviceIsBtEnabled(LeDeviceMock leDeviceMock) {
+    public boolean deviceIsBtEnabled(LeDeviceMock leDeviceMock) {
         checkEvent(deviceIsBtEnabled, leDeviceMock);
         return eventBooleanValue();
     }
@@ -874,5 +849,25 @@ public class LeSessionController implements LeMockController {
     public void characteristicSetValue(LeGattCharacteristicMock leGattCharacteristicMock, byte[] value) {
         checkEvent(characteristicSetValue, leGattCharacteristicMock, LeUtil.bytesToString(value));
     }
+
+
+    public int waitCounter  = 0;
+
+    public void simpleNotifyAll() {
+        waitCounter++;
+    }
+
+    public void simpleWait() {
+        int currentWaitCounter = waitCounter;
+        while (currentWaitCounter == waitCounter) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 
 }
