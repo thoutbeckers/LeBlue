@@ -53,6 +53,17 @@ public class EventSinkFiller {
         return this;
     }
 
+    int currentRemoteDevice, currentCharacteristic;
+    public EventSinkFiller mockCharacteristicChanges(int remoteDevice, int characteristic) {
+        currentRemoteDevice = remoteDevice;
+        currentCharacteristic = characteristic;
+        return this;
+    }
+
+    public EventSinkFiller characteristicChange(byte[] value) {
+        return mockCharacteristicChange(currentRemoteDevice, currentCharacteristic, value);
+    }
+
     public EventSinkFiller mockCharacteristicChange(int remoteDevice, int characteristic, byte[] value) {
         addEvent(EventType.mockCharacteristicChangedWithMockedValue, remoteDevice, characteristic, LeUtil.bytesToString(value));
         return this;
