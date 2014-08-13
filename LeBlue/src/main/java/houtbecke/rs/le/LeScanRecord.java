@@ -8,6 +8,7 @@ public interface LeScanRecord {
     LeRecord[] getRecords(int... types);
 
     UUID[] getServices();
+    boolean hasService(UUID uuid );
 
     byte[] getRawData();
 
