@@ -16,6 +16,9 @@ public class LeDefinedUUIDs {
 		final static public UUID APPEARANCE               = UUID.fromString("00002a01-0000-1000-8000-00805f9b34fb");
 		final static public UUID BODY_SENSOR_LOCATION     = UUID.fromString("00002a38-0000-1000-8000-00805f9b34fb");
 		final static public UUID BATTERY_LEVEL            = UUID.fromString("00002a19-0000-1000-8000-00805f9b34fb");
+		final static public UUID CYCLING_POWER_MEASUREMENT   = UUID.fromString("00002a63-0000-1000-8000-00805f9b34fb");
+        	final static public UUID CYCLING_POWER_CONTROL_POINT = UUID.fromString("00002a66-0000-1000-8000-00805f9b34fb");
+        	final static public UUID CSC_MEASUREMENT             = UUID.fromString("00002a5b-0000-1000-8000-00805f9b34fb");
 	}
 	
 	public static class Descriptor {
