@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Set;
 import java.util.UUID;
 
@@ -31,7 +31,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     final BluetoothDevice remoteDevice43;
 
     final Map<UUID, LeCharacteristicListener> uuidCharacteristicListeners = new HashMap<UUID, LeCharacteristicListener>(0);
-    final Queue<BluetoothGattDescriptor> descriptorWriteQueue = new LinkedList<BluetoothGattDescriptor>();
+    final ConcurrentLinkedQueue<BluetoothGattDescriptor> descriptorWriteQueue = new ConcurrentLinkedQueue<BluetoothGattDescriptor>();
 
 
     public LeRemoteDevice43(LeDevice43 leDevice43, BluetoothDevice device)  {
