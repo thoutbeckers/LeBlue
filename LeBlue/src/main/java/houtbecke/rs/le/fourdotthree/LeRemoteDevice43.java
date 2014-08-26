@@ -10,10 +10,12 @@ import android.bluetooth.BluetoothProfile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.UUID;
 
@@ -29,6 +31,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     final BluetoothDevice remoteDevice43;
 
     final Map<UUID, LeCharacteristicListener> uuidCharacteristicListeners = new HashMap<UUID, LeCharacteristicListener>(0);
+    final Queue<BluetoothGattDescriptor> descriptorWriteQueue = new LinkedList<BluetoothGattDescriptor>();
 
 
     public LeRemoteDevice43(LeDevice43 leDevice43, BluetoothDevice device)  {
@@ -132,10 +135,21 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             listener.serviceDiscovered(leDevice43, this, leDevice43.toGattStatus(status), services);
     }
 
-    @Override
-    public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
-
+    public void writeGattDescriptor(BluetoothGattDescriptor d){
+        //put the descriptor into the write queue
+        descriptorWriteQueue.add(d);
+        //if there is only 1 item in the queue, then write it.  If more than 1, we handle asynchronously in the callback above
+        if(descriptorWriteQueue.size() == 1){
+            gatt.writeDescriptor(d);
+        }
     }
+
+    public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
+        descriptorWriteQueue.remove();  //pop the item that we just finishing writing
+        //if there is more to write, do it!
+        if(descriptorWriteQueue.size() > 0)
+            gatt.writeDescriptor(descriptorWriteQueue.element());
+    };
 
 
     @Override
