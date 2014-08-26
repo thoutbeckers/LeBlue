@@ -9,6 +9,7 @@ import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattStatus;
 import houtbecke.rs.le.LeRemoteDevice;
+import houtbecke.rs.le.LeScanRecord;
 import houtbecke.rs.le.LeUtil;
 
 public class LeLogCatInterceptor extends LeInterceptor {
@@ -20,8 +21,8 @@ public class LeLogCatInterceptor extends LeInterceptor {
     }
 
     @Override
-    public void deviceFound(InterceptingLeDeviceListener iLeDeviceListener,InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, byte[] scanRecord) {
-         Log.i(TAG, "deviceFound: "+iLeDeviceListener+iLeDevice+ileRemoteDevice+rssi+ LeUtil.bytesToString(scanRecord));
+    public void deviceFound(InterceptingLeDeviceListener iLeDeviceListener,InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, LeScanRecord scanRecord) {
+         Log.i(TAG, "deviceFound: "+iLeDeviceListener+iLeDevice+ileRemoteDevice+rssi+ LeUtil.bytesToString(scanRecord.getRawData()));
     }
 
     @Override

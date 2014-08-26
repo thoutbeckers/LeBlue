@@ -3,6 +3,7 @@ package houtbecke.rs.le.session;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 public class SessionObject implements Session {
 
@@ -30,6 +31,26 @@ public class SessionObject implements Session {
         return this;
     }
 
+    public DeviceMockerObject withFakeDevice(int... remoteDevices) {
+        return
+            withDeviceMocker()
+                .hasRemoteDevices(0, new byte[] {0}, remoteDevices)
+                .withFakeDeviceListeners();
+
+
+    }
+
+    public DeviceMockerObject withFakeDevices(int[] remoteDevices, byte[]... scanRecords) {
+        if (remoteDevices.length != scanRecords.length)
+            throw new RuntimeException("scanRecords and remoteDevices differ in number");
+        DeviceMockerObject ret = withDeviceMocker().withFakeDeviceListeners();
+        for (int k=0; k < remoteDevices.length; k++)
+            ret.hasRemoteDevice(scanRecords[k], remoteDevices[k]);
+
+        return ret;
+    }
+
+
     public DeviceMockerObject withDeviceMocker() {
         return withDeviceMocker(EventSinkFiller.DEFAULT_DEVICE_ID);
     }
@@ -50,6 +71,15 @@ public class SessionObject implements Session {
         return this;
     }
 
+
+    public RemoteDeviceMockerObject withFakeRemoteDevice(int id, String address, String name, boolean connects, int... services) {
+        return withRemoteDeviceMocker(id)
+                .withFakeCharacteristicsListeners()
+                .withFakeRemoteDeviceListeners()
+                .mocksRemoteDevice(address, name, connects)
+                .hasServices(services);
+    }
+
     public RemoteDeviceMockerObject withRemoteDeviceMocker(int id) {
         RemoteDeviceMockerObject remoteDeviceMocker = new RemoteDeviceMockerObject(this, id);
         remoteDevices.put(id, remoteDeviceMocker);
@@ -60,6 +90,11 @@ public class SessionObject implements Session {
         remoteDevices.put(id, remoteDevice);
         return this;
     }
+
+    public GattServiceMockerObject withFakeService(int id, UUID uuid) {
+        return withGattServiceMocker(id).mocksService(uuid);
+    }
+
 
     public GattServiceMockerObject withGattServiceMocker(int id) {
         GattServiceMockerObject service = new GattServiceMockerObject(this, id);
@@ -166,4 +201,5 @@ public class SessionObject implements Session {
     public void setSourceIdentification(int source, String identification) {
         sourceIdentifications.put(source, identification);
     }
+
 }

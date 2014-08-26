@@ -1,5 +1,8 @@
 package houtbecke.rs.le;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.StringTokenizer;
 import java.util.UUID;
 
@@ -59,5 +62,20 @@ public class LeUtil {
         return ret;
     }
 
+    public static String fourDigitString(int value) {
+        String ret = value+"";
+        if (ret.length() > 4)
+            return ret.substring(0, 4);
+
+        while (ret.length() < 4)
+            ret = "0"+ret;
+        return ret;
+    }
+
+
+
+    public static LeScanRecord parseLeScanRecord(byte[] scanrecord) {
+        return new LeScanRecordImpl(scanrecord);
+    }
 
 }

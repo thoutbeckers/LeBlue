@@ -10,8 +10,11 @@ import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,12 +30,13 @@ import houtbecke.rs.le.LeDeviceListener;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeGattStatus;
+import houtbecke.rs.le.LeUtil;
 
 public class LeDevice43 implements LeDevice {
 
     final Context context;
 
-    List<LeDeviceListener> listeners = new ArrayList<LeDeviceListener>();
+    Collection<LeDeviceListener> listeners = new HashSet<>();
     @Override
     public void addListener(LeDeviceListener listener) {
         listeners.add(listener);
@@ -94,8 +98,9 @@ public class LeDevice43 implements LeDevice {
         @Override
         public void onLeScan(final BluetoothDevice device, final int rssi, final byte[] scanRecord) {
             LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, device);
+            Log.i("LeBlue", "scan record: " + LeUtil.bytesToString(scanRecord));
             for(LeDeviceListener listener: listeners)
-                listener.leDeviceFound(LeDevice43.this, device43, rssi, scanRecord);
+                listener.leDeviceFound(LeDevice43.this, device43, rssi, LeUtil.parseLeScanRecord(scanRecord));
         }
     };
 
@@ -120,13 +125,10 @@ public class LeDevice43 implements LeDevice {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (o == null || !(o instanceof LeDevice43)) return false;
         LeDevice43 that = (LeDevice43) o;
+        return that.bluetoothAdapter.getAddress().equals(bluetoothAdapter.getAddress());
 
-        if (!that.bluetoothAdapter.getAddress().equals(bluetoothAdapter.getAddress())) return false;
-
-        return true;
     }
 
     @Override

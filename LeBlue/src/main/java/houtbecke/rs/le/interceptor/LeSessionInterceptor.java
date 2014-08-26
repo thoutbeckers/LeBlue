@@ -6,6 +6,7 @@ import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattStatus;
 import houtbecke.rs.le.LeRemoteDevice;
+import houtbecke.rs.le.LeScanRecord;
 import houtbecke.rs.le.LeUtil;
 import houtbecke.rs.le.mock.LeRemoteDeviceMock;
 import houtbecke.rs.le.session.Event;
@@ -42,8 +43,8 @@ public class LeSessionInterceptor extends LeInterceptor {
     }
 
     @Override
-    public void deviceFound(InterceptingLeDeviceListener iLeDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, int rssi, byte[] scanRecord) {
-        drainEvent(remoteDeviceFound, iLeDeviceListener, iLeDevice, iLeRemoteDevice, rssi+"", LeUtil.bytesToString(scanRecord));
+    public void deviceFound(InterceptingLeDeviceListener iLeDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, int rssi, LeScanRecord leScanRecord) {
+        drainEvent(remoteDeviceFound, iLeDeviceListener, iLeDevice, iLeRemoteDevice, rssi+"", LeUtil.bytesToString(leScanRecord.getRawData()));
     }
 
     @Override

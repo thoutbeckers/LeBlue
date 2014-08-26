@@ -18,7 +18,7 @@ public class MockerObject implements Mocker {
     Map<Integer, Map<EventType, List<MockedResponse>>> mocks = new HashMap<>();
 
     Map<Integer, Set<Integer>> listeners = new HashMap<>();
-    volatile int sourceCounter = 0;
+    volatile static int sourceCounter = 0;
 
     boolean mockDeviceListeners = false;
     boolean mockRemoteDeviceListeners = false;
@@ -185,7 +185,19 @@ public class MockerObject implements Mocker {
         return this;
     }
 
-    Collection<Integer> getListenersList(int source) {
+    public MockedResponseObject getFirstMockObject(EventType method) {
+        return getFirstMockObject(sessionSource, method);
+    }
+
+    public MockedResponseObject getFirstMockObject(int source, EventType method) {
+        if (getMocksList(source, method).size() == 0)
+            return null;
+        MockedResponse mr = getMocksList(source, method).get(0);
+        return mr instanceof MockedResponseObject ? (MockedResponseObject) mr : null;
+
+    }
+
+    Collection<Integer> getListenersSet(int source) {
         Set<Integer> listenersForSource = listeners.get(source);
         if (listenersForSource == null) {
             listenersForSource = new HashSet<>();
@@ -196,13 +208,13 @@ public class MockerObject implements Mocker {
 
     String addListener(int source) {
         int id = ++sourceCounter;
-        getListenersList(source).add(id);
+        getListenersSet(source).add(id);
         return id+"";
     }
 
     @Override
     public LeDeviceListener[] getDeviceListeners(LeMockController controller, int device) {
-        Collection<Integer> deviceListeners = getListenersList(device);
+        Collection<Integer> deviceListeners = getListenersSet(device);
         LeDeviceListener[] leDeviceListeners = new LeDeviceListener[deviceListeners.size()];
         int k = 0;
         for (int key: deviceListeners) {
@@ -214,7 +226,7 @@ public class MockerObject implements Mocker {
 
     @Override
     public LeRemoteDeviceListener[] getRemoteDeviceListeners(LeMockController controller, int remoteDevice) {
-        Collection<Integer> remoteDeviceListeners = getListenersList(remoteDevice);
+        Collection<Integer> remoteDeviceListeners = getListenersSet(remoteDevice);
 
         List<LeRemoteDeviceListener> ret = new ArrayList<>();
         for (int key: remoteDeviceListeners) {
@@ -228,7 +240,7 @@ public class MockerObject implements Mocker {
 
     @Override
     public LeCharacteristicListener[] getCharacteristicListeners(LeMockController controller, int characteristic) {
-        Collection<Integer> characteristicsListeners = getListenersList(characteristic);
+        Collection<Integer> characteristicsListeners = getListenersSet(characteristic);
 
         List<LeCharacteristicListener> ret = new ArrayList<>();
         for (int key: characteristicsListeners) {

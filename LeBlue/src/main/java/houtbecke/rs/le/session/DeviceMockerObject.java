@@ -16,15 +16,25 @@ public class DeviceMockerObject extends MockerObject {
     }
 
     public DeviceMockerObject hasRemoteDevices(int... remoteDevices) {
-        return hasRemoteDevices(123, new byte[] {1, 2, 3}, remoteDevices);
+        return hasRemoteDevices(123, new byte[] {}, remoteDevices);
     }
+
+    public DeviceMockerObject hasRemoteDevice(byte[] scanRecord, int remoteDevice) {
+        return hasRemoteDevices(123, scanRecord, remoteDevice);
+    }
+
     public DeviceMockerObject hasRemoteDevices(int rssi, byte[] scanRecord, int... remoteDevices) {
 
         Event[] events = new Event[remoteDevices.length];
         for (int k = 0; k < remoteDevices.length; k++)
             events[k] = new Event(mockRemoteDeviceFound, EventSinkFiller.DEFAULT_DEVICE_ID, remoteDevices[k]+"", rssi+"", LeUtil.bytesToString(scanRecord));
 
-        withMock(deviceStartScanning, new MockedResponseObject(events));
+        MockedResponseObject mro  = getFirstMockObject(deviceStartScanning);
+        if (mro == null)
+            withMock(deviceStartScanning, new MockedResponseObject(events));
+        else {
+            mro.addEvents(events);
+        }
         return this;
     }
 

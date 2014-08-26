@@ -1,5 +1,6 @@
 package houtbecke.rs.le.interceptor;
 
+import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
 
@@ -36,5 +37,20 @@ public class InterceptingLeGattCharacteristic extends BaseIntercepting implement
             leGattCharacteristic.setValue(value);
             leInterceptor.setValue(this, value);
         }
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+
+        while (o instanceof InterceptingLeGattCharacteristic)
+           o = ((InterceptingLeGattCharacteristic) o).leGattCharacteristic;
+
+        return o instanceof LeCharacteristicListener && o.equals(leGattCharacteristic);
+    }
+
+    @Override
+    public int hashCode() {
+        return leGattCharacteristic.hashCode();
     }
 }

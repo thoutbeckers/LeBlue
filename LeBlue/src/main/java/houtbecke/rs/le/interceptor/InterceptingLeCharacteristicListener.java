@@ -22,4 +22,20 @@ public class InterceptingLeCharacteristicListener extends BaseIntercepting imple
             leInterceptor.characteristicChanged(this, uuid, leInterceptor.getInterceptingLeRemoteDevice(remoteDevice), leInterceptor.getInterceptingLeGattCharacteristic(characteristic));
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+
+        while (o instanceof InterceptingLeCharacteristicListener)
+            o = ((InterceptingLeCharacteristicListener) o).leCharacteristicListener;
+
+        return o instanceof LeCharacteristicListener && o.equals(leCharacteristicListener);
+    }
+
+    @Override
+    public int hashCode() {
+        return leCharacteristicListener.hashCode();
+    }
 }

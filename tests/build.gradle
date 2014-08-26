@@ -11,14 +11,10 @@ if (local.exists()) {
         println "WARNING: no SDK directory found"
 
 buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            url "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-    }
     dependencies {
-        classpath 'com.novoda:gradle-android-test-plugin:0.9.8-SNAPSHOT'
+        // replaced until novoda mergers their PR #11
+        // classpath 'com.novoda:gradle-android-test-plugin:0.9.8-SNAPSHOT'
+        classpath name:'gradle-android-test-plugin', version:'0.9.9-SNAPSHOT'
     }
 }
 
@@ -83,17 +79,6 @@ android {
     projectUnderTest ':example'
 }
 
-assemble {
-    doLast() {
-        def source = new File("$buildDir/test-classes/defaultFlavor/debug")
-        println "fixing location of classes? "+source.isDirectory();
-        if (source.isDirectory())
-            new groovy.util.AntBuilder().copy( todir:"$buildDir/classes/test" ) {
-                fileset( dir:"$buildDir/test-classes/defaultFlavor/debug" )
-            }
-    }
-}
-
 jacoco {
     toolVersion = "0.7.0.201403182114"
 
@@ -109,7 +94,7 @@ jacocoTestReport {
     description = "Generate Jacoco coverage reports after running tests."
 
     additionalSourceDirs = files("$buildDir/../../LeBlue/src/main/java")
-    additionalClassDirs = fileTree("$buildDir/../../LeBlue/build/classes/debug/").exclude([ "houtbecke/rs/le/fourdotthree/**"])
+    additionalClassDirs = fileTree("$buildDir/../../LeBlue/build/intermediates/classes/release/").exclude([ "houtbecke/rs/le/fourdotthree/**"])
 
     executionData = files("$buildDir/jacoco/testDefaultFlavorDebug.exec")
 

@@ -8,7 +8,7 @@ import houtbecke.rs.le.LeRemoteDeviceListener;
 
 public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRemoteDevice {
 
-    LeRemoteDevice leRemoteDevice;
+    public final LeRemoteDevice leRemoteDevice;
 
     public InterceptingLeRemoteDevice(LeRemoteDevice leRemoteDevice, LeInterceptor leInterceptor) {
         super(leInterceptor);
@@ -93,11 +93,21 @@ public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRe
 
     @Override
     public boolean equals(Object o) {
+        if (o instanceof InterceptingLeRemoteDevice)
+            return leRemoteDevice.equals(((InterceptingLeRemoteDevice)o).leRemoteDevice);
+
         return leRemoteDevice.equals(o);
     }
 
     @Override
     public int hashCode() {
         return leRemoteDevice.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "InterceptingLeRemoteDevice{" +
+                "leRemoteDevice=" + leRemoteDevice +
+                '}';
     }
 }
