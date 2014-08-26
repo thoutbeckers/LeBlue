@@ -49,7 +49,7 @@ class LeGattService43 implements LeGattService {
             BluetoothGattDescriptor descriptor = characteristic43.getDescriptor(LeDefinedUUIDs.Descriptor.CHAR_CLIENT_CONFIG);
             if (descriptor != null) {
                 descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
-                leRemoteDevice43.gatt.writeDescriptor(descriptor);
+                leRemoteDevice43.writeGattDescriptor(descriptor);
                 // boolean waitForDescriptorWrite(10000)
                 return true;
             }
