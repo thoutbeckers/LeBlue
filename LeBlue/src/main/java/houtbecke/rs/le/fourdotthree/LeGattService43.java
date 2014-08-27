@@ -1,10 +1,8 @@
 package houtbecke.rs.le.fourdotthree;
 
-import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
-import android.util.Log;
 
 import java.util.UUID;
 
@@ -48,9 +46,12 @@ class LeGattService43 implements LeGattService {
 
             BluetoothGattDescriptor descriptor = characteristic43.getDescriptor(LeDefinedUUIDs.Descriptor.CHAR_CLIENT_CONFIG);
             if (descriptor != null) {
-                descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+                if ((characteristic43.getProperties() & BluetoothGattCharacteristic.PROPERTY_INDICATE ) !=0) {
+                    descriptor.setValue(BluetoothGattDescriptor.ENABLE_INDICATION_VALUE);
+                }else {
+                    descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+                }
                 leRemoteDevice43.writeGattDescriptor(descriptor);
-                // boolean waitForDescriptorWrite(10000)
                 return true;
             }
             else {
