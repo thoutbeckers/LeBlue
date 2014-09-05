@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothProfile;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -108,31 +109,42 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
         super.onConnectionStateChange(gatt, status, newState);
 
-        if (newState == BluetoothProfile.STATE_CONNECTED) {
-            this.gatt = gatt;
-            for (LeRemoteDeviceListener listener: listeners)
-                listener.leDevicesConnected(leDevice43, this);
-        }
-        else if  (newState == BluetoothProfile.STATE_DISCONNECTED) {
-            close();
-            for (LeRemoteDeviceListener listener: listeners)
-                listener.leDevicesDisconnected(leDevice43, this);
+        try {
+
+            if (newState == BluetoothProfile.STATE_CONNECTED) {
+                this.gatt = gatt;
+                for (LeRemoteDeviceListener listener : listeners)
+                    listener.leDevicesConnected(leDevice43, this);
+            } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+                close();
+                for (LeRemoteDeviceListener listener : listeners)
+                    listener.leDevicesDisconnected(leDevice43, this);
+            }
+        } catch (Throwable t) {
+            Log.w("LeBlue", "error during onConnectionStateChange callback", t);
         }
     }
 
     @Override
     public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+        super.onServicesDiscovered(gatt, status);
 
-        List<BluetoothGattService> services43 = gatt.getServices();
-        LeGattService[] services = new LeGattService[services43.size()];
-        for (int i=0; i < services43.size(); i++)
-            services[i] = new LeGattService43(leDevice43, this, services43.get(i));
+        try {
+
+            List<BluetoothGattService> services43 = gatt.getServices();
+            LeGattService[] services = new LeGattService[services43.size()];
+            for (int i = 0; i < services43.size(); i++)
+                services[i] = new LeGattService43(leDevice43, this, services43.get(i));
 
 
-        LeRemoteDeviceListener[] arrayListeners = new LeRemoteDeviceListener[listeners.size()];
-        arrayListeners = listeners.toArray(arrayListeners);
-        for (LeRemoteDeviceListener listener: arrayListeners)
-            listener.serviceDiscovered(leDevice43, this, leDevice43.toGattStatus(status), services);
+            LeRemoteDeviceListener[] arrayListeners = new LeRemoteDeviceListener[listeners.size()];
+            arrayListeners = listeners.toArray(arrayListeners);
+            for (LeRemoteDeviceListener listener : arrayListeners)
+                listener.serviceDiscovered(leDevice43, this, leDevice43.toGattStatus(status), services);
+        } catch (Throwable t) {
+            Log.w("LeBlue", "error during onServicesDiscovered callback", t);
+        }
+
     }
 
     public void writeGattDescriptor(BluetoothGattDescriptor d){
@@ -144,32 +156,45 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         }
     }
 
+    @Override
     public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
-        descriptorWriteQueue.remove();  //pop the item that we just finishing writing
-        //if there is more to write, do it!
-        if(descriptorWriteQueue.size() > 0)
-            gatt.writeDescriptor(descriptorWriteQueue.element());
-    };
+        try {
+            descriptorWriteQueue.remove();  //pop the item that we just finishing writing
+            //if there is more to write, do it!
+            if (descriptorWriteQueue.size() > 0)
+                gatt.writeDescriptor(descriptorWriteQueue.element());
+
+        } catch (Throwable t) {
+            Log.w("LeBlue", "error during onDescriptorWrite callback", t);
+        }
+    }
 
 
     @Override
     public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
+        try {
 
-        UUID uuid = characteristic.getUuid();
 
-        byte[] bytes = characteristic.getValue();
+            UUID uuid = characteristic.getUuid();
 
-        LeCharacteristicListener nullListener = uuidCharacteristicListeners.get(null);
-        LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(uuid);
+            byte[] bytes = characteristic.getValue();
 
-        if ((nullListener != null || uuidListener != null) && gatt != null) {
-            LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic);
-            if (nullListener != null)
-                nullListener.leCharacteristicChanged(uuid, this, characteristic43);
-            if (uuidListener != null)
-                uuidListener.leCharacteristicChanged(uuid, this, characteristic43);
+            LeCharacteristicListener nullListener = uuidCharacteristicListeners.get(null);
+            LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(uuid);
+
+            if ((nullListener != null || uuidListener != null) && gatt != null) {
+                LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic);
+                if (nullListener != null)
+                    nullListener.leCharacteristicChanged(uuid, this, characteristic43);
+                if (uuidListener != null)
+                    uuidListener.leCharacteristicChanged(uuid, this, characteristic43);
+            }
+        } catch (Throwable t) {
+            Log.w("LeBlue", "error during onCharacteristicChanged callback", t);
         }
     }
+
+
 
     @Override
     public String getName() {
@@ -193,8 +218,6 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     public String toString() {
         return "remote device: "+getAddress()+" "+getName();
     }
-
-    // boolean waitForDescriptorWrite
 
     BluetoothGatt gatt = null;
     BluetoothGattService gattService;
