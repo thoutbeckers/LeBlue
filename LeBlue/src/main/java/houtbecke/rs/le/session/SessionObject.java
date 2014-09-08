@@ -142,6 +142,14 @@ public class SessionObject implements Session {
         return filler;
     }
 
+    public SessionObject withEndEvent() {
+        ListEventSinkSource source = new ListEventSinkSource();
+        EventSinkFiller filler = new EventSinkFiller(source, this);
+        defaultSource = source;
+        return filler.waitForPoint("end").and;
+    }
+
+
     Map<Integer, Mocker> devices = new HashMap<>();
     Map<Integer, Mocker> remoteDevices = new HashMap<>();
     Map<Integer, Mocker> gattServices = new HashMap<>();
@@ -193,7 +201,7 @@ public class SessionObject implements Session {
     @Override
     public String getSourceIdentification(int source) {
         String ret = sourceIdentifications.get(source);
-        if (ret == null) throw new RuntimeException("Trying to reference a mocked source by only it's id,  and it's identification string has not yet been specified");
+        if (ret == null) throw new RuntimeException("Trying to reference a mocked source by only it's id ("+source+"),  and it's identification string has not yet been specified");
         return ret;
     }
 
