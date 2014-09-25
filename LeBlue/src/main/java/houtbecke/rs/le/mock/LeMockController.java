@@ -24,7 +24,7 @@ public interface LeMockController {
 
     void remoteDeviceDisconnect(LeRemoteDeviceMock leRemoteDeviceMock);
 
-    boolean serviceEnableCharacteristicNotification(LeGattServiceMock leGattServiceMock, UUID characteristic);
+    boolean serviceEnableCharacteristicNotification(LeRemoteDeviceMock leRemoteDeviceMock, UUID characteristic, UUID service);
 
     void deviceAddListener(LeDeviceMock leDeviceMock, LeDeviceListener listener);
 

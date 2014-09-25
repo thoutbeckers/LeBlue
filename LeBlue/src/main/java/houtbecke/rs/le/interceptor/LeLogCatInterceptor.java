@@ -46,15 +46,18 @@ public class LeLogCatInterceptor extends LeInterceptor {
     }
 
     @Override
+    public void enabledCharacteristicNotification(InterceptingLeRemoteDevice iLeRemoteDevice, UUID characteristic,UUID service, boolean enabled) {
+        Log.i(TAG, "enabledCharacteristicNotification: "+iLeRemoteDevice+characteristic+service+enabled);
+
+    }
+
+    @Override
     public void gotCharacteristic(InterceptingLeGattService iLeGattService, InterceptingLeGattCharacteristic iLeGattCharacteristic) {
         Log.i(TAG, "gotCharacteristic: "+iLeGattService+iLeGattCharacteristic);
     }
 
 
-    @Override
-    public void enabledCharacteristicNotification(InterceptingLeGattService iLeGattService, UUID characteristic, boolean enabled) {
-        Log.i(TAG, "enabledCharacteristicNotification: "+iLeGattService+characteristic+enabled);
-    }
+
 
     @Override
     public void servicesDiscovered(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, LeGattStatus status, InterceptingLeGattService[] iLeGattServices) {

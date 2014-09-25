@@ -110,4 +110,13 @@ public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRe
                 "leRemoteDevice=" + leRemoteDevice +
                 '}';
     }
+
+    @Override
+    public boolean enableCharacteristicNotification(UUID characteristic,UUID service) {
+        synchronized(leInterceptor) {
+            boolean enabled = leRemoteDevice.enableCharacteristicNotification(characteristic,service);
+            leInterceptor.enabledCharacteristicNotification(this, characteristic,service, enabled);
+            return enabled;
+        }
+    }
 }

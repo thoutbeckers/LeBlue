@@ -33,14 +33,7 @@ public class InterceptingLeGattService extends BaseIntercepting implements LeGat
         }
     }
 
-    @Override
-    public boolean enableCharacteristicNotification(UUID characteristic) {
-        synchronized(leInterceptor) {
-            boolean enabled = leGattService.enableCharacteristicNotification(characteristic);
-            leInterceptor.enabledCharacteristicNotification(this, characteristic, enabled);
-            return enabled;
-        }
-    }
+
 
     @Override
     public boolean equals(Object o) {

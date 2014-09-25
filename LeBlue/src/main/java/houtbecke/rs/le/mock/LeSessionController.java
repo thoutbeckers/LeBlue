@@ -656,8 +656,8 @@ public class LeSessionController implements LeMockController {
     }
 
     @Override
-    public boolean serviceEnableCharacteristicNotification(LeGattServiceMock leGattServiceMock, UUID characteristic) {
-        if (checkEvent(serviceEnableCharacteristicNotification, leGattServiceMock, characteristic.toString()))
+    public boolean serviceEnableCharacteristicNotification(LeRemoteDeviceMock leRemoteDeviceMock, UUID characteristic,UUID service) {
+        if (checkEvent(serviceEnableCharacteristicNotification, leRemoteDeviceMock, characteristic.toString(),service.toString()))
             return eventBooleanValue(1);
         else
             return true;

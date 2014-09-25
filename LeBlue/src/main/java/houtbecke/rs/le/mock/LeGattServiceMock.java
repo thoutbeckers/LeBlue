@@ -27,10 +27,7 @@ public class LeGattServiceMock implements LeGattService {
         return mockController.serviceGetCharacteristic(this, uuid);
     }
 
-    @Override
-    public boolean enableCharacteristicNotification(UUID characteristic) {
-        return mockController.serviceEnableCharacteristicNotification(this, characteristic);
-    }
+
 
     @Override
     public boolean equals(Object o) {

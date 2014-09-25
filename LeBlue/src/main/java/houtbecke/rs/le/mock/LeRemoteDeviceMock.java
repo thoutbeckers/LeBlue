@@ -79,4 +79,10 @@ public class LeRemoteDeviceMock implements LeRemoteDevice {
     public int hashCode() {
         return key.hashCode();
     }
+
+    @Override
+    public boolean enableCharacteristicNotification(UUID characteristic,UUID service) {
+        return mockController.serviceEnableCharacteristicNotification(this, characteristic,service);
+    }
+
 }

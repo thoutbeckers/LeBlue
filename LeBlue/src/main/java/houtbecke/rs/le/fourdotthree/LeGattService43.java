@@ -34,32 +34,7 @@ class LeGattService43 implements LeGattService {
         return new LeGattCharacteristic43(leRemoteDevice43.gatt, characteristic);
     }
 
-    @Override
-    public boolean enableCharacteristicNotification(UUID characteristic) {
-        BluetoothGattCharacteristic characteristic43 = gattService.getCharacteristic(characteristic);
-        if (characteristic43 == null)
-            return false;
-        if (leRemoteDevice43.gatt == null)
-            return false;
 
-        if(leRemoteDevice43.gatt.setCharacteristicNotification(characteristic43, true)) {
-
-            BluetoothGattDescriptor descriptor = characteristic43.getDescriptor(LeDefinedUUIDs.Descriptor.CHAR_CLIENT_CONFIG);
-            if (descriptor != null) {
-                if ((characteristic43.getProperties() & BluetoothGattCharacteristic.PROPERTY_INDICATE ) !=0) {
-                    descriptor.setValue(BluetoothGattDescriptor.ENABLE_INDICATION_VALUE);
-                }else {
-                    descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
-                }
-                leRemoteDevice43.writeGattDescriptor(descriptor);
-                return true;
-            }
-            else {
-                leRemoteDevice43.gatt.setCharacteristicNotification(characteristic43, false);
-            }
-        }
-    return false;
-    }
 
     @Override
     public boolean equals(Object o) {

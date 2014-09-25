@@ -8,7 +8,6 @@ public interface LeGattService {
 
     LeGattCharacteristic getCharacteristic(UUID uuid);
 
-    boolean enableCharacteristicNotification(UUID characteristic);
 
     //void disableCharacteristicNotification(LeGattCharacteristic characteristic);
 

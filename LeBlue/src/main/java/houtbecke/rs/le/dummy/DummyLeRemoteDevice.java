@@ -48,6 +48,11 @@ public class DummyLeRemoteDevice implements LeRemoteDevice {
     }
 
     @Override
+    public boolean enableCharacteristicNotification(UUID characteristic, UUID service) {
+        return true;
+    }
+
+    @Override
     public String getName() {
         return null;
     }

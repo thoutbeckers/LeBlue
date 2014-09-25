@@ -20,5 +20,8 @@ public interface LeRemoteDevice {
 
     void setCharacteristicListener(LeCharacteristicListener listener, UUID... uuids);
 
+    boolean enableCharacteristicNotification(UUID characteristic,UUID service);
+
+
     String getName();
 }
