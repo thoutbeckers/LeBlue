@@ -2,6 +2,7 @@ package houtbecke.rs.le.interceptor;
 
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
+import houtbecke.rs.le.LeDeviceState;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeScanRecord;
 
@@ -37,5 +38,10 @@ public class InterceptingLeDeviceListener extends BaseIntercepting implements Le
     @Override
     public int hashCode() {
         return leDeviceListener.hashCode();
+    }
+
+
+    @Override
+    public void leDeviceState(LeDevice leDevice, LeDeviceState leDeviceState) {
     }
 }
