@@ -22,6 +22,7 @@ public interface LeRemoteDevice {
 
     boolean enableCharacteristicNotification(UUID characteristic,UUID service);
 
+    public LeGattCharacteristic getCharacteristic(UUID characteristic,UUID service);
 
     String getName();
 }

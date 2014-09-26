@@ -71,6 +71,15 @@ public abstract class LeInterceptor {
         return iLeGattCharacteristic;
     }
 
+    public InterceptingLeGattCharacteristic remoteDeviceGotCharacteristic(LeRemoteDevice leRemoteDevice, LeGattCharacteristic leGattCharacteristic) {
+        InterceptingLeGattCharacteristic iLeGattCharacteristic = iGattCharacteristics.get(leGattCharacteristic);
+        if (iLeGattCharacteristic == null) {
+            iLeGattCharacteristic = new InterceptingLeGattCharacteristic(leGattCharacteristic, this);
+            iGattCharacteristics.put(leGattCharacteristic, iLeGattCharacteristic);
+        }
+        return iLeGattCharacteristic;
+    }
+
     public InterceptingLeCharacteristicListener getInterceptingCharacteristicsListener(LeCharacteristicListener listener) {
         InterceptingLeCharacteristicListener iLeCharacteristicListener = iCharacteristicListeners.get(listener);
         if (iLeCharacteristicListener == null) {
@@ -88,6 +97,8 @@ public abstract class LeInterceptor {
         }
         return iLeGattCharacteristic;
     }
+
+
 
     public volatile int counter = 0;
 
@@ -146,4 +157,7 @@ public abstract class LeInterceptor {
     public abstract void setValue(InterceptingLeGattCharacteristic interceptingLeGattCharacteristic, byte[] value);
 
     public abstract void gotCharacteristic(InterceptingLeGattService iLeGattService, InterceptingLeGattCharacteristic iLeGattCharacteristic);
+
+    public abstract void gotCharacteristic(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic);
+
 }

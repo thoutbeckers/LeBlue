@@ -22,6 +22,7 @@ import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeDefinedUUIDs;
+import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
@@ -245,6 +246,10 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         return false;
    }
 
+    public LeGattCharacteristic getCharacteristic(UUID characteristic,UUID service) {
+        BluetoothGattCharacteristic characteristic43 = gatt.getService(service).getCharacteristic(characteristic);
+        return new LeGattCharacteristic43(gatt,characteristic43);
+    }
 
 
 }

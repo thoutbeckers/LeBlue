@@ -12,7 +12,7 @@ public enum EventType {
     remoteDeviceStartServiceDiscovery,
     remoteDeviceClose,
     remoteDeviceDisconnect,
-    serviceEnableCharacteristicNotification,
+    remoteDeviceEnableCharacteristicNotification,
     remoteDeviceGetAddress,
     remoteDeviceAddListener,
     remoteDeviceRemoveListener,
@@ -23,7 +23,7 @@ public enum EventType {
     remoteDeviceGetName,
     serviceGetCharacteristic,
     characteristicSetValue,
-
+    remoteDeviceGetCharacteristic,
 
     remoteDeviceFound,
     mockRemoteDeviceFound,

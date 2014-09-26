@@ -260,7 +260,7 @@ public class LeSessionController implements LeMockController {
             case deviceStopScanning:
             case remoteDeviceClose:
             case remoteDeviceDisconnect:
-            case serviceEnableCharacteristicNotification:
+            case remoteDeviceEnableCharacteristicNotification:
             case deviceRemoveListener:
             case deviceCheckBleHardwareAvailable:
             case deviceIsBtEnabled:
@@ -272,6 +272,7 @@ public class LeSessionController implements LeMockController {
             case remoteDeviceStartServiceDiscovery:
             case serviceGetUUID:
             case serviceGetCharacteristic:
+            case remoteDeviceGetCharacteristic:
             case characteristicGetValue:
             case characteristicGetIntValue:
             case remoteDeviceSetCharacteristicListener:
@@ -656,8 +657,8 @@ public class LeSessionController implements LeMockController {
     }
 
     @Override
-    public boolean serviceEnableCharacteristicNotification(LeRemoteDeviceMock leRemoteDeviceMock, UUID characteristic,UUID service) {
-        if (checkEvent(serviceEnableCharacteristicNotification, leRemoteDeviceMock, characteristic.toString(),service.toString()))
+    public boolean remoteDeviceEnableCharacteristicNotification(LeRemoteDeviceMock leRemoteDeviceMock, UUID characteristic,UUID service) {
+        if (checkEvent(remoteDeviceEnableCharacteristicNotification, leRemoteDeviceMock, characteristic.toString(),service.toString()))
             return eventBooleanValue(1);
         else
             return true;
@@ -767,6 +768,15 @@ public class LeSessionController implements LeMockController {
         else
             return null;
     }
+
+    @Override
+    public LeGattCharacteristic remoteDeviceGetCharacteristic(LeRemoteDeviceMock leRemoteDeviceMock, UUID characteristicUUID , UUID serviceUUID) {
+        if (checkEvent(remoteDeviceGetCharacteristic, leRemoteDeviceMock, characteristicUUID.toString(),serviceUUID.toString()))
+            return createOrReturnCharacteristic(eventIntValue());
+        else
+            return null;
+    }
+
 
     @Override
     public void deviceAddListener(LeDeviceMock leDeviceMock, LeDeviceListener listener) {

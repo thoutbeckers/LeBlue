@@ -73,8 +73,14 @@ public class LeSessionInterceptor extends LeInterceptor {
     }
 
     @Override
+    public void gotCharacteristic(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic) {
+        drainEvent(serviceGetCharacteristic, iLeRemoteDevice, iLeGattCharacteristic);
+
+    }
+
+    @Override
     public void enabledCharacteristicNotification(InterceptingLeRemoteDevice iLeRemoteDevice, UUID characteristic, UUID service, boolean enabled) {
-        drainEvent(serviceEnableCharacteristicNotification, iLeRemoteDevice, characteristic.toString(),service.toString(), Boolean.toString(enabled));
+        drainEvent(remoteDeviceEnableCharacteristicNotification, iLeRemoteDevice, characteristic.toString(),service.toString(), Boolean.toString(enabled));
     }
 
     @Override

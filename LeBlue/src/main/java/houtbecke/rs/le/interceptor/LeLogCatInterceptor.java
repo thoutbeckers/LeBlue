@@ -56,7 +56,11 @@ public class LeLogCatInterceptor extends LeInterceptor {
         Log.i(TAG, "gotCharacteristic: "+iLeGattService+iLeGattCharacteristic);
     }
 
+    @Override
+    public void gotCharacteristic(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic) {
+        Log.i(TAG, "gotCharacteristic: "+iLeRemoteDevice+iLeGattCharacteristic);
 
+    }
 
 
     @Override
