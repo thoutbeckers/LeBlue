@@ -114,6 +114,8 @@ public abstract class LeInterceptor {
 
     public abstract void gotUUID(InterceptingLeGattService iLeGattService, UUID uuid);
 
+    public abstract void enabledCharacteristicNotification(InterceptingLeGattService iLeGattService, UUID characteristic, boolean enabled);
+
     public abstract void enabledCharacteristicNotification(InterceptingLeRemoteDevice iLeRemoteDevice, UUID characteristic,UUID service, boolean enabled);
 
     public abstract void servicesDiscovered(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, LeGattStatus status, InterceptingLeGattService[] iLeGattServices);

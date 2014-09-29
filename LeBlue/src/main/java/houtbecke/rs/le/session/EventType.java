@@ -13,6 +13,7 @@ public enum EventType {
     remoteDeviceClose,
     remoteDeviceDisconnect,
     remoteDeviceEnableCharacteristicNotification,
+    serviceEnableCharacteristicNotification,
     remoteDeviceGetAddress,
     remoteDeviceAddListener,
     remoteDeviceRemoveListener,

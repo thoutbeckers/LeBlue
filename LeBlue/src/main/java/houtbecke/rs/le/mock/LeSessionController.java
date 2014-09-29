@@ -261,6 +261,7 @@ public class LeSessionController implements LeMockController {
             case remoteDeviceClose:
             case remoteDeviceDisconnect:
             case remoteDeviceEnableCharacteristicNotification:
+            case serviceEnableCharacteristicNotification:
             case deviceRemoveListener:
             case deviceCheckBleHardwareAvailable:
             case deviceIsBtEnabled:
@@ -654,6 +655,13 @@ public class LeSessionController implements LeMockController {
     public void remoteDeviceSetCharacteristicListener(LeRemoteDeviceMock leRemoteDeviceMock, LeCharacteristicListener listener, UUID[] uuids) {
         checkEvent(remoteDeviceSetCharacteristicListener, leRemoteDeviceMock, Arrays.toString(uuids));
         characteristicListeners.put(eventIntValue(), listener);
+    }
+    @Override
+    public synchronized boolean serviceEnableCharacteristicNotification(LeGattServiceMock leGattServiceMock, UUID characteristic) {
+        if (checkEvent(serviceEnableCharacteristicNotification, leGattServiceMock, characteristic.toString()))
+            return eventBooleanValue(1);
+        else
+            return true;
     }
 
     @Override
