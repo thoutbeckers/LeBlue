@@ -34,9 +34,6 @@ class LeGattService43 implements LeGattService {
         return new LeGattCharacteristic43(leRemoteDevice43.gatt, characteristic);
     }
 
-
-
-
     @Override
     public boolean enableCharacteristicNotification(UUID characteristic) {
         BluetoothGattCharacteristic characteristic43 = gattService.getCharacteristic(characteristic);

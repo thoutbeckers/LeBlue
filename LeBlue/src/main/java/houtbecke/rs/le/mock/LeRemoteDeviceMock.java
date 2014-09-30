@@ -3,7 +3,6 @@ package houtbecke.rs.le.mock;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
-import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
 import houtbecke.rs.le.interceptor.InterceptingLeRemoteDevice;
@@ -80,16 +79,4 @@ public class LeRemoteDeviceMock implements LeRemoteDevice {
     public int hashCode() {
         return key.hashCode();
     }
-
-    @Override
-    public boolean enableCharacteristicNotification(UUID characteristic,UUID service) {
-        return mockController.remoteDeviceEnableCharacteristicNotification(this, characteristic,service);
-    }
-
-    @Override
-    public LeGattCharacteristic getCharacteristic(UUID characteristic,UUID service){
-        return mockController.remoteDeviceGetCharacteristic(this, characteristic,service);
-    }
-
-
 }

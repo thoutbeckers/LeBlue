@@ -21,8 +21,6 @@ import java.util.Set;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
-import houtbecke.rs.le.LeDefinedUUIDs;
-import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
@@ -222,34 +220,6 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
     BluetoothGatt gatt = null;
-
-
-   public boolean enableCharacteristicNotification(UUID characteristic,UUID service){
-       BluetoothGattCharacteristic characteristic43 = gatt.getService(service).getCharacteristic(characteristic);
-
-       if(gatt.setCharacteristicNotification(characteristic43, true)) {
-
-           BluetoothGattDescriptor descriptor = characteristic43.getDescriptor(LeDefinedUUIDs.Descriptor.CHAR_CLIENT_CONFIG);
-           if (descriptor != null) {
-               if ((characteristic43.getProperties() & BluetoothGattCharacteristic.PROPERTY_INDICATE ) !=0) {
-                   descriptor.setValue(BluetoothGattDescriptor.ENABLE_INDICATION_VALUE);
-               }else {
-                   descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
-               }
-               this.writeGattDescriptor(descriptor);
-               return true;
-           }
-           else {
-               this.gatt.setCharacteristicNotification(characteristic43, false);
-           }
-       }
-        return false;
-   }
-
-    public LeGattCharacteristic getCharacteristic(UUID characteristic,UUID service) {
-        BluetoothGattCharacteristic characteristic43 = gatt.getService(service).getCharacteristic(characteristic);
-        return new LeGattCharacteristic43(gatt,characteristic43);
-    }
-
-
+    BluetoothGattService gattService;
+    List<BluetoothGattService> mBluetoothGattServices = null;
 }

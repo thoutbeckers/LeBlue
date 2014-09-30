@@ -260,7 +260,6 @@ public class LeSessionController implements LeMockController {
             case deviceStopScanning:
             case remoteDeviceClose:
             case remoteDeviceDisconnect:
-            case remoteDeviceEnableCharacteristicNotification:
             case serviceEnableCharacteristicNotification:
             case deviceRemoveListener:
             case deviceCheckBleHardwareAvailable:
@@ -273,7 +272,6 @@ public class LeSessionController implements LeMockController {
             case remoteDeviceStartServiceDiscovery:
             case serviceGetUUID:
             case serviceGetCharacteristic:
-            case remoteDeviceGetCharacteristic:
             case characteristicGetValue:
             case characteristicGetIntValue:
             case remoteDeviceSetCharacteristicListener:
@@ -656,17 +654,10 @@ public class LeSessionController implements LeMockController {
         checkEvent(remoteDeviceSetCharacteristicListener, leRemoteDeviceMock, Arrays.toString(uuids));
         characteristicListeners.put(eventIntValue(), listener);
     }
-    @Override
-    public synchronized boolean serviceEnableCharacteristicNotification(LeGattServiceMock leGattServiceMock, UUID characteristic) {
-        if (checkEvent(serviceEnableCharacteristicNotification, leGattServiceMock, characteristic.toString()))
-            return eventBooleanValue(1);
-        else
-            return true;
-    }
 
     @Override
-    public boolean remoteDeviceEnableCharacteristicNotification(LeRemoteDeviceMock leRemoteDeviceMock, UUID characteristic,UUID service) {
-        if (checkEvent(remoteDeviceEnableCharacteristicNotification, leRemoteDeviceMock, characteristic.toString(),service.toString()))
+    public boolean serviceEnableCharacteristicNotification(LeGattServiceMock leGattServiceMock, UUID characteristic) {
+        if (checkEvent(serviceEnableCharacteristicNotification, leGattServiceMock, characteristic.toString()))
             return eventBooleanValue(1);
         else
             return true;
@@ -776,15 +767,6 @@ public class LeSessionController implements LeMockController {
         else
             return null;
     }
-
-    @Override
-    public LeGattCharacteristic remoteDeviceGetCharacteristic(LeRemoteDeviceMock leRemoteDeviceMock, UUID characteristicUUID , UUID serviceUUID) {
-        if (checkEvent(remoteDeviceGetCharacteristic, leRemoteDeviceMock, characteristicUUID.toString(),serviceUUID.toString()))
-            return createOrReturnCharacteristic(eventIntValue());
-        else
-            return null;
-    }
-
 
     @Override
     public void deviceAddListener(LeDeviceMock leDeviceMock, LeDeviceListener listener) {

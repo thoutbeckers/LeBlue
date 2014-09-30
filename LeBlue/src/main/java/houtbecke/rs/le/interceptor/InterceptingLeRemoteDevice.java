@@ -3,7 +3,6 @@ package houtbecke.rs.le.interceptor;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
-import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
 
@@ -111,28 +110,4 @@ public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRe
                 "leRemoteDevice=" + leRemoteDevice +
                 '}';
     }
-
-    @Override
-    public boolean enableCharacteristicNotification(UUID characteristic,UUID service) {
-        synchronized(leInterceptor) {
-            boolean enabled = leRemoteDevice.enableCharacteristicNotification(characteristic,service);
-            leInterceptor.enabledCharacteristicNotification(this, characteristic,service, enabled);
-            return enabled;
-        }
-    }
-
-    @Override
-    public LeGattCharacteristic getCharacteristic(UUID characteristicUUID, UUID serviceUUID) {
-        synchronized (leInterceptor) {
-            LeGattCharacteristic leGattCharacteristic = leRemoteDevice.getCharacteristic(characteristicUUID,serviceUUID);
-            InterceptingLeGattCharacteristic iLeGattCharacteristic = leInterceptor.remoteDeviceGotCharacteristic(this, leGattCharacteristic);
-
-            leInterceptor.gotCharacteristic(this, iLeGattCharacteristic);
-
-            return leGattCharacteristic;
-        }
-    }
-
-
-
 }

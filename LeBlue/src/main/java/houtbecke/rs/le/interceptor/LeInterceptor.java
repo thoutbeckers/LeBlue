@@ -71,15 +71,6 @@ public abstract class LeInterceptor {
         return iLeGattCharacteristic;
     }
 
-    public InterceptingLeGattCharacteristic remoteDeviceGotCharacteristic(LeRemoteDevice leRemoteDevice, LeGattCharacteristic leGattCharacteristic) {
-        InterceptingLeGattCharacteristic iLeGattCharacteristic = iGattCharacteristics.get(leGattCharacteristic);
-        if (iLeGattCharacteristic == null) {
-            iLeGattCharacteristic = new InterceptingLeGattCharacteristic(leGattCharacteristic, this);
-            iGattCharacteristics.put(leGattCharacteristic, iLeGattCharacteristic);
-        }
-        return iLeGattCharacteristic;
-    }
-
     public InterceptingLeCharacteristicListener getInterceptingCharacteristicsListener(LeCharacteristicListener listener) {
         InterceptingLeCharacteristicListener iLeCharacteristicListener = iCharacteristicListeners.get(listener);
         if (iLeCharacteristicListener == null) {
@@ -98,8 +89,6 @@ public abstract class LeInterceptor {
         return iLeGattCharacteristic;
     }
 
-
-
     public volatile int counter = 0;
 
     public abstract void listenerAdded(InterceptingLeDevice iLeDevice, InterceptingLeDeviceListener iListener);
@@ -115,8 +104,6 @@ public abstract class LeInterceptor {
     public abstract void gotUUID(InterceptingLeGattService iLeGattService, UUID uuid);
 
     public abstract void enabledCharacteristicNotification(InterceptingLeGattService iLeGattService, UUID characteristic, boolean enabled);
-
-    public abstract void enabledCharacteristicNotification(InterceptingLeRemoteDevice iLeRemoteDevice, UUID characteristic,UUID service, boolean enabled);
 
     public abstract void servicesDiscovered(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, LeGattStatus status, InterceptingLeGattService[] iLeGattServices);
 
@@ -159,7 +146,4 @@ public abstract class LeInterceptor {
     public abstract void setValue(InterceptingLeGattCharacteristic interceptingLeGattCharacteristic, byte[] value);
 
     public abstract void gotCharacteristic(InterceptingLeGattService iLeGattService, InterceptingLeGattCharacteristic iLeGattCharacteristic);
-
-    public abstract void gotCharacteristic(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic);
-
 }
