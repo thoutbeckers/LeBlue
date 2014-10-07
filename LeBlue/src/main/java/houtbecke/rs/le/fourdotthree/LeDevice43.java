@@ -64,14 +64,8 @@ public class LeDevice43 implements LeDevice {
             if (bluetoothAdapter == null) {
                 throw new BleException("Bluetooth Adapter not found");
             }
-
-
-
             IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
             context.registerReceiver(receiver, filter);
-
-
-
 
         } catch (BleException ble) {
             throw  ble;
@@ -181,8 +175,6 @@ public class LeDevice43 implements LeDevice {
     final BluetoothManager mBluetoothManager;
     final BluetoothAdapter bluetoothAdapter;
 
-
-
     private Handler mTimerHandler = new Handler();
 
     LeGattStatus toGattStatus(int status) {
@@ -208,6 +200,4 @@ public class LeDevice43 implements LeDevice {
                 return LeGattStatus.FAILURE;
         }
     }
-
-
 }
