@@ -13,22 +13,27 @@ import houtbecke.rs.le.LeGattService;
 class LeGattService43 implements LeGattService {
     final LeDevice43 leDevice43;
     final LeRemoteDevice43 leRemoteDevice43;
-    final BluetoothGattService gattService;
+    final UUID serviceUUID;
 
-    LeGattService43(LeDevice43 leDevice43, LeRemoteDevice43 leRemoteDevice43, BluetoothGattService gattService) {
+    LeGattService43(LeDevice43 leDevice43, LeRemoteDevice43 leRemoteDevice43, UUID serviceUUID) {
         this.leDevice43 = leDevice43;
-        this.gattService = gattService;
+        this.serviceUUID = serviceUUID;
         this.leRemoteDevice43 = leRemoteDevice43;
     }
 
     @Override
     public UUID getUuid() {
-        return gattService.getUuid();
+        return serviceUUID;
     }
+
+    public BluetoothGattService getGattService(){
+        return leRemoteDevice43.gatt.getService(this.serviceUUID);
+    }
+
 
     @Override
     public LeGattCharacteristic getCharacteristic(UUID uuid) {
-        BluetoothGattCharacteristic characteristic = gattService.getCharacteristic(uuid);
+        BluetoothGattCharacteristic characteristic = getGattService().getCharacteristic(uuid);
         if (characteristic == null || leRemoteDevice43.gatt == null)
             return null;
         return new LeGattCharacteristic43(leRemoteDevice43.gatt, characteristic);
@@ -36,7 +41,7 @@ class LeGattService43 implements LeGattService {
 
     @Override
     public boolean enableCharacteristicNotification(UUID characteristic) {
-        BluetoothGattCharacteristic characteristic43 = gattService.getCharacteristic(characteristic);
+        BluetoothGattCharacteristic characteristic43 = getGattService().getCharacteristic(characteristic);
         if (characteristic43 == null)
             return false;
         if (leRemoteDevice43.gatt == null)
