@@ -18,7 +18,6 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
 apply plugin: 'android-test'
 apply plugin: 'groovy'
 apply plugin: 'jacoco'

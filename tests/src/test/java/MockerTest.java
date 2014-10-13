@@ -5,6 +5,7 @@ import java.util.UUID;
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
+import houtbecke.rs.le.LeDeviceState;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeGattStatus;
@@ -83,12 +84,22 @@ public class MockerTest {
 
             }
 
+            @Override
+            public void leDeviceState(LeDevice leDevice, LeDeviceState leDeviceState) {
+
+            }
+
         });
 
-        ((LeDeviceMock) device).addListener(new LeDeviceListener() {
+        (device).addListener(new LeDeviceListener() {
             @Override
             public void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, LeScanRecord scanRecord) {
                 foundRemoteDevice2[0]= true;
+            }
+
+            @Override
+            public void leDeviceState(LeDevice leDevice, LeDeviceState leDeviceState) {
+
             }
 
         });

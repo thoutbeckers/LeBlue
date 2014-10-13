@@ -8,6 +8,7 @@ import java.util.UUID;
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
+import houtbecke.rs.le.LeDeviceState;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeGattStatus;
@@ -75,6 +76,10 @@ public class SessionSwitchingTest {
                 setRemoteDevice(leFoundRemoteDevice);
 
                 foundRemoteDevice[0] = true;
+            }
+            @Override
+            public void leDeviceState(LeDevice leDevice, LeDeviceState leDeviceState) {
+
             }
 
         });
