@@ -66,8 +66,8 @@ if ("$System.env.CI" == "true") {
 
 sourceSets {
     //set the sourcesets to joint-compile
-    sourceSets.test.java.srcDirs = []
-    sourceSets.test.groovy.srcDirs += ["src/test/java"]
+    sourceSets.test.java.srcDirs = ["src/test/java"]
+    //sourceSets.test.groovy.srcDirs += ["src/test/java"]
     //sourceSets.main.output.classesDir = 'src/main/webapp/WEB-INF/classes'
 }
 
