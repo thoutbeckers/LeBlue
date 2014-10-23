@@ -134,7 +134,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             List<BluetoothGattService> services43 = gatt.getServices();
             LeGattService[] services = new LeGattService[services43.size()];
             for (int i = 0; i < services43.size(); i++)
-                services[i] = new LeGattService43(leDevice43, this, services43.get(i));
+                services[i] = new LeGattService43(leDevice43, this, services43.get(i).getUuid());
 
 
             LeRemoteDeviceListener[] arrayListeners = new LeRemoteDeviceListener[listeners.size()];
