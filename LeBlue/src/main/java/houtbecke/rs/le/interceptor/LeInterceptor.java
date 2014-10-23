@@ -7,6 +7,7 @@ import java.util.UUID;
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
+import houtbecke.rs.le.LeDeviceState;
 import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
@@ -94,6 +95,8 @@ public abstract class LeInterceptor {
     public abstract void listenerAdded(InterceptingLeDevice iLeDevice, InterceptingLeDeviceListener iListener);
 
     public abstract void deviceFound(InterceptingLeDeviceListener iLeDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, LeScanRecord scanrecord);
+
+    public abstract void deviceState(InterceptingLeDeviceListener iLeDeviceListener, InterceptingLeDevice iLeDevice,LeDeviceState deviceState);
 
     public abstract void connected(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
 

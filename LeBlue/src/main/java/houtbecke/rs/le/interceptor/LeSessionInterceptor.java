@@ -2,6 +2,7 @@ package houtbecke.rs.le.interceptor;
 
 import java.util.UUID;
 
+import houtbecke.rs.le.LeDeviceState;
 import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattStatus;
@@ -45,6 +46,12 @@ public class LeSessionInterceptor extends LeInterceptor {
     @Override
     public void deviceFound(InterceptingLeDeviceListener iLeDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, int rssi, LeScanRecord leScanRecord) {
         drainEvent(remoteDeviceFound, iLeDeviceListener, iLeDevice, iLeRemoteDevice, rssi+"", LeUtil.bytesToString(leScanRecord.getRawData()));
+    }
+
+    @Override
+    public void deviceState(InterceptingLeDeviceListener iLeDeviceListener, InterceptingLeDevice iLeDevice, LeDeviceState leDeviceState) {
+        drainEvent(deviceState, iLeDeviceListener, iLeDevice,leDeviceState.toString());
+
     }
 
     @Override

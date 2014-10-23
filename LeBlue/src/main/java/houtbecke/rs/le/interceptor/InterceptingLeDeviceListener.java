@@ -43,5 +43,11 @@ public class InterceptingLeDeviceListener extends BaseIntercepting implements Le
 
     @Override
     public void leDeviceState(LeDevice leDevice, LeDeviceState leDeviceState) {
+
+        InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
+        leInterceptor.deviceState(this, iLeDevice, leDeviceState);
+        leDeviceListener.leDeviceState(iLeDevice,leDeviceState);
+
+
     }
 }

@@ -19,7 +19,7 @@ buildscript {
 }
 
 apply plugin: 'android-test'
-apply plugin: 'groovy'
+apply plugin: 'java'
 apply plugin: 'jacoco'
 apply plugin: 'coveralls'
 
@@ -64,17 +64,6 @@ if ("$System.env.CI" == "true") {
     }
 }
 
-sourceSets {
-    //set the sourcesets to joint-compile
-    sourceSets.test.java.srcDirs = ["src/test/java"]
-    //sourceSets.test.groovy.srcDirs += ["src/test/java"]
-    //sourceSets.main.output.classesDir = 'src/main/webapp/WEB-INF/classes'
-}
-
-// to prevent accidental building of the above defined main source set skip this task
-compileJava {
-    enabled = false
-}
 
 dependencies {
     testCompile 'junit:junit:4.11'
