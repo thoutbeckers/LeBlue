@@ -19,7 +19,7 @@ buildscript {
 }
 
 apply plugin: 'android-test'
-apply plugin: 'java'
+apply plugin: 'groovy'
 apply plugin: 'jacoco'
 apply plugin: 'coveralls'
 
@@ -64,6 +64,10 @@ if ("$System.env.CI" == "true") {
     }
 }
 
+// to prevent accidental building of the above defined main source set skip this task
+compileJava {
+    enabled = false
+}
 
 dependencies {
     testCompile 'junit:junit:4.11'
