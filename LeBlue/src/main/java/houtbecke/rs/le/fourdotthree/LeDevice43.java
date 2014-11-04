@@ -7,7 +7,10 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.util.Log;
@@ -27,6 +30,7 @@ import houtbecke.rs.le.BleException;
 import houtbecke.rs.le.LeDefinedUUIDs;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
+import houtbecke.rs.le.LeDeviceState;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeGattStatus;
@@ -60,12 +64,42 @@ public class LeDevice43 implements LeDevice {
             if (bluetoothAdapter == null) {
                 throw new BleException("Bluetooth Adapter not found");
             }
+            IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+            context.registerReceiver(receiver, filter);
+
         } catch (BleException ble) {
             throw  ble;
         } catch (Exception e) {
             throw new BleException("Error initializing Bluetooth adapter", e);
         }
     }
+
+    private final BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+
+            if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
+                final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE,
+                        BluetoothAdapter.ERROR);
+                LeDeviceState deviceState;
+                switch (state){
+                    case BluetoothAdapter.STATE_OFF:
+                        deviceState = LeDeviceState.OFF;
+                        break;
+                    case BluetoothAdapter.STATE_ON:
+                        deviceState = LeDeviceState.ON;
+                        break;
+                    default:
+                        return;
+                }
+
+                for(LeDeviceListener listener: listeners)
+                    listener.leDeviceState(LeDevice43.this,deviceState);
+            }
+        }
+    };
+
 
     @Override
     public boolean checkBleHardwareAvailable() {
@@ -166,6 +200,4 @@ public class LeDevice43 implements LeDevice {
                 return LeGattStatus.FAILURE;
         }
     }
-
-
 }

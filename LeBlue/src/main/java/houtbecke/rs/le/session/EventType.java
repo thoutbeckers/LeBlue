@@ -23,9 +23,8 @@ public enum EventType {
     remoteDeviceGetName,
     serviceGetCharacteristic,
     characteristicSetValue,
-
-
     remoteDeviceFound,
+    deviceState,
     mockRemoteDeviceFound,
     remoteDeviceConnected,
     mockRemoteDeviceConnected,

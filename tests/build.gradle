@@ -99,3 +99,27 @@ jacocoTestReport {
     executionData = files("$buildDir/jacoco/testDefaultFlavorDebug.exec")
 
 }
+
+
+task copy(type: Copy) {
+    from "$project.rootDir/tests/build/test-classes/defaultFlavor/debug"
+    into "$project.rootDir/tests/build/classes/test"
+    include('**/*.class')
+}
+
+assemble {
+    doLast() {
+        tasks.build.execute()
+        tasks.compileTestDefaultFlavorDebugJava.execute()
+
+        def source = new File("$project.rootDir/tests/build/test-classes/defaultFlavor/debug")
+        println "fixing location of classes? "+source.isDirectory();
+
+        if (source.isDirectory()){
+            tasks.copy.execute()
+        }
+
+    }
+}
+
+

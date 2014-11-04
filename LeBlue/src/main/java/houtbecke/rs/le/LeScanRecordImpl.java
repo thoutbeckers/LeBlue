@@ -67,6 +67,15 @@ public class LeScanRecordImpl implements LeScanRecord {
         return uuidList.toArray(uuids);
     }
 
+
+    public boolean hasService(UUID uuid ){
+        UUID[] uuids = getServices();
+        for(UUID u :uuids){
+            if (u.equals(uuid)) return true;
+        }
+        return false;
+    }
+
     @Override
     public byte[] getRawData() {
         return scanrecord;

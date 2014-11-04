@@ -5,6 +5,7 @@ import android.util.Log;
 import java.util.Arrays;
 import java.util.UUID;
 
+import houtbecke.rs.le.LeDeviceState;
 import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattStatus;
@@ -23,6 +24,11 @@ public class LeLogCatInterceptor extends LeInterceptor {
     @Override
     public void deviceFound(InterceptingLeDeviceListener iLeDeviceListener,InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice ileRemoteDevice, int rssi, LeScanRecord scanRecord) {
          Log.i(TAG, "deviceFound: "+iLeDeviceListener+iLeDevice+ileRemoteDevice+rssi+ LeUtil.bytesToString(scanRecord.getRawData()));
+    }
+
+    @Override
+    public void deviceState(InterceptingLeDeviceListener iLeDeviceListener, InterceptingLeDevice iLeDevice, LeDeviceState deviceState) {
+        Log.i(TAG, "deviceState: "+iLeDeviceListener+iLeDevice+deviceState.toString());
     }
 
     @Override
