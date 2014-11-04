@@ -5,7 +5,9 @@ public class NativeWaitNotify implements WaitNotify {
     @Override
     public void simpleWait() {
         try {
-            this.wait();
+            synchronized(this) {
+                this.wait();
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
