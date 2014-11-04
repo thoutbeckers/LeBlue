@@ -13,6 +13,8 @@ public class NativeWaitNotify implements WaitNotify {
 
     @Override
     public void simpleNotifyAll() {
-        this.notifyAll();
+        synchronized(this) {
+            this.notifyAll();
+        }
     }
 }
