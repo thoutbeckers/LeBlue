@@ -9,6 +9,8 @@ public class Event {
     public EventType type;
     public int source;
     public int delay;
+    public long timeStamp;
+
     public String[] values;
 
     public Event(EventType type, BaseIntercepting source, String... values) {
@@ -34,6 +36,7 @@ public class Event {
         this.source = source;
         this.values = values;
         this.delay = delay;
+        timeStamp = System.currentTimeMillis();
     }
     @Override
     public String toString() {

@@ -193,4 +193,6 @@ public class LeSessionInterceptor extends LeInterceptor {
         drainEvent(characteristicSetValue, iLeGattCharacteristic, LeUtil.bytesToString(value));
     }
 
+
+
 }
