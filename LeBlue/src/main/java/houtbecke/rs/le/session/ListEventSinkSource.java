@@ -13,6 +13,29 @@ public class ListEventSinkSource implements EventSink, EventSource {
         events.addLast(event);
     }
 
+
+    private void correctDelay(){
+        long lastTimeStamp =0;
+        for (Event event : events) {
+            if (lastTimeStamp == 0) {
+                event.delay = 0;
+            } else {
+                event.delay = (int) (event.timeStamp - lastTimeStamp);
+            }
+            lastTimeStamp = event.timeStamp;
+        }
+    }
+
+    @Override
+    public Event[] getEvents(){
+        this.correctDelay();
+        return events.toArray(new Event[events.size()]
+
+
+        );
+    }
+
+
     @Override
     public Event nextEvent() {
         if (iterator == null)
