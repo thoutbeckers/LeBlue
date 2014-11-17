@@ -4,7 +4,10 @@ import houtbecke.rs.le.LeDefinedUUIDs;
 import houtbecke.rs.le.LeScanRecord;
 import houtbecke.rs.le.LeUtil;
 
-public class ScanRecordTest {
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+
+public class LeUtilTest {
     @org.junit.Test
     public void testScanRecord() {
 
@@ -28,5 +31,14 @@ public class ScanRecordTest {
     }
 
 
+    @org.junit.Test
+    public void testHexString() {
+        byte[] byteArray = new byte[]{(byte)255,0,0,0};
+        String hexString = "FF000000";
+
+        assertEquals(hexString, LeUtil.bytesToHexString(byteArray));
+        assertArrayEquals(byteArray,LeUtil.hexStringToBytes(hexString));
+
+    }
 
 }
