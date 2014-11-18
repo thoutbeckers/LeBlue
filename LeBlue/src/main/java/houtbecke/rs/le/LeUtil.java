@@ -23,7 +23,7 @@ public class LeUtil {
 
         byte[] bytes = new byte[tokenizer.countTokens()];
         for (int k=0; k<bytes.length; k++)
-            bytes[k] = Byte.valueOf(tokenizer.nextToken());
+            bytes[k] = (byte) Integer.parseInt(tokenizer.nextToken());
         return bytes;
     }
 
