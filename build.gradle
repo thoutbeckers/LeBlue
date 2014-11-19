@@ -2,10 +2,8 @@
 allprojects {
     buildscript {
         repositories {
+            jcenter()
             mavenCentral()
-            flatDir {
-                dirs "$project.rootDir/etc/flatdir/"
-            }
         }
     }
     repositories {
@@ -16,9 +14,6 @@ allprojects {
 buildscript {
     repositories {
         mavenCentral()
-        flatDir {
-            dirs "$project.rootDir/etc/flatdir/"
-        }
     }
 
     dependencies {
@@ -27,13 +22,13 @@ buildscript {
         classpath 'org.apache.httpcomponents:httpmime:4.3'
 
         classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:0.4.0'
-        classpath 'com.android.tools.build:gradle:0.12.+'
+        classpath 'com.android.tools.build:gradle:0.14.2'
 
         // replaced until new release
         //classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.10.1'
         classpath 'org.rauschig:jarchivelib:0.6.0'
         classpath 'commons-io:commons-io:2.4'
-        classpath name: 'sdk-manager-plugin', version:'0.10.2-SNAPSHOT'
+        classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.+'
 
     }
 }
