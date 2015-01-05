@@ -22,14 +22,8 @@ public class LeUtil {
         StringTokenizer tokenizer = new StringTokenizer(string, ",");
 
         byte[] bytes = new byte[tokenizer.countTokens()];
-        for (int k=0; k<bytes.length; k++) {
-            try {
-                int value = Integer.parseInt(tokenizer.nextToken());
-                bytes[k] = (byte) value;
-            }catch(NumberFormatException e){
-
-            }
-        }
+        for (int k=0; k<bytes.length; k++)
+            bytes[k] = (byte) Integer.parseInt(tokenizer.nextToken());
         return bytes;
     }
 
