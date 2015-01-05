@@ -12,7 +12,9 @@ if (local.exists()) {
 
 buildscript {
     dependencies {
-        classpath 'com.novoda:gradle-android-test-plugin:0.10.0'
+        // replaced until novoda mergers their PR #11
+        // classpath 'com.novoda:gradle-android-test-plugin:0.9.8-SNAPSHOT'
+        classpath name:'gradle-android-test-plugin', version:'0.9.9-SNAPSHOT'
     }
 }
 
