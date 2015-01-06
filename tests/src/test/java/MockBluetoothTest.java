@@ -50,6 +50,10 @@ public class MockBluetoothTest {
 
         filler.addEvent(EventType.remoteDeviceConnected, LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE);
 
+        filler.addEvent(EventType.remoteDeviceReadRssi, LE_REMOTE_DEVICE);
+
+        filler.addEvent(EventType.remoteDeviceRssiRead,  LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE,""+RSSI);
+
         filler.addEvent(EventType.remoteDeviceStartServiceDiscovery, LE_REMOTE_DEVICE);
 
         filler.addEvent(EventType.remoteDeviceServicesDiscovered, LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE, LeGattStatus.SUCCESS.toString(), String.valueOf(LE_SERVICE_1));
@@ -118,6 +122,8 @@ public class MockBluetoothTest {
         Boolean disconnected = false;
         Boolean closed = false;
         final Boolean[] discovered = new Boolean[]{false};
+        final Boolean[] rssiRead = new Boolean[]{false};
+        final int[] rssiValue = new int[]{0};
 
         final LeGattService[] service = new LeGattService[]{null};
 
@@ -149,11 +155,24 @@ public class MockBluetoothTest {
                 service[0] = gatts[0];
             }
 
+            @Override
+            public void rssiRead(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi) {
+                assert getDevice().equals(leDevice);
+                assert leRemoteDevice.equals(getRemoteDevice());
+                assert (RSSI == rssi);
+                rssiRead[0] = true;
+                rssiValue[0] = rssi;
+            }
+
         });
 
         remoteDevice.connect();
         Thread.sleep(100);
         assert connected[0];
+
+        remoteDevice.readRssi();
+        Thread.sleep(100);
+        assert rssiRead[0];
 
         remoteDevice.startServicesDiscovery();
         Thread.sleep(100);
@@ -266,5 +285,6 @@ public class MockBluetoothTest {
     private final int LE_CHARACTERISTIC_1_1 = 5;
     private final int LE_CHARACTERISTIC_1_2 = 6;
     private final int LE_CHARACTERISTIC_LISTENER = 7;
+    private final int RSSI = 8;
     private LeRemoteDevice remoteDevice;
 }

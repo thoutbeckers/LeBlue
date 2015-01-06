@@ -56,6 +56,18 @@ public class LeLogCatInterceptor extends LeInterceptor {
         Log.i(TAG, "gotCharacteristic: "+iLeGattService+iLeGattCharacteristic);
     }
 
+    @Override
+    public void rssiRead(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, int rssi) {
+        Log.i(TAG, "rssiRead: "+iLeRemoteDeviceListener+iLeDevice+iLeRemoteDevice+rssi);
+
+    }
+
+    @Override
+    public void readRssi(InterceptingLeRemoteDevice iLeRemoteDevice) {
+        Log.i(TAG, "readRssi: "+iLeRemoteDevice);
+
+    }
+
 
     @Override
     public void enabledCharacteristicNotification(InterceptingLeGattService iLeGattService, UUID characteristic, boolean enabled) {

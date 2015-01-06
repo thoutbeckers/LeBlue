@@ -202,6 +202,24 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
     @Override
+    public void readRssi() {
+        if (gatt != null) {
+            gatt.readRemoteRssi();
+        }
+    }
+
+    @Override
+    public void onReadRemoteRssi(android.bluetooth.BluetoothGatt gatt, int rssi, int status)
+    {
+    if (status == BluetoothGatt.GATT_SUCCESS) {
+        for (LeRemoteDeviceListener listener : listeners)
+            listener.rssiRead(leDevice43, this, rssi);
+    }
+    }
+
+
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || !(o instanceof LeRemoteDevice)) return false;

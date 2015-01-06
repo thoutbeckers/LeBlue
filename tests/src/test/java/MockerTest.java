@@ -161,6 +161,11 @@ public class MockerTest {
                 service[0] = (gatts[0]);
             }
 
+            @Override
+            public void rssiRead(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi) {
+
+            }
+
         });
 
         remoteDevice.connect();
@@ -241,6 +246,11 @@ public class MockerTest {
             @Override
             public void serviceDiscovered(LeDevice leDevice, LeRemoteDevice leRemoteDevice, LeGattStatus status, LeGattService[] gatts) {
                 service[0] = gatts[0];
+            }
+
+            @Override
+            public void rssiRead(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi) {
+
             }
 
         });

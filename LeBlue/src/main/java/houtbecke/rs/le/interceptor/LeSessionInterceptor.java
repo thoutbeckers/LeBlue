@@ -80,6 +80,18 @@ public class LeSessionInterceptor extends LeInterceptor {
     }
 
     @Override
+    public void rssiRead(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, int rssi) {
+        drainEvent(remoteDeviceRssiRead, iLeRemoteDeviceListener, iLeDevice, iLeRemoteDevice, "" +rssi);
+
+    }
+
+    @Override
+    public void readRssi(InterceptingLeRemoteDevice iLeRemoteDevice) {
+        drainEvent(remoteDeviceReadRssi, iLeRemoteDevice);
+
+    }
+
+    @Override
     public void enabledCharacteristicNotification(InterceptingLeGattService iLeGattService, UUID characteristic, boolean enabled) {
         drainEvent(serviceEnableCharacteristicNotification, iLeGattService, characteristic.toString(), Boolean.toString(enabled));
     }

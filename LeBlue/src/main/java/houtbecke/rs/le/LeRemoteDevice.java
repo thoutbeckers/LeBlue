@@ -21,4 +21,6 @@ public interface LeRemoteDevice {
     void setCharacteristicListener(LeCharacteristicListener listener, UUID... uuids);
 
     String getName();
+
+    void readRssi();
 }
