@@ -17,6 +17,7 @@ import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattStatus;
 import houtbecke.rs.le.LeRemoteDeviceListener;
 import houtbecke.rs.le.LeUtil;
+import houtbecke.rs.le.interceptor.InterceptingLeCharacteristicListener;
 import houtbecke.rs.le.session.Event;
 import houtbecke.rs.le.session.EventSource;
 import houtbecke.rs.le.session.EventType;
@@ -275,6 +276,7 @@ public class LeSessionController implements LeMockController {
             case remoteDeviceAddListener:
             case remoteDeviceRemoveListener:
             case remoteDeviceConnect:
+            case remoteDeviceReadRssi:
             case remoteDeviceStartServiceDiscovery:
             case serviceGetUUID:
             case serviceGetCharacteristic:
@@ -376,6 +378,20 @@ public class LeSessionController implements LeMockController {
                                         getRemoteDevice(event.values[1]),
                                         LeGattStatus.fromString(event.values[2]),
                                         services);
+                            }
+                        });
+                        break;
+
+                    case remoteDeviceRssiRead:
+                        runCurrentEvent(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                getRemoteDeviceListener(event.source).rssiRead(
+                                        getDevice(event.values[0]),
+                                        getRemoteDevice(event.values[1]),
+                                        Integer.valueOf(event.values[2])
+                                );
                             }
                         });
                         break;
@@ -856,6 +872,11 @@ public class LeSessionController implements LeMockController {
         checkEvent(characteristicSetValue, leGattCharacteristicMock, LeUtil.bytesToString(value));
     }
 
+    @Override
+    public void remoteDeviceReadRssi(LeRemoteDeviceMock leRemoteDeviceMock) {
+        checkEvent(remoteDeviceReadRssi, leRemoteDeviceMock);
+
+    }
 
 
     public void simpleNotifyAll() {

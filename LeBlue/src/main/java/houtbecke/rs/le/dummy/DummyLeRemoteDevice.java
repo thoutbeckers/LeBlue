@@ -51,4 +51,9 @@ public class DummyLeRemoteDevice implements LeRemoteDevice {
     public String getName() {
         return null;
     }
+
+    @Override
+    public void readRssi() {
+
+    }
 }

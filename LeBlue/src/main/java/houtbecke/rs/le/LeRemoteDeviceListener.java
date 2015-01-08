@@ -9,4 +9,7 @@ public interface LeRemoteDeviceListener {
     void leDevicesClosed(LeDevice leDevice, LeRemoteDevice leRemoteDevice);
 
     void serviceDiscovered(LeDevice leDevice, LeRemoteDevice leRemoteDevice, LeGattStatus status, LeGattService[] gatts);
+
+    void rssiRead(LeDevice leDevice, LeRemoteDevice leRemoteDevice,int rssi);
+
 }

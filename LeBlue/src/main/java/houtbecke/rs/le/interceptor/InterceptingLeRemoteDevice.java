@@ -92,6 +92,14 @@ public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRe
     }
 
     @Override
+    public void readRssi() {
+        synchronized(leInterceptor) {
+            leInterceptor.readRssi(this);
+            leRemoteDevice.readRssi();
+        }
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o instanceof InterceptingLeRemoteDevice)
             return leRemoteDevice.equals(((InterceptingLeRemoteDevice)o).leRemoteDevice);

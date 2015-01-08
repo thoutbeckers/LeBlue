@@ -53,6 +53,16 @@ public class InterceptingLeRemoteDeviceListener extends BaseIntercepting impleme
     }
 
     @Override
+    public void rssiRead(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi) {
+        InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
+        InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(leRemoteDevice);
+
+        leInterceptor.rssiRead(this, iLeDevice, iLeRemoteDevice, rssi);
+        leRemoteDeviceListener.rssiRead(iLeDevice, iLeRemoteDevice, rssi);
+
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;

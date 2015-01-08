@@ -32,6 +32,13 @@ public class LeUtilTest {
 
 
     @org.junit.Test
+    public void testStringToByte() {
+        byte[] byteArray = new byte[]{0,-127};
+        byte[] ba= LeUtil.stringToBytes("256,-127");
+        assertArrayEquals(byteArray,ba);
+    }
+
+    @org.junit.Test
     public void testHexString() {
         byte[] byteArray = new byte[]{(byte)255,0,0,0};
         String hexString = "FF000000";

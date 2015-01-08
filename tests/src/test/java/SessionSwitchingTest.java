@@ -111,6 +111,11 @@ public class SessionSwitchingTest {
                 service[0] = (gatts[0]);
             }
 
+            @Override
+            public void rssiRead(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi) {
+
+            }
+
         });
 
         remoteDevice.connect();

@@ -17,6 +17,8 @@ public enum EventType {
     remoteDeviceAddListener,
     remoteDeviceRemoveListener,
     remoteDeviceSetCharacteristicListener,
+    remoteDeviceReadRssi,
+
     serviceGetUUID,
     characteristicGetValue,
     characteristicGetIntValue,
@@ -29,6 +31,7 @@ public enum EventType {
     remoteDeviceConnected,
     mockRemoteDeviceConnected,
     remoteDeviceServicesDiscovered,
+    remoteDeviceRssiRead,
     mockRemoteDeviceServicesDiscovered,
     deviceRemoteDeviceServicesDiscovered,
     characteristicChanged,
