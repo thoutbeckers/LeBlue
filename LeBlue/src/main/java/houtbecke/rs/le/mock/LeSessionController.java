@@ -98,8 +98,7 @@ public class LeSessionController implements LeMockController {
         long current = System.currentTimeMillis();
         while (current < executeNextEventAfter && !stopSession) {
             if (shouldLog()) Log.i(TAG, "delaying "+currentEvent+" by "+(executeNextEventAfter - current)+ "ms");
-            simpleWait();
-                //wait(executeNextEventAfter - current);
+            simpleWait(executeNextEventAfter - current);
 
             current = System.currentTimeMillis();
         }
@@ -119,8 +118,7 @@ public class LeSessionController implements LeMockController {
 
     public boolean waitTillSessionStarted() {
         while (!waitingForEvent && !stopSession) {
-               // this.wait(10000);
-            simpleWait();
+            simpleWait(10000);
 
         }
         return waitingForEvent;
@@ -888,6 +886,9 @@ public class LeSessionController implements LeMockController {
 
     }
 
+    public void simpleWait(long time) {
+        this.waitNotify.simpleWait(time);
 
+    }
 
 }

@@ -6,19 +6,37 @@ public class SimpleWaitNotify implements WaitNotify {
 
 
     @Override
-    public void simpleWait() {
+    public void simpleWait(long time) {
+        long countedTime=0;
         waitCounter++;
+        int myWaitCounter =  waitCounter;
+        while (myWaitCounter == waitCounter  && countedTime < time) {
+            try {
+                Thread.sleep(100);
+                countedTime = countedTime + 100;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
     }
 
     @Override
-    public void simpleNotifyAll() {
-        int currentWaitCounter = waitCounter;
-        while (currentWaitCounter == waitCounter) {
+    public void simpleWait() {
+        int myWaitCounter =  waitCounter;
+        while (myWaitCounter == waitCounter) {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
+    }
+
+    @Override
+    public void simpleNotifyAll() {
+        waitCounter++;
     }
 }
