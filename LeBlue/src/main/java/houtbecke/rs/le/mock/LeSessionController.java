@@ -34,7 +34,6 @@ public class LeSessionController implements LeMockController {
     // temp workaround for LogCat crashing tests
     boolean shouldLog() { return !"true".equals(System.getProperty("doNotLog"));}
 
-    Handler handler = null;
 
     final static String TAG = "LeBlueController";
     int counter = 0;
@@ -47,13 +46,7 @@ public class LeSessionController implements LeMockController {
         this.strict = strict;
 
         this.session = session;
-        try {
-            handler = new Handler(Looper.getMainLooper());
-        } catch (Exception e) {
-            // Failure of the handler to initialize means we're probably running
-            // in a JDK environment
-            System.out.println("Not using handler for posting events. You're likely running in a JDK environment");
-        }
+
     }
 
     int source;
@@ -209,29 +202,15 @@ public class LeSessionController implements LeMockController {
 
        RunnableWrapper wrapper = null;
 
-       if (handler != null) {
 
-           // robolectric workaround, post to handler from a separate thread
-           wrapper = new RunnableWrapper(new Runnable() {
-               @Override
-               public void run() {
-                   handler.post(runnable);
-               }
-           });
-           new Thread(wrapper).start();
-       }
-       else {
-
-           wrapper = new RunnableWrapper(runnable);
-           (new Thread(wrapper)).start();
-       }
+       wrapper = new RunnableWrapper(runnable);
+       (new Thread(wrapper)).start();
 
        synchronized (this) {
            while (!wrapper.started)
                wait();
        }
    }
-
     Session session;
 
     volatile List<Event> mockedEvents = new ArrayList<>();
