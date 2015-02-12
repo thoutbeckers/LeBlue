@@ -1,15 +1,9 @@
 package tests;
 
-import java.util.UUID;
 
-import houtbecke.rs.le.LeDefinedUUIDs;
-import houtbecke.rs.le.LeScanRecord;
-import houtbecke.rs.le.LeUtil;
 import houtbecke.rs.le.mock.NativeWaitNotify;
-import houtbecke.rs.le.mock.SimpleWaitNotify;
 import houtbecke.rs.le.mock.WaitNotify;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class WaitNotifyTest {
@@ -21,7 +15,11 @@ public class WaitNotifyTest {
     class Thread1 extends  Thread{
         public void run() {
             counter++;
-            waitNotify.simpleWait();
+            try {
+                waitNotify.simpleWait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             counter++;
 
@@ -33,7 +31,11 @@ public class WaitNotifyTest {
     class Thread2 extends  Thread{
         public void run() {
             counter++;
-            waitNotify.simpleWait(1000);
+            try {
+                waitNotify.simpleWait(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             counter++;
 
@@ -44,7 +46,7 @@ public class WaitNotifyTest {
     @org.junit.Test
     public void testWait() throws InterruptedException {
         counter =0;
-        waitNotify = new SimpleWaitNotify();
+        waitNotify = new NativeWaitNotify();
         Thread1 thread1 = new Thread1();
         thread1.start();
         Thread.sleep(10);
@@ -59,7 +61,7 @@ public class WaitNotifyTest {
     @org.junit.Test
     public void testWaitTime1() throws InterruptedException {
         counter =0;
-        waitNotify = new SimpleWaitNotify();
+        waitNotify = new NativeWaitNotify();
         Thread2 thread = new Thread2();
         thread.start();
         Thread.sleep(100);
@@ -75,7 +77,7 @@ public class WaitNotifyTest {
     @org.junit.Test
     public void testWaitTime2() throws InterruptedException {
         counter =0;
-        waitNotify = new SimpleWaitNotify();
+        waitNotify = new NativeWaitNotify();
         Thread2 thread = new Thread2();
         thread.start();
         Thread.sleep(100);

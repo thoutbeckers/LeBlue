@@ -44,7 +44,7 @@ public class LeSessionController implements LeMockController {
         this.strict = strict;
 
         this.session = session;
-        waitNotify = new SimpleWaitNotify();
+        waitNotify = new NativeWaitNotify();
     }
 
     public WaitNotify waitNotify;
