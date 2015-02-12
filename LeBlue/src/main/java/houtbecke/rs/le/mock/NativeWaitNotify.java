@@ -5,31 +5,20 @@ public class NativeWaitNotify implements WaitNotify {
 
 
     @Override
-    public void simpleWait(long time) {
-        try {
-            synchronized(this) {
+    public synchronized void  simpleWait(long time) throws InterruptedException{
+
                 this.wait(time);
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override
-    public void simpleWait() {
-        try {
-            synchronized(this) {
-                this.wait();
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public synchronized  void simpleWait() throws InterruptedException{
+            this.wait();
+
     }
 
     @Override
-    public void simpleNotifyAll() {
-        synchronized(this) {
+    public synchronized void simpleNotifyAll()  {
             this.notifyAll();
-        }
     }
 }
