@@ -298,8 +298,6 @@ public class LeSessionController implements LeMockController {
             case deviceAddListener:
             case deviceStartScanning:
             case deviceStopScanning:
-            case remoteDeviceClose:
-            case remoteDeviceDisconnect:
             case serviceEnableCharacteristicNotification:
             case deviceRemoveListener:
             case deviceCheckBleHardwareAvailable:
@@ -309,6 +307,8 @@ public class LeSessionController implements LeMockController {
             case remoteDeviceAddListener:
             case remoteDeviceRemoveListener:
             case remoteDeviceConnect:
+            case remoteDeviceClose:
+            case remoteDeviceDisconnect:
             case remoteDeviceReadRssi:
             case remoteDeviceStartServiceDiscovery:
             case serviceGetUUID:
@@ -366,6 +366,7 @@ public class LeSessionController implements LeMockController {
                             });
                         }
                         break;
+
                     case remoteDeviceConnected:
                         runCurrentEventOnUiThread(new Runnable() {
                             @Override
@@ -377,7 +378,26 @@ public class LeSessionController implements LeMockController {
                         });
                         break;
 
-
+                    case remoteDeviceDisconnected:
+                        runCurrentEventOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                getRemoteDeviceListener(event.source).leDevicesDisconnected(
+                                        getDevice(event.values[0]),
+                                        getRemoteDevice(event.values[1]));
+                            }
+                        });
+                        break;
+                    case remoteDeviceClosed:
+                        runCurrentEventOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                getRemoteDeviceListener(event.source).leDevicesClosed(
+                                        getDevice(event.values[0]),
+                                        getRemoteDevice(event.values[1]));
+                            }
+                        });
+                        break;
                     case mockRemoteDeviceServicesDiscovered:
                         for (LeRemoteDeviceListener leRemoteListener : session.getRemoteDeviceMocker(event.source).getRemoteDeviceListeners(this, event.source)) {
                             final LeRemoteDeviceListener listener = leRemoteListener;

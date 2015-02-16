@@ -30,6 +30,8 @@ public enum EventType {
     mockRemoteDeviceFound,
     remoteDeviceConnected,
     mockRemoteDeviceConnected,
+    remoteDeviceDisconnected,
+    remoteDeviceClosed,
     remoteDeviceServicesDiscovered,
     remoteDeviceRssiRead,
     mockRemoteDeviceServicesDiscovered,

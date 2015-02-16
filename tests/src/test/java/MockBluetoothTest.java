@@ -75,6 +75,13 @@ public class MockBluetoothTest {
 
         filler.addEvent(EventType.characteristicSetValue, LE_CHARACTERISTIC_1_2, "3,4,5");
 
+        filler.addEvent(EventType.remoteDeviceDisconnect, LE_REMOTE_DEVICE);
+
+     //   filler.addEvent(EventType.remoteDeviceDisconnected, LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE);
+
+        //filler.addEvent(EventType.remoteDeviceClose, LE_REMOTE_DEVICE);
+
+       // filler.addEvent(EventType.remoteDeviceClosed, LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE);
         return source;
     }
 
@@ -118,9 +125,10 @@ public class MockBluetoothTest {
         assert remoteDevice.getName().equals("test device");
 
         final Boolean[] connected = new Boolean[]{false};
+        final Boolean[] disconnected = new Boolean[]{false};
+        final Boolean[] closed = new Boolean[]{false};
 
-        Boolean disconnected = false;
-        Boolean closed = false;
+
         final Boolean[] discovered = new Boolean[]{false};
         final Boolean[] rssiRead = new Boolean[]{false};
         final int[] rssiValue = new int[]{0};
@@ -137,12 +145,16 @@ public class MockBluetoothTest {
 
             @Override
             public void leDevicesDisconnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
-
+                assert getDevice().equals(leDevice);
+                assert getRemoteDevice().equals(leRemoteDevice);
+                disconnected[0] = true;
             }
 
             @Override
             public void leDevicesClosed(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
-
+                assert getDevice().equals(leDevice);
+                assert getRemoteDevice().equals(leRemoteDevice);
+                closed[0] = true;
             }
 
             @Override
@@ -208,6 +220,15 @@ public class MockBluetoothTest {
         assert changed[0];
 
         characteristic2.setValue(new byte[]{3, 4, 5});
+
+        remoteDevice.disconnect();
+     /*   Thread.sleep(100);
+        assert disconnected[0];
+*/
+        //remoteDevice.close();
+       // Thread.sleep(100);
+        //assert closed[0];
+
 
         assert !events.hasMoreEvent();
 
