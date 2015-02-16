@@ -957,8 +957,9 @@ public class LeSessionController implements LeMockController {
 
     @Override
     public void remoteDeviceReadRssi(LeRemoteDeviceMock leRemoteDeviceMock) {
-        checkEvent(remoteDeviceReadRssi, leRemoteDeviceMock);
-
+        synchronized (this.waitNotify) {
+            checkEvent(remoteDeviceReadRssi, leRemoteDeviceMock);
+        }
     }
 
 
