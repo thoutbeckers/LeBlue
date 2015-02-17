@@ -59,7 +59,12 @@ public class LeSessionController implements LeMockController {
     }
 
     protected int eventIntValue() {
-        return Integer.parseInt(values[0]);
+        try {
+            return Integer.parseInt(values[0]);
+        }catch(NumberFormatException e){
+
+        }
+        return 0;
     }
 
     protected boolean eventBooleanValue() {
@@ -952,8 +957,9 @@ public class LeSessionController implements LeMockController {
 
     @Override
     public void remoteDeviceReadRssi(LeRemoteDeviceMock leRemoteDeviceMock) {
-        checkEvent(remoteDeviceReadRssi, leRemoteDeviceMock);
-
+        synchronized (this.waitNotify) {
+            checkEvent(remoteDeviceReadRssi, leRemoteDeviceMock);
+        }
     }
 
 

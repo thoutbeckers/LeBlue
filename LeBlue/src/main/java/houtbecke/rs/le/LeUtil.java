@@ -20,10 +20,14 @@ public class LeUtil {
 
     public static byte[] stringToBytes(String string) {
         StringTokenizer tokenizer = new StringTokenizer(string, ",");
-
         byte[] bytes = new byte[tokenizer.countTokens()];
-        for (int k=0; k<bytes.length; k++)
-            bytes[k] = (byte) Integer.parseInt(tokenizer.nextToken());
+        for (int k=0; k<bytes.length; k++){
+            try {
+                bytes[k] = (byte) Integer.parseInt(tokenizer.nextToken());
+            }catch(NumberFormatException e){
+
+            }
+        }
         return bytes;
     }
 
