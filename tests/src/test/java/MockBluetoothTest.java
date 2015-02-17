@@ -19,6 +19,7 @@ import houtbecke.rs.le.interceptor.InterceptingLeDevice;
 import houtbecke.rs.le.interceptor.LeSessionInterceptor;
 import houtbecke.rs.le.mock.LeDeviceMock;
 import houtbecke.rs.le.mock.LeSessionController;
+import houtbecke.rs.le.session.Event;
 import houtbecke.rs.le.session.EventSink;
 import houtbecke.rs.le.session.EventSinkFiller;
 import houtbecke.rs.le.session.EventType;
@@ -77,11 +78,11 @@ public class MockBluetoothTest {
 
         filler.addEvent(EventType.remoteDeviceDisconnect, LE_REMOTE_DEVICE);
 
-     //   filler.addEvent(EventType.remoteDeviceDisconnected, LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE);
+        filler.addEvent(EventType.remoteDeviceDisconnected, LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE);
 
-        //filler.addEvent(EventType.remoteDeviceClose, LE_REMOTE_DEVICE);
+        filler.addEvent(EventType.remoteDeviceClose, LE_REMOTE_DEVICE);
 
-       // filler.addEvent(EventType.remoteDeviceClosed, LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE);
+        filler.addEvent(EventType.remoteDeviceClosed,LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE);
         return source;
     }
 
@@ -222,12 +223,12 @@ public class MockBluetoothTest {
         characteristic2.setValue(new byte[]{3, 4, 5});
 
         remoteDevice.disconnect();
-     /*   Thread.sleep(100);
+        Thread.sleep(100);
         assert disconnected[0];
-*/
-        //remoteDevice.close();
-       // Thread.sleep(100);
-        //assert closed[0];
+
+        remoteDevice.close();
+        Thread.sleep(100);
+        assert closed[0];
 
 
         assert !events.hasMoreEvent();
@@ -236,8 +237,9 @@ public class MockBluetoothTest {
 
         ListEventSinkSource source = createSource();
 
-        while (source.hasMoreEvent())
+        while (source.hasMoreEvent()){
             assert source.nextEvent().equals(((ListEventSinkSource) sink).nextEvent());
+        }
     }
 
     public LeSessionController getSessionController() {

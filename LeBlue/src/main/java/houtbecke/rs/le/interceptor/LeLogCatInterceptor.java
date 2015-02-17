@@ -42,8 +42,8 @@ public class LeLogCatInterceptor extends LeInterceptor {
     }
 
     @Override
-    public void closed(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
-        Log.i(TAG, "closed: "+iLeDevice+iLeRemoteDevice);
+    public void closed(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener,InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
+        Log.i(TAG, "closed: "+iLeRemoteDeviceListener+iLeDevice+iLeRemoteDevice);
     }
 
     @Override

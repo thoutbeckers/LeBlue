@@ -61,12 +61,12 @@ public class LeSessionInterceptor extends LeInterceptor {
 
     @Override
     public void disconnected(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
-        drainEvent(remoteDeviceDisconnect, iLeRemoteDeviceListener, iLeDevice, iLeRemoteDevice);
+        drainEvent(remoteDeviceDisconnected, iLeRemoteDeviceListener, iLeDevice, iLeRemoteDevice);
     }
 
     @Override
-    public void closed(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
-        drainEvent(remoteDeviceClose, iLeDevice, iLeRemoteDevice);
+    public void closed(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener,InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice) {
+        drainEvent(remoteDeviceClosed,iLeRemoteDeviceListener, iLeDevice, iLeRemoteDevice);
     }
 
     @Override
