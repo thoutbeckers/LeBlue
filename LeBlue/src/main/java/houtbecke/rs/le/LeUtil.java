@@ -8,6 +8,7 @@ import java.util.UUID;
 
 public class LeUtil {
     public static String bytesToString(byte[] bytes) {
+        if (bytes == null) return "";
         StringBuilder builder = new StringBuilder();
         for (byte b: bytes) {
             builder.append(b & 0xFF).append(",");
@@ -44,6 +45,8 @@ public class LeUtil {
 
     final protected static char[] hexArray = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
     public static String bytesToHexString(byte[] bytes) {
+        if (bytes == null) return "";
+
         char[] hexChars = new char[bytes.length*2];
         int v;
 
