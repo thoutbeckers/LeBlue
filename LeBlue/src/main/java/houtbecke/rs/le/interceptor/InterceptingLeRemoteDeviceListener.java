@@ -34,7 +34,7 @@ public class InterceptingLeRemoteDeviceListener extends BaseIntercepting impleme
     public void leDevicesClosed(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
         InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
         InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(leRemoteDevice);
-        leInterceptor.closed(iLeDevice, iLeRemoteDevice);
+        leInterceptor.closed(this,iLeDevice, iLeRemoteDevice);
         leRemoteDeviceListener.leDevicesClosed(iLeDevice, iLeRemoteDevice);
     }
 

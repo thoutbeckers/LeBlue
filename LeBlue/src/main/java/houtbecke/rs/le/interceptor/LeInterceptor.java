@@ -102,7 +102,7 @@ public abstract class LeInterceptor {
 
     public abstract void disconnected(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
 
-    public abstract void closed(InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
+    public abstract void closed(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener,InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice);
 
     public abstract void gotUUID(InterceptingLeGattService iLeGattService, UUID uuid);
 
