@@ -1,8 +1,6 @@
 package houtbecke.rs.le.interceptor;
 
 
-import com.google.gson.Gson;
-
 import houtbecke.rs.le.session.Event;
 import houtbecke.rs.le.session.EventSink;
 
