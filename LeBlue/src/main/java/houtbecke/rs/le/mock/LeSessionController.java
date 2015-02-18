@@ -377,7 +377,18 @@ public class LeSessionController implements LeMockController {
                             }
                         });
                         break;
-
+                    case mockRemoteDeviceDisconnected:
+                        for (LeRemoteDeviceListener leRemoteListener : session.getRemoteDeviceMocker(event.source).getRemoteDeviceListeners(this, event.source)) {
+                            final LeRemoteDeviceListener listener = leRemoteListener;
+                            runCurrentEventOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.leDevicesDisconnected(getDevice(event.values[0]),
+                                            getRemoteDevice(event.source));
+                                }
+                            });
+                        }
+                        break;
                     case remoteDeviceDisconnected:
                         runCurrentEventOnUiThread(new Runnable() {
                             @Override
@@ -387,6 +398,19 @@ public class LeSessionController implements LeMockController {
                                         getRemoteDevice(event.values[1]));
                             }
                         });
+                        break;
+
+                    case mockRemoteDeviceClosed:
+                        for (LeRemoteDeviceListener leRemoteListener : session.getRemoteDeviceMocker(event.source).getRemoteDeviceListeners(this, event.source)) {
+                            final LeRemoteDeviceListener listener = leRemoteListener;
+                            runCurrentEventOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.leDevicesClosed(getDevice(event.values[0]),
+                                            getRemoteDevice(event.source));
+                                }
+                            });
+                        }
                         break;
                     case remoteDeviceClosed:
                         runCurrentEventOnUiThread(new Runnable() {

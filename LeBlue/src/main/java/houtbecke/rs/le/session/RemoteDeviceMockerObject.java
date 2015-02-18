@@ -5,10 +5,15 @@ import java.util.List;
 
 import houtbecke.rs.le.LeGattStatus;
 
+import static houtbecke.rs.le.session.EventType.remoteDeviceClose;
 import static houtbecke.rs.le.session.EventType.remoteDeviceConnect;
+import static houtbecke.rs.le.session.EventType.remoteDeviceDisconnect;
 import static houtbecke.rs.le.session.EventType.remoteDeviceGetAddress;
 import static houtbecke.rs.le.session.EventType.remoteDeviceGetName;
 import static houtbecke.rs.le.session.EventType.mockRemoteDeviceConnected;
+import static houtbecke.rs.le.session.EventType.mockRemoteDeviceClosed;
+import static houtbecke.rs.le.session.EventType.mockRemoteDeviceDisconnected;
+
 import static houtbecke.rs.le.session.EventType.mockRemoteDeviceServicesDiscovered;
 import static houtbecke.rs.le.session.EventType.remoteDeviceStartServiceDiscovery;
 
@@ -32,8 +37,12 @@ public class RemoteDeviceMockerObject extends MockerObject {
         this.mockedDeviceSource = deviceId;
         withMock(remoteDeviceGetAddress, address);
         withMock(remoteDeviceGetName, name);
-        if (connects)
+        if (connects) {
             withMock(remoteDeviceConnect, new MockedResponseObject(new Event(mockRemoteDeviceConnected, getDelay(), sessionSource, deviceId + "")));
+            withMock(remoteDeviceDisconnect, new MockedResponseObject(new Event(mockRemoteDeviceDisconnected, getDelay(), sessionSource, deviceId + "")));
+            withMock(remoteDeviceClose, new MockedResponseObject(new Event(mockRemoteDeviceClosed, getDelay(), sessionSource, deviceId + "")));
+
+        }
         return this;
     }
     public RemoteDeviceMockerObject hasServices(int... services) {
