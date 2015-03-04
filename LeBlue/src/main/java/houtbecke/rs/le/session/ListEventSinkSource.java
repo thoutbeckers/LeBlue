@@ -7,10 +7,27 @@ public class ListEventSinkSource implements EventSink, EventSource {
 
     LinkedList<Event> events = new LinkedList<>();
     Iterator<Event> iterator = null;
+    int limit = -1;
+
+    public ListEventSinkSource(){
+
+    }
+
+    public ListEventSinkSource(int limit){
+        if (limit >1)
+            this.limit = limit;
+    }
 
     @Override
     public void addEvent(Event event) {
-        events.addLast(event);
+        if (limit == -1){
+            events.addLast(event);
+        }else{
+            if (limit <= events.size())
+                events.removeFirst();
+            events.addLast(event);
+        }
+
     }
 
 
