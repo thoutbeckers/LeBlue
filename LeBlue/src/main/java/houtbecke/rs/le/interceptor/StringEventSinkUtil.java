@@ -10,12 +10,12 @@ public class StringEventSinkUtil implements EventSinkUtil{
 
     @Override
     public  String write(EventSink eventSink) {
-        String log= "";
+        StringBuilder sb = new StringBuilder();
         for(Event e : eventSink.getEvents()){
-            log = log + e.toString() + "\n";
-
+                sb.append(e.toString());
+                sb.append(System.getProperty("line.separator"));
         }
-        return log;
+        return sb.toString();
     }
 
 }
