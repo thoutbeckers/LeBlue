@@ -89,7 +89,10 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
         }
     }
-
+    @Override
+    public void startServicesDiscovery(UUID... uuids){
+        this.startServicesDiscovery();
+    }
     @Override
     public void startServicesDiscovery() {
         if (gatt !=null)

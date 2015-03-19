@@ -20,6 +20,8 @@ public interface LeMockController {
 
     void remoteDeviceStartServiceDiscovery(LeRemoteDeviceMock leRemoteDeviceMock);
 
+    void remoteDeviceStartServiceDiscovery(LeRemoteDeviceMock leRemoteDeviceMock, UUID[] uuids);
+
     void remoteDeviceClose(LeRemoteDeviceMock leRemoteDeviceMock);
 
     void remoteDeviceDisconnect(LeRemoteDeviceMock leRemoteDeviceMock);

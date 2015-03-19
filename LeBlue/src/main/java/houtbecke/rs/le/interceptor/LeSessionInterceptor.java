@@ -183,6 +183,20 @@ public class LeSessionInterceptor extends LeInterceptor {
     }
 
     @Override
+    public void serviceDiscoveryStarted(InterceptingLeRemoteDevice iLeRemoteDevice, UUID[] uuids) {
+        if  (uuids != null){
+            String[] args = new String[ uuids.length];
+            LeUtil.putUUIDsInStringArray(uuids, args, 0);
+            drainEvent(remoteDeviceStartServiceDiscovery, iLeRemoteDevice,args);
+
+        } else{
+            drainEvent(remoteDeviceStartServiceDiscovery, iLeRemoteDevice);
+
+        }
+
+    }
+
+    @Override
     public void gotRemoteDeviceName(InterceptingLeRemoteDevice iLeRemoteDevice, String name) {
         drainEvent(remoteDeviceGetName, iLeRemoteDevice, name);
     }

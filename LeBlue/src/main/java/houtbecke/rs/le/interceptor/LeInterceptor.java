@@ -140,6 +140,8 @@ public abstract class LeInterceptor {
 
     public abstract void serviceDiscoveryStarted(InterceptingLeRemoteDevice iLeRemoteDevice);
 
+    public abstract void serviceDiscoveryStarted(InterceptingLeRemoteDevice iLeRemoteDevice, UUID[] uuids);
+
     public abstract void gotRemoteDeviceName(InterceptingLeRemoteDevice iLeRemoteDevice, String name);
 
     public abstract void characteristicChanged(InterceptingLeCharacteristicListener iLeCharacteristicListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic);

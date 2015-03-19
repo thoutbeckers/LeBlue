@@ -155,6 +155,11 @@ public class LeLogCatInterceptor extends LeInterceptor {
     }
 
     @Override
+    public void serviceDiscoveryStarted(InterceptingLeRemoteDevice iLeRemoteDevice, UUID[] uuids) {
+        Log.i(TAG, "serviceDiscoveryStarted: "+iLeRemoteDevice +" " +Arrays.toString(uuids));
+    }
+
+    @Override
     public void gotRemoteDeviceName(InterceptingLeRemoteDevice iLeRemoteDevice, String name) {
         Log.i(TAG, "gotRemoteDeviceName: "+iLeRemoteDevice+name);
     }

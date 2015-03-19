@@ -43,6 +43,11 @@ public class DummyLeRemoteDevice implements LeRemoteDevice {
     }
 
     @Override
+    public void startServicesDiscovery(UUID... uuids) {
+
+    }
+
+    @Override
     public void setCharacteristicListener(LeCharacteristicListener listener, UUID... uuids) {
 
     }
