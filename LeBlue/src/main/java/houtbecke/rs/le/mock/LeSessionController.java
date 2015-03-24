@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
+import houtbecke.rs.le.LeCharacteristicWriteListener;
 import houtbecke.rs.le.LeDeviceListener;
 import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
@@ -317,6 +318,7 @@ public class LeSessionController implements LeMockController {
             case characteristicGetIntValue:
             case remoteDeviceSetCharacteristicListener:
             case characteristicSetValue:
+            case characteristicRead:
                 waitForEvent(event);
                 break;
 
@@ -795,6 +797,14 @@ public class LeSessionController implements LeMockController {
         characteristicListeners.put(eventIntValue(), listener);
     }
 
+    Map<Integer, LeCharacteristicWriteListener> characteristicWriteListeners = new HashMap<>();
+
+    @Override
+    public void remoteDeviceSetCharacteristicWriteListener(LeRemoteDeviceMock leRemoteDeviceMock, LeCharacteristicWriteListener listener, UUID[] uuids) {
+        checkEvent(remoteDeviceSetCharacteristicWriteListener, leRemoteDeviceMock, Arrays.toString(uuids));
+        characteristicWriteListeners.put(eventIntValue(), listener);
+    }
+
     @Override
     public  boolean serviceEnableCharacteristicNotification(LeGattServiceMock leGattServiceMock, UUID characteristic) {
         synchronized (this.waitNotify) {
@@ -1012,7 +1022,11 @@ public class LeSessionController implements LeMockController {
         }
     }
 
+    @Override
+    public void characteristicRead(LeGattCharacteristicMock leGattCharacteristicMock) {
+        checkEvent(characteristicRead, leGattCharacteristicMock);
 
+    }
 
 
 }

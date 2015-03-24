@@ -38,6 +38,15 @@ public class InterceptingLeGattCharacteristic extends BaseIntercepting implement
             leInterceptor.setValue(this, value);
         }
     }
+
+    @Override
+    public void read() {
+        synchronized(leInterceptor) {
+            leGattCharacteristic.read();
+            leInterceptor.read(this);
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

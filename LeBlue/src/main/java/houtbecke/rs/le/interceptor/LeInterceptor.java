@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
+import houtbecke.rs.le.LeCharacteristicWriteListener;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
 import houtbecke.rs.le.LeDeviceState;
@@ -24,6 +25,7 @@ public abstract class LeInterceptor {
     public Map<LeGattService, InterceptingLeGattService> iGattServices = new HashMap<>();
     public Map<LeGattCharacteristic, InterceptingLeGattCharacteristic> iGattCharacteristics = new HashMap<>();
     public Map<LeCharacteristicListener, InterceptingLeCharacteristicListener> iCharacteristicListeners = new HashMap<>();
+    public Map<LeCharacteristicWriteListener, InterceptingLeCharacteristicWriteListener> iCharacteristicWriteListeners = new HashMap<>();
 
 
     public InterceptingLeRemoteDevice getInterceptingLeRemoteDevice(LeRemoteDevice leRemoteDevice) {
@@ -80,6 +82,16 @@ public abstract class LeInterceptor {
         }
         return iLeCharacteristicListener;
     }
+
+    public InterceptingLeCharacteristicWriteListener getInterceptingCharacteristicsWriteListener(LeCharacteristicWriteListener listener) {
+        InterceptingLeCharacteristicWriteListener iLeCharacteristicWriteListener = iCharacteristicWriteListeners.get(listener);
+        if (iLeCharacteristicWriteListener == null) {
+            iLeCharacteristicWriteListener = new InterceptingLeCharacteristicWriteListener(listener, this);
+            iCharacteristicWriteListeners.put(listener, iLeCharacteristicWriteListener);
+        }
+        return iLeCharacteristicWriteListener;
+    }
+
 
     public InterceptingLeGattCharacteristic getInterceptingLeGattCharacteristic(LeGattCharacteristic characteristic) {
         InterceptingLeGattCharacteristic iLeGattCharacteristic = iGattCharacteristics.get(characteristic);
@@ -146,7 +158,11 @@ public abstract class LeInterceptor {
 
     public abstract void characteristicChanged(InterceptingLeCharacteristicListener iLeCharacteristicListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic);
 
+    public abstract void characteristicWritten(InterceptingLeCharacteristicWriteListener iLeCharacteristicWriteListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic,Boolean succes);
+
     public abstract void characteristicListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicListener iCharacteristicsListener, UUID[] uuids);
+
+    public abstract void characteristicWriteListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicWriteListener iCharacteristicsWriteListener, UUID[] uuids);
 
     public abstract void setValue(InterceptingLeGattCharacteristic interceptingLeGattCharacteristic, byte[] value);
 
@@ -155,5 +171,7 @@ public abstract class LeInterceptor {
     public abstract void rssiRead(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, int rssi);
 
     public abstract void readRssi(InterceptingLeRemoteDevice iLeRemoteDevice);
+
+    public abstract void read(InterceptingLeGattCharacteristic interceptingLeGattCharacteristic);
 
 }

@@ -3,6 +3,7 @@ package houtbecke.rs.le.interceptor;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
+import houtbecke.rs.le.LeCharacteristicWriteListener;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
 
@@ -78,6 +79,15 @@ public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRe
         synchronized(leInterceptor) {
             leInterceptor.serviceDiscoveryStarted(this,uuids);
             leRemoteDevice.startServicesDiscovery(uuids);
+        }
+    }
+
+    @Override
+    public void setCharacteristicWriteListener(LeCharacteristicWriteListener listener, UUID... uuids) {
+        synchronized(leInterceptor) {
+            InterceptingLeCharacteristicWriteListener iCharacteristicsWriteListener = leInterceptor.getInterceptingCharacteristicsWriteListener(listener);
+            leInterceptor.characteristicWriteListenerSet(this, iCharacteristicsWriteListener, uuids);
+            leRemoteDevice.setCharacteristicWriteListener(listener, uuids);
         }
     }
 
