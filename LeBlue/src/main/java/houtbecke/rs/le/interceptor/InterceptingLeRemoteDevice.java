@@ -74,6 +74,14 @@ public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRe
     }
 
     @Override
+    public void startServicesDiscovery(UUID... uuids) {
+        synchronized(leInterceptor) {
+            leInterceptor.serviceDiscoveryStarted(this,uuids);
+            leRemoteDevice.startServicesDiscovery(uuids);
+        }
+    }
+
+    @Override
     public void setCharacteristicListener(LeCharacteristicListener listener, UUID... uuids) {
         synchronized(leInterceptor) {
             InterceptingLeCharacteristicListener iCharacteristicsListener = leInterceptor.getInterceptingCharacteristicsListener(listener);

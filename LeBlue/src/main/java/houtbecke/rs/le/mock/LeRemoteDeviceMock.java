@@ -56,6 +56,11 @@ public class LeRemoteDeviceMock implements LeRemoteDevice {
     }
 
     @Override
+    public void startServicesDiscovery(UUID... uuids) {
+        mockController.remoteDeviceStartServiceDiscovery(this,uuids);
+    }
+
+    @Override
     public void setCharacteristicListener(LeCharacteristicListener listener, UUID... uuids) {
         mockController.remoteDeviceSetCharacteristicListener(this, listener, uuids);
     }

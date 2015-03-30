@@ -758,6 +758,12 @@ public class LeSessionController implements LeMockController {
             checkEvent(remoteDeviceStartServiceDiscovery, leRemoteDeviceMock);
         }
     }
+    @Override
+    public  void remoteDeviceStartServiceDiscovery(LeRemoteDeviceMock leRemoteDeviceMock, UUID[] uuids) {
+        synchronized (this.waitNotify) {
+            checkEvent(remoteDeviceStartServiceDiscovery, leRemoteDeviceMock,Arrays.toString(uuids));
+        }
+    }
 
     @Override
     public  void remoteDeviceClose(LeRemoteDeviceMock leRemoteDeviceMock) {
