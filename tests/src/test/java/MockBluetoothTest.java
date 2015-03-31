@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
+import houtbecke.rs.le.LeCharacteristicWriteListener;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
 import houtbecke.rs.le.LeDeviceState;
@@ -65,7 +66,6 @@ public class MockBluetoothTest {
 
         filler.addEvent(EventType.serviceGetCharacteristic, LE_SERVICE_1, LE_CHARACTERISTIC_1_2);
 
-
         filler.addEvent(EventType.characteristicGetValue, LE_CHARACTERISTIC_1_1, "0,1,2");
 
         filler.addEvent(EventType.remoteDeviceSetCharacteristicListener, LE_REMOTE_DEVICE, String.valueOf(LE_CHARACTERISTIC_LISTENER), UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString());
@@ -74,7 +74,11 @@ public class MockBluetoothTest {
 
         filler.addEvent(EventType.characteristicChanged, LE_CHARACTERISTIC_LISTENER, UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString(), String.valueOf(LE_REMOTE_DEVICE), String.valueOf(LE_CHARACTERISTIC_1_2));
 
+        filler.addEvent(EventType.remoteDeviceSetCharacteristicWriteListener, LE_REMOTE_DEVICE, String.valueOf(LE_CHARACTERISTIC_WRITE_LISTENER), UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString());
+
         filler.addEvent(EventType.characteristicSetValue, LE_CHARACTERISTIC_1_2, "3,4,5");
+
+        filler.addEvent(EventType.characteristicWritten, LE_CHARACTERISTIC_WRITE_LISTENER, UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString(), String.valueOf(LE_REMOTE_DEVICE), String.valueOf(LE_CHARACTERISTIC_1_2),String.valueOf(true));
 
         filler.addEvent(EventType.remoteDeviceDisconnect, LE_REMOTE_DEVICE);
 
@@ -220,7 +224,22 @@ public class MockBluetoothTest {
         Thread.sleep(100);
         assert changed[0];
 
+        remoteDevice.setCharacteristicWriteListener(new LeCharacteristicWriteListener() {
+            @Override
+            public void leCharacteristicWritten(UUID uuid, LeRemoteDevice leRemoteDevice, LeGattCharacteristic leCharacteristic,boolean success) {
+                assert uuid.equals(UUID.fromString("12345678-1234-1234-1234-123456789cccc"));
+                assert getRemoteDevice().equals(leRemoteDevice);
+                assert !leCharacteristic.equals(characteristic) : "make sure this is a different characteristic";
+                changed[0] = true;
+            }
+
+        }, UUID.fromString("12345678-1234-1234-1234-123456789cccc"));
+
+        changed[0] = false;
+
         characteristic2.setValue(new byte[]{3, 4, 5});
+        Thread.sleep(100);
+        assert changed[0];
 
         remoteDevice.disconnect();
         Thread.sleep(100);
@@ -238,7 +257,9 @@ public class MockBluetoothTest {
         ListEventSinkSource source = createSource();
 
         while (source.hasMoreEvent()){
-            assert source.nextEvent().equals(((ListEventSinkSource) sink).nextEvent());
+            Event event1 = source.nextEvent();
+            Event event2 =((ListEventSinkSource) sink).nextEvent();
+            assert event1.equals(event2);
         }
     }
 
@@ -308,6 +329,9 @@ public class MockBluetoothTest {
     private final int LE_CHARACTERISTIC_1_1 = 5;
     private final int LE_CHARACTERISTIC_1_2 = 6;
     private final int LE_CHARACTERISTIC_LISTENER = 7;
-    private final int RSSI = 8;
+    private final int LE_CHARACTERISTIC_WRITE_LISTENER = 8;
+
+    private final int RSSI = 9;
+
     private LeRemoteDevice remoteDevice;
 }

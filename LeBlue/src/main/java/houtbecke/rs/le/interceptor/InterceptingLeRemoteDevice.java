@@ -87,7 +87,7 @@ public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRe
         synchronized(leInterceptor) {
             InterceptingLeCharacteristicWriteListener iCharacteristicsWriteListener = leInterceptor.getInterceptingCharacteristicsWriteListener(listener);
             leInterceptor.characteristicWriteListenerSet(this, iCharacteristicsWriteListener, uuids);
-            leRemoteDevice.setCharacteristicWriteListener(listener, uuids);
+            leRemoteDevice.setCharacteristicWriteListener(iCharacteristicsWriteListener, uuids);
         }
     }
 

@@ -185,6 +185,8 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
 
+
+
     @Override
     public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
         try {
@@ -216,8 +218,6 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             boolean succes = (status ==  gatt.GATT_SUCCESS);
 
             UUID uuid = characteristic.getUuid();
-
-        byte[] bytes = characteristic.getValue();
 
         LeCharacteristicWriteListener nullListener = uuidCharacteristicWriteListeners.get(null);
             LeCharacteristicWriteListener uuidListener = uuidCharacteristicWriteListeners.get(uuid);

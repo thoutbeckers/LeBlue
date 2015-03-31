@@ -187,7 +187,7 @@ public class LeLogCatInterceptor extends LeInterceptor {
 
     @Override
     public void characteristicWriteListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicWriteListener iCharacteristicsWriteListener, UUID[] uuids) {
-
+        Log.i(TAG, "characteristicWriteListenerSet: "+iLeRemoteDevice+iCharacteristicsWriteListener+Arrays.toString(uuids));
     }
 
     @Override

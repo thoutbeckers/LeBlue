@@ -61,10 +61,11 @@ public interface LeMockController {
 
     LeCharacteristicListener getCharacteristicListener(int key);
 
+    LeCharacteristicWriteListener getCharacteristicWriteListener(int key);
+
     void remoteDeviceSetCharacteristicListener(LeRemoteDeviceMock leRemoteDeviceMock, LeCharacteristicListener listener, UUID[] uuids);
 
     void remoteDeviceSetCharacteristicWriteListener(LeRemoteDeviceMock leRemoteDeviceMock, LeCharacteristicWriteListener listener, UUID[] uuids);
-
 
     void characteristicSetValue(LeGattCharacteristicMock leGattCharacteristicMock, byte[] value);
 
