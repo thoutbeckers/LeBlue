@@ -985,7 +985,6 @@ public class LeSessionController implements LeMockController {
     @Override
     public void remoteDeviceRemoveListener(LeRemoteDeviceMock leRemoteDeviceMock, LeRemoteDeviceListener listener) {
         checkEvent(remoteDeviceRemoveListener, leRemoteDeviceMock);
-        remoteDeviceListeners.remove(eventIntValue());
     }
 
     @Override
