@@ -14,6 +14,7 @@ import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeGattStatus;
 import houtbecke.rs.le.LeRemoteDevice;
+import houtbecke.rs.le.LeRemoteDeviceListener;
 import houtbecke.rs.le.LeScanRecord;
 
 public abstract class LeInterceptor {
@@ -22,6 +23,8 @@ public abstract class LeInterceptor {
     public Map<LeDevice, InterceptingLeDevice> iDevices = new HashMap<>();
     public Map<LeDeviceListener, InterceptingLeDeviceListener> iDeviceListeners = new HashMap<>();
     public Map<LeRemoteDevice, InterceptingLeRemoteDevice> iRemoteDevices = new HashMap<>();
+    public Map<LeRemoteDeviceListener, InterceptingLeRemoteDeviceListener> iRemoteDeviceListeners = new HashMap<>();
+
     public Map<LeGattService, InterceptingLeGattService> iGattServices = new HashMap<>();
     public Map<LeGattCharacteristic, InterceptingLeGattCharacteristic> iGattCharacteristics = new HashMap<>();
     public Map<LeCharacteristicListener, InterceptingLeCharacteristicListener> iCharacteristicListeners = new HashMap<>();
@@ -55,6 +58,15 @@ public abstract class LeInterceptor {
         return iDeviceListener;
     }
 
+    public InterceptingLeRemoteDeviceListener getInterceptingLeRemoteDeviceListener(LeRemoteDeviceListener listener) {
+        InterceptingLeRemoteDeviceListener iRemoteDeviceListener= iRemoteDeviceListeners.get(listener);
+        if (iRemoteDeviceListener == null) {
+            iRemoteDeviceListener = new InterceptingLeRemoteDeviceListener(listener, this);
+            iRemoteDeviceListeners.put(listener, iRemoteDeviceListener);
+        }
+        return iRemoteDeviceListener;
+    }
+
     public InterceptingLeGattService getInterceptingLeGattService(LeGattService leGattService) {
         InterceptingLeGattService iLeGattService = iGattServices.get(leGattService);
         if (iLeGattService == null) {
@@ -62,7 +74,6 @@ public abstract class LeInterceptor {
             iGattServices.put(leGattService, iLeGattService);
         }
         return iLeGattService;
-
     }
 
     public InterceptingLeGattCharacteristic serviceGotCharacteristic(InterceptingLeGattService iLeGattService, LeGattCharacteristic leGattCharacteristic) {

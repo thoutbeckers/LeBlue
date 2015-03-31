@@ -87,6 +87,10 @@ public class MockBluetoothTest {
         filler.addEvent(EventType.remoteDeviceClose, LE_REMOTE_DEVICE);
 
         filler.addEvent(EventType.remoteDeviceClosed,LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE);
+
+        filler.addEvent(EventType.remoteDeviceRemoveListener, LE_REMOTE_DEVICE, LE_REMOTE_DEVICE_LISTENER);
+
+
         return source;
     }
 
@@ -140,7 +144,7 @@ public class MockBluetoothTest {
 
         final LeGattService[] service = new LeGattService[]{null};
 
-        remoteDevice.addListener(new LeRemoteDeviceListener() {
+        LeRemoteDeviceListener remoteDeviceListener= new LeRemoteDeviceListener() {
             @Override
             public void leDevicesConnected(LeDevice leDeviceFoundOn, LeRemoteDevice leRemoteDevice) {
                 assert getDevice().equals(leDeviceFoundOn);
@@ -181,8 +185,8 @@ public class MockBluetoothTest {
                 rssiValue[0] = rssi;
             }
 
-        });
-
+        };
+        remoteDevice.addListener(remoteDeviceListener);
         remoteDevice.connect();
         Thread.sleep(100);
         assert connected[0];
@@ -245,9 +249,13 @@ public class MockBluetoothTest {
         Thread.sleep(100);
         assert disconnected[0];
 
+
+
         remoteDevice.close();
         Thread.sleep(100);
         assert closed[0];
+
+        remoteDevice.removeListener(remoteDeviceListener);
 
 
         assert !events.hasMoreEvent();
