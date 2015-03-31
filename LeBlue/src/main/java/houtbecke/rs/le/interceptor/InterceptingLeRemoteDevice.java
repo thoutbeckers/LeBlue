@@ -18,7 +18,7 @@ public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRe
     @Override
     public void addListener(LeRemoteDeviceListener listener) {
         synchronized(leInterceptor) {
-            InterceptingLeRemoteDeviceListener iListener = new InterceptingLeRemoteDeviceListener(listener, leInterceptor);
+            InterceptingLeRemoteDeviceListener iListener =  leInterceptor.getInterceptingLeRemoteDeviceListener(listener);
             leInterceptor.remoteListenerAdded(this, iListener);
             leRemoteDevice.addListener(iListener);
         }
@@ -27,7 +27,7 @@ public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRe
     @Override
     public void removeListener(LeRemoteDeviceListener listener) {
         synchronized(leInterceptor) {
-            InterceptingLeRemoteDeviceListener iListener = new InterceptingLeRemoteDeviceListener(listener, leInterceptor);
+            InterceptingLeRemoteDeviceListener iListener =  leInterceptor.getInterceptingLeRemoteDeviceListener(listener);
             leInterceptor.remoteListenerRemoved(this, iListener);
             leRemoteDevice.removeListener(iListener);
         }

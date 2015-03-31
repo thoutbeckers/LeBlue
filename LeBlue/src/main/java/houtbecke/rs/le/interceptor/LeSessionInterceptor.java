@@ -159,7 +159,7 @@ public class LeSessionInterceptor extends LeInterceptor {
 
     @Override
     public void remoteListenerRemoved(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeRemoteDeviceListener iListener) {
-        drainEvent(remoteDeviceRemoveListener, iLeRemoteDevice, iLeRemoteDevice.id+"");
+        drainEvent(remoteDeviceRemoveListener, iLeRemoteDevice, iListener.id+"");
     }
 
     @Override
