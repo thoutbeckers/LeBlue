@@ -94,6 +94,8 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
     @Override
     public void startServicesDiscovery(UUID... uuids){
+        //scanning for specific services is not supported by the default implementation, 
+        // because scanning for specific services can be very buggy, eg: https://code.google.com/p/android/issues/detail?id=59490
         this.startServicesDiscovery();
     }
     @Override
