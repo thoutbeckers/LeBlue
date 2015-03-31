@@ -3,6 +3,7 @@ package houtbecke.rs.le.dummy;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
+import houtbecke.rs.le.LeCharacteristicWriteListener;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
 
@@ -44,6 +45,11 @@ public class DummyLeRemoteDevice implements LeRemoteDevice {
 
     @Override
     public void startServicesDiscovery(UUID... uuids) {
+
+    }
+
+    @Override
+    public void setCharacteristicWriteListener(LeCharacteristicWriteListener listener, UUID... uuids) {
 
     }
 

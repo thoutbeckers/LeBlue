@@ -10,4 +10,6 @@ public interface LeGattCharacteristic {
 
     void setValue(byte[] value);
 
+    public void read();
 }
+

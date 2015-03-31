@@ -21,6 +21,7 @@ public interface LeRemoteDevice {
 
     void startServicesDiscovery(UUID... uuids);
 
+    void setCharacteristicWriteListener(LeCharacteristicWriteListener listener, UUID... uuids);
 
     void setCharacteristicListener(LeCharacteristicListener listener, UUID... uuids);
 

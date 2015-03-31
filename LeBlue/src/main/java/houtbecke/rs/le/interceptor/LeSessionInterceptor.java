@@ -92,6 +92,11 @@ public class LeSessionInterceptor extends LeInterceptor {
     }
 
     @Override
+    public void read(InterceptingLeGattCharacteristic interceptingLeGattCharacteristic) {
+        drainEvent(characteristicRead, interceptingLeGattCharacteristic);
+    }
+
+    @Override
     public void enabledCharacteristicNotification(InterceptingLeGattService iLeGattService, UUID characteristic, boolean enabled) {
         drainEvent(serviceEnableCharacteristicNotification, iLeGattService, characteristic.toString(), Boolean.toString(enabled));
     }
@@ -207,6 +212,11 @@ public class LeSessionInterceptor extends LeInterceptor {
     }
 
     @Override
+    public void characteristicWritten(InterceptingLeCharacteristicWriteListener iLeCharacteristicWriteListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic,Boolean success) {
+        drainEvent(characteristicWritten, iLeCharacteristicWriteListener, uuid.toString(), iLeRemoteDevice.id+"", iLeGattCharacteristic.id+"", success.toString());
+    }
+
+    @Override
     public void characteristicListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicListener iCharacteristicsListener, UUID[] uuids) {
         String[] args=null;
         if  (uuids != null){
@@ -219,6 +229,21 @@ public class LeSessionInterceptor extends LeInterceptor {
         }
 
         drainEvent(remoteDeviceSetCharacteristicListener, iLeRemoteDevice, args);
+    }
+
+    @Override
+    public void characteristicWriteListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicWriteListener iCharacteristicsWriteListener, UUID[] uuids) {
+        String[] args=null;
+        if  (uuids != null){
+            args = new String[1 + uuids.length];
+            args[0] = iCharacteristicsWriteListener.id+"";
+            LeUtil.putUUIDsInStringArray(uuids, args, 1);
+        } else{
+            args = new String[1];
+            args[0] = iCharacteristicsWriteListener.id+"";
+        }
+
+        drainEvent(remoteDeviceSetCharacteristicWriteListener, iLeRemoteDevice, args);
     }
 
     @Override

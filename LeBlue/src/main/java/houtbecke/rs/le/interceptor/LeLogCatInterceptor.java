@@ -68,6 +68,12 @@ public class LeLogCatInterceptor extends LeInterceptor {
 
     }
 
+    @Override
+    public void read(InterceptingLeGattCharacteristic interceptingLeGattCharacteristic) {
+        Log.i(TAG, "read: "+interceptingLeGattCharacteristic);
+
+    }
+
 
     @Override
     public void enabledCharacteristicNotification(InterceptingLeGattService iLeGattService, UUID characteristic, boolean enabled) {
@@ -170,8 +176,18 @@ public class LeLogCatInterceptor extends LeInterceptor {
     }
 
     @Override
+    public void characteristicWritten(InterceptingLeCharacteristicWriteListener iLeCharacteristicWriteListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic, Boolean succes) {
+        Log.i(TAG, "characteristicWritten: "+iLeCharacteristicWriteListener+uuid+" "+iLeRemoteDevice+iLeGattCharacteristic);
+    }
+
+    @Override
     public void characteristicListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicListener iCharacteristicsListener, UUID[] uuids) {
         Log.i(TAG, "characteristicListenerSet: "+iLeRemoteDevice+iCharacteristicsListener+Arrays.toString(uuids));
+    }
+
+    @Override
+    public void characteristicWriteListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicWriteListener iCharacteristicsWriteListener, UUID[] uuids) {
+        Log.i(TAG, "characteristicWriteListenerSet: "+iLeRemoteDevice+iCharacteristicsWriteListener+Arrays.toString(uuids));
     }
 
     @Override

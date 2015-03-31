@@ -21,6 +21,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
+import houtbecke.rs.le.LeCharacteristicWriteListener;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
@@ -32,6 +33,8 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     final BluetoothDevice remoteDevice43;
 
     final Map<UUID, LeCharacteristicListener> uuidCharacteristicListeners = new HashMap<UUID, LeCharacteristicListener>(0);
+    final Map<UUID, LeCharacteristicWriteListener> uuidCharacteristicWriteListeners = new HashMap<UUID, LeCharacteristicWriteListener>(0);
+
     final ConcurrentLinkedQueue<BluetoothGattDescriptor> descriptorWriteQueue = new ConcurrentLinkedQueue<BluetoothGattDescriptor>();
 
 
@@ -111,6 +114,15 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
     @Override
+    public void setCharacteristicWriteListener(LeCharacteristicWriteListener listener, UUID... uuids) {
+
+        if (uuids == null || uuids.length == 0)
+            uuidCharacteristicWriteListeners.put(null, listener);
+        else for (UUID uuid: uuids)
+            uuidCharacteristicWriteListeners.put(uuid, listener);
+    }
+
+    @Override
     public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
         super.onConnectionStateChange(gatt, status, newState);
 
@@ -175,6 +187,8 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
 
+
+
     @Override
     public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
         try {
@@ -199,6 +213,29 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         }
     }
 
+    @Override
+    public void onCharacteristicWrite(android.bluetooth.BluetoothGatt gatt, android.bluetooth.BluetoothGattCharacteristic characteristic, int status) {
+
+        try {
+            boolean succes = (status ==  gatt.GATT_SUCCESS);
+
+            UUID uuid = characteristic.getUuid();
+
+        LeCharacteristicWriteListener nullListener = uuidCharacteristicWriteListeners.get(null);
+            LeCharacteristicWriteListener uuidListener = uuidCharacteristicWriteListeners.get(uuid);
+
+        if ((nullListener != null || uuidListener != null) && gatt != null) {
+            LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic);
+            if (nullListener != null)
+                nullListener.leCharacteristicWritten(uuid, this, characteristic43,succes);
+            if (uuidListener != null)
+                uuidListener.leCharacteristicWritten(uuid, this, characteristic43,succes);
+        }
+    } catch (Throwable t) {
+        Log.w("LeBlue", "error during onCharacteristicChanged callback", t);
+    }
+
+    }
 
 
     @Override

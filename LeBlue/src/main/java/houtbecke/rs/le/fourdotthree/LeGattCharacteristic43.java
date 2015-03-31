@@ -15,6 +15,13 @@ class LeGattCharacteristic43 implements LeGattCharacteristic {
         this.gatt = gatt;
     }
 
+
+    @Override
+    public void read() {
+         gatt.readCharacteristic(characteristic);
+    }
+
+
     @Override
     public byte[] getValue() {
         return characteristic.getValue();

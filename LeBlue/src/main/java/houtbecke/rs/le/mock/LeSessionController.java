@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
+import houtbecke.rs.le.LeCharacteristicWriteListener;
+import houtbecke.rs.le.LeDefinedUUIDs;
 import houtbecke.rs.le.LeDeviceListener;
 import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
@@ -316,7 +318,9 @@ public class LeSessionController implements LeMockController {
             case characteristicGetValue:
             case characteristicGetIntValue:
             case remoteDeviceSetCharacteristicListener:
+            case remoteDeviceSetCharacteristicWriteListener:
             case characteristicSetValue:
+            case characteristicRead:
                 waitForEvent(event);
                 break;
 
@@ -511,7 +515,24 @@ public class LeSessionController implements LeMockController {
                             }
                         });
                         break;
+                    case characteristicWritten:
+                        runCurrentEventOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
 
+                                UUID uuid = null;
+                                if (event.values[0] != null && !event.values[0].equals("null"))
+                                    uuid = UUID.fromString(event.values[0]);
+                                LeCharacteristicWriteListener  characteristicWriteListener=getCharacteristicWriteListener(event.source);
+                                characteristicWriteListener.leCharacteristicWritten(
+                                        uuid,
+                                        getRemoteDevice(event.values[1]),
+                                        getCharacteristic(event.values[2]),
+                                        true
+                                );
+                            }
+                        });
+                        break;
 
                     default:
                         // events that also need to unset the current event
@@ -795,6 +816,23 @@ public class LeSessionController implements LeMockController {
         characteristicListeners.put(eventIntValue(), listener);
     }
 
+    Map<Integer, LeCharacteristicWriteListener> characteristicWriteListeners = new HashMap<>();
+
+    protected LeCharacteristicWriteListener getCharacteristicWriteListener(String key) {
+        return getCharacteristicWriteListener(Integer.valueOf(key));
+    }
+
+    @Override
+    public LeCharacteristicWriteListener getCharacteristicWriteListener(int key) {
+        return characteristicWriteListeners.get(key);
+    }
+
+    @Override
+    public void remoteDeviceSetCharacteristicWriteListener(LeRemoteDeviceMock leRemoteDeviceMock, LeCharacteristicWriteListener listener, UUID[] uuids) {
+        checkEvent(remoteDeviceSetCharacteristicWriteListener, leRemoteDeviceMock, Arrays.toString(uuids));
+        characteristicWriteListeners.put(eventIntValue(), listener);
+    }
+
     @Override
     public  boolean serviceEnableCharacteristicNotification(LeGattServiceMock leGattServiceMock, UUID characteristic) {
         synchronized (this.waitNotify) {
@@ -1012,7 +1050,11 @@ public class LeSessionController implements LeMockController {
         }
     }
 
+    @Override
+    public void characteristicRead(LeGattCharacteristicMock leGattCharacteristicMock) {
+        checkEvent(characteristicRead, leGattCharacteristicMock);
 
+    }
 
 
 }
