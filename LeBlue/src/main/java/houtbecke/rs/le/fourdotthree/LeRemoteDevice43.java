@@ -108,18 +108,30 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     public void setCharacteristicListener(LeCharacteristicListener listener, UUID... uuids) {
 
         if (uuids == null || uuids.length == 0)
-            uuidCharacteristicListeners.put(null, listener);
+            if (listener == null)
+                uuidCharacteristicListeners.remove(null);
+            else
+                uuidCharacteristicListeners.put(null, listener);
         else for (UUID uuid: uuids)
-            uuidCharacteristicListeners.put(uuid, listener);
+            if (listener == null)
+                uuidCharacteristicListeners.remove(uuid);
+            else
+                uuidCharacteristicListeners.put(uuid, listener);
     }
 
     @Override
     public void setCharacteristicWriteListener(LeCharacteristicWriteListener listener, UUID... uuids) {
 
         if (uuids == null || uuids.length == 0)
-            uuidCharacteristicWriteListeners.put(null, listener);
+            if (listener == null)
+                uuidCharacteristicWriteListeners.remove(null);
+            else
+                uuidCharacteristicWriteListeners.put(null, listener);
         else for (UUID uuid: uuids)
-            uuidCharacteristicWriteListeners.put(uuid, listener);
+            if (listener == null)
+                uuidCharacteristicWriteListeners.remove(uuid);
+            else
+                uuidCharacteristicWriteListeners.put(uuid, listener);
     }
 
     @Override
