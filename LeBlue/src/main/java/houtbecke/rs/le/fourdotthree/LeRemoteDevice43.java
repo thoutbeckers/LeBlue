@@ -199,10 +199,19 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
 
-
+    @Override
+    public void onCharacteristicRead (BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status){
+        if(status==gatt.GATT_SUCCESS)
+            this.characteristicUpdated(gatt,characteristic);
+    }
 
     @Override
     public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
+        this.characteristicUpdated(gatt,characteristic);
+    }
+
+    public void characteristicUpdated(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
+
         try {
 
 
