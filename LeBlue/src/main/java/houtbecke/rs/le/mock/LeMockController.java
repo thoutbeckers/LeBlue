@@ -69,6 +69,8 @@ public interface LeMockController {
 
     void characteristicSetValue(LeGattCharacteristicMock leGattCharacteristicMock, byte[] value);
 
+    void characteristicSetValue(LeGattCharacteristicMock leGattCharacteristicMock, byte[] value,Boolean withResponse);
+
     void remoteDeviceReadRssi(LeRemoteDeviceMock leRemoteDeviceMock);
 
     void characteristicRead(LeGattCharacteristicMock leGattCharacteristicMock);

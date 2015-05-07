@@ -177,6 +177,8 @@ public abstract class LeInterceptor {
 
     public abstract void setValue(InterceptingLeGattCharacteristic interceptingLeGattCharacteristic, byte[] value);
 
+    public abstract void setValue(InterceptingLeGattCharacteristic interceptingLeGattCharacteristic, byte[] value,Boolean withResponse);
+
     public abstract void gotCharacteristic(InterceptingLeGattService iLeGattService, InterceptingLeGattCharacteristic iLeGattCharacteristic);
 
     public abstract void rssiRead(InterceptingLeRemoteDeviceListener iLeRemoteDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, int rssi);

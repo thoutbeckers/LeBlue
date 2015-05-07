@@ -1043,6 +1043,12 @@ public class LeSessionController implements LeMockController {
     }
 
     @Override
+    public void characteristicSetValue(LeGattCharacteristicMock leGattCharacteristicMock, byte[] value, Boolean withResponse) {
+        checkEvent(characteristicSetValue, leGattCharacteristicMock, LeUtil.bytesToString(value),withResponse.toString());
+
+    }
+
+    @Override
     public void remoteDeviceReadRssi(LeRemoteDeviceMock leRemoteDeviceMock) {
         synchronized (this.waitNotify) {
             checkEvent(remoteDeviceReadRssi, leRemoteDeviceMock);
