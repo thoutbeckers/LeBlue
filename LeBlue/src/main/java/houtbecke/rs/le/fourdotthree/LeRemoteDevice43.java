@@ -77,7 +77,6 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     public void disconnect() {
         if (gatt != null) {
             gatt.disconnect();
-            refreshDeviceCache(gatt);
             close();
             for (LeRemoteDeviceListener listener: listeners)
                 listener.leDevicesDisconnected(leDevice43, this);
@@ -103,6 +102,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     @Override
     public void close() {
         if (gatt != null) {
+            refreshDeviceCache(gatt);
             gatt.close();
             gatt = null;
             for (LeRemoteDeviceListener listener: listeners)
