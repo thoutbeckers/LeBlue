@@ -251,6 +251,10 @@ public class LeSessionInterceptor extends LeInterceptor {
         drainEvent(characteristicSetValue, iLeGattCharacteristic, LeUtil.bytesToString(value));
     }
 
+    @Override
+    public void setValue(InterceptingLeGattCharacteristic interceptingLeGattCharacteristic, byte[] value, Boolean withResponse) {
+        drainEvent(characteristicSetValue, interceptingLeGattCharacteristic, LeUtil.bytesToString(value), withResponse.toString());
+    }
 
 
 }

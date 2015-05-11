@@ -34,6 +34,15 @@ class LeGattCharacteristic43 implements LeGattCharacteristic {
 
     @Override
     public void setValue(byte[] value) {
+        setValue(value,true);
+    }
+
+    @Override
+    public void setValue(byte[] value,boolean withResponse) {
+        if (withResponse)
+            characteristic.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT);
+        else
+            characteristic.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_NO_RESPONSE);
         characteristic.setValue(value);
         gatt.writeCharacteristic(characteristic);
     }

@@ -195,4 +195,10 @@ public class LeLogCatInterceptor extends LeInterceptor {
         Log.i(TAG, "setValue"+iLeGattCharacteristic+LeUtil.bytesToString(value));
     }
 
+    @Override
+    public void setValue(InterceptingLeGattCharacteristic iLeGattCharacteristic, byte[] value, Boolean withResponse) {
+        Log.i(TAG, "setValue"+iLeGattCharacteristic+LeUtil.bytesToString(value) + " " + withResponse.toString());
+
+    }
+
 }

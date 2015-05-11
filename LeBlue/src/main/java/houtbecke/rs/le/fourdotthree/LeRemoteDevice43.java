@@ -9,6 +9,7 @@ import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothProfile;
 import android.util.Log;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -82,9 +83,26 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         }
     }
 
+
+    private boolean refreshDeviceCache(BluetoothGatt gatt){
+        //workaround for https://code.google.com/p/android/issues/detail?id=81130
+        try {
+            BluetoothGatt localBluetoothGatt = gatt;
+            Method localMethod = localBluetoothGatt.getClass().getMethod("refresh", new Class[0]);
+            if (localMethod != null) {
+                boolean bool = ((Boolean) localMethod.invoke(localBluetoothGatt, new Object[0])).booleanValue();
+                return bool;
+            }
+        }
+        catch (Exception localException) {
+        }
+        return false;
+    }
+
     @Override
     public void close() {
         if (gatt != null) {
+            refreshDeviceCache(gatt);
             gatt.close();
             gatt = null;
             for (LeRemoteDeviceListener listener: listeners)

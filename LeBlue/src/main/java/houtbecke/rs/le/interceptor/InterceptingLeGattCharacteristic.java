@@ -40,6 +40,14 @@ public class InterceptingLeGattCharacteristic extends BaseIntercepting implement
     }
 
     @Override
+    public void setValue(byte[] value, boolean withResponse) {
+        synchronized(leInterceptor) {
+            leGattCharacteristic.setValue(value,withResponse);
+            leInterceptor.setValue(this, value,withResponse);
+        }
+    }
+
+    @Override
     public void read() {
         synchronized(leInterceptor) {
             leGattCharacteristic.read();

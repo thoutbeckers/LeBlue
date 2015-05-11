@@ -27,6 +27,11 @@ public class LeGattCharacteristicMock implements LeGattCharacteristic {
     }
 
     @Override
+    public void setValue(byte[] value, boolean withResponse) {
+        mockController.characteristicSetValue(this, value,withResponse);
+    }
+
+    @Override
     public void read() {
         mockController.characteristicRead(this);
     }
