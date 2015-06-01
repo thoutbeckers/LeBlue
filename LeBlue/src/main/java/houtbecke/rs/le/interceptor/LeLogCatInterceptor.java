@@ -176,8 +176,13 @@ public class LeLogCatInterceptor extends LeInterceptor {
     }
 
     @Override
-    public void characteristicWritten(InterceptingLeCharacteristicWriteListener iLeCharacteristicWriteListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic, Boolean succes) {
-        Log.i(TAG, "characteristicWritten: "+iLeCharacteristicWriteListener+uuid+" "+iLeRemoteDevice+iLeGattCharacteristic);
+    public void characteristicNotificationChanged(InterceptingLeCharacteristicListener iLeCharacteristicListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic, Boolean success) {
+        Log.i(TAG, "characteristicNotificationChanged: "+iLeCharacteristicListener+uuid+" "+iLeRemoteDevice+iLeGattCharacteristic + " " +success);
+    }
+
+    @Override
+    public void characteristicWritten(InterceptingLeCharacteristicWriteListener iLeCharacteristicWriteListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic, Boolean success) {
+        Log.i(TAG, "characteristicWritten: "+iLeCharacteristicWriteListener+uuid+" "+iLeRemoteDevice+iLeGattCharacteristic + " " +success);
     }
 
     @Override

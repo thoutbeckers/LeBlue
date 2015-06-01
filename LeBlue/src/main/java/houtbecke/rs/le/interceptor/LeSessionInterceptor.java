@@ -212,6 +212,11 @@ public class LeSessionInterceptor extends LeInterceptor {
     }
 
     @Override
+    public void characteristicNotificationChanged(InterceptingLeCharacteristicListener iLeCharacteristicListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic, Boolean success) {
+        drainEvent(characteristicNotificationChanged, iLeCharacteristicListener, uuid.toString(), iLeRemoteDevice.id+"", iLeGattCharacteristic.id+"", success.toString());
+    }
+
+    @Override
     public void characteristicWritten(InterceptingLeCharacteristicWriteListener iLeCharacteristicWriteListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic,Boolean success) {
         drainEvent(characteristicWritten, iLeCharacteristicWriteListener, uuid.toString(), iLeRemoteDevice.id+"", iLeGattCharacteristic.id+"", success.toString());
     }

@@ -135,6 +135,11 @@ public class SessionSwitchingTest {
                 valueRead[0] = true;
             }
 
+            @Override
+            public void leCharacteristicNotificationChanged(UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic, boolean success) {
+
+            }
+
         }, UUID.fromString("12345678-1234-1234-1234-123456789cccc"));
 
         sessionController.pointReached("ready");

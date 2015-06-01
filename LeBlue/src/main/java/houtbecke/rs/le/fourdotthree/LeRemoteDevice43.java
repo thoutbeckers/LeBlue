@@ -206,6 +206,8 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     @Override
     public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
         try {
+            this.characteristicNotificationChanged(gatt,descriptor.getCharacteristic(),(status==gatt.GATT_SUCCESS));
+
             descriptorWriteQueue.remove();  //pop the item that we just finishing writing
             //if there is more to write, do it!
             if (descriptorWriteQueue.size() > 0)
@@ -226,6 +228,31 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     @Override
     public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
         this.characteristicUpdated(gatt,characteristic);
+    }
+
+
+    public void characteristicNotificationChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic,boolean success) {
+
+        try {
+
+
+            UUID uuid = characteristic.getUuid();
+
+            byte[] bytes = characteristic.getValue();
+
+            LeCharacteristicListener nullListener = uuidCharacteristicListeners.get(null);
+            LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(uuid);
+
+            if ((nullListener != null || uuidListener != null) && gatt != null) {
+                LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic);
+                if (nullListener != null)
+                    nullListener.leCharacteristicNotificationChanged(uuid, this, characteristic43,success);
+                if (uuidListener != null)
+                    uuidListener.leCharacteristicNotificationChanged(uuid, this, characteristic43,success);
+            }
+        } catch (Throwable t) {
+            Log.w("LeBlue", "error during onCharacteristicChanged callback", t);
+        }
     }
 
     public void characteristicUpdated(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
