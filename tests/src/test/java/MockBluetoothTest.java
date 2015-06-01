@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 
-import javax.sound.midi.SysexMessage;
-
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeCharacteristicWriteListener;
 import houtbecke.rs.le.LeDevice;
