@@ -535,18 +535,16 @@ public class LeSessionController implements LeMockController {
                     case mockCharacteristicNotificationChanged:
                         final LeGattCharacteristic characteristic2 = createOrReturnCharacteristic(event.values[0]);
                         final UUID uuid2 = UUID.fromString(session.getSourceIdentification(Integer.valueOf(event.values[0])));
-                        Mocker serviceMockerObject = session.getGattServiceMocker(event.source);
-
 
                         runCurrentEventOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                for (LeCharacteristicListener leCharacteristicListener : session.getGattServiceMocker(event.source).getCharacteristicListeners(LeSessionController.this, event.source)) {
+                                for (LeCharacteristicListener leCharacteristicListener : session.getRemoteDeviceMocker(Integer.valueOf(event.values[2])).getCharacteristicListeners(LeSessionController.this, Integer.valueOf(event.values[2]))) {
                                     leCharacteristicListener.leCharacteristicNotificationChanged(
                                             uuid2,
-                                            null,
+                                            getRemoteDevice(event.values[2]),
                                             characteristic2,
-                                            Boolean.parseBoolean(event.values[1])
+                                            Boolean.parseBoolean(event.values[3])
                                     );
                                 }
                             }
@@ -875,7 +873,7 @@ public class LeSessionController implements LeMockController {
         synchronized (this.waitNotify) {
 
             if (checkEvent(serviceEnableCharacteristicNotification, leGattServiceMock, characteristic.toString()))
-                return eventBooleanValue(1);
+                return true;
             else
                 return true;
         }
