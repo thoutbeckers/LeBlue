@@ -72,6 +72,8 @@ public class MockBluetoothTest {
 
         filler.addEvent(EventType.serviceEnableCharacteristicNotification, LE_SERVICE_1, UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString(), "true");
 
+        filler.addEvent(EventType.characteristicNotificationChanged, LE_CHARACTERISTIC_LISTENER, UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString(), String.valueOf(LE_REMOTE_DEVICE), String.valueOf(LE_CHARACTERISTIC_1_2),"true");
+
         filler.addEvent(EventType.characteristicChanged, LE_CHARACTERISTIC_LISTENER, UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString(), String.valueOf(LE_REMOTE_DEVICE), String.valueOf(LE_CHARACTERISTIC_1_2));
 
         filler.addEvent(EventType.remoteDeviceSetCharacteristicWriteListener, LE_REMOTE_DEVICE, String.valueOf(LE_CHARACTERISTIC_WRITE_LISTENER), UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString());
@@ -212,6 +214,7 @@ public class MockBluetoothTest {
         assert byteArray1[1] == 1;
         assert byteArray1[2] == 2;
         final Boolean[] changed = new Boolean[]{false};
+        final Boolean[] notificationChanged = new Boolean[]{false};
 
         remoteDevice.setCharacteristicListener(new LeCharacteristicListener() {
             @Override
@@ -219,13 +222,20 @@ public class MockBluetoothTest {
                 assert uuid.equals(UUID.fromString("12345678-1234-1234-1234-123456789cccc"));
                 assert getRemoteDevice().equals(leRemoteDevice);
                 assert !leCharacteristic.equals(characteristic) : "make sure this is a different characteristic";
-                changed[0]= true;
+                changed[0] = true;
+            }
+
+            @Override
+            public void leCharacteristicNotificationChanged(UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic, boolean success) {
+                notificationChanged[0] = true;
             }
 
         }, UUID.fromString("12345678-1234-1234-1234-123456789cccc"));
 
         service[0].enableCharacteristicNotification(UUID.fromString("12345678-1234-1234-1234-123456789cccc"));
+
         Thread.sleep(100);
+        assert notificationChanged[0];
         assert changed[0];
 
         remoteDevice.setCharacteristicWriteListener(new LeCharacteristicWriteListener() {

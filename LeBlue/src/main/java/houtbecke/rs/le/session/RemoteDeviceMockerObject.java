@@ -48,7 +48,8 @@ public class RemoteDeviceMockerObject extends MockerObject {
     public RemoteDeviceMockerObject hasServices(int... services) {
         return hasServices(LeGattStatus.SUCCESS, services);
     }
-    public RemoteDeviceMockerObject hasServices(LeGattStatus status, int... services) {
+    public RemoteDeviceMockerObject
+    hasServices(LeGattStatus status, int... services) {
 
         List<String> params = new ArrayList<>();
         params.add(mockedDeviceSource +"");
