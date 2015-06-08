@@ -27,6 +27,7 @@ public class InterceptingLeGattService extends BaseIntercepting implements LeGat
     public LeGattCharacteristic getCharacteristic(UUID uuid) {
         synchronized(leInterceptor) {
             LeGattCharacteristic leGattCharacteristic = leGattService.getCharacteristic(uuid);
+            if (leGattCharacteristic == null) return null;
             InterceptingLeGattCharacteristic iLeGattCharacteristic = leInterceptor.serviceGotCharacteristic(this, leGattCharacteristic);
             leInterceptor.gotCharacteristic(this, iLeGattCharacteristic);
             return iLeGattCharacteristic;
