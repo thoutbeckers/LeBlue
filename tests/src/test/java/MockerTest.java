@@ -53,7 +53,7 @@ public class MockerTest {
 
         ListEventSinkSource events = createSource();
 
-        sessionController = new LeSessionController(SessionObject.newSession().setDefaultSource(events).withDeviceMocker().withFakeDeviceListeners().hasRemoteDevices(LE_REMOTE_DEVICE_3, LE_REMOTE_DEVICE).and.withRemoteDeviceMocker(LE_REMOTE_DEVICE).mocksRemoteDevice("0001:0002:0003:0004", "d1234", true).withFakeRemoteDeviceListeners().withFakeCharacteristicsListeners().hasServices(LeGattStatus.SUCCESS, LE_SERVICE_1_1, LE_SERVICE_1_2).and.withRemoteDeviceMocker(LE_REMOTE_DEVICE_2).mocksRemoteDevice("0005:0006:0007:0008", "d5678", true).withFakeRemoteDeviceListeners().withFakeCharacteristicsListeners().hasServices(LeGattStatus.SUCCESS, LE_SERVICE_2_1).and.withGattServiceMocker(LE_SERVICE_1_1).mocksService(UUID.fromString("12345678-1234-1234-1234-123456789aaaa")).hasCharacteristic(LE_CHARACTERISTIC_1_1, UUID.fromString("12345678-1234-1234-1234-123456789bbbb")).and.withGattCharacteristicsMocker(LE_CHARACTERISTIC_1_1).mocksCharacteristic().hasFixedValue(0, 1, 2).and.withGattCharacteristicsMocker(LE_CHARACTERISTIC_1_2).mocksCharacteristic("12345678-1234-1234-1234-123456789bbcc").hasFixedValue(0, 1, 2).and.withGattCharacteristicsMocker(LE_CHARACTERISTIC_2_1).mocksCharacteristic(UUID.fromString("12345678-1234-1234-1234-123456789eeee")).hasValue(0, 1, 2).hasValue(3, 4, 5).hasFixedValue(6, 7, 8).and.withGattServiceMocker(LE_SERVICE_2_1).mocksService(UUID.fromString("12345678-1234-1234-1234-123456789dddd")).hasCharacteristic(LE_CHARACTERISTIC_2_1).end());
+        sessionController = new LeSessionController(SessionObject.newSession().setDefaultSource(events).withDeviceMocker().withFakeDeviceListeners().hasRemoteDevices(LE_REMOTE_DEVICE_3, LE_REMOTE_DEVICE).and.withRemoteDeviceMocker(LE_REMOTE_DEVICE).mocksRemoteDevice("0001:0002:0003:0004", "d1234", true).withFakeRemoteDeviceListeners().withFakeCharacteristicsListeners().hasServices(LeGattStatus.SUCCESS, LE_SERVICE_1_1, LE_SERVICE_1_2).and.withRemoteDeviceMocker(LE_REMOTE_DEVICE_2).mocksRemoteDevice("0005:0006:0007:0008", "d5678", true).withFakeRemoteDeviceListeners().withFakeCharacteristicsListeners().hasServices(LeGattStatus.SUCCESS, LE_SERVICE_2_1).and.withGattServiceMocker(LE_SERVICE_1_1).mocksService(UUID.fromString("12345678-1234-1234-1234-123456789aaaa")).canNotify(LE_CHARACTERISTIC_1_2,UUID.fromString("12345678-1234-1234-1234-123456789bbcc"),LE_REMOTE_DEVICE,true).hasCharacteristic(LE_CHARACTERISTIC_1_1, UUID.fromString("12345678-1234-1234-1234-123456789bbbb")) .and.withGattCharacteristicsMocker(LE_CHARACTERISTIC_1_1).mocksCharacteristic().hasFixedValue(0, 1, 2) .and.withGattCharacteristicsMocker(LE_CHARACTERISTIC_1_2).mocksCharacteristic("12345678-1234-1234-1234-123456789bbcc").hasFixedValue(0, 1, 2).and.withGattCharacteristicsMocker(LE_CHARACTERISTIC_2_1).mocksCharacteristic(UUID.fromString("12345678-1234-1234-1234-123456789eeee")).hasValue(0, 1, 2).hasValue(3, 4, 5).hasFixedValue(6, 7, 8) .and.withGattServiceMocker(LE_SERVICE_2_1).mocksService(UUID.fromString("12345678-1234-1234-1234-123456789dddd")).hasCharacteristic(LE_CHARACTERISTIC_2_1).end());
 
         device = new LeDeviceMock(EventSinkFiller.DEFAULT_DEVICE_ID, sessionController);
         sessionController.startDefaultSession();
@@ -199,6 +199,8 @@ public class MockerTest {
         final Boolean[] changed  = new Boolean[1];
         changed[0] =false;
 
+        final Boolean[] changedNotification  = new Boolean[1];
+        changedNotification[0] =false;
 
         remoteDevice.setCharacteristicListener(new LeCharacteristicListener() {
             @Override
@@ -209,15 +211,21 @@ public class MockerTest {
                 changed[0]=true;
             }
 
-        }, UUID.fromString("12345678-1234-1234-1234-123456789cccc"));
+            @Override
+            public void leCharacteristicNotificationChanged(UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic, boolean success) {
+                changedNotification[0]=true;
+            }
 
-        service[0].enableCharacteristicNotification(UUID.fromString("12345678-1234-1234-1234-123456789cccc"));
+        }, UUID.fromString("12345678-1234-1234-1234-123456789bbcc"));
+
+        service[0].enableCharacteristicNotification(UUID.fromString("12345678-1234-1234-1234-123456789bbcc"));
 
         // signal to the script that we are at the point where our listeners etc are working.
         sessionController.pointReached("ready");
 
 
         Thread.sleep(1000);
+        assert changedNotification[0];
         assert changed[0];
 
         characteristic.setValue(new byte[]{3, 4, 5});

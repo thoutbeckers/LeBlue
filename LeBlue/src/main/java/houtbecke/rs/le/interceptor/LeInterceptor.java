@@ -169,7 +169,9 @@ public abstract class LeInterceptor {
 
     public abstract void characteristicChanged(InterceptingLeCharacteristicListener iLeCharacteristicListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic);
 
-    public abstract void characteristicWritten(InterceptingLeCharacteristicWriteListener iLeCharacteristicWriteListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic,Boolean succes);
+    public abstract void characteristicNotificationChanged(InterceptingLeCharacteristicListener iLeCharacteristicListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic,Boolean success);
+
+    public abstract void characteristicWritten(InterceptingLeCharacteristicWriteListener iLeCharacteristicWriteListener, UUID uuid, InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeGattCharacteristic iLeGattCharacteristic,Boolean success);
 
     public abstract void characteristicListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicListener iCharacteristicsListener, UUID[] uuids);
 

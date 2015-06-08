@@ -27,6 +27,17 @@ public class InterceptingLeCharacteristicListener extends BaseIntercepting imple
     }
 
     @Override
+    public void leCharacteristicNotificationChanged(UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic, boolean success) {
+        synchronized(leInterceptor) {
+            InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(remoteDevice);
+            InterceptingLeGattCharacteristic iLeGattCharacteristic  = leInterceptor.getInterceptingLeGattCharacteristic(characteristic);
+            if (leCharacteristicListener != null)
+                leCharacteristicListener.leCharacteristicNotificationChanged(uuid,iLeRemoteDevice,iLeGattCharacteristic,success );
+            leInterceptor.characteristicNotificationChanged(this, uuid, iLeRemoteDevice, iLeGattCharacteristic, success );
+        }
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;

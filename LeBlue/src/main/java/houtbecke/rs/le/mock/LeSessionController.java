@@ -13,7 +13,6 @@ import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeCharacteristicWriteListener;
-import houtbecke.rs.le.LeDefinedUUIDs;
 import houtbecke.rs.le.LeDeviceListener;
 import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
@@ -533,6 +532,42 @@ public class LeSessionController implements LeMockController {
                             }
                         });
                         break;
+                    case mockCharacteristicNotificationChanged:
+                        final LeGattCharacteristic characteristic2 = createOrReturnCharacteristic(event.values[0]);
+                        final UUID uuid2 = UUID.fromString(session.getSourceIdentification(Integer.valueOf(event.values[0])));
+
+                        runCurrentEventOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                for (LeCharacteristicListener leCharacteristicListener : session.getRemoteDeviceMocker(Integer.valueOf(event.values[2])).getCharacteristicListeners(LeSessionController.this, Integer.valueOf(event.values[2]))) {
+                                    leCharacteristicListener.leCharacteristicNotificationChanged(
+                                            uuid2,
+                                            getRemoteDevice(event.values[2]),
+                                            characteristic2,
+                                            Boolean.parseBoolean(event.values[3])
+                                    );
+                                }
+                            }
+                        });
+                        break;
+
+                    case characteristicNotificationChanged:
+                        runCurrentEventOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                UUID uuid = null;
+                                if (event.values[0] != null && !event.values[0].equals("null"))
+                                    uuid = UUID.fromString(event.values[0]);
+                                getCharacteristicListener(event.source).leCharacteristicNotificationChanged(
+                                        uuid,
+                                        getRemoteDevice(event.values[1]),
+                                        getCharacteristic(event.values[2]),
+                                        Boolean.parseBoolean(event.values[3])
+                                );
+                            }
+                        });
+                        break;
 
                     default:
                         // events that also need to unset the current event
@@ -838,7 +873,7 @@ public class LeSessionController implements LeMockController {
         synchronized (this.waitNotify) {
 
             if (checkEvent(serviceEnableCharacteristicNotification, leGattServiceMock, characteristic.toString()))
-                return eventBooleanValue(1);
+                return true;
             else
                 return true;
         }
