@@ -103,7 +103,8 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     public void close() {
         if (gatt != null) {
             refreshDeviceCache(gatt);
-            gatt.close();
+            if (gatt != null)
+                gatt.close();
             gatt = null;
             for (LeRemoteDeviceListener listener: listeners)
                 listener.leDevicesClosed(leDevice43, this);
