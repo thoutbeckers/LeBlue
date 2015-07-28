@@ -332,7 +332,6 @@ public class LeSessionController implements LeMockController {
                     }
 
                     if (stopSession) {
-                        lock.unlock();
                         return;
                     }
 
@@ -685,7 +684,8 @@ public class LeSessionController implements LeMockController {
 
         }finally {
             lock.unlock();
-        }    }
+        }
+    }
 
     Exception sessionException = null;
     public Exception getSessionException() {
@@ -729,8 +729,6 @@ public class LeSessionController implements LeMockController {
                     values = new String[]{
                             LeUtil.bytesToString(value)
                     };
-                    lock.unlock();
-
                     return true;
                 }
             }
@@ -741,8 +739,6 @@ public class LeSessionController implements LeMockController {
                     values = new String[]{
                             value[0] + ""
                     };
-                    lock.unlock();
-
                     return true;
                 }
             }
@@ -1090,23 +1086,24 @@ public class LeSessionController implements LeMockController {
     @Override
     public  void deviceAddListener(LeDeviceMock leDeviceMock, LeDeviceListener listener) {
         lock.lock();
-                                        try {
+        try {
             if (checkEventWithSourceId(deviceAddListener, SourceType.device, getDeviceKey(leDeviceMock))) {
                 addDeviceListener(eventIntValue(), listener);
             }
-                                        }finally {
-                                            lock.unlock();
-                                        }
+        }finally {
+            lock.unlock();
+        }
     }
 
     @Override
     public  void deviceRemoveListener(LeDeviceMock leDeviceMock, LeDeviceListener listener) {
         lock.lock();
-                                            try {
+        try {
         checkEvent(deviceRemoveListener, leDeviceMock);
-                                            }finally {
-                                                lock.unlock();
-                                            }    }
+        }finally {
+            lock.unlock();
+        }
+    }
 
     Map<Integer, LeRemoteDeviceListener> remoteDeviceListeners = new HashMap<>();
     protected LeRemoteDeviceListener getRemoteDeviceListener(String key) {
@@ -1134,9 +1131,7 @@ public class LeSessionController implements LeMockController {
         try {
 
             if (checkEvent(deviceCheckBleHardwareAvailable, leDeviceMock)) {
-                boolean value = eventBooleanValue();
-                lock.unlock();
-                return value;
+                return eventBooleanValue();
             }
 
         return true;
