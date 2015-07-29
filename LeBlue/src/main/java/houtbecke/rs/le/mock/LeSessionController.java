@@ -243,11 +243,9 @@ public class LeSessionController implements LeMockController {
 
         @Override
         public void run() {
-            System.out.println("before RunnableWrapper lock " + lock.isLocked());
 
             LeSessionController.this.lock.lock();
             try {
-            System.out.println("after RunnableWrapper lock" + lock.hasWaiters( LeSessionController.this.condition));
 
             started = true;
                 updateCurrentEvent(null);
@@ -270,21 +268,14 @@ public class LeSessionController implements LeMockController {
 
 
        wrapper = new RunnableWrapper(runnable);
-        System.out.println(lock.hasQueuedThreads());
-        System.out.println(lock.hasWaiters(condition));
+
        (new Thread(wrapper,"wrapper thread")).start();
 
 
         lock.lock();
         try {
             while (!wrapper.started) {
-                System.out.println("before runCurrentEventOnUiThread await");
-                System.out.println(lock.hasQueuedThreads() + " " + lock.getQueueLength());
-                System.out.println(lock.hasWaiters(condition));
-
                 condition.await();
-                System.out.println("after runCurrentEventOnUiThread await");
-
             }
         }finally {
             lock.unlock();
