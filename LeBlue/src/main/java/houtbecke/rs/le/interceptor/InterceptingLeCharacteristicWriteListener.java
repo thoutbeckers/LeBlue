@@ -18,7 +18,6 @@ public class InterceptingLeCharacteristicWriteListener extends BaseIntercepting 
 
     @Override
     public void leCharacteristicWritten(UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic, boolean success) {
-        synchronized(leInterceptor) {
             InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(remoteDevice);
             InterceptingLeGattCharacteristic iLeGattCharacteristic  = leInterceptor.getInterceptingLeGattCharacteristic(characteristic);
 
@@ -26,7 +25,6 @@ public class InterceptingLeCharacteristicWriteListener extends BaseIntercepting 
                 leCharacteristicWriteListener.leCharacteristicWritten(uuid,iLeRemoteDevice,iLeGattCharacteristic,success);
 
             leInterceptor.characteristicWritten(this, uuid, iLeRemoteDevice,iLeGattCharacteristic,success );
-        }
     }
 
     @Override

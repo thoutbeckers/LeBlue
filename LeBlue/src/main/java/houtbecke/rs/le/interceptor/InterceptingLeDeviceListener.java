@@ -16,12 +16,11 @@ public class InterceptingLeDeviceListener extends BaseIntercepting implements Le
 
     @Override
     public void leDeviceFound(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi, LeScanRecord scanRecord) {
-        synchronized(leInterceptor) {
             InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
             InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(leRemoteDevice);
             leInterceptor.deviceFound(this, iLeDevice, iLeRemoteDevice, rssi, scanRecord);
             leDeviceListener.leDeviceFound(iLeDevice, iLeRemoteDevice, rssi, scanRecord);
-        }
+
     }
 
     @Override
