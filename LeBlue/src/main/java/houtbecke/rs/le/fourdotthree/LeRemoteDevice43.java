@@ -38,6 +38,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
     final ConcurrentLinkedQueue<BluetoothGattDescriptor> descriptorWriteQueue = new ConcurrentLinkedQueue<BluetoothGattDescriptor>();
 
+    final ConcurrentLinkedQueue<BluetoothGattCharacteristic> characteristicReadQueue = new ConcurrentLinkedQueue<BluetoothGattCharacteristic>();
 
     public LeRemoteDevice43(LeDevice43 leDevice43, BluetoothDevice device)  {
         this.leDevice43 = leDevice43;
@@ -219,11 +220,28 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         }
     }
 
+    public void writeGattCharacteristic(BluetoothGattCharacteristic c){
+        //put the descriptor into the write queue
+        characteristicReadQueue.add(c);
+        //if there is only 1 item in the queue, then write it.  If more than 1, we handle asynchronously in the callback above
+        if(characteristicReadQueue.size() == 1){
+            gatt.readCharacteristic(c);
+        }
+    }
+
+
+
 
     @Override
     public void onCharacteristicRead (BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status){
+        characteristicReadQueue.remove();
+        if (characteristicReadQueue.size() > 0)
+            gatt.readCharacteristic(characteristicReadQueue.element());
+
         if(status==gatt.GATT_SUCCESS)
             this.characteristicUpdated(gatt,characteristic);
+
+
     }
 
     @Override
@@ -245,7 +263,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(uuid);
 
             if ((nullListener != null || uuidListener != null) && gatt != null) {
-                LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic);
+                LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic,this);
                 if (nullListener != null)
                     nullListener.leCharacteristicNotificationChanged(uuid, this, characteristic43,success);
                 if (uuidListener != null)
@@ -269,7 +287,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(uuid);
 
             if ((nullListener != null || uuidListener != null) && gatt != null) {
-                LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic);
+                LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic,this);
                 if (nullListener != null)
                     nullListener.leCharacteristicChanged(uuid, this, characteristic43);
                 if (uuidListener != null)
@@ -292,7 +310,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             LeCharacteristicWriteListener uuidListener = uuidCharacteristicWriteListeners.get(uuid);
 
         if ((nullListener != null || uuidListener != null) && gatt != null) {
-            LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic);
+            LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic,this);
             if (nullListener != null)
                 nullListener.leCharacteristicWritten(uuid, this, characteristic43,succes);
             if (uuidListener != null)
