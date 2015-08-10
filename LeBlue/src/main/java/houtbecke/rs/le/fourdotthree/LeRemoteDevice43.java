@@ -220,10 +220,8 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         }
     }
 
-    public void writeGattCharacteristic(BluetoothGattCharacteristic c){
-        //put the descriptor into the write queue
+    public void readGattCharacteristic(BluetoothGattCharacteristic c){
         characteristicReadQueue.add(c);
-        //if there is only 1 item in the queue, then write it.  If more than 1, we handle asynchronously in the callback above
         if(characteristicReadQueue.size() == 1){
             gatt.readCharacteristic(c);
         }

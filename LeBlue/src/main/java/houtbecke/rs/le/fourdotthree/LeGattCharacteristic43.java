@@ -24,7 +24,7 @@ class LeGattCharacteristic43 implements LeGattCharacteristic {
     public void read() {
 
         if ((characteristic.getProperties() & BluetoothGattCharacteristic.PROPERTY_READ ) !=0) {
-            leRemoteDevice43.writeGattCharacteristic(characteristic);
+            leRemoteDevice43.readGattCharacteristic(characteristic);
         }
     }
 
