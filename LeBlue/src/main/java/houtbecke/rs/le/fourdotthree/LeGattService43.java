@@ -56,7 +56,7 @@ class LeGattService43 implements LeGattService {
                 }else {
                     descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
                 }
-                leRemoteDevice43.writeGattDescriptor(descriptor);
+                leRemoteDevice43.addToQueue(descriptor);
                 return true;
             }
             else {

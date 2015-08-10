@@ -22,9 +22,8 @@ class LeGattCharacteristic43 implements LeGattCharacteristic {
 
     @Override
     public void read() {
-
         if ((characteristic.getProperties() & BluetoothGattCharacteristic.PROPERTY_READ ) !=0) {
-            leRemoteDevice43.readGattCharacteristic(characteristic);
+            leRemoteDevice43.addToQueue(characteristic);
         }
     }
 
