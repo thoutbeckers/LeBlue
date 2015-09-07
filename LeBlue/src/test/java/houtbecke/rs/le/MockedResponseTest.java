@@ -1,3 +1,6 @@
+package houtbecke.rs.le;
+
+
 import org.junit.Test;
 
 import houtbecke.rs.le.session.MockedResponseObject;

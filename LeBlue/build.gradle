@@ -1,5 +1,6 @@
 apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.library'
+apply plugin: 'jacoco'
 
 repositories {
     mavenCentral()
@@ -31,4 +32,12 @@ android {
 dependencies {
     compile 'javax.inject:javax.inject:1'
     provided 'com.google.code.gson:gson:2.2.4'
+    testCompile 'junit:junit:4.12'
+
+}
+
+
+jacoco {
+    toolVersion = "0.7.0.201403182114"
+
 }
