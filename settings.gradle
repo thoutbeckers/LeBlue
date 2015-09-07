@@ -1,4 +1,4 @@
-include ':LeBlue', ":tests", ":example"
+include ':LeBlue', ":example"
 
 include ':LeBlue:LeBlue'
 

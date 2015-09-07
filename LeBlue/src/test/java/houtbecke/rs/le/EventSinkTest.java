@@ -1,25 +1,16 @@
+package houtbecke.rs.le;
+
+
 import org.junit.Before;
 
-import java.util.UUID;
 
-import houtbecke.rs.le.LeCharacteristicListener;
-import houtbecke.rs.le.LeDevice;
-import houtbecke.rs.le.LeDeviceListener;
-import houtbecke.rs.le.LeDeviceState;
-import houtbecke.rs.le.LeGattCharacteristic;
-import houtbecke.rs.le.LeGattService;
-import houtbecke.rs.le.LeGattStatus;
-import houtbecke.rs.le.LeRemoteDevice;
-import houtbecke.rs.le.LeRemoteDeviceListener;
-import houtbecke.rs.le.LeScanRecord;
-import houtbecke.rs.le.mock.LeDeviceMock;
-import houtbecke.rs.le.mock.LeSessionController;
 import houtbecke.rs.le.session.EventSinkFiller;
 import houtbecke.rs.le.session.EventType;
 import houtbecke.rs.le.session.ListEventSinkSource;
-import houtbecke.rs.le.session.SessionObject;
 
 import static org.junit.Assert.assertEquals;
+
+
 
 public class EventSinkTest {
     @Before

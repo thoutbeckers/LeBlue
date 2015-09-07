@@ -1,4 +1,4 @@
-package tests;
+package houtbecke.rs.le;
 
 
 import houtbecke.rs.le.mock.NativeWaitNotify;
