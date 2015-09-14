@@ -4,34 +4,31 @@ import java.util.UUID;
 
 import houtbecke.rs.le.LeDeviceState;
 import houtbecke.rs.le.LeFormat;
-import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattStatus;
-import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeScanRecord;
 import houtbecke.rs.le.LeUtil;
-import houtbecke.rs.le.mock.LeRemoteDeviceMock;
 import houtbecke.rs.le.session.Event;
 import houtbecke.rs.le.session.EventSink;
-import houtbecke.rs.le.session.EventType;
+import houtbecke.rs.le.session.LeEventType;
 
-import static houtbecke.rs.le.session.EventType.*;
+import static houtbecke.rs.le.session.LeEventType.*;
 
 public class LeSessionInterceptor extends LeInterceptor {
 
     protected EventSink sink;
 
-    protected void drainEvent(EventType type, BaseIntercepting interceptor, BaseIntercepting secondSource, BaseIntercepting thirdSource, String... values) {
+    protected void drainEvent(LeEventType type, BaseIntercepting interceptor, BaseIntercepting secondSource, BaseIntercepting thirdSource, String... values) {
         values = LeUtil.extend(values, secondSource.id, thirdSource.id);
         drainEvent(type, interceptor, values);
     }
 
 
-    protected void drainEvent(EventType type, BaseIntercepting interceptor, BaseIntercepting secondSource, String... values) {
+    protected void drainEvent(LeEventType type, BaseIntercepting interceptor, BaseIntercepting secondSource, String... values) {
         values = LeUtil.extend(values, secondSource.id);
         drainEvent(type, interceptor, values);
     }
 
-    protected void drainEvent(EventType type, BaseIntercepting interceptor, String... values) {
+    protected void drainEvent(LeEventType type, BaseIntercepting interceptor, String... values) {
         sink.addEvent(new Event(type, interceptor, values));
     }
 

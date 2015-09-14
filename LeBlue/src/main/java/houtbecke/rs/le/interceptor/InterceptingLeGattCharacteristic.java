@@ -4,7 +4,7 @@ import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
 
-public class InterceptingLeGattCharacteristic extends BaseIntercepting implements LeGattCharacteristic {
+public class InterceptingLeGattCharacteristic extends LeIntercepting implements LeGattCharacteristic {
 
     final public LeGattCharacteristic leGattCharacteristic;
 

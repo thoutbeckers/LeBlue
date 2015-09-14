@@ -5,7 +5,7 @@ import java.util.UUID;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 
-public class InterceptingLeGattService extends BaseIntercepting implements LeGattService {
+public class InterceptingLeGattService extends LeIntercepting implements LeGattService {
 
     public final LeGattService leGattService;
 

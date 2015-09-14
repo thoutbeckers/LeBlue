@@ -1,24 +1,12 @@
 package houtbecke.rs.le;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.UUID;
 
-import houtbecke.rs.le.LeCharacteristicListener;
-import houtbecke.rs.le.LeDevice;
-import houtbecke.rs.le.LeDeviceListener;
-import houtbecke.rs.le.LeDeviceState;
-import houtbecke.rs.le.LeGattCharacteristic;
-import houtbecke.rs.le.LeGattService;
-import houtbecke.rs.le.LeGattStatus;
-import houtbecke.rs.le.LeRemoteDevice;
-import houtbecke.rs.le.LeRemoteDeviceListener;
-import houtbecke.rs.le.LeScanRecord;
 import houtbecke.rs.le.mock.LeDeviceMock;
 import houtbecke.rs.le.mock.LeSessionController;
 import houtbecke.rs.le.session.EventSinkFiller;
-import houtbecke.rs.le.session.EventType;
+import houtbecke.rs.le.session.LeEventType;
 import houtbecke.rs.le.session.ListEventSinkSource;
 import houtbecke.rs.le.session.SessionObject;
 import org.junit.Before;
@@ -36,10 +24,10 @@ public class MockerTest {
         // the test will tell us to wait for the ready signal before going on
         filler.waitForPoint("ready");
 
-        filler.addEvent(EventType.mockCharacteristicChanged, LE_REMOTE_DEVICE, LE_CHARACTERISTIC_1_2);
+        filler.addEvent(LeEventType.mockCharacteristicChanged, LE_REMOTE_DEVICE, LE_CHARACTERISTIC_1_2);
 
 
-        filler.addDeviceEvent(EventType.mockRemoteDeviceFound, LE_REMOTE_DEVICE_2, "123", "");
+        filler.addDeviceEvent(LeEventType.mockRemoteDeviceFound, LE_REMOTE_DEVICE_2, "123", "");
 
 
         filler.pointReached("secondDevice");

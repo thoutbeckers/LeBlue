@@ -13,25 +13,25 @@ public class Event {
 
     public String[] values;
 
-    public Event(EventType type, BaseIntercepting source, String... values) {
+    public Event(LeEventType type, BaseIntercepting source, String... values) {
         this(type, 0, source.id, values);
     }
 
-    public Event(EventType type, int delay, BaseIntercepting source, String... values) {
+    public Event(LeEventType type, int delay, BaseIntercepting source, String... values) {
         this(type, delay, source.id, values);
     }
 
-    public Event(EventType type, int source, boolean value) {
+    public Event(LeEventType type, int source, boolean value) {
         this(type, 0, source, value);
     }
-    public Event(EventType type, int delay, int source,  boolean value) {
+    public Event(LeEventType type, int delay, int source,  boolean value) {
         this(type, delay, source, Boolean.toString(value));
     }
 
-    public Event(EventType type, int source, String... values) {
+    public Event(LeEventType type, int source, String... values) {
         this(type, 0, source, values);
     }
-    public Event(EventType type, int delay, int source, String... values) {
+    public Event(LeEventType type, int delay, int source, String... values) {
         this.type = type;
         this.source = source;
         this.values = values;

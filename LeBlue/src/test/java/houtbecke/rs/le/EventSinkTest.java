@@ -5,7 +5,7 @@ import org.junit.Before;
 
 
 import houtbecke.rs.le.session.EventSinkFiller;
-import houtbecke.rs.le.session.EventType;
+import houtbecke.rs.le.session.LeEventType;
 import houtbecke.rs.le.session.ListEventSinkSource;
 
 import static org.junit.Assert.assertEquals;
@@ -30,14 +30,14 @@ public class EventSinkTest {
         filler.pointReached("secondDevice");
         assertEquals(2, source.getEvents().length);
 
-        assertEquals(source.getEvents()[0].type, EventType.mockWaitForPoint);
-        assertEquals(source.getEvents()[1].type, EventType.mockPointReached);
+        assertEquals(source.getEvents()[0].type, LeEventType.mockWaitForPoint);
+        assertEquals(source.getEvents()[1].type, LeEventType.mockPointReached);
 
         filler.waitForPoint("done");
         assertEquals(2, source.getEvents().length);
 
-        assertEquals(source.getEvents()[0].type, EventType.mockPointReached);
-        assertEquals(source.getEvents()[1].type, EventType.mockWaitForPoint);
+        assertEquals(source.getEvents()[0].type, LeEventType.mockPointReached);
+        assertEquals(source.getEvents()[1].type, LeEventType.mockWaitForPoint);
 
     }
 

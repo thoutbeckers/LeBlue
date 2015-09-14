@@ -4,24 +4,12 @@ package houtbecke.rs.le;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.UUID;
 
-import houtbecke.rs.le.LeCharacteristicListener;
-import houtbecke.rs.le.LeDevice;
-import houtbecke.rs.le.LeDeviceListener;
-import houtbecke.rs.le.LeDeviceState;
-import houtbecke.rs.le.LeGattCharacteristic;
-import houtbecke.rs.le.LeGattService;
-import houtbecke.rs.le.LeGattStatus;
-import houtbecke.rs.le.LeRemoteDevice;
-import houtbecke.rs.le.LeRemoteDeviceListener;
-import houtbecke.rs.le.LeScanRecord;
 import houtbecke.rs.le.mock.LeDeviceMock;
 import houtbecke.rs.le.mock.LeSessionController;
 import houtbecke.rs.le.session.EventSinkFiller;
-import houtbecke.rs.le.session.EventType;
+import houtbecke.rs.le.session.LeEventType;
 import houtbecke.rs.le.session.ListEventSinkSource;
 import houtbecke.rs.le.session.SessionObject;
 
@@ -35,9 +23,9 @@ public class SessionSwitchingTest {
         ListEventSinkSource source1 = new ListEventSinkSource();
         EventSinkFiller filler1 = new EventSinkFiller(source1);
 
-        filler1.addDeviceEvent(EventType.deviceStartScanning);
+        filler1.addDeviceEvent(LeEventType.deviceStartScanning);
 
-        filler1.addDeviceEvent(EventType.mockRemoteDeviceFound, LE_REMOTE_DEVICE, "123", "0,1,2");
+        filler1.addDeviceEvent(LeEventType.mockRemoteDeviceFound, LE_REMOTE_DEVICE, "123", "0,1,2");
 
         filler1.waitForPoint("ready");
 
@@ -48,7 +36,7 @@ public class SessionSwitchingTest {
         ListEventSinkSource source2 = new ListEventSinkSource();
         EventSinkFiller filler2 = new EventSinkFiller(source2);
 
-        filler2.addEvent(EventType.mockCharacteristicChanged, LE_REMOTE_DEVICE, LE_CHARACTERISTIC);
+        filler2.addEvent(LeEventType.mockCharacteristicChanged, LE_REMOTE_DEVICE, LE_CHARACTERISTIC);
 
         filler2.waitForPoint("done");
 
