@@ -5,7 +5,7 @@ public abstract class BaseIntercepting {
     public final int id;
 
 
-    BaseIntercepting(int id){
+    public BaseIntercepting(int id){
         this.id = id;
     }
 
