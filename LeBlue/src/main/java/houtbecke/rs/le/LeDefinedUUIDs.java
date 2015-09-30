@@ -10,6 +10,7 @@ public class LeDefinedUUIDs {
         final static public UUID CYCLING_SPEED_AND_CADENCE   = UUID.fromString("00001816-0000-1000-8000-00805f9b34fb");
         final static public UUID BATTERY   = UUID.fromString("0000180f-0000-1000-8000-00805f9b34fb");
         final static public UUID DEVICE_INFORMATION   = UUID.fromString("0000180a-0000-1000-8000-00805f9b34fb");
+		final static public UUID GENERIC_ATTRIBUTE   = UUID.fromString("00001801-0000-1000-8000-00805f9b34fb");
 
 
     };
@@ -25,6 +26,8 @@ public class LeDefinedUUIDs {
 		final static public UUID CYCLING_POWER_MEASUREMENT   = UUID.fromString("00002a63-0000-1000-8000-00805f9b34fb");
         final static public UUID CYCLING_POWER_CONTROL_POINT = UUID.fromString("00002a66-0000-1000-8000-00805f9b34fb");
         final static public UUID CSC_MEASUREMENT             = UUID.fromString("00002a5b-0000-1000-8000-00805f9b34fb");
+		final static public UUID SERVICE_CHANGED             = UUID.fromString("00002a05-0000-1000-8000-00805f9b34fb");
+
 	}
 	
 	public static class Descriptor {
