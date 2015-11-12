@@ -100,6 +100,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
     @Override
     public void close() {
+        this.queue.clear();
         if (gatt != null) {
             refreshDeviceCache(gatt);
             if (gatt != null)
