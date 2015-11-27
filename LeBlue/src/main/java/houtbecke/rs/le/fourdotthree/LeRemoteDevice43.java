@@ -309,6 +309,8 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     @Override
     public void onCharacteristicWrite(android.bluetooth.BluetoothGatt gatt, android.bluetooth.BluetoothGattCharacteristic characteristic, int status) {
 
+        sendFirst();
+
         try {
             boolean succes = (status ==  gatt.GATT_SUCCESS);
 
