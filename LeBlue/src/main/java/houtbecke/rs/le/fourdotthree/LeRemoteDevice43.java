@@ -197,7 +197,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
     public void addToQueue(Object object){
-        if (object instanceof BluetoothGattCharacteristic || object instanceof BluetoothGattDescriptor) {
+        if (object instanceof BluetoothGattCharacteristic || object instanceof BluetoothGattDescriptor || object instanceof CharacteristicData ) {
             synchronized (queue) {
                 queue.add(object);
                 if (queue.size() == 1) {
