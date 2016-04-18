@@ -236,16 +236,20 @@ public class LeSessionInterceptor extends LeInterceptor {
         drainEvent(remoteDeviceSetCharacteristicListener, iLeRemoteDevice, args);
     }
 
+
     @Override
     public void characteristicWriteListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicWriteListener iCharacteristicsWriteListener, UUID[] uuids) {
         String[] args=null;
+        String characteristicsWriteListener = "";
+        if (iCharacteristicsWriteListener!=null)
+            characteristicsWriteListener = iCharacteristicsWriteListener.id+"";
         if  (uuids != null){
             args = new String[1 + uuids.length];
-            args[0] = iCharacteristicsWriteListener.id+"";
+            args[0] = characteristicsWriteListener;
             LeUtil.putUUIDsInStringArray(uuids, args, 1);
         } else{
             args = new String[1];
-            args[0] = iCharacteristicsWriteListener.id+"";
+            args[0] = characteristicsWriteListener;
         }
 
         drainEvent(remoteDeviceSetCharacteristicWriteListener, iLeRemoteDevice, args);
