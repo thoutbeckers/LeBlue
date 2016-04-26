@@ -28,6 +28,16 @@ android {
     }
 }
 
+android.testOptions.unitTests.all {
+    // configure whether failing tests should fail the build
+    ignoreFailures false
+
+    testLogging {
+        events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+    }
+}
+
+
 dependencies {
     compile 'javax.inject:javax.inject:1'
     provided 'com.google.code.gson:gson:2.2.4'
