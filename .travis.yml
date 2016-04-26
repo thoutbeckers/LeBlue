@@ -10,7 +10,7 @@ env:
     global:
     - TERM=dumb
 
-script: ./gradlew lintDefaultFlavorDebug testDefaultFlavorDebug
+script: ./gradlew lintDebug testDebug
 
 after_success:
     - ./gradlew jacocoTestReport

@@ -34,9 +34,3 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
 }
-
-
-jacoco {
-    toolVersion = "0.7.0.201403182114"
-
-}
