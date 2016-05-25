@@ -66,8 +66,12 @@ public class LeUtil {
     }
 
     public static String[] putUUIDsInStringArray(UUID[] uuids, String[] params, int start) {
-        for (int k=0; k < uuids.length; k++)
-            params[k+start] = uuids[k].toString();
+        for (int k=0; k < uuids.length; k++) {
+            if (uuids[k] != null)
+                params[k + start] = uuids[k].toString();
+            else
+                params[k + start] = "";
+        }
         return params;
     }
 
