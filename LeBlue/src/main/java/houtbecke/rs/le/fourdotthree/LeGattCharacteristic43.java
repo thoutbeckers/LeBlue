@@ -45,6 +45,13 @@ class LeGattCharacteristic43 implements LeGattCharacteristic {
 
     @Override
     public void setValue(byte[] value,boolean withResponse) {
+
+        leRemoteDevice43.addToQueue(this, value, withResponse);
+    }
+
+
+    protected void setValueNow(byte[] value,boolean withResponse) {
+
         if (withResponse)
             characteristic.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT);
         else

@@ -6,7 +6,7 @@ import houtbecke.rs.le.LeGattStatus;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
 
-public class InterceptingLeRemoteDeviceListener extends BaseIntercepting implements LeRemoteDeviceListener {
+public class InterceptingLeRemoteDeviceListener extends LeIntercepting implements LeRemoteDeviceListener {
 
     final LeRemoteDeviceListener leRemoteDeviceListener;
     public InterceptingLeRemoteDeviceListener(LeRemoteDeviceListener leRemoteDeviceListener, LeInterceptor leInterceptor) {

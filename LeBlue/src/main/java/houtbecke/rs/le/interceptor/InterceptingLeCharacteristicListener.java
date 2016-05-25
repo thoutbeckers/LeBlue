@@ -6,7 +6,7 @@ import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeRemoteDevice;
 
-public class InterceptingLeCharacteristicListener extends BaseIntercepting implements LeCharacteristicListener {
+public class InterceptingLeCharacteristicListener extends LeIntercepting implements LeCharacteristicListener {
 
     public final LeCharacteristicListener leCharacteristicListener;
 

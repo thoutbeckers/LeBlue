@@ -23,32 +23,32 @@ public class EventSinkFiller {
         and = sessionObject;
     }
 
-    public EventSinkFiller addEvent(EventType type, int source, int secondSource, String... args) {
+    public EventSinkFiller addEvent(LeEventType type, int source, int secondSource, String... args) {
         listEventSinkSource.addEvent(new Event(type, defaultDelay, source, LeUtil.extend(args, secondSource)));
         return this;
     }
 
-    public EventSinkFiller addEvent(EventType type, int source, int secondSource, int thirdSource, String... args) {
+    public EventSinkFiller addEvent(LeEventType type, int source, int secondSource, int thirdSource, String... args) {
         listEventSinkSource.addEvent(new Event(type, defaultDelay, source, LeUtil.extend(args, secondSource, thirdSource)));
         return this;
     }
 
-    public EventSinkFiller addEvent(EventType type, int source, String... args) {
+    public EventSinkFiller addEvent(LeEventType type, int source, String... args) {
         listEventSinkSource.addEvent(new Event(type, defaultDelay, source, args));
         return this;
     }
 
-    public EventSinkFiller addDeviceEvent(EventType type, int secondSource, String... args) {
+    public EventSinkFiller addDeviceEvent(LeEventType type, int secondSource, String... args) {
         addEvent(type, DEFAULT_DEVICE_ID, secondSource, args);
         return this;
     }
 
-    public EventSinkFiller addDeviceEvent(EventType type, int secondSource, int thirdSource, String... args) {
+    public EventSinkFiller addDeviceEvent(LeEventType type, int secondSource, int thirdSource, String... args) {
         addEvent(type, DEFAULT_DEVICE_ID, secondSource, thirdSource, args);
         return this;
     }
 
-    public EventSinkFiller addDeviceEvent(EventType type, String... args) {
+    public EventSinkFiller addDeviceEvent(LeEventType type, String... args) {
         addEvent(type, DEFAULT_DEVICE_ID, args);
         return this;
     }
@@ -65,17 +65,17 @@ public class EventSinkFiller {
     }
 
     public EventSinkFiller mockCharacteristicChange(int remoteDevice, int characteristic, byte[] value) {
-        addEvent(EventType.mockCharacteristicChangedWithMockedValue, remoteDevice, characteristic, LeUtil.bytesToString(value));
+        addEvent(LeEventType.mockCharacteristicChangedWithMockedValue, remoteDevice, characteristic, LeUtil.bytesToString(value));
         return this;
     }
 
     public EventSinkFiller waitForPoint(String point) {
-        addEvent(EventType.mockWaitForPoint, 0, point);
+        addEvent(LeEventType.mockWaitForPoint, 0, point);
         return this;
     }
 
     public EventSinkFiller pointReached(String point) {
-        addEvent(EventType.mockPointReached, 0, point);
+        addEvent(LeEventType.mockPointReached, 0, point);
         return this;
     }
 

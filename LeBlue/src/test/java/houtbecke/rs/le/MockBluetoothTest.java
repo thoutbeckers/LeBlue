@@ -4,21 +4,8 @@ package houtbecke.rs.le;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.UUID;
 
-import houtbecke.rs.le.LeCharacteristicListener;
-import houtbecke.rs.le.LeCharacteristicWriteListener;
-import houtbecke.rs.le.LeDevice;
-import houtbecke.rs.le.LeDeviceListener;
-import houtbecke.rs.le.LeDeviceState;
-import houtbecke.rs.le.LeGattCharacteristic;
-import houtbecke.rs.le.LeGattService;
-import houtbecke.rs.le.LeGattStatus;
-import houtbecke.rs.le.LeRemoteDevice;
-import houtbecke.rs.le.LeRemoteDeviceListener;
-import houtbecke.rs.le.LeScanRecord;
 import houtbecke.rs.le.interceptor.InterceptingLeDevice;
 import houtbecke.rs.le.interceptor.LeSessionInterceptor;
 import houtbecke.rs.le.mock.LeDeviceMock;
@@ -26,7 +13,7 @@ import houtbecke.rs.le.mock.LeSessionController;
 import houtbecke.rs.le.session.Event;
 import houtbecke.rs.le.session.EventSink;
 import houtbecke.rs.le.session.EventSinkFiller;
-import houtbecke.rs.le.session.EventType;
+import houtbecke.rs.le.session.LeEventType;
 import houtbecke.rs.le.session.ListEventSinkSource;
 import houtbecke.rs.le.session.SessionObject;
 
@@ -39,61 +26,61 @@ public class MockBluetoothTest {
     public ListEventSinkSource createSource() {
         ListEventSinkSource source = new ListEventSinkSource();
         EventSinkFiller filler = new EventSinkFiller(source);
-        filler.addEvent(EventType.deviceAddListener, LE_DEVICE, LE_DEVICE_LISTENER);// params
+        filler.addEvent(LeEventType.deviceAddListener, LE_DEVICE, LE_DEVICE_LISTENER);// params
 
-        filler.addEvent(EventType.deviceStartScanning, LE_DEVICE);
+        filler.addEvent(LeEventType.deviceStartScanning, LE_DEVICE);
 
-        filler.addEvent(EventType.remoteDeviceFound, LE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE, "123", "");
+        filler.addEvent(LeEventType.remoteDeviceFound, LE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE, "123", "");
 
-        filler.addEvent(EventType.remoteDeviceGetAddress, LE_REMOTE_DEVICE, "0001:0002:0003:0004");
+        filler.addEvent(LeEventType.remoteDeviceGetAddress, LE_REMOTE_DEVICE, "0001:0002:0003:0004");
 
-        filler.addEvent(EventType.remoteDeviceGetName, LE_REMOTE_DEVICE, "test device");
+        filler.addEvent(LeEventType.remoteDeviceGetName, LE_REMOTE_DEVICE, "test device");
 
-        filler.addEvent(EventType.remoteDeviceAddListener, LE_REMOTE_DEVICE, LE_REMOTE_DEVICE_LISTENER);
+        filler.addEvent(LeEventType.remoteDeviceAddListener, LE_REMOTE_DEVICE, LE_REMOTE_DEVICE_LISTENER);
 
-        filler.addEvent(EventType.remoteDeviceConnect, LE_REMOTE_DEVICE);
+        filler.addEvent(LeEventType.remoteDeviceConnect, LE_REMOTE_DEVICE);
 
-        filler.addEvent(EventType.remoteDeviceConnected, LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE);
+        filler.addEvent(LeEventType.remoteDeviceConnected, LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE);
 
-        filler.addEvent(EventType.remoteDeviceReadRssi, LE_REMOTE_DEVICE);
+        filler.addEvent(LeEventType.remoteDeviceReadRssi, LE_REMOTE_DEVICE);
 
-        filler.addEvent(EventType.remoteDeviceRssiRead,  LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE,""+RSSI);
+        filler.addEvent(LeEventType.remoteDeviceRssiRead,  LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE,""+RSSI);
 
-        filler.addEvent(EventType.remoteDeviceStartServiceDiscovery, LE_REMOTE_DEVICE);
+        filler.addEvent(LeEventType.remoteDeviceStartServiceDiscovery, LE_REMOTE_DEVICE);
 
-        filler.addEvent(EventType.remoteDeviceServicesDiscovered, LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE, LeGattStatus.SUCCESS.toString(), String.valueOf(LE_SERVICE_1));
+        filler.addEvent(LeEventType.remoteDeviceServicesDiscovered, LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE, LeGattStatus.SUCCESS.toString(), String.valueOf(LE_SERVICE_1));
 
-        filler.addEvent(EventType.serviceGetUUID, LE_SERVICE_1, UUID.fromString("12345678-1234-1234-1234-123456789aaaa").toString());
+        filler.addEvent(LeEventType.serviceGetUUID, LE_SERVICE_1, UUID.fromString("12345678-1234-1234-1234-123456789aaaa").toString());
 
-        filler.addEvent(EventType.serviceGetCharacteristic, LE_SERVICE_1, LE_CHARACTERISTIC_1_1);
+        filler.addEvent(LeEventType.serviceGetCharacteristic, LE_SERVICE_1, LE_CHARACTERISTIC_1_1);
 
-        filler.addEvent(EventType.serviceGetCharacteristic, LE_SERVICE_1, LE_CHARACTERISTIC_1_2);
+        filler.addEvent(LeEventType.serviceGetCharacteristic, LE_SERVICE_1, LE_CHARACTERISTIC_1_2);
 
-        filler.addEvent(EventType.characteristicGetValue, LE_CHARACTERISTIC_1_1, "0,1,2");
+        filler.addEvent(LeEventType.characteristicGetValue, LE_CHARACTERISTIC_1_1, "0,1,2");
 
-        filler.addEvent(EventType.remoteDeviceSetCharacteristicListener, LE_REMOTE_DEVICE, String.valueOf(LE_CHARACTERISTIC_LISTENER), UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString());
+        filler.addEvent(LeEventType.remoteDeviceSetCharacteristicListener, LE_REMOTE_DEVICE, String.valueOf(LE_CHARACTERISTIC_LISTENER), UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString());
 
-        filler.addEvent(EventType.serviceEnableCharacteristicNotification, LE_SERVICE_1, UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString(), "true");
+        filler.addEvent(LeEventType.serviceEnableCharacteristicNotification, LE_SERVICE_1, UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString(), "true");
 
-        filler.addEvent(EventType.characteristicNotificationChanged, LE_CHARACTERISTIC_LISTENER, UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString(), String.valueOf(LE_REMOTE_DEVICE), String.valueOf(LE_CHARACTERISTIC_1_2),"true");
+        filler.addEvent(LeEventType.characteristicNotificationChanged, LE_CHARACTERISTIC_LISTENER, UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString(), String.valueOf(LE_REMOTE_DEVICE), String.valueOf(LE_CHARACTERISTIC_1_2),"true");
 
-        filler.addEvent(EventType.characteristicChanged, LE_CHARACTERISTIC_LISTENER, UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString(), String.valueOf(LE_REMOTE_DEVICE), String.valueOf(LE_CHARACTERISTIC_1_2));
+        filler.addEvent(LeEventType.characteristicChanged, LE_CHARACTERISTIC_LISTENER, UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString(), String.valueOf(LE_REMOTE_DEVICE), String.valueOf(LE_CHARACTERISTIC_1_2));
 
-        filler.addEvent(EventType.remoteDeviceSetCharacteristicWriteListener, LE_REMOTE_DEVICE, String.valueOf(LE_CHARACTERISTIC_WRITE_LISTENER), UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString());
+        filler.addEvent(LeEventType.remoteDeviceSetCharacteristicWriteListener, LE_REMOTE_DEVICE, String.valueOf(LE_CHARACTERISTIC_WRITE_LISTENER), UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString());
 
-        filler.addEvent(EventType.characteristicSetValue, LE_CHARACTERISTIC_1_2, "3,4,5");
+        filler.addEvent(LeEventType.characteristicSetValue, LE_CHARACTERISTIC_1_2, "3,4,5");
 
-        filler.addEvent(EventType.characteristicWritten, LE_CHARACTERISTIC_WRITE_LISTENER, UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString(), String.valueOf(LE_REMOTE_DEVICE), String.valueOf(LE_CHARACTERISTIC_1_2),String.valueOf(true));
+        filler.addEvent(LeEventType.characteristicWritten, LE_CHARACTERISTIC_WRITE_LISTENER, UUID.fromString("12345678-1234-1234-1234-123456789cccc").toString(), String.valueOf(LE_REMOTE_DEVICE), String.valueOf(LE_CHARACTERISTIC_1_2),String.valueOf(true));
 
-        filler.addEvent(EventType.remoteDeviceDisconnect, LE_REMOTE_DEVICE);
+        filler.addEvent(LeEventType.remoteDeviceDisconnect, LE_REMOTE_DEVICE);
 
-        filler.addEvent(EventType.remoteDeviceDisconnected, LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE);
+        filler.addEvent(LeEventType.remoteDeviceDisconnected, LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE);
 
-        filler.addEvent(EventType.remoteDeviceClose, LE_REMOTE_DEVICE);
+        filler.addEvent(LeEventType.remoteDeviceClose, LE_REMOTE_DEVICE);
 
-        filler.addEvent(EventType.remoteDeviceClosed,LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE);
+        filler.addEvent(LeEventType.remoteDeviceClosed,LE_REMOTE_DEVICE_LISTENER, LE_DEVICE, LE_REMOTE_DEVICE);
 
-        filler.addEvent(EventType.remoteDeviceRemoveListener, LE_REMOTE_DEVICE, LE_REMOTE_DEVICE_LISTENER);
+        filler.addEvent(LeEventType.remoteDeviceRemoveListener, LE_REMOTE_DEVICE, LE_REMOTE_DEVICE_LISTENER);
 
 
         return source;

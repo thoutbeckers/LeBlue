@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import houtbecke.rs.le.LeUtil;
 
-import static houtbecke.rs.le.session.EventType.characteristicGetValue;
+import static houtbecke.rs.le.session.LeEventType.characteristicGetValue;
 
 public class CharacteristicsMockerObject extends MockerObject {
     public CharacteristicsMockerObject(SessionObject sessionObject, int sessionSource) {

@@ -1,28 +1,26 @@
 package houtbecke.rs.le;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.UUID;
 
-import houtbecke.rs.le.LeCharacteristicListener;
-import houtbecke.rs.le.LeDevice;
-import houtbecke.rs.le.LeDeviceListener;
-import houtbecke.rs.le.LeDeviceState;
-import houtbecke.rs.le.LeGattCharacteristic;
-import houtbecke.rs.le.LeGattService;
-import houtbecke.rs.le.LeGattStatus;
-import houtbecke.rs.le.LeRemoteDevice;
-import houtbecke.rs.le.LeRemoteDeviceListener;
-import houtbecke.rs.le.LeScanRecord;
 import houtbecke.rs.le.mock.LeDeviceMock;
 import houtbecke.rs.le.mock.LeSessionController;
 import houtbecke.rs.le.session.EventSinkFiller;
-import houtbecke.rs.le.session.EventType;
+import houtbecke.rs.le.session.LeEventType;
 import houtbecke.rs.le.session.ListEventSinkSource;
 import houtbecke.rs.le.session.SessionObject;
+
+import org.junit.Assert;
 import org.junit.Before;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+@SuppressWarnings("FieldCanBeLocal")
 public class MockerTest {
     @Before
     public void setUp() throws Exception {
@@ -36,10 +34,10 @@ public class MockerTest {
         // the test will tell us to wait for the ready signal before going on
         filler.waitForPoint("ready");
 
-        filler.addEvent(EventType.mockCharacteristicChanged, LE_REMOTE_DEVICE, LE_CHARACTERISTIC_1_2);
+        filler.addEvent(LeEventType.mockCharacteristicChanged, LE_REMOTE_DEVICE, LE_CHARACTERISTIC_1_2);
 
 
-        filler.addDeviceEvent(EventType.mockRemoteDeviceFound, LE_REMOTE_DEVICE_2, "123", "");
+        filler.addDeviceEvent(LeEventType.mockRemoteDeviceFound, LE_REMOTE_DEVICE_2, "123", "");
 
 
         filler.pointReached("secondDevice");
@@ -61,20 +59,20 @@ public class MockerTest {
         device = new LeDeviceMock(EventSinkFiller.DEFAULT_DEVICE_ID, sessionController);
         sessionController.startDefaultSession();
 
-        assert sessionController.waitTillSessionStarted();
+        Assert.assertTrue(sessionController.waitTillSessionStarted());
 
         final int[] foundRemoteDevices  = new int[1];
         foundRemoteDevices[0] = 0;
         final Boolean[] foundRemoteDevice2  = new Boolean[1];
         foundRemoteDevice2[0] =false;
 
-        ((LeDeviceMock) device).addListener(new LeDeviceListener() {
+        device.addListener(new LeDeviceListener() {
             @Override
             public synchronized void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, LeScanRecord scanRecord) {
                 synchronized (MockerTest.this) {
-                    assert getDevice().equals(leDeviceFound);
-                    assert leFoundRemoteDevice != null;
-                    assert rssi == 123;
+                    assertEquals(getDevice(), leDeviceFound);
+                    assertNotNull(leFoundRemoteDevice);
+                    assertEquals(rssi, 123);
 
                     System.out.println(leFoundRemoteDevice.getAddress());
 
@@ -113,18 +111,16 @@ public class MockerTest {
         }
 
 
-        assert foundRemoteDevices[0] == 2 && foundRemoteDevice2[0] : "check both listeners are notified";
+        assertTrue("check both listeners are notified", foundRemoteDevices[0] == 2 && foundRemoteDevice2[0]);
 
         Thread.sleep(100);
 
-        assert remoteDevice.getAddress().equals("0001:0002:0003:0004");
-        assert remoteDevice.getName().equals("d1234");
+        assertEquals(remoteDevice.getAddress(), "0001:0002:0003:0004");
+        assertEquals(remoteDevice.getName(), "d1234");
 
 
         final Boolean[] connected  = new Boolean[1];
         connected[0] =false;
-        Boolean disconnected = false;
-        Boolean closed = false;
         final Boolean[] discovered  = new Boolean[1];
         discovered[0] =false;
 
@@ -135,8 +131,8 @@ public class MockerTest {
         remoteDevice.addListener(new LeRemoteDeviceListener() {
             @Override
             public void leDevicesConnected(LeDevice leDeviceFoundOn, LeRemoteDevice leRemoteDevice) {
-                assert getDevice().equals(leDeviceFoundOn);
-                assert getRemoteDevice().equals(leRemoteDevice);
+                assertEquals(getDevice(), leDeviceFoundOn);
+                assertEquals(getRemoteDevice(), leRemoteDevice);
                 synchronized (MockerTest.this) {
                     connected[0] = true;
                     MockerTest.this.notifyAll();
@@ -157,10 +153,10 @@ public class MockerTest {
             @Override
             public void serviceDiscovered(LeDevice leDevice, LeRemoteDevice leRemoteDevice, LeGattStatus status, LeGattService[] gatts) {
                 discovered[0] = true;
-                assert getDevice().equals(leDevice);
-                assert leRemoteDevice.equals(getRemoteDevice());
-                assert LeGattStatus.SUCCESS.equals(status);
-                assert gatts.length == 2;
+                assertEquals(getDevice(), leDevice);
+                assertEquals(leRemoteDevice,getRemoteDevice());
+                assertEquals(LeGattStatus.SUCCESS,status);
+                assertEquals(gatts.length, 2);
                 service[0] = (gatts[0]);
             }
 
@@ -177,27 +173,27 @@ public class MockerTest {
             wait();
         }
 
-        assert connected[0];
+        assertTrue(connected[0]);
 
         remoteDevice.startServicesDiscovery();
 
         Thread.sleep(1000);
-        assert discovered[0];
+        assertTrue(discovered[0]);
 
-        service[0].getUuid().equals(UUID.fromString("12345678-1234-1234-1234-123456789aaaa"));
+        assertTrue(service[0].getUuid().equals(UUID.fromString("12345678-1234-1234-1234-123456789aaaa")));
 
         final LeGattCharacteristic characteristic = service[0].getCharacteristic(UUID.fromString("12345678-1234-1234-1234-123456789bbbb"));
         assert characteristic != null;
 
         byte[] byteArray1 = characteristic.getValue();
-        assert byteArray1[0] == 0;
-        assert byteArray1[1] == 1;
-        assert byteArray1[2] == 2;
+        assertEquals(byteArray1[0],0);
+        assertEquals(byteArray1[1],1);
+        assertEquals(byteArray1[2],2);
 
         byteArray1 = characteristic.getValue();
-        assert byteArray1[0] == 0;
-        assert byteArray1[1] == 1;
-        assert byteArray1[2] == 2;
+        assertEquals(byteArray1[0],0);
+        assertEquals(byteArray1[1],1);
+        assertEquals(byteArray1[2],2);
 
         final Boolean[] changed  = new Boolean[1];
         changed[0] =false;
@@ -208,9 +204,9 @@ public class MockerTest {
         remoteDevice.setCharacteristicListener(new LeCharacteristicListener() {
             @Override
             public void leCharacteristicChanged(UUID uuid, LeRemoteDevice leRemoteDevice, LeGattCharacteristic leCharacteristic) {
-                assert uuid.equals(UUID.fromString("12345678-1234-1234-1234-123456789bbcc"));
-                assert remoteDevice.equals(leRemoteDevice);
-                assert !leCharacteristic.equals(characteristic) : "make sure this is a different characteristic";
+                assertEquals(uuid, UUID.fromString("12345678-1234-1234-1234-123456789bbcc"));
+                assertEquals(remoteDevice, leRemoteDevice);
+                assertNotEquals("make sure this is a different characteristic", leCharacteristic, characteristic);
                 changed[0]=true;
             }
 
@@ -228,15 +224,15 @@ public class MockerTest {
 
 
         Thread.sleep(1000);
-        assert changedNotification[0];
-        assert changed[0];
+        assertTrue(changedNotification[0]);
+        assertTrue(changed[0]);
 
         characteristic.setValue(new byte[]{3, 4, 5});
 
 
         sessionController.waitForPoint("secondDevice");
 
-        assert remoteDevice.getAddress().equals("0005:0006:0007:0008");
+        assertEquals(remoteDevice.getAddress(),"0005:0006:0007:0008");
 
         remoteDevice.addListener(new LeRemoteDeviceListener() {
             @Override
@@ -273,84 +269,36 @@ public class MockerTest {
         changed[0]=false;
 
         byte[] byteArray2 = char21.getValue();
-        assert byteArray2[0] == 0;
-        assert byteArray2[1] == 1;
-        assert byteArray2[2] == 2;
+        assertEquals(byteArray2[0],0);
+        assertEquals(byteArray2[1],1);
+        assertEquals(byteArray2[2],2);
 
         byteArray2 = char21.getValue();
-        assert byteArray2[0] == 3;
-        assert byteArray2[1] == 4;
-        assert byteArray2[2] == 5;
+        assertEquals(byteArray2[0],3);
+        assertEquals(byteArray2[1],4);
+        assertEquals(byteArray2[2],5);
 
         byteArray2 = char21.getValue();
-        assert byteArray2[0] == 6;
-        assert byteArray2[1] == 7;
-        assert byteArray2[2] == 8;
+        assertEquals(byteArray2[0],6);
+        assertEquals(byteArray2[1],7);
+        assertEquals(byteArray2[2],8);
 
         byteArray2 = char21.getValue();
-        assert byteArray2[0] == 6;
-        assert byteArray2[1] == 7;
-        assert byteArray2[2] == 8;
+        assertEquals(byteArray2[0],6);
+        assertEquals(byteArray2[1],7);
+        assertEquals(byteArray2[2],8);
 
 
         sessionController.pointReached("done");
 
         sessionController.waitForFinishedSession();
 
-        assert !events.hasMoreEvent();
-        assert sessionController.getSessionException() == null;
-    }
-
-    public LeSessionController getSessionController() {
-        return sessionController;
-    }
-
-    public void setSessionController(LeSessionController sessionController) {
-        this.sessionController = sessionController;
+        assertFalse(events.hasMoreEvent());
+        assertNull(sessionController.getSessionException());
     }
 
     public LeDevice getDevice() {
         return device;
-    }
-
-    public void setDevice(LeDevice device) {
-        this.device = device;
-    }
-
-    public final int getLE_REMOTE_DEVICE() {
-        return LE_REMOTE_DEVICE;
-    }
-
-    public final int getLE_REMOTE_DEVICE_2() {
-        return LE_REMOTE_DEVICE_2;
-    }
-
-    public final int getLE_REMOTE_DEVICE_3() {
-        return LE_REMOTE_DEVICE_3;
-    }
-
-    public final int getLE_SERVICE_1_1() {
-        return LE_SERVICE_1_1;
-    }
-
-    public final int getLE_SERVICE_1_2() {
-        return LE_SERVICE_1_2;
-    }
-
-    public final int getLE_SERVICE_2_1() {
-        return LE_SERVICE_2_1;
-    }
-
-    public final int getLE_CHARACTERISTIC_1_1() {
-        return LE_CHARACTERISTIC_1_1;
-    }
-
-    public final int getLE_CHARACTERISTIC_1_2() {
-        return LE_CHARACTERISTIC_1_2;
-    }
-
-    public final int getLE_CHARACTERISTIC_2_1() {
-        return LE_CHARACTERISTIC_2_1;
     }
 
     public LeRemoteDevice getRemoteDevice() {

@@ -23,6 +23,7 @@ import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeCharacteristicWriteListener;
+import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
@@ -196,7 +197,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
     public void addToQueue(Object object){
-        if (object instanceof BluetoothGattCharacteristic || object instanceof BluetoothGattDescriptor) {
+        if (object instanceof BluetoothGattCharacteristic || object instanceof BluetoothGattDescriptor || object instanceof CharacteristicData ) {
             synchronized (queue) {
                 queue.add(object);
                 if (queue.size() == 1) {
@@ -217,9 +218,10 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
                     gatt.readCharacteristic((BluetoothGattCharacteristic) object);
                 } else if (object instanceof BluetoothGattDescriptor) {
                     gatt.writeDescriptor((BluetoothGattDescriptor) object);
-
+                } else if (object instanceof CharacteristicData) {
+                    CharacteristicData characteristicData = (CharacteristicData) object;
+                    characteristicData.characteristic.setValueNow(characteristicData.value,characteristicData.withResponse);
                 }
-
 
             }
         }
@@ -308,7 +310,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
     @Override
     public void onCharacteristicWrite(android.bluetooth.BluetoothGatt gatt, android.bluetooth.BluetoothGattCharacteristic characteristic, int status) {
-
+        queue.remove();
         sendFirst();
 
         try {
@@ -377,4 +379,26 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     BluetoothGatt gatt = null;
     BluetoothGattService gattService;
     List<BluetoothGattService> mBluetoothGattServices = null;
+
+
+
+   protected void addToQueue(LeGattCharacteristic43 characteristic,  byte[] value,boolean withResponse) {
+
+       this.addToQueue(new CharacteristicData(characteristic,value,withResponse));
+   }
+
+    class CharacteristicData{
+
+        LeGattCharacteristic43 characteristic;
+        byte[] value;
+        boolean withResponse;
+        protected CharacteristicData( LeGattCharacteristic43 characteristic, byte[] value,boolean withResponse){
+            this.characteristic = characteristic;
+            this.value = value;
+            this.withResponse =  withResponse;
+        }
+
+    }
+
+
 }
