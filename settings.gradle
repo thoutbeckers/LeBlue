@@ -1,4 +1,4 @@
-include ':LeBlue', ":example"
+include ':LeBlue', ':LeBlue-java', ":example"
 
 include ':LeBlue:LeBlue'
 
