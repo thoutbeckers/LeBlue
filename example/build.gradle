@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '23.0.3'
+    compileSdkVersion compileSdkVersionProp.toInteger()
+    buildToolsVersion "$buildToolsVersionProp"
 
     defaultConfig {
         minSdkVersion 18
-        targetSdkVersion 19
+        targetSdkVersion targetSdkVersionProp.toInteger()
     }
     buildTypes {
         release {
@@ -32,7 +32,7 @@ android {
 
 dependencies {
     compile project(':LeBlue')
-    compile 'com.android.support:appcompat-v7:19.+'
+    compile "com.android.support:appcompat-v7:${supportVersion}"
 }
 
 task testClasses {
