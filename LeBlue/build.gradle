@@ -6,12 +6,12 @@ repositories {
 }
 
 android {
-    compileSdkVersion 21
+    compileSdkVersion 23
     buildToolsVersion "23.0.3"
 
     defaultConfig {
         minSdkVersion 18
-        targetSdkVersion 21
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -40,7 +40,7 @@ android.testOptions.unitTests.all {
 
 dependencies {
     compile 'javax.inject:javax.inject:1'
-    provided 'com.google.code.gson:gson:2.2.4'
+    provided 'com.google.code.gson:gson:2.4'
     testCompile 'junit:junit:4.12'
 
 }
