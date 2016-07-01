@@ -1,5 +1,7 @@
 language: android
 
+sudo: false
+
 jdk:
   - oraclejdk8
 
@@ -14,8 +16,8 @@ env:
     global:
     - TERM=dumb
 
-script: ./gradlew lintDebug testDebug
+script: ./gradlew lintDebug testDebug :LeBlue-java:test
 
 after_success:
     - ./gradlew jacocoTestReport
-    - ./gradlew coveralls
+    - bash <(curl -s https://codecov.io/bash)
