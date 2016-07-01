@@ -29,3 +29,60 @@ buildscript {
         classpath "com.android.tools.build:gradle:${androidGradleVersion}"
     }
 }
+
+task translateLeBlueJava(type:Exec) {
+    FileTree tree = fileTree(dir: 'LeBLue-java/src/main/java')
+    tree.include '**/*.java'
+
+    executable System.getenv()['J2OBJC_HOME'] + '/j2objc'
+    args '--prefixes', file('objc/prefixes.properties').path
+    args '-use-arc','--no-package-directories'
+    args '-d', file('objc/generated/').path
+    args '-sourcepath', tree.dir ,''
+    args tree
+}
+
+
+task translateLeBlueJavaTest(type:Exec) {
+
+    FileTree mainTree = fileTree(dir: 'LeBLue-java/src/main/java')
+    mainTree.include '**/*.java'
+    FileTree tree = fileTree(dir: 'LeBLue-java/src/test/java')
+    tree.include '**/*.java'
+    executable System.getenv()['J2OBJC_HOME'] + '/j2objc'
+    args '--prefixes', file('objc/prefixes.properties').path
+    args '-use-arc','--no-package-directories'
+    args '-d', file('objc/generated/').path
+    String dir1 = tree.dir
+    String dir2 = mainTree.dir
+    args '-sourcepath',dir1 + ":" + dir2
+    args '-classpath', System.getenv()['J2OBJC_HOME'] + '/lib/j2objc_junit.jar'
+    args tree
+}
+
+
+task compileTranslatedLeBlueJavaTest(type:Exec) {
+    executable System.getenv()['J2OBJC_HOME'] + '/j2objcc'
+    args "-I${file("objc/generated/").path}"
+    args "-ObjC", "-fobjc-arc", "-ljunit", "-ljre_emul"
+    args "-o", "testrunner"
+    FileTree tree = fileTree(dir: "objc/generated/", include: '**/*.m')
+    args tree
+
+}
+
+task testTranslatedLeBlueJava(type:Exec) {
+
+    executable file("testrunner")
+    args 'org.junit.runner.JUnitCore'
+    FileTree tree = fileTree(dir: "objc/generated/", include: '**/*Test.m')
+
+    tree.exclude '**/MockBluetoothTest.m'
+    tree.exclude '**/MockerTest.m'
+    tree.exclude '**/SessionSwitchingTest.m'
+    tree.each { File file ->
+        println file
+        args file.name.replace(".m", "")
+    }
+}
+
