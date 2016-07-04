@@ -23,9 +23,9 @@ buildscript {
     dependencies {
 
         // make sure an up to date version of httpmime is used for the coveralls plugin
-        classpath 'org.apache.httpcomponents:httpmime:4.3'
+        classpath "org.apache.httpcomponents:httpmime:${httpmimeVersion}"
 
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.3.1'
-        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath "org.kt3k.gradle.plugin:coveralls-gradle-plugin:${coverallsGradlePluginVersion}"
+        classpath "com.android.tools.build:gradle:${androidGradleVersion}"
     }
 }
