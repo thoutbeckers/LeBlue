@@ -1,6 +1,7 @@
 package houtbecke.rs.le;
 
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -95,7 +96,7 @@ public class MockBluetoothTest {
         LeSessionInterceptor sessionInterceptor = new LeSessionInterceptor(sink);
         device = new InterceptingLeDevice(new LeDeviceMock(EventSinkFiller.DEFAULT_DEVICE_ID, sessionController), sessionInterceptor);
         sessionController.startDefaultSession();
-        assert sessionController.waitTillSessionStarted();
+        Assert.assertTrue(sessionController.waitTillSessionStarted());
 
         final Boolean[] foundRemoteDevice = new Boolean[]{false};
 
@@ -267,7 +268,7 @@ public class MockBluetoothTest {
         while (source.hasMoreEvent()){
             Event event1 = source.nextEvent();
             Event event2 =((ListEventSinkSource) sink).nextEvent();
-            assert event1.equals(event2);
+            Assert.assertEquals(event1, event2);
         }
     }
 
