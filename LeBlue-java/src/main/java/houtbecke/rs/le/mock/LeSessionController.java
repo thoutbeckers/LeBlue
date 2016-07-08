@@ -252,9 +252,7 @@ public class LeSessionController implements LeMockController {
             }finally {
                 LeSessionController.this.lock.unlock();
             }
-
-
-                runnable.run();
+            runnable.run();
         }
 
     }
@@ -604,7 +602,6 @@ public class LeSessionController implements LeMockController {
                         runCurrentEventOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
                                 UUID uuid = null;
                                 if (event.values[0] != null && !event.values[0].equals("null"))
                                     uuid = UUID.fromString(event.values[0]);
