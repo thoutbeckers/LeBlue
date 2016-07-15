@@ -24,6 +24,7 @@ android:
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then etc/script/install-j2objc.sh ; export; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then pip install --user codecov ; fi
 
 script:
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export J2OBJC_HOME=$(PWD)/j2objc-${J2OBJC_VERSION}; fi
@@ -35,7 +36,8 @@ script:
 after_success:
     - ./gradlew :LeBlue-java:jacocoTestReport
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then git status; fi
-    - bash <(curl -s https://codecov.io/bash)
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then git add obj/generated; git commit -m "[skip ci] add objc code"; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then codecov; fi
 
 after_failure:
     - cat /Users/travis/build/thoutbeckers/LeBlue/LeBlue-java/build/test-results/*
