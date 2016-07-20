@@ -2,7 +2,7 @@ package houtbecke.rs.le.session;
 
 import houtbecke.rs.le.LeUtil;
 
-import static houtbecke.rs.le.session.EventType.*;
+import static houtbecke.rs.le.session.LeEventType.*;
 
 public class DeviceMockerObject extends MockerObject {
 

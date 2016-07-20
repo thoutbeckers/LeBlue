@@ -9,16 +9,22 @@ import houtbecke.rs.le.LeGattCharacteristic;
 class LeGattCharacteristic43 implements LeGattCharacteristic {
     final BluetoothGattCharacteristic characteristic;
     final BluetoothGatt gatt;
+    final LeRemoteDevice43 leRemoteDevice43;
 
-    LeGattCharacteristic43(BluetoothGatt gatt,BluetoothGattCharacteristic characteristic) {
+
+
+    LeGattCharacteristic43(BluetoothGatt gatt,BluetoothGattCharacteristic characteristic, LeRemoteDevice43 leRemoteDevice43) {
         this.characteristic = characteristic;
         this.gatt = gatt;
+        this.leRemoteDevice43 = leRemoteDevice43;
     }
 
 
     @Override
     public void read() {
-         gatt.readCharacteristic(characteristic);
+        if ((characteristic.getProperties() & BluetoothGattCharacteristic.PROPERTY_READ ) !=0) {
+            leRemoteDevice43.addToQueue(characteristic);
+        }
     }
 
 
@@ -39,6 +45,13 @@ class LeGattCharacteristic43 implements LeGattCharacteristic {
 
     @Override
     public void setValue(byte[] value,boolean withResponse) {
+
+        leRemoteDevice43.addToQueue(this, value, withResponse);
+    }
+
+
+    protected void setValueNow(byte[] value,boolean withResponse) {
+
         if (withResponse)
             characteristic.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT);
         else

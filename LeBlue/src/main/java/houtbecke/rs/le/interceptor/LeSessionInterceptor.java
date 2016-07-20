@@ -4,34 +4,31 @@ import java.util.UUID;
 
 import houtbecke.rs.le.LeDeviceState;
 import houtbecke.rs.le.LeFormat;
-import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattStatus;
-import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeScanRecord;
 import houtbecke.rs.le.LeUtil;
-import houtbecke.rs.le.mock.LeRemoteDeviceMock;
 import houtbecke.rs.le.session.Event;
 import houtbecke.rs.le.session.EventSink;
-import houtbecke.rs.le.session.EventType;
+import houtbecke.rs.le.session.LeEventType;
 
-import static houtbecke.rs.le.session.EventType.*;
+import static houtbecke.rs.le.session.LeEventType.*;
 
 public class LeSessionInterceptor extends LeInterceptor {
 
     protected EventSink sink;
 
-    protected void drainEvent(EventType type, BaseIntercepting interceptor, BaseIntercepting secondSource, BaseIntercepting thirdSource, String... values) {
+    protected void drainEvent(LeEventType type, BaseIntercepting interceptor, BaseIntercepting secondSource, BaseIntercepting thirdSource, String... values) {
         values = LeUtil.extend(values, secondSource.id, thirdSource.id);
         drainEvent(type, interceptor, values);
     }
 
 
-    protected void drainEvent(EventType type, BaseIntercepting interceptor, BaseIntercepting secondSource, String... values) {
+    protected void drainEvent(LeEventType type, BaseIntercepting interceptor, BaseIntercepting secondSource, String... values) {
         values = LeUtil.extend(values, secondSource.id);
         drainEvent(type, interceptor, values);
     }
 
-    protected void drainEvent(EventType type, BaseIntercepting interceptor, String... values) {
+    protected void drainEvent(LeEventType type, BaseIntercepting interceptor, String... values) {
         sink.addEvent(new Event(type, interceptor, values));
     }
 
@@ -224,28 +221,35 @@ public class LeSessionInterceptor extends LeInterceptor {
     @Override
     public void characteristicListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicListener iCharacteristicsListener, UUID[] uuids) {
         String[] args=null;
+        String characteristicsListenerId = "";
+        if (iCharacteristicsListener!=null)
+            characteristicsListenerId = iCharacteristicsListener.id+"";
         if  (uuids != null){
             args = new String[1 + uuids.length];
-            args[0] = iCharacteristicsListener.id+"";
+            args[0] = characteristicsListenerId;
             LeUtil.putUUIDsInStringArray(uuids, args, 1);
         } else{
             args = new String[1];
-            args[0] = iCharacteristicsListener.id+"";
+            args[0] = characteristicsListenerId;
         }
 
         drainEvent(remoteDeviceSetCharacteristicListener, iLeRemoteDevice, args);
     }
 
+
     @Override
     public void characteristicWriteListenerSet(InterceptingLeRemoteDevice iLeRemoteDevice, InterceptingLeCharacteristicWriteListener iCharacteristicsWriteListener, UUID[] uuids) {
         String[] args=null;
+        String characteristicsWriteListener = "";
+        if (iCharacteristicsWriteListener!=null)
+            characteristicsWriteListener = iCharacteristicsWriteListener.id+"";
         if  (uuids != null){
             args = new String[1 + uuids.length];
-            args[0] = iCharacteristicsWriteListener.id+"";
+            args[0] = characteristicsWriteListener;
             LeUtil.putUUIDsInStringArray(uuids, args, 1);
         } else{
             args = new String[1];
-            args[0] = iCharacteristicsWriteListener.id+"";
+            args[0] = characteristicsWriteListener;
         }
 
         drainEvent(remoteDeviceSetCharacteristicWriteListener, iLeRemoteDevice, args);

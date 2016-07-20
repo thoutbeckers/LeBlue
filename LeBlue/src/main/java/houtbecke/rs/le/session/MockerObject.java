@@ -80,7 +80,7 @@ public class MockerObject implements Mocker {
 
 
     @Override
-    public MockedResponse mock(LeMockController controller, EventType type, int source, String... arguments) {
+    public MockedResponse mock(LeMockController controller, LeEventType type, int source, String... arguments) {
 
         boolean mock = false;
 

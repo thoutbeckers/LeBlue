@@ -1,17 +1,17 @@
-apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.library'
+apply plugin: 'jacoco'
 
 repositories {
     mavenCentral()
 }
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "20.0.0"
+    compileSdkVersion 21
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         minSdkVersion 18
-        targetSdkVersion 19
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
@@ -28,7 +28,19 @@ android {
     }
 }
 
+android.testOptions.unitTests.all {
+    // configure whether failing tests should fail the build
+    ignoreFailures false
+
+    testLogging {
+        events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+    }
+}
+
+
 dependencies {
     compile 'javax.inject:javax.inject:1'
     provided 'com.google.code.gson:gson:2.2.4'
+    testCompile 'junit:junit:4.12'
+
 }

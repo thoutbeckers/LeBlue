@@ -7,7 +7,7 @@ import houtbecke.rs.le.mock.LeMockController;
 
 public interface Mocker {
 
-    public MockedResponse mock(LeMockController controller, EventType type, int source, String... arguments);
+    public MockedResponse mock(LeMockController controller, LeEventType type, int source, String... arguments);
 
     public LeDeviceListener[] getDeviceListeners(LeMockController controller, int device);
 

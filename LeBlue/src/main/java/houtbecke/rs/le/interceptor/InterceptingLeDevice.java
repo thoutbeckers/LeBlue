@@ -5,7 +5,7 @@ import java.util.UUID;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
 
-public class InterceptingLeDevice extends BaseIntercepting implements LeDevice {
+public class InterceptingLeDevice extends LeIntercepting implements LeDevice {
 
     final LeDevice leDevice;
     public InterceptingLeDevice(LeDevice leDevice, LeInterceptor leInterceptor) {

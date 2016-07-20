@@ -7,7 +7,7 @@ import houtbecke.rs.le.LeCharacteristicWriteListener;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
 
-public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRemoteDevice {
+public class InterceptingLeRemoteDevice extends LeIntercepting implements LeRemoteDevice {
 
     public final LeRemoteDevice leRemoteDevice;
 
@@ -85,7 +85,9 @@ public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRe
     @Override
     public void setCharacteristicWriteListener(LeCharacteristicWriteListener listener, UUID... uuids) {
         synchronized(leInterceptor) {
-            InterceptingLeCharacteristicWriteListener iCharacteristicsWriteListener = leInterceptor.getInterceptingCharacteristicsWriteListener(listener);
+            InterceptingLeCharacteristicWriteListener iCharacteristicsWriteListener = null;
+            if (listener!= null)
+                iCharacteristicsWriteListener = leInterceptor.getInterceptingCharacteristicsWriteListener(listener);
             leInterceptor.characteristicWriteListenerSet(this, iCharacteristicsWriteListener, uuids);
             leRemoteDevice.setCharacteristicWriteListener(iCharacteristicsWriteListener, uuids);
         }
@@ -94,7 +96,9 @@ public class InterceptingLeRemoteDevice extends BaseIntercepting implements LeRe
     @Override
     public void setCharacteristicListener(LeCharacteristicListener listener, UUID... uuids) {
         synchronized(leInterceptor) {
-            InterceptingLeCharacteristicListener iCharacteristicsListener = leInterceptor.getInterceptingCharacteristicsListener(listener);
+            InterceptingLeCharacteristicListener iCharacteristicsListener = null;
+            if (listener!=null)
+                iCharacteristicsListener = leInterceptor.getInterceptingCharacteristicsListener(listener);
             leInterceptor.characteristicListenerSet(this, iCharacteristicsListener, uuids);
             leRemoteDevice.setCharacteristicListener(iCharacteristicsListener, uuids);
         }

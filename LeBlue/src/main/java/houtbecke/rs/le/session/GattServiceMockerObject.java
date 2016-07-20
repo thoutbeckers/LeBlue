@@ -2,12 +2,12 @@ package houtbecke.rs.le.session;
 
 import java.util.UUID;
 
-import static houtbecke.rs.le.session.EventType.mockCharacteristicNotificationChanged;
-import static houtbecke.rs.le.session.EventType.mockRemoteDeviceClosed;
-import static houtbecke.rs.le.session.EventType.remoteDeviceClose;
-import static houtbecke.rs.le.session.EventType.serviceEnableCharacteristicNotification;
-import static houtbecke.rs.le.session.EventType.serviceGetCharacteristic;
-import static houtbecke.rs.le.session.EventType.serviceGetUUID;
+import static houtbecke.rs.le.session.LeEventType.mockCharacteristicNotificationChanged;
+import static houtbecke.rs.le.session.LeEventType.mockRemoteDeviceClosed;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceClose;
+import static houtbecke.rs.le.session.LeEventType.serviceEnableCharacteristicNotification;
+import static houtbecke.rs.le.session.LeEventType.serviceGetCharacteristic;
+import static houtbecke.rs.le.session.LeEventType.serviceGetUUID;
 
 public class GattServiceMockerObject extends MockerObject {
     public GattServiceMockerObject(SessionObject sessionObject, int sessionSource) {

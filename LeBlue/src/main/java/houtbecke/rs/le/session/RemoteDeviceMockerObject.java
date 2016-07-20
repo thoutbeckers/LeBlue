@@ -5,17 +5,17 @@ import java.util.List;
 
 import houtbecke.rs.le.LeGattStatus;
 
-import static houtbecke.rs.le.session.EventType.remoteDeviceClose;
-import static houtbecke.rs.le.session.EventType.remoteDeviceConnect;
-import static houtbecke.rs.le.session.EventType.remoteDeviceDisconnect;
-import static houtbecke.rs.le.session.EventType.remoteDeviceGetAddress;
-import static houtbecke.rs.le.session.EventType.remoteDeviceGetName;
-import static houtbecke.rs.le.session.EventType.mockRemoteDeviceConnected;
-import static houtbecke.rs.le.session.EventType.mockRemoteDeviceClosed;
-import static houtbecke.rs.le.session.EventType.mockRemoteDeviceDisconnected;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceClose;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceConnect;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceDisconnect;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceGetAddress;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceGetName;
+import static houtbecke.rs.le.session.LeEventType.mockRemoteDeviceConnected;
+import static houtbecke.rs.le.session.LeEventType.mockRemoteDeviceClosed;
+import static houtbecke.rs.le.session.LeEventType.mockRemoteDeviceDisconnected;
 
-import static houtbecke.rs.le.session.EventType.mockRemoteDeviceServicesDiscovered;
-import static houtbecke.rs.le.session.EventType.remoteDeviceStartServiceDiscovery;
+import static houtbecke.rs.le.session.LeEventType.mockRemoteDeviceServicesDiscovered;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceStartServiceDiscovery;
 
 public class RemoteDeviceMockerObject extends MockerObject {
     public RemoteDeviceMockerObject(SessionObject sessionObject, int sessionSource) {

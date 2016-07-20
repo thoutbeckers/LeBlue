@@ -25,11 +25,12 @@ import houtbecke.rs.le.LeUtil;
 import houtbecke.rs.le.session.Event;
 import houtbecke.rs.le.session.EventSource;
 import houtbecke.rs.le.session.EventType;
+import houtbecke.rs.le.session.LeEventType;
 import houtbecke.rs.le.session.MockedResponse;
 import houtbecke.rs.le.session.Mocker;
 import houtbecke.rs.le.session.Session;
 
-import static houtbecke.rs.le.session.EventType.*;
+import static houtbecke.rs.le.session.LeEventType.*;
 
 public class LeSessionController implements LeMockController {
 
@@ -348,7 +349,7 @@ public class LeSessionController implements LeMockController {
     protected void workOnEvent(final Event event) throws InterruptedException {
         if (shouldLog()) Log.i(TAG, "Working on event " + event + " (current event: " + currentEvent + ")");
 
-        switch (event.type) {
+        switch ((LeEventType)event.type) {
             case deviceAddListener:
             case deviceStartScanning:
             case deviceStopScanning:
@@ -381,7 +382,7 @@ public class LeSessionController implements LeMockController {
                 updateCurrentEvent(event);
                 checkPause();
 
-                switch (event.type) {
+                switch ((LeEventType)event.type) {
 
                     case mockRemoteDeviceFound:
                         runCurrentEventOnUiThread(new Runnable() {
@@ -625,7 +626,7 @@ public class LeSessionController implements LeMockController {
                     default:
                         // events that also need to unset the current event
 
-                        switch (event.type) {
+                        switch ((LeEventType)event.type) {
 
                             case mockCharacteristicMockedValue:
                                 characteristicsValues.put(event.source, LeUtil.stringToBytes(event.values[0]));
@@ -683,19 +684,19 @@ public class LeSessionController implements LeMockController {
         return sessionException;
     }
     
-    public boolean checkEvent(EventType event, LeDeviceMock source, String... arguments) {
+    public boolean checkEvent(LeEventType event, LeDeviceMock source, String... arguments) {
         return checkEventWithSourceId(event, SourceType.device, getDeviceKey(source), arguments);
     }
 
-    public boolean checkEvent(EventType event, LeRemoteDeviceMock source, String... arguments) {
+    public boolean checkEvent(LeEventType event, LeRemoteDeviceMock source, String... arguments) {
         return checkEventWithSourceId(event, SourceType.remoteDevice, getRemoteDeviceKey(source), arguments);
     }
 
-    public boolean checkEvent(EventType event, LeGattServiceMock source, String... arguments) {
+    public boolean checkEvent(LeEventType event, LeGattServiceMock source, String... arguments) {
         return checkEventWithSourceId(event, SourceType.gattService, getGattServiceKey(source), arguments);
     }
 
-    public boolean checkEvent(EventType event, LeGattCharacteristicMock source, String... arguments) {
+    public boolean checkEvent(LeEventType event, LeGattCharacteristicMock source, String... arguments) {
         return checkEventWithSourceId(event, SourceType.gattCharacteristic, getCharacteristicKey(source), arguments);
     }
 
@@ -710,7 +711,7 @@ public class LeSessionController implements LeMockController {
         gattCharacteristic
     }
 
-    public  boolean checkEventWithSourceId(EventType eventType, SourceType sourceType, int source, String... arguments) {
+    public  boolean checkEventWithSourceId(LeEventType eventType, SourceType sourceType, int source, String... arguments) {
         lock.lock();
         try {
 
@@ -755,7 +756,7 @@ public class LeSessionController implements LeMockController {
             }
 
             if (mocker != null) {
-                MockedResponse mockedResponse = mocker.mock(this, eventType, source, arguments);
+                MockedResponse mockedResponse = mocker.mock(this,  eventType, source, arguments);
 
                 // if we can mock the event, for the event loop nothing happens (the current event stays the same)
                 // however, if we have created a mocked event, we will wake up the event loop to process it. It will stack the current event and restore

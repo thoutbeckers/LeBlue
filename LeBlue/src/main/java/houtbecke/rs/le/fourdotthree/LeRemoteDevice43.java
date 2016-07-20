@@ -23,6 +23,7 @@ import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeCharacteristicWriteListener;
+import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
@@ -36,8 +37,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     final Map<UUID, LeCharacteristicListener> uuidCharacteristicListeners = new HashMap<UUID, LeCharacteristicListener>(0);
     final Map<UUID, LeCharacteristicWriteListener> uuidCharacteristicWriteListeners = new HashMap<UUID, LeCharacteristicWriteListener>(0);
 
-    final ConcurrentLinkedQueue<BluetoothGattDescriptor> descriptorWriteQueue = new ConcurrentLinkedQueue<BluetoothGattDescriptor>();
-
+    final ConcurrentLinkedQueue<Object> queue = new ConcurrentLinkedQueue<>();
 
     public LeRemoteDevice43(LeDevice43 leDevice43, BluetoothDevice device)  {
         this.leDevice43 = leDevice43;
@@ -101,6 +101,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
     @Override
     public void close() {
+        this.queue.clear();
         if (gatt != null) {
             refreshDeviceCache(gatt);
             if (gatt != null)
@@ -195,24 +196,45 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
     }
 
-    public void writeGattDescriptor(BluetoothGattDescriptor d){
-        //put the descriptor into the write queue
-        descriptorWriteQueue.add(d);
-        //if there is only 1 item in the queue, then write it.  If more than 1, we handle asynchronously in the callback above
-        if(descriptorWriteQueue.size() == 1){
-            gatt.writeDescriptor(d);
+    public void addToQueue(Object object){
+        if (object instanceof BluetoothGattCharacteristic || object instanceof BluetoothGattDescriptor || object instanceof CharacteristicData ) {
+            synchronized (queue) {
+                queue.add(object);
+                if (queue.size() == 1) {
+                    sendFirst();
+                }
+            }
         }
     }
+
+
+
+    public void sendFirst(){
+        synchronized (queue) {
+
+            if (queue.size() > 0) {
+                Object object = queue.element();
+                if (object instanceof BluetoothGattCharacteristic) {
+                    gatt.readCharacteristic((BluetoothGattCharacteristic) object);
+                } else if (object instanceof BluetoothGattDescriptor) {
+                    gatt.writeDescriptor((BluetoothGattDescriptor) object);
+                } else if (object instanceof CharacteristicData) {
+                    CharacteristicData characteristicData = (CharacteristicData) object;
+                    characteristicData.characteristic.setValueNow(characteristicData.value,characteristicData.withResponse);
+                }
+
+            }
+        }
+    }
+
 
     @Override
     public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
         try {
             this.characteristicNotificationChanged(gatt,descriptor.getCharacteristic(),(status==gatt.GATT_SUCCESS));
 
-            descriptorWriteQueue.remove();  //pop the item that we just finishing writing
-            //if there is more to write, do it!
-            if (descriptorWriteQueue.size() > 0)
-                gatt.writeDescriptor(descriptorWriteQueue.element());
+            queue.remove();
+            sendFirst();
 
         } catch (Throwable t) {
             Log.w("LeBlue", "error during onDescriptorWrite callback", t);
@@ -220,10 +242,16 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
 
+
     @Override
     public void onCharacteristicRead (BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status){
+        queue.remove();
+        sendFirst();
+
         if(status==gatt.GATT_SUCCESS)
             this.characteristicUpdated(gatt,characteristic);
+
+
     }
 
     @Override
@@ -245,7 +273,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(uuid);
 
             if ((nullListener != null || uuidListener != null) && gatt != null) {
-                LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic);
+                LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic,this);
                 if (nullListener != null)
                     nullListener.leCharacteristicNotificationChanged(uuid, this, characteristic43,success);
                 if (uuidListener != null)
@@ -269,7 +297,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(uuid);
 
             if ((nullListener != null || uuidListener != null) && gatt != null) {
-                LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic);
+                LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic,this);
                 if (nullListener != null)
                     nullListener.leCharacteristicChanged(uuid, this, characteristic43);
                 if (uuidListener != null)
@@ -282,25 +310,27 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
     @Override
     public void onCharacteristicWrite(android.bluetooth.BluetoothGatt gatt, android.bluetooth.BluetoothGattCharacteristic characteristic, int status) {
+        queue.remove();
+        sendFirst();
 
         try {
             boolean succes = (status ==  gatt.GATT_SUCCESS);
 
             UUID uuid = characteristic.getUuid();
 
-        LeCharacteristicWriteListener nullListener = uuidCharacteristicWriteListeners.get(null);
+            LeCharacteristicWriteListener nullListener = uuidCharacteristicWriteListeners.get(null);
             LeCharacteristicWriteListener uuidListener = uuidCharacteristicWriteListeners.get(uuid);
 
-        if ((nullListener != null || uuidListener != null) && gatt != null) {
-            LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic);
-            if (nullListener != null)
-                nullListener.leCharacteristicWritten(uuid, this, characteristic43,succes);
-            if (uuidListener != null)
-                uuidListener.leCharacteristicWritten(uuid, this, characteristic43,succes);
+            if ((nullListener != null || uuidListener != null) && gatt != null) {
+                LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic,this);
+                if (nullListener != null)
+                    nullListener.leCharacteristicWritten(uuid, this, characteristic43,succes);
+                if (uuidListener != null)
+                    uuidListener.leCharacteristicWritten(uuid, this, characteristic43,succes);
+            }
+        } catch (Throwable t) {
+            Log.w("LeBlue", "error during onCharacteristicChanged callback", t);
         }
-    } catch (Throwable t) {
-        Log.w("LeBlue", "error during onCharacteristicChanged callback", t);
-    }
 
     }
 
@@ -320,10 +350,10 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     @Override
     public void onReadRemoteRssi(android.bluetooth.BluetoothGatt gatt, int rssi, int status)
     {
-    if (status == BluetoothGatt.GATT_SUCCESS) {
-        for (LeRemoteDeviceListener listener : listeners)
-            listener.rssiRead(leDevice43, this, rssi);
-    }
+        if (status == BluetoothGatt.GATT_SUCCESS) {
+            for (LeRemoteDeviceListener listener : listeners)
+                listener.rssiRead(leDevice43, this, rssi);
+        }
     }
 
 
@@ -349,4 +379,26 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     BluetoothGatt gatt = null;
     BluetoothGattService gattService;
     List<BluetoothGattService> mBluetoothGattServices = null;
+
+
+
+   protected void addToQueue(LeGattCharacteristic43 characteristic,  byte[] value,boolean withResponse) {
+
+       this.addToQueue(new CharacteristicData(characteristic,value,withResponse));
+   }
+
+    class CharacteristicData{
+
+        LeGattCharacteristic43 characteristic;
+        byte[] value;
+        boolean withResponse;
+        protected CharacteristicData( LeGattCharacteristic43 characteristic, byte[] value,boolean withResponse){
+            this.characteristic = characteristic;
+            this.value = value;
+            this.withResponse =  withResponse;
+        }
+
+    }
+
+
 }
