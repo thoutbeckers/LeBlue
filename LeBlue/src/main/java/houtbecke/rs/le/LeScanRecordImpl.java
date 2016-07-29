@@ -76,6 +76,17 @@ public class LeScanRecordImpl implements LeScanRecord {
         return false;
     }
 
+
+    @Override
+    public String getLocalName()
+    {
+        LeRecord[] localName =  getRecords(9);
+        if (localName.length>0)
+            return new String(localName[0].getRecordContent());
+        else
+            return null;
+    }
+
     @Override
     public byte[] getRawData() {
         return scanrecord;
