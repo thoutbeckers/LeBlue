@@ -9,6 +9,7 @@ public interface LeScanRecord {
 
     UUID[] getServices();
     boolean hasService(UUID uuid );
+    String getLocalName();
 
     byte[] getRawData();
 
