@@ -96,7 +96,7 @@ public class LeScanRecordImpl implements LeScanRecord {
         int recordLength, recordPos = 0;
         while (recordPos < scanrecord.length && ((recordLength = scanrecord[recordPos++] & 0xFF) != 0)) {
             final int type = scanrecord[recordPos++]  & 0xFF;
-            final byte[] record = Arrays.copyOfRange(scanrecord, recordPos, recordPos + recordLength);
+            final byte[] record = Arrays.copyOfRange(scanrecord, recordPos, recordPos + recordLength - 1);
             if (type != 0) {
                 records.add(new LeRecord() {
                     @Override
