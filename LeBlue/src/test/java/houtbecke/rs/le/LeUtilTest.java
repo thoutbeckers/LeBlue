@@ -25,7 +25,7 @@ public class LeUtilTest {
         scanrecord = LeUtil.stringToBytes("15,9,84,97,99,120,32,65,78,84,32,66,114,97,107,101,2,1,5,17,7,95,103,98,80,-83,-122,17,-30,-98,-106,8,12,5,-92,-102,102,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0");
         leScanRecord = LeUtil.parseLeScanRecord(scanrecord);
         assert leScanRecord.hasService( UUID.fromString("669aa405-0c08-969e-e211-86ad5062675f"));
-        Assert.assertEquals("Tacx ANT Brake",leScanRecord.getLocalName().trim());
+        Assert.assertEquals("Tacx ANT Brake",leScanRecord.getLocalName());
 
 
         scanrecord = LeUtil.stringToBytes("13,9,84,97,99,120,32,66,117,115,104,105,100,111,2,1,6,5,3,24,24,22,24,17,7,95,103,98,80,-83,-122,17,-30,-98,-106,8,12,5,-92,-102,102,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0");
