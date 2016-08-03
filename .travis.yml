@@ -1,17 +1,43 @@
-language: android
-
-android:
-  components:
-  - platform-tools
-  - tools
-  - build-tools-23.0.3
+matrix:
+    include:
+        - os: linux
+          language: android
+          sudo: false
+          jdk: oraclejdk8
+        - os: osx
+          language: generic
+          jdk: oraclejdk8
+          osx_image: xcode7.3
 
 env:
     global:
     - TERM=dumb
+    - J2OBJC_VERSION=1.0.2
 
-script: ./gradlew lintDebug testDebug
+android:
+  components:
+  - tools
+  - platform-tools
+  - build-tools-24.0.0
+  - android-24
+
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then etc/script/install-j2objc.sh ; export; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then pip install --user codecov ; fi
+
+script:
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export J2OBJC_HOME=$(PWD)/j2objc-${J2OBJC_VERSION}; fi
+    - ./gradlew :LeBlue-java:test
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./gradlew :LeBlue:testDebug ;fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./gradlew :translateLBJ :translateLBJTest --stacktrace; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./gradlew :compileTLBJTest :testTLBJ --stacktrace; fi
 
 after_success:
-    - ./gradlew jacocoTestReport
-    - ./gradlew coveralls
+    - ./gradlew :LeBlue-java:jacocoTestReport
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then git status; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then git add objc/generated; git commit -m "[ci skip] add objc code"; git push; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then codecov; fi
+
+after_failure:
+    - cat /Users/travis/build/thoutbeckers/LeBlue/LeBlue-java/build/test-results/*

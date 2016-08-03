@@ -1,7 +1,8 @@
-include ':LeBlue', ":example"
+include ':LeBlue-java'
 
-include ':LeBlue:LeBlue'
-
-project(':LeBlue:LeBlue').projectDir = new File('LeBlue')
-
-
+if (!(System.env.CI && System.env.TRAVIS_OS_NAME == 'osx')) {
+    include ':example', ':LeBlue'
+}
+else {
+    println "OSX on Travis detected, this does not have an Android SDK so we exclude android modules."
+}

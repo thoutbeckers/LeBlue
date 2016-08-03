@@ -37,3 +37,6 @@ proguard/
 *.iml
 out/
 .idea_modules/
+
+# J2ObjC
+j2objc-*

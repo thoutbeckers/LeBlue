@@ -1,8 +1,5 @@
 package houtbecke.rs.le.mock;
 
-
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -121,7 +118,6 @@ public class LeSessionController implements LeMockController {
     protected void checkPause() {
         long current = System.currentTimeMillis();
         while (current < executeNextEventAfter && !stopSession) {
-            if (shouldLog()) Log.i(TAG, "delaying "+currentEvent+" by "+(executeNextEventAfter - current)+ "ms");
             try {
                 this.condition.await(executeNextEventAfter - current, TimeUnit.MILLISECONDS);
             } catch (InterruptedException ignore) {
@@ -256,9 +252,7 @@ public class LeSessionController implements LeMockController {
             }finally {
                 LeSessionController.this.lock.unlock();
             }
-
-
-                runnable.run();
+            runnable.run();
         }
 
     }
@@ -347,7 +341,6 @@ public class LeSessionController implements LeMockController {
     }
 
     protected void workOnEvent(final Event event) throws InterruptedException {
-        if (shouldLog()) Log.i(TAG, "Working on event " + event + " (current event: " + currentEvent + ")");
 
         switch ((LeEventType)event.type) {
             case deviceAddListener:
@@ -609,7 +602,6 @@ public class LeSessionController implements LeMockController {
                         runCurrentEventOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
                                 UUID uuid = null;
                                 if (event.values[0] != null && !event.values[0].equals("null"))
                                     uuid = UUID.fromString(event.values[0]);
@@ -651,7 +643,6 @@ public class LeSessionController implements LeMockController {
                 }
         }
 
-        if (shouldLog()) Log.d(TAG, event + " processed");
         executeNextEventAfter = System.currentTimeMillis() + event.delay;
     }
 
@@ -811,8 +802,6 @@ public class LeSessionController implements LeMockController {
                     }
 
                 if (this.source == source) {
-                    if (shouldLog())
-                        Log.i(TAG, eventType + "(" + source + ") is happening " + Arrays.toString(this.values));
 
                     // strict checking disabled for arguments for now. Right now there is one source, and arguments.
                     // For this to work that should be refactored to a path of sources and arguments.
@@ -827,14 +816,13 @@ public class LeSessionController implements LeMockController {
                     String message = "Mismatch source: For event " + eventType + " source not correct: " + source + " expected " + this.source;
                     if (strict)
                         throw new RuntimeException(message);
-                    if (shouldLog()) Log.w(TAG, message);
                     return false;
                 }
             }
             String message = "Mismatch, expected " + (currentEvent != null ? currentEvent.type : "nothing") + " got :" + eventType + "(" + source + ") is happening (session running? :" + sessionIsRunning + ") with values" + Arrays.toString(this.values) + " full event: " + currentEvent;
             if (strict)
                 throw new RuntimeException(message);
-            if (shouldLog()) Log.w(TAG, message);
+            if (shouldLog()) System.out.println(TAG+": "+message);
         return false;
 
         }finally {

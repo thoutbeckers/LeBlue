@@ -1,0 +1,21 @@
+apply plugin: 'java'
+apply plugin: 'jacoco'
+
+targetCompatibility = '1.7'
+sourceCompatibility = '1.7'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'javax.inject:javax.inject:1'
+    testCompile 'junit:junit:4.12'
+
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
