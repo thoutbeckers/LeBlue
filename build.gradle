@@ -76,6 +76,7 @@ task testTranslatedLeBlueJava(type:Exec) {
     executable file("testrunner")
     args 'org.junit.runner.JUnitCore'
     FileTree tree = fileTree(dir: "objc/generated/", include: '**/*Test.m')
+    tree.exclude '**/MockerTest.m'
 
     tree.each { File file ->
         println file
