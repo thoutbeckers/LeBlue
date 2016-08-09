@@ -71,5 +71,8 @@
     return nil;
 }
 
+- (NSString *) getLocalName {
+   return [_advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
+}
 
 @end

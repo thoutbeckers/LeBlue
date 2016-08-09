@@ -77,12 +77,19 @@ task testTranslatedLeBlueJava(type:Exec) {
     args 'org.junit.runner.JUnitCore'
     FileTree tree = fileTree(dir: "objc/generated/", include: '**/*Test.m')
 
-    tree.exclude '**/MockBluetoothTest.m'
-    tree.exclude '**/MockerTest.m'
-    tree.exclude '**/SessionSwitchingTest.m'
     tree.each { File file ->
         println file
         args file.name.replace(".m", "")
     }
+}
+
+
+task deleteGenerated() << {
+    delete "objc/generated/"
+
+}
+
+task createDirs(dependsOn:deleteGenerated ) << {
+    file("objc/generated/").mkdirs()
 }
 
