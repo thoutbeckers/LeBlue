@@ -38,7 +38,7 @@ script:
 after_success:
     - ./gradlew :LeBlue-java:jacocoTestReport
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then git status; fi
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then git add objc/generated; git commit -m "[ci skip] add objc code"; git push; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then git add objc/generated; git commit -m "[ci skip] add objc code"; git push https://${GIT_TOKEN}@github.com/username/bar.git; fi
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then codecov; fi
 
 after_failure:
