@@ -94,3 +94,24 @@ task createDirs(dependsOn:deleteGenerated ) << {
     file("objc/generated/").mkdirs()
 }
 
+task removeHeader << {
+
+    FileTree tree = fileTree(dir: 'objc/generated/')
+    tree.include '**/*.m'
+    tree.include '**/*.h'
+
+
+    tree.each { File file ->
+        String contents = new File(file.path).getText('UTF-8')
+
+        //remove generated comments
+
+        contents = contents.substring(contents.indexOf('\n') + 1);
+        contents = contents.substring(contents.indexOf('\n') + 1);
+        contents = contents.substring(contents.indexOf('\n') + 1);
+        contents = contents.substring(contents.indexOf('\n') + 1);
+
+        new File(file.path).write(contents, 'UTF-8')
+
+    }
+}

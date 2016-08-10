@@ -34,6 +34,9 @@ script:
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./gradlew :createDirs  --stacktrace; fi
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./gradlew :translateLBJ :translateLBJTest --stacktrace; fi
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./gradlew :compileTLBJTest :testTLBJ --stacktrace; fi
+        - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./gradlew :removeHeader --stacktrace; fi
+
+    removeHeader
 
 after_success:
     - ./gradlew :LeBlue-java:jacocoTestReport
