@@ -18,6 +18,9 @@
 
 - (NSMutableArray * ) toCBUUIDArray;
 
+- (BOOL) hasNil;
+
+
 @end
 
 
