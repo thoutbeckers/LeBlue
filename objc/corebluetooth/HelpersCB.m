@@ -10,6 +10,17 @@
 
 @implementation IOSObjectArray (helpersCB)
 
+- (BOOL) hasNil{
+    JavaUtilUUID * const *b__ = ((IOSObjectArray *) nil_chk(self))->buffer_;
+    JavaUtilUUID * const *e__ = b__ + self->size_;
+    while (b__ < e__) {
+        JavaUtilUUID *uuid = (*b__++);
+        if (uuid==nil)
+            return TRUE;
+            }
+    return FALSE;
+
+}
 
 - (NSMutableArray * )toCBUUIDArray
 {

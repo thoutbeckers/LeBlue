@@ -13,7 +13,6 @@
 
 #import  "LeGattServiceCB.h"
 #import  "LeGattCharacteristicCB.h"
-#import  "Helpers.h"
 #import "HelpersCB.h"
 
 #import "LeCharacteristicListener.h"
@@ -90,7 +89,7 @@
 
 - (void)setCharacteristicListenerWithLeCharacteristicListener:(id<LeCharacteristicListener>)listener
                                          withJavaUtilUUIDArray:(IOSObjectArray *)uuids{
-    if (uuids == nil ||  [uuids hasNil] || [uuids count] == 0){
+    if (uuids == nil ||  [uuids hasNil] || [uuids length] == 0){
         nullListener = listener;
     }else {
 
@@ -106,7 +105,7 @@
 }
 
 -(void)setCharacteristicWriteListenerWithLeCharacteristicWriteListener:(id<LeCharacteristicWriteListener>)listener withJavaUtilUUIDArray:(IOSObjectArray *)uuids{
-    if (uuids == nil ||  [uuids hasNil] || [uuids count] == 0){
+    if (uuids == nil ||  [uuids hasNil] || [uuids length] == 0){
         nullWriteListener = listener;
     }else {
 
@@ -136,7 +135,7 @@
 - (void) serviceFound {
 
     for (id<LeRemoteDeviceListener> listener in _listeners){
-        [listener serviceDiscoveredWithLeDevice:_device withLeRemoteDevice:self withLeGattStatusEnum:LeGattStatusEnum_get_SUCCESS() withLeGattServiceArray:[IOSObjectArray arrayWithNSArray:[services allValues]  type:[LeGattServiceCB getClass]] ];
+        [listener serviceDiscoveredWithLeDevice:_device withLeRemoteDevice:self withLeGattStatus:LeGattStatus_get_SUCCESS() withLeGattServiceArray:[IOSObjectArray arrayWithNSArray:[services allValues]  type:[LeGattServiceCB getClass]] ];
 
     }
 

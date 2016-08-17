@@ -79,31 +79,31 @@ NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber  nu
     {
         case CBCentralManagerStatePoweredOn:
             for(id<LeDeviceListener> delegate in delegates)
-                [delegate leDeviceStateWithLeDevice:self withLeDeviceStateEnum:LeDeviceStateEnum_get_ON()];
+                [delegate leDeviceStateWithLeDevice:self withLeDeviceState:LeDeviceState_get_ON()];
             break;
         case CBCentralManagerStatePoweredOff:
             for(id<LeDeviceListener> delegate in delegates)
-                [delegate leDeviceStateWithLeDevice:self withLeDeviceStateEnum:LeDeviceStateEnum_get_OFF()];
+                [delegate leDeviceStateWithLeDevice:self withLeDeviceState:LeDeviceState_get_OFF()];
             
             break;
         case CBCentralManagerStateResetting:
             for(id<LeDeviceListener> delegate in delegates)
-                [delegate leDeviceStateWithLeDevice:self withLeDeviceStateEnum:LeDeviceStateEnum_get_OFF()];
+                [delegate leDeviceStateWithLeDevice:self withLeDeviceState:LeDeviceState_get_OFF()];
             
             break;
         case CBCentralManagerStateUnsupported:
             for(id<LeDeviceListener> delegate in delegates)
-                [delegate leDeviceStateWithLeDevice:self withLeDeviceStateEnum:LeDeviceStateEnum_get_OFF()];
+                [delegate leDeviceStateWithLeDevice:self withLeDeviceState:LeDeviceState_get_OFF()];
             
             break;
         case CBCentralManagerStateUnauthorized:
             for(id<LeDeviceListener> delegate in delegates)
-                [delegate leDeviceStateWithLeDevice:self withLeDeviceStateEnum:LeDeviceStateEnum_get_OFF()];
+                [delegate leDeviceStateWithLeDevice:self withLeDeviceState:LeDeviceState_get_OFF()];
             
             break;
         case CBCentralManagerStateUnknown:
             for(id<LeDeviceListener> delegate in delegates)
-                [delegate leDeviceStateWithLeDevice:self withLeDeviceStateEnum:LeDeviceStateEnum_get_OFF()];
+                [delegate leDeviceStateWithLeDevice:self withLeDeviceState:LeDeviceState_get_OFF()];
             
             break;
     }
