@@ -40,20 +40,20 @@
 }
 
 
-- (int)getIntValueWithLeFormatEnum:(LeFormatEnum *)format
+- (int)getIntValueWithLeFormat:(LeFormat *)format
                             withInt:(int)index{
     
     const uint8_t* bytes = (const uint8_t*) _characteristic.value.bytes;
 
     switch ([format ordinal]) {
-        case LeFormat_FORMAT_UINT8:
+        case LeFormat_Enum_FORMAT_UINT8:
             return  bytes[index];
             break;
-        case LeFormat_FORMAT_UINT16:
+        case LeFormat_Enum_FORMAT_UINT16:
             return  CFSwapInt16LittleToHost(*(uint16_t *)(&bytes[index-1]));
 
             break;
-        case LeFormat_FORMAT_UINT32:
+        case LeFormat_Enum_FORMAT_UINT32:
             return  CFSwapInt32LittleToHost(*(uint16_t *)(&bytes[index-3]));
             break;
 
