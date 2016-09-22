@@ -7,8 +7,6 @@
 
 __attribute__((unused)) static void LeGattDescriptorValue_initWithNSString_withInt_(LeGattDescriptorValue *self, NSString *__name, jint __ordinal);
 
-__attribute__((unused)) static LeGattDescriptorValue *new_LeGattDescriptorValue_initWithNSString_withInt_(NSString *__name, jint __ordinal) NS_RETURNS_RETAINED;
-
 LeGattDescriptorValue *LeGattDescriptorValue_values_[0];
 
 @implementation LeGattDescriptorValue
@@ -37,10 +35,6 @@ void LeGattDescriptorValue_initWithNSString_withInt_(LeGattDescriptorValue *self
   JavaLangEnum_initWithNSString_withInt_(self, __name, __ordinal);
 }
 
-LeGattDescriptorValue *new_LeGattDescriptorValue_initWithNSString_withInt_(NSString *__name, jint __ordinal) {
-  J2OBJC_NEW_IMPL(LeGattDescriptorValue, initWithNSString_withInt_, __name, __ordinal)
-}
-
 IOSObjectArray *LeGattDescriptorValue_values() {
   LeGattDescriptorValue_initialize();
   return [IOSObjectArray arrayWithObjects:LeGattDescriptorValue_values_ count:0 type:LeGattDescriptorValue_class_()];
@@ -48,7 +42,7 @@ IOSObjectArray *LeGattDescriptorValue_values() {
 
 LeGattDescriptorValue *LeGattDescriptorValue_valueOfWithNSString_(NSString *name) {
   LeGattDescriptorValue_initialize();
-  @throw [[JavaLangIllegalArgumentException alloc] initWithNSString:name];
+  @throw [[[JavaLangIllegalArgumentException alloc] initWithNSString:name] autorelease];
   return nil;
 }
 

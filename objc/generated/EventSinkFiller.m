@@ -31,7 +31,7 @@
                                      withInt:(jint)source
                                      withInt:(jint)secondSource
                            withNSStringArray:(IOSObjectArray *)args {
-  [((ListEventSinkSource *) nil_chk(listEventSinkSource_)) addEventWithEvent:new_Event_initWithEventType_withInt_withInt_withNSStringArray_(type, defaultDelay_, source, LeUtil_extendWithNSStringArray_withIntArray_(args, [IOSIntArray newArrayWithInts:(jint[]){ secondSource } count:1]))];
+  [((ListEventSinkSource *) nil_chk(listEventSinkSource_)) addEventWithEvent:create_Event_initWithEventType_withInt_withInt_withNSStringArray_(type, defaultDelay_, source, LeUtil_extendWithNSStringArray_withIntArray_(args, [IOSIntArray arrayWithInts:(jint[]){ secondSource } count:1]))];
   return self;
 }
 
@@ -40,21 +40,21 @@
                                      withInt:(jint)secondSource
                                      withInt:(jint)thirdSource
                            withNSStringArray:(IOSObjectArray *)args {
-  [((ListEventSinkSource *) nil_chk(listEventSinkSource_)) addEventWithEvent:new_Event_initWithEventType_withInt_withInt_withNSStringArray_(type, defaultDelay_, source, LeUtil_extendWithNSStringArray_withIntArray_(args, [IOSIntArray newArrayWithInts:(jint[]){ secondSource, thirdSource } count:2]))];
+  [((ListEventSinkSource *) nil_chk(listEventSinkSource_)) addEventWithEvent:create_Event_initWithEventType_withInt_withInt_withNSStringArray_(type, defaultDelay_, source, LeUtil_extendWithNSStringArray_withIntArray_(args, [IOSIntArray arrayWithInts:(jint[]){ secondSource, thirdSource } count:2]))];
   return self;
 }
 
 - (EventSinkFiller *)addEventWithLeEventType:(LeEventType *)type
                                      withInt:(jint)source
                            withNSStringArray:(IOSObjectArray *)args {
-  [((ListEventSinkSource *) nil_chk(listEventSinkSource_)) addEventWithEvent:new_Event_initWithEventType_withInt_withInt_withNSStringArray_(type, defaultDelay_, source, args)];
+  [((ListEventSinkSource *) nil_chk(listEventSinkSource_)) addEventWithEvent:create_Event_initWithEventType_withInt_withInt_withNSStringArray_(type, defaultDelay_, source, args)];
   return self;
 }
 
 - (EventSinkFiller *)addDeviceEventWithLeEventType:(LeEventType *)type
                                            withInt:(jint)secondSource
                                  withNSStringArray:(IOSObjectArray *)args {
-  (void) [self addEventWithLeEventType:type withInt:EventSinkFiller_DEFAULT_DEVICE_ID withInt:secondSource withNSStringArray:args];
+  [self addEventWithLeEventType:type withInt:EventSinkFiller_DEFAULT_DEVICE_ID withInt:secondSource withNSStringArray:args];
   return self;
 }
 
@@ -62,13 +62,13 @@
                                            withInt:(jint)secondSource
                                            withInt:(jint)thirdSource
                                  withNSStringArray:(IOSObjectArray *)args {
-  (void) [self addEventWithLeEventType:type withInt:EventSinkFiller_DEFAULT_DEVICE_ID withInt:secondSource withInt:thirdSource withNSStringArray:args];
+  [self addEventWithLeEventType:type withInt:EventSinkFiller_DEFAULT_DEVICE_ID withInt:secondSource withInt:thirdSource withNSStringArray:args];
   return self;
 }
 
 - (EventSinkFiller *)addDeviceEventWithLeEventType:(LeEventType *)type
                                  withNSStringArray:(IOSObjectArray *)args {
-  (void) [self addEventWithLeEventType:type withInt:EventSinkFiller_DEFAULT_DEVICE_ID withNSStringArray:args];
+  [self addEventWithLeEventType:type withInt:EventSinkFiller_DEFAULT_DEVICE_ID withNSStringArray:args];
   return self;
 }
 
@@ -86,17 +86,17 @@
 - (EventSinkFiller *)mockCharacteristicChangeWithInt:(jint)remoteDevice
                                              withInt:(jint)characteristic
                                        withByteArray:(IOSByteArray *)value {
-  (void) [self addEventWithLeEventType:JreLoadEnum(LeEventType, mockCharacteristicChangedWithMockedValue) withInt:remoteDevice withInt:characteristic withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value) } count:1 type:NSString_class_()]];
+  [self addEventWithLeEventType:JreLoadEnum(LeEventType, mockCharacteristicChangedWithMockedValue) withInt:remoteDevice withInt:characteristic withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value) } count:1 type:NSString_class_()]];
   return self;
 }
 
 - (EventSinkFiller *)waitForPointWithNSString:(NSString *)point {
-  (void) [self addEventWithLeEventType:JreLoadEnum(LeEventType, mockWaitForPoint) withInt:0 withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ point } count:1 type:NSString_class_()]];
+  [self addEventWithLeEventType:JreLoadEnum(LeEventType, mockWaitForPoint) withInt:0 withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ point } count:1 type:NSString_class_()]];
   return self;
 }
 
 - (EventSinkFiller *)pointReachedWithNSString:(NSString *)point {
-  (void) [self addEventWithLeEventType:JreLoadEnum(LeEventType, mockPointReached) withInt:0 withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ point } count:1 type:NSString_class_()]];
+  [self addEventWithLeEventType:JreLoadEnum(LeEventType, mockPointReached) withInt:0 withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ point } count:1 type:NSString_class_()]];
   return self;
 }
 
@@ -112,6 +112,12 @@
 - (EventSinkFiller *)hasDefaultDelayWithInt:(jint)delay {
   defaultDelay_ = delay;
   return self;
+}
+
+- (void)dealloc {
+  RELEASE_(listEventSinkSource_);
+  RELEASE_(and__);
+  [super dealloc];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -162,8 +168,8 @@ EventSinkFiller *create_EventSinkFiller_initWithListEventSinkSource_(ListEventSi
 
 void EventSinkFiller_initWithListEventSinkSource_withSessionObject_(EventSinkFiller *self, ListEventSinkSource *listEventSinkSource, SessionObject *sessionObject) {
   NSObject_init(self);
-  self->listEventSinkSource_ = listEventSinkSource;
-  self->and__ = sessionObject;
+  JreStrongAssign(&self->listEventSinkSource_, listEventSinkSource);
+  JreStrongAssign(&self->and__, sessionObject);
 }
 
 EventSinkFiller *new_EventSinkFiller_initWithListEventSinkSource_withSessionObject_(ListEventSinkSource *listEventSinkSource, SessionObject *sessionObject) {

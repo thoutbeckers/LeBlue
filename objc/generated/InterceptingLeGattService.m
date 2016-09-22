@@ -53,6 +53,11 @@
   return ((jint) [((id<LeGattService>) nil_chk(leGattService_)) hash]);
 }
 
+- (void)dealloc {
+  RELEASE_(leGattService_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithLeGattService:withLeInterceptor:", "InterceptingLeGattService", NULL, 0x1, NULL, NULL },
@@ -73,7 +78,7 @@
 
 void InterceptingLeGattService_initWithLeGattService_withLeInterceptor_(InterceptingLeGattService *self, id<LeGattService> leGattService, LeInterceptor *leInterceptor) {
   LeIntercepting_initWithLeInterceptor_(self, leInterceptor);
-  self->leGattService_ = leGattService;
+  JreStrongAssign(&self->leGattService_, leGattService);
 }
 
 InterceptingLeGattService *new_InterceptingLeGattService_initWithLeGattService_withLeInterceptor_(id<LeGattService> leGattService, LeInterceptor *leInterceptor) {

@@ -96,6 +96,11 @@
   return ((jint) [((id<LeDevice>) nil_chk(leDevice_)) hash]);
 }
 
+- (void)dealloc {
+  RELEASE_(leDevice_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithLeDevice:withLeInterceptor:", "InterceptingLeDevice", NULL, 0x1, NULL, NULL },
@@ -120,8 +125,8 @@
 
 void InterceptingLeDevice_initWithLeDevice_withLeInterceptor_(InterceptingLeDevice *self, id<LeDevice> leDevice, LeInterceptor *leInterceptor) {
   LeIntercepting_initWithLeInterceptor_(self, leInterceptor);
-  self->leDevice_ = leDevice;
-  (void) [((id<JavaUtilMap>) nil_chk(((LeInterceptor *) nil_chk(leInterceptor))->iDevices_)) putWithId:leDevice withId:self];
+  JreStrongAssign(&self->leDevice_, leDevice);
+  [((id<JavaUtilMap>) nil_chk(((LeInterceptor *) nil_chk(leInterceptor))->iDevices_)) putWithId:leDevice withId:self];
 }
 
 InterceptingLeDevice *new_InterceptingLeDevice_initWithLeDevice_withLeInterceptor_(id<LeDevice> leDevice, LeInterceptor *leInterceptor) {

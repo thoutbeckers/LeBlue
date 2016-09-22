@@ -15,8 +15,6 @@
 
 __attribute__((unused)) static void LeFormat_initWithInt_withNSString_withInt_(LeFormat *self, jint value, NSString *__name, jint __ordinal);
 
-__attribute__((unused)) static LeFormat *new_LeFormat_initWithInt_withNSString_withInt_(jint value, NSString *__name, jint __ordinal) NS_RETURNS_RETAINED;
-
 J2OBJC_INITIALIZED_DEFN(LeFormat)
 
 LeFormat *LeFormat_values_[8];
@@ -45,14 +43,26 @@ LeFormat *LeFormat_values_[8];
 
 + (void)initialize {
   if (self == [LeFormat class]) {
-    JreEnum(LeFormat, FORMAT_UINT8) = new_LeFormat_initWithInt_withNSString_withInt_((jint) 0x11, @"FORMAT_UINT8", 0);
-    JreEnum(LeFormat, FORMAT_UINT16) = new_LeFormat_initWithInt_withNSString_withInt_((jint) 0x12, @"FORMAT_UINT16", 1);
-    JreEnum(LeFormat, FORMAT_UINT32) = new_LeFormat_initWithInt_withNSString_withInt_((jint) 0x14, @"FORMAT_UINT32", 2);
-    JreEnum(LeFormat, FORMAT_SINT8) = new_LeFormat_initWithInt_withNSString_withInt_((jint) 0x21, @"FORMAT_SINT8", 3);
-    JreEnum(LeFormat, FORMAT_SINT16) = new_LeFormat_initWithInt_withNSString_withInt_((jint) 0x22, @"FORMAT_SINT16", 4);
-    JreEnum(LeFormat, FORMAT_SINT32) = new_LeFormat_initWithInt_withNSString_withInt_((jint) 0x24, @"FORMAT_SINT32", 5);
-    JreEnum(LeFormat, FORMAT_SFLOAT) = new_LeFormat_initWithInt_withNSString_withInt_((jint) 0x32, @"FORMAT_SFLOAT", 6);
-    JreEnum(LeFormat, FORMAT_FLOAT) = new_LeFormat_initWithInt_withNSString_withInt_((jint) 0x34, @"FORMAT_FLOAT", 7);
+    size_t objSize = class_getInstanceSize(self);
+    size_t allocSize = 8 * objSize;
+    uintptr_t ptr = (uintptr_t)calloc(allocSize, 1);
+    id e;
+    (JreEnum(LeFormat, FORMAT_UINT8) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeFormat_initWithInt_withNSString_withInt_(e, (jint) 0x11, @"FORMAT_UINT8", 0);
+    (JreEnum(LeFormat, FORMAT_UINT16) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeFormat_initWithInt_withNSString_withInt_(e, (jint) 0x12, @"FORMAT_UINT16", 1);
+    (JreEnum(LeFormat, FORMAT_UINT32) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeFormat_initWithInt_withNSString_withInt_(e, (jint) 0x14, @"FORMAT_UINT32", 2);
+    (JreEnum(LeFormat, FORMAT_SINT8) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeFormat_initWithInt_withNSString_withInt_(e, (jint) 0x21, @"FORMAT_SINT8", 3);
+    (JreEnum(LeFormat, FORMAT_SINT16) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeFormat_initWithInt_withNSString_withInt_(e, (jint) 0x22, @"FORMAT_SINT16", 4);
+    (JreEnum(LeFormat, FORMAT_SINT32) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeFormat_initWithInt_withNSString_withInt_(e, (jint) 0x24, @"FORMAT_SINT32", 5);
+    (JreEnum(LeFormat, FORMAT_SFLOAT) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeFormat_initWithInt_withNSString_withInt_(e, (jint) 0x32, @"FORMAT_SFLOAT", 6);
+    (JreEnum(LeFormat, FORMAT_FLOAT) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeFormat_initWithInt_withNSString_withInt_(e, (jint) 0x34, @"FORMAT_FLOAT", 7);
     J2OBJC_SET_INITIALIZED(LeFormat)
   }
 }
@@ -85,10 +95,6 @@ void LeFormat_initWithInt_withNSString_withInt_(LeFormat *self, jint value, NSSt
   self->format_ = value;
 }
 
-LeFormat *new_LeFormat_initWithInt_withNSString_withInt_(jint value, NSString *__name, jint __ordinal) {
-  J2OBJC_NEW_IMPL(LeFormat, initWithInt_withNSString_withInt_, value, __name, __ordinal)
-}
-
 LeFormat *LeFormat_fromStringWithNSString_(NSString *status) {
   LeFormat_initialize();
   {
@@ -116,7 +122,7 @@ LeFormat *LeFormat_valueOfWithNSString_(NSString *name) {
       return e;
     }
   }
-  @throw [[JavaLangIllegalArgumentException alloc] initWithNSString:name];
+  @throw [[[JavaLangIllegalArgumentException alloc] initWithNSString:name] autorelease];
   return nil;
 }
 

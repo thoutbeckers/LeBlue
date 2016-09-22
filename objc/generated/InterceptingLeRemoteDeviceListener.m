@@ -51,8 +51,8 @@
                withLeGattServiceArray:(IOSObjectArray *)gatts {
   InterceptingLeDevice *iLeDevice = [((LeInterceptor *) nil_chk(leInterceptor_)) getInterceptingLeDeviceWithLeDevice:leDevice];
   InterceptingLeRemoteDevice *iLeRemoteDevice = [leInterceptor_ getInterceptingLeRemoteDeviceWithLeRemoteDevice:leRemoteDevice];
-  IOSObjectArray *iLeGattServices = [IOSObjectArray newArrayWithLength:((IOSObjectArray *) nil_chk(gatts))->size_ type:InterceptingLeGattService_class_()];
-  for (jint k = 0; k < gatts->size_; k++) (void) IOSObjectArray_Set(iLeGattServices, k, [leInterceptor_ getInterceptingLeGattServiceWithLeGattService:IOSObjectArray_Get(gatts, k)]);
+  IOSObjectArray *iLeGattServices = [IOSObjectArray arrayWithLength:((IOSObjectArray *) nil_chk(gatts))->size_ type:InterceptingLeGattService_class_()];
+  for (jint k = 0; k < gatts->size_; k++) IOSObjectArray_Set(iLeGattServices, k, [leInterceptor_ getInterceptingLeGattServiceWithLeGattService:IOSObjectArray_Get(gatts, k)]);
   [leInterceptor_ servicesDiscoveredWithInterceptingLeRemoteDeviceListener:self withInterceptingLeDevice:iLeDevice withInterceptingLeRemoteDevice:iLeRemoteDevice withLeGattStatus:status withInterceptingLeGattServiceArray:iLeGattServices];
   [((id<LeRemoteDeviceListener>) nil_chk(leRemoteDeviceListener_)) serviceDiscoveredWithLeDevice:iLeDevice withLeRemoteDevice:iLeRemoteDevice withLeGattStatus:status withLeGattServiceArray:iLeGattServices];
 }
@@ -77,6 +77,11 @@
   return ((jint) [((id<LeRemoteDeviceListener>) nil_chk(leRemoteDeviceListener_)) hash]);
 }
 
+- (void)dealloc {
+  RELEASE_(leRemoteDeviceListener_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithLeRemoteDeviceListener:withLeInterceptor:", "InterceptingLeRemoteDeviceListener", NULL, 0x1, NULL, NULL },
@@ -99,7 +104,7 @@
 
 void InterceptingLeRemoteDeviceListener_initWithLeRemoteDeviceListener_withLeInterceptor_(InterceptingLeRemoteDeviceListener *self, id<LeRemoteDeviceListener> leRemoteDeviceListener, LeInterceptor *leInterceptor) {
   LeIntercepting_initWithLeInterceptor_(self, leInterceptor);
-  self->leRemoteDeviceListener_ = leRemoteDeviceListener;
+  JreStrongAssign(&self->leRemoteDeviceListener_, leRemoteDeviceListener);
 }
 
 InterceptingLeRemoteDeviceListener *new_InterceptingLeRemoteDeviceListener_initWithLeRemoteDeviceListener_withLeInterceptor_(id<LeRemoteDeviceListener> leRemoteDeviceListener, LeInterceptor *leInterceptor) {

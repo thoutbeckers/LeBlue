@@ -10,15 +10,15 @@
 @implementation StringEventSinkUtil
 
 - (NSString *)writeWithEventSink:(id<EventSink>)eventSink {
-  JavaLangStringBuilder *sb = new_JavaLangStringBuilder_init();
+  JavaLangStringBuilder *sb = create_JavaLangStringBuilder_init();
   {
     IOSObjectArray *a__ = [((id<EventSink>) nil_chk(eventSink)) getEvents];
     Event * const *b__ = ((IOSObjectArray *) nil_chk(a__))->buffer_;
     Event * const *e__ = b__ + a__->size_;
     while (b__ < e__) {
       Event *e = *b__++;
-      (void) [sb appendWithNSString:[((Event *) nil_chk(e)) description]];
-      (void) [sb appendWithNSString:JavaLangSystem_getPropertyWithNSString_(@"line.separator")];
+      [sb appendWithNSString:[((Event *) nil_chk(e)) description]];
+      [sb appendWithNSString:JavaLangSystem_getPropertyWithNSString_(@"line.separator")];
     }
   }
   return [sb description];

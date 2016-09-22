@@ -85,8 +85,6 @@ J2OBJC_TYPE_LITERAL_HEADER(LeSessionController_RunnableWrapper)
 
 __attribute__((unused)) static void LeSessionController_SourceType_initWithNSString_withInt_(LeSessionController_SourceType *self, NSString *__name, jint __ordinal);
 
-__attribute__((unused)) static LeSessionController_SourceType *new_LeSessionController_SourceType_initWithNSString_withInt_(NSString *__name, jint __ordinal) NS_RETURNS_RETAINED;
-
 @interface LeSessionController_$1 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
@@ -597,7 +595,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 - (void)pointReachedWithNSString:(NSString *)point {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    self->point_ = point;
+    JreStrongAssign(&self->point_, point);
     [((id<JavaUtilConcurrentLocksCondition>) nil_chk(condition_)) signalAll];
   }
   @finally {
@@ -624,7 +622,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 - (void)updateCurrentEventWithEvent:(Event *)newCurrentEvent {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    currentEvent_ = newCurrentEvent;
+    JreStrongAssign(&currentEvent_, newCurrentEvent);
     [((id<JavaUtilConcurrentLocksCondition>) nil_chk(condition_)) signalAll];
   }
   @finally {
@@ -721,9 +719,9 @@ NSString *LeSessionController_TAG = @"LeBlueController";
     [self stopSession];
     [self waitForFinishedSession];
     stopSession_ = false;
-    self->sessionName_ = sessionName;
+    JreStrongAssign(&self->sessionName_, sessionName);
     [((id<JavaUtilConcurrentLocksCondition>) nil_chk(condition_)) signalAll];
-    [new_JavaLangThread_initWithJavaLangRunnable_(new_LeSessionController_$1_initWithLeSessionController_(self)) start];
+    [create_JavaLangThread_initWithJavaLangRunnable_(create_LeSessionController_$1_initWithLeSessionController_(self)) start];
   }
   @finally {
     [lock_ unlock];
@@ -732,8 +730,8 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 
 - (void)runCurrentEventOnUiThreadWithJavaLangRunnable:(id<JavaLangRunnable>)runnable {
   LeSessionController_RunnableWrapper *wrapper = nil;
-  wrapper = new_LeSessionController_RunnableWrapper_initWithLeSessionController_withJavaLangRunnable_(self, runnable);
-  [(new_JavaLangThread_initWithJavaLangRunnable_withNSString_(wrapper, @"wrapper thread")) start];
+  wrapper = create_LeSessionController_RunnableWrapper_initWithLeSessionController_withJavaLangRunnable_(self, runnable);
+  [(create_JavaLangThread_initWithJavaLangRunnable_withNSString_(wrapper, @"wrapper thread")) start];
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
     while (!wrapper->started_) {
@@ -750,7 +748,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
   @try {
     [((id<JavaUtilMap>) nil_chk(characteristicsValues_)) clear];
     sessionIsRunning_ = true;
-    sessionException_ = nil;
+    JreStrongAssign(&sessionException_, nil);
     [((id<JavaUtilConcurrentLocksCondition>) nil_chk(condition_)) signalAll];
     id<EventSource> source = (sessionName_ == nil) ? [((id<Session>) nil_chk(session_)) getDefaultSource] : [((id<Session>) nil_chk(session_)) getNamedEventSourceWithNSString:sessionName_];
     [source reset];
@@ -762,7 +760,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
         }
         else if (JreLoadVolatileId(&stackedEvent_) != nil) {
           event = JreLoadVolatileId(&stackedEvent_);
-          (void) JreVolatileStrongAssign(&stackedEvent_, nil);
+          JreVolatileStrongAssign(&stackedEvent_, nil);
         }
         else {
           event = [source nextEvent];
@@ -774,8 +772,8 @@ NSString *LeSessionController_TAG = @"LeBlueController";
       }
     }
     @catch (JavaLangException *e) {
-      sessionException_ = e;
-      @throw new_JavaLangRuntimeException_initWithNSString_withNSException_(JreStrcat("$@", @"error processing session at event ", event), e);
+      JreStrongAssign(&sessionException_, e);
+      @throw create_JavaLangRuntimeException_initWithNSString_withNSException_(JreStrcat("$@", @"error processing session at event ", event), e);
     }
     @finally {
       sessionIsRunning_ = false;
@@ -826,10 +824,10 @@ NSString *LeSessionController_TAG = @"LeBlueController";
       JavaUtilUUID *uuid2;
       switch ([(LeEventType *) cast_chk(event->type_, [LeEventType class]) ordinal]) {
         case LeEventType_Enum_mockRemoteDeviceFound:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$2_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$2_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_remoteDeviceFound:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$3_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$3_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_mockRemoteDeviceConnected:
         {
@@ -839,12 +837,12 @@ NSString *LeSessionController_TAG = @"LeBlueController";
           while (b__ < e__) {
             id<LeRemoteDeviceListener> leRemoteListener = *b__++;
             id<LeRemoteDeviceListener> listener = leRemoteListener;
-            [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, listener, event)];
+            [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, listener, event)];
           }
         }
         break;
         case LeEventType_Enum_remoteDeviceConnected:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$5_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$5_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_mockRemoteDeviceDisconnected:
         {
@@ -854,12 +852,12 @@ NSString *LeSessionController_TAG = @"LeBlueController";
           while (b__ < e__) {
             id<LeRemoteDeviceListener> leRemoteListener = *b__++;
             id<LeRemoteDeviceListener> listener = leRemoteListener;
-            [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, listener, event)];
+            [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, listener, event)];
           }
         }
         break;
         case LeEventType_Enum_remoteDeviceDisconnected:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$7_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$7_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_mockRemoteDeviceClosed:
         {
@@ -869,12 +867,12 @@ NSString *LeSessionController_TAG = @"LeBlueController";
           while (b__ < e__) {
             id<LeRemoteDeviceListener> leRemoteListener = *b__++;
             id<LeRemoteDeviceListener> listener = leRemoteListener;
-            [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, listener, event)];
+            [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, listener, event)];
           }
         }
         break;
         case LeEventType_Enum_remoteDeviceClosed:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$9_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$9_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_mockRemoteDeviceServicesDiscovered:
         {
@@ -884,44 +882,44 @@ NSString *LeSessionController_TAG = @"LeBlueController";
           while (b__ < e__) {
             id<LeRemoteDeviceListener> leRemoteListener = *b__++;
             id<LeRemoteDeviceListener> listener = leRemoteListener;
-            [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(self, event, listener)];
+            [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(self, event, listener)];
           }
         }
         break;
         case LeEventType_Enum_remoteDeviceServicesDiscovered:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$11_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$11_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_remoteDeviceRssiRead:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$12_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$12_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_mockCharacteristicChangedWithMockedValue:
-        (void) [((id<JavaUtilMap>) nil_chk(characteristicsValues_)) putWithId:JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(event->values_), 0)) withId:LeUtil_stringToBytesWithNSString_(IOSObjectArray_Get(nil_chk(event->values_), 1))];
+        [((id<JavaUtilMap>) nil_chk(characteristicsValues_)) putWithId:JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(event->values_), 0)) withId:LeUtil_stringToBytesWithNSString_(IOSObjectArray_Get(nil_chk(event->values_), 1))];
         case LeEventType_Enum_mockCharacteristicChanged:
         characteristic = [self createOrReturnCharacteristicWithNSString:IOSObjectArray_Get(nil_chk(event->values_), 0)];
         uuid = JavaUtilUUID_fromStringWithNSString_([((id<Session>) nil_chk(session_)) getSourceIdentificationWithInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(event->values_), 0)))) intValue]]);
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, event, uuid, characteristic)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, event, uuid, characteristic)];
         break;
         case LeEventType_Enum_characteristicChanged:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$14_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$14_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_characteristicWritten:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$15_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$15_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_mockCharacteristicNotificationChanged:
         characteristic2 = [self createOrReturnCharacteristicWithNSString:IOSObjectArray_Get(nil_chk(event->values_), 0)];
         uuid2 = JavaUtilUUID_fromStringWithNSString_([((id<Session>) nil_chk(session_)) getSourceIdentificationWithInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(event->values_), 0)))) intValue]]);
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, event, uuid2, characteristic2)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, event, uuid2, characteristic2)];
         break;
         case LeEventType_Enum_characteristicNotificationChanged:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:new_LeSessionController_$17_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$17_initWithLeSessionController_withEvent_(self, event)];
         break;
         default:
         switch ([(LeEventType *) cast_chk(event->type_, [LeEventType class]) ordinal]) {
           case LeEventType_Enum_mockCharacteristicMockedValue:
-          (void) [((id<JavaUtilMap>) nil_chk(characteristicsValues_)) putWithId:JavaLangInteger_valueOfWithInt_(event->source_) withId:LeUtil_stringToBytesWithNSString_(IOSObjectArray_Get(nil_chk(event->values_), 0))];
+          [((id<JavaUtilMap>) nil_chk(characteristicsValues_)) putWithId:JavaLangInteger_valueOfWithInt_(event->source_) withId:LeUtil_stringToBytesWithNSString_(IOSObjectArray_Get(nil_chk(event->values_), 0))];
           break;
           case LeEventType_Enum_mockCharacteristicClearMockedValue:
-          (void) [((id<JavaUtilMap>) nil_chk(characteristicsValues_)) removeWithId:JavaLangInteger_valueOfWithInt_(event->source_)];
+          [((id<JavaUtilMap>) nil_chk(characteristicsValues_)) removeWithId:JavaLangInteger_valueOfWithInt_(event->source_)];
           break;
           case LeEventType_Enum_mockWaitForPoint:
           [self waitForPointOrEventWithNSString:IOSObjectArray_Get(nil_chk(event->values_), 0)];
@@ -930,7 +928,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
           [self pointReachedWithNSString:IOSObjectArray_Get(nil_chk(event->values_), 0)];
           break;
           default:
-          @throw new_JavaLangRuntimeException_initWithNSString_(JreStrcat("$@", @"Unimplemented event type: ", event->type_));
+          @throw create_JavaLangRuntimeException_initWithNSString_(JreStrcat("$@", @"Unimplemented event type: ", event->type_));
         }
         [self updateCurrentEventWithEvent:nil];
       }
@@ -1005,14 +1003,14 @@ NSString *LeSessionController_TAG = @"LeBlueController";
     if (eventType == JreLoadEnum(LeEventType, characteristicGetValue)) {
       IOSByteArray *value = [((id<JavaUtilMap>) nil_chk(characteristicsValues_)) getWithId:JavaLangInteger_valueOfWithInt_(source)];
       if (value != nil) {
-        values_ = [IOSObjectArray newArrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value) } count:1 type:NSString_class_()];
+        JreStrongAssignAndConsume(&values_, [IOSObjectArray newArrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value) } count:1 type:NSString_class_()]);
         return true;
       }
     }
     if (eventType == JreLoadEnum(LeEventType, characteristicGetIntValue)) {
       IOSByteArray *value = [((id<JavaUtilMap>) nil_chk(characteristicsValues_)) getWithId:JavaLangInteger_valueOfWithInt_(source)];
       if (value != nil) {
-        values_ = [IOSObjectArray newArrayWithObjects:(id[]){ JreStrcat("B", IOSByteArray_Get(value, 0)) } count:1 type:NSString_class_()];
+        JreStrongAssignAndConsume(&values_, [IOSObjectArray newArrayWithObjects:(id[]){ JreStrcat("B", IOSByteArray_Get(value, 0)) } count:1 type:NSString_class_()]);
         return true;
       }
     }
@@ -1038,7 +1036,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
       id<MockedResponse> mockedResponse = [mocker mockWithLeMockController:self withLeEventType:eventType withInt:source withNSStringArray:arguments];
       if (mockedResponse != nil) {
         [((id<JavaUtilList>) nil_chk(JreLoadVolatileId(&mockedEvents_))) addAllWithJavaUtilCollection:JavaUtilArrays_asListWithNSObjectArray_([mockedResponse getNextMockedEvents])];
-        values_ = [mockedResponse getMockedResultValues];
+        JreStrongAssign(&values_, [mockedResponse getMockedResultValues]);
         if ([((id<JavaUtilList>) nil_chk(JreLoadVolatileId(&mockedEvents_))) size] > 0) {
           while (sessionIsRunning_ && currentEvent_ != nil && JreLoadVolatileId(&stackedEvent_) != nil) @try {
             [((id<JavaUtilConcurrentLocksCondition>) nil_chk(condition_)) await];
@@ -1046,7 +1044,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
           @catch (JavaLangInterruptedException *e) {
             [((JavaLangInterruptedException *) nil_chk(e)) printStackTrace];
           }
-          if (currentEvent_ != nil) (void) JreVolatileStrongAssign(&stackedEvent_, currentEvent_);
+          if (currentEvent_ != nil) JreVolatileStrongAssign(&stackedEvent_, currentEvent_);
           [self updateCurrentEventWithEvent:nil];
           while (sessionIsRunning_ && (currentEvent_ == nil || [((id<JavaUtilList>) nil_chk(JreLoadVolatileId(&mockedEvents_))) size] > 0)) @try {
             [((id<JavaUtilConcurrentLocksCondition>) nil_chk(condition_)) await];
@@ -1065,7 +1063,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
     }
     if (currentEvent_ != nil && eventType == currentEvent_->type_) {
       self->source_ = currentEvent_->source_;
-      self->values_ = currentEvent_->values_;
+      JreStrongAssign(&self->values_, currentEvent_->values_);
       [self updateCurrentEventWithEvent:nil];
       while (currentEvent_ == nil && sessionIsRunning_) @try {
         [((id<JavaUtilConcurrentLocksCondition>) nil_chk(condition_)) await];
@@ -1077,12 +1075,12 @@ NSString *LeSessionController_TAG = @"LeBlueController";
       }
       else {
         NSString *message = JreStrcat("$@$I$I", @"Mismatch source: For event ", eventType, @" source not correct: ", source, @" expected ", self->source_);
-        if (strict_) @throw new_JavaLangRuntimeException_initWithNSString_(message);
+        if (strict_) @throw create_JavaLangRuntimeException_initWithNSString_(message);
         return false;
       }
     }
     NSString *message = JreStrcat("$@$@CI$Z$$$@", @"Mismatch, expected ", (currentEvent_ != nil ? ((id) currentEvent_->type_) : @"nothing"), @" got :", eventType, '(', source, @") is happening (session running? :", sessionIsRunning_, @") with values", JavaUtilArrays_toStringWithNSObjectArray_(self->values_), @" full event: ", currentEvent_);
-    if (strict_) @throw new_JavaLangRuntimeException_initWithNSString_(message);
+    if (strict_) @throw create_JavaLangRuntimeException_initWithNSString_(message);
     if ([self shouldLog]) [((JavaIoPrintStream *) nil_chk(JreLoadStatic(JavaLangSystem, out))) printlnWithNSString:JreStrcat("$$$", LeSessionController_TAG, @": ", message)];
     return false;
   }
@@ -1094,7 +1092,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 - (void)deviceStartScanningWithLeDeviceMock:(LeDeviceMock *)leDeviceMock {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, deviceStartScanning) withLeDeviceMock:leDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, deviceStartScanning) withLeDeviceMock:leDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
   }
   @finally {
     [lock_ unlock];
@@ -1105,7 +1103,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
                       withJavaUtilUUIDArray:(IOSObjectArray *)uuids {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, deviceStartScanning) withLeDeviceMock:leDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, deviceStartScanning) withLeDeviceMock:leDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
   }
   @finally {
     [lock_ unlock];
@@ -1115,7 +1113,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 - (void)deviceStopScanningWithLeDeviceMock:(LeDeviceMock *)leDeviceMock {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, deviceStopScanning) withLeDeviceMock:leDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, deviceStopScanning) withLeDeviceMock:leDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
   }
   @finally {
     [lock_ unlock];
@@ -1125,7 +1123,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 - (void)remoteDeviceConnectWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceConnect) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceConnect) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
   }
   @finally {
     [lock_ unlock];
@@ -1135,7 +1133,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 - (void)remoteDeviceStartServiceDiscoveryWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceStartServiceDiscovery) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceStartServiceDiscovery) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
   }
   @finally {
     [lock_ unlock];
@@ -1146,7 +1144,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
                                           withJavaUtilUUIDArray:(IOSObjectArray *)uuids {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceStartServiceDiscovery) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ JavaUtilArrays_toStringWithNSObjectArray_(uuids) } count:1 type:NSString_class_()]];
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceStartServiceDiscovery) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JavaUtilArrays_toStringWithNSObjectArray_(uuids) } count:1 type:NSString_class_()]];
   }
   @finally {
     [lock_ unlock];
@@ -1156,7 +1154,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 - (void)remoteDeviceCloseWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceClose) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceClose) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
   }
   @finally {
     [lock_ unlock];
@@ -1166,7 +1164,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 - (void)remoteDeviceDisconnectWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceDisconnect) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceDisconnect) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
   }
   @finally {
     [lock_ unlock];
@@ -1184,8 +1182,8 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 - (void)remoteDeviceSetCharacteristicListenerWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock
                                        withLeCharacteristicListener:(id<LeCharacteristicListener>)listener
                                               withJavaUtilUUIDArray:(IOSObjectArray *)uuids {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceSetCharacteristicListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ JavaUtilArrays_toStringWithNSObjectArray_(uuids) } count:1 type:NSString_class_()]];
-  (void) [((id<JavaUtilMap>) nil_chk(characteristicListeners_)) putWithId:JavaLangInteger_valueOfWithInt_([self eventIntValue]) withId:listener];
+  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceSetCharacteristicListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JavaUtilArrays_toStringWithNSObjectArray_(uuids) } count:1 type:NSString_class_()]];
+  [((id<JavaUtilMap>) nil_chk(characteristicListeners_)) putWithId:JavaLangInteger_valueOfWithInt_([self eventIntValue]) withId:listener];
 }
 
 - (id<LeCharacteristicWriteListener>)getCharacteristicWriteListenerWithNSString:(NSString *)key {
@@ -1199,15 +1197,15 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 - (void)remoteDeviceSetCharacteristicWriteListenerWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock
                                        withLeCharacteristicWriteListener:(id<LeCharacteristicWriteListener>)listener
                                                    withJavaUtilUUIDArray:(IOSObjectArray *)uuids {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceSetCharacteristicWriteListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ JavaUtilArrays_toStringWithNSObjectArray_(uuids) } count:1 type:NSString_class_()]];
-  (void) [((id<JavaUtilMap>) nil_chk(characteristicWriteListeners_)) putWithId:JavaLangInteger_valueOfWithInt_([self eventIntValue]) withId:listener];
+  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceSetCharacteristicWriteListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JavaUtilArrays_toStringWithNSObjectArray_(uuids) } count:1 type:NSString_class_()]];
+  [((id<JavaUtilMap>) nil_chk(characteristicWriteListeners_)) putWithId:JavaLangInteger_valueOfWithInt_([self eventIntValue]) withId:listener];
 }
 
 - (jboolean)serviceEnableCharacteristicNotificationWithLeGattServiceMock:(LeGattServiceMock *)leGattServiceMock
                                                         withJavaUtilUUID:(JavaUtilUUID *)characteristic {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, serviceEnableCharacteristicNotification) withLeGattServiceMock:leGattServiceMock withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(characteristic)) description] } count:1 type:NSString_class_()]];
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, serviceEnableCharacteristicNotification) withLeGattServiceMock:leGattServiceMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(characteristic)) description] } count:1 type:NSString_class_()]];
     return true;
   }
   @finally {
@@ -1229,14 +1227,14 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 
 - (void)addDeviceWithInt:(jint)key
         withLeDeviceMock:(LeDeviceMock *)mock {
-  (void) [((id<JavaUtilMap>) nil_chk(devices_)) putWithId:JavaLangInteger_valueOfWithInt_(key) withId:mock];
-  (void) [((id<JavaUtilMap>) nil_chk(deviceKeys_)) putWithId:mock withId:JavaLangInteger_valueOfWithInt_(key)];
+  [((id<JavaUtilMap>) nil_chk(devices_)) putWithId:JavaLangInteger_valueOfWithInt_(key) withId:mock];
+  [((id<JavaUtilMap>) nil_chk(deviceKeys_)) putWithId:mock withId:JavaLangInteger_valueOfWithInt_(key)];
 }
 
 - (LeRemoteDeviceMock *)createRemoteDeviceWithInt:(jint)key
                                  withLeDeviceMock:(LeDeviceMock *)deviceMock {
-  (void) [((id<JavaUtilMap>) nil_chk(remoteDevices_)) putWithId:JavaLangInteger_valueOfWithInt_(key) withId:new_LeRemoteDeviceMock_initWithInt_withLeMockController_withLeDeviceMock_(key, self, deviceMock)];
-  (void) [((id<JavaUtilMap>) nil_chk(remoteDeviceKeys_)) putWithId:[((id<JavaUtilMap>) nil_chk(remoteDevices_)) getWithId:JavaLangInteger_valueOfWithInt_(key)] withId:JavaLangInteger_valueOfWithInt_(key)];
+  [((id<JavaUtilMap>) nil_chk(remoteDevices_)) putWithId:JavaLangInteger_valueOfWithInt_(key) withId:create_LeRemoteDeviceMock_initWithInt_withLeMockController_withLeDeviceMock_(key, self, deviceMock)];
+  [((id<JavaUtilMap>) nil_chk(remoteDeviceKeys_)) putWithId:[((id<JavaUtilMap>) nil_chk(remoteDevices_)) getWithId:JavaLangInteger_valueOfWithInt_(key)] withId:JavaLangInteger_valueOfWithInt_(key)];
   return [((id<JavaUtilMap>) nil_chk(remoteDevices_)) getWithId:JavaLangInteger_valueOfWithInt_(key)];
 }
 
@@ -1263,8 +1261,8 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 }
 
 - (LeGattServiceMock *)createGattServiceWithInt:(jint)key {
-  (void) [((id<JavaUtilMap>) nil_chk(gattServices_)) putWithId:JavaLangInteger_valueOfWithInt_(key) withId:new_LeGattServiceMock_initWithJavaLangInteger_withLeMockController_(JavaLangInteger_valueOfWithInt_(key), self)];
-  (void) [((id<JavaUtilMap>) nil_chk(gattServicesKeys_)) putWithId:[((id<JavaUtilMap>) nil_chk(gattServices_)) getWithId:JavaLangInteger_valueOfWithInt_(key)] withId:JavaLangInteger_valueOfWithInt_(key)];
+  [((id<JavaUtilMap>) nil_chk(gattServices_)) putWithId:JavaLangInteger_valueOfWithInt_(key) withId:create_LeGattServiceMock_initWithJavaLangInteger_withLeMockController_(JavaLangInteger_valueOfWithInt_(key), self)];
+  [((id<JavaUtilMap>) nil_chk(gattServicesKeys_)) putWithId:[((id<JavaUtilMap>) nil_chk(gattServices_)) getWithId:JavaLangInteger_valueOfWithInt_(key)] withId:JavaLangInteger_valueOfWithInt_(key)];
   return [((id<JavaUtilMap>) nil_chk(gattServices_)) getWithId:JavaLangInteger_valueOfWithInt_(key)];
 }
 
@@ -1278,8 +1276,8 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 
 - (void)addDeviceListenerWithInt:(jint)key
             withLeDeviceListener:(id<LeDeviceListener>)listener {
-  (void) [((id<JavaUtilMap>) nil_chk(deviceListeners_)) putWithId:JavaLangInteger_valueOfWithInt_(key) withId:listener];
-  (void) [((id<JavaUtilMap>) nil_chk(deviceListenerKeys_)) putWithId:listener withId:JavaLangInteger_valueOfWithInt_(key)];
+  [((id<JavaUtilMap>) nil_chk(deviceListeners_)) putWithId:JavaLangInteger_valueOfWithInt_(key) withId:listener];
+  [((id<JavaUtilMap>) nil_chk(deviceListenerKeys_)) putWithId:listener withId:JavaLangInteger_valueOfWithInt_(key)];
 }
 
 - (id<LeDeviceListener>)getDeviceListenerWithInt:(jint)key {
@@ -1297,8 +1295,8 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 - (LeGattCharacteristicMock *)createOrReturnCharacteristicWithInt:(jint)key {
   LeGattCharacteristicMock *mock = [((id<JavaUtilMap>) nil_chk(characteristics_)) getWithId:JavaLangInteger_valueOfWithInt_(key)];
   if (mock != nil) return mock;
-  (void) [((id<JavaUtilMap>) nil_chk(characteristics_)) putWithId:JavaLangInteger_valueOfWithInt_(key) withId:new_LeGattCharacteristicMock_initWithLeMockController_(self)];
-  (void) [((id<JavaUtilMap>) nil_chk(characteristicsKeys_)) putWithId:[((id<JavaUtilMap>) nil_chk(characteristics_)) getWithId:JavaLangInteger_valueOfWithInt_(key)] withId:JavaLangInteger_valueOfWithInt_(key)];
+  [((id<JavaUtilMap>) nil_chk(characteristics_)) putWithId:JavaLangInteger_valueOfWithInt_(key) withId:create_LeGattCharacteristicMock_initWithLeMockController_(self)];
+  [((id<JavaUtilMap>) nil_chk(characteristicsKeys_)) putWithId:[((id<JavaUtilMap>) nil_chk(characteristics_)) getWithId:JavaLangInteger_valueOfWithInt_(key)] withId:JavaLangInteger_valueOfWithInt_(key)];
   return [((id<JavaUtilMap>) nil_chk(characteristics_)) getWithId:JavaLangInteger_valueOfWithInt_(key)];
 }
 
@@ -1316,7 +1314,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 
 - (id<LeGattCharacteristic>)serviceGetCharacteristicWithLeGattServiceMock:(LeGattServiceMock *)leGattServiceMock
                                                          withJavaUtilUUID:(JavaUtilUUID *)uuid {
-  if ([self checkEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetCharacteristic) withLeGattServiceMock:leGattServiceMock withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description] } count:1 type:NSString_class_()]]) return [self createOrReturnCharacteristicWithInt:[self eventIntValue]];
+  if ([self checkEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetCharacteristic) withLeGattServiceMock:leGattServiceMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description] } count:1 type:NSString_class_()]]) return [self createOrReturnCharacteristicWithInt:[self eventIntValue]];
   else return nil;
 }
 
@@ -1324,7 +1322,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
                      withLeDeviceListener:(id<LeDeviceListener>)listener {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    if ([self checkEventWithSourceIdWithLeEventType:JreLoadEnum(LeEventType, deviceAddListener) withLeSessionController_SourceType:JreLoadEnum(LeSessionController_SourceType, device) withInt:[self getDeviceKeyWithLeDeviceMock:leDeviceMock] withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]]) {
+    if ([self checkEventWithSourceIdWithLeEventType:JreLoadEnum(LeEventType, deviceAddListener) withLeSessionController_SourceType:JreLoadEnum(LeSessionController_SourceType, device) withInt:[self getDeviceKeyWithLeDeviceMock:leDeviceMock] withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]]) {
       [self addDeviceListenerWithInt:[self eventIntValue] withLeDeviceListener:listener];
     }
   }
@@ -1337,7 +1335,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
                         withLeDeviceListener:(id<LeDeviceListener>)listener {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, deviceRemoveListener) withLeDeviceMock:leDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, deviceRemoveListener) withLeDeviceMock:leDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
   }
   @finally {
     [lock_ unlock];
@@ -1354,18 +1352,18 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 
 - (void)remoteDeviceAddListenerWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock
                            withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)listener {
-  if ([self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceAddListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]]) (void) [((id<JavaUtilMap>) nil_chk(remoteDeviceListeners_)) putWithId:JavaLangInteger_valueOfWithInt_([self eventIntValue]) withId:listener];
+  if ([self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceAddListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]]) [((id<JavaUtilMap>) nil_chk(remoteDeviceListeners_)) putWithId:JavaLangInteger_valueOfWithInt_([self eventIntValue]) withId:listener];
 }
 
 - (void)remoteDeviceRemoveListenerWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock
                               withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)listener {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceRemoveListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceRemoveListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (jboolean)deviceCheckBleHardwareAvailableWithLeDeviceMock:(LeDeviceMock *)leDeviceMock {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    if ([self checkEventWithLeEventType:JreLoadEnum(LeEventType, deviceCheckBleHardwareAvailable) withLeDeviceMock:leDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]]) {
+    if ([self checkEventWithLeEventType:JreLoadEnum(LeEventType, deviceCheckBleHardwareAvailable) withLeDeviceMock:leDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]]) {
       return [self eventBooleanValue];
     }
     return true;
@@ -1378,7 +1376,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 - (jboolean)deviceIsBtEnabledWithLeDeviceMock:(LeDeviceMock *)leDeviceMock {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, deviceIsBtEnabled) withLeDeviceMock:leDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, deviceIsBtEnabled) withLeDeviceMock:leDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
     return [self eventBooleanValue];
   }
   @finally {
@@ -1387,46 +1385,46 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 }
 
 - (NSString *)remoteDeviceGetAddressWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock {
-  if ([self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetAddress) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]]) return [self eventValue];
+  if ([self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetAddress) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]]) return [self eventValue];
   else return @"0:0:0:0";
 }
 
 - (NSString *)remoteDeviceGetNameWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetName) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetName) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
   return [self eventValue];
 }
 
 - (JavaUtilUUID *)serviceGetUuidWithLeGattServiceMock:(LeGattServiceMock *)leGattServiceMock {
-  return [self checkEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetUUID) withLeGattServiceMock:leGattServiceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]] ? JavaUtilUUID_fromStringWithNSString_([self eventValue]) : JavaUtilUUID_randomUUID();
+  return [self checkEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetUUID) withLeGattServiceMock:leGattServiceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]] ? JavaUtilUUID_fromStringWithNSString_([self eventValue]) : JavaUtilUUID_randomUUID();
 }
 
 - (IOSByteArray *)characteristicGetValueWithLeGattCharacteristicMock:(LeGattCharacteristicMock *)leGattCharacteristicMock {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicGetValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicGetValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
   return LeUtil_stringToBytesWithNSString_([self eventValue]);
 }
 
 - (jint)characteristicGetIntValueWithLeGattCharacteristicMock:(LeGattCharacteristicMock *)leGattCharacteristicMock
                                                  withLeFormat:(LeFormat *)format
                                                       withInt:(jint)index {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicGetIntValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((LeFormat *) nil_chk(format)) description], JreStrcat("I", index) } count:2 type:NSString_class_()]];
+  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicGetIntValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((LeFormat *) nil_chk(format)) description], JreStrcat("I", index) } count:2 type:NSString_class_()]];
   return [self eventIntValue];
 }
 
 - (void)characteristicSetValueWithLeGattCharacteristicMock:(LeGattCharacteristicMock *)leGattCharacteristicMock
                                              withByteArray:(IOSByteArray *)value {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicSetValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value) } count:1 type:NSString_class_()]];
+  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicSetValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value) } count:1 type:NSString_class_()]];
 }
 
 - (void)characteristicSetValueWithLeGattCharacteristicMock:(LeGattCharacteristicMock *)leGattCharacteristicMock
                                              withByteArray:(IOSByteArray *)value
                                        withJavaLangBoolean:(JavaLangBoolean *)withResponse {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicSetValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value), [((JavaLangBoolean *) nil_chk(withResponse)) description] } count:2 type:NSString_class_()]];
+  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicSetValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value), [((JavaLangBoolean *) nil_chk(withResponse)) description] } count:2 type:NSString_class_()]];
 }
 
 - (void)remoteDeviceReadRssiWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
-    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceReadRssi) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceReadRssi) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
   }
   @finally {
     [lock_ unlock];
@@ -1434,7 +1432,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 }
 
 - (void)characteristicReadWithLeGattCharacteristicMock:(LeGattCharacteristicMock *)leGattCharacteristicMock {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicRead) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicRead) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)__javaClone:(LeSessionController *)original {
@@ -1444,8 +1442,31 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 }
 
 - (void)dealloc {
+  RELEASE_(lock_);
+  RELEASE_(condition_);
+  RELEASE_(values_);
+  RELEASE_(point_);
+  RELEASE_(currentEvent_);
+  RELEASE_(sessionName_);
+  RELEASE_(session_);
   JreReleaseVolatile(&mockedEvents_);
   JreReleaseVolatile(&stackedEvent_);
+  RELEASE_(characteristicsValues_);
+  RELEASE_(sessionException_);
+  RELEASE_(characteristicListeners_);
+  RELEASE_(characteristicWriteListeners_);
+  RELEASE_(devices_);
+  RELEASE_(deviceKeys_);
+  RELEASE_(remoteDevices_);
+  RELEASE_(remoteDeviceKeys_);
+  RELEASE_(gattServices_);
+  RELEASE_(gattServicesKeys_);
+  RELEASE_(deviceListeners_);
+  RELEASE_(deviceListenerKeys_);
+  RELEASE_(characteristics_);
+  RELEASE_(characteristicsKeys_);
+  RELEASE_(remoteDeviceListeners_);
+  [super dealloc];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -1590,33 +1611,33 @@ LeSessionController *create_LeSessionController_initWithSession_(id<Session> ses
 void LeSessionController_initWithSession_withBoolean_(LeSessionController *self, id<Session> session, jboolean strict) {
   NSObject_init(self);
   self->counter_ = 0;
-  self->lock_ = new_JavaUtilConcurrentLocksReentrantLock_initWithBoolean_(true);
-  self->condition_ = [self->lock_ newCondition];
-  self->point_ = @"";
+  JreStrongAssignAndConsume(&self->lock_, new_JavaUtilConcurrentLocksReentrantLock_initWithBoolean_(true));
+  JreStrongAssign(&self->condition_, [self->lock_ newCondition]);
+  JreStrongAssign(&self->point_, @"");
   self->waitingForEvent_ = false;
-  self->sessionName_ = nil;
-  (void) JreVolatileStrongAssignAndConsume(&self->mockedEvents_, new_JavaUtilArrayList_init());
-  (void) JreVolatileStrongAssign(&self->stackedEvent_, nil);
+  JreStrongAssign(&self->sessionName_, nil);
+  JreVolatileStrongAssignAndConsume(&self->mockedEvents_, new_JavaUtilArrayList_init());
+  JreVolatileStrongAssign(&self->stackedEvent_, nil);
   self->sessionIsRunning_ = false;
   self->stopSession_ = false;
   self->executeNextEventAfter_ = 0;
-  self->characteristicsValues_ = new_JavaUtilHashMap_init();
-  self->sessionException_ = nil;
-  self->characteristicListeners_ = new_JavaUtilHashMap_init();
-  self->characteristicWriteListeners_ = new_JavaUtilHashMap_init();
-  self->devices_ = new_JavaUtilHashMap_init();
-  self->deviceKeys_ = new_JavaUtilHashMap_init();
-  self->remoteDevices_ = new_JavaUtilHashMap_init();
-  self->remoteDeviceKeys_ = JavaUtilCollections_synchronizedMapWithJavaUtilMap_(new_JavaUtilHashMap_init());
-  self->gattServices_ = new_JavaUtilHashMap_init();
-  self->gattServicesKeys_ = new_JavaUtilHashMap_init();
-  self->deviceListeners_ = new_JavaUtilHashMap_init();
-  self->deviceListenerKeys_ = new_JavaUtilHashMap_init();
-  self->characteristics_ = new_JavaUtilHashMap_init();
-  self->characteristicsKeys_ = new_JavaUtilHashMap_init();
-  self->remoteDeviceListeners_ = new_JavaUtilHashMap_init();
+  JreStrongAssignAndConsume(&self->characteristicsValues_, new_JavaUtilHashMap_init());
+  JreStrongAssign(&self->sessionException_, nil);
+  JreStrongAssignAndConsume(&self->characteristicListeners_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->characteristicWriteListeners_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->devices_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->deviceKeys_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->remoteDevices_, new_JavaUtilHashMap_init());
+  JreStrongAssign(&self->remoteDeviceKeys_, JavaUtilCollections_synchronizedMapWithJavaUtilMap_(create_JavaUtilHashMap_init()));
+  JreStrongAssignAndConsume(&self->gattServices_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->gattServicesKeys_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->deviceListeners_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->deviceListenerKeys_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->characteristics_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->characteristicsKeys_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->remoteDeviceListeners_, new_JavaUtilHashMap_init());
   self->strict_ = strict;
-  self->session_ = session;
+  JreStrongAssign(&self->session_, session);
 }
 
 LeSessionController *new_LeSessionController_initWithSession_withBoolean_(id<Session> session, jboolean strict) {
@@ -1651,6 +1672,12 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController)
   [((id<JavaLangRunnable>) nil_chk(runnable_)) run];
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(runnable_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithLeSessionController:withJavaLangRunnable:", "RunnableWrapper", NULL, 0x1, NULL, NULL },
@@ -1668,10 +1695,10 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController)
 @end
 
 void LeSessionController_RunnableWrapper_initWithLeSessionController_withJavaLangRunnable_(LeSessionController_RunnableWrapper *self, LeSessionController *outer$, id<JavaLangRunnable> runnable) {
-  self->this$0_ = outer$;
+  JreStrongAssign(&self->this$0_, outer$);
   NSObject_init(self);
   self->started_ = false;
-  self->runnable_ = runnable;
+  JreStrongAssign(&self->runnable_, runnable);
 }
 
 LeSessionController_RunnableWrapper *new_LeSessionController_RunnableWrapper_initWithLeSessionController_withJavaLangRunnable_(LeSessionController *outer$, id<JavaLangRunnable> runnable) {
@@ -1704,10 +1731,18 @@ LeSessionController_SourceType *LeSessionController_SourceType_values_[4];
 
 + (void)initialize {
   if (self == [LeSessionController_SourceType class]) {
-    JreEnum(LeSessionController_SourceType, device) = new_LeSessionController_SourceType_initWithNSString_withInt_(@"device", 0);
-    JreEnum(LeSessionController_SourceType, remoteDevice) = new_LeSessionController_SourceType_initWithNSString_withInt_(@"remoteDevice", 1);
-    JreEnum(LeSessionController_SourceType, gattService) = new_LeSessionController_SourceType_initWithNSString_withInt_(@"gattService", 2);
-    JreEnum(LeSessionController_SourceType, gattCharacteristic) = new_LeSessionController_SourceType_initWithNSString_withInt_(@"gattCharacteristic", 3);
+    size_t objSize = class_getInstanceSize(self);
+    size_t allocSize = 4 * objSize;
+    uintptr_t ptr = (uintptr_t)calloc(allocSize, 1);
+    id e;
+    (JreEnum(LeSessionController_SourceType, device) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeSessionController_SourceType_initWithNSString_withInt_(e, @"device", 0);
+    (JreEnum(LeSessionController_SourceType, remoteDevice) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeSessionController_SourceType_initWithNSString_withInt_(e, @"remoteDevice", 1);
+    (JreEnum(LeSessionController_SourceType, gattService) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeSessionController_SourceType_initWithNSString_withInt_(e, @"gattService", 2);
+    (JreEnum(LeSessionController_SourceType, gattCharacteristic) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeSessionController_SourceType_initWithNSString_withInt_(e, @"gattCharacteristic", 3);
     J2OBJC_SET_INITIALIZED(LeSessionController_SourceType)
   }
 }
@@ -1730,10 +1765,6 @@ void LeSessionController_SourceType_initWithNSString_withInt_(LeSessionControlle
   JavaLangEnum_initWithNSString_withInt_(self, __name, __ordinal);
 }
 
-LeSessionController_SourceType *new_LeSessionController_SourceType_initWithNSString_withInt_(NSString *__name, jint __ordinal) {
-  J2OBJC_NEW_IMPL(LeSessionController_SourceType, initWithNSString_withInt_, __name, __ordinal)
-}
-
 IOSObjectArray *LeSessionController_SourceType_values() {
   LeSessionController_SourceType_initialize();
   return [IOSObjectArray arrayWithObjects:LeSessionController_SourceType_values_ count:4 type:LeSessionController_SourceType_class_()];
@@ -1747,7 +1778,7 @@ LeSessionController_SourceType *LeSessionController_SourceType_valueOfWithNSStri
       return e;
     }
   }
-  @throw [[JavaLangIllegalArgumentException alloc] initWithNSString:name];
+  @throw [[[JavaLangIllegalArgumentException alloc] initWithNSString:name] autorelease];
   return nil;
 }
 
@@ -1773,6 +1804,11 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_SourceType)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -1789,7 +1825,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_SourceType)
 @end
 
 void LeSessionController_$1_initWithLeSessionController_(LeSessionController_$1 *self, LeSessionController *outer$) {
-  self->this$0_ = outer$;
+  JreStrongAssign(&self->this$0_, outer$);
   NSObject_init(self);
 }
 
@@ -1823,6 +1859,12 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$1)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -1840,8 +1882,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$1)
 @end
 
 void LeSessionController_$2_initWithLeSessionController_withEvent_(LeSessionController_$2 *self, LeSessionController *outer$, Event *capture$0) {
-  self->this$0_ = outer$;
-  self->val$event_ = capture$0;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
   NSObject_init(self);
 }
 
@@ -1867,6 +1909,12 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$2)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -1884,8 +1932,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$2)
 @end
 
 void LeSessionController_$3_initWithLeSessionController_withEvent_(LeSessionController_$3 *self, LeSessionController *outer$, Event *capture$0) {
-  self->this$0_ = outer$;
-  self->val$event_ = capture$0;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
   NSObject_init(self);
 }
 
@@ -1912,6 +1960,13 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$3)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$listener_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -1930,9 +1985,9 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$3)
 @end
 
 void LeSessionController_$4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_$4 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
-  self->this$0_ = outer$;
-  self->val$listener_ = capture$0;
-  self->val$event_ = capture$1;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$listener_, capture$0);
+  JreStrongAssign(&self->val$event_, capture$1);
   NSObject_init(self);
 }
 
@@ -1958,6 +2013,12 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$4)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -1975,8 +2036,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$4)
 @end
 
 void LeSessionController_$5_initWithLeSessionController_withEvent_(LeSessionController_$5 *self, LeSessionController *outer$, Event *capture$0) {
-  self->this$0_ = outer$;
-  self->val$event_ = capture$0;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
   NSObject_init(self);
 }
 
@@ -2003,6 +2064,13 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$5)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$listener_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -2021,9 +2089,9 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$5)
 @end
 
 void LeSessionController_$6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_$6 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
-  self->this$0_ = outer$;
-  self->val$listener_ = capture$0;
-  self->val$event_ = capture$1;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$listener_, capture$0);
+  JreStrongAssign(&self->val$event_, capture$1);
   NSObject_init(self);
 }
 
@@ -2049,6 +2117,12 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$6)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -2066,8 +2140,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$6)
 @end
 
 void LeSessionController_$7_initWithLeSessionController_withEvent_(LeSessionController_$7 *self, LeSessionController *outer$, Event *capture$0) {
-  self->this$0_ = outer$;
-  self->val$event_ = capture$0;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
   NSObject_init(self);
 }
 
@@ -2094,6 +2168,13 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$7)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$listener_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -2112,9 +2193,9 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$7)
 @end
 
 void LeSessionController_$8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_$8 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
-  self->this$0_ = outer$;
-  self->val$listener_ = capture$0;
-  self->val$event_ = capture$1;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$listener_, capture$0);
+  JreStrongAssign(&self->val$event_, capture$1);
   NSObject_init(self);
 }
 
@@ -2140,6 +2221,12 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$8)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -2157,8 +2244,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$8)
 @end
 
 void LeSessionController_$9_initWithLeSessionController_withEvent_(LeSessionController_$9 *self, LeSessionController *outer$, Event *capture$0) {
-  self->this$0_ = outer$;
-  self->val$event_ = capture$0;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
   NSObject_init(self);
 }
 
@@ -2175,8 +2262,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$9)
 @implementation LeSessionController_$10
 
 - (void)run {
-  IOSObjectArray *services = [IOSObjectArray newArrayWithLength:((IOSObjectArray *) nil_chk(((Event *) nil_chk(val$event_))->values_))->size_ - 2 type:LeGattServiceMock_class_()];
-  for (jint k = 0; k < services->size_; k++) (void) IOSObjectArray_Set(services, k, [this$0_ createGattServiceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), k + 2)]);
+  IOSObjectArray *services = [IOSObjectArray arrayWithLength:((IOSObjectArray *) nil_chk(((Event *) nil_chk(val$event_))->values_))->size_ - 2 type:LeGattServiceMock_class_()];
+  for (jint k = 0; k < services->size_; k++) IOSObjectArray_Set(services, k, [this$0_ createGattServiceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), k + 2)]);
   [((id<LeRemoteDeviceListener>) nil_chk(val$listener_)) serviceDiscoveredWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithInt:val$event_->source_] withLeGattStatus:LeGattStatus_fromStringWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 1)) withLeGattServiceArray:services];
 }
 
@@ -2185,6 +2272,13 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$9)
                  withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$1 {
   LeSessionController_$10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(self, outer$, capture$0, capture$1);
   return self;
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  RELEASE_(val$listener_);
+  [super dealloc];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -2205,9 +2299,9 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$9)
 @end
 
 void LeSessionController_$10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(LeSessionController_$10 *self, LeSessionController *outer$, Event *capture$0, id<LeRemoteDeviceListener> capture$1) {
-  self->this$0_ = outer$;
-  self->val$event_ = capture$0;
-  self->val$listener_ = capture$1;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  JreStrongAssign(&self->val$listener_, capture$1);
   NSObject_init(self);
 }
 
@@ -2224,8 +2318,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$10)
 @implementation LeSessionController_$11
 
 - (void)run {
-  IOSObjectArray *services = [IOSObjectArray newArrayWithLength:((IOSObjectArray *) nil_chk(((Event *) nil_chk(val$event_))->values_))->size_ - 3 type:LeGattServiceMock_class_()];
-  for (jint k = 0; k < services->size_; k++) (void) IOSObjectArray_Set(services, k, [this$0_ createGattServiceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), k + 3)]);
+  IOSObjectArray *services = [IOSObjectArray arrayWithLength:((IOSObjectArray *) nil_chk(((Event *) nil_chk(val$event_))->values_))->size_ - 3 type:LeGattServiceMock_class_()];
+  for (jint k = 0; k < services->size_; k++) IOSObjectArray_Set(services, k, [this$0_ createGattServiceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), k + 3)]);
   [((id<LeRemoteDeviceListener>) nil_chk([this$0_ getRemoteDeviceListenerWithInt:val$event_->source_])) serviceDiscoveredWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)] withLeGattStatus:LeGattStatus_fromStringWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 2)) withLeGattServiceArray:services];
 }
 
@@ -2233,6 +2327,12 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$10)
                                   withEvent:(Event *)capture$0 {
   LeSessionController_$11_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -2252,8 +2352,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$10)
 @end
 
 void LeSessionController_$11_initWithLeSessionController_withEvent_(LeSessionController_$11 *self, LeSessionController *outer$, Event *capture$0) {
-  self->this$0_ = outer$;
-  self->val$event_ = capture$0;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
   NSObject_init(self);
 }
 
@@ -2279,6 +2379,12 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$11)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -2296,8 +2402,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$11)
 @end
 
 void LeSessionController_$12_initWithLeSessionController_withEvent_(LeSessionController_$12 *self, LeSessionController *outer$, Event *capture$0) {
-  self->this$0_ = outer$;
-  self->val$event_ = capture$0;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
   NSObject_init(self);
 }
 
@@ -2333,6 +2439,14 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$12)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  RELEASE_(val$uuid_);
+  RELEASE_(val$characteristic_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -2352,10 +2466,10 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$12)
 @end
 
 void LeSessionController_$13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController_$13 *self, LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) {
-  self->this$0_ = outer$;
-  self->val$event_ = capture$0;
-  self->val$uuid_ = capture$1;
-  self->val$characteristic_ = capture$2;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  JreStrongAssign(&self->val$uuid_, capture$1);
+  JreStrongAssign(&self->val$characteristic_, capture$2);
   NSObject_init(self);
 }
 
@@ -2383,6 +2497,12 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$13)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -2400,8 +2520,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$13)
 @end
 
 void LeSessionController_$14_initWithLeSessionController_withEvent_(LeSessionController_$14 *self, LeSessionController *outer$, Event *capture$0) {
-  self->this$0_ = outer$;
-  self->val$event_ = capture$0;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
   NSObject_init(self);
 }
 
@@ -2430,6 +2550,12 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$14)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -2447,8 +2573,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$14)
 @end
 
 void LeSessionController_$15_initWithLeSessionController_withEvent_(LeSessionController_$15 *self, LeSessionController *outer$, Event *capture$0) {
-  self->this$0_ = outer$;
-  self->val$event_ = capture$0;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
   NSObject_init(self);
 }
 
@@ -2484,6 +2610,14 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$15)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  RELEASE_(val$uuid2_);
+  RELEASE_(val$characteristic2_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -2503,10 +2637,10 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$15)
 @end
 
 void LeSessionController_$16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController_$16 *self, LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) {
-  self->this$0_ = outer$;
-  self->val$event_ = capture$0;
-  self->val$uuid2_ = capture$1;
-  self->val$characteristic2_ = capture$2;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  JreStrongAssign(&self->val$uuid2_, capture$1);
+  JreStrongAssign(&self->val$characteristic2_, capture$2);
   NSObject_init(self);
 }
 
@@ -2534,6 +2668,12 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$16)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "run", NULL, "V", 0x1, NULL, NULL },
@@ -2551,8 +2691,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_$16)
 @end
 
 void LeSessionController_$17_initWithLeSessionController_withEvent_(LeSessionController_$17 *self, LeSessionController *outer$, Event *capture$0) {
-  self->this$0_ = outer$;
-  self->val$event_ = capture$0;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
   NSObject_init(self);
 }
 

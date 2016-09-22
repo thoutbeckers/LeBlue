@@ -38,6 +38,12 @@
   return ((jint) [((JavaLangInteger *) nil_chk(key_)) hash]);
 }
 
+- (void)dealloc {
+  RELEASE_(mockController_);
+  RELEASE_(key_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithJavaLangInteger:withLeMockController:", "LeGattServiceMock", NULL, 0x1, NULL, NULL },
@@ -59,8 +65,8 @@
 
 void LeGattServiceMock_initWithJavaLangInteger_withLeMockController_(LeGattServiceMock *self, JavaLangInteger *key, id<LeMockController> mockController) {
   NSObject_init(self);
-  self->key_ = key;
-  self->mockController_ = mockController;
+  JreStrongAssign(&self->key_, key);
+  JreStrongAssign(&self->mockController_, mockController);
 }
 
 LeGattServiceMock *new_LeGattServiceMock_initWithJavaLangInteger_withLeMockController_(JavaLangInteger *key, id<LeMockController> mockController) {

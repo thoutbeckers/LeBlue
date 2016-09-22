@@ -67,6 +67,11 @@
   return ((jint) [((id<LeGattCharacteristic>) nil_chk(leGattCharacteristic_)) hash]);
 }
 
+- (void)dealloc {
+  RELEASE_(leGattCharacteristic_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithLeGattCharacteristic:withLeInterceptor:", "InterceptingLeGattCharacteristic", NULL, 0x1, NULL, NULL },
@@ -89,7 +94,7 @@
 
 void InterceptingLeGattCharacteristic_initWithLeGattCharacteristic_withLeInterceptor_(InterceptingLeGattCharacteristic *self, id<LeGattCharacteristic> leGattCharacteristic, LeInterceptor *leInterceptor) {
   LeIntercepting_initWithLeInterceptor_(self, leInterceptor);
-  self->leGattCharacteristic_ = leGattCharacteristic;
+  JreStrongAssign(&self->leGattCharacteristic_, leGattCharacteristic);
 }
 
 InterceptingLeGattCharacteristic *new_InterceptingLeGattCharacteristic_initWithLeGattCharacteristic_withLeInterceptor_(id<LeGattCharacteristic> leGattCharacteristic, LeInterceptor *leInterceptor) {

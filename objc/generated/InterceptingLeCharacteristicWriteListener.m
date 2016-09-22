@@ -41,6 +41,11 @@
   return ((jint) [((id<LeCharacteristicWriteListener>) nil_chk(leCharacteristicWriteListener_)) hash]);
 }
 
+- (void)dealloc {
+  RELEASE_(leCharacteristicWriteListener_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithLeCharacteristicWriteListener:withLeInterceptor:", "InterceptingLeCharacteristicWriteListener", NULL, 0x1, NULL, NULL },
@@ -59,7 +64,7 @@
 
 void InterceptingLeCharacteristicWriteListener_initWithLeCharacteristicWriteListener_withLeInterceptor_(InterceptingLeCharacteristicWriteListener *self, id<LeCharacteristicWriteListener> leCharacteristicWriteListener, LeInterceptor *leInterceptor) {
   LeIntercepting_initWithLeInterceptor_(self, leInterceptor);
-  self->leCharacteristicWriteListener_ = leCharacteristicWriteListener;
+  JreStrongAssign(&self->leCharacteristicWriteListener_, leCharacteristicWriteListener);
 }
 
 InterceptingLeCharacteristicWriteListener *new_InterceptingLeCharacteristicWriteListener_initWithLeCharacteristicWriteListener_withLeInterceptor_(id<LeCharacteristicWriteListener> leCharacteristicWriteListener, LeInterceptor *leInterceptor) {
