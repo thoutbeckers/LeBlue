@@ -33,6 +33,7 @@ Pod::Spec.new do |s|
   s.subspec "LeBlue" do |sp|
     sp.source_files = "objc/generated/*.{h,m}"
     sp.exclude_files = "objc/generated/*test.{h,m}"
+    sp.requires_arc = false
   end
 
   s.subspec "Test" do |sp|
@@ -42,6 +43,7 @@ Pod::Spec.new do |s|
 
   s.subspec "CoreBluetooth" do |sp|
      sp.source_files = 'objc/CoreBluetooth'
+     sp.requires_arc = false
   end
 
 end
