@@ -71,8 +71,6 @@ task compileTranslatedLeBlueJavaTest(type:Exec) {
 
 }
 
-
-
 task testTranslatedLeBlueJava(type:Exec) {
 
     executable file("testrunner")
