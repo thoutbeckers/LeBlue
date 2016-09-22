@@ -49,6 +49,11 @@
   return ((jint) [((id<LeCharacteristicListener>) nil_chk(leCharacteristicListener_)) hash]);
 }
 
+- (void)dealloc {
+  RELEASE_(leCharacteristicListener_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithLeCharacteristicListener:withLeInterceptor:", "InterceptingLeCharacteristicListener", NULL, 0x1, NULL, NULL },
@@ -68,7 +73,7 @@
 
 void InterceptingLeCharacteristicListener_initWithLeCharacteristicListener_withLeInterceptor_(InterceptingLeCharacteristicListener *self, id<LeCharacteristicListener> leCharacteristicListener, LeInterceptor *leInterceptor) {
   LeIntercepting_initWithLeInterceptor_(self, leInterceptor);
-  self->leCharacteristicListener_ = leCharacteristicListener;
+  JreStrongAssign(&self->leCharacteristicListener_, leCharacteristicListener);
 }
 
 InterceptingLeCharacteristicListener *new_InterceptingLeCharacteristicListener_initWithLeCharacteristicListener_withLeInterceptor_(id<LeCharacteristicListener> leCharacteristicListener, LeInterceptor *leInterceptor) {

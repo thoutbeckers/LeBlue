@@ -19,19 +19,19 @@
 @implementation EventSinkTest
 
 - (void)setUp {
-  (void) JavaLangSystem_setPropertyWithNSString_withNSString_(@"doNotLog", @"true");
+  JavaLangSystem_setPropertyWithNSString_withNSString_(@"doNotLog", @"true");
 }
 
 - (void)testLimit {
-  ListEventSinkSource *source = new_ListEventSinkSource_initWithInt_(2);
-  EventSinkFiller *filler = new_EventSinkFiller_initWithListEventSinkSource_(source);
-  (void) [filler waitForPointWithNSString:@"ready"];
+  ListEventSinkSource *source = create_ListEventSinkSource_initWithInt_(2);
+  EventSinkFiller *filler = create_EventSinkFiller_initWithListEventSinkSource_(source);
+  [filler waitForPointWithNSString:@"ready"];
   OrgJunitAssert_assertEqualsWithLong_withLong_(1, ((IOSObjectArray *) nil_chk([source getEvents]))->size_);
-  (void) [filler pointReachedWithNSString:@"secondDevice"];
+  [filler pointReachedWithNSString:@"secondDevice"];
   OrgJunitAssert_assertEqualsWithLong_withLong_(2, ((IOSObjectArray *) nil_chk([source getEvents]))->size_);
   OrgJunitAssert_assertEqualsWithId_withId_(((Event *) nil_chk(IOSObjectArray_Get(nil_chk([source getEvents]), 0)))->type_, JreLoadEnum(LeEventType, mockWaitForPoint));
   OrgJunitAssert_assertEqualsWithId_withId_(((Event *) nil_chk(IOSObjectArray_Get(nil_chk([source getEvents]), 1)))->type_, JreLoadEnum(LeEventType, mockPointReached));
-  (void) [filler waitForPointWithNSString:@"done"];
+  [filler waitForPointWithNSString:@"done"];
   OrgJunitAssert_assertEqualsWithLong_withLong_(2, ((IOSObjectArray *) nil_chk([source getEvents]))->size_);
   OrgJunitAssert_assertEqualsWithId_withId_(((Event *) nil_chk(IOSObjectArray_Get(nil_chk([source getEvents]), 0)))->type_, JreLoadEnum(LeEventType, mockPointReached));
   OrgJunitAssert_assertEqualsWithId_withId_(((Event *) nil_chk(IOSObjectArray_Get(nil_chk([source getEvents]), 1)))->type_, JreLoadEnum(LeEventType, mockWaitForPoint));
@@ -45,11 +45,11 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 J2OBJC_IGNORE_DESIGNATED_END
 
 + (IOSObjectArray *)__annotations_setUp {
-  return [IOSObjectArray newArrayWithObjects:(id[]){ create_OrgJunitBefore() } count:1 type:JavaLangAnnotationAnnotation_class_()];
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_OrgJunitBefore() } count:1 type:JavaLangAnnotationAnnotation_class_()];
 }
 
 + (IOSObjectArray *)__annotations_testLimit {
-  return [IOSObjectArray newArrayWithObjects:(id[]){ create_OrgJunitTest(OrgJunitTest_None_class_(), 0LL) } count:1 type:JavaLangAnnotationAnnotation_class_()];
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_OrgJunitTest(OrgJunitTest_None_class_(), 0LL) } count:1 type:JavaLangAnnotationAnnotation_class_()];
 }
 
 + (const J2ObjcClassInfo *)__metadata {

@@ -34,7 +34,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     [((JavaUtilLinkedList *) nil_chk(events_)) addLastWithId:event];
   }
   else {
-    if (limit_ <= [((JavaUtilLinkedList *) nil_chk(events_)) size]) (void) [((JavaUtilLinkedList *) nil_chk(events_)) removeFirst];
+    if (limit_ <= [((JavaUtilLinkedList *) nil_chk(events_)) size]) [((JavaUtilLinkedList *) nil_chk(events_)) removeFirst];
     [((JavaUtilLinkedList *) nil_chk(events_)) addLastWithId:event];
   }
 }
@@ -45,11 +45,11 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 - (IOSObjectArray *)getEvents {
   ListEventSinkSource_correctDelay(self);
-  return [((JavaUtilLinkedList *) nil_chk(events_)) toArrayWithNSObjectArray:[IOSObjectArray newArrayWithLength:[events_ size] type:Event_class_()]];
+  return [((JavaUtilLinkedList *) nil_chk(events_)) toArrayWithNSObjectArray:[IOSObjectArray arrayWithLength:[events_ size] type:Event_class_()]];
 }
 
 - (Event *)nextEvent {
-  if (iterator_ == nil) iterator_ = [((JavaUtilLinkedList *) nil_chk(events_)) iterator];
+  if (iterator_ == nil) JreStrongAssign(&iterator_, [((JavaUtilLinkedList *) nil_chk(events_)) iterator]);
   return [((id<JavaUtilIterator>) nil_chk(iterator_)) next];
 }
 
@@ -58,11 +58,17 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 - (void)reset {
-  iterator_ = nil;
+  JreStrongAssign(&iterator_, nil);
 }
 
 - (Event *)lastEvent {
   return [((JavaUtilLinkedList *) nil_chk(events_)) getLast];
+}
+
+- (void)dealloc {
+  RELEASE_(events_);
+  RELEASE_(iterator_);
+  [super dealloc];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -90,8 +96,8 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 void ListEventSinkSource_init(ListEventSinkSource *self) {
   NSObject_init(self);
-  self->events_ = new_JavaUtilLinkedList_init();
-  self->iterator_ = nil;
+  JreStrongAssignAndConsume(&self->events_, new_JavaUtilLinkedList_init());
+  JreStrongAssign(&self->iterator_, nil);
   self->limit_ = -1;
 }
 
@@ -105,8 +111,8 @@ ListEventSinkSource *create_ListEventSinkSource_init() {
 
 void ListEventSinkSource_initWithInt_(ListEventSinkSource *self, jint limit) {
   NSObject_init(self);
-  self->events_ = new_JavaUtilLinkedList_init();
-  self->iterator_ = nil;
+  JreStrongAssignAndConsume(&self->events_, new_JavaUtilLinkedList_init());
+  JreStrongAssign(&self->iterator_, nil);
   self->limit_ = -1;
   if (limit > 1) self->limit_ = limit;
 }

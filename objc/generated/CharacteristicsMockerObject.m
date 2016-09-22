@@ -35,7 +35,7 @@
 }
 
 - (CharacteristicsMockerObject *)hasFixedValueWithByteArray:(IOSByteArray *)values {
-  (void) [self withMockWithEventType:JreLoadEnum(LeEventType, characteristicGetValue) withNSString:LeUtil_bytesToStringWithByteArray_(values)];
+  [self withMockWithEventType:JreLoadEnum(LeEventType, characteristicGetValue) withNSString:LeUtil_bytesToStringWithByteArray_(values)];
   return self;
 }
 
@@ -44,7 +44,7 @@
 }
 
 - (CharacteristicsMockerObject *)hasValueWithByteArray:(IOSByteArray *)values {
-  (void) [self withSelfDestroyingMockWithEventType:JreLoadEnum(LeEventType, characteristicGetValue) withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(values) } count:1 type:NSString_class_()]];
+  [self withSelfDestroyingMockWithEventType:JreLoadEnum(LeEventType, characteristicGetValue) withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(values) } count:1 type:NSString_class_()]];
   return self;
 }
 
@@ -55,7 +55,7 @@
     IOSByteArray * const *e__ = b__ + a__->size_;
     while (b__ < e__) {
       IOSByteArray *values = *b__++;
-      (void) [self hasValueWithByteArray:values];
+      [self hasValueWithByteArray:values];
     }
   }
   return self;

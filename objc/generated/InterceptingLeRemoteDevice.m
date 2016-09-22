@@ -127,6 +127,11 @@
   return JreStrcat("$@C", @"InterceptingLeRemoteDevice{leRemoteDevice=", leRemoteDevice_, '}');
 }
 
+- (void)dealloc {
+  RELEASE_(leRemoteDevice_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithLeRemoteDevice:withLeInterceptor:", "InterceptingLeRemoteDevice", NULL, 0x1, NULL, NULL },
@@ -157,7 +162,7 @@
 
 void InterceptingLeRemoteDevice_initWithLeRemoteDevice_withLeInterceptor_(InterceptingLeRemoteDevice *self, id<LeRemoteDevice> leRemoteDevice, LeInterceptor *leInterceptor) {
   LeIntercepting_initWithLeInterceptor_(self, leInterceptor);
-  self->leRemoteDevice_ = leRemoteDevice;
+  JreStrongAssign(&self->leRemoteDevice_, leRemoteDevice);
 }
 
 InterceptingLeRemoteDevice *new_InterceptingLeRemoteDevice_initWithLeRemoteDevice_withLeInterceptor_(id<LeRemoteDevice> leRemoteDevice, LeInterceptor *leInterceptor) {

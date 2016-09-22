@@ -41,6 +41,11 @@
   [((id<LeMockController>) nil_chk(controller_)) deviceStopScanningWithLeDeviceMock:self];
 }
 
+- (void)dealloc {
+  RELEASE_(controller_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithInt:withLeMockController:", "LeDeviceMock", NULL, 0x1, NULL, NULL },
@@ -63,7 +68,7 @@
 
 void LeDeviceMock_initWithInt_withLeMockController_(LeDeviceMock *self, jint key, id<LeMockController> leMockController) {
   NSObject_init(self);
-  self->controller_ = leMockController;
+  JreStrongAssign(&self->controller_, leMockController);
   [((id<LeMockController>) nil_chk(leMockController)) addDeviceWithInt:key withLeDeviceMock:self];
 }
 

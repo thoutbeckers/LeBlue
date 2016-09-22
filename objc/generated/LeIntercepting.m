@@ -11,6 +11,11 @@
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(leInterceptor_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithLeInterceptor:", "LeIntercepting", NULL, 0x1, NULL, NULL },
@@ -26,7 +31,7 @@
 
 void LeIntercepting_initWithLeInterceptor_(LeIntercepting *self, LeInterceptor *leInterceptor) {
   BaseIntercepting_initWithInt_(self, ((LeInterceptor *) nil_chk(leInterceptor))->counter_++);
-  self->leInterceptor_ = leInterceptor;
+  JreStrongAssign(&self->leInterceptor_, leInterceptor);
 }
 
 LeIntercepting *new_LeIntercepting_initWithLeInterceptor_(LeInterceptor *leInterceptor) {

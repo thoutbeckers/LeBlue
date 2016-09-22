@@ -77,6 +77,12 @@
   return result;
 }
 
+- (void)dealloc {
+  RELEASE_(type_);
+  RELEASE_(values_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithEventType:withBaseIntercepting:withNSStringArray:", "Event", NULL, 0x81, NULL, NULL },
@@ -139,7 +145,7 @@ Event *create_Event_initWithEventType_withInt_withBoolean_(id<EventType> type, j
 }
 
 void Event_initWithEventType_withInt_withInt_withBoolean_(Event *self, id<EventType> type, jint delay, jint source, jboolean value) {
-  Event_initWithEventType_withInt_withInt_withNSStringArray_(self, type, delay, source, [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangBoolean_toStringWithBoolean_(value) } count:1 type:NSString_class_()]);
+  Event_initWithEventType_withInt_withInt_withNSStringArray_(self, type, delay, source, [IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_toStringWithBoolean_(value) } count:1 type:NSString_class_()]);
 }
 
 Event *new_Event_initWithEventType_withInt_withInt_withBoolean_(id<EventType> type, jint delay, jint source, jboolean value) {
@@ -164,9 +170,9 @@ Event *create_Event_initWithEventType_withInt_withNSStringArray_(id<EventType> t
 
 void Event_initWithEventType_withInt_withInt_withNSStringArray_(Event *self, id<EventType> type, jint delay, jint source, IOSObjectArray *values) {
   NSObject_init(self);
-  self->type_ = type;
+  JreStrongAssign(&self->type_, type);
   self->source_ = source;
-  self->values_ = values;
+  JreStrongAssign(&self->values_, values);
   self->delay_ = delay;
   self->timeStamp_ = JavaLangSystem_currentTimeMillis();
 }

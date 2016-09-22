@@ -47,6 +47,11 @@
   [((id<LeDeviceListener>) nil_chk(leDeviceListener_)) leDeviceStateWithLeDevice:iLeDevice withLeDeviceState:leDeviceState];
 }
 
+- (void)dealloc {
+  RELEASE_(leDeviceListener_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithLeDeviceListener:withLeInterceptor:", "InterceptingLeDeviceListener", NULL, 0x1, NULL, NULL },
@@ -66,7 +71,7 @@
 
 void InterceptingLeDeviceListener_initWithLeDeviceListener_withLeInterceptor_(InterceptingLeDeviceListener *self, id<LeDeviceListener> leDeviceListener, LeInterceptor *leInterceptor) {
   LeIntercepting_initWithLeInterceptor_(self, leInterceptor);
-  self->leDeviceListener_ = leDeviceListener;
+  JreStrongAssign(&self->leDeviceListener_, leDeviceListener);
 }
 
 InterceptingLeDeviceListener *new_InterceptingLeDeviceListener_initWithLeDeviceListener_withLeInterceptor_(id<LeDeviceListener> leDeviceListener, LeInterceptor *leInterceptor) {

@@ -7,8 +7,6 @@
 
 __attribute__((unused)) static void LeDeviceState_initWithNSString_withInt_(LeDeviceState *self, NSString *__name, jint __ordinal);
 
-__attribute__((unused)) static LeDeviceState *new_LeDeviceState_initWithNSString_withInt_(NSString *__name, jint __ordinal) NS_RETURNS_RETAINED;
-
 J2OBJC_INITIALIZED_DEFN(LeDeviceState)
 
 LeDeviceState *LeDeviceState_values_[2];
@@ -29,8 +27,14 @@ LeDeviceState *LeDeviceState_values_[2];
 
 + (void)initialize {
   if (self == [LeDeviceState class]) {
-    JreEnum(LeDeviceState, OFF) = new_LeDeviceState_initWithNSString_withInt_(@"OFF", 0);
-    JreEnum(LeDeviceState, ON) = new_LeDeviceState_initWithNSString_withInt_(@"ON", 1);
+    size_t objSize = class_getInstanceSize(self);
+    size_t allocSize = 2 * objSize;
+    uintptr_t ptr = (uintptr_t)calloc(allocSize, 1);
+    id e;
+    (JreEnum(LeDeviceState, OFF) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeDeviceState_initWithNSString_withInt_(e, @"OFF", 0);
+    (JreEnum(LeDeviceState, ON) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeDeviceState_initWithNSString_withInt_(e, @"ON", 1);
     J2OBJC_SET_INITIALIZED(LeDeviceState)
   }
 }
@@ -51,10 +55,6 @@ void LeDeviceState_initWithNSString_withInt_(LeDeviceState *self, NSString *__na
   JavaLangEnum_initWithNSString_withInt_(self, __name, __ordinal);
 }
 
-LeDeviceState *new_LeDeviceState_initWithNSString_withInt_(NSString *__name, jint __ordinal) {
-  J2OBJC_NEW_IMPL(LeDeviceState, initWithNSString_withInt_, __name, __ordinal)
-}
-
 IOSObjectArray *LeDeviceState_values() {
   LeDeviceState_initialize();
   return [IOSObjectArray arrayWithObjects:LeDeviceState_values_ count:2 type:LeDeviceState_class_()];
@@ -68,7 +68,7 @@ LeDeviceState *LeDeviceState_valueOfWithNSString_(NSString *name) {
       return e;
     }
   }
-  @throw [[JavaLangIllegalArgumentException alloc] initWithNSString:name];
+  @throw [[[JavaLangIllegalArgumentException alloc] initWithNSString:name] autorelease];
   return nil;
 }
 

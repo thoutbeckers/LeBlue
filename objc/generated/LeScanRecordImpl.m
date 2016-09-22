@@ -48,7 +48,7 @@ J2OBJC_TYPE_LITERAL_HEADER(LeScanRecordImpl_$1)
 }
 
 - (IOSObjectArray *)getRecords {
-  IOSObjectArray *ret = [IOSObjectArray newArrayWithLength:[((id<JavaUtilCollection>) nil_chk(records_)) size] type:LeRecord_class_()];
+  IOSObjectArray *ret = [IOSObjectArray arrayWithLength:[((id<JavaUtilCollection>) nil_chk(records_)) size] type:LeRecord_class_()];
   return [records_ toArrayWithNSObjectArray:ret];
 }
 
@@ -63,7 +63,7 @@ J2OBJC_TYPE_LITERAL_HEADER(LeScanRecordImpl_$1)
       len += [((id<LeRecord>) nil_chk(record)) getType] == type ? 1 : 0;
     }
   }
-  IOSObjectArray *ret = [IOSObjectArray newArrayWithLength:len type:LeRecord_class_()];
+  IOSObjectArray *ret = [IOSObjectArray arrayWithLength:len type:LeRecord_class_()];
   jint count = 0;
   for (id<LeRecord> __strong record in records_) {
     IOSIntArray *a__ = types;
@@ -72,7 +72,7 @@ J2OBJC_TYPE_LITERAL_HEADER(LeScanRecordImpl_$1)
     while (b__ < e__) {
       jint type = *b__++;
       if ([((id<LeRecord>) nil_chk(record)) getType] == type) {
-        (void) IOSObjectArray_Set(ret, count, record);
+        IOSObjectArray_Set(ret, count, record);
         count++;
       }
     }
@@ -81,9 +81,9 @@ J2OBJC_TYPE_LITERAL_HEADER(LeScanRecordImpl_$1)
 }
 
 - (IOSObjectArray *)getServices {
-  IOSObjectArray *uuids16 = [self getRecordsWithIntArray:[IOSIntArray newArrayWithInts:(jint[]){ 2, 3 } count:2]];
-  IOSObjectArray *uuids128 = [self getRecordsWithIntArray:[IOSIntArray newArrayWithInts:(jint[]){ 6, 7 } count:2]];
-  id<JavaUtilList> uuidList = new_JavaUtilArrayList_init();
+  IOSObjectArray *uuids16 = [self getRecordsWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 2, 3 } count:2]];
+  IOSObjectArray *uuids128 = [self getRecordsWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 6, 7 } count:2]];
+  id<JavaUtilList> uuidList = create_JavaUtilArrayList_init();
   {
     IOSObjectArray *a__ = uuids16;
     id<LeRecord> const *b__ = ((IOSObjectArray *) nil_chk(a__))->buffer_;
@@ -91,7 +91,7 @@ J2OBJC_TYPE_LITERAL_HEADER(LeScanRecordImpl_$1)
     while (b__ < e__) {
       id<LeRecord> record = *b__++;
       JavaNioByteBuffer *buffer = [((JavaNioByteBuffer *) nil_chk(JavaNioByteBuffer_wrapWithByteArray_([((id<LeRecord>) nil_chk(record)) getRecordContent]))) orderWithJavaNioByteOrder:JreLoadStatic(JavaNioByteOrder, LITTLE_ENDIAN)];
-      while ([((JavaNioByteBuffer *) nil_chk(buffer)) remaining] >= 2) [uuidList addWithId:JavaUtilUUID_fromStringWithNSString_(NSString_formatWithNSString_withNSObjectArray_(@"%08x-0000-1000-8000-00805f9b34fb", [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangShort_valueOfWithShort_([buffer getShort]) } count:1 type:NSObject_class_()]))];
+      while ([((JavaNioByteBuffer *) nil_chk(buffer)) remaining] >= 2) [uuidList addWithId:JavaUtilUUID_fromStringWithNSString_(NSString_formatWithNSString_withNSObjectArray_(@"%08x-0000-1000-8000-00805f9b34fb", [IOSObjectArray arrayWithObjects:(id[]){ JavaLangShort_valueOfWithShort_([buffer getShort]) } count:1 type:NSObject_class_()]))];
     }
   }
   {
@@ -104,11 +104,11 @@ J2OBJC_TYPE_LITERAL_HEADER(LeScanRecordImpl_$1)
       while ([((JavaNioByteBuffer *) nil_chk(buffer)) remaining] >= 16) {
         jlong lsb = [buffer getLong];
         jlong msb = [buffer getLong];
-        [uuidList addWithId:new_JavaUtilUUID_initWithLong_withLong_(msb, lsb)];
+        [uuidList addWithId:create_JavaUtilUUID_initWithLong_withLong_(msb, lsb)];
       }
     }
   }
-  IOSObjectArray *uuids = [IOSObjectArray newArrayWithLength:[uuidList size] type:JavaUtilUUID_class_()];
+  IOSObjectArray *uuids = [IOSObjectArray arrayWithLength:[uuidList size] type:JavaUtilUUID_class_()];
   return [uuidList toArrayWithNSObjectArray:uuids];
 }
 
@@ -127,7 +127,7 @@ J2OBJC_TYPE_LITERAL_HEADER(LeScanRecordImpl_$1)
 }
 
 - (NSString *)getLocalName {
-  IOSObjectArray *localName = [self getRecordsWithIntArray:[IOSIntArray newArrayWithInts:(jint[]){ 9 } count:1]];
+  IOSObjectArray *localName = [self getRecordsWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 9 } count:1]];
   if (((IOSObjectArray *) nil_chk(localName))->size_ > 0) return [NSString stringWithBytes:[((id<LeRecord>) nil_chk(IOSObjectArray_Get(localName, 0))) getRecordContent]];
   else return nil;
 }
@@ -142,10 +142,16 @@ J2OBJC_TYPE_LITERAL_HEADER(LeScanRecordImpl_$1)
     jint type = IOSByteArray_Get(scanrecord_, recordPos++) & (jint) 0xFF;
     IOSByteArray *record = JavaUtilArrays_copyOfRangeWithByteArray_withInt_withInt_(scanrecord_, recordPos, recordPos + recordLength - 1);
     if (type != 0) {
-      [((id<JavaUtilCollection>) nil_chk(records_)) addWithId:new_LeScanRecordImpl_$1_initWithInt_withByteArray_(type, record)];
+      [((id<JavaUtilCollection>) nil_chk(records_)) addWithId:create_LeScanRecordImpl_$1_initWithInt_withByteArray_(type, record)];
     }
     recordPos += recordLength - 1;
   }
+}
+
+- (void)dealloc {
+  RELEASE_(scanrecord_);
+  RELEASE_(records_);
+  [super dealloc];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -171,8 +177,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeScanRecordImpl_$1)
 
 void LeScanRecordImpl_initWithByteArray_(LeScanRecordImpl *self, IOSByteArray *scanrecord) {
   NSObject_init(self);
-  self->records_ = new_JavaUtilArrayList_init();
-  self->scanrecord_ = scanrecord;
+  JreStrongAssignAndConsume(&self->records_, new_JavaUtilArrayList_init());
+  JreStrongAssign(&self->scanrecord_, scanrecord);
   [self parse];
 }
 
@@ -202,6 +208,11 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeScanRecordImpl)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(val$record_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "getType", NULL, "I", 0x1, NULL, NULL },
@@ -221,7 +232,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeScanRecordImpl)
 
 void LeScanRecordImpl_$1_initWithInt_withByteArray_(LeScanRecordImpl_$1 *self, jint capture$0, IOSByteArray *capture$1) {
   self->val$type_ = capture$0;
-  self->val$record_ = capture$1;
+  JreStrongAssign(&self->val$record_, capture$1);
   NSObject_init(self);
 }
 

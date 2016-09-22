@@ -19,7 +19,7 @@
 }
 
 - (GattServiceMockerObject *)mocksServiceWithJavaUtilUUID:(JavaUtilUUID *)uuid {
-  (void) [self withMockWithEventType:JreLoadEnum(LeEventType, serviceGetUUID) withNSString:[((JavaUtilUUID *) nil_chk(uuid)) description]];
+  [self withMockWithEventType:JreLoadEnum(LeEventType, serviceGetUUID) withNSString:[((JavaUtilUUID *) nil_chk(uuid)) description]];
   return self;
 }
 
@@ -35,7 +35,7 @@
 - (GattServiceMockerObject *)hasCharacteristicWithInt:(jint)characteristicId
                                          withNSString:(NSString *)uuid {
   [((SessionObject *) nil_chk(sessionObject_)) setSourceIdentificationWithInt:characteristicId withNSString:uuid];
-  (void) [self withMockWithEventType:JreLoadEnum(LeEventType, serviceGetCharacteristic) withNSString:uuid withInt:0 withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ JreStrcat("I", characteristicId) } count:1 type:NSString_class_()]];
+  [self withMockWithEventType:JreLoadEnum(LeEventType, serviceGetCharacteristic) withNSString:uuid withInt:0 withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", characteristicId) } count:1 type:NSString_class_()]];
   return self;
 }
 
@@ -57,7 +57,7 @@
                                  withNSString:(NSString *)uuid
                                  withNSString:(NSString *)enable {
   [((SessionObject *) nil_chk(sessionObject_)) setSourceIdentificationWithInt:characteristicId withNSString:uuid];
-  (void) [self withMockWithEventType:JreLoadEnum(LeEventType, serviceEnableCharacteristicNotification) withMockedResponse:new_MockedResponseObject_initWithEvent_(new_Event_initWithEventType_withInt_withInt_withNSStringArray_(JreLoadEnum(LeEventType, mockCharacteristicNotificationChanged), [self getDelay], sessionSource_, [IOSObjectArray newArrayWithObjects:(id[]){ JreStrcat("I", characteristicId), [((NSString *) nil_chk(uuid)) description], JreStrcat("I", remoteId), enable } count:4 type:NSString_class_()]))];
+  [self withMockWithEventType:JreLoadEnum(LeEventType, serviceEnableCharacteristicNotification) withMockedResponse:create_MockedResponseObject_initWithEvent_(create_Event_initWithEventType_withInt_withInt_withNSStringArray_(JreLoadEnum(LeEventType, mockCharacteristicNotificationChanged), [self getDelay], sessionSource_, [IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", characteristicId), [((NSString *) nil_chk(uuid)) description], JreStrcat("I", remoteId), enable } count:4 type:NSString_class_()]))];
   return self;
 }
 
