@@ -22,13 +22,16 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "8.3"
   s.osx.deployment_target = '10.8'
   s.requires_arc = true
-  s.xcconfig = { 'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/J2ObjC/dist/include" ${PODS_ROOT}/Headers/Public/LeBlue/**' }
-
+  s.xcconfig = {
+   'FRAMEWORK_SEARCH_PATHS' => '"${PODS_ROOT}/J2ObjC-Framework/Distributive/frameworks"',
+   'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/J2ObjC-Framework/Distributive/include"',
+   "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES": "YES",
+   'OTHER_LDFLAGS' => '-lObjC -lstdc++'
+   }
   s.header_mappings_dir = 'objc'
-  s.dependency 'J2ObjC'
+  s.dependency 'J2ObjC-Framework'
+  s.frameworks =  'Security', 'JRE','ProtobufRuntime'
   s.default_subspecs = 'LeBlue', 'CoreBluetooth'
-  s.resources = 'objc/prefixes.properties'
-
 
   s.subspec "LeBlue" do |sp|
     sp.source_files = "objc/generated/*.{h,m}"
