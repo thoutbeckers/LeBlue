@@ -15,13 +15,12 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
                         The LeBlue objective-c code.
                        DESC
-  s.homepage         = "https://github.com/thoutbeckers/Tacx-LeBlue"
+  s.homepage         = "https://github.com/thoutbeckers/LeBlue"
   s.license          = 'Apache 2.0'
   s.author           = { "Jasper" => "jasper@splendo.nl" }
-  s.source           = { :git => "https://github.com/thoutbeckers/LeBlue.git", :tag => s.version.to_s }
-  s.ios.deployment_target = "8.3"
-  s.osx.deployment_target = '10.8'
-  s.requires_arc = true
+  s.source           = { :git => "https://github.com/japervp/LeBlue.git", :tag => s.version.to_s }
+  s.ios.deployment_target = '8.3'
+
   s.xcconfig = {
    'FRAMEWORK_SEARCH_PATHS' => '"${PODS_ROOT}/J2ObjC-Framework/Distributive/frameworks"',
    'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/J2ObjC-Framework/Distributive/include"',
@@ -38,14 +37,11 @@ Pod::Spec.new do |s|
     sp.requires_arc = false
   end
 
-  s.subspec "Test" do |sp|
-      sp.source_files = "objc/generated/*test.{h,m}"
-      sp.dependency 'J2ObjC/lib/junit'
-    end
-
   s.subspec "CoreBluetooth" do |sp|
      sp.source_files = 'objc/CoreBluetooth'
-     sp.requires_arc = false
+     sp.requires_arc = true
+     sp.dependency 'LeBlue/LeBlue'
+
   end
 
 end

@@ -10,7 +10,6 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "LeRemoteDeviceCB.h"
 #import "IOSClass.h"
-#import "Helpers.h"
 #import "HelpersCB.h"
 
 #import "LeGattCharacteristic.h"

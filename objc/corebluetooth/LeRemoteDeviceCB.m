@@ -297,7 +297,7 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error{
     for (id<LeRemoteDeviceListener> listener in _listeners){
-            [listener rssiReadWithLeDevice:_device withLeRemoteDevice:self  withInt:[RSSI integerValue]];
+            [listener rssiReadWithLeDevice:_device withLeRemoteDevice:self  withInt:(int)[RSSI integerValue]];
     }
 }
 
