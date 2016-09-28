@@ -28,7 +28,6 @@ Pod::Spec.new do |s|
    "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES": "YES",
    'OTHER_LDFLAGS' => '-lObjC -lstdc++'
    }
-  s.header_mappings_dir = 'objc'
   s.dependency 'J2ObjC-Framework'
   s.frameworks =  'Security', 'JRE','ProtobufRuntime'
   s.default_subspecs = 'LeBlue', 'CoreBluetooth'
