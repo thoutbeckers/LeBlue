@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.xcconfig = {
    'FRAMEWORK_SEARCH_PATHS' => '"${PODS_ROOT}/J2ObjC-Framework/Distributive/frameworks"',
    'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/J2ObjC-Framework/Distributive/include"',
-   "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES": "YES",
+   'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'=> 'YES',
    'OTHER_LDFLAGS' => '-lObjC -lstdc++'
    }
   s.dependency 'J2ObjC-Framework'
