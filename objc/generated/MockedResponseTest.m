@@ -10,20 +10,20 @@
 @implementation MockedResponseTest
 
 - (void)testMockedResponse {
-  MockedResponseObject *mr = new_MockedResponseObject_initWithNSStringArray_([IOSObjectArray newArrayWithLength:0 type:NSString_class_()]);
+  MockedResponseObject *mr = create_MockedResponseObject_initWithNSStringArray_([IOSObjectArray arrayWithLength:0 type:NSString_class_()]);
   JreAssert(([mr isForArgumentsWithNSStringArray:nil]), (@"houtbecke/rs/le/MockedResponseTest.java:12 condition failed: assert mr.isForArguments(null);"));
-  JreAssert(([mr isForArgumentsWithNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]]), (@"houtbecke/rs/le/MockedResponseTest.java:13 condition failed: assert mr.isForArguments(new String[0]);"));
-  JreAssert(([mr isForArgumentsWithNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ @"merp" } count:1 type:NSString_class_()]]), (@"houtbecke/rs/le/MockedResponseTest.java:14 condition failed: assert mr.isForArguments(new String[]{\"merp\"});"));
+  JreAssert(([mr isForArgumentsWithNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]]), (@"houtbecke/rs/le/MockedResponseTest.java:13 condition failed: assert mr.isForArguments(new String[0]);"));
+  JreAssert(([mr isForArgumentsWithNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ @"merp" } count:1 type:NSString_class_()]]), (@"houtbecke/rs/le/MockedResponseTest.java:14 condition failed: assert mr.isForArguments(new String[]{\"merp\"});"));
   [mr forArgumentsWithNSString:@"merp" withInt:0];
-  JreAssert(([mr isForArgumentsWithNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ @"merp" } count:1 type:NSString_class_()]]), (@"houtbecke/rs/le/MockedResponseTest.java:18 condition failed: assert mr.isForArguments(new String[]{\"merp\"});"));
-  JreAssert((![mr isForArgumentsWithNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ @"herp" } count:1 type:NSString_class_()]]), (@"houtbecke/rs/le/MockedResponseTest.java:19 condition failed: assert !mr.isForArguments(new String[]{\"herp\"});"));
-  JreAssert((![mr isForArgumentsWithNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ nil } count:1 type:NSString_class_()]]), (@"houtbecke/rs/le/MockedResponseTest.java:20 condition failed: assert !mr.isForArguments(new String[]{null});"));
+  JreAssert(([mr isForArgumentsWithNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ @"merp" } count:1 type:NSString_class_()]]), (@"houtbecke/rs/le/MockedResponseTest.java:18 condition failed: assert mr.isForArguments(new String[]{\"merp\"});"));
+  JreAssert((![mr isForArgumentsWithNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ @"herp" } count:1 type:NSString_class_()]]), (@"houtbecke/rs/le/MockedResponseTest.java:19 condition failed: assert !mr.isForArguments(new String[]{\"herp\"});"));
+  JreAssert((![mr isForArgumentsWithNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ nil } count:1 type:NSString_class_()]]), (@"houtbecke/rs/le/MockedResponseTest.java:20 condition failed: assert !mr.isForArguments(new String[]{null});"));
   [mr forArgumentsWithNSString:nil withInt:0];
-  JreAssert(([mr isForArgumentsWithNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ nil } count:1 type:NSString_class_()]]), (@"houtbecke/rs/le/MockedResponseTest.java:23 condition failed: assert mr.isForArguments(new String[]{null});"));
-  JreAssert((![mr isForArgumentsWithNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ @"merp" } count:1 type:NSString_class_()]]), (@"houtbecke/rs/le/MockedResponseTest.java:24 condition failed: assert !mr.isForArguments(new String[]{\"merp\"});"));
+  JreAssert(([mr isForArgumentsWithNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ nil } count:1 type:NSString_class_()]]), (@"houtbecke/rs/le/MockedResponseTest.java:23 condition failed: assert mr.isForArguments(new String[]{null});"));
+  JreAssert((![mr isForArgumentsWithNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ @"merp" } count:1 type:NSString_class_()]]), (@"houtbecke/rs/le/MockedResponseTest.java:24 condition failed: assert !mr.isForArguments(new String[]{\"merp\"});"));
   [mr forArgumentsWithNSString:@"merp" withInt:1];
-  IOSObjectArray *merp = [IOSObjectArray newArrayWithObjects:(id[]){ @"merp" } count:1 type:NSString_class_()];
-  IOSObjectArray *nullmerp = [IOSObjectArray newArrayWithObjects:(id[]){ nil, @"merp" } count:2 type:NSString_class_()];
+  IOSObjectArray *merp = [IOSObjectArray arrayWithObjects:(id[]){ @"merp" } count:1 type:NSString_class_()];
+  IOSObjectArray *nullmerp = [IOSObjectArray arrayWithObjects:(id[]){ nil, @"merp" } count:2 type:NSString_class_()];
   JreAssert((![mr isForArgumentsWithNSStringArray:merp]), (@"houtbecke/rs/le/MockedResponseTest.java:31 condition failed: assert !mr.isForArguments(merp);"));
   JreAssert(([mr isForArgumentsWithNSStringArray:nullmerp]), (@"houtbecke/rs/le/MockedResponseTest.java:32 condition failed: assert mr.isForArguments(nullmerp);"));
   [mr destroyAfterUse];
@@ -38,7 +38,7 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 J2OBJC_IGNORE_DESIGNATED_END
 
 + (IOSObjectArray *)__annotations_testMockedResponse {
-  return [IOSObjectArray newArrayWithObjects:(id[]){ create_OrgJunitTest(OrgJunitTest_None_class_(), 0LL) } count:1 type:JavaLangAnnotationAnnotation_class_()];
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_OrgJunitTest(OrgJunitTest_None_class_(), 0LL) } count:1 type:JavaLangAnnotationAnnotation_class_()];
 }
 
 + (const J2ObjcClassInfo *)__metadata {

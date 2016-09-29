@@ -57,12 +57,12 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 + (void)initialize {
   if (self == [LeDefinedUUIDs_Service class]) {
-    LeDefinedUUIDs_Service_HEART_RATE = JavaUtilUUID_fromStringWithNSString_(@"0000180d-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Service_CYCLING_POWER = JavaUtilUUID_fromStringWithNSString_(@"00001818-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Service_CYCLING_SPEED_AND_CADENCE = JavaUtilUUID_fromStringWithNSString_(@"00001816-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Service_BATTERY = JavaUtilUUID_fromStringWithNSString_(@"0000180f-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Service_DEVICE_INFORMATION = JavaUtilUUID_fromStringWithNSString_(@"0000180a-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE = JavaUtilUUID_fromStringWithNSString_(@"00001801-0000-1000-8000-00805f9b34fb");
+    JreStrongAssign(&LeDefinedUUIDs_Service_HEART_RATE, JavaUtilUUID_fromStringWithNSString_(@"0000180d-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Service_CYCLING_POWER, JavaUtilUUID_fromStringWithNSString_(@"00001818-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Service_CYCLING_SPEED_AND_CADENCE, JavaUtilUUID_fromStringWithNSString_(@"00001816-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Service_BATTERY, JavaUtilUUID_fromStringWithNSString_(@"0000180f-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Service_DEVICE_INFORMATION, JavaUtilUUID_fromStringWithNSString_(@"0000180a-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE, JavaUtilUUID_fromStringWithNSString_(@"00001801-0000-1000-8000-00805f9b34fb"));
     J2OBJC_SET_INITIALIZED(LeDefinedUUIDs_Service)
   }
 }
@@ -126,19 +126,19 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 + (void)initialize {
   if (self == [LeDefinedUUIDs_Characteristic class]) {
-    LeDefinedUUIDs_Characteristic_HEART_RATE_MEASUREMENT = JavaUtilUUID_fromStringWithNSString_(@"00002a37-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Characteristic_MANUFACTURER_STRING = JavaUtilUUID_fromStringWithNSString_(@"00002a29-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Characteristic_MODEL_NUMBER_STRING = JavaUtilUUID_fromStringWithNSString_(@"00002a24-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Characteristic_SERIAL_NUMBER_STRING = JavaUtilUUID_fromStringWithNSString_(@"00002a25-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Characteristic_FIRMWARE_REVISION_STRING = JavaUtilUUID_fromStringWithNSString_(@"00002a26-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Characteristic_HARDWARE_REVISION_STRING = JavaUtilUUID_fromStringWithNSString_(@"00002a27-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Characteristic_APPEARANCE = JavaUtilUUID_fromStringWithNSString_(@"00002a01-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Characteristic_BODY_SENSOR_LOCATION = JavaUtilUUID_fromStringWithNSString_(@"00002a38-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Characteristic_BATTERY_LEVEL = JavaUtilUUID_fromStringWithNSString_(@"00002a19-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Characteristic_CYCLING_POWER_MEASUREMENT = JavaUtilUUID_fromStringWithNSString_(@"00002a63-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Characteristic_CYCLING_POWER_CONTROL_POINT = JavaUtilUUID_fromStringWithNSString_(@"00002a66-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Characteristic_CSC_MEASUREMENT = JavaUtilUUID_fromStringWithNSString_(@"00002a5b-0000-1000-8000-00805f9b34fb");
-    LeDefinedUUIDs_Characteristic_SERVICE_CHANGED = JavaUtilUUID_fromStringWithNSString_(@"00002a05-0000-1000-8000-00805f9b34fb");
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_HEART_RATE_MEASUREMENT, JavaUtilUUID_fromStringWithNSString_(@"00002a37-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_MANUFACTURER_STRING, JavaUtilUUID_fromStringWithNSString_(@"00002a29-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_MODEL_NUMBER_STRING, JavaUtilUUID_fromStringWithNSString_(@"00002a24-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_SERIAL_NUMBER_STRING, JavaUtilUUID_fromStringWithNSString_(@"00002a25-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_FIRMWARE_REVISION_STRING, JavaUtilUUID_fromStringWithNSString_(@"00002a26-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_HARDWARE_REVISION_STRING, JavaUtilUUID_fromStringWithNSString_(@"00002a27-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_APPEARANCE, JavaUtilUUID_fromStringWithNSString_(@"00002a01-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_BODY_SENSOR_LOCATION, JavaUtilUUID_fromStringWithNSString_(@"00002a38-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_BATTERY_LEVEL, JavaUtilUUID_fromStringWithNSString_(@"00002a19-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_CYCLING_POWER_MEASUREMENT, JavaUtilUUID_fromStringWithNSString_(@"00002a63-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_CYCLING_POWER_CONTROL_POINT, JavaUtilUUID_fromStringWithNSString_(@"00002a66-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_CSC_MEASUREMENT, JavaUtilUUID_fromStringWithNSString_(@"00002a5b-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_SERVICE_CHANGED, JavaUtilUUID_fromStringWithNSString_(@"00002a05-0000-1000-8000-00805f9b34fb"));
     J2OBJC_SET_INITIALIZED(LeDefinedUUIDs_Characteristic)
   }
 }
@@ -197,7 +197,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 + (void)initialize {
   if (self == [LeDefinedUUIDs_Descriptor class]) {
-    LeDefinedUUIDs_Descriptor_CHAR_CLIENT_CONFIG = JavaUtilUUID_fromStringWithNSString_(@"00002902-0000-1000-8000-00805f9b34fb");
+    JreStrongAssign(&LeDefinedUUIDs_Descriptor_CHAR_CLIENT_CONFIG, JavaUtilUUID_fromStringWithNSString_(@"00002902-0000-1000-8000-00805f9b34fb"));
     J2OBJC_SET_INITIALIZED(LeDefinedUUIDs_Descriptor)
   }
 }

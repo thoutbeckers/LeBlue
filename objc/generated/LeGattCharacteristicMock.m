@@ -35,6 +35,11 @@
   [((id<LeMockController>) nil_chk(mockController_)) characteristicReadWithLeGattCharacteristicMock:self];
 }
 
+- (void)dealloc {
+  RELEASE_(mockController_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithLeMockController:", "LeGattCharacteristicMock", NULL, 0x1, NULL, NULL },
@@ -55,7 +60,7 @@
 
 void LeGattCharacteristicMock_initWithLeMockController_(LeGattCharacteristicMock *self, id<LeMockController> mockController) {
   NSObject_init(self);
-  self->mockController_ = mockController;
+  JreStrongAssign(&self->mockController_, mockController);
 }
 
 LeGattCharacteristicMock *new_LeGattCharacteristicMock_initWithLeMockController_(id<LeMockController> mockController) {

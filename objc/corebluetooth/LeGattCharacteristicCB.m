@@ -64,7 +64,7 @@
 
    }
 
--(void)setValueWithByteArray:(IOSByteArray *)value withBoolean:(BOOL)withResponse{
+-(void)setValueWithByteArray:(IOSByteArray *)value withBoolean:(bool)withResponse{
 
     if (withResponse){
 

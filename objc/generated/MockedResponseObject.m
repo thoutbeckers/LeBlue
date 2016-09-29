@@ -24,10 +24,10 @@ J2OBJC_FIELD_SETTER(MockedResponseObject, nextMockedEvents_, IOSObjectArray *)
 }
 
 - (void)addEventsWithEventArray:(IOSObjectArray *)events {
-  IOSObjectArray *newEvents = [IOSObjectArray newArrayWithLength:((IOSObjectArray *) nil_chk(events))->size_ + ((IOSObjectArray *) nil_chk(nextMockedEvents_))->size_ type:Event_class_()];
+  IOSObjectArray *newEvents = [IOSObjectArray arrayWithLength:((IOSObjectArray *) nil_chk(events))->size_ + ((IOSObjectArray *) nil_chk(nextMockedEvents_))->size_ type:Event_class_()];
   JavaLangSystem_arraycopyWithId_withInt_withId_withInt_withInt_(nextMockedEvents_, 0, newEvents, 0, nextMockedEvents_->size_);
   JavaLangSystem_arraycopyWithId_withInt_withId_withInt_withInt_(events, 0, newEvents, ((IOSObjectArray *) nil_chk(nextMockedEvents_))->size_, events->size_);
-  nextMockedEvents_ = newEvents;
+  JreStrongAssign(&nextMockedEvents_, newEvents);
 }
 
 - (IOSObjectArray *)getNextMockedEvents {
@@ -37,7 +37,7 @@ J2OBJC_FIELD_SETTER(MockedResponseObject, nextMockedEvents_, IOSObjectArray *)
 - (void)forArgumentsWithNSString:(NSString *)argument
                          withInt:(jint)pos {
   self->pos_ = pos;
-  self->value_ = argument;
+  JreStrongAssign(&self->value_, argument);
 }
 
 - (jboolean)isSelfDestroying {
@@ -82,6 +82,13 @@ J2OBJC_FIELD_SETTER(MockedResponseObject, nextMockedEvents_, IOSObjectArray *)
   return self;
 }
 
+- (void)dealloc {
+  RELEASE_(mockedResultValues_);
+  RELEASE_(nextMockedEvents_);
+  RELEASE_(value_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "getMockedResultValues", NULL, "[Ljava.lang.String;", 0x1, NULL, NULL },
@@ -111,7 +118,7 @@ J2OBJC_FIELD_SETTER(MockedResponseObject, nextMockedEvents_, IOSObjectArray *)
 @end
 
 void MockedResponseObject_initWithEvent_(MockedResponseObject *self, Event *nextMockedEvent) {
-  MockedResponseObject_initWithEventArray_withNSStringArray_(self, [IOSObjectArray newArrayWithObjects:(id[]){ nextMockedEvent } count:1 type:Event_class_()], nil);
+  MockedResponseObject_initWithEventArray_withNSStringArray_(self, [IOSObjectArray arrayWithObjects:(id[]){ nextMockedEvent } count:1 type:Event_class_()], nil);
 }
 
 MockedResponseObject *new_MockedResponseObject_initWithEvent_(Event *nextMockedEvent) {
@@ -123,7 +130,7 @@ MockedResponseObject *create_MockedResponseObject_initWithEvent_(Event *nextMock
 }
 
 void MockedResponseObject_initWithNSStringArray_(MockedResponseObject *self, IOSObjectArray *mockedResultValues) {
-  MockedResponseObject_initWithEventArray_withNSStringArray_(self, [IOSObjectArray newArrayWithObjects:(id[]){  } count:0 type:Event_class_()], mockedResultValues);
+  MockedResponseObject_initWithEventArray_withNSStringArray_(self, [IOSObjectArray arrayWithObjects:(id[]){  } count:0 type:Event_class_()], mockedResultValues);
 }
 
 MockedResponseObject *new_MockedResponseObject_initWithNSStringArray_(IOSObjectArray *mockedResultValues) {
@@ -135,7 +142,7 @@ MockedResponseObject *create_MockedResponseObject_initWithNSStringArray_(IOSObje
 }
 
 void MockedResponseObject_initWithEvent_withNSStringArray_(MockedResponseObject *self, Event *nextMockedEvent, IOSObjectArray *mockedResultValues) {
-  MockedResponseObject_initWithEventArray_withNSStringArray_(self, [IOSObjectArray newArrayWithObjects:(id[]){ nextMockedEvent } count:1 type:Event_class_()], mockedResultValues);
+  MockedResponseObject_initWithEventArray_withNSStringArray_(self, [IOSObjectArray arrayWithObjects:(id[]){ nextMockedEvent } count:1 type:Event_class_()], mockedResultValues);
 }
 
 MockedResponseObject *new_MockedResponseObject_initWithEvent_withNSStringArray_(Event *nextMockedEvent, IOSObjectArray *mockedResultValues) {
@@ -147,7 +154,7 @@ MockedResponseObject *create_MockedResponseObject_initWithEvent_withNSStringArra
 }
 
 void MockedResponseObject_initWithEventArray_(MockedResponseObject *self, IOSObjectArray *nextMockedEvents) {
-  MockedResponseObject_initWithEventArray_withNSStringArray_(self, nextMockedEvents, [IOSObjectArray newArrayWithObjects:(id[]){  } count:0 type:NSString_class_()]);
+  MockedResponseObject_initWithEventArray_withNSStringArray_(self, nextMockedEvents, [IOSObjectArray arrayWithObjects:(id[]){  } count:0 type:NSString_class_()]);
 }
 
 MockedResponseObject *new_MockedResponseObject_initWithEventArray_(IOSObjectArray *nextMockedEvents) {
@@ -161,10 +168,10 @@ MockedResponseObject *create_MockedResponseObject_initWithEventArray_(IOSObjectA
 void MockedResponseObject_initWithEventArray_withNSStringArray_(MockedResponseObject *self, IOSObjectArray *nextMockedEvents, IOSObjectArray *mockedResultValues) {
   NSObject_init(self);
   self->pos_ = -1;
-  self->value_ = nil;
+  JreStrongAssign(&self->value_, nil);
   self->selfDestroying_ = false;
-  self->mockedResultValues_ = mockedResultValues == nil ? [IOSObjectArray newArrayWithObjects:(id[]){  } count:0 type:NSString_class_()] : mockedResultValues;
-  self->nextMockedEvents_ = nextMockedEvents;
+  JreStrongAssign(&self->mockedResultValues_, mockedResultValues == nil ? [IOSObjectArray arrayWithObjects:(id[]){  } count:0 type:NSString_class_()] : mockedResultValues);
+  JreStrongAssign(&self->nextMockedEvents_, nextMockedEvents);
 }
 
 MockedResponseObject *new_MockedResponseObject_initWithEventArray_withNSStringArray_(IOSObjectArray *nextMockedEvents, IOSObjectArray *mockedResultValues) {

@@ -7,8 +7,6 @@
 
 __attribute__((unused)) static void LeEventType_initWithNSString_withInt_(LeEventType *self, NSString *__name, jint __ordinal);
 
-__attribute__((unused)) static LeEventType *new_LeEventType_initWithNSString_withInt_(NSString *__name, jint __ordinal) NS_RETURNS_RETAINED;
-
 J2OBJC_INITIALIZED_DEFN(LeEventType)
 
 LeEventType *LeEventType_values_[47];
@@ -29,53 +27,104 @@ LeEventType *LeEventType_values_[47];
 
 + (void)initialize {
   if (self == [LeEventType class]) {
-    JreEnum(LeEventType, deviceStartScanning) = new_LeEventType_initWithNSString_withInt_(@"deviceStartScanning", 0);
-    JreEnum(LeEventType, deviceStopScanning) = new_LeEventType_initWithNSString_withInt_(@"deviceStopScanning", 1);
-    JreEnum(LeEventType, deviceRemoveListener) = new_LeEventType_initWithNSString_withInt_(@"deviceRemoveListener", 2);
-    JreEnum(LeEventType, deviceCheckBleHardwareAvailable) = new_LeEventType_initWithNSString_withInt_(@"deviceCheckBleHardwareAvailable", 3);
-    JreEnum(LeEventType, deviceIsBtEnabled) = new_LeEventType_initWithNSString_withInt_(@"deviceIsBtEnabled", 4);
-    JreEnum(LeEventType, deviceAddListener) = new_LeEventType_initWithNSString_withInt_(@"deviceAddListener", 5);
-    JreEnum(LeEventType, remoteDeviceConnect) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceConnect", 6);
-    JreEnum(LeEventType, remoteDeviceStartServiceDiscovery) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceStartServiceDiscovery", 7);
-    JreEnum(LeEventType, remoteDeviceClose) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceClose", 8);
-    JreEnum(LeEventType, remoteDeviceDisconnect) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceDisconnect", 9);
-    JreEnum(LeEventType, serviceEnableCharacteristicNotification) = new_LeEventType_initWithNSString_withInt_(@"serviceEnableCharacteristicNotification", 10);
-    JreEnum(LeEventType, remoteDeviceGetAddress) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceGetAddress", 11);
-    JreEnum(LeEventType, remoteDeviceAddListener) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceAddListener", 12);
-    JreEnum(LeEventType, remoteDeviceRemoveListener) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceRemoveListener", 13);
-    JreEnum(LeEventType, remoteDeviceSetCharacteristicListener) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceSetCharacteristicListener", 14);
-    JreEnum(LeEventType, remoteDeviceSetCharacteristicWriteListener) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceSetCharacteristicWriteListener", 15);
-    JreEnum(LeEventType, remoteDeviceReadRssi) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceReadRssi", 16);
-    JreEnum(LeEventType, serviceGetUUID) = new_LeEventType_initWithNSString_withInt_(@"serviceGetUUID", 17);
-    JreEnum(LeEventType, characteristicGetValue) = new_LeEventType_initWithNSString_withInt_(@"characteristicGetValue", 18);
-    JreEnum(LeEventType, characteristicGetIntValue) = new_LeEventType_initWithNSString_withInt_(@"characteristicGetIntValue", 19);
-    JreEnum(LeEventType, remoteDeviceGetName) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceGetName", 20);
-    JreEnum(LeEventType, serviceGetCharacteristic) = new_LeEventType_initWithNSString_withInt_(@"serviceGetCharacteristic", 21);
-    JreEnum(LeEventType, characteristicSetValue) = new_LeEventType_initWithNSString_withInt_(@"characteristicSetValue", 22);
-    JreEnum(LeEventType, characteristicRead) = new_LeEventType_initWithNSString_withInt_(@"characteristicRead", 23);
-    JreEnum(LeEventType, remoteDeviceFound) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceFound", 24);
-    JreEnum(LeEventType, deviceState) = new_LeEventType_initWithNSString_withInt_(@"deviceState", 25);
-    JreEnum(LeEventType, mockRemoteDeviceFound) = new_LeEventType_initWithNSString_withInt_(@"mockRemoteDeviceFound", 26);
-    JreEnum(LeEventType, remoteDeviceConnected) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceConnected", 27);
-    JreEnum(LeEventType, mockRemoteDeviceConnected) = new_LeEventType_initWithNSString_withInt_(@"mockRemoteDeviceConnected", 28);
-    JreEnum(LeEventType, remoteDeviceDisconnected) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceDisconnected", 29);
-    JreEnum(LeEventType, remoteDeviceClosed) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceClosed", 30);
-    JreEnum(LeEventType, mockRemoteDeviceDisconnected) = new_LeEventType_initWithNSString_withInt_(@"mockRemoteDeviceDisconnected", 31);
-    JreEnum(LeEventType, mockRemoteDeviceClosed) = new_LeEventType_initWithNSString_withInt_(@"mockRemoteDeviceClosed", 32);
-    JreEnum(LeEventType, remoteDeviceServicesDiscovered) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceServicesDiscovered", 33);
-    JreEnum(LeEventType, remoteDeviceRssiRead) = new_LeEventType_initWithNSString_withInt_(@"remoteDeviceRssiRead", 34);
-    JreEnum(LeEventType, mockRemoteDeviceServicesDiscovered) = new_LeEventType_initWithNSString_withInt_(@"mockRemoteDeviceServicesDiscovered", 35);
-    JreEnum(LeEventType, deviceRemoteDeviceServicesDiscovered) = new_LeEventType_initWithNSString_withInt_(@"deviceRemoteDeviceServicesDiscovered", 36);
-    JreEnum(LeEventType, characteristicChanged) = new_LeEventType_initWithNSString_withInt_(@"characteristicChanged", 37);
-    JreEnum(LeEventType, characteristicNotificationChanged) = new_LeEventType_initWithNSString_withInt_(@"characteristicNotificationChanged", 38);
-    JreEnum(LeEventType, characteristicWritten) = new_LeEventType_initWithNSString_withInt_(@"characteristicWritten", 39);
-    JreEnum(LeEventType, mockCharacteristicChanged) = new_LeEventType_initWithNSString_withInt_(@"mockCharacteristicChanged", 40);
-    JreEnum(LeEventType, mockCharacteristicChangedWithMockedValue) = new_LeEventType_initWithNSString_withInt_(@"mockCharacteristicChangedWithMockedValue", 41);
-    JreEnum(LeEventType, mockCharacteristicMockedValue) = new_LeEventType_initWithNSString_withInt_(@"mockCharacteristicMockedValue", 42);
-    JreEnum(LeEventType, mockCharacteristicClearMockedValue) = new_LeEventType_initWithNSString_withInt_(@"mockCharacteristicClearMockedValue", 43);
-    JreEnum(LeEventType, mockCharacteristicNotificationChanged) = new_LeEventType_initWithNSString_withInt_(@"mockCharacteristicNotificationChanged", 44);
-    JreEnum(LeEventType, mockWaitForPoint) = new_LeEventType_initWithNSString_withInt_(@"mockWaitForPoint", 45);
-    JreEnum(LeEventType, mockPointReached) = new_LeEventType_initWithNSString_withInt_(@"mockPointReached", 46);
+    size_t objSize = class_getInstanceSize(self);
+    size_t allocSize = 47 * objSize;
+    uintptr_t ptr = (uintptr_t)calloc(allocSize, 1);
+    id e;
+    (JreEnum(LeEventType, deviceStartScanning) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"deviceStartScanning", 0);
+    (JreEnum(LeEventType, deviceStopScanning) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"deviceStopScanning", 1);
+    (JreEnum(LeEventType, deviceRemoveListener) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"deviceRemoveListener", 2);
+    (JreEnum(LeEventType, deviceCheckBleHardwareAvailable) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"deviceCheckBleHardwareAvailable", 3);
+    (JreEnum(LeEventType, deviceIsBtEnabled) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"deviceIsBtEnabled", 4);
+    (JreEnum(LeEventType, deviceAddListener) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"deviceAddListener", 5);
+    (JreEnum(LeEventType, remoteDeviceConnect) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceConnect", 6);
+    (JreEnum(LeEventType, remoteDeviceStartServiceDiscovery) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceStartServiceDiscovery", 7);
+    (JreEnum(LeEventType, remoteDeviceClose) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceClose", 8);
+    (JreEnum(LeEventType, remoteDeviceDisconnect) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceDisconnect", 9);
+    (JreEnum(LeEventType, serviceEnableCharacteristicNotification) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"serviceEnableCharacteristicNotification", 10);
+    (JreEnum(LeEventType, remoteDeviceGetAddress) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceGetAddress", 11);
+    (JreEnum(LeEventType, remoteDeviceAddListener) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceAddListener", 12);
+    (JreEnum(LeEventType, remoteDeviceRemoveListener) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceRemoveListener", 13);
+    (JreEnum(LeEventType, remoteDeviceSetCharacteristicListener) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceSetCharacteristicListener", 14);
+    (JreEnum(LeEventType, remoteDeviceSetCharacteristicWriteListener) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceSetCharacteristicWriteListener", 15);
+    (JreEnum(LeEventType, remoteDeviceReadRssi) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceReadRssi", 16);
+    (JreEnum(LeEventType, serviceGetUUID) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"serviceGetUUID", 17);
+    (JreEnum(LeEventType, characteristicGetValue) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"characteristicGetValue", 18);
+    (JreEnum(LeEventType, characteristicGetIntValue) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"characteristicGetIntValue", 19);
+    (JreEnum(LeEventType, remoteDeviceGetName) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceGetName", 20);
+    (JreEnum(LeEventType, serviceGetCharacteristic) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"serviceGetCharacteristic", 21);
+    (JreEnum(LeEventType, characteristicSetValue) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"characteristicSetValue", 22);
+    (JreEnum(LeEventType, characteristicRead) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"characteristicRead", 23);
+    (JreEnum(LeEventType, remoteDeviceFound) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceFound", 24);
+    (JreEnum(LeEventType, deviceState) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"deviceState", 25);
+    (JreEnum(LeEventType, mockRemoteDeviceFound) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"mockRemoteDeviceFound", 26);
+    (JreEnum(LeEventType, remoteDeviceConnected) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceConnected", 27);
+    (JreEnum(LeEventType, mockRemoteDeviceConnected) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"mockRemoteDeviceConnected", 28);
+    (JreEnum(LeEventType, remoteDeviceDisconnected) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceDisconnected", 29);
+    (JreEnum(LeEventType, remoteDeviceClosed) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceClosed", 30);
+    (JreEnum(LeEventType, mockRemoteDeviceDisconnected) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"mockRemoteDeviceDisconnected", 31);
+    (JreEnum(LeEventType, mockRemoteDeviceClosed) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"mockRemoteDeviceClosed", 32);
+    (JreEnum(LeEventType, remoteDeviceServicesDiscovered) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceServicesDiscovered", 33);
+    (JreEnum(LeEventType, remoteDeviceRssiRead) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"remoteDeviceRssiRead", 34);
+    (JreEnum(LeEventType, mockRemoteDeviceServicesDiscovered) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"mockRemoteDeviceServicesDiscovered", 35);
+    (JreEnum(LeEventType, deviceRemoteDeviceServicesDiscovered) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"deviceRemoteDeviceServicesDiscovered", 36);
+    (JreEnum(LeEventType, characteristicChanged) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"characteristicChanged", 37);
+    (JreEnum(LeEventType, characteristicNotificationChanged) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"characteristicNotificationChanged", 38);
+    (JreEnum(LeEventType, characteristicWritten) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"characteristicWritten", 39);
+    (JreEnum(LeEventType, mockCharacteristicChanged) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"mockCharacteristicChanged", 40);
+    (JreEnum(LeEventType, mockCharacteristicChangedWithMockedValue) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"mockCharacteristicChangedWithMockedValue", 41);
+    (JreEnum(LeEventType, mockCharacteristicMockedValue) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"mockCharacteristicMockedValue", 42);
+    (JreEnum(LeEventType, mockCharacteristicClearMockedValue) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"mockCharacteristicClearMockedValue", 43);
+    (JreEnum(LeEventType, mockCharacteristicNotificationChanged) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"mockCharacteristicNotificationChanged", 44);
+    (JreEnum(LeEventType, mockWaitForPoint) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"mockWaitForPoint", 45);
+    (JreEnum(LeEventType, mockPointReached) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeEventType_initWithNSString_withInt_(e, @"mockPointReached", 46);
     J2OBJC_SET_INITIALIZED(LeEventType)
   }
 }
@@ -141,10 +190,6 @@ void LeEventType_initWithNSString_withInt_(LeEventType *self, NSString *__name, 
   JavaLangEnum_initWithNSString_withInt_(self, __name, __ordinal);
 }
 
-LeEventType *new_LeEventType_initWithNSString_withInt_(NSString *__name, jint __ordinal) {
-  J2OBJC_NEW_IMPL(LeEventType, initWithNSString_withInt_, __name, __ordinal)
-}
-
 IOSObjectArray *LeEventType_values() {
   LeEventType_initialize();
   return [IOSObjectArray arrayWithObjects:LeEventType_values_ count:47 type:LeEventType_class_()];
@@ -158,7 +203,7 @@ LeEventType *LeEventType_valueOfWithNSString_(NSString *name) {
       return e;
     }
   }
-  @throw [[JavaLangIllegalArgumentException alloc] initWithNSString:name];
+  @throw [[[JavaLangIllegalArgumentException alloc] initWithNSString:name] autorelease];
   return nil;
 }
 

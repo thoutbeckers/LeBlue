@@ -257,66 +257,66 @@ J2OBJC_TYPE_LITERAL_HEADER(MockBluetoothTest_$4)
 @implementation MockBluetoothTest
 
 - (void)setUp {
-  (void) JavaLangSystem_setPropertyWithNSString_withNSString_(@"doNotLog", @"true");
+  JavaLangSystem_setPropertyWithNSString_withNSString_(@"doNotLog", @"true");
 }
 
 - (ListEventSinkSource *)createSource {
-  ListEventSinkSource *source = new_ListEventSinkSource_init();
-  EventSinkFiller *filler = new_EventSinkFiller_initWithListEventSinkSource_(source);
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, deviceAddListener) withInt:MockBluetoothTest_LE_DEVICE withInt:MockBluetoothTest_LE_DEVICE_LISTENER withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, deviceStartScanning) withInt:MockBluetoothTest_LE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceFound) withInt:MockBluetoothTest_LE_DEVICE_LISTENER withInt:MockBluetoothTest_LE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ @"123", @"" } count:2 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetAddress) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ @"0001:0002:0003:0004" } count:1 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetName) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ @"test device" } count:1 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceAddListener) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceConnect) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceConnected) withInt:MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER withInt:MockBluetoothTest_LE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceReadRssi) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceRssiRead) withInt:MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER withInt:MockBluetoothTest_LE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ JreStrcat("I", MockBluetoothTest_RSSI) } count:1 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceStartServiceDiscovery) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceServicesDiscovered) withInt:MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER withInt:MockBluetoothTest_LE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((LeGattStatus *) nil_chk(JreLoadEnum(LeGattStatus, SUCCESS))) description], NSString_valueOfInt_(MockBluetoothTest_LE_SERVICE_1) } count:2 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetUUID) withInt:MockBluetoothTest_LE_SERVICE_1 withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789aaaa"))) description] } count:1 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetCharacteristic) withInt:MockBluetoothTest_LE_SERVICE_1 withInt:MockBluetoothTest_LE_CHARACTERISTIC_1_1 withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetCharacteristic) withInt:MockBluetoothTest_LE_SERVICE_1 withInt:MockBluetoothTest_LE_CHARACTERISTIC_1_2 withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, characteristicGetValue) withInt:MockBluetoothTest_LE_CHARACTERISTIC_1_1 withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ @"0,1,2" } count:1 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceSetCharacteristicListener) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ NSString_valueOfInt_(MockBluetoothTest_LE_CHARACTERISTIC_LISTENER), [((JavaUtilUUID *) nil_chk(JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc"))) description] } count:2 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, serviceEnableCharacteristicNotification) withInt:MockBluetoothTest_LE_SERVICE_1 withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc"))) description], @"true" } count:2 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, characteristicNotificationChanged) withInt:MockBluetoothTest_LE_CHARACTERISTIC_LISTENER withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc"))) description], NSString_valueOfInt_(MockBluetoothTest_LE_REMOTE_DEVICE), NSString_valueOfInt_(MockBluetoothTest_LE_CHARACTERISTIC_1_2), @"true" } count:4 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, characteristicChanged) withInt:MockBluetoothTest_LE_CHARACTERISTIC_LISTENER withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc"))) description], NSString_valueOfInt_(MockBluetoothTest_LE_REMOTE_DEVICE), NSString_valueOfInt_(MockBluetoothTest_LE_CHARACTERISTIC_1_2) } count:3 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceSetCharacteristicWriteListener) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ NSString_valueOfInt_(MockBluetoothTest_LE_CHARACTERISTIC_WRITE_LISTENER), [((JavaUtilUUID *) nil_chk(JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc"))) description] } count:2 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, characteristicSetValue) withInt:MockBluetoothTest_LE_CHARACTERISTIC_1_2 withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ @"3,4,5" } count:1 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, characteristicWritten) withInt:MockBluetoothTest_LE_CHARACTERISTIC_WRITE_LISTENER withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc"))) description], NSString_valueOfInt_(MockBluetoothTest_LE_REMOTE_DEVICE), NSString_valueOfInt_(MockBluetoothTest_LE_CHARACTERISTIC_1_2), NSString_valueOfBool_(true) } count:4 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceDisconnect) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceDisconnected) withInt:MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER withInt:MockBluetoothTest_LE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceClose) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceClosed) withInt:MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER withInt:MockBluetoothTest_LE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
-  (void) [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceRemoveListener) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  ListEventSinkSource *source = create_ListEventSinkSource_init();
+  EventSinkFiller *filler = create_EventSinkFiller_initWithListEventSinkSource_(source);
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, deviceAddListener) withInt:MockBluetoothTest_LE_DEVICE withInt:MockBluetoothTest_LE_DEVICE_LISTENER withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, deviceStartScanning) withInt:MockBluetoothTest_LE_DEVICE withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceFound) withInt:MockBluetoothTest_LE_DEVICE_LISTENER withInt:MockBluetoothTest_LE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ @"123", @"" } count:2 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetAddress) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ @"0001:0002:0003:0004" } count:1 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetName) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ @"test device" } count:1 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceAddListener) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceConnect) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceConnected) withInt:MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER withInt:MockBluetoothTest_LE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceReadRssi) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceRssiRead) withInt:MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER withInt:MockBluetoothTest_LE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", MockBluetoothTest_RSSI) } count:1 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceStartServiceDiscovery) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceServicesDiscovered) withInt:MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER withInt:MockBluetoothTest_LE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((LeGattStatus *) nil_chk(JreLoadEnum(LeGattStatus, SUCCESS))) description], NSString_valueOfInt_(MockBluetoothTest_LE_SERVICE_1) } count:2 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetUUID) withInt:MockBluetoothTest_LE_SERVICE_1 withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789aaaa"))) description] } count:1 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetCharacteristic) withInt:MockBluetoothTest_LE_SERVICE_1 withInt:MockBluetoothTest_LE_CHARACTERISTIC_1_1 withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetCharacteristic) withInt:MockBluetoothTest_LE_SERVICE_1 withInt:MockBluetoothTest_LE_CHARACTERISTIC_1_2 withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, characteristicGetValue) withInt:MockBluetoothTest_LE_CHARACTERISTIC_1_1 withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ @"0,1,2" } count:1 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceSetCharacteristicListener) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ NSString_valueOfInt_(MockBluetoothTest_LE_CHARACTERISTIC_LISTENER), [((JavaUtilUUID *) nil_chk(JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc"))) description] } count:2 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, serviceEnableCharacteristicNotification) withInt:MockBluetoothTest_LE_SERVICE_1 withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc"))) description], @"true" } count:2 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, characteristicNotificationChanged) withInt:MockBluetoothTest_LE_CHARACTERISTIC_LISTENER withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc"))) description], NSString_valueOfInt_(MockBluetoothTest_LE_REMOTE_DEVICE), NSString_valueOfInt_(MockBluetoothTest_LE_CHARACTERISTIC_1_2), @"true" } count:4 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, characteristicChanged) withInt:MockBluetoothTest_LE_CHARACTERISTIC_LISTENER withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc"))) description], NSString_valueOfInt_(MockBluetoothTest_LE_REMOTE_DEVICE), NSString_valueOfInt_(MockBluetoothTest_LE_CHARACTERISTIC_1_2) } count:3 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceSetCharacteristicWriteListener) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ NSString_valueOfInt_(MockBluetoothTest_LE_CHARACTERISTIC_WRITE_LISTENER), [((JavaUtilUUID *) nil_chk(JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc"))) description] } count:2 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, characteristicSetValue) withInt:MockBluetoothTest_LE_CHARACTERISTIC_1_2 withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ @"3,4,5" } count:1 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, characteristicWritten) withInt:MockBluetoothTest_LE_CHARACTERISTIC_WRITE_LISTENER withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc"))) description], NSString_valueOfInt_(MockBluetoothTest_LE_REMOTE_DEVICE), NSString_valueOfInt_(MockBluetoothTest_LE_CHARACTERISTIC_1_2), NSString_valueOfBool_(true) } count:4 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceDisconnect) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceDisconnected) withInt:MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER withInt:MockBluetoothTest_LE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceClose) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceClosed) withInt:MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER withInt:MockBluetoothTest_LE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [filler addEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceRemoveListener) withInt:MockBluetoothTest_LE_REMOTE_DEVICE withInt:MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
   return source;
 }
 
 - (void)testController {
   ListEventSinkSource *events = [self createSource];
-  sessionController_ = new_LeSessionController_initWithSession_withBoolean_([((SessionObject *) nil_chk(SessionObject_newSession())) setDefaultSourceWithEventSource:events], true);
-  id<EventSink> sink = new_ListEventSinkSource_init();
-  LeSessionInterceptor *sessionInterceptor = new_LeSessionInterceptor_initWithEventSink_(sink);
-  device_ = new_InterceptingLeDevice_initWithLeDevice_withLeInterceptor_(new_LeDeviceMock_initWithInt_withLeMockController_(EventSinkFiller_DEFAULT_DEVICE_ID, sessionController_), sessionInterceptor);
+  JreStrongAssignAndConsume(&sessionController_, new_LeSessionController_initWithSession_withBoolean_([((SessionObject *) nil_chk(SessionObject_newSession())) setDefaultSourceWithEventSource:events], true));
+  id<EventSink> sink = create_ListEventSinkSource_init();
+  LeSessionInterceptor *sessionInterceptor = create_LeSessionInterceptor_initWithEventSink_(sink);
+  JreStrongAssignAndConsume(&device_, new_InterceptingLeDevice_initWithLeDevice_withLeInterceptor_(create_LeDeviceMock_initWithInt_withLeMockController_(EventSinkFiller_DEFAULT_DEVICE_ID, sessionController_), sessionInterceptor));
   [((LeSessionController *) nil_chk(sessionController_)) startDefaultSession];
   OrgJunitAssert_assertTrueWithBoolean_([((LeSessionController *) nil_chk(sessionController_)) waitTillSessionStarted]);
-  IOSObjectArray *foundRemoteDevice = [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
-  [((InterceptingLeDevice *) nil_chk(((InterceptingLeDevice *) cast_chk(device_, [InterceptingLeDevice class])))) addListenerWithLeDeviceListener:new_MockBluetoothTest_$1_initWithMockBluetoothTest_withJavaLangBooleanArray_(self, foundRemoteDevice)];
+  IOSObjectArray *foundRemoteDevice = [IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
+  [((InterceptingLeDevice *) nil_chk(((InterceptingLeDevice *) cast_chk(device_, [InterceptingLeDevice class])))) addListenerWithLeDeviceListener:create_MockBluetoothTest_$1_initWithMockBluetoothTest_withJavaLangBooleanArray_(self, foundRemoteDevice)];
   [((InterceptingLeDevice *) nil_chk(((InterceptingLeDevice *) cast_chk(device_, [InterceptingLeDevice class])))) startScanning];
   JavaLangThread_sleepWithLong_(100);
   JreAssert((IOSObjectArray_Get(foundRemoteDevice, 0)), (@"houtbecke/rs/le/MockBluetoothTest.java:128 condition failed: assert foundRemoteDevice[0];"));
   JreAssert(([((NSString *) nil_chk([((id<LeRemoteDevice>) nil_chk(remoteDevice_)) getAddress])) isEqual:@"0001:0002:0003:0004"]), (@"houtbecke/rs/le/MockBluetoothTest.java:130 condition failed: assert remoteDevice.getAddress().equals(\"0001:0002:0003:0004\");"));
   JreAssert(([((NSString *) nil_chk([((id<LeRemoteDevice>) nil_chk(remoteDevice_)) getName])) isEqual:@"test device"]), (@"houtbecke/rs/le/MockBluetoothTest.java:131 condition failed: assert remoteDevice.getName().equals(\"test device\");"));
-  IOSObjectArray *connected = [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
-  IOSObjectArray *disconnected = [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
-  IOSObjectArray *closed = [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
-  IOSObjectArray *discovered = [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
-  IOSObjectArray *rssiRead = [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
-  IOSIntArray *rssiValue = [IOSIntArray newArrayWithInts:(jint[]){ 0 } count:1];
-  IOSObjectArray *service = [IOSObjectArray newArrayWithObjects:(id[]){ nil } count:1 type:LeGattService_class_()];
-  id<LeRemoteDeviceListener> remoteDeviceListener = new_MockBluetoothTest_$2_initWithMockBluetoothTest_withJavaLangBooleanArray_withJavaLangBooleanArray_withJavaLangBooleanArray_withJavaLangBooleanArray_withLeGattServiceArray_withJavaLangBooleanArray_withIntArray_(self, connected, disconnected, closed, discovered, service, rssiRead, rssiValue);
+  IOSObjectArray *connected = [IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
+  IOSObjectArray *disconnected = [IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
+  IOSObjectArray *closed = [IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
+  IOSObjectArray *discovered = [IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
+  IOSObjectArray *rssiRead = [IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
+  IOSIntArray *rssiValue = [IOSIntArray arrayWithInts:(jint[]){ 0 } count:1];
+  IOSObjectArray *service = [IOSObjectArray arrayWithObjects:(id[]){ nil } count:1 type:LeGattService_class_()];
+  id<LeRemoteDeviceListener> remoteDeviceListener = create_MockBluetoothTest_$2_initWithMockBluetoothTest_withJavaLangBooleanArray_withJavaLangBooleanArray_withJavaLangBooleanArray_withJavaLangBooleanArray_withLeGattServiceArray_withJavaLangBooleanArray_withIntArray_(self, connected, disconnected, closed, discovered, service, rssiRead, rssiValue);
   [((id<LeRemoteDevice>) nil_chk(remoteDevice_)) addListenerWithLeRemoteDeviceListener:remoteDeviceListener];
   [((id<LeRemoteDevice>) nil_chk(remoteDevice_)) connect];
   JavaLangThread_sleepWithLong_(100);
@@ -336,17 +336,17 @@ J2OBJC_TYPE_LITERAL_HEADER(MockBluetoothTest_$4)
   JreAssert((IOSByteArray_Get(nil_chk(byteArray1), 0) == 0), (@"houtbecke/rs/le/MockBluetoothTest.java:208 condition failed: assert byteArray1[0] == 0;"));
   JreAssert((IOSByteArray_Get(byteArray1, 1) == 1), (@"houtbecke/rs/le/MockBluetoothTest.java:209 condition failed: assert byteArray1[1] == 1;"));
   JreAssert((IOSByteArray_Get(byteArray1, 2) == 2), (@"houtbecke/rs/le/MockBluetoothTest.java:210 condition failed: assert byteArray1[2] == 2;"));
-  IOSObjectArray *changed = [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
-  IOSObjectArray *notificationChanged = [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
-  [((id<LeRemoteDevice>) nil_chk(remoteDevice_)) setCharacteristicListenerWithLeCharacteristicListener:new_MockBluetoothTest_$3_initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_withJavaLangBooleanArray_(self, characteristic, changed, notificationChanged) withJavaUtilUUIDArray:[IOSObjectArray newArrayWithObjects:(id[]){ JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc") } count:1 type:JavaUtilUUID_class_()]];
+  IOSObjectArray *changed = [IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
+  IOSObjectArray *notificationChanged = [IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
+  [((id<LeRemoteDevice>) nil_chk(remoteDevice_)) setCharacteristicListenerWithLeCharacteristicListener:create_MockBluetoothTest_$3_initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_withJavaLangBooleanArray_(self, characteristic, changed, notificationChanged) withJavaUtilUUIDArray:[IOSObjectArray arrayWithObjects:(id[]){ JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc") } count:1 type:JavaUtilUUID_class_()]];
   JavaLangThread_sleepWithLong_(300);
   [((id<LeGattService>) nil_chk(IOSObjectArray_Get(service, 0))) enableCharacteristicNotificationWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc")];
   JavaLangThread_sleepWithLong_(300);
   OrgJunitAssert_assertTrueWithBoolean_([((JavaLangBoolean *) nil_chk(IOSObjectArray_Get(notificationChanged, 0))) booleanValue]);
   OrgJunitAssert_assertTrueWithBoolean_([((JavaLangBoolean *) nil_chk(IOSObjectArray_Get(changed, 0))) booleanValue]);
-  [((id<LeRemoteDevice>) nil_chk(remoteDevice_)) setCharacteristicWriteListenerWithLeCharacteristicWriteListener:new_MockBluetoothTest_$4_initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_(self, characteristic, changed) withJavaUtilUUIDArray:[IOSObjectArray newArrayWithObjects:(id[]){ JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc") } count:1 type:JavaUtilUUID_class_()]];
-  (void) IOSObjectArray_Set(changed, 0, JavaLangBoolean_valueOfWithBoolean_(false));
-  [((id<LeGattCharacteristic>) nil_chk(characteristic2)) setValueWithByteArray:[IOSByteArray newArrayWithBytes:(jbyte[]){ 3, 4, 5 } count:3]];
+  [((id<LeRemoteDevice>) nil_chk(remoteDevice_)) setCharacteristicWriteListenerWithLeCharacteristicWriteListener:create_MockBluetoothTest_$4_initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_(self, characteristic, changed) withJavaUtilUUIDArray:[IOSObjectArray arrayWithObjects:(id[]){ JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc") } count:1 type:JavaUtilUUID_class_()]];
+  IOSObjectArray_Set(changed, 0, JavaLangBoolean_valueOfWithBoolean_(false));
+  [((id<LeGattCharacteristic>) nil_chk(characteristic2)) setValueWithByteArray:[IOSByteArray arrayWithBytes:(jbyte[]){ 3, 4, 5 } count:3]];
   JavaLangThread_sleepWithLong_(100);
   JreAssert((IOSObjectArray_Get(changed, 0)), (@"houtbecke/rs/le/MockBluetoothTest.java:253 condition failed: assert changed[0];"));
   [((id<LeRemoteDevice>) nil_chk(remoteDevice_)) disconnect];
@@ -359,7 +359,7 @@ J2OBJC_TYPE_LITERAL_HEADER(MockBluetoothTest_$4)
   JreAssert((![((ListEventSinkSource *) nil_chk(events)) hasMoreEvent]), (@"houtbecke/rs/le/MockBluetoothTest.java:268 condition failed: assert !events.hasMoreEvent();"));
   JreAssert(([((LeSessionController *) nil_chk(sessionController_)) getSessionException] == nil), (@"houtbecke/rs/le/MockBluetoothTest.java:270 condition failed: assert sessionController.getSessionException() == null;"));
   ListEventSinkSource *source = [self createSource];
-  id<JavaUtilSet> processedEvents = new_JavaUtilHashSet_init();
+  id<JavaUtilSet> processedEvents = create_JavaUtilHashSet_init();
   while ([((ListEventSinkSource *) nil_chk(source)) hasMoreEvent]) {
     [processedEvents addWithId:[source nextEvent]];
   }
@@ -375,7 +375,7 @@ J2OBJC_TYPE_LITERAL_HEADER(MockBluetoothTest_$4)
 }
 
 - (void)setSessionControllerWithLeSessionController:(LeSessionController *)sessionController {
-  self->sessionController_ = sessionController;
+  JreStrongAssign(&self->sessionController_, sessionController);
 }
 
 - (id<LeDevice>)getDevice {
@@ -383,7 +383,7 @@ J2OBJC_TYPE_LITERAL_HEADER(MockBluetoothTest_$4)
 }
 
 - (void)setDeviceWithLeDevice:(id<LeDevice>)device {
-  self->device_ = device;
+  JreStrongAssign(&self->device_, device);
 }
 
 - (jint)getLE_DEVICE {
@@ -423,7 +423,7 @@ J2OBJC_TYPE_LITERAL_HEADER(MockBluetoothTest_$4)
 }
 
 - (void)setRemoteDeviceWithLeRemoteDevice:(id<LeRemoteDevice>)remoteDevice {
-  self->remoteDevice_ = remoteDevice;
+  JreStrongAssign(&self->remoteDevice_, remoteDevice);
 }
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
@@ -434,11 +434,18 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 J2OBJC_IGNORE_DESIGNATED_END
 
 + (IOSObjectArray *)__annotations_setUp {
-  return [IOSObjectArray newArrayWithObjects:(id[]){ create_OrgJunitBefore() } count:1 type:JavaLangAnnotationAnnotation_class_()];
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_OrgJunitBefore() } count:1 type:JavaLangAnnotationAnnotation_class_()];
 }
 
 + (IOSObjectArray *)__annotations_testController {
-  return [IOSObjectArray newArrayWithObjects:(id[]){ create_OrgJunitTest(OrgJunitTest_None_class_(), 0LL) } count:1 type:JavaLangAnnotationAnnotation_class_()];
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_OrgJunitTest(OrgJunitTest_None_class_(), 0LL) } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
+
+- (void)dealloc {
+  RELEASE_(sessionController_);
+  RELEASE_(device_);
+  RELEASE_(remoteDevice_);
+  [super dealloc];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -507,7 +514,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockBluetoothTest)
   JreAssert((leFoundRemoteDevice != nil), (@"houtbecke/rs/le/MockBluetoothTest.java:112 condition failed: assert leFoundRemoteDevice != null;"));
   JreAssert((rssi == 123), (@"houtbecke/rs/le/MockBluetoothTest.java:113 condition failed: assert rssi == 123;"));
   [this$0_ setRemoteDeviceWithLeRemoteDevice:leFoundRemoteDevice];
-  (void) IOSObjectArray_Set(nil_chk(val$foundRemoteDevice_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
+  IOSObjectArray_Set(nil_chk(val$foundRemoteDevice_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
 }
 
 - (void)leDeviceStateWithLeDevice:(id<LeDevice>)leDevice
@@ -518,6 +525,12 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockBluetoothTest)
                  withJavaLangBooleanArray:(IOSObjectArray *)capture$0 {
   MockBluetoothTest_$1_initWithMockBluetoothTest_withJavaLangBooleanArray_(self, outer$, capture$0);
   return self;
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$foundRemoteDevice_);
+  [super dealloc];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -538,8 +551,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockBluetoothTest)
 @end
 
 void MockBluetoothTest_$1_initWithMockBluetoothTest_withJavaLangBooleanArray_(MockBluetoothTest_$1 *self, MockBluetoothTest *outer$, IOSObjectArray *capture$0) {
-  self->this$0_ = outer$;
-  self->val$foundRemoteDevice_ = capture$0;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$foundRemoteDevice_, capture$0);
   NSObject_init(self);
 }
 
@@ -559,33 +572,33 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockBluetoothTest_$1)
                     withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice {
   JreAssert(([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDeviceFoundOn]), (@"houtbecke/rs/le/MockBluetoothTest.java:147 condition failed: assert getDevice().equals(leDeviceFoundOn);"));
   JreAssert(([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice]), (@"houtbecke/rs/le/MockBluetoothTest.java:148 condition failed: assert getRemoteDevice().equals(leRemoteDevice);"));
-  (void) IOSObjectArray_Set(nil_chk(val$connected_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
+  IOSObjectArray_Set(nil_chk(val$connected_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
 }
 
 - (void)leDevicesDisconnectedWithLeDevice:(id<LeDevice>)leDevice
                        withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice {
   JreAssert(([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDevice]), (@"houtbecke/rs/le/MockBluetoothTest.java:154 condition failed: assert getDevice().equals(leDevice);"));
   JreAssert(([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice]), (@"houtbecke/rs/le/MockBluetoothTest.java:155 condition failed: assert getRemoteDevice().equals(leRemoteDevice);"));
-  (void) IOSObjectArray_Set(nil_chk(val$disconnected_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
+  IOSObjectArray_Set(nil_chk(val$disconnected_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
 }
 
 - (void)leDevicesClosedWithLeDevice:(id<LeDevice>)leDevice
                  withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice {
   JreAssert(([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDevice]), (@"houtbecke/rs/le/MockBluetoothTest.java:161 condition failed: assert getDevice().equals(leDevice);"));
   JreAssert(([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice]), (@"houtbecke/rs/le/MockBluetoothTest.java:162 condition failed: assert getRemoteDevice().equals(leRemoteDevice);"));
-  (void) IOSObjectArray_Set(nil_chk(val$closed_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
+  IOSObjectArray_Set(nil_chk(val$closed_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
 }
 
 - (void)serviceDiscoveredWithLeDevice:(id<LeDevice>)leDevice
                    withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice
                      withLeGattStatus:(LeGattStatus *)status
                withLeGattServiceArray:(IOSObjectArray *)gatts {
-  (void) IOSObjectArray_Set(nil_chk(val$discovered_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
+  IOSObjectArray_Set(nil_chk(val$discovered_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
   JreAssert(([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDevice]), (@"houtbecke/rs/le/MockBluetoothTest.java:169 condition failed: assert getDevice().equals(leDevice);"));
   JreAssert(([((id<LeRemoteDevice>) nil_chk(leRemoteDevice)) isEqual:[this$0_ getRemoteDevice]]), (@"houtbecke/rs/le/MockBluetoothTest.java:170 condition failed: assert leRemoteDevice.equals(getRemoteDevice());"));
   JreAssert(([((LeGattStatus *) nil_chk(JreLoadEnum(LeGattStatus, SUCCESS))) isEqual:status]), (@"houtbecke/rs/le/MockBluetoothTest.java:171 condition failed: assert LeGattStatus.SUCCESS.equals(status);"));
   JreAssert((((IOSObjectArray *) nil_chk(gatts))->size_ == 1), (@"houtbecke/rs/le/MockBluetoothTest.java:172 condition failed: assert gatts.length == 1;"));
-  (void) IOSObjectArray_Set(nil_chk(val$service_), 0, IOSObjectArray_Get(gatts, 0));
+  IOSObjectArray_Set(nil_chk(val$service_), 0, IOSObjectArray_Get(gatts, 0));
 }
 
 - (void)rssiReadWithLeDevice:(id<LeDevice>)leDevice
@@ -594,7 +607,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockBluetoothTest_$1)
   JreAssert(([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDevice]), (@"houtbecke/rs/le/MockBluetoothTest.java:178 condition failed: assert getDevice().equals(leDevice);"));
   JreAssert(([((id<LeRemoteDevice>) nil_chk(leRemoteDevice)) isEqual:[this$0_ getRemoteDevice]]), (@"houtbecke/rs/le/MockBluetoothTest.java:179 condition failed: assert leRemoteDevice.equals(getRemoteDevice());"));
   JreAssert((MockBluetoothTest_RSSI == rssi), (@"houtbecke/rs/le/MockBluetoothTest.java:180 condition failed: assert (RSSI == rssi);"));
-  (void) IOSObjectArray_Set(nil_chk(val$rssiRead_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
+  IOSObjectArray_Set(nil_chk(val$rssiRead_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
   *IOSIntArray_GetRef(nil_chk(val$rssiValue_), 0) = rssi;
 }
 
@@ -608,6 +621,18 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockBluetoothTest_$1)
                              withIntArray:(IOSIntArray *)capture$6 {
   MockBluetoothTest_$2_initWithMockBluetoothTest_withJavaLangBooleanArray_withJavaLangBooleanArray_withJavaLangBooleanArray_withJavaLangBooleanArray_withLeGattServiceArray_withJavaLangBooleanArray_withIntArray_(self, outer$, capture$0, capture$1, capture$2, capture$3, capture$4, capture$5, capture$6);
   return self;
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$connected_);
+  RELEASE_(val$disconnected_);
+  RELEASE_(val$closed_);
+  RELEASE_(val$discovered_);
+  RELEASE_(val$service_);
+  RELEASE_(val$rssiRead_);
+  RELEASE_(val$rssiValue_);
+  [super dealloc];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -637,14 +662,14 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockBluetoothTest_$1)
 @end
 
 void MockBluetoothTest_$2_initWithMockBluetoothTest_withJavaLangBooleanArray_withJavaLangBooleanArray_withJavaLangBooleanArray_withJavaLangBooleanArray_withLeGattServiceArray_withJavaLangBooleanArray_withIntArray_(MockBluetoothTest_$2 *self, MockBluetoothTest *outer$, IOSObjectArray *capture$0, IOSObjectArray *capture$1, IOSObjectArray *capture$2, IOSObjectArray *capture$3, IOSObjectArray *capture$4, IOSObjectArray *capture$5, IOSIntArray *capture$6) {
-  self->this$0_ = outer$;
-  self->val$connected_ = capture$0;
-  self->val$disconnected_ = capture$1;
-  self->val$closed_ = capture$2;
-  self->val$discovered_ = capture$3;
-  self->val$service_ = capture$4;
-  self->val$rssiRead_ = capture$5;
-  self->val$rssiValue_ = capture$6;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$connected_, capture$0);
+  JreStrongAssign(&self->val$disconnected_, capture$1);
+  JreStrongAssign(&self->val$closed_, capture$2);
+  JreStrongAssign(&self->val$discovered_, capture$3);
+  JreStrongAssign(&self->val$service_, capture$4);
+  JreStrongAssign(&self->val$rssiRead_, capture$5);
+  JreStrongAssign(&self->val$rssiValue_, capture$6);
   NSObject_init(self);
 }
 
@@ -666,14 +691,14 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockBluetoothTest_$2)
   JreAssert(([((JavaUtilUUID *) nil_chk(uuid)) isEqual:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc")]), (@"houtbecke/rs/le/MockBluetoothTest.java:217 condition failed: assert uuid.equals(UUID.fromString(\"12345678-1234-1234-1234-123456789cccc\"));"));
   JreAssert(([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice]), (@"houtbecke/rs/le/MockBluetoothTest.java:218 condition failed: assert getRemoteDevice().equals(leRemoteDevice);"));
   JreAssert((![((id<LeGattCharacteristic>) nil_chk(leCharacteristic)) isEqual:val$characteristic_]), (@"make sure this is a different characteristic"));
-  (void) IOSObjectArray_Set(nil_chk(val$changed_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
+  IOSObjectArray_Set(nil_chk(val$changed_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
 }
 
 - (void)leCharacteristicNotificationChangedWithJavaUtilUUID:(JavaUtilUUID *)uuid
                                          withLeRemoteDevice:(id<LeRemoteDevice>)remoteDevice
                                    withLeGattCharacteristic:(id<LeGattCharacteristic>)characteristic
                                                 withBoolean:(jboolean)success {
-  (void) IOSObjectArray_Set(nil_chk(val$notificationChanged_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
+  IOSObjectArray_Set(nil_chk(val$notificationChanged_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
 }
 
 - (instancetype)initWithMockBluetoothTest:(MockBluetoothTest *)outer$
@@ -682,6 +707,14 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockBluetoothTest_$2)
                  withJavaLangBooleanArray:(IOSObjectArray *)capture$2 {
   MockBluetoothTest_$3_initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_withJavaLangBooleanArray_(self, outer$, capture$0, capture$1, capture$2);
   return self;
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$characteristic_);
+  RELEASE_(val$changed_);
+  RELEASE_(val$notificationChanged_);
+  [super dealloc];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -704,10 +737,10 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockBluetoothTest_$2)
 @end
 
 void MockBluetoothTest_$3_initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_withJavaLangBooleanArray_(MockBluetoothTest_$3 *self, MockBluetoothTest *outer$, id<LeGattCharacteristic> capture$0, IOSObjectArray *capture$1, IOSObjectArray *capture$2) {
-  self->this$0_ = outer$;
-  self->val$characteristic_ = capture$0;
-  self->val$changed_ = capture$1;
-  self->val$notificationChanged_ = capture$2;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$characteristic_, capture$0);
+  JreStrongAssign(&self->val$changed_, capture$1);
+  JreStrongAssign(&self->val$notificationChanged_, capture$2);
   NSObject_init(self);
 }
 
@@ -730,7 +763,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockBluetoothTest_$3)
   JreAssert(([((JavaUtilUUID *) nil_chk(uuid)) isEqual:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc")]), (@"houtbecke/rs/le/MockBluetoothTest.java:241 condition failed: assert uuid.equals(UUID.fromString(\"12345678-1234-1234-1234-123456789cccc\"));"));
   JreAssert(([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice]), (@"houtbecke/rs/le/MockBluetoothTest.java:242 condition failed: assert getRemoteDevice().equals(leRemoteDevice);"));
   JreAssert((![((id<LeGattCharacteristic>) nil_chk(leCharacteristic)) isEqual:val$characteristic_]), (@"make sure this is a different characteristic"));
-  (void) IOSObjectArray_Set(nil_chk(val$changed_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
+  IOSObjectArray_Set(nil_chk(val$changed_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
 }
 
 - (instancetype)initWithMockBluetoothTest:(MockBluetoothTest *)outer$
@@ -738,6 +771,13 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockBluetoothTest_$3)
                  withJavaLangBooleanArray:(IOSObjectArray *)capture$1 {
   MockBluetoothTest_$4_initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_(self, outer$, capture$0, capture$1);
   return self;
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$characteristic_);
+  RELEASE_(val$changed_);
+  [super dealloc];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -758,9 +798,9 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockBluetoothTest_$3)
 @end
 
 void MockBluetoothTest_$4_initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_(MockBluetoothTest_$4 *self, MockBluetoothTest *outer$, id<LeGattCharacteristic> capture$0, IOSObjectArray *capture$1) {
-  self->this$0_ = outer$;
-  self->val$characteristic_ = capture$0;
-  self->val$changed_ = capture$1;
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$characteristic_, capture$0);
+  JreStrongAssign(&self->val$changed_, capture$1);
   NSObject_init(self);
 }
 

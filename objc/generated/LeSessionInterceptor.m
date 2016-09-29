@@ -31,7 +31,7 @@
              withBaseIntercepting:(BaseIntercepting *)secondSource
              withBaseIntercepting:(BaseIntercepting *)thirdSource
                 withNSStringArray:(IOSObjectArray *)values {
-  values = LeUtil_extendWithNSStringArray_withIntArray_(values, [IOSIntArray newArrayWithInts:(jint[]){ ((BaseIntercepting *) nil_chk(secondSource))->id__, ((BaseIntercepting *) nil_chk(thirdSource))->id__ } count:2]);
+  values = LeUtil_extendWithNSStringArray_withIntArray_(values, [IOSIntArray arrayWithInts:(jint[]){ ((BaseIntercepting *) nil_chk(secondSource))->id__, ((BaseIntercepting *) nil_chk(thirdSource))->id__ } count:2]);
   [self drainEventWithLeEventType:type withBaseIntercepting:interceptor withNSStringArray:values];
 }
 
@@ -39,14 +39,14 @@
              withBaseIntercepting:(BaseIntercepting *)interceptor
              withBaseIntercepting:(BaseIntercepting *)secondSource
                 withNSStringArray:(IOSObjectArray *)values {
-  values = LeUtil_extendWithNSStringArray_withIntArray_(values, [IOSIntArray newArrayWithInts:(jint[]){ ((BaseIntercepting *) nil_chk(secondSource))->id__ } count:1]);
+  values = LeUtil_extendWithNSStringArray_withIntArray_(values, [IOSIntArray arrayWithInts:(jint[]){ ((BaseIntercepting *) nil_chk(secondSource))->id__ } count:1]);
   [self drainEventWithLeEventType:type withBaseIntercepting:interceptor withNSStringArray:values];
 }
 
 - (void)drainEventWithLeEventType:(LeEventType *)type
              withBaseIntercepting:(BaseIntercepting *)interceptor
                 withNSStringArray:(IOSObjectArray *)values {
-  [((id<EventSink>) nil_chk(sink_)) addEventWithEvent:new_Event_initWithEventType_withBaseIntercepting_withNSStringArray_(type, interceptor, values)];
+  [((id<EventSink>) nil_chk(sink_)) addEventWithEvent:create_Event_initWithEventType_withBaseIntercepting_withNSStringArray_(type, interceptor, values)];
 }
 
 - (instancetype)initWithEventSink:(id<EventSink>)sink {
@@ -56,7 +56,7 @@
 
 - (void)listenerAddedWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice
              withInterceptingLeDeviceListener:(InterceptingLeDeviceListener *)iListener {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, deviceAddListener) withBaseIntercepting:iLeDevice withBaseIntercepting:iListener withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, deviceAddListener) withBaseIntercepting:iLeDevice withBaseIntercepting:iListener withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)deviceFoundWithInterceptingLeDeviceListener:(InterceptingLeDeviceListener *)iLeDeviceListener
@@ -64,62 +64,62 @@
                      withInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                                             withInt:(jint)rssi
                                    withLeScanRecord:(id<LeScanRecord>)leScanRecord {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceFound) withBaseIntercepting:iLeDeviceListener withBaseIntercepting:iLeDevice withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ JreStrcat("I", rssi), LeUtil_bytesToStringWithByteArray_([((id<LeScanRecord>) nil_chk(leScanRecord)) getRawData]) } count:2 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceFound) withBaseIntercepting:iLeDeviceListener withBaseIntercepting:iLeDevice withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", rssi), LeUtil_bytesToStringWithByteArray_([((id<LeScanRecord>) nil_chk(leScanRecord)) getRawData]) } count:2 type:NSString_class_()]];
 }
 
 - (void)deviceStateWithInterceptingLeDeviceListener:(InterceptingLeDeviceListener *)iLeDeviceListener
                            withInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice
                                   withLeDeviceState:(LeDeviceState *)leDeviceState {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, deviceState) withBaseIntercepting:iLeDeviceListener withBaseIntercepting:iLeDevice withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((LeDeviceState *) nil_chk(leDeviceState)) description] } count:1 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, deviceState) withBaseIntercepting:iLeDeviceListener withBaseIntercepting:iLeDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((LeDeviceState *) nil_chk(leDeviceState)) description] } count:1 type:NSString_class_()]];
 }
 
 - (void)connectedWithInterceptingLeRemoteDeviceListener:(InterceptingLeRemoteDeviceListener *)iLeRemoteDeviceListener
                                withInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice
                          withInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceConnected) withBaseIntercepting:iLeRemoteDeviceListener withBaseIntercepting:iLeDevice withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceConnected) withBaseIntercepting:iLeRemoteDeviceListener withBaseIntercepting:iLeDevice withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)disconnectedWithInterceptingLeRemoteDeviceListener:(InterceptingLeRemoteDeviceListener *)iLeRemoteDeviceListener
                                   withInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice
                             withInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceDisconnected) withBaseIntercepting:iLeRemoteDeviceListener withBaseIntercepting:iLeDevice withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceDisconnected) withBaseIntercepting:iLeRemoteDeviceListener withBaseIntercepting:iLeDevice withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)closedWithInterceptingLeRemoteDeviceListener:(InterceptingLeRemoteDeviceListener *)iLeRemoteDeviceListener
                             withInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice
                       withInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceClosed) withBaseIntercepting:iLeRemoteDeviceListener withBaseIntercepting:iLeDevice withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceClosed) withBaseIntercepting:iLeRemoteDeviceListener withBaseIntercepting:iLeDevice withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)gotUUIDWithInterceptingLeGattService:(InterceptingLeGattService *)iLeGattService
                             withJavaUtilUUID:(JavaUtilUUID *)uuid {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetUUID) withBaseIntercepting:iLeGattService withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description] } count:1 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetUUID) withBaseIntercepting:iLeGattService withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description] } count:1 type:NSString_class_()]];
 }
 
 - (void)gotCharacteristicWithInterceptingLeGattService:(InterceptingLeGattService *)iLeGattService
                   withInterceptingLeGattCharacteristic:(InterceptingLeGattCharacteristic *)iLeGattCharacteristic {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetCharacteristic) withBaseIntercepting:iLeGattService withBaseIntercepting:iLeGattCharacteristic withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetCharacteristic) withBaseIntercepting:iLeGattService withBaseIntercepting:iLeGattCharacteristic withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)rssiReadWithInterceptingLeRemoteDeviceListener:(InterceptingLeRemoteDeviceListener *)iLeRemoteDeviceListener
                               withInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice
                         withInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                                                withInt:(jint)rssi {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceRssiRead) withBaseIntercepting:iLeRemoteDeviceListener withBaseIntercepting:iLeDevice withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ JreStrcat("I", rssi) } count:1 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceRssiRead) withBaseIntercepting:iLeRemoteDeviceListener withBaseIntercepting:iLeDevice withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", rssi) } count:1 type:NSString_class_()]];
 }
 
 - (void)readRssiWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceReadRssi) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceReadRssi) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)readWithInterceptingLeGattCharacteristic:(InterceptingLeGattCharacteristic *)interceptingLeGattCharacteristic {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicRead) withBaseIntercepting:interceptingLeGattCharacteristic withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicRead) withBaseIntercepting:interceptingLeGattCharacteristic withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)enabledCharacteristicNotificationWithInterceptingLeGattService:(InterceptingLeGattService *)iLeGattService
                                                       withJavaUtilUUID:(JavaUtilUUID *)characteristic
                                                            withBoolean:(jboolean)enabled {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, serviceEnableCharacteristicNotification) withBaseIntercepting:iLeGattService withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(characteristic)) description], JavaLangBoolean_toStringWithBoolean_(enabled) } count:2 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, serviceEnableCharacteristicNotification) withBaseIntercepting:iLeGattService withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(characteristic)) description], JavaLangBoolean_toStringWithBoolean_(enabled) } count:2 type:NSString_class_()]];
 }
 
 - (void)servicesDiscoveredWithInterceptingLeRemoteDeviceListener:(InterceptingLeRemoteDeviceListener *)iLeRemoteDeviceListener
@@ -127,28 +127,28 @@
                                   withInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                                                 withLeGattStatus:(LeGattStatus *)status
                               withInterceptingLeGattServiceArray:(IOSObjectArray *)iLeGattServices {
-  IOSObjectArray *params = [IOSObjectArray newArrayWithLength:1 + ((IOSObjectArray *) nil_chk(iLeGattServices))->size_ type:NSString_class_()];
-  (void) IOSObjectArray_Set(params, 0, [((LeGattStatus *) nil_chk(status)) description]);
-  for (jint k = 0; k < iLeGattServices->size_; k++) (void) IOSObjectArray_Set(params, 1 + k, JreStrcat("I", ((InterceptingLeGattService *) nil_chk(IOSObjectArray_Get(iLeGattServices, k)))->id__));
+  IOSObjectArray *params = [IOSObjectArray arrayWithLength:1 + ((IOSObjectArray *) nil_chk(iLeGattServices))->size_ type:NSString_class_()];
+  IOSObjectArray_Set(params, 0, [((LeGattStatus *) nil_chk(status)) description]);
+  for (jint k = 0; k < iLeGattServices->size_; k++) IOSObjectArray_Set(params, 1 + k, JreStrcat("I", ((InterceptingLeGattService *) nil_chk(IOSObjectArray_Get(iLeGattServices, k)))->id__));
   [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceServicesDiscovered) withBaseIntercepting:iLeRemoteDeviceListener withBaseIntercepting:iLeDevice withBaseIntercepting:iLeRemoteDevice withNSStringArray:params];
 }
 
 - (void)listenerRemovedWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, deviceRemoveListener) withBaseIntercepting:iLeDevice withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, deviceRemoveListener) withBaseIntercepting:iLeDevice withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)checkedBleHardwareAvailableWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice
                                                 withBoolean:(jboolean)bleHardwareEnabled {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, deviceCheckBleHardwareAvailable) withBaseIntercepting:iLeDevice withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ JavaLangBoolean_toStringWithBoolean_(bleHardwareEnabled) } count:1 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, deviceCheckBleHardwareAvailable) withBaseIntercepting:iLeDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_toStringWithBoolean_(bleHardwareEnabled) } count:1 type:NSString_class_()]];
 }
 
 - (void)wasBtEnabledWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice
                                  withBoolean:(jboolean)btEnabled {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, deviceIsBtEnabled) withBaseIntercepting:iLeDevice withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ JavaLangBoolean_toStringWithBoolean_(btEnabled) } count:1 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, deviceIsBtEnabled) withBaseIntercepting:iLeDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_toStringWithBoolean_(btEnabled) } count:1 type:NSString_class_()]];
 }
 
 - (void)startedScanningWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, deviceStartScanning) withBaseIntercepting:iLeDevice withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, deviceStartScanning) withBaseIntercepting:iLeDevice withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)startedScanningWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice
@@ -158,73 +158,73 @@
 }
 
 - (void)stoppedScanningWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, deviceStopScanning) withBaseIntercepting:iLeDevice withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, deviceStopScanning) withBaseIntercepting:iLeDevice withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)gotValueWithInterceptingLeGattCharacteristic:(InterceptingLeGattCharacteristic *)iLeGattCharacteristic
                                        withByteArray:(IOSByteArray *)value {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicGetValue) withBaseIntercepting:iLeGattCharacteristic withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value) } count:1 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicGetValue) withBaseIntercepting:iLeGattCharacteristic withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value) } count:1 type:NSString_class_()]];
 }
 
 - (void)gotIntValueWithInterceptingLeGattCharacteristic:(InterceptingLeGattCharacteristic *)iLeGattCharacteristic
                                            withLeFormat:(LeFormat *)format
                                                 withInt:(jint)value {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicGetIntValue) withBaseIntercepting:iLeGattCharacteristic withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((LeFormat *) nil_chk(format)) description], JreStrcat("I", value) } count:2 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicGetIntValue) withBaseIntercepting:iLeGattCharacteristic withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((LeFormat *) nil_chk(format)) description], JreStrcat("I", value) } count:2 type:NSString_class_()]];
 }
 
 - (void)remoteListenerAddedWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                    withInterceptingLeRemoteDeviceListener:(InterceptingLeRemoteDeviceListener *)iListener {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceAddListener) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ JreStrcat("I", ((InterceptingLeRemoteDeviceListener *) nil_chk(iListener))->id__) } count:1 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceAddListener) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", ((InterceptingLeRemoteDeviceListener *) nil_chk(iListener))->id__) } count:1 type:NSString_class_()]];
 }
 
 - (void)remoteListenerRemovedWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                      withInterceptingLeRemoteDeviceListener:(InterceptingLeRemoteDeviceListener *)iListener {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceRemoveListener) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ JreStrcat("I", ((InterceptingLeRemoteDeviceListener *) nil_chk(iListener))->id__) } count:1 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceRemoveListener) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", ((InterceptingLeRemoteDeviceListener *) nil_chk(iListener))->id__) } count:1 type:NSString_class_()]];
 }
 
 - (void)gotAddressWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                                     withNSString:(NSString *)address {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetAddress) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ address } count:1 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetAddress) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ address } count:1 type:NSString_class_()]];
 }
 
 - (void)connectingWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceConnect) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceConnect) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)disconnectingWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceDisconnect) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceDisconnect) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)closingWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceClose) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceClose) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)serviceDiscoveryStartedWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceStartServiceDiscovery) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceStartServiceDiscovery) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
 }
 
 - (void)serviceDiscoveryStartedWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                                         withJavaUtilUUIDArray:(IOSObjectArray *)uuids {
   if (uuids != nil) {
-    IOSObjectArray *args = [IOSObjectArray newArrayWithLength:uuids->size_ type:NSString_class_()];
-    (void) LeUtil_putUUIDsInStringArrayWithJavaUtilUUIDArray_withNSStringArray_withInt_(uuids, args, 0);
+    IOSObjectArray *args = [IOSObjectArray arrayWithLength:uuids->size_ type:NSString_class_()];
+    LeUtil_putUUIDsInStringArrayWithJavaUtilUUIDArray_withNSStringArray_withInt_(uuids, args, 0);
     [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceStartServiceDiscovery) withBaseIntercepting:iLeRemoteDevice withNSStringArray:args];
   }
   else {
-    [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceStartServiceDiscovery) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithLength:0 type:NSString_class_()]];
+    [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceStartServiceDiscovery) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
   }
 }
 
 - (void)gotRemoteDeviceNameWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                                              withNSString:(NSString *)name {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetName) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ name } count:1 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetName) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ name } count:1 type:NSString_class_()]];
 }
 
 - (void)characteristicChangedWithInterceptingLeCharacteristicListener:(InterceptingLeCharacteristicListener *)iLeCharacteristicListener
                                                      withJavaUtilUUID:(JavaUtilUUID *)uuid
                                        withInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                                  withInterceptingLeGattCharacteristic:(InterceptingLeGattCharacteristic *)iLeGattCharacteristic {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicChanged) withBaseIntercepting:iLeCharacteristicListener withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description], JreStrcat("I", ((InterceptingLeRemoteDevice *) nil_chk(iLeRemoteDevice))->id__), JreStrcat("I", ((InterceptingLeGattCharacteristic *) nil_chk(iLeGattCharacteristic))->id__) } count:3 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicChanged) withBaseIntercepting:iLeCharacteristicListener withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description], JreStrcat("I", ((InterceptingLeRemoteDevice *) nil_chk(iLeRemoteDevice))->id__), JreStrcat("I", ((InterceptingLeGattCharacteristic *) nil_chk(iLeGattCharacteristic))->id__) } count:3 type:NSString_class_()]];
 }
 
 - (void)characteristicNotificationChangedWithInterceptingLeCharacteristicListener:(InterceptingLeCharacteristicListener *)iLeCharacteristicListener
@@ -232,7 +232,7 @@
                                                    withInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                                              withInterceptingLeGattCharacteristic:(InterceptingLeGattCharacteristic *)iLeGattCharacteristic
                                                               withJavaLangBoolean:(JavaLangBoolean *)success {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicNotificationChanged) withBaseIntercepting:iLeCharacteristicListener withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description], JreStrcat("I", ((InterceptingLeRemoteDevice *) nil_chk(iLeRemoteDevice))->id__), JreStrcat("I", ((InterceptingLeGattCharacteristic *) nil_chk(iLeGattCharacteristic))->id__), [((JavaLangBoolean *) nil_chk(success)) description] } count:4 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicNotificationChanged) withBaseIntercepting:iLeCharacteristicListener withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description], JreStrcat("I", ((InterceptingLeRemoteDevice *) nil_chk(iLeRemoteDevice))->id__), JreStrcat("I", ((InterceptingLeGattCharacteristic *) nil_chk(iLeGattCharacteristic))->id__), [((JavaLangBoolean *) nil_chk(success)) description] } count:4 type:NSString_class_()]];
 }
 
 - (void)characteristicWrittenWithInterceptingLeCharacteristicWriteListener:(InterceptingLeCharacteristicWriteListener *)iLeCharacteristicWriteListener
@@ -240,7 +240,7 @@
                                             withInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                                       withInterceptingLeGattCharacteristic:(InterceptingLeGattCharacteristic *)iLeGattCharacteristic
                                                        withJavaLangBoolean:(JavaLangBoolean *)success {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicWritten) withBaseIntercepting:iLeCharacteristicWriteListener withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description], JreStrcat("I", ((InterceptingLeRemoteDevice *) nil_chk(iLeRemoteDevice))->id__), JreStrcat("I", ((InterceptingLeGattCharacteristic *) nil_chk(iLeGattCharacteristic))->id__), [((JavaLangBoolean *) nil_chk(success)) description] } count:4 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicWritten) withBaseIntercepting:iLeCharacteristicWriteListener withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description], JreStrcat("I", ((InterceptingLeRemoteDevice *) nil_chk(iLeRemoteDevice))->id__), JreStrcat("I", ((InterceptingLeGattCharacteristic *) nil_chk(iLeGattCharacteristic))->id__), [((JavaLangBoolean *) nil_chk(success)) description] } count:4 type:NSString_class_()]];
 }
 
 - (void)characteristicListenerSetWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
@@ -250,13 +250,13 @@
   NSString *characteristicsListenerId = @"";
   if (iCharacteristicsListener != nil) characteristicsListenerId = JreStrcat("I", iCharacteristicsListener->id__);
   if (uuids != nil) {
-    args = [IOSObjectArray newArrayWithLength:1 + uuids->size_ type:NSString_class_()];
-    (void) IOSObjectArray_Set(args, 0, characteristicsListenerId);
-    (void) LeUtil_putUUIDsInStringArrayWithJavaUtilUUIDArray_withNSStringArray_withInt_(uuids, args, 1);
+    args = [IOSObjectArray arrayWithLength:1 + uuids->size_ type:NSString_class_()];
+    IOSObjectArray_Set(args, 0, characteristicsListenerId);
+    LeUtil_putUUIDsInStringArrayWithJavaUtilUUIDArray_withNSStringArray_withInt_(uuids, args, 1);
   }
   else {
-    args = [IOSObjectArray newArrayWithLength:1 type:NSString_class_()];
-    (void) IOSObjectArray_Set(args, 0, characteristicsListenerId);
+    args = [IOSObjectArray arrayWithLength:1 type:NSString_class_()];
+    IOSObjectArray_Set(args, 0, characteristicsListenerId);
   }
   [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceSetCharacteristicListener) withBaseIntercepting:iLeRemoteDevice withNSStringArray:args];
 }
@@ -268,26 +268,31 @@
   NSString *characteristicsWriteListener = @"";
   if (iCharacteristicsWriteListener != nil) characteristicsWriteListener = JreStrcat("I", iCharacteristicsWriteListener->id__);
   if (uuids != nil) {
-    args = [IOSObjectArray newArrayWithLength:1 + uuids->size_ type:NSString_class_()];
-    (void) IOSObjectArray_Set(args, 0, characteristicsWriteListener);
-    (void) LeUtil_putUUIDsInStringArrayWithJavaUtilUUIDArray_withNSStringArray_withInt_(uuids, args, 1);
+    args = [IOSObjectArray arrayWithLength:1 + uuids->size_ type:NSString_class_()];
+    IOSObjectArray_Set(args, 0, characteristicsWriteListener);
+    LeUtil_putUUIDsInStringArrayWithJavaUtilUUIDArray_withNSStringArray_withInt_(uuids, args, 1);
   }
   else {
-    args = [IOSObjectArray newArrayWithLength:1 type:NSString_class_()];
-    (void) IOSObjectArray_Set(args, 0, characteristicsWriteListener);
+    args = [IOSObjectArray arrayWithLength:1 type:NSString_class_()];
+    IOSObjectArray_Set(args, 0, characteristicsWriteListener);
   }
   [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceSetCharacteristicWriteListener) withBaseIntercepting:iLeRemoteDevice withNSStringArray:args];
 }
 
 - (void)setValueWithInterceptingLeGattCharacteristic:(InterceptingLeGattCharacteristic *)iLeGattCharacteristic
                                        withByteArray:(IOSByteArray *)value {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicSetValue) withBaseIntercepting:iLeGattCharacteristic withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value) } count:1 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicSetValue) withBaseIntercepting:iLeGattCharacteristic withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value) } count:1 type:NSString_class_()]];
 }
 
 - (void)setValueWithInterceptingLeGattCharacteristic:(InterceptingLeGattCharacteristic *)interceptingLeGattCharacteristic
                                        withByteArray:(IOSByteArray *)value
                                  withJavaLangBoolean:(JavaLangBoolean *)withResponse {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicSetValue) withBaseIntercepting:interceptingLeGattCharacteristic withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value), [((JavaLangBoolean *) nil_chk(withResponse)) description] } count:2 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicSetValue) withBaseIntercepting:interceptingLeGattCharacteristic withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value), [((JavaLangBoolean *) nil_chk(withResponse)) description] } count:2 type:NSString_class_()]];
+}
+
+- (void)dealloc {
+  RELEASE_(sink_);
+  [super dealloc];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -345,7 +350,7 @@
 
 void LeSessionInterceptor_initWithEventSink_(LeSessionInterceptor *self, id<EventSink> sink) {
   LeInterceptor_init(self);
-  self->sink_ = sink;
+  JreStrongAssign(&self->sink_, sink);
 }
 
 LeSessionInterceptor *new_LeSessionInterceptor_initWithEventSink_(id<EventSink> sink) {

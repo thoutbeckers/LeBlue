@@ -8,8 +8,6 @@
 
 __attribute__((unused)) static void LeGattStatus_initWithNSString_withInt_(LeGattStatus *self, NSString *__name, jint __ordinal);
 
-__attribute__((unused)) static LeGattStatus *new_LeGattStatus_initWithNSString_withInt_(NSString *__name, jint __ordinal) NS_RETURNS_RETAINED;
-
 J2OBJC_INITIALIZED_DEFN(LeGattStatus)
 
 LeGattStatus *LeGattStatus_values_[9];
@@ -34,15 +32,28 @@ LeGattStatus *LeGattStatus_values_[9];
 
 + (void)initialize {
   if (self == [LeGattStatus class]) {
-    JreEnum(LeGattStatus, SUCCESS) = new_LeGattStatus_initWithNSString_withInt_(@"SUCCESS", 0);
-    JreEnum(LeGattStatus, READ_NOT_PERMITTED) = new_LeGattStatus_initWithNSString_withInt_(@"READ_NOT_PERMITTED", 1);
-    JreEnum(LeGattStatus, WRITE_NOT_PERMITTED) = new_LeGattStatus_initWithNSString_withInt_(@"WRITE_NOT_PERMITTED", 2);
-    JreEnum(LeGattStatus, INSUFFICIENT_AUTHENTICATION) = new_LeGattStatus_initWithNSString_withInt_(@"INSUFFICIENT_AUTHENTICATION", 3);
-    JreEnum(LeGattStatus, REQUEST_NOT_SUPPORTED) = new_LeGattStatus_initWithNSString_withInt_(@"REQUEST_NOT_SUPPORTED", 4);
-    JreEnum(LeGattStatus, INSUFFICIENT_ENCRYPTION) = new_LeGattStatus_initWithNSString_withInt_(@"INSUFFICIENT_ENCRYPTION", 5);
-    JreEnum(LeGattStatus, INVALID_OFFSET) = new_LeGattStatus_initWithNSString_withInt_(@"INVALID_OFFSET", 6);
-    JreEnum(LeGattStatus, INVALID_ATTRIBUTE_LENGTH) = new_LeGattStatus_initWithNSString_withInt_(@"INVALID_ATTRIBUTE_LENGTH", 7);
-    JreEnum(LeGattStatus, FAILURE) = new_LeGattStatus_initWithNSString_withInt_(@"FAILURE", 8);
+    size_t objSize = class_getInstanceSize(self);
+    size_t allocSize = 9 * objSize;
+    uintptr_t ptr = (uintptr_t)calloc(allocSize, 1);
+    id e;
+    (JreEnum(LeGattStatus, SUCCESS) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeGattStatus_initWithNSString_withInt_(e, @"SUCCESS", 0);
+    (JreEnum(LeGattStatus, READ_NOT_PERMITTED) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeGattStatus_initWithNSString_withInt_(e, @"READ_NOT_PERMITTED", 1);
+    (JreEnum(LeGattStatus, WRITE_NOT_PERMITTED) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeGattStatus_initWithNSString_withInt_(e, @"WRITE_NOT_PERMITTED", 2);
+    (JreEnum(LeGattStatus, INSUFFICIENT_AUTHENTICATION) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeGattStatus_initWithNSString_withInt_(e, @"INSUFFICIENT_AUTHENTICATION", 3);
+    (JreEnum(LeGattStatus, REQUEST_NOT_SUPPORTED) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeGattStatus_initWithNSString_withInt_(e, @"REQUEST_NOT_SUPPORTED", 4);
+    (JreEnum(LeGattStatus, INSUFFICIENT_ENCRYPTION) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeGattStatus_initWithNSString_withInt_(e, @"INSUFFICIENT_ENCRYPTION", 5);
+    (JreEnum(LeGattStatus, INVALID_OFFSET) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeGattStatus_initWithNSString_withInt_(e, @"INVALID_OFFSET", 6);
+    (JreEnum(LeGattStatus, INVALID_ATTRIBUTE_LENGTH) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeGattStatus_initWithNSString_withInt_(e, @"INVALID_ATTRIBUTE_LENGTH", 7);
+    (JreEnum(LeGattStatus, FAILURE) = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
+    LeGattStatus_initWithNSString_withInt_(e, @"FAILURE", 8);
     J2OBJC_SET_INITIALIZED(LeGattStatus)
   }
 }
@@ -87,10 +98,6 @@ void LeGattStatus_initWithNSString_withInt_(LeGattStatus *self, NSString *__name
   JavaLangEnum_initWithNSString_withInt_(self, __name, __ordinal);
 }
 
-LeGattStatus *new_LeGattStatus_initWithNSString_withInt_(NSString *__name, jint __ordinal) {
-  J2OBJC_NEW_IMPL(LeGattStatus, initWithNSString_withInt_, __name, __ordinal)
-}
-
 IOSObjectArray *LeGattStatus_values() {
   LeGattStatus_initialize();
   return [IOSObjectArray arrayWithObjects:LeGattStatus_values_ count:9 type:LeGattStatus_class_()];
@@ -104,7 +111,7 @@ LeGattStatus *LeGattStatus_valueOfWithNSString_(NSString *name) {
       return e;
     }
   }
-  @throw [[JavaLangIllegalArgumentException alloc] initWithNSString:name];
+  @throw [[[JavaLangIllegalArgumentException alloc] initWithNSString:name] autorelease];
   return nil;
 }
 

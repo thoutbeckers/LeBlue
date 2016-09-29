@@ -36,7 +36,7 @@ task translateLeBlueJava(type:Exec) {
 
     executable System.getenv()['J2OBJC_HOME'] + '/j2objc'
     args '--prefixes', file('objc/prefixes.properties').path
-    args '-use-arc','--no-package-directories'
+    args '--no-package-directories'
     args '-d', file('objc/generated/').path
     args '-sourcepath', tree.dir ,''
     args tree
@@ -51,7 +51,7 @@ task translateLeBlueJavaTest(type:Exec) {
     tree.include '**/*.java'
     executable System.getenv()['J2OBJC_HOME'] + '/j2objc'
     args '--prefixes', file('objc/prefixes.properties').path
-    args '-use-arc','--no-package-directories'
+    args '--no-package-directories'
     args '-d', file('objc/generated/').path
     String dir1 = tree.dir
     String dir2 = mainTree.dir
@@ -64,7 +64,7 @@ task translateLeBlueJavaTest(type:Exec) {
 task compileTranslatedLeBlueJavaTest(type:Exec) {
     executable System.getenv()['J2OBJC_HOME'] + '/j2objcc'
     args "-I${file("objc/generated/").path}"
-    args "-ObjC", "-fobjc-arc", "-ljunit", "-ljre_emul"
+    args "-ObjC", "-ljunit", "-ljre_emul"
     args "-o", "testrunner"
     FileTree tree = fileTree(dir: "objc/generated/", include: '**/*.m')
     args tree

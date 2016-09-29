@@ -35,8 +35,8 @@
 - (InterceptingLeRemoteDevice *)getInterceptingLeRemoteDeviceWithLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice {
   InterceptingLeRemoteDevice *iRemoteDevice = [((id<JavaUtilMap>) nil_chk(iRemoteDevices_)) getWithId:leRemoteDevice];
   if (iRemoteDevice == nil) {
-    iRemoteDevice = new_InterceptingLeRemoteDevice_initWithLeRemoteDevice_withLeInterceptor_(leRemoteDevice, self);
-    (void) [((id<JavaUtilMap>) nil_chk(iRemoteDevices_)) putWithId:leRemoteDevice withId:iRemoteDevice];
+    iRemoteDevice = create_InterceptingLeRemoteDevice_initWithLeRemoteDevice_withLeInterceptor_(leRemoteDevice, self);
+    [((id<JavaUtilMap>) nil_chk(iRemoteDevices_)) putWithId:leRemoteDevice withId:iRemoteDevice];
   }
   return iRemoteDevice;
 }
@@ -52,8 +52,8 @@
 - (InterceptingLeDeviceListener *)getInterceptingLeDeviceListenerWithLeDeviceListener:(id<LeDeviceListener>)listener {
   InterceptingLeDeviceListener *iDeviceListener = [((id<JavaUtilMap>) nil_chk(iDeviceListeners_)) getWithId:listener];
   if (iDeviceListener == nil) {
-    iDeviceListener = new_InterceptingLeDeviceListener_initWithLeDeviceListener_withLeInterceptor_(listener, self);
-    (void) [((id<JavaUtilMap>) nil_chk(iDeviceListeners_)) putWithId:listener withId:iDeviceListener];
+    iDeviceListener = create_InterceptingLeDeviceListener_initWithLeDeviceListener_withLeInterceptor_(listener, self);
+    [((id<JavaUtilMap>) nil_chk(iDeviceListeners_)) putWithId:listener withId:iDeviceListener];
   }
   return iDeviceListener;
 }
@@ -61,8 +61,8 @@
 - (InterceptingLeRemoteDeviceListener *)getInterceptingLeRemoteDeviceListenerWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)listener {
   InterceptingLeRemoteDeviceListener *iRemoteDeviceListener = [((id<JavaUtilMap>) nil_chk(iRemoteDeviceListeners_)) getWithId:listener];
   if (iRemoteDeviceListener == nil) {
-    iRemoteDeviceListener = new_InterceptingLeRemoteDeviceListener_initWithLeRemoteDeviceListener_withLeInterceptor_(listener, self);
-    (void) [((id<JavaUtilMap>) nil_chk(iRemoteDeviceListeners_)) putWithId:listener withId:iRemoteDeviceListener];
+    iRemoteDeviceListener = create_InterceptingLeRemoteDeviceListener_initWithLeRemoteDeviceListener_withLeInterceptor_(listener, self);
+    [((id<JavaUtilMap>) nil_chk(iRemoteDeviceListeners_)) putWithId:listener withId:iRemoteDeviceListener];
   }
   return iRemoteDeviceListener;
 }
@@ -70,8 +70,8 @@
 - (InterceptingLeGattService *)getInterceptingLeGattServiceWithLeGattService:(id<LeGattService>)leGattService {
   InterceptingLeGattService *iLeGattService = [((id<JavaUtilMap>) nil_chk(iGattServices_)) getWithId:leGattService];
   if (iLeGattService == nil) {
-    iLeGattService = new_InterceptingLeGattService_initWithLeGattService_withLeInterceptor_(leGattService, self);
-    (void) [((id<JavaUtilMap>) nil_chk(iGattServices_)) putWithId:leGattService withId:iLeGattService];
+    iLeGattService = create_InterceptingLeGattService_initWithLeGattService_withLeInterceptor_(leGattService, self);
+    [((id<JavaUtilMap>) nil_chk(iGattServices_)) putWithId:leGattService withId:iLeGattService];
   }
   return iLeGattService;
 }
@@ -80,8 +80,8 @@
                                                                    withLeGattCharacteristic:(id<LeGattCharacteristic>)leGattCharacteristic {
   InterceptingLeGattCharacteristic *iLeGattCharacteristic = [((id<JavaUtilMap>) nil_chk(iGattCharacteristics_)) getWithId:leGattCharacteristic];
   if (iLeGattCharacteristic == nil) {
-    iLeGattCharacteristic = new_InterceptingLeGattCharacteristic_initWithLeGattCharacteristic_withLeInterceptor_(leGattCharacteristic, self);
-    (void) [((id<JavaUtilMap>) nil_chk(iGattCharacteristics_)) putWithId:leGattCharacteristic withId:iLeGattCharacteristic];
+    iLeGattCharacteristic = create_InterceptingLeGattCharacteristic_initWithLeGattCharacteristic_withLeInterceptor_(leGattCharacteristic, self);
+    [((id<JavaUtilMap>) nil_chk(iGattCharacteristics_)) putWithId:leGattCharacteristic withId:iLeGattCharacteristic];
   }
   return iLeGattCharacteristic;
 }
@@ -89,8 +89,8 @@
 - (InterceptingLeCharacteristicListener *)getInterceptingCharacteristicsListenerWithLeCharacteristicListener:(id<LeCharacteristicListener>)listener {
   InterceptingLeCharacteristicListener *iLeCharacteristicListener = [((id<JavaUtilMap>) nil_chk(iCharacteristicListeners_)) getWithId:listener];
   if (iLeCharacteristicListener == nil) {
-    iLeCharacteristicListener = new_InterceptingLeCharacteristicListener_initWithLeCharacteristicListener_withLeInterceptor_(listener, self);
-    (void) [((id<JavaUtilMap>) nil_chk(iCharacteristicListeners_)) putWithId:listener withId:iLeCharacteristicListener];
+    iLeCharacteristicListener = create_InterceptingLeCharacteristicListener_initWithLeCharacteristicListener_withLeInterceptor_(listener, self);
+    [((id<JavaUtilMap>) nil_chk(iCharacteristicListeners_)) putWithId:listener withId:iLeCharacteristicListener];
   }
   return iLeCharacteristicListener;
 }
@@ -98,8 +98,8 @@
 - (InterceptingLeCharacteristicWriteListener *)getInterceptingCharacteristicsWriteListenerWithLeCharacteristicWriteListener:(id<LeCharacteristicWriteListener>)listener {
   InterceptingLeCharacteristicWriteListener *iLeCharacteristicWriteListener = [((id<JavaUtilMap>) nil_chk(iCharacteristicWriteListeners_)) getWithId:listener];
   if (iLeCharacteristicWriteListener == nil) {
-    iLeCharacteristicWriteListener = new_InterceptingLeCharacteristicWriteListener_initWithLeCharacteristicWriteListener_withLeInterceptor_(listener, self);
-    (void) [((id<JavaUtilMap>) nil_chk(iCharacteristicWriteListeners_)) putWithId:listener withId:iLeCharacteristicWriteListener];
+    iLeCharacteristicWriteListener = create_InterceptingLeCharacteristicWriteListener_initWithLeCharacteristicWriteListener_withLeInterceptor_(listener, self);
+    [((id<JavaUtilMap>) nil_chk(iCharacteristicWriteListeners_)) putWithId:listener withId:iLeCharacteristicWriteListener];
   }
   return iLeCharacteristicWriteListener;
 }
@@ -107,8 +107,8 @@
 - (InterceptingLeGattCharacteristic *)getInterceptingLeGattCharacteristicWithLeGattCharacteristic:(id<LeGattCharacteristic>)characteristic {
   InterceptingLeGattCharacteristic *iLeGattCharacteristic = [((id<JavaUtilMap>) nil_chk(iGattCharacteristics_)) getWithId:characteristic];
   if (iLeGattCharacteristic == nil) {
-    iLeGattCharacteristic = new_InterceptingLeGattCharacteristic_initWithLeGattCharacteristic_withLeInterceptor_(characteristic, self);
-    (void) [((id<JavaUtilMap>) nil_chk(iGattCharacteristics_)) putWithId:characteristic withId:iLeGattCharacteristic];
+    iLeGattCharacteristic = create_InterceptingLeGattCharacteristic_initWithLeGattCharacteristic_withLeInterceptor_(characteristic, self);
+    [((id<JavaUtilMap>) nil_chk(iGattCharacteristics_)) putWithId:characteristic withId:iLeGattCharacteristic];
   }
   return iLeGattCharacteristic;
 }
@@ -358,6 +358,18 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 }
 J2OBJC_IGNORE_DESIGNATED_END
 
+- (void)dealloc {
+  RELEASE_(iDevices_);
+  RELEASE_(iDeviceListeners_);
+  RELEASE_(iRemoteDevices_);
+  RELEASE_(iRemoteDeviceListeners_);
+  RELEASE_(iGattServices_);
+  RELEASE_(iGattCharacteristics_);
+  RELEASE_(iCharacteristicListeners_);
+  RELEASE_(iCharacteristicWriteListeners_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "getInterceptingLeRemoteDeviceWithLeRemoteDevice:", "getInterceptingLeRemoteDevice", "Lhoutbecke.rs.le.interceptor.InterceptingLeRemoteDevice;", 0x1, NULL, NULL },
@@ -427,14 +439,14 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 void LeInterceptor_init(LeInterceptor *self) {
   NSObject_init(self);
-  self->iDevices_ = new_JavaUtilHashMap_init();
-  self->iDeviceListeners_ = new_JavaUtilHashMap_init();
-  self->iRemoteDevices_ = new_JavaUtilHashMap_init();
-  self->iRemoteDeviceListeners_ = new_JavaUtilHashMap_init();
-  self->iGattServices_ = new_JavaUtilHashMap_init();
-  self->iGattCharacteristics_ = new_JavaUtilHashMap_init();
-  self->iCharacteristicListeners_ = new_JavaUtilHashMap_init();
-  self->iCharacteristicWriteListeners_ = new_JavaUtilHashMap_init();
+  JreStrongAssignAndConsume(&self->iDevices_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->iDeviceListeners_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->iRemoteDevices_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->iRemoteDeviceListeners_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->iGattServices_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->iGattCharacteristics_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->iCharacteristicListeners_, new_JavaUtilHashMap_init());
+  JreStrongAssignAndConsume(&self->iCharacteristicWriteListeners_, new_JavaUtilHashMap_init());
   JreAssignVolatileInt(&self->counter_, 0);
 }
 

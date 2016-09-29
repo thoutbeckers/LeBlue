@@ -80,6 +80,13 @@
   return ((jint) [((JavaLangInteger *) nil_chk(key_)) hash]);
 }
 
+- (void)dealloc {
+  RELEASE_(mockController_);
+  RELEASE_(leDeviceMock_);
+  RELEASE_(key_);
+  [super dealloc];
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithInt:withLeMockController:withLeDeviceMock:", "LeRemoteDeviceMock", NULL, 0x1, NULL, NULL },
@@ -111,9 +118,9 @@
 
 void LeRemoteDeviceMock_initWithInt_withLeMockController_withLeDeviceMock_(LeRemoteDeviceMock *self, jint key, id<LeMockController> mockController, LeDeviceMock *leDeviceMock) {
   NSObject_init(self);
-  self->key_ = JavaLangInteger_valueOfWithInt_(key);
-  self->mockController_ = mockController;
-  self->leDeviceMock_ = leDeviceMock;
+  JreStrongAssign(&self->key_, JavaLangInteger_valueOfWithInt_(key));
+  JreStrongAssign(&self->mockController_, mockController);
+  JreStrongAssign(&self->leDeviceMock_, leDeviceMock);
 }
 
 LeRemoteDeviceMock *new_LeRemoteDeviceMock_initWithInt_withLeMockController_withLeDeviceMock_(jint key, id<LeMockController> mockController, LeDeviceMock *leDeviceMock) {

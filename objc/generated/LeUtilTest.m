@@ -24,18 +24,18 @@
   scanrecord = LeUtil_stringToBytesWithNSString_(@"13,9,84,97,99,120,32,66,117,115,104,105,100,111,2,1,6,5,3,24,24,22,24,17,7,95,103,98,80,-83,-122,17,-30,-98,-106,8,12,5,-92,-102,102,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0");
   leScanRecord = LeUtil_parseLeScanRecordWithByteArray_(scanrecord);
   JreAssert(([((id<LeScanRecord>) nil_chk(leScanRecord)) hasServiceWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"669aa405-0c08-969e-e211-86ad5062675f")]), (@"houtbecke/rs/le/LeUtilTest.java:29 condition failed: assert leScanRecord.hasService( UUID.fromString(\"669aa405-0c08-969e-e211-86ad5062675f\"));"));
-  leScanRecord = LeUtil_parseLeScanRecordWithByteArray_([IOSByteArray newArrayWithLength:0]);
+  leScanRecord = LeUtil_parseLeScanRecordWithByteArray_([IOSByteArray arrayWithLength:0]);
   JreAssert((((IOSObjectArray *) nil_chk([((id<LeScanRecord>) nil_chk(leScanRecord)) getServices]))->size_ == 0), (@"houtbecke/rs/le/LeUtilTest.java:32 condition failed: assert leScanRecord.getServices().length == 0;"));
 }
 
 - (void)testStringToByte {
-  IOSByteArray *byteArray = [IOSByteArray newArrayWithBytes:(jbyte[]){ 0, -127 } count:2];
+  IOSByteArray *byteArray = [IOSByteArray arrayWithBytes:(jbyte[]){ 0, -127 } count:2];
   IOSByteArray *ba = LeUtil_stringToBytesWithNSString_(@"256,-127");
   OrgJunitAssert_assertArrayEqualsWithByteArray_withByteArray_(byteArray, ba);
 }
 
 - (void)testHexString {
-  IOSByteArray *byteArray = [IOSByteArray newArrayWithBytes:(jbyte[]){ (jbyte) 255, 0, 0, 0 } count:4];
+  IOSByteArray *byteArray = [IOSByteArray arrayWithBytes:(jbyte[]){ (jbyte) 255, 0, 0, 0 } count:4];
   NSString *hexString = @"FF000000";
   OrgJunitAssert_assertEqualsWithId_withId_(hexString, LeUtil_bytesToHexStringWithByteArray_(byteArray));
   OrgJunitAssert_assertArrayEqualsWithByteArray_withByteArray_(byteArray, LeUtil_hexStringToBytesWithNSString_(hexString));
@@ -49,15 +49,15 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 J2OBJC_IGNORE_DESIGNATED_END
 
 + (IOSObjectArray *)__annotations_testScanRecord {
-  return [IOSObjectArray newArrayWithObjects:(id[]){ create_OrgJunitTest(OrgJunitTest_None_class_(), 0LL) } count:1 type:JavaLangAnnotationAnnotation_class_()];
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_OrgJunitTest(OrgJunitTest_None_class_(), 0LL) } count:1 type:JavaLangAnnotationAnnotation_class_()];
 }
 
 + (IOSObjectArray *)__annotations_testStringToByte {
-  return [IOSObjectArray newArrayWithObjects:(id[]){ create_OrgJunitTest(OrgJunitTest_None_class_(), 0LL) } count:1 type:JavaLangAnnotationAnnotation_class_()];
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_OrgJunitTest(OrgJunitTest_None_class_(), 0LL) } count:1 type:JavaLangAnnotationAnnotation_class_()];
 }
 
 + (IOSObjectArray *)__annotations_testHexString {
-  return [IOSObjectArray newArrayWithObjects:(id[]){ create_OrgJunitTest(OrgJunitTest_None_class_(), 0LL) } count:1 type:JavaLangAnnotationAnnotation_class_()];
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_OrgJunitTest(OrgJunitTest_None_class_(), 0LL) } count:1 type:JavaLangAnnotationAnnotation_class_()];
 }
 
 + (const J2ObjcClassInfo *)__metadata {

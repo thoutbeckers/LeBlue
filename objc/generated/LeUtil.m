@@ -76,7 +76,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 + (void)initialize {
   if (self == [LeUtil class]) {
-    LeUtil_hexArray = [IOSCharArray newArrayWithChars:(jchar[]){ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' } count:16];
+    JreStrongAssignAndConsume(&LeUtil_hexArray, [IOSCharArray newArrayWithChars:(jchar[]){ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' } count:16]);
     J2OBJC_SET_INITIALIZED(LeUtil)
   }
 }
@@ -108,14 +108,14 @@ J2OBJC_IGNORE_DESIGNATED_END
 NSString *LeUtil_bytesToStringWithByteArray_(IOSByteArray *bytes) {
   LeUtil_initialize();
   if (bytes == nil) return @"";
-  JavaLangStringBuilder *builder = new_JavaLangStringBuilder_init();
+  JavaLangStringBuilder *builder = create_JavaLangStringBuilder_init();
   {
     IOSByteArray *a__ = bytes;
     jbyte const *b__ = a__->buffer_;
     jbyte const *e__ = b__ + a__->size_;
     while (b__ < e__) {
       jbyte b = *b__++;
-      (void) [((JavaLangStringBuilder *) nil_chk([builder appendWithInt:b & (jint) 0xFF])) appendWithNSString:@","];
+      [((JavaLangStringBuilder *) nil_chk([builder appendWithInt:b & (jint) 0xFF])) appendWithNSString:@","];
     }
   }
   NSString *bytesString = [builder description];
@@ -125,8 +125,8 @@ NSString *LeUtil_bytesToStringWithByteArray_(IOSByteArray *bytes) {
 
 IOSByteArray *LeUtil_stringToBytesWithNSString_(NSString *string) {
   LeUtil_initialize();
-  JavaUtilStringTokenizer *tokenizer = new_JavaUtilStringTokenizer_initWithNSString_withNSString_(string, @",");
-  IOSByteArray *bytes = [IOSByteArray newArrayWithLength:[tokenizer countTokens]];
+  JavaUtilStringTokenizer *tokenizer = create_JavaUtilStringTokenizer_initWithNSString_withNSString_(string, @",");
+  IOSByteArray *bytes = [IOSByteArray arrayWithLength:[tokenizer countTokens]];
   for (jint k = 0; k < bytes->size_; k++) {
     @try {
       *IOSByteArray_GetRef(bytes, k) = (jbyte) JavaLangInteger_parseIntWithNSString_([tokenizer nextToken]);
@@ -140,7 +140,7 @@ IOSByteArray *LeUtil_stringToBytesWithNSString_(NSString *string) {
 IOSByteArray *LeUtil_hexStringToBytesWithNSString_(NSString *s) {
   LeUtil_initialize();
   jint len = ((jint) [((NSString *) nil_chk(s)) length]);
-  IOSByteArray *data = [IOSByteArray newArrayWithLength:len / 2];
+  IOSByteArray *data = [IOSByteArray arrayWithLength:len / 2];
   for (jint i = 0; i < len; i += 2) {
     *IOSByteArray_GetRef(data, i / 2) = (jbyte) ((JreLShift32(JavaLangCharacter_digitWithChar_withInt_([s charAtWithInt:i], 16), 4)) + JavaLangCharacter_digitWithChar_withInt_([s charAtWithInt:i + 1], 16));
   }
@@ -150,7 +150,7 @@ IOSByteArray *LeUtil_hexStringToBytesWithNSString_(NSString *s) {
 NSString *LeUtil_bytesToHexStringWithByteArray_(IOSByteArray *bytes) {
   LeUtil_initialize();
   if (bytes == nil) return @"";
-  IOSCharArray *hexChars = [IOSCharArray newArrayWithLength:bytes->size_ * 2];
+  IOSCharArray *hexChars = [IOSCharArray arrayWithLength:bytes->size_ * 2];
   jint v;
   for (jint j = 0; j < bytes->size_; j++) {
     v = IOSByteArray_Get(bytes, j) & (jint) 0xFF;
@@ -162,38 +162,38 @@ NSString *LeUtil_bytesToHexStringWithByteArray_(IOSByteArray *bytes) {
 
 IOSObjectArray *LeUtil_getStringsFromUUIDsWithJavaUtilUUIDArray_(IOSObjectArray *uuids) {
   LeUtil_initialize();
-  IOSObjectArray *params = [IOSObjectArray newArrayWithLength:((IOSObjectArray *) nil_chk(uuids))->size_ type:NSString_class_()];
+  IOSObjectArray *params = [IOSObjectArray arrayWithLength:((IOSObjectArray *) nil_chk(uuids))->size_ type:NSString_class_()];
   return LeUtil_putUUIDsInStringArrayWithJavaUtilUUIDArray_withNSStringArray_withInt_(uuids, params, 0);
 }
 
 IOSObjectArray *LeUtil_putUUIDsInStringArrayWithJavaUtilUUIDArray_withNSStringArray_withInt_(IOSObjectArray *uuids, IOSObjectArray *params, jint start) {
   LeUtil_initialize();
   for (jint k = 0; k < ((IOSObjectArray *) nil_chk(uuids))->size_; k++) {
-    if (IOSObjectArray_Get(uuids, k) != nil) (void) IOSObjectArray_Set(nil_chk(params), k + start, [((JavaUtilUUID *) nil_chk(IOSObjectArray_Get(uuids, k))) description]);
-    else (void) IOSObjectArray_Set(nil_chk(params), k + start, @"");
+    if (IOSObjectArray_Get(uuids, k) != nil) IOSObjectArray_Set(nil_chk(params), k + start, [((JavaUtilUUID *) nil_chk(IOSObjectArray_Get(uuids, k))) description]);
+    else IOSObjectArray_Set(nil_chk(params), k + start, @"");
   }
   return params;
 }
 
 IOSByteArray *LeUtil_intsToBytesWithIntArray_(IOSIntArray *values) {
   LeUtil_initialize();
-  IOSByteArray *ret = [IOSByteArray newArrayWithLength:((IOSIntArray *) nil_chk(values))->size_];
+  IOSByteArray *ret = [IOSByteArray arrayWithLength:((IOSIntArray *) nil_chk(values))->size_];
   for (jint k = 0, len = values->size_; k < len; k++) *IOSByteArray_GetRef(ret, k) = (jbyte) IOSIntArray_Get(values, k);
   return ret;
 }
 
 IOSObjectArray *LeUtil_extendWithNSStringArray_withIntArray_(IOSObjectArray *args, IOSIntArray *paramsInFront) {
   LeUtil_initialize();
-  IOSObjectArray *ret = [IOSObjectArray newArrayWithLength:((IOSObjectArray *) nil_chk(args))->size_ + ((IOSIntArray *) nil_chk(paramsInFront))->size_ type:NSString_class_()];
-  for (jint k = 0; k < paramsInFront->size_; k++) (void) IOSObjectArray_Set(ret, k, JreStrcat("I", IOSIntArray_Get(paramsInFront, k)));
+  IOSObjectArray *ret = [IOSObjectArray arrayWithLength:((IOSObjectArray *) nil_chk(args))->size_ + ((IOSIntArray *) nil_chk(paramsInFront))->size_ type:NSString_class_()];
+  for (jint k = 0; k < paramsInFront->size_; k++) IOSObjectArray_Set(ret, k, JreStrcat("I", IOSIntArray_Get(paramsInFront, k)));
   JavaLangSystem_arraycopyWithId_withInt_withId_withInt_withInt_(args, 0, ret, paramsInFront->size_, args->size_);
   return ret;
 }
 
 IOSObjectArray *LeUtil_extendWithNSStringArray_withNSString_(IOSObjectArray *args, NSString *paramInFront) {
   LeUtil_initialize();
-  IOSObjectArray *ret = [IOSObjectArray newArrayWithLength:((IOSObjectArray *) nil_chk(args))->size_ + 1 type:NSString_class_()];
-  (void) IOSObjectArray_Set(ret, 0, paramInFront);
+  IOSObjectArray *ret = [IOSObjectArray arrayWithLength:((IOSObjectArray *) nil_chk(args))->size_ + 1 type:NSString_class_()];
+  IOSObjectArray_Set(ret, 0, paramInFront);
   JavaLangSystem_arraycopyWithId_withInt_withId_withInt_withInt_(args, 0, ret, 1, args->size_);
   return ret;
 }
@@ -208,7 +208,7 @@ NSString *LeUtil_fourDigitStringWithInt_(jint value) {
 
 id<LeScanRecord> LeUtil_parseLeScanRecordWithByteArray_(IOSByteArray *scanrecord) {
   LeUtil_initialize();
-  return new_LeScanRecordImpl_initWithByteArray_(scanrecord);
+  return create_LeScanRecordImpl_initWithByteArray_(scanrecord);
 }
 
 void LeUtil_init(LeUtil *self) {
