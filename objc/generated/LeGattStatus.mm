@@ -17,6 +17,42 @@ LeGattStatus *LeGattStatus_values_[9];
 
 @implementation LeGattStatus
 
++ (LeGattStatus *)SUCCESS {
+  return JreEnum(LeGattStatus, SUCCESS);
+}
+
++ (LeGattStatus *)READ_NOT_PERMITTED {
+  return JreEnum(LeGattStatus, READ_NOT_PERMITTED);
+}
+
++ (LeGattStatus *)WRITE_NOT_PERMITTED {
+  return JreEnum(LeGattStatus, WRITE_NOT_PERMITTED);
+}
+
++ (LeGattStatus *)INSUFFICIENT_AUTHENTICATION {
+  return JreEnum(LeGattStatus, INSUFFICIENT_AUTHENTICATION);
+}
+
++ (LeGattStatus *)REQUEST_NOT_SUPPORTED {
+  return JreEnum(LeGattStatus, REQUEST_NOT_SUPPORTED);
+}
+
++ (LeGattStatus *)INSUFFICIENT_ENCRYPTION {
+  return JreEnum(LeGattStatus, INSUFFICIENT_ENCRYPTION);
+}
+
++ (LeGattStatus *)INVALID_OFFSET {
+  return JreEnum(LeGattStatus, INVALID_OFFSET);
+}
+
++ (LeGattStatus *)INVALID_ATTRIBUTE_LENGTH {
+  return JreEnum(LeGattStatus, INVALID_ATTRIBUTE_LENGTH);
+}
+
++ (LeGattStatus *)FAILURE {
+  return JreEnum(LeGattStatus, FAILURE);
+}
+
 + (LeGattStatus *)fromStringWithNSString:(NSString *)status {
   return LeGattStatus_fromStringWithNSString_(status);
 }
@@ -27,6 +63,10 @@ LeGattStatus *LeGattStatus_values_[9];
 
 + (LeGattStatus *)valueOfWithNSString:(NSString *)name {
   return LeGattStatus_valueOfWithNSString_(name);
+}
+
+- (LeGattStatus_Enum)toNSEnum {
+  return (LeGattStatus_Enum)[self ordinal];
 }
 
 - (id)copyWithZone:(NSZone *)zone {

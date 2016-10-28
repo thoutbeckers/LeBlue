@@ -35,6 +35,22 @@ typedef NS_ENUM(NSUInteger, LeFormat_Enum) {
 
 @interface LeFormat : JavaLangEnum < NSCopying >
 
++ (LeFormat * __nonnull)FORMAT_UINT8;
+
++ (LeFormat * __nonnull)FORMAT_UINT16;
+
++ (LeFormat * __nonnull)FORMAT_UINT32;
+
++ (LeFormat * __nonnull)FORMAT_SINT8;
+
++ (LeFormat * __nonnull)FORMAT_SINT16;
+
++ (LeFormat * __nonnull)FORMAT_SINT32;
+
++ (LeFormat * __nonnull)FORMAT_SFLOAT;
+
++ (LeFormat * __nonnull)FORMAT_FLOAT;
+
 #pragma mark Public
 
 - (jint)format;
@@ -48,6 +64,7 @@ typedef NS_ENUM(NSUInteger, LeFormat_Enum) {
 #pragma mark Package-Private
 
 - (id)copyWithZone:(NSZone *)zone;
+- (LeFormat_Enum)toNSEnum;
 
 @end
 

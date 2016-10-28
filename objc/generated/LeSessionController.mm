@@ -522,6 +522,10 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 
 @implementation LeSessionController
 
++ (NSString *)TAG {
+  return LeSessionController_TAG;
+}
+
 - (jboolean)shouldLog {
   return ![@"true" isEqual:JavaLangSystem_getPropertyWithNSString_(@"doNotLog")];
 }
@@ -1779,12 +1783,32 @@ LeSessionController_SourceType *LeSessionController_SourceType_values_[4];
 
 @implementation LeSessionController_SourceType
 
++ (LeSessionController_SourceType *)device {
+  return JreEnum(LeSessionController_SourceType, device);
+}
+
++ (LeSessionController_SourceType *)remoteDevice {
+  return JreEnum(LeSessionController_SourceType, remoteDevice);
+}
+
++ (LeSessionController_SourceType *)gattService {
+  return JreEnum(LeSessionController_SourceType, gattService);
+}
+
++ (LeSessionController_SourceType *)gattCharacteristic {
+  return JreEnum(LeSessionController_SourceType, gattCharacteristic);
+}
+
 + (IOSObjectArray *)values {
   return LeSessionController_SourceType_values();
 }
 
 + (LeSessionController_SourceType *)valueOfWithNSString:(NSString *)name {
   return LeSessionController_SourceType_valueOfWithNSString_(name);
+}
+
+- (LeSessionController_SourceType_Enum)toNSEnum {
+  return (LeSessionController_SourceType_Enum)[self ordinal];
 }
 
 - (id)copyWithZone:(NSZone *)zone {

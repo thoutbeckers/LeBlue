@@ -30,6 +30,14 @@ volatile_jint MockerObject_sourceCounter = 0;
 
 @implementation MockerObject
 
++ (jint)sourceCounter {
+  return JreLoadVolatileInt(&MockerObject_sourceCounter);
+}
+
++ (void)setSourceCounter:(jint)value {
+  JreAssignVolatileInt(&MockerObject_sourceCounter, value);
+}
+
 - (jint)getDelay {
   return defaultDelay_ == -1 ? [((SessionObject *) nil_chk(sessionObject_)) getDefaultDelay] : defaultDelay_;
 }

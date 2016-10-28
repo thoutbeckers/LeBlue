@@ -17,12 +17,24 @@ LeDeviceState *LeDeviceState_values_[2];
 
 @implementation LeDeviceState
 
++ (LeDeviceState *)OFF {
+  return JreEnum(LeDeviceState, OFF);
+}
+
++ (LeDeviceState *)ON {
+  return JreEnum(LeDeviceState, ON);
+}
+
 + (IOSObjectArray *)values {
   return LeDeviceState_values();
 }
 
 + (LeDeviceState *)valueOfWithNSString:(NSString *)name {
   return LeDeviceState_valueOfWithNSString_(name);
+}
+
+- (LeDeviceState_Enum)toNSEnum {
+  return (LeDeviceState_Enum)[self ordinal];
 }
 
 - (id)copyWithZone:(NSZone *)zone {

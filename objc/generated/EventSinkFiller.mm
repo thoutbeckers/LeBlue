@@ -16,6 +16,10 @@
 
 @implementation EventSinkFiller
 
++ (jint)DEFAULT_DEVICE_ID {
+  return EventSinkFiller_DEFAULT_DEVICE_ID;
+}
+
 - (SessionObject *)end {
   return and__;
 }

@@ -29,6 +29,10 @@ typedef NS_ENUM(NSUInteger, LeDeviceState_Enum) {
 
 @interface LeDeviceState : JavaLangEnum < NSCopying >
 
++ (LeDeviceState * __nonnull)OFF;
+
++ (LeDeviceState * __nonnull)ON;
+
 #pragma mark Public
 
 + (LeDeviceState *)valueOfWithNSString:(NSString *)name;
@@ -38,6 +42,7 @@ typedef NS_ENUM(NSUInteger, LeDeviceState_Enum) {
 #pragma mark Package-Private
 
 - (id)copyWithZone:(NSZone *)zone;
+- (LeDeviceState_Enum)toNSEnum;
 
 @end
 

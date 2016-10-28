@@ -17,12 +17,204 @@ LeEventType *LeEventType_values_[47];
 
 @implementation LeEventType
 
++ (LeEventType *)deviceStartScanning {
+  return JreEnum(LeEventType, deviceStartScanning);
+}
+
++ (LeEventType *)deviceStopScanning {
+  return JreEnum(LeEventType, deviceStopScanning);
+}
+
++ (LeEventType *)deviceRemoveListener {
+  return JreEnum(LeEventType, deviceRemoveListener);
+}
+
++ (LeEventType *)deviceCheckBleHardwareAvailable {
+  return JreEnum(LeEventType, deviceCheckBleHardwareAvailable);
+}
+
++ (LeEventType *)deviceIsBtEnabled {
+  return JreEnum(LeEventType, deviceIsBtEnabled);
+}
+
++ (LeEventType *)deviceAddListener {
+  return JreEnum(LeEventType, deviceAddListener);
+}
+
++ (LeEventType *)remoteDeviceConnect {
+  return JreEnum(LeEventType, remoteDeviceConnect);
+}
+
++ (LeEventType *)remoteDeviceStartServiceDiscovery {
+  return JreEnum(LeEventType, remoteDeviceStartServiceDiscovery);
+}
+
++ (LeEventType *)remoteDeviceClose {
+  return JreEnum(LeEventType, remoteDeviceClose);
+}
+
++ (LeEventType *)remoteDeviceDisconnect {
+  return JreEnum(LeEventType, remoteDeviceDisconnect);
+}
+
++ (LeEventType *)serviceEnableCharacteristicNotification {
+  return JreEnum(LeEventType, serviceEnableCharacteristicNotification);
+}
+
++ (LeEventType *)remoteDeviceGetAddress {
+  return JreEnum(LeEventType, remoteDeviceGetAddress);
+}
+
++ (LeEventType *)remoteDeviceAddListener {
+  return JreEnum(LeEventType, remoteDeviceAddListener);
+}
+
++ (LeEventType *)remoteDeviceRemoveListener {
+  return JreEnum(LeEventType, remoteDeviceRemoveListener);
+}
+
++ (LeEventType *)remoteDeviceSetCharacteristicListener {
+  return JreEnum(LeEventType, remoteDeviceSetCharacteristicListener);
+}
+
++ (LeEventType *)remoteDeviceSetCharacteristicWriteListener {
+  return JreEnum(LeEventType, remoteDeviceSetCharacteristicWriteListener);
+}
+
++ (LeEventType *)remoteDeviceReadRssi {
+  return JreEnum(LeEventType, remoteDeviceReadRssi);
+}
+
++ (LeEventType *)serviceGetUUID {
+  return JreEnum(LeEventType, serviceGetUUID);
+}
+
++ (LeEventType *)characteristicGetValue {
+  return JreEnum(LeEventType, characteristicGetValue);
+}
+
++ (LeEventType *)characteristicGetIntValue {
+  return JreEnum(LeEventType, characteristicGetIntValue);
+}
+
++ (LeEventType *)remoteDeviceGetName {
+  return JreEnum(LeEventType, remoteDeviceGetName);
+}
+
++ (LeEventType *)serviceGetCharacteristic {
+  return JreEnum(LeEventType, serviceGetCharacteristic);
+}
+
++ (LeEventType *)characteristicSetValue {
+  return JreEnum(LeEventType, characteristicSetValue);
+}
+
++ (LeEventType *)characteristicRead {
+  return JreEnum(LeEventType, characteristicRead);
+}
+
++ (LeEventType *)remoteDeviceFound {
+  return JreEnum(LeEventType, remoteDeviceFound);
+}
+
++ (LeEventType *)deviceState {
+  return JreEnum(LeEventType, deviceState);
+}
+
++ (LeEventType *)mockRemoteDeviceFound {
+  return JreEnum(LeEventType, mockRemoteDeviceFound);
+}
+
++ (LeEventType *)remoteDeviceConnected {
+  return JreEnum(LeEventType, remoteDeviceConnected);
+}
+
++ (LeEventType *)mockRemoteDeviceConnected {
+  return JreEnum(LeEventType, mockRemoteDeviceConnected);
+}
+
++ (LeEventType *)remoteDeviceDisconnected {
+  return JreEnum(LeEventType, remoteDeviceDisconnected);
+}
+
++ (LeEventType *)remoteDeviceClosed {
+  return JreEnum(LeEventType, remoteDeviceClosed);
+}
+
++ (LeEventType *)mockRemoteDeviceDisconnected {
+  return JreEnum(LeEventType, mockRemoteDeviceDisconnected);
+}
+
++ (LeEventType *)mockRemoteDeviceClosed {
+  return JreEnum(LeEventType, mockRemoteDeviceClosed);
+}
+
++ (LeEventType *)remoteDeviceServicesDiscovered {
+  return JreEnum(LeEventType, remoteDeviceServicesDiscovered);
+}
+
++ (LeEventType *)remoteDeviceRssiRead {
+  return JreEnum(LeEventType, remoteDeviceRssiRead);
+}
+
++ (LeEventType *)mockRemoteDeviceServicesDiscovered {
+  return JreEnum(LeEventType, mockRemoteDeviceServicesDiscovered);
+}
+
++ (LeEventType *)deviceRemoteDeviceServicesDiscovered {
+  return JreEnum(LeEventType, deviceRemoteDeviceServicesDiscovered);
+}
+
++ (LeEventType *)characteristicChanged {
+  return JreEnum(LeEventType, characteristicChanged);
+}
+
++ (LeEventType *)characteristicNotificationChanged {
+  return JreEnum(LeEventType, characteristicNotificationChanged);
+}
+
++ (LeEventType *)characteristicWritten {
+  return JreEnum(LeEventType, characteristicWritten);
+}
+
++ (LeEventType *)mockCharacteristicChanged {
+  return JreEnum(LeEventType, mockCharacteristicChanged);
+}
+
++ (LeEventType *)mockCharacteristicChangedWithMockedValue {
+  return JreEnum(LeEventType, mockCharacteristicChangedWithMockedValue);
+}
+
++ (LeEventType *)mockCharacteristicMockedValue {
+  return JreEnum(LeEventType, mockCharacteristicMockedValue);
+}
+
++ (LeEventType *)mockCharacteristicClearMockedValue {
+  return JreEnum(LeEventType, mockCharacteristicClearMockedValue);
+}
+
++ (LeEventType *)mockCharacteristicNotificationChanged {
+  return JreEnum(LeEventType, mockCharacteristicNotificationChanged);
+}
+
++ (LeEventType *)mockWaitForPoint {
+  return JreEnum(LeEventType, mockWaitForPoint);
+}
+
++ (LeEventType *)mockPointReached {
+  return JreEnum(LeEventType, mockPointReached);
+}
+
 + (IOSObjectArray *)values {
   return LeEventType_values();
 }
 
 + (LeEventType *)valueOfWithNSString:(NSString *)name {
   return LeEventType_valueOfWithNSString_(name);
+}
+
+- (LeEventType_Enum)toNSEnum {
+  return (LeEventType_Enum)[self ordinal];
 }
 
 - (id)copyWithZone:(NSZone *)zone {

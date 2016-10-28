@@ -24,6 +24,38 @@ LeFormat *LeFormat_values_[8];
 
 @implementation LeFormat
 
++ (LeFormat *)FORMAT_UINT8 {
+  return JreEnum(LeFormat, FORMAT_UINT8);
+}
+
++ (LeFormat *)FORMAT_UINT16 {
+  return JreEnum(LeFormat, FORMAT_UINT16);
+}
+
++ (LeFormat *)FORMAT_UINT32 {
+  return JreEnum(LeFormat, FORMAT_UINT32);
+}
+
++ (LeFormat *)FORMAT_SINT8 {
+  return JreEnum(LeFormat, FORMAT_SINT8);
+}
+
++ (LeFormat *)FORMAT_SINT16 {
+  return JreEnum(LeFormat, FORMAT_SINT16);
+}
+
++ (LeFormat *)FORMAT_SINT32 {
+  return JreEnum(LeFormat, FORMAT_SINT32);
+}
+
++ (LeFormat *)FORMAT_SFLOAT {
+  return JreEnum(LeFormat, FORMAT_SFLOAT);
+}
+
++ (LeFormat *)FORMAT_FLOAT {
+  return JreEnum(LeFormat, FORMAT_FLOAT);
+}
+
 - (jint)format {
   return format_;
 }
@@ -38,6 +70,10 @@ LeFormat *LeFormat_values_[8];
 
 + (LeFormat *)valueOfWithNSString:(NSString *)name {
   return LeFormat_valueOfWithNSString_(name);
+}
+
+- (LeFormat_Enum)toNSEnum {
+  return (LeFormat_Enum)[self ordinal];
 }
 
 - (id)copyWithZone:(NSZone *)zone {

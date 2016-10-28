@@ -78,6 +78,100 @@ typedef NS_ENUM(NSUInteger, LeEventType_Enum) {
 
 @interface LeEventType : JavaLangEnum < NSCopying, EventType >
 
++ (LeEventType * __nonnull)deviceStartScanning;
+
++ (LeEventType * __nonnull)deviceStopScanning;
+
++ (LeEventType * __nonnull)deviceRemoveListener;
+
++ (LeEventType * __nonnull)deviceCheckBleHardwareAvailable;
+
++ (LeEventType * __nonnull)deviceIsBtEnabled;
+
++ (LeEventType * __nonnull)deviceAddListener;
+
++ (LeEventType * __nonnull)remoteDeviceConnect;
+
++ (LeEventType * __nonnull)remoteDeviceStartServiceDiscovery;
+
++ (LeEventType * __nonnull)remoteDeviceClose;
+
++ (LeEventType * __nonnull)remoteDeviceDisconnect;
+
++ (LeEventType * __nonnull)serviceEnableCharacteristicNotification;
+
++ (LeEventType * __nonnull)remoteDeviceGetAddress;
+
++ (LeEventType * __nonnull)remoteDeviceAddListener;
+
++ (LeEventType * __nonnull)remoteDeviceRemoveListener;
+
++ (LeEventType * __nonnull)remoteDeviceSetCharacteristicListener;
+
++ (LeEventType * __nonnull)remoteDeviceSetCharacteristicWriteListener;
+
++ (LeEventType * __nonnull)remoteDeviceReadRssi;
+
++ (LeEventType * __nonnull)serviceGetUUID;
+
++ (LeEventType * __nonnull)characteristicGetValue;
+
++ (LeEventType * __nonnull)characteristicGetIntValue;
+
++ (LeEventType * __nonnull)remoteDeviceGetName;
+
++ (LeEventType * __nonnull)serviceGetCharacteristic;
+
++ (LeEventType * __nonnull)characteristicSetValue;
+
++ (LeEventType * __nonnull)characteristicRead;
+
++ (LeEventType * __nonnull)remoteDeviceFound;
+
++ (LeEventType * __nonnull)deviceState;
+
++ (LeEventType * __nonnull)mockRemoteDeviceFound;
+
++ (LeEventType * __nonnull)remoteDeviceConnected;
+
++ (LeEventType * __nonnull)mockRemoteDeviceConnected;
+
++ (LeEventType * __nonnull)remoteDeviceDisconnected;
+
++ (LeEventType * __nonnull)remoteDeviceClosed;
+
++ (LeEventType * __nonnull)mockRemoteDeviceDisconnected;
+
++ (LeEventType * __nonnull)mockRemoteDeviceClosed;
+
++ (LeEventType * __nonnull)remoteDeviceServicesDiscovered;
+
++ (LeEventType * __nonnull)remoteDeviceRssiRead;
+
++ (LeEventType * __nonnull)mockRemoteDeviceServicesDiscovered;
+
++ (LeEventType * __nonnull)deviceRemoteDeviceServicesDiscovered;
+
++ (LeEventType * __nonnull)characteristicChanged;
+
++ (LeEventType * __nonnull)characteristicNotificationChanged;
+
++ (LeEventType * __nonnull)characteristicWritten;
+
++ (LeEventType * __nonnull)mockCharacteristicChanged;
+
++ (LeEventType * __nonnull)mockCharacteristicChangedWithMockedValue;
+
++ (LeEventType * __nonnull)mockCharacteristicMockedValue;
+
++ (LeEventType * __nonnull)mockCharacteristicClearMockedValue;
+
++ (LeEventType * __nonnull)mockCharacteristicNotificationChanged;
+
++ (LeEventType * __nonnull)mockWaitForPoint;
+
++ (LeEventType * __nonnull)mockPointReached;
+
 #pragma mark Public
 
 + (LeEventType *)valueOfWithNSString:(NSString *)name;
@@ -87,6 +181,7 @@ typedef NS_ENUM(NSUInteger, LeEventType_Enum) {
 #pragma mark Package-Private
 
 - (id)copyWithZone:(NSZone *)zone;
+- (LeEventType_Enum)toNSEnum;
 
 @end
 

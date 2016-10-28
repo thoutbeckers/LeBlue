@@ -45,6 +45,18 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs)
 
 @interface LeDefinedUUIDs_Service : NSObject
 
++ (JavaUtilUUID *)HEART_RATE;
+
++ (JavaUtilUUID *)CYCLING_POWER;
+
++ (JavaUtilUUID *)CYCLING_SPEED_AND_CADENCE;
+
++ (JavaUtilUUID *)BATTERY;
+
++ (JavaUtilUUID *)DEVICE_INFORMATION;
+
++ (JavaUtilUUID *)GENERIC_ATTRIBUTE;
+
 #pragma mark Public
 
 - (instancetype)init;
@@ -99,6 +111,32 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Service)
 @class JavaUtilUUID;
 
 @interface LeDefinedUUIDs_Characteristic : NSObject
+
++ (JavaUtilUUID *)HEART_RATE_MEASUREMENT;
+
++ (JavaUtilUUID *)MANUFACTURER_STRING;
+
++ (JavaUtilUUID *)MODEL_NUMBER_STRING;
+
++ (JavaUtilUUID *)SERIAL_NUMBER_STRING;
+
++ (JavaUtilUUID *)FIRMWARE_REVISION_STRING;
+
++ (JavaUtilUUID *)HARDWARE_REVISION_STRING;
+
++ (JavaUtilUUID *)APPEARANCE;
+
++ (JavaUtilUUID *)BODY_SENSOR_LOCATION;
+
++ (JavaUtilUUID *)BATTERY_LEVEL;
+
++ (JavaUtilUUID *)CYCLING_POWER_MEASUREMENT;
+
++ (JavaUtilUUID *)CYCLING_POWER_CONTROL_POINT;
+
++ (JavaUtilUUID *)CSC_MEASUREMENT;
+
++ (JavaUtilUUID *)SERVICE_CHANGED;
 
 #pragma mark Public
 
@@ -189,6 +227,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Characteristic)
 @class JavaUtilUUID;
 
 @interface LeDefinedUUIDs_Descriptor : NSObject
+
++ (JavaUtilUUID *)CHAR_CLIENT_CONFIG;
 
 #pragma mark Public
 

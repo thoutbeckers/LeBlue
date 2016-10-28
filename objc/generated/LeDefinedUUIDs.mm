@@ -56,6 +56,30 @@ JavaUtilUUID *LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE;
 
 @implementation LeDefinedUUIDs_Service
 
++ (JavaUtilUUID *)HEART_RATE {
+  return LeDefinedUUIDs_Service_HEART_RATE;
+}
+
++ (JavaUtilUUID *)CYCLING_POWER {
+  return LeDefinedUUIDs_Service_CYCLING_POWER;
+}
+
++ (JavaUtilUUID *)CYCLING_SPEED_AND_CADENCE {
+  return LeDefinedUUIDs_Service_CYCLING_SPEED_AND_CADENCE;
+}
+
++ (JavaUtilUUID *)BATTERY {
+  return LeDefinedUUIDs_Service_BATTERY;
+}
+
++ (JavaUtilUUID *)DEVICE_INFORMATION {
+  return LeDefinedUUIDs_Service_DEVICE_INFORMATION;
+}
+
++ (JavaUtilUUID *)GENERIC_ATTRIBUTE {
+  return LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE;
+}
+
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
   LeDefinedUUIDs_Service_init(self);
@@ -129,6 +153,58 @@ JavaUtilUUID *LeDefinedUUIDs_Characteristic_CSC_MEASUREMENT;
 JavaUtilUUID *LeDefinedUUIDs_Characteristic_SERVICE_CHANGED;
 
 @implementation LeDefinedUUIDs_Characteristic
+
++ (JavaUtilUUID *)HEART_RATE_MEASUREMENT {
+  return LeDefinedUUIDs_Characteristic_HEART_RATE_MEASUREMENT;
+}
+
++ (JavaUtilUUID *)MANUFACTURER_STRING {
+  return LeDefinedUUIDs_Characteristic_MANUFACTURER_STRING;
+}
+
++ (JavaUtilUUID *)MODEL_NUMBER_STRING {
+  return LeDefinedUUIDs_Characteristic_MODEL_NUMBER_STRING;
+}
+
++ (JavaUtilUUID *)SERIAL_NUMBER_STRING {
+  return LeDefinedUUIDs_Characteristic_SERIAL_NUMBER_STRING;
+}
+
++ (JavaUtilUUID *)FIRMWARE_REVISION_STRING {
+  return LeDefinedUUIDs_Characteristic_FIRMWARE_REVISION_STRING;
+}
+
++ (JavaUtilUUID *)HARDWARE_REVISION_STRING {
+  return LeDefinedUUIDs_Characteristic_HARDWARE_REVISION_STRING;
+}
+
++ (JavaUtilUUID *)APPEARANCE {
+  return LeDefinedUUIDs_Characteristic_APPEARANCE;
+}
+
++ (JavaUtilUUID *)BODY_SENSOR_LOCATION {
+  return LeDefinedUUIDs_Characteristic_BODY_SENSOR_LOCATION;
+}
+
++ (JavaUtilUUID *)BATTERY_LEVEL {
+  return LeDefinedUUIDs_Characteristic_BATTERY_LEVEL;
+}
+
++ (JavaUtilUUID *)CYCLING_POWER_MEASUREMENT {
+  return LeDefinedUUIDs_Characteristic_CYCLING_POWER_MEASUREMENT;
+}
+
++ (JavaUtilUUID *)CYCLING_POWER_CONTROL_POINT {
+  return LeDefinedUUIDs_Characteristic_CYCLING_POWER_CONTROL_POINT;
+}
+
++ (JavaUtilUUID *)CSC_MEASUREMENT {
+  return LeDefinedUUIDs_Characteristic_CSC_MEASUREMENT;
+}
+
++ (JavaUtilUUID *)SERVICE_CHANGED {
+  return LeDefinedUUIDs_Characteristic_SERVICE_CHANGED;
+}
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
@@ -205,6 +281,10 @@ J2OBJC_INITIALIZED_DEFN(LeDefinedUUIDs_Descriptor)
 JavaUtilUUID *LeDefinedUUIDs_Descriptor_CHAR_CLIENT_CONFIG;
 
 @implementation LeDefinedUUIDs_Descriptor
+
++ (JavaUtilUUID *)CHAR_CLIENT_CONFIG {
+  return LeDefinedUUIDs_Descriptor_CHAR_CLIENT_CONFIG;
+}
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {

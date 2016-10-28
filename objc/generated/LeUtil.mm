@@ -24,6 +24,10 @@ IOSCharArray *LeUtil_hexArray;
 
 @implementation LeUtil
 
++ (IOSCharArray *)hexArray {
+  return LeUtil_hexArray;
+}
+
 + (NSString *)bytesToStringWithByteArray:(IOSByteArray *)bytes {
   return LeUtil_bytesToStringWithByteArray_(bytes);
 }

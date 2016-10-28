@@ -45,6 +45,10 @@
   SessionObject *and__;
 }
 
++ (jint)sourceCounter;
+
++ (void)setSourceCounter:(jint)value;
+
 #pragma mark Public
 
 - (instancetype)initWithSessionObject:(SessionObject *)sessionObject

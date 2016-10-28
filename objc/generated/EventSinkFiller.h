@@ -30,6 +30,8 @@
   jint currentRemoteDevice_, currentCharacteristic_;
 }
 
++ (jint)DEFAULT_DEVICE_ID;
+
 #pragma mark Public
 
 - (instancetype)initWithListEventSinkSource:(ListEventSinkSource *)listEventSinkSource;

@@ -79,6 +79,8 @@
   id<JavaUtilMap> remoteDeviceListeners_;
 }
 
++ (NSString *)TAG;
+
 #pragma mark Public
 
 - (instancetype)initWithSession:(id<Session>)session;
@@ -353,6 +355,14 @@ typedef NS_ENUM(NSUInteger, LeSessionController_SourceType_Enum) {
 
 @interface LeSessionController_SourceType : JavaLangEnum < NSCopying >
 
++ (LeSessionController_SourceType * __nonnull)device;
+
++ (LeSessionController_SourceType * __nonnull)remoteDevice;
+
++ (LeSessionController_SourceType * __nonnull)gattService;
+
++ (LeSessionController_SourceType * __nonnull)gattCharacteristic;
+
 #pragma mark Public
 
 + (LeSessionController_SourceType *)valueOfWithNSString:(NSString *)name;
@@ -362,6 +372,7 @@ typedef NS_ENUM(NSUInteger, LeSessionController_SourceType_Enum) {
 #pragma mark Package-Private
 
 - (id)copyWithZone:(NSZone *)zone;
+- (LeSessionController_SourceType_Enum)toNSEnum;
 
 @end
 
