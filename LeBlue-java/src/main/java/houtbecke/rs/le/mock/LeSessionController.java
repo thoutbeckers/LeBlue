@@ -695,7 +695,7 @@ public class LeSessionController implements LeMockController {
         return session;
     }
 
-    protected static enum SourceType {
+    protected enum SourceType {
         device,
         remoteDevice,
         gattService,
@@ -908,8 +908,7 @@ public class LeSessionController implements LeMockController {
         lock.lock();
         try {
             checkEvent(remoteDeviceDisconnect, leRemoteDeviceMock);
-
-        }finally {
+        } finally {
             lock.unlock();
         }
     }
@@ -920,13 +919,23 @@ public class LeSessionController implements LeMockController {
     }
     @Override
     public LeCharacteristicListener getCharacteristicListener(int key) {
-        return characteristicListeners.get(key);
+        lock.lock();
+        try {
+            return characteristicListeners.get(key);
+        } finally {
+            lock.unlock();
+        }
     }
 
     @Override
     public void remoteDeviceSetCharacteristicListener(LeRemoteDeviceMock leRemoteDeviceMock, LeCharacteristicListener listener, UUID[] uuids) {
-        checkEvent(remoteDeviceSetCharacteristicListener, leRemoteDeviceMock, Arrays.toString(uuids));
-        characteristicListeners.put(eventIntValue(), listener);
+        lock.lock();
+        try {
+            checkEvent(remoteDeviceSetCharacteristicListener, leRemoteDeviceMock, Arrays.toString(uuids));
+            characteristicListeners.put(eventIntValue(), listener);
+        } finally {
+            lock.unlock();
+        }
     }
 
     Map<Integer, LeCharacteristicWriteListener> characteristicWriteListeners = new HashMap<>();
@@ -937,23 +946,32 @@ public class LeSessionController implements LeMockController {
 
     @Override
     public LeCharacteristicWriteListener getCharacteristicWriteListener(int key) {
-        return characteristicWriteListeners.get(key);
+        lock.lock();
+        try {
+            return characteristicWriteListeners.get(key);
+        } finally {
+            lock.unlock();
+        }
     }
 
     @Override
     public void remoteDeviceSetCharacteristicWriteListener(LeRemoteDeviceMock leRemoteDeviceMock, LeCharacteristicWriteListener listener, UUID[] uuids) {
-        checkEvent(remoteDeviceSetCharacteristicWriteListener, leRemoteDeviceMock, Arrays.toString(uuids));
-        characteristicWriteListeners.put(eventIntValue(), listener);
+        lock.lock();
+        try {
+            checkEvent(remoteDeviceSetCharacteristicWriteListener, leRemoteDeviceMock, Arrays.toString(uuids));
+            characteristicWriteListeners.put(eventIntValue(), listener);
+        } finally {
+            lock.unlock();
+        }
     }
 
     @Override
-    public  boolean serviceEnableCharacteristicNotification(LeGattServiceMock leGattServiceMock, UUID characteristic) {
+    public boolean serviceEnableCharacteristicNotification(LeGattServiceMock leGattServiceMock, UUID characteristic) {
         lock.lock();
         try {
-        checkEvent(serviceEnableCharacteristicNotification, leGattServiceMock, characteristic.toString());
-        return true;
-
-        }finally {
+            checkEvent(serviceEnableCharacteristicNotification, leGattServiceMock, characteristic.toString());
+            return true;
+        } finally {
             lock.unlock();
         }
     }
@@ -972,8 +990,13 @@ public class LeSessionController implements LeMockController {
 
     @Override
     public void addDevice(int key, LeDeviceMock mock) {
-        devices.put(key, mock);
-        deviceKeys.put(mock, key);
+        lock.lock();
+        try {
+            devices.put(key, mock);
+            deviceKeys.put(mock, key);
+        } finally {
+            lock.unlock();
+        }
     }
 
     Map<Integer, LeRemoteDeviceMock> remoteDevices = new HashMap<>();
@@ -1024,7 +1047,12 @@ public class LeSessionController implements LeMockController {
     }
     @Override
     public LeDeviceListener getDeviceListener(int key) {
-        return deviceListeners.get(key);
+        lock.lock();
+        try {
+            return deviceListeners.get(key);
+        } finally {
+            lock.unlock();
+        }
     }
     protected int getDeviceListenerKey(LeDeviceListener deviceListener) {
         return deviceListenerKeys.get(deviceListener);
@@ -1057,10 +1085,15 @@ public class LeSessionController implements LeMockController {
 
     @Override
     public LeGattCharacteristic serviceGetCharacteristic(LeGattServiceMock leGattServiceMock, UUID uuid) {
-        if (checkEvent(serviceGetCharacteristic, leGattServiceMock, uuid.toString()))
+        lock.lock();
+        try {
+            if (checkEvent(serviceGetCharacteristic, leGattServiceMock, uuid.toString()))
             return createOrReturnCharacteristic(eventIntValue());
         else
             return null;
+        } finally {
+            lock.unlock();
+        }
     }
 
     @Override
@@ -1070,7 +1103,7 @@ public class LeSessionController implements LeMockController {
             if (checkEventWithSourceId(deviceAddListener, SourceType.device, getDeviceKey(leDeviceMock))) {
                 addDeviceListener(eventIntValue(), listener);
             }
-        }finally {
+        } finally {
             lock.unlock();
         }
     }
@@ -1079,8 +1112,8 @@ public class LeSessionController implements LeMockController {
     public  void deviceRemoveListener(LeDeviceMock leDeviceMock, LeDeviceListener listener) {
         lock.lock();
         try {
-        checkEvent(deviceRemoveListener, leDeviceMock);
-        }finally {
+            checkEvent(deviceRemoveListener, leDeviceMock);
+        } finally {
             lock.unlock();
         }
     }
@@ -1091,44 +1124,55 @@ public class LeSessionController implements LeMockController {
     }
     @Override
     public LeRemoteDeviceListener getRemoteDeviceListener(int key) {
-        return remoteDeviceListeners.get(key);
+        lock.lock();
+        try {
+            return remoteDeviceListeners.get(key);
+        } finally {
+            lock.unlock();
+        }
     }
 
     @Override
     public void remoteDeviceAddListener(LeRemoteDeviceMock leRemoteDeviceMock, LeRemoteDeviceListener listener) {
-        if (checkEvent(remoteDeviceAddListener, leRemoteDeviceMock))
+        lock.lock();
+        try {
+            if (checkEvent(remoteDeviceAddListener, leRemoteDeviceMock))
             remoteDeviceListeners.put(eventIntValue(), listener);
+        } finally {
+            lock.unlock();
+        }
     }
 
     @Override
     public void remoteDeviceRemoveListener(LeRemoteDeviceMock leRemoteDeviceMock, LeRemoteDeviceListener listener) {
-        checkEvent(remoteDeviceRemoveListener, leRemoteDeviceMock);
+        lock.lock();
+        try {
+            checkEvent(remoteDeviceRemoveListener, leRemoteDeviceMock);
+        } finally {
+            lock.unlock();
+        }
     }
 
     @Override
     public  boolean deviceCheckBleHardwareAvailable(LeDeviceMock leDeviceMock) {
         lock.lock();
         try {
-
             if (checkEvent(deviceCheckBleHardwareAvailable, leDeviceMock)) {
                 return eventBooleanValue();
             }
-
-        return true;
-        }finally {
+            return true;
+        } finally {
             lock.unlock();
         }
-
     }
 
     @Override
     public boolean deviceIsBtEnabled(LeDeviceMock leDeviceMock) {
         lock.lock();
         try {
-
-        checkEvent(deviceIsBtEnabled, leDeviceMock);
-        return eventBooleanValue();
-        }finally {
+            checkEvent(deviceIsBtEnabled, leDeviceMock);
+            return eventBooleanValue();
+        } finally {
             lock.unlock();
         }
 
@@ -1136,52 +1180,89 @@ public class LeSessionController implements LeMockController {
 
     @Override
     public String remoteDeviceGetAddress(LeRemoteDeviceMock leRemoteDeviceMock) {
-        if (checkEvent(remoteDeviceGetAddress, leRemoteDeviceMock))
-            return eventValue();
-        else
-            return "0:0:0:0";
+        lock.lock();
+        try {
+            if (checkEvent(remoteDeviceGetAddress, leRemoteDeviceMock))
+                return eventValue();
+            else
+                return "0:0:0:0";
+        } finally {
+            lock.unlock();
+        }
+
     }
 
     @Override
     public String remoteDeviceGetName (LeRemoteDeviceMock leRemoteDeviceMock){
-        checkEvent(remoteDeviceGetName, leRemoteDeviceMock);
-        return eventValue();
+        lock.lock();
+        try {
+            checkEvent(remoteDeviceGetName, leRemoteDeviceMock);
+            return eventValue();
+        } finally {
+            lock.unlock();
+        }
+
     }
 
     @Override
     public UUID serviceGetUuid(LeGattServiceMock leGattServiceMock) {
-        return checkEvent(serviceGetUUID, leGattServiceMock) ? UUID.fromString(eventValue()) : UUID.randomUUID();
+        lock.lock();
+        try {
+            return checkEvent(serviceGetUUID, leGattServiceMock) ? UUID.fromString(eventValue()) : UUID.randomUUID();
+        } finally {
+            lock.unlock();
+        }
     }
+
 
     @Override
     public byte[] characteristicGetValue(LeGattCharacteristicMock leGattCharacteristicMock) {
-        checkEvent(characteristicGetValue, leGattCharacteristicMock);
-        return LeUtil.stringToBytes(eventValue());
+        lock.lock();
+        try {
+            checkEvent(characteristicGetValue, leGattCharacteristicMock);
+            return LeUtil.stringToBytes(eventValue());
+        } finally {
+            lock.unlock();
+        }
+
     }
 
     @Override
     public int characteristicGetIntValue(LeGattCharacteristicMock leGattCharacteristicMock, LeFormat format, int index) {
-        checkEvent(characteristicGetIntValue, leGattCharacteristicMock, format.toString(), index+"");
-        return eventIntValue();
+        lock.lock();
+        try {
+            checkEvent(characteristicGetIntValue, leGattCharacteristicMock, format.toString(), index+"");
+            return eventIntValue();
+        } finally {
+            lock.unlock();
+        }
     }
 
     @Override
     public void characteristicSetValue(LeGattCharacteristicMock leGattCharacteristicMock, byte[] value) {
-        checkEvent(characteristicSetValue, leGattCharacteristicMock, LeUtil.bytesToString(value));
+        lock.lock();
+        try {
+            checkEvent(characteristicSetValue, leGattCharacteristicMock, LeUtil.bytesToString(value));
+        } finally {
+            lock.unlock();
+        }
     }
 
     @Override
-    public void characteristicSetValue(LeGattCharacteristicMock leGattCharacteristicMock,
-        byte[] value, Boolean withResponse){
+    public void characteristicSetValue(LeGattCharacteristicMock leGattCharacteristicMock, byte[] value, Boolean withResponse){
+        lock.lock();
+        try {
             checkEvent(characteristicSetValue, leGattCharacteristicMock, LeUtil.bytesToString(value), withResponse.toString());
-
+        } finally {
+            lock.unlock();
+        }
     }
 
     @Override
     public void remoteDeviceReadRssi(LeRemoteDeviceMock leRemoteDeviceMock) {
         lock.lock();
         try {
-        checkEvent(remoteDeviceReadRssi, leRemoteDeviceMock);
+            checkEvent(remoteDeviceReadRssi, leRemoteDeviceMock);
         }finally {
             lock.unlock();
         }
@@ -1189,9 +1270,11 @@ public class LeSessionController implements LeMockController {
 
     @Override
     public void characteristicRead(LeGattCharacteristicMock leGattCharacteristicMock) {
-        checkEvent(characteristicRead, leGattCharacteristicMock);
-
+        lock.lock();
+        try {
+            checkEvent(characteristicRead, leGattCharacteristicMock);
+        } finally {
+            lock.unlock();
+        }
     }
-
-
 }
