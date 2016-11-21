@@ -1176,14 +1176,26 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 }
 
 - (id<LeCharacteristicListener>)getCharacteristicListenerWithInt:(jint)key {
-  return [((id<JavaUtilMap>) nil_chk(characteristicListeners_)) getWithId:JavaLangInteger_valueOfWithInt_(key)];
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    return [((id<JavaUtilMap>) nil_chk(characteristicListeners_)) getWithId:JavaLangInteger_valueOfWithInt_(key)];
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (void)remoteDeviceSetCharacteristicListenerWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock
                                        withLeCharacteristicListener:(id<LeCharacteristicListener>)listener
                                               withJavaUtilUUIDArray:(IOSObjectArray *)uuids {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceSetCharacteristicListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JavaUtilArrays_toStringWithNSObjectArray_(uuids) } count:1 type:NSString_class_()]];
-  [((id<JavaUtilMap>) nil_chk(characteristicListeners_)) putWithId:JavaLangInteger_valueOfWithInt_([self eventIntValue]) withId:listener];
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceSetCharacteristicListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JavaUtilArrays_toStringWithNSObjectArray_(uuids) } count:1 type:NSString_class_()]];
+    [((id<JavaUtilMap>) nil_chk(characteristicListeners_)) putWithId:JavaLangInteger_valueOfWithInt_([self eventIntValue]) withId:listener];
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (id<LeCharacteristicWriteListener>)getCharacteristicWriteListenerWithNSString:(NSString *)key {
@@ -1191,14 +1203,26 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 }
 
 - (id<LeCharacteristicWriteListener>)getCharacteristicWriteListenerWithInt:(jint)key {
-  return [((id<JavaUtilMap>) nil_chk(characteristicWriteListeners_)) getWithId:JavaLangInteger_valueOfWithInt_(key)];
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    return [((id<JavaUtilMap>) nil_chk(characteristicWriteListeners_)) getWithId:JavaLangInteger_valueOfWithInt_(key)];
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (void)remoteDeviceSetCharacteristicWriteListenerWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock
                                        withLeCharacteristicWriteListener:(id<LeCharacteristicWriteListener>)listener
                                                    withJavaUtilUUIDArray:(IOSObjectArray *)uuids {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceSetCharacteristicWriteListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JavaUtilArrays_toStringWithNSObjectArray_(uuids) } count:1 type:NSString_class_()]];
-  [((id<JavaUtilMap>) nil_chk(characteristicWriteListeners_)) putWithId:JavaLangInteger_valueOfWithInt_([self eventIntValue]) withId:listener];
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceSetCharacteristicWriteListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JavaUtilArrays_toStringWithNSObjectArray_(uuids) } count:1 type:NSString_class_()]];
+    [((id<JavaUtilMap>) nil_chk(characteristicWriteListeners_)) putWithId:JavaLangInteger_valueOfWithInt_([self eventIntValue]) withId:listener];
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (jboolean)serviceEnableCharacteristicNotificationWithLeGattServiceMock:(LeGattServiceMock *)leGattServiceMock
@@ -1227,8 +1251,14 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 
 - (void)addDeviceWithInt:(jint)key
         withLeDeviceMock:(LeDeviceMock *)mock {
-  [((id<JavaUtilMap>) nil_chk(devices_)) putWithId:JavaLangInteger_valueOfWithInt_(key) withId:mock];
-  [((id<JavaUtilMap>) nil_chk(deviceKeys_)) putWithId:mock withId:JavaLangInteger_valueOfWithInt_(key)];
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    [((id<JavaUtilMap>) nil_chk(devices_)) putWithId:JavaLangInteger_valueOfWithInt_(key) withId:mock];
+    [((id<JavaUtilMap>) nil_chk(deviceKeys_)) putWithId:mock withId:JavaLangInteger_valueOfWithInt_(key)];
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (LeRemoteDeviceMock *)createRemoteDeviceWithInt:(jint)key
@@ -1281,7 +1311,13 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 }
 
 - (id<LeDeviceListener>)getDeviceListenerWithInt:(jint)key {
-  return [((id<JavaUtilMap>) nil_chk(deviceListeners_)) getWithId:JavaLangInteger_valueOfWithInt_(key)];
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    return [((id<JavaUtilMap>) nil_chk(deviceListeners_)) getWithId:JavaLangInteger_valueOfWithInt_(key)];
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (jint)getDeviceListenerKeyWithLeDeviceListener:(id<LeDeviceListener>)deviceListener {
@@ -1314,8 +1350,14 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 
 - (id<LeGattCharacteristic>)serviceGetCharacteristicWithLeGattServiceMock:(LeGattServiceMock *)leGattServiceMock
                                                          withJavaUtilUUID:(JavaUtilUUID *)uuid {
-  if ([self checkEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetCharacteristic) withLeGattServiceMock:leGattServiceMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description] } count:1 type:NSString_class_()]]) return [self createOrReturnCharacteristicWithInt:[self eventIntValue]];
-  else return nil;
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    if ([self checkEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetCharacteristic) withLeGattServiceMock:leGattServiceMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description] } count:1 type:NSString_class_()]]) return [self createOrReturnCharacteristicWithInt:[self eventIntValue]];
+    else return nil;
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (void)deviceAddListenerWithLeDeviceMock:(LeDeviceMock *)leDeviceMock
@@ -1347,17 +1389,35 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 }
 
 - (id<LeRemoteDeviceListener>)getRemoteDeviceListenerWithInt:(jint)key {
-  return [((id<JavaUtilMap>) nil_chk(remoteDeviceListeners_)) getWithId:JavaLangInteger_valueOfWithInt_(key)];
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    return [((id<JavaUtilMap>) nil_chk(remoteDeviceListeners_)) getWithId:JavaLangInteger_valueOfWithInt_(key)];
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (void)remoteDeviceAddListenerWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock
                            withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)listener {
-  if ([self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceAddListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]]) [((id<JavaUtilMap>) nil_chk(remoteDeviceListeners_)) putWithId:JavaLangInteger_valueOfWithInt_([self eventIntValue]) withId:listener];
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    if ([self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceAddListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]]) [((id<JavaUtilMap>) nil_chk(remoteDeviceListeners_)) putWithId:JavaLangInteger_valueOfWithInt_([self eventIntValue]) withId:listener];
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (void)remoteDeviceRemoveListenerWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock
                               withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)listener {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceRemoveListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceRemoveListener) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (jboolean)deviceCheckBleHardwareAvailableWithLeDeviceMock:(LeDeviceMock *)leDeviceMock {
@@ -1385,40 +1445,82 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 }
 
 - (NSString *)remoteDeviceGetAddressWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock {
-  if ([self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetAddress) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]]) return [self eventValue];
-  else return @"0:0:0:0";
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    if ([self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetAddress) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]]) return [self eventValue];
+    else return @"0:0:0:0";
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (NSString *)remoteDeviceGetNameWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetName) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
-  return [self eventValue];
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceGetName) withLeRemoteDeviceMock:leRemoteDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+    return [self eventValue];
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (JavaUtilUUID *)serviceGetUuidWithLeGattServiceMock:(LeGattServiceMock *)leGattServiceMock {
-  return [self checkEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetUUID) withLeGattServiceMock:leGattServiceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]] ? JavaUtilUUID_fromStringWithNSString_([self eventValue]) : JavaUtilUUID_randomUUID();
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    return [self checkEventWithLeEventType:JreLoadEnum(LeEventType, serviceGetUUID) withLeGattServiceMock:leGattServiceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]] ? JavaUtilUUID_fromStringWithNSString_([self eventValue]) : JavaUtilUUID_randomUUID();
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (IOSByteArray *)characteristicGetValueWithLeGattCharacteristicMock:(LeGattCharacteristicMock *)leGattCharacteristicMock {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicGetValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
-  return LeUtil_stringToBytesWithNSString_([self eventValue]);
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicGetValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+    return LeUtil_stringToBytesWithNSString_([self eventValue]);
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (jint)characteristicGetIntValueWithLeGattCharacteristicMock:(LeGattCharacteristicMock *)leGattCharacteristicMock
                                                  withLeFormat:(LeFormat *)format
                                                       withInt:(jint)index {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicGetIntValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((LeFormat *) nil_chk(format)) description], JreStrcat("I", index) } count:2 type:NSString_class_()]];
-  return [self eventIntValue];
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicGetIntValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((LeFormat *) nil_chk(format)) description], JreStrcat("I", index) } count:2 type:NSString_class_()]];
+    return [self eventIntValue];
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (void)characteristicSetValueWithLeGattCharacteristicMock:(LeGattCharacteristicMock *)leGattCharacteristicMock
                                              withByteArray:(IOSByteArray *)value {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicSetValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value) } count:1 type:NSString_class_()]];
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicSetValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value) } count:1 type:NSString_class_()]];
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (void)characteristicSetValueWithLeGattCharacteristicMock:(LeGattCharacteristicMock *)leGattCharacteristicMock
                                              withByteArray:(IOSByteArray *)value
                                        withJavaLangBoolean:(JavaLangBoolean *)withResponse {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicSetValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value), [((JavaLangBoolean *) nil_chk(withResponse)) description] } count:2 type:NSString_class_()]];
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicSetValue) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ LeUtil_bytesToStringWithByteArray_(value), [((JavaLangBoolean *) nil_chk(withResponse)) description] } count:2 type:NSString_class_()]];
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (void)remoteDeviceReadRssiWithLeRemoteDeviceMock:(LeRemoteDeviceMock *)leRemoteDeviceMock {
@@ -1432,7 +1534,13 @@ NSString *LeSessionController_TAG = @"LeBlueController";
 }
 
 - (void)characteristicReadWithLeGattCharacteristicMock:(LeGattCharacteristicMock *)leGattCharacteristicMock {
-  [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicRead) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, characteristicRead) withLeGattCharacteristicMock:leGattCharacteristicMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  }
+  @finally {
+    [lock_ unlock];
+  }
 }
 
 - (void)__javaClone:(LeSessionController *)original {
