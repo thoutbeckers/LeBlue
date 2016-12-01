@@ -7,7 +7,7 @@ matrix:
         - os: osx
           language: generic
           jdk: oraclejdk8
-          osx_image: xcode7.3
+          osx_image: xcode8.1
 
 env:
     global:
