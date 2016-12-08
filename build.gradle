@@ -39,6 +39,8 @@ task translateLeBlueJava(type:Exec) {
     args '--no-package-directories'
     args '-d', file('objc/generated/').path
     args '-sourcepath', tree.dir ,''
+    args '--swift-friendly'
+    args '-x', 'objective-c++'
     args tree
 }
 
@@ -53,6 +55,8 @@ task translateLeBlueJavaTest(type:Exec) {
     args '--prefixes', file('objc/prefixes.properties').path
     args '--no-package-directories'
     args '-d', file('objc/generated/').path
+    args '--swift-friendly'
+    args '-x', 'objective-c++'
     String dir1 = tree.dir
     String dir2 = mainTree.dir
     args '-sourcepath',dir1 + ":" + dir2
@@ -69,7 +73,7 @@ task compileTranslatedLeBlueJavaTest(type:Exec) {
     args "-Wno-nullability-completeness"
     args "-Wno-objc-property-no-attribute"
     args "-Wno-error"
-    FileTree tree = fileTree(dir: "objc/generated/", include: '**/*.m')
+    FileTree tree = fileTree(dir: "objc/generated/", include: '**/*.mm')
     args tree
 
 }
@@ -78,12 +82,12 @@ task testTranslatedLeBlueJava(type:Exec) {
 
     executable file("testrunner")
     args 'org.junit.runner.JUnitCore'
-    FileTree tree = fileTree(dir: "objc/generated/", include: '**/*Test.m')
-    tree.exclude '**/MockerTest.m'
+    FileTree tree = fileTree(dir: "objc/generated/", include: '**/*Test.mm')
+    tree.exclude '**/MockerTest.mm'
 
     tree.each { File file ->
         println file
-        args file.name.replace(".m", "")
+        args file.name.replace(".mm", "")
     }
 }
 
@@ -101,6 +105,7 @@ task removeHeader << {
 
     FileTree tree = fileTree(dir: 'objc/generated/')
     tree.include '**/*.m'
+    tree.include '**/*.mm'
     tree.include '**/*.h'
 
 
