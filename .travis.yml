@@ -7,12 +7,12 @@ matrix:
         - os: osx
           language: generic
           jdk: oraclejdk8
-          osx_image: xcode7.3
+          osx_image: xcode8.1
 
 env:
     global:
     - TERM=dumb
-    - J2OBJC_VERSION=1.0.2
+    - J2OBJC_VERSION=1.2
 
 android:
   components:

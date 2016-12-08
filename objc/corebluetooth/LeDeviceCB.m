@@ -9,7 +9,6 @@
 #import "LeDeviceCB.h"
 #import "LeDeviceListener.h"
 #import "LeRemoteDeviceCB.h"
-#import "helpers.h"
 #import "HelpersCB.h"
 
 #import "LeScanRecordCb.h"
@@ -41,14 +40,12 @@
     [delegates removeObject: listener];
 }
 
-- (BOOL)checkBleHardwareAvailable{
-    return ( _centralManager.state != CBCentralManagerStateUnsupported);
-
+- (bool)checkBleHardwareAvailable{
+    return( ( _centralManager.state != CBCentralManagerStateUnsupported)?1 : 0);
 }
 
-- (BOOL)isBtEnabled{
-    return ( _centralManager.state == CBCentralManagerStatePoweredOn);
-    
+- (bool)isBtEnabled{
+    return( ( _centralManager.state == CBCentralManagerStatePoweredOn)?1 : 0);
 }
 
 - (void)startScanning{

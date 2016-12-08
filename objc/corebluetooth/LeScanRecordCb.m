@@ -7,7 +7,6 @@
 //
 
 #import "LeScanRecordCb.h"
-#import "Helpers.h"
 #import "HelpersCB.h"
 
 @implementation LeScanRecordCb
@@ -52,18 +51,18 @@
     
 }
 
-- (BOOL)hasServiceWithJavaUtilUUID:(JavaUtilUUID *)uuid{
+- (bool)hasServiceWithJavaUtilUUID:(JavaUtilUUID *)uuid{
     NSArray* serviceIds = [_advertisementData objectForKey:CBAdvertisementDataServiceUUIDsKey];
     
     for (CBUUID* suuid in serviceIds){
         if ( [uuid isEqual: [suuid toJavaUtilUUID]]){
-            return true;
+            return 1;
         }
        
         
     }
     
-    return false;
+    return 0;
 }
 
 - (IOSByteArray *)getRawData{

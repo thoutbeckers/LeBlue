@@ -9,10 +9,7 @@
 #import "LeGattServiceCB.h"
 #import "LeGattCharacteristicCB.h"
 
-#import "Helpers.h"
 #import "HelpersCB.h"
-
-#import "Peripheral.h"
 
 @implementation LeGattServiceCB
 
@@ -51,11 +48,11 @@
 
 }
 
-- (BOOL)enableCharacteristicNotificationWithJavaUtilUUID:uuid{
+- (bool)enableCharacteristicNotificationWithJavaUtilUUID:uuid{
         CBCharacteristic* characteristic = [_characteristics objectForKey:[uuid toCBUUID]];
-        if (!characteristic) return FALSE;
+        if (!characteristic) return 0;
         [_remoteDevice.peripheral setNotifyValue:TRUE forCharacteristic:characteristic];
-        return TRUE;
+        return 1;
 }
 
 @end
