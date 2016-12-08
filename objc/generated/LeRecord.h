@@ -14,7 +14,7 @@
 
 @class IOSByteArray;
 
-@protocol LeRecord < NSObject, JavaObject >
+@protocol LeRecord < JavaObject >
 
 - (jint)getType;
 

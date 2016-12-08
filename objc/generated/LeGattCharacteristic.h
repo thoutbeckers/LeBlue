@@ -15,7 +15,7 @@
 @class IOSByteArray;
 @class LeFormat;
 
-@protocol LeGattCharacteristic < NSObject, JavaObject >
+@protocol LeGattCharacteristic < JavaObject >
 
 - (IOSByteArray *)getValue;
 

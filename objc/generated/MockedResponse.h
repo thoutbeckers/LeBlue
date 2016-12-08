@@ -14,7 +14,7 @@
 
 @class IOSObjectArray;
 
-@protocol MockedResponse < NSObject, JavaObject >
+@protocol MockedResponse < JavaObject >
 
 - (IOSObjectArray *)getMockedResultValues;
 

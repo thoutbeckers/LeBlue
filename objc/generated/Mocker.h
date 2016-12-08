@@ -17,7 +17,7 @@
 @protocol LeMockController;
 @protocol MockedResponse;
 
-@protocol Mocker < NSObject, JavaObject >
+@protocol Mocker < JavaObject >
 
 - (id<MockedResponse>)mockWithLeMockController:(id<LeMockController>)controller
                                withLeEventType:(LeEventType *)type

@@ -12,7 +12,6 @@
 #if !defined (MockBluetoothTest_) && (INCLUDE_ALL_MockBluetoothTest || defined(INCLUDE_MockBluetoothTest))
 #define MockBluetoothTest_
 
-@class IOSObjectArray;
 @class LeSessionController;
 @class ListEventSinkSource;
 @protocol LeDevice;

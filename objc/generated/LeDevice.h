@@ -15,7 +15,7 @@
 @class IOSObjectArray;
 @protocol LeDeviceListener;
 
-@protocol LeDevice < NSObject, JavaObject >
+@protocol LeDevice < JavaObject >
 
 - (void)addListenerWithLeDeviceListener:(id<LeDeviceListener>)listener;
 

@@ -17,7 +17,7 @@
 @class IOSObjectArray;
 @class JavaUtilUUID;
 
-@protocol LeScanRecord < NSObject, JavaObject >
+@protocol LeScanRecord < JavaObject >
 
 - (IOSObjectArray *)getRecords;
 

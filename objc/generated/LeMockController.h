@@ -27,7 +27,7 @@
 @protocol LeGattCharacteristic;
 @protocol LeRemoteDeviceListener;
 
-@protocol LeMockController < NSObject, JavaObject >
+@protocol LeMockController < JavaObject >
 
 - (void)deviceStartScanningWithLeDeviceMock:(LeDeviceMock *)leDeviceMock;
 

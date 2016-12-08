@@ -75,6 +75,8 @@
   id<JavaUtilMap> remoteDeviceListeners_;
 }
 
++ (NSString *)TAG;
+
 #pragma mark Public
 
 - (instancetype)initWithSession:(id<Session>)session;
@@ -338,6 +340,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeSessionController)
 #define INCLUDE_JavaLangEnum 1
 #include "java/lang/Enum.h"
 
+@class IOSObjectArray;
+
 typedef NS_ENUM(NSUInteger, LeSessionController_SourceType_Enum) {
   LeSessionController_SourceType_Enum_device = 0,
   LeSessionController_SourceType_Enum_remoteDevice = 1,
@@ -347,13 +351,24 @@ typedef NS_ENUM(NSUInteger, LeSessionController_SourceType_Enum) {
 
 @interface LeSessionController_SourceType : JavaLangEnum < NSCopying >
 
-#pragma mark Package-Private
++ (LeSessionController_SourceType * __nonnull)device;
 
-+ (IOSObjectArray *)values;
++ (LeSessionController_SourceType * __nonnull)remoteDevice;
+
++ (LeSessionController_SourceType * __nonnull)gattService;
+
++ (LeSessionController_SourceType * __nonnull)gattCharacteristic;
+
+#pragma mark Public
 
 + (LeSessionController_SourceType *)valueOfWithNSString:(NSString *)name;
 
++ (IOSObjectArray *)values;
+
+#pragma mark Package-Private
+
 - (id)copyWithZone:(NSZone *)zone;
+- (LeSessionController_SourceType_Enum)toNSEnum;
 
 @end
 

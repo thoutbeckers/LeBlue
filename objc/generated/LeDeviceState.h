@@ -16,6 +16,8 @@
 #define INCLUDE_JavaLangEnum 1
 #include "java/lang/Enum.h"
 
+@class IOSObjectArray;
+
 typedef NS_ENUM(NSUInteger, LeDeviceState_Enum) {
   LeDeviceState_Enum_OFF = 0,
   LeDeviceState_Enum_ON = 1,
@@ -23,13 +25,20 @@ typedef NS_ENUM(NSUInteger, LeDeviceState_Enum) {
 
 @interface LeDeviceState : JavaLangEnum < NSCopying >
 
-#pragma mark Package-Private
++ (LeDeviceState * __nonnull)OFF;
 
-+ (IOSObjectArray *)values;
++ (LeDeviceState * __nonnull)ON;
+
+#pragma mark Public
 
 + (LeDeviceState *)valueOfWithNSString:(NSString *)name;
 
++ (IOSObjectArray *)values;
+
+#pragma mark Package-Private
+
 - (id)copyWithZone:(NSZone *)zone;
+- (LeDeviceState_Enum)toNSEnum;
 
 @end
 

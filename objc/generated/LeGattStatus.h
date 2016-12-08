@@ -16,6 +16,8 @@
 #define INCLUDE_JavaLangEnum 1
 #include "java/lang/Enum.h"
 
+@class IOSObjectArray;
+
 typedef NS_ENUM(NSUInteger, LeGattStatus_Enum) {
   LeGattStatus_Enum_SUCCESS = 0,
   LeGattStatus_Enum_READ_NOT_PERMITTED = 1,
@@ -30,17 +32,36 @@ typedef NS_ENUM(NSUInteger, LeGattStatus_Enum) {
 
 @interface LeGattStatus : JavaLangEnum < NSCopying >
 
++ (LeGattStatus * __nonnull)SUCCESS;
+
++ (LeGattStatus * __nonnull)READ_NOT_PERMITTED;
+
++ (LeGattStatus * __nonnull)WRITE_NOT_PERMITTED;
+
++ (LeGattStatus * __nonnull)INSUFFICIENT_AUTHENTICATION;
+
++ (LeGattStatus * __nonnull)REQUEST_NOT_SUPPORTED;
+
++ (LeGattStatus * __nonnull)INSUFFICIENT_ENCRYPTION;
+
++ (LeGattStatus * __nonnull)INVALID_OFFSET;
+
++ (LeGattStatus * __nonnull)INVALID_ATTRIBUTE_LENGTH;
+
++ (LeGattStatus * __nonnull)FAILURE;
+
 #pragma mark Public
 
 + (LeGattStatus *)fromStringWithNSString:(NSString *)status;
 
-#pragma mark Package-Private
++ (LeGattStatus *)valueOfWithNSString:(NSString *)name;
 
 + (IOSObjectArray *)values;
 
-+ (LeGattStatus *)valueOfWithNSString:(NSString *)name;
+#pragma mark Package-Private
 
 - (id)copyWithZone:(NSZone *)zone;
+- (LeGattStatus_Enum)toNSEnum;
 
 @end
 

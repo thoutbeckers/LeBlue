@@ -16,13 +16,17 @@
 #define INCLUDE_JavaLangEnum 1
 #include "java/lang/Enum.h"
 
+@class IOSObjectArray;
+
 @interface LeGattDescriptorValue : JavaLangEnum < NSCopying >
 
-#pragma mark Package-Private
+#pragma mark Public
+
++ (LeGattDescriptorValue *)valueOfWithNSString:(NSString *)name;
 
 + (IOSObjectArray *)values;
 
-+ (LeGattDescriptorValue *)valueOfWithNSString:(NSString *)name;
+#pragma mark Package-Private
 
 - (id)copyWithZone:(NSZone *)zone;
 

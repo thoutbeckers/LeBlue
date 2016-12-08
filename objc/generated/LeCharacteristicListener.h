@@ -16,7 +16,7 @@
 @protocol LeGattCharacteristic;
 @protocol LeRemoteDevice;
 
-@protocol LeCharacteristicListener < NSObject, JavaObject >
+@protocol LeCharacteristicListener < JavaObject >
 
 - (void)leCharacteristicChangedWithJavaUtilUUID:(JavaUtilUUID *)uuid
                              withLeRemoteDevice:(id<LeRemoteDevice>)remoteDevice

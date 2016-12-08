@@ -12,8 +12,6 @@
 #if !defined (EventSinkTest_) && (INCLUDE_ALL_EventSinkTest || defined(INCLUDE_EventSinkTest))
 #define EventSinkTest_
 
-@class IOSObjectArray;
-
 @interface EventSinkTest : NSObject
 
 #pragma mark Public

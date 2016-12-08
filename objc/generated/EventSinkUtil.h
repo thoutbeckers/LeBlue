@@ -14,7 +14,7 @@
 
 @protocol EventSink;
 
-@protocol EventSinkUtil < NSObject, JavaObject >
+@protocol EventSinkUtil < JavaObject >
 
 - (NSString *)writeWithEventSink:(id<EventSink>)eventSink;
 

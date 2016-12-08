@@ -17,7 +17,7 @@
 @protocol LeCharacteristicWriteListener;
 @protocol LeRemoteDeviceListener;
 
-@protocol LeRemoteDevice < NSObject, JavaObject >
+@protocol LeRemoteDevice < JavaObject >
 
 - (void)addListenerWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)listener;
 

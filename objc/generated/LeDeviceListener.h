@@ -17,7 +17,7 @@
 @protocol LeRemoteDevice;
 @protocol LeScanRecord;
 
-@protocol LeDeviceListener < NSObject, JavaObject >
+@protocol LeDeviceListener < JavaObject >
 
 - (void)leDeviceFoundWithLeDevice:(id<LeDevice>)leDevice
                withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice

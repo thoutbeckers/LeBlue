@@ -12,7 +12,7 @@
 #if !defined (EventType_) && (INCLUDE_ALL_EventType || defined(INCLUDE_EventType))
 #define EventType_
 
-@protocol EventType < NSObject, JavaObject >
+@protocol EventType < JavaObject >
 
 @end
 

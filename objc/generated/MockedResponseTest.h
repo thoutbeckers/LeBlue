@@ -12,8 +12,6 @@
 #if !defined (MockedResponseTest_) && (INCLUDE_ALL_MockedResponseTest || defined(INCLUDE_MockedResponseTest))
 #define MockedResponseTest_
 
-@class IOSObjectArray;
-
 @interface MockedResponseTest : NSObject
 
 #pragma mark Public

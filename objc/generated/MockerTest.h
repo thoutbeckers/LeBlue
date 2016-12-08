@@ -12,7 +12,6 @@
 #if !defined (MockerTest_) && (INCLUDE_ALL_MockerTest || defined(INCLUDE_MockerTest))
 #define MockerTest_
 
-@class IOSObjectArray;
 @class ListEventSinkSource;
 @protocol LeDevice;
 @protocol LeRemoteDevice;

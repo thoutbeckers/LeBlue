@@ -15,7 +15,7 @@
 @class JavaUtilUUID;
 @protocol LeGattCharacteristic;
 
-@protocol LeGattService < NSObject, JavaObject >
+@protocol LeGattService < JavaObject >
 
 - (JavaUtilUUID *)getUuid;
 

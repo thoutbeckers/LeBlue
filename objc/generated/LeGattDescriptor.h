@@ -12,7 +12,7 @@
 #if !defined (LeGattDescriptor_) && (INCLUDE_ALL_LeGattDescriptor || defined(INCLUDE_LeGattDescriptor))
 #define LeGattDescriptor_
 
-@protocol LeGattDescriptor < NSObject, JavaObject >
+@protocol LeGattDescriptor < JavaObject >
 
 - (void)setValue;
 

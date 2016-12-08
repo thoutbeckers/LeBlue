@@ -17,7 +17,7 @@
 @protocol LeDevice;
 @protocol LeRemoteDevice;
 
-@protocol LeRemoteDeviceListener < NSObject, JavaObject >
+@protocol LeRemoteDeviceListener < JavaObject >
 
 - (void)leDevicesConnectedWithLeDevice:(id<LeDevice>)leDevice
                     withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice;

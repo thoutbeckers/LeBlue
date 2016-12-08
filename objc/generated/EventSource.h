@@ -14,7 +14,7 @@
 
 @class Event;
 
-@protocol EventSource < NSObject, JavaObject >
+@protocol EventSource < JavaObject >
 
 - (Event *)nextEvent;
 

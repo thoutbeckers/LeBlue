@@ -16,6 +16,8 @@
 #define INCLUDE_JavaLangEnum 1
 #include "java/lang/Enum.h"
 
+@class IOSObjectArray;
+
 typedef NS_ENUM(NSUInteger, LeFormat_Enum) {
   LeFormat_Enum_FORMAT_UINT8 = 0,
   LeFormat_Enum_FORMAT_UINT16 = 1,
@@ -29,19 +31,36 @@ typedef NS_ENUM(NSUInteger, LeFormat_Enum) {
 
 @interface LeFormat : JavaLangEnum < NSCopying >
 
++ (LeFormat * __nonnull)FORMAT_UINT8;
+
++ (LeFormat * __nonnull)FORMAT_UINT16;
+
++ (LeFormat * __nonnull)FORMAT_UINT32;
+
++ (LeFormat * __nonnull)FORMAT_SINT8;
+
++ (LeFormat * __nonnull)FORMAT_SINT16;
+
++ (LeFormat * __nonnull)FORMAT_SINT32;
+
++ (LeFormat * __nonnull)FORMAT_SFLOAT;
+
++ (LeFormat * __nonnull)FORMAT_FLOAT;
+
 #pragma mark Public
 
 - (jint)format;
 
 + (LeFormat *)fromStringWithNSString:(NSString *)status;
 
-#pragma mark Package-Private
++ (LeFormat *)valueOfWithNSString:(NSString *)name;
 
 + (IOSObjectArray *)values;
 
-+ (LeFormat *)valueOfWithNSString:(NSString *)name;
+#pragma mark Package-Private
 
 - (id)copyWithZone:(NSZone *)zone;
+- (LeFormat_Enum)toNSEnum;
 
 @end
 

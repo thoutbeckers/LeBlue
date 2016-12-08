@@ -12,7 +12,6 @@
 #if !defined (SessionSwitchingTest_) && (INCLUDE_ALL_SessionSwitchingTest || defined(INCLUDE_SessionSwitchingTest))
 #define SessionSwitchingTest_
 
-@class IOSObjectArray;
 @class LeSessionController;
 @class ListEventSinkSource;
 @protocol LeDevice;

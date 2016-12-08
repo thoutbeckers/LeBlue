@@ -15,7 +15,7 @@
 @class Event;
 @class IOSObjectArray;
 
-@protocol EventSink < NSObject, JavaObject >
+@protocol EventSink < JavaObject >
 
 - (void)addEventWithEvent:(Event *)event;
 

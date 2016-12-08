@@ -16,7 +16,7 @@
 @protocol EventSource;
 @protocol Mocker;
 
-@protocol Session < NSObject, JavaObject >
+@protocol Session < JavaObject >
 
 - (id<Mocker>)getGattCharacteristicMockerWithInt:(jint)id_;
 

@@ -20,6 +20,8 @@
 
 @interface LeUtil : NSObject
 
++ (IOSCharArray *)hexArray;
+
 #pragma mark Public
 
 - (instancetype)init;

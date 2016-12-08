@@ -12,8 +12,6 @@
 #if !defined (LeUtilTest_) && (INCLUDE_ALL_LeUtilTest || defined(INCLUDE_LeUtilTest))
 #define LeUtilTest_
 
-@class IOSObjectArray;
-
 @interface LeUtilTest : NSObject
 
 #pragma mark Public
