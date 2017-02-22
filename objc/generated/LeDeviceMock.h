@@ -17,6 +17,7 @@
 #include "LeDevice.h"
 
 @class IOSObjectArray;
+@protocol JavaUtilList;
 @protocol LeDeviceListener;
 @protocol LeMockController;
 
@@ -39,6 +40,8 @@
 - (void)removeListenerWithLeDeviceListener:(id<LeDeviceListener>)listener;
 
 - (void)startScanning;
+
+- (void)startScanningWithJavaUtilList:(id<JavaUtilList>)filters;
 
 - (void)startScanningWithJavaUtilUUIDArray:(IOSObjectArray *)uuids;
 

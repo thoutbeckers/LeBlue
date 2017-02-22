@@ -136,6 +136,9 @@
 - (void)deviceStartScanningWithLeDeviceMock:(LeDeviceMock *)leDeviceMock;
 
 - (void)deviceStartScanningWithLeDeviceMock:(LeDeviceMock *)leDeviceMock
+                           withJavaUtilList:(id<JavaUtilList>)filters;
+
+- (void)deviceStartScanningWithLeDeviceMock:(LeDeviceMock *)leDeviceMock
                       withJavaUtilUUIDArray:(IOSObjectArray *)uuids;
 
 - (void)deviceStopScanningWithLeDeviceMock:(LeDeviceMock *)leDeviceMock;

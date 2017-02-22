@@ -1080,6 +1080,17 @@ NSString *LeSessionController_TAG = @"LeBlueController";
   }
 }
 
+- (void)deviceStartScanningWithLeDeviceMock:(LeDeviceMock *)leDeviceMock
+                           withJavaUtilList:(id<JavaUtilList>)filters {
+  [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
+  @try {
+    [self checkEventWithLeEventType:JreLoadEnum(LeEventType, deviceStartScanning) withLeDeviceMock:leDeviceMock withNSStringArray:[IOSObjectArray arrayWithLength:0 type:NSString_class_()]];
+  }
+  @finally {
+    [lock_ unlock];
+  }
+}
+
 - (void)deviceStopScanningWithLeDeviceMock:(LeDeviceMock *)leDeviceMock {
   [((JavaUtilConcurrentLocksReentrantLock *) nil_chk(lock_)) lock];
   @try {
@@ -1580,58 +1591,59 @@ NSString *LeSessionController_TAG = @"LeBlueController";
     { NULL, "Z", 0x81, 22, 23, -1, -1, -1, -1 },
     { NULL, "V", 0x1, 24, 25, -1, -1, -1, -1 },
     { NULL, "V", 0x1, 24, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 27, 25, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 28, 29, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 30, 29, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 24, 27, -1, 28, -1, -1 },
+    { NULL, "V", 0x1, 29, 25, -1, -1, -1, -1 },
     { NULL, "V", 0x1, 30, 31, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 32, 29, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 33, 29, -1, -1, -1, -1 },
-    { NULL, "LLeCharacteristicListener;", 0x4, 34, 6, -1, -1, -1, -1 },
-    { NULL, "LLeCharacteristicListener;", 0x1, 34, 3, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 35, 36, -1, -1, -1, -1 },
-    { NULL, "LLeCharacteristicWriteListener;", 0x4, 37, 6, -1, -1, -1, -1 },
-    { NULL, "LLeCharacteristicWriteListener;", 0x1, 37, 3, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 38, 39, -1, -1, -1, -1 },
-    { NULL, "Z", 0x1, 40, 41, -1, -1, -1, -1 },
-    { NULL, "LLeDeviceMock;", 0x4, 42, 6, -1, -1, -1, -1 },
-    { NULL, "LLeDeviceMock;", 0x4, 42, 3, -1, -1, -1, -1 },
-    { NULL, "I", 0x4, 43, 25, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 44, 45, -1, -1, -1, -1 },
-    { NULL, "LLeRemoteDeviceMock;", 0x4, 46, 45, -1, -1, -1, -1 },
-    { NULL, "LLeRemoteDeviceMock;", 0x4, 47, 45, -1, -1, -1, -1 },
-    { NULL, "I", 0x4, 48, 29, -1, -1, -1, -1 },
-    { NULL, "LLeRemoteDeviceMock;", 0x4, 49, 6, -1, -1, -1, -1 },
-    { NULL, "LLeRemoteDeviceMock;", 0x4, 49, 3, -1, -1, -1, -1 },
-    { NULL, "LLeGattServiceMock;", 0x4, 50, 6, -1, -1, -1, -1 },
-    { NULL, "LLeGattServiceMock;", 0x4, 50, 3, -1, -1, -1, -1 },
-    { NULL, "I", 0x4, 51, 52, -1, -1, -1, -1 },
-    { NULL, "LLeDeviceListener;", 0x4, 53, 6, -1, -1, -1, -1 },
-    { NULL, "V", 0x4, 54, 55, -1, -1, -1, -1 },
-    { NULL, "LLeDeviceListener;", 0x1, 53, 3, -1, -1, -1, -1 },
-    { NULL, "I", 0x4, 56, 57, -1, -1, -1, -1 },
-    { NULL, "LLeGattCharacteristicMock;", 0x4, 58, 6, -1, -1, -1, -1 },
-    { NULL, "LLeGattCharacteristicMock;", 0x4, 58, 3, -1, -1, -1, -1 },
-    { NULL, "I", 0x4, 59, 60, -1, -1, -1, -1 },
-    { NULL, "LLeGattCharacteristicMock;", 0x4, 61, 6, -1, -1, -1, -1 },
-    { NULL, "LLeGattCharacteristicMock;", 0x4, 61, 3, -1, -1, -1, -1 },
-    { NULL, "LLeGattCharacteristic;", 0x1, 62, 41, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 63, 64, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 65, 64, -1, -1, -1, -1 },
-    { NULL, "LLeRemoteDeviceListener;", 0x4, 66, 6, -1, -1, -1, -1 },
-    { NULL, "LLeRemoteDeviceListener;", 0x1, 66, 3, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 67, 68, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 69, 68, -1, -1, -1, -1 },
-    { NULL, "Z", 0x1, 70, 25, -1, -1, -1, -1 },
-    { NULL, "Z", 0x1, 71, 25, -1, -1, -1, -1 },
-    { NULL, "LNSString;", 0x1, 72, 29, -1, -1, -1, -1 },
-    { NULL, "LNSString;", 0x1, 73, 29, -1, -1, -1, -1 },
-    { NULL, "LJavaUtilUUID;", 0x1, 74, 52, -1, -1, -1, -1 },
-    { NULL, "[B", 0x1, 75, 60, -1, -1, -1, -1 },
-    { NULL, "I", 0x1, 76, 77, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 78, 79, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 78, 80, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 81, 29, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 82, 60, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 32, 31, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 32, 33, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 34, 31, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 35, 31, -1, -1, -1, -1 },
+    { NULL, "LLeCharacteristicListener;", 0x4, 36, 6, -1, -1, -1, -1 },
+    { NULL, "LLeCharacteristicListener;", 0x1, 36, 3, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 37, 38, -1, -1, -1, -1 },
+    { NULL, "LLeCharacteristicWriteListener;", 0x4, 39, 6, -1, -1, -1, -1 },
+    { NULL, "LLeCharacteristicWriteListener;", 0x1, 39, 3, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 40, 41, -1, -1, -1, -1 },
+    { NULL, "Z", 0x1, 42, 43, -1, -1, -1, -1 },
+    { NULL, "LLeDeviceMock;", 0x4, 44, 6, -1, -1, -1, -1 },
+    { NULL, "LLeDeviceMock;", 0x4, 44, 3, -1, -1, -1, -1 },
+    { NULL, "I", 0x4, 45, 25, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 46, 47, -1, -1, -1, -1 },
+    { NULL, "LLeRemoteDeviceMock;", 0x4, 48, 47, -1, -1, -1, -1 },
+    { NULL, "LLeRemoteDeviceMock;", 0x4, 49, 47, -1, -1, -1, -1 },
+    { NULL, "I", 0x4, 50, 31, -1, -1, -1, -1 },
+    { NULL, "LLeRemoteDeviceMock;", 0x4, 51, 6, -1, -1, -1, -1 },
+    { NULL, "LLeRemoteDeviceMock;", 0x4, 51, 3, -1, -1, -1, -1 },
+    { NULL, "LLeGattServiceMock;", 0x4, 52, 6, -1, -1, -1, -1 },
+    { NULL, "LLeGattServiceMock;", 0x4, 52, 3, -1, -1, -1, -1 },
+    { NULL, "I", 0x4, 53, 54, -1, -1, -1, -1 },
+    { NULL, "LLeDeviceListener;", 0x4, 55, 6, -1, -1, -1, -1 },
+    { NULL, "V", 0x4, 56, 57, -1, -1, -1, -1 },
+    { NULL, "LLeDeviceListener;", 0x1, 55, 3, -1, -1, -1, -1 },
+    { NULL, "I", 0x4, 58, 59, -1, -1, -1, -1 },
+    { NULL, "LLeGattCharacteristicMock;", 0x4, 60, 6, -1, -1, -1, -1 },
+    { NULL, "LLeGattCharacteristicMock;", 0x4, 60, 3, -1, -1, -1, -1 },
+    { NULL, "I", 0x4, 61, 62, -1, -1, -1, -1 },
+    { NULL, "LLeGattCharacteristicMock;", 0x4, 63, 6, -1, -1, -1, -1 },
+    { NULL, "LLeGattCharacteristicMock;", 0x4, 63, 3, -1, -1, -1, -1 },
+    { NULL, "LLeGattCharacteristic;", 0x1, 64, 43, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 65, 66, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 67, 66, -1, -1, -1, -1 },
+    { NULL, "LLeRemoteDeviceListener;", 0x4, 68, 6, -1, -1, -1, -1 },
+    { NULL, "LLeRemoteDeviceListener;", 0x1, 68, 3, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 69, 70, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 71, 70, -1, -1, -1, -1 },
+    { NULL, "Z", 0x1, 72, 25, -1, -1, -1, -1 },
+    { NULL, "Z", 0x1, 73, 25, -1, -1, -1, -1 },
+    { NULL, "LNSString;", 0x1, 74, 31, -1, -1, -1, -1 },
+    { NULL, "LNSString;", 0x1, 75, 31, -1, -1, -1, -1 },
+    { NULL, "LJavaUtilUUID;", 0x1, 76, 54, -1, -1, -1, -1 },
+    { NULL, "[B", 0x1, 77, 62, -1, -1, -1, -1 },
+    { NULL, "I", 0x1, 78, 79, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 80, 81, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 80, 82, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 83, 31, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 84, 62, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -1666,61 +1678,62 @@ NSString *LeSessionController_TAG = @"LeBlueController";
   methods[28].selector = @selector(checkEventWithSourceIdWithLeEventType:withLeSessionController_SourceType:withInt:withNSStringArray:);
   methods[29].selector = @selector(deviceStartScanningWithLeDeviceMock:);
   methods[30].selector = @selector(deviceStartScanningWithLeDeviceMock:withJavaUtilUUIDArray:);
-  methods[31].selector = @selector(deviceStopScanningWithLeDeviceMock:);
-  methods[32].selector = @selector(remoteDeviceConnectWithLeRemoteDeviceMock:);
-  methods[33].selector = @selector(remoteDeviceStartServiceDiscoveryWithLeRemoteDeviceMock:);
-  methods[34].selector = @selector(remoteDeviceStartServiceDiscoveryWithLeRemoteDeviceMock:withJavaUtilUUIDArray:);
-  methods[35].selector = @selector(remoteDeviceCloseWithLeRemoteDeviceMock:);
-  methods[36].selector = @selector(remoteDeviceDisconnectWithLeRemoteDeviceMock:);
-  methods[37].selector = @selector(getCharacteristicListenerWithNSString:);
-  methods[38].selector = @selector(getCharacteristicListenerWithInt:);
-  methods[39].selector = @selector(remoteDeviceSetCharacteristicListenerWithLeRemoteDeviceMock:withLeCharacteristicListener:withJavaUtilUUIDArray:);
-  methods[40].selector = @selector(getCharacteristicWriteListenerWithNSString:);
-  methods[41].selector = @selector(getCharacteristicWriteListenerWithInt:);
-  methods[42].selector = @selector(remoteDeviceSetCharacteristicWriteListenerWithLeRemoteDeviceMock:withLeCharacteristicWriteListener:withJavaUtilUUIDArray:);
-  methods[43].selector = @selector(serviceEnableCharacteristicNotificationWithLeGattServiceMock:withJavaUtilUUID:);
-  methods[44].selector = @selector(getDeviceWithNSString:);
-  methods[45].selector = @selector(getDeviceWithInt:);
-  methods[46].selector = @selector(getDeviceKeyWithLeDeviceMock:);
-  methods[47].selector = @selector(addDeviceWithInt:withLeDeviceMock:);
-  methods[48].selector = @selector(createRemoteDeviceWithInt:withLeDeviceMock:);
-  methods[49].selector = @selector(createOrReturnRemoteDeviceWithInt:withLeDeviceMock:);
-  methods[50].selector = @selector(getRemoteDeviceKeyWithLeRemoteDeviceMock:);
-  methods[51].selector = @selector(getRemoteDeviceWithNSString:);
-  methods[52].selector = @selector(getRemoteDeviceWithInt:);
-  methods[53].selector = @selector(createGattServiceWithNSString:);
-  methods[54].selector = @selector(createGattServiceWithInt:);
-  methods[55].selector = @selector(getGattServiceKeyWithLeGattServiceMock:);
-  methods[56].selector = @selector(getDeviceListenerWithNSString:);
-  methods[57].selector = @selector(addDeviceListenerWithInt:withLeDeviceListener:);
-  methods[58].selector = @selector(getDeviceListenerWithInt:);
-  methods[59].selector = @selector(getDeviceListenerKeyWithLeDeviceListener:);
-  methods[60].selector = @selector(createOrReturnCharacteristicWithNSString:);
-  methods[61].selector = @selector(createOrReturnCharacteristicWithInt:);
-  methods[62].selector = @selector(getCharacteristicKeyWithLeGattCharacteristicMock:);
-  methods[63].selector = @selector(getCharacteristicWithNSString:);
-  methods[64].selector = @selector(getCharacteristicWithInt:);
-  methods[65].selector = @selector(serviceGetCharacteristicWithLeGattServiceMock:withJavaUtilUUID:);
-  methods[66].selector = @selector(deviceAddListenerWithLeDeviceMock:withLeDeviceListener:);
-  methods[67].selector = @selector(deviceRemoveListenerWithLeDeviceMock:withLeDeviceListener:);
-  methods[68].selector = @selector(getRemoteDeviceListenerWithNSString:);
-  methods[69].selector = @selector(getRemoteDeviceListenerWithInt:);
-  methods[70].selector = @selector(remoteDeviceAddListenerWithLeRemoteDeviceMock:withLeRemoteDeviceListener:);
-  methods[71].selector = @selector(remoteDeviceRemoveListenerWithLeRemoteDeviceMock:withLeRemoteDeviceListener:);
-  methods[72].selector = @selector(deviceCheckBleHardwareAvailableWithLeDeviceMock:);
-  methods[73].selector = @selector(deviceIsBtEnabledWithLeDeviceMock:);
-  methods[74].selector = @selector(remoteDeviceGetAddressWithLeRemoteDeviceMock:);
-  methods[75].selector = @selector(remoteDeviceGetNameWithLeRemoteDeviceMock:);
-  methods[76].selector = @selector(serviceGetUuidWithLeGattServiceMock:);
-  methods[77].selector = @selector(characteristicGetValueWithLeGattCharacteristicMock:);
-  methods[78].selector = @selector(characteristicGetIntValueWithLeGattCharacteristicMock:withLeFormat:withInt:);
-  methods[79].selector = @selector(characteristicSetValueWithLeGattCharacteristicMock:withByteArray:);
-  methods[80].selector = @selector(characteristicSetValueWithLeGattCharacteristicMock:withByteArray:withJavaLangBoolean:);
-  methods[81].selector = @selector(remoteDeviceReadRssiWithLeRemoteDeviceMock:);
-  methods[82].selector = @selector(characteristicReadWithLeGattCharacteristicMock:);
+  methods[31].selector = @selector(deviceStartScanningWithLeDeviceMock:withJavaUtilList:);
+  methods[32].selector = @selector(deviceStopScanningWithLeDeviceMock:);
+  methods[33].selector = @selector(remoteDeviceConnectWithLeRemoteDeviceMock:);
+  methods[34].selector = @selector(remoteDeviceStartServiceDiscoveryWithLeRemoteDeviceMock:);
+  methods[35].selector = @selector(remoteDeviceStartServiceDiscoveryWithLeRemoteDeviceMock:withJavaUtilUUIDArray:);
+  methods[36].selector = @selector(remoteDeviceCloseWithLeRemoteDeviceMock:);
+  methods[37].selector = @selector(remoteDeviceDisconnectWithLeRemoteDeviceMock:);
+  methods[38].selector = @selector(getCharacteristicListenerWithNSString:);
+  methods[39].selector = @selector(getCharacteristicListenerWithInt:);
+  methods[40].selector = @selector(remoteDeviceSetCharacteristicListenerWithLeRemoteDeviceMock:withLeCharacteristicListener:withJavaUtilUUIDArray:);
+  methods[41].selector = @selector(getCharacteristicWriteListenerWithNSString:);
+  methods[42].selector = @selector(getCharacteristicWriteListenerWithInt:);
+  methods[43].selector = @selector(remoteDeviceSetCharacteristicWriteListenerWithLeRemoteDeviceMock:withLeCharacteristicWriteListener:withJavaUtilUUIDArray:);
+  methods[44].selector = @selector(serviceEnableCharacteristicNotificationWithLeGattServiceMock:withJavaUtilUUID:);
+  methods[45].selector = @selector(getDeviceWithNSString:);
+  methods[46].selector = @selector(getDeviceWithInt:);
+  methods[47].selector = @selector(getDeviceKeyWithLeDeviceMock:);
+  methods[48].selector = @selector(addDeviceWithInt:withLeDeviceMock:);
+  methods[49].selector = @selector(createRemoteDeviceWithInt:withLeDeviceMock:);
+  methods[50].selector = @selector(createOrReturnRemoteDeviceWithInt:withLeDeviceMock:);
+  methods[51].selector = @selector(getRemoteDeviceKeyWithLeRemoteDeviceMock:);
+  methods[52].selector = @selector(getRemoteDeviceWithNSString:);
+  methods[53].selector = @selector(getRemoteDeviceWithInt:);
+  methods[54].selector = @selector(createGattServiceWithNSString:);
+  methods[55].selector = @selector(createGattServiceWithInt:);
+  methods[56].selector = @selector(getGattServiceKeyWithLeGattServiceMock:);
+  methods[57].selector = @selector(getDeviceListenerWithNSString:);
+  methods[58].selector = @selector(addDeviceListenerWithInt:withLeDeviceListener:);
+  methods[59].selector = @selector(getDeviceListenerWithInt:);
+  methods[60].selector = @selector(getDeviceListenerKeyWithLeDeviceListener:);
+  methods[61].selector = @selector(createOrReturnCharacteristicWithNSString:);
+  methods[62].selector = @selector(createOrReturnCharacteristicWithInt:);
+  methods[63].selector = @selector(getCharacteristicKeyWithLeGattCharacteristicMock:);
+  methods[64].selector = @selector(getCharacteristicWithNSString:);
+  methods[65].selector = @selector(getCharacteristicWithInt:);
+  methods[66].selector = @selector(serviceGetCharacteristicWithLeGattServiceMock:withJavaUtilUUID:);
+  methods[67].selector = @selector(deviceAddListenerWithLeDeviceMock:withLeDeviceListener:);
+  methods[68].selector = @selector(deviceRemoveListenerWithLeDeviceMock:withLeDeviceListener:);
+  methods[69].selector = @selector(getRemoteDeviceListenerWithNSString:);
+  methods[70].selector = @selector(getRemoteDeviceListenerWithInt:);
+  methods[71].selector = @selector(remoteDeviceAddListenerWithLeRemoteDeviceMock:withLeRemoteDeviceListener:);
+  methods[72].selector = @selector(remoteDeviceRemoveListenerWithLeRemoteDeviceMock:withLeRemoteDeviceListener:);
+  methods[73].selector = @selector(deviceCheckBleHardwareAvailableWithLeDeviceMock:);
+  methods[74].selector = @selector(deviceIsBtEnabledWithLeDeviceMock:);
+  methods[75].selector = @selector(remoteDeviceGetAddressWithLeRemoteDeviceMock:);
+  methods[76].selector = @selector(remoteDeviceGetNameWithLeRemoteDeviceMock:);
+  methods[77].selector = @selector(serviceGetUuidWithLeGattServiceMock:);
+  methods[78].selector = @selector(characteristicGetValueWithLeGattCharacteristicMock:);
+  methods[79].selector = @selector(characteristicGetIntValueWithLeGattCharacteristicMock:withLeFormat:withInt:);
+  methods[80].selector = @selector(characteristicSetValueWithLeGattCharacteristicMock:withByteArray:);
+  methods[81].selector = @selector(characteristicSetValueWithLeGattCharacteristicMock:withByteArray:withJavaLangBoolean:);
+  methods[82].selector = @selector(remoteDeviceReadRssiWithLeRemoteDeviceMock:);
+  methods[83].selector = @selector(characteristicReadWithLeGattCharacteristicMock:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
-    { "TAG", "LNSString;", .constantValue.asLong = 0, 0x18, -1, 83, -1, -1 },
+    { "TAG", "LNSString;", .constantValue.asLong = 0, 0x18, -1, 85, -1, -1 },
     { "counter_", "I", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
     { "strict_", "Z", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
     { "lock_", "LJavaUtilConcurrentLocksReentrantLock;", .constantValue.asLong = 0, 0x10, -1, -1, -1, -1 },
@@ -1732,29 +1745,29 @@ NSString *LeSessionController_TAG = @"LeBlueController";
     { "waitingForEvent_", "Z", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
     { "sessionName_", "LNSString;", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
     { "session_", "LSession;", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
-    { "mockedEvents_", "LJavaUtilList;", .constantValue.asLong = 0, 0x40, -1, -1, 84, -1 },
+    { "mockedEvents_", "LJavaUtilList;", .constantValue.asLong = 0, 0x40, -1, -1, 86, -1 },
     { "stackedEvent_", "LEvent;", .constantValue.asLong = 0, 0x40, -1, -1, -1, -1 },
     { "sessionIsRunning_", "Z", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
     { "stopSession_", "Z", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
     { "executeNextEventAfter_", "J", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
-    { "characteristicsValues_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 85, -1 },
+    { "characteristicsValues_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 87, -1 },
     { "sessionException_", "LJavaLangException;", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
-    { "characteristicListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 86, -1 },
-    { "characteristicWriteListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 87, -1 },
-    { "devices_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 88, -1 },
-    { "deviceKeys_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 89, -1 },
-    { "remoteDevices_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 90, -1 },
-    { "remoteDeviceKeys_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 91, -1 },
-    { "gattServices_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 92, -1 },
-    { "gattServicesKeys_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 93, -1 },
-    { "deviceListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 94, -1 },
-    { "deviceListenerKeys_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 95, -1 },
-    { "characteristics_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 96, -1 },
-    { "characteristicsKeys_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 97, -1 },
-    { "remoteDeviceListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 98, -1 },
+    { "characteristicListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 88, -1 },
+    { "characteristicWriteListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 89, -1 },
+    { "devices_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 90, -1 },
+    { "deviceKeys_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 91, -1 },
+    { "remoteDevices_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 92, -1 },
+    { "remoteDeviceKeys_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 93, -1 },
+    { "gattServices_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 94, -1 },
+    { "gattServicesKeys_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 95, -1 },
+    { "deviceListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 96, -1 },
+    { "deviceListenerKeys_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 97, -1 },
+    { "characteristics_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 98, -1 },
+    { "characteristicsKeys_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 99, -1 },
+    { "remoteDeviceListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 100, -1 },
   };
-  static const void *ptrTable[] = { "LSession;", "LSession;Z", "eventValue", "I", "eventBooleanValue", "pointReached", "LNSString;", "waitForPointOrEvent", "LJavaLangInterruptedException;", "updateCurrentEvent", "LEvent;", "waitForPoint", "waitForEvent", "startSession", "runCurrentEventOnUiThread", "LJavaLangRunnable;", "workOnEvent", "checkEvent", "LLeEventType;LLeDeviceMock;[LNSString;", "LLeEventType;LLeRemoteDeviceMock;[LNSString;", "LLeEventType;LLeGattServiceMock;[LNSString;", "LLeEventType;LLeGattCharacteristicMock;[LNSString;", "checkEventWithSourceId", "LLeEventType;LLeSessionController_SourceType;I[LNSString;", "deviceStartScanning", "LLeDeviceMock;", "LLeDeviceMock;[LJavaUtilUUID;", "deviceStopScanning", "remoteDeviceConnect", "LLeRemoteDeviceMock;", "remoteDeviceStartServiceDiscovery", "LLeRemoteDeviceMock;[LJavaUtilUUID;", "remoteDeviceClose", "remoteDeviceDisconnect", "getCharacteristicListener", "remoteDeviceSetCharacteristicListener", "LLeRemoteDeviceMock;LLeCharacteristicListener;[LJavaUtilUUID;", "getCharacteristicWriteListener", "remoteDeviceSetCharacteristicWriteListener", "LLeRemoteDeviceMock;LLeCharacteristicWriteListener;[LJavaUtilUUID;", "serviceEnableCharacteristicNotification", "LLeGattServiceMock;LJavaUtilUUID;", "getDevice", "getDeviceKey", "addDevice", "ILLeDeviceMock;", "createRemoteDevice", "createOrReturnRemoteDevice", "getRemoteDeviceKey", "getRemoteDevice", "createGattService", "getGattServiceKey", "LLeGattServiceMock;", "getDeviceListener", "addDeviceListener", "ILLeDeviceListener;", "getDeviceListenerKey", "LLeDeviceListener;", "createOrReturnCharacteristic", "getCharacteristicKey", "LLeGattCharacteristicMock;", "getCharacteristic", "serviceGetCharacteristic", "deviceAddListener", "LLeDeviceMock;LLeDeviceListener;", "deviceRemoveListener", "getRemoteDeviceListener", "remoteDeviceAddListener", "LLeRemoteDeviceMock;LLeRemoteDeviceListener;", "remoteDeviceRemoveListener", "deviceCheckBleHardwareAvailable", "deviceIsBtEnabled", "remoteDeviceGetAddress", "remoteDeviceGetName", "serviceGetUuid", "characteristicGetValue", "characteristicGetIntValue", "LLeGattCharacteristicMock;LLeFormat;I", "characteristicSetValue", "LLeGattCharacteristicMock;[B", "LLeGattCharacteristicMock;[BLJavaLangBoolean;", "remoteDeviceReadRssi", "characteristicRead", &LeSessionController_TAG, "Ljava/util/List<Lhoutbecke/rs/le/session/Event;>;", "Ljava/util/Map<Ljava/lang/Integer;[LB;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeCharacteristicListener;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeCharacteristicWriteListener;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeDeviceMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeDeviceMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeRemoteDeviceMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeRemoteDeviceMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeGattServiceMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeGattServiceMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeDeviceListener;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeDeviceListener;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeGattCharacteristicMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeGattCharacteristicMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeRemoteDeviceListener;>;", "LLeSessionController_RunnableWrapper;LLeSessionController_SourceType;" };
-  static const J2ObjcClassInfo _LeSessionController = { "LeSessionController", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x1, 83, 32, -1, 99, -1, -1, -1 };
+  static const void *ptrTable[] = { "LSession;", "LSession;Z", "eventValue", "I", "eventBooleanValue", "pointReached", "LNSString;", "waitForPointOrEvent", "LJavaLangInterruptedException;", "updateCurrentEvent", "LEvent;", "waitForPoint", "waitForEvent", "startSession", "runCurrentEventOnUiThread", "LJavaLangRunnable;", "workOnEvent", "checkEvent", "LLeEventType;LLeDeviceMock;[LNSString;", "LLeEventType;LLeRemoteDeviceMock;[LNSString;", "LLeEventType;LLeGattServiceMock;[LNSString;", "LLeEventType;LLeGattCharacteristicMock;[LNSString;", "checkEventWithSourceId", "LLeEventType;LLeSessionController_SourceType;I[LNSString;", "deviceStartScanning", "LLeDeviceMock;", "LLeDeviceMock;[LJavaUtilUUID;", "LLeDeviceMock;LJavaUtilList;", "(Lhoutbecke/rs/le/mock/LeDeviceMock;Ljava/util/List<Ljava/util/List<Ljava/util/UUID;>;>;)V", "deviceStopScanning", "remoteDeviceConnect", "LLeRemoteDeviceMock;", "remoteDeviceStartServiceDiscovery", "LLeRemoteDeviceMock;[LJavaUtilUUID;", "remoteDeviceClose", "remoteDeviceDisconnect", "getCharacteristicListener", "remoteDeviceSetCharacteristicListener", "LLeRemoteDeviceMock;LLeCharacteristicListener;[LJavaUtilUUID;", "getCharacteristicWriteListener", "remoteDeviceSetCharacteristicWriteListener", "LLeRemoteDeviceMock;LLeCharacteristicWriteListener;[LJavaUtilUUID;", "serviceEnableCharacteristicNotification", "LLeGattServiceMock;LJavaUtilUUID;", "getDevice", "getDeviceKey", "addDevice", "ILLeDeviceMock;", "createRemoteDevice", "createOrReturnRemoteDevice", "getRemoteDeviceKey", "getRemoteDevice", "createGattService", "getGattServiceKey", "LLeGattServiceMock;", "getDeviceListener", "addDeviceListener", "ILLeDeviceListener;", "getDeviceListenerKey", "LLeDeviceListener;", "createOrReturnCharacteristic", "getCharacteristicKey", "LLeGattCharacteristicMock;", "getCharacteristic", "serviceGetCharacteristic", "deviceAddListener", "LLeDeviceMock;LLeDeviceListener;", "deviceRemoveListener", "getRemoteDeviceListener", "remoteDeviceAddListener", "LLeRemoteDeviceMock;LLeRemoteDeviceListener;", "remoteDeviceRemoveListener", "deviceCheckBleHardwareAvailable", "deviceIsBtEnabled", "remoteDeviceGetAddress", "remoteDeviceGetName", "serviceGetUuid", "characteristicGetValue", "characteristicGetIntValue", "LLeGattCharacteristicMock;LLeFormat;I", "characteristicSetValue", "LLeGattCharacteristicMock;[B", "LLeGattCharacteristicMock;[BLJavaLangBoolean;", "remoteDeviceReadRssi", "characteristicRead", &LeSessionController_TAG, "Ljava/util/List<Lhoutbecke/rs/le/session/Event;>;", "Ljava/util/Map<Ljava/lang/Integer;[LB;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeCharacteristicListener;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeCharacteristicWriteListener;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeDeviceMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeDeviceMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeRemoteDeviceMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeRemoteDeviceMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeGattServiceMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeGattServiceMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeDeviceListener;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeDeviceListener;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeGattCharacteristicMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeGattCharacteristicMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeRemoteDeviceListener;>;", "LLeSessionController_RunnableWrapper;LLeSessionController_SourceType;" };
+  static const J2ObjcClassInfo _LeSessionController = { "LeSessionController", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x1, 84, 32, -1, 101, -1, -1, -1 };
   return &_LeSessionController;
 }
 

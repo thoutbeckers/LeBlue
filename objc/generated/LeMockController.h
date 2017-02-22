@@ -21,6 +21,7 @@
 @class LeGattCharacteristicMock;
 @class LeGattServiceMock;
 @class LeRemoteDeviceMock;
+@protocol JavaUtilList;
 @protocol LeCharacteristicListener;
 @protocol LeCharacteristicWriteListener;
 @protocol LeDeviceListener;
@@ -33,6 +34,9 @@
 
 - (void)deviceStartScanningWithLeDeviceMock:(LeDeviceMock *)leDeviceMock
                       withJavaUtilUUIDArray:(IOSObjectArray *)uuids;
+
+- (void)deviceStartScanningWithLeDeviceMock:(LeDeviceMock *)leDeviceMock
+                           withJavaUtilList:(id<JavaUtilList>)filters;
 
 - (void)deviceStopScanningWithLeDeviceMock:(LeDeviceMock *)leDeviceMock;
 

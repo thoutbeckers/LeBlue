@@ -27,6 +27,7 @@
 @class LeDeviceState;
 @class LeFormat;
 @class LeGattStatus;
+@protocol JavaUtilList;
 @protocol JavaUtilMap;
 @protocol LeCharacteristicListener;
 @protocol LeCharacteristicWriteListener;
@@ -192,6 +193,9 @@
                                  withJavaLangBoolean:(JavaLangBoolean *)withResponse;
 
 - (void)startedScanningWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice;
+
+- (void)startedScanningWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice
+                               withJavaUtilList:(id<JavaUtilList>)filters;
 
 - (void)startedScanningWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice
                           withJavaUtilUUIDArray:(IOSObjectArray *)uuids;
