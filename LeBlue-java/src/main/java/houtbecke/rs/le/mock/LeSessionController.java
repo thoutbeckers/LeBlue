@@ -853,6 +853,16 @@ public class LeSessionController implements LeMockController {
     }
 
     @Override
+    public void deviceStartScanning(LeDeviceMock leDeviceMock, List<List<UUID>> filters) {
+        lock.lock();
+        try {
+            checkEvent(deviceStartScanning, leDeviceMock);
+        }finally {
+            lock.unlock();
+        }
+    }
+
+    @Override
     public void deviceStopScanning(LeDeviceMock leDeviceMock) {
         lock.lock();
         try {

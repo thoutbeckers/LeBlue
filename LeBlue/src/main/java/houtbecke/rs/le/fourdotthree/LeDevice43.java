@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.os.ParcelUuid;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -35,6 +36,13 @@ import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeGattStatus;
 import houtbecke.rs.le.LeUtil;
+import no.nordicsemi.android.support.v18.scanner.BluetoothLeScannerCompat;
+import no.nordicsemi.android.support.v18.scanner.ScanCallback;
+import no.nordicsemi.android.support.v18.scanner.ScanFilter;
+import no.nordicsemi.android.support.v18.scanner.ScanResult;
+import no.nordicsemi.android.support.v18.scanner.ScanSettings;
+
+import static no.nordicsemi.android.support.v18.scanner.ScanSettings.CALLBACK_TYPE_MATCH_LOST;
 
 public class LeDevice43 implements LeDevice {
 
@@ -139,20 +147,87 @@ public class LeDevice43 implements LeDevice {
     };
 
 
+    /* defines callback for scanning results */
+    private ScanCallback scanCallback = new ScanCallback() {
+        public void onBatchScanResults(List<ScanResult> results){
+            for (ScanResult result :results){
+                sendScanResult(result);
+
+            }
+        }
+        public void	onScanFailed(int errorCode){
+            Log.e("LeBlue", "onScanFailed: " + errorCode);
+
+
+        }
+        public void	onScanResult(int callbackType, ScanResult result){
+            if (callbackType==CALLBACK_TYPE_MATCH_LOST) return;
+                sendScanResult(result);
+            }
+
+        void sendScanResult( ScanResult result){
+            LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, result.getDevice());
+            Log.i("LeBlue", "scan record: " + LeUtil.bytesToString(result.getScanRecord().getBytes()));
+            for(LeDeviceListener listener: listeners)
+                listener.leDeviceFound(LeDevice43.this, device43, result.getRssi(), LeUtil.parseLeScanRecord(result.getScanRecord().getBytes()));
+
+
+        }
+
+
+
+    };
+
+
+
     @Override
     public void startScanning() {
-        bluetoothAdapter.startLeScan(deviceFoundCallback);
-	}
+        BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
+        scanner.startScan(scanCallback);
+    }
 
     @Override
     public void startScanning(UUID... uuids) {
-        bluetoothAdapter.startLeScan(uuids, deviceFoundCallback);
+        BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
+        ScanSettings settings = new ScanSettings.Builder()
+                .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).setReportDelay(500).setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
+                .setUseHardwareBatchingIfSupported(true).build();
+        List<ScanFilter> filters = new ArrayList<>();
+        ScanFilter.Builder builder = new ScanFilter.Builder();
+        for (UUID uuid : uuids ){
+            builder  = builder.setServiceUuid(new ParcelUuid(uuid));
+
+        }
+        filters.add(new ScanFilter.Builder().build());
+        scanner.startScan(filters, settings, scanCallback);
     }
+
+    @Override
+    public void startScanning(List<List<UUID>> filters) {
+        BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
+        ScanSettings settings = new ScanSettings.Builder()
+                .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).setReportDelay(500).setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
+                .setUseHardwareBatchingIfSupported(true).build();
+        List<ScanFilter> scanFilters = new ArrayList<>();
+        for (List<UUID> filter : filters){
+            ScanFilter.Builder builder = new ScanFilter.Builder();
+            for (UUID uuid : filter ){
+                builder  = builder.setServiceUuid(new ParcelUuid(uuid));
+
+            }
+            scanFilters.add(new ScanFilter.Builder().build());
+
+        }
+        scanner.startScan(scanFilters, settings, scanCallback);
+    }
+
+
 
 
     @Override
 	public void stopScanning() {
-		bluetoothAdapter.stopLeScan(deviceFoundCallback);
+        BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
+        scanner.stopScan(scanCallback);
 	}
 
 

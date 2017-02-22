@@ -1,5 +1,6 @@
 package houtbecke.rs.le;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface LeDevice {
@@ -43,9 +44,13 @@ public interface LeDevice {
      */
     void startScanning(UUID... uuids);
 
-    /**
-     * Stop scanning for Bluetooth LE devices nearby
-     */
+    void startScanning(List<List<UUID>> filters);
+
+        /**
+         * Stop scanning for Bluetooth LE devices nearby
+         */
     void stopScanning();
+
+
 
 }

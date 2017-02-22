@@ -1,5 +1,6 @@
 package houtbecke.rs.le.mock;
 
+import java.util.List;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeCharacteristicListener;
@@ -14,6 +15,8 @@ public interface LeMockController {
     void deviceStartScanning(LeDeviceMock leDeviceMock);
 
     void deviceStartScanning(LeDeviceMock leDeviceMock, UUID[] uuids);
+
+    void deviceStartScanning(LeDeviceMock leDeviceMock, List<List<UUID>> filters);
 
     void deviceStopScanning(LeDeviceMock leDeviceMock);
 

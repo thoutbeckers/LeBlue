@@ -1,5 +1,6 @@
 package houtbecke.rs.le.interceptor;
 
+import java.util.List;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeDevice;
@@ -63,6 +64,14 @@ public class InterceptingLeDevice extends LeIntercepting implements LeDevice {
         synchronized(leInterceptor) {
             leInterceptor.startedScanning(this, uuids);
             leDevice.startScanning(uuids);
+        }
+    }
+
+    @Override
+    public void startScanning(List<List<UUID>> filters) {
+        synchronized(leInterceptor) {
+            leInterceptor.startedScanning(this, filters);
+            leDevice.startScanning(filters);
         }
     }
 

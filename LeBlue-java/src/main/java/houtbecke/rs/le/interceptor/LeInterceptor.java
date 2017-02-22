@@ -1,6 +1,7 @@
 package houtbecke.rs.le.interceptor;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -142,6 +143,8 @@ public abstract class LeInterceptor {
     public abstract void startedScanning(InterceptingLeDevice iLeDevice);
 
     public abstract void startedScanning(InterceptingLeDevice iLeDevice, UUID[] uuids);
+
+    public abstract void startedScanning(InterceptingLeDevice iLeDevice, List<List<UUID>> filters);
 
     public abstract void stoppedScanning(InterceptingLeDevice iLeDevice);
 

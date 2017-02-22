@@ -1,5 +1,6 @@
 package houtbecke.rs.le.interceptor;
 
+import java.util.List;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeDeviceState;
@@ -131,6 +132,11 @@ public class LeSessionInterceptor extends LeInterceptor {
     public void startedScanning(InterceptingLeDevice iLeDevice, UUID[] uuids) {
         String[] params = LeUtil.getStringsFromUUIDs(uuids);
         drainEvent(deviceStartScanning, iLeDevice, params);
+    }
+
+    @Override
+    public void startedScanning(InterceptingLeDevice iLeDevice, List<List<UUID>> filters) {
+        drainEvent(deviceStartScanning, iLeDevice);
     }
 
 
