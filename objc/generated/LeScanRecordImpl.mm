@@ -14,30 +14,28 @@
 #include "java/util/List.h"
 #include "java/util/UUID.h"
 
-@interface LeScanRecordImpl_$1 : NSObject < LeRecord > {
+@interface LeScanRecordImpl_1 : NSObject < LeRecord > {
  @public
   jint val$type_;
   IOSByteArray *val$record_;
 }
 
+- (instancetype)initWithInt:(jint)capture$0
+              withByteArray:(IOSByteArray *)capture$1;
+
 - (jint)getType;
 
 - (IOSByteArray *)getRecordContent;
 
-- (instancetype)initWithInt:(jint)capture$0
-              withByteArray:(IOSByteArray *)capture$1;
-
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeScanRecordImpl_$1)
+J2OBJC_EMPTY_STATIC_INIT(LeScanRecordImpl_1)
 
-J2OBJC_FIELD_SETTER(LeScanRecordImpl_$1, val$record_, IOSByteArray *)
+__attribute__((unused)) static void LeScanRecordImpl_1_initWithInt_withByteArray_(LeScanRecordImpl_1 *self, jint capture$0, IOSByteArray *capture$1);
 
-__attribute__((unused)) static void LeScanRecordImpl_$1_initWithInt_withByteArray_(LeScanRecordImpl_$1 *self, jint capture$0, IOSByteArray *capture$1);
+__attribute__((unused)) static LeScanRecordImpl_1 *new_LeScanRecordImpl_1_initWithInt_withByteArray_(jint capture$0, IOSByteArray *capture$1) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeScanRecordImpl_$1 *new_LeScanRecordImpl_$1_initWithInt_withByteArray_(jint capture$0, IOSByteArray *capture$1) NS_RETURNS_RETAINED;
-
-__attribute__((unused)) static LeScanRecordImpl_$1 *create_LeScanRecordImpl_$1_initWithInt_withByteArray_(jint capture$0, IOSByteArray *capture$1);
+__attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_initWithInt_withByteArray_(jint capture$0, IOSByteArray *capture$1);
 
 @implementation LeScanRecordImpl
 
@@ -90,7 +88,7 @@ __attribute__((unused)) static LeScanRecordImpl_$1 *create_LeScanRecordImpl_$1_i
     while (b__ < e__) {
       id<LeRecord> record = *b__++;
       JavaNioByteBuffer *buffer = [((JavaNioByteBuffer *) nil_chk(JavaNioByteBuffer_wrapWithByteArray_([((id<LeRecord>) nil_chk(record)) getRecordContent]))) orderWithJavaNioByteOrder:JreLoadStatic(JavaNioByteOrder, LITTLE_ENDIAN)];
-      while ([((JavaNioByteBuffer *) nil_chk(buffer)) remaining] >= 2) [uuidList addWithId:JavaUtilUUID_fromStringWithNSString_(NSString_formatWithNSString_withNSObjectArray_(@"%08x-0000-1000-8000-00805f9b34fb", [IOSObjectArray arrayWithObjects:(id[]){ JavaLangShort_valueOfWithShort_([buffer getShort]) } count:1 type:NSObject_class_()]))];
+      while ([((JavaNioByteBuffer *) nil_chk(buffer)) remaining] >= 2) [uuidList addWithId:JavaUtilUUID_fromStringWithNSString_(NSString_java_formatWithNSString_withNSObjectArray_(@"%08x-0000-1000-8000-00805f9b34fb", [IOSObjectArray arrayWithObjects:(id[]){ JavaLangShort_valueOfWithShort_([buffer getShort]) } count:1 type:NSObject_class_()]))];
     }
   }
   {
@@ -127,7 +125,7 @@ __attribute__((unused)) static LeScanRecordImpl_$1 *create_LeScanRecordImpl_$1_i
 
 - (NSString *)getLocalName {
   IOSObjectArray *localName = [self getRecordsWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 9 } count:1]];
-  if (((IOSObjectArray *) nil_chk(localName))->size_ > 0) return [NSString stringWithBytes:[((id<LeRecord>) nil_chk(IOSObjectArray_Get(localName, 0))) getRecordContent]];
+  if (((IOSObjectArray *) nil_chk(localName))->size_ > 0) return [NSString java_stringWithBytes:[((id<LeRecord>) nil_chk(IOSObjectArray_Get(localName, 0))) getRecordContent]];
   else return nil;
 }
 
@@ -141,7 +139,7 @@ __attribute__((unused)) static LeScanRecordImpl_$1 *create_LeScanRecordImpl_$1_i
     jint type = IOSByteArray_Get(scanrecord_, recordPos++) & (jint) 0xFF;
     IOSByteArray *record = JavaUtilArrays_copyOfRangeWithByteArray_withInt_withInt_(scanrecord_, recordPos, recordPos + recordLength - 1);
     if (type != 0) {
-      [((id<JavaUtilCollection>) nil_chk(records_)) addWithId:create_LeScanRecordImpl_$1_initWithInt_withByteArray_(type, record)];
+      [((id<JavaUtilCollection>) nil_chk(records_)) addWithId:create_LeScanRecordImpl_1_initWithInt_withByteArray_(type, record)];
     }
     recordPos += recordLength - 1;
   }
@@ -203,7 +201,13 @@ LeScanRecordImpl *create_LeScanRecordImpl_initWithByteArray_(IOSByteArray *scanr
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeScanRecordImpl)
 
-@implementation LeScanRecordImpl_$1
+@implementation LeScanRecordImpl_1
+
+- (instancetype)initWithInt:(jint)capture$0
+              withByteArray:(IOSByteArray *)capture$1 {
+  LeScanRecordImpl_1_initWithInt_withByteArray_(self, capture$0, capture$1);
+  return self;
+}
 
 - (jint)getType {
   return val$type_;
@@ -213,12 +217,6 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeScanRecordImpl)
   return val$record_;
 }
 
-- (instancetype)initWithInt:(jint)capture$0
-              withByteArray:(IOSByteArray *)capture$1 {
-  LeScanRecordImpl_$1_initWithInt_withByteArray_(self, capture$0, capture$1);
-  return self;
-}
-
 - (void)dealloc {
   RELEASE_(val$record_);
   [super dealloc];
@@ -226,37 +224,37 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeScanRecordImpl)
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
     { NULL, "I", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "[B", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(getType);
-  methods[1].selector = @selector(getRecordContent);
-  methods[2].selector = @selector(initWithInt:withByteArray:);
+  methods[0].selector = @selector(initWithInt:withByteArray:);
+  methods[1].selector = @selector(getType);
+  methods[2].selector = @selector(getRecordContent);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "val$type_", "I", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
     { "val$record_", "[B", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "I[B", "LLeScanRecordImpl;", "parse" };
-  static const J2ObjcClassInfo _LeScanRecordImpl_$1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8008, 3, 2, 1, -1, 2, -1, -1 };
-  return &_LeScanRecordImpl_$1;
+  static const void *ptrTable[] = { "LLeScanRecordImpl;", "parse" };
+  static const J2ObjcClassInfo _LeScanRecordImpl_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8008, 3, 2, 0, -1, 1, -1, -1 };
+  return &_LeScanRecordImpl_1;
 }
 
 @end
 
-void LeScanRecordImpl_$1_initWithInt_withByteArray_(LeScanRecordImpl_$1 *self, jint capture$0, IOSByteArray *capture$1) {
+void LeScanRecordImpl_1_initWithInt_withByteArray_(LeScanRecordImpl_1 *self, jint capture$0, IOSByteArray *capture$1) {
   self->val$type_ = capture$0;
   JreStrongAssign(&self->val$record_, capture$1);
   NSObject_init(self);
 }
 
-LeScanRecordImpl_$1 *new_LeScanRecordImpl_$1_initWithInt_withByteArray_(jint capture$0, IOSByteArray *capture$1) {
-  J2OBJC_NEW_IMPL(LeScanRecordImpl_$1, initWithInt_withByteArray_, capture$0, capture$1)
+LeScanRecordImpl_1 *new_LeScanRecordImpl_1_initWithInt_withByteArray_(jint capture$0, IOSByteArray *capture$1) {
+  J2OBJC_NEW_IMPL(LeScanRecordImpl_1, initWithInt_withByteArray_, capture$0, capture$1)
 }
 
-LeScanRecordImpl_$1 *create_LeScanRecordImpl_$1_initWithInt_withByteArray_(jint capture$0, IOSByteArray *capture$1) {
-  J2OBJC_CREATE_IMPL(LeScanRecordImpl_$1, initWithInt_withByteArray_, capture$0, capture$1)
+LeScanRecordImpl_1 *create_LeScanRecordImpl_1_initWithInt_withByteArray_(jint capture$0, IOSByteArray *capture$1) {
+  J2OBJC_CREATE_IMPL(LeScanRecordImpl_1, initWithInt_withByteArray_, capture$0, capture$1)
 }

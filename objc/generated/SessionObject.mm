@@ -22,6 +22,13 @@
 
 @implementation SessionObject
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  SessionObject_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
 + (SessionObject *)newSession {
   return SessionObject_newSession();
 }
@@ -198,13 +205,6 @@
   [((id<JavaUtilMap>) nil_chk(sourceIdentifications_)) putWithId:JavaLangInteger_valueOfWithInt_(source) withId:identification];
 }
 
-J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
-  SessionObject_init(self);
-  return self;
-}
-J2OBJC_IGNORE_DESIGNATED_END
-
 - (void)dealloc {
   RELEASE_(devices_);
   RELEASE_(remoteDevices_);
@@ -218,6 +218,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LSessionObject;", 0x9, -1, -1, -1, -1, -1, -1 },
     { NULL, "LMockerObject;", 0x1, 0, 1, -1, -1, -1, -1 },
     { NULL, "LSessionObject;", 0x1, 2, 1, -1, -1, -1, -1 },
@@ -251,44 +252,43 @@ J2OBJC_IGNORE_DESIGNATED_END
     { NULL, "[LNSString;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, 29, 1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, 30, 31, -1, -1, -1, -1 },
-    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(newSession);
-  methods[1].selector = @selector(withObjectMockerWithInt:);
-  methods[2].selector = @selector(setDefaultDelayWithInt:);
-  methods[3].selector = @selector(getDefaultDelay);
-  methods[4].selector = @selector(setDefaultSourceWithEventSource:);
-  methods[5].selector = @selector(withFakeDeviceWithIntArray:);
-  methods[6].selector = @selector(withFakeDevicesWithIntArray:withByteArray2:);
-  methods[7].selector = @selector(withDeviceMocker);
-  methods[8].selector = @selector(withDeviceMockerWithInt:);
-  methods[9].selector = @selector(withDeviceMockerWithInt:withMocker:);
-  methods[10].selector = @selector(withDeviceMockerWithMocker:);
-  methods[11].selector = @selector(withFakeRemoteDeviceWithInt:withNSString:withNSString:withBoolean:withIntArray:);
-  methods[12].selector = @selector(withRemoteDeviceMockerWithInt:);
-  methods[13].selector = @selector(withRemoteDeviceMockerWithInt:withMocker:);
-  methods[14].selector = @selector(withFakeServiceWithInt:withJavaUtilUUID:);
-  methods[15].selector = @selector(withGattServiceMockerWithInt:);
-  methods[16].selector = @selector(withGattServiceMockerWithInt:withMocker:);
-  methods[17].selector = @selector(withGattCharacteristicsMockerWithInt:);
-  methods[18].selector = @selector(withGattCharacteristicsMockerWithInt:withMocker:);
-  methods[19].selector = @selector(withNamedEventSourceWithNSString:withEventSource:);
-  methods[20].selector = @selector(withNamedEventSourceFillerWithNSString:);
-  methods[21].selector = @selector(withDefaultEventSourceWithEventSource:);
-  methods[22].selector = @selector(withDefaultEventSourceFiller);
-  methods[23].selector = @selector(withEndEvent);
-  methods[24].selector = @selector(getGattCharacteristicMockerWithInt:);
-  methods[25].selector = @selector(getGattServiceMockerWithInt:);
-  methods[26].selector = @selector(getDeviceMockerWithInt:);
-  methods[27].selector = @selector(getRemoteDeviceMockerWithInt:);
-  methods[28].selector = @selector(getDefaultSource);
-  methods[29].selector = @selector(getNamedEventSourceWithNSString:);
-  methods[30].selector = @selector(getEventSourceNames);
-  methods[31].selector = @selector(getSourceIdentificationWithInt:);
-  methods[32].selector = @selector(setSourceIdentificationWithInt:withNSString:);
-  methods[33].selector = @selector(init);
+  methods[0].selector = @selector(init);
+  methods[1].selector = @selector(newSession);
+  methods[2].selector = @selector(withObjectMockerWithInt:);
+  methods[3].selector = @selector(setDefaultDelayWithInt:);
+  methods[4].selector = @selector(getDefaultDelay);
+  methods[5].selector = @selector(setDefaultSourceWithEventSource:);
+  methods[6].selector = @selector(withFakeDeviceWithIntArray:);
+  methods[7].selector = @selector(withFakeDevicesWithIntArray:withByteArray2:);
+  methods[8].selector = @selector(withDeviceMocker);
+  methods[9].selector = @selector(withDeviceMockerWithInt:);
+  methods[10].selector = @selector(withDeviceMockerWithInt:withMocker:);
+  methods[11].selector = @selector(withDeviceMockerWithMocker:);
+  methods[12].selector = @selector(withFakeRemoteDeviceWithInt:withNSString:withNSString:withBoolean:withIntArray:);
+  methods[13].selector = @selector(withRemoteDeviceMockerWithInt:);
+  methods[14].selector = @selector(withRemoteDeviceMockerWithInt:withMocker:);
+  methods[15].selector = @selector(withFakeServiceWithInt:withJavaUtilUUID:);
+  methods[16].selector = @selector(withGattServiceMockerWithInt:);
+  methods[17].selector = @selector(withGattServiceMockerWithInt:withMocker:);
+  methods[18].selector = @selector(withGattCharacteristicsMockerWithInt:);
+  methods[19].selector = @selector(withGattCharacteristicsMockerWithInt:withMocker:);
+  methods[20].selector = @selector(withNamedEventSourceWithNSString:withEventSource:);
+  methods[21].selector = @selector(withNamedEventSourceFillerWithNSString:);
+  methods[22].selector = @selector(withDefaultEventSourceWithEventSource:);
+  methods[23].selector = @selector(withDefaultEventSourceFiller);
+  methods[24].selector = @selector(withEndEvent);
+  methods[25].selector = @selector(getGattCharacteristicMockerWithInt:);
+  methods[26].selector = @selector(getGattServiceMockerWithInt:);
+  methods[27].selector = @selector(getDeviceMockerWithInt:);
+  methods[28].selector = @selector(getRemoteDeviceMockerWithInt:);
+  methods[29].selector = @selector(getDefaultSource);
+  methods[30].selector = @selector(getNamedEventSourceWithNSString:);
+  methods[31].selector = @selector(getEventSourceNames);
+  methods[32].selector = @selector(getSourceIdentificationWithInt:);
+  methods[33].selector = @selector(setSourceIdentificationWithInt:withNSString:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "defaultDelay_", "I", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
@@ -307,11 +307,6 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 @end
 
-SessionObject *SessionObject_newSession() {
-  SessionObject_initialize();
-  return create_SessionObject_init();
-}
-
 void SessionObject_init(SessionObject *self) {
   NSObject_init(self);
   self->defaultDelay_ = 0;
@@ -329,6 +324,11 @@ SessionObject *new_SessionObject_init() {
 
 SessionObject *create_SessionObject_init() {
   J2OBJC_CREATE_IMPL(SessionObject, init)
+}
+
+SessionObject *SessionObject_newSession() {
+  SessionObject_initialize();
+  return create_SessionObject_init();
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(SessionObject)

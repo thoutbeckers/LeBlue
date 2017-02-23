@@ -20,6 +20,13 @@ __attribute__((unused)) static IOSObjectArray *EventSinkTest__Annotations$1();
 
 @implementation EventSinkTest
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  EventSinkTest_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
 - (void)setUp {
   JavaLangSystem_setPropertyWithNSString_withNSString_(@"doNotLog", @"true");
 }
@@ -39,24 +46,17 @@ __attribute__((unused)) static IOSObjectArray *EventSinkTest__Annotations$1();
   OrgJunitAssert_assertEqualsWithId_withId_(((Event *) nil_chk(IOSObjectArray_Get(nil_chk([source getEvents]), 1)))->type_, JreLoadEnum(LeEventType, mockWaitForPoint));
 }
 
-J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
-  EventSinkTest_init(self);
-  return self;
-}
-J2OBJC_IGNORE_DESIGNATED_END
-
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, 0, -1, 1, -1 },
     { NULL, "V", 0x1, -1, -1, 2, -1, 3, -1 },
-    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(setUp);
-  methods[1].selector = @selector(testLimit);
-  methods[2].selector = @selector(init);
+  methods[0].selector = @selector(init);
+  methods[1].selector = @selector(setUp);
+  methods[2].selector = @selector(testLimit);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "LJavaLangException;", (void *)&EventSinkTest__Annotations$0, "LJavaLangInterruptedException;", (void *)&EventSinkTest__Annotations$1 };
   static const J2ObjcClassInfo _EventSinkTest = { "EventSinkTest", "houtbecke.rs.le", ptrTable, methods, NULL, 7, 0x1, 3, 0, -1, -1, -1, -1, -1 };

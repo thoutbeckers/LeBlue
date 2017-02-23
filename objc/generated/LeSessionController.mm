@@ -56,6 +56,25 @@
 
 J2OBJC_FIELD_SETTER(LeSessionController, point_, NSString *)
 
+@interface LeSessionController_1 : NSObject < JavaLangRunnable > {
+ @public
+  LeSessionController *this$0_;
+}
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$;
+
+- (void)run;
+
+@end
+
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_1)
+
+__attribute__((unused)) static void LeSessionController_1_initWithLeSessionController_(LeSessionController_1 *self, LeSessionController *outer$);
+
+__attribute__((unused)) static LeSessionController_1 *new_LeSessionController_1_initWithLeSessionController_(LeSessionController *outer$) NS_RETURNS_RETAINED;
+
+__attribute__((unused)) static LeSessionController_1 *create_LeSessionController_1_initWithLeSessionController_(LeSessionController *outer$);
+
 @interface LeSessionController_RunnableWrapper : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
@@ -72,7 +91,6 @@ J2OBJC_FIELD_SETTER(LeSessionController, point_, NSString *)
 
 J2OBJC_EMPTY_STATIC_INIT(LeSessionController_RunnableWrapper)
 
-J2OBJC_FIELD_SETTER(LeSessionController_RunnableWrapper, this$0_, LeSessionController *)
 J2OBJC_FIELD_SETTER(LeSessionController_RunnableWrapper, runnable_, id<JavaLangRunnable>)
 
 __attribute__((unused)) static void LeSessionController_RunnableWrapper_initWithLeSessionController_withJavaLangRunnable_(LeSessionController_RunnableWrapper *self, LeSessionController *outer$, id<JavaLangRunnable> runnable);
@@ -83,306 +101,246 @@ __attribute__((unused)) static LeSessionController_RunnableWrapper *create_LeSes
 
 J2OBJC_TYPE_LITERAL_HEADER(LeSessionController_RunnableWrapper)
 
-__attribute__((unused)) static void LeSessionController_SourceType_initWithNSString_withInt_(LeSessionController_SourceType *self, NSString *__name, jint __ordinal);
-
-@interface LeSessionController_$1 : NSObject < JavaLangRunnable > {
- @public
-  LeSessionController *this$0_;
-}
-
-- (void)run;
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$;
-
-@end
-
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$1)
-
-J2OBJC_FIELD_SETTER(LeSessionController_$1, this$0_, LeSessionController *)
-
-__attribute__((unused)) static void LeSessionController_$1_initWithLeSessionController_(LeSessionController_$1 *self, LeSessionController *outer$);
-
-__attribute__((unused)) static LeSessionController_$1 *new_LeSessionController_$1_initWithLeSessionController_(LeSessionController *outer$) NS_RETURNS_RETAINED;
-
-__attribute__((unused)) static LeSessionController_$1 *create_LeSessionController_$1_initWithLeSessionController_(LeSessionController *outer$);
-
-@interface LeSessionController_$2 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_2 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   Event *val$event_;
 }
 
-- (void)run;
-
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                                   withEvent:(Event *)capture$0;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$2)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_2)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$2, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$2, val$event_, Event *)
+__attribute__((unused)) static void LeSessionController_2_initWithLeSessionController_withEvent_(LeSessionController_2 *self, LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static void LeSessionController_$2_initWithLeSessionController_withEvent_(LeSessionController_$2 *self, LeSessionController *outer$, Event *capture$0);
+__attribute__((unused)) static LeSessionController_2 *new_LeSessionController_2_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$2 *new_LeSessionController_$2_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_2 *create_LeSessionController_2_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static LeSessionController_$2 *create_LeSessionController_$2_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
-
-@interface LeSessionController_$3 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_3 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   Event *val$event_;
 }
 
-- (void)run;
-
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                                   withEvent:(Event *)capture$0;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$3)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_3)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$3, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$3, val$event_, Event *)
+__attribute__((unused)) static void LeSessionController_3_initWithLeSessionController_withEvent_(LeSessionController_3 *self, LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static void LeSessionController_$3_initWithLeSessionController_withEvent_(LeSessionController_$3 *self, LeSessionController *outer$, Event *capture$0);
+__attribute__((unused)) static LeSessionController_3 *new_LeSessionController_3_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$3 *new_LeSessionController_$3_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_3 *create_LeSessionController_3_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static LeSessionController_$3 *create_LeSessionController_$3_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
-
-@interface LeSessionController_$4 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_4 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   id<LeRemoteDeviceListener> val$listener_;
   Event *val$event_;
 }
-
-- (void)run;
 
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                  withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
                                   withEvent:(Event *)capture$1;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$4)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_4)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$4, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$4, val$listener_, id<LeRemoteDeviceListener>)
-J2OBJC_FIELD_SETTER(LeSessionController_$4, val$event_, Event *)
+__attribute__((unused)) static void LeSessionController_4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_4 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1);
 
-__attribute__((unused)) static void LeSessionController_$4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_$4 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1);
+__attribute__((unused)) static LeSessionController_4 *new_LeSessionController_4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$4 *new_LeSessionController_$4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_4 *create_LeSessionController_4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1);
 
-__attribute__((unused)) static LeSessionController_$4 *create_LeSessionController_$4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1);
-
-@interface LeSessionController_$5 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_5 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   Event *val$event_;
 }
 
-- (void)run;
-
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                                   withEvent:(Event *)capture$0;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$5)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_5)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$5, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$5, val$event_, Event *)
+__attribute__((unused)) static void LeSessionController_5_initWithLeSessionController_withEvent_(LeSessionController_5 *self, LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static void LeSessionController_$5_initWithLeSessionController_withEvent_(LeSessionController_$5 *self, LeSessionController *outer$, Event *capture$0);
+__attribute__((unused)) static LeSessionController_5 *new_LeSessionController_5_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$5 *new_LeSessionController_$5_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_5 *create_LeSessionController_5_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static LeSessionController_$5 *create_LeSessionController_$5_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
-
-@interface LeSessionController_$6 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_6 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   id<LeRemoteDeviceListener> val$listener_;
   Event *val$event_;
 }
-
-- (void)run;
 
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                  withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
                                   withEvent:(Event *)capture$1;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$6)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_6)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$6, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$6, val$listener_, id<LeRemoteDeviceListener>)
-J2OBJC_FIELD_SETTER(LeSessionController_$6, val$event_, Event *)
+__attribute__((unused)) static void LeSessionController_6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_6 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1);
 
-__attribute__((unused)) static void LeSessionController_$6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_$6 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1);
+__attribute__((unused)) static LeSessionController_6 *new_LeSessionController_6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$6 *new_LeSessionController_$6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_6 *create_LeSessionController_6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1);
 
-__attribute__((unused)) static LeSessionController_$6 *create_LeSessionController_$6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1);
-
-@interface LeSessionController_$7 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_7 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   Event *val$event_;
 }
 
-- (void)run;
-
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                                   withEvent:(Event *)capture$0;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$7)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_7)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$7, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$7, val$event_, Event *)
+__attribute__((unused)) static void LeSessionController_7_initWithLeSessionController_withEvent_(LeSessionController_7 *self, LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static void LeSessionController_$7_initWithLeSessionController_withEvent_(LeSessionController_$7 *self, LeSessionController *outer$, Event *capture$0);
+__attribute__((unused)) static LeSessionController_7 *new_LeSessionController_7_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$7 *new_LeSessionController_$7_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_7 *create_LeSessionController_7_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static LeSessionController_$7 *create_LeSessionController_$7_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
-
-@interface LeSessionController_$8 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_8 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   id<LeRemoteDeviceListener> val$listener_;
   Event *val$event_;
 }
-
-- (void)run;
 
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                  withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
                                   withEvent:(Event *)capture$1;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$8)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_8)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$8, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$8, val$listener_, id<LeRemoteDeviceListener>)
-J2OBJC_FIELD_SETTER(LeSessionController_$8, val$event_, Event *)
+__attribute__((unused)) static void LeSessionController_8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_8 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1);
 
-__attribute__((unused)) static void LeSessionController_$8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_$8 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1);
+__attribute__((unused)) static LeSessionController_8 *new_LeSessionController_8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$8 *new_LeSessionController_$8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_8 *create_LeSessionController_8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1);
 
-__attribute__((unused)) static LeSessionController_$8 *create_LeSessionController_$8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1);
-
-@interface LeSessionController_$9 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_9 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   Event *val$event_;
 }
 
-- (void)run;
-
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                                   withEvent:(Event *)capture$0;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$9)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_9)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$9, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$9, val$event_, Event *)
+__attribute__((unused)) static void LeSessionController_9_initWithLeSessionController_withEvent_(LeSessionController_9 *self, LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static void LeSessionController_$9_initWithLeSessionController_withEvent_(LeSessionController_$9 *self, LeSessionController *outer$, Event *capture$0);
+__attribute__((unused)) static LeSessionController_9 *new_LeSessionController_9_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$9 *new_LeSessionController_$9_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_9 *create_LeSessionController_9_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static LeSessionController_$9 *create_LeSessionController_$9_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
-
-@interface LeSessionController_$10 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_10 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   Event *val$event_;
   id<LeRemoteDeviceListener> val$listener_;
 }
-
-- (void)run;
 
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                                   withEvent:(Event *)capture$0
                  withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$1;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$10)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_10)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$10, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$10, val$event_, Event *)
-J2OBJC_FIELD_SETTER(LeSessionController_$10, val$listener_, id<LeRemoteDeviceListener>)
+__attribute__((unused)) static void LeSessionController_10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(LeSessionController_10 *self, LeSessionController *outer$, Event *capture$0, id<LeRemoteDeviceListener> capture$1);
 
-__attribute__((unused)) static void LeSessionController_$10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(LeSessionController_$10 *self, LeSessionController *outer$, Event *capture$0, id<LeRemoteDeviceListener> capture$1);
+__attribute__((unused)) static LeSessionController_10 *new_LeSessionController_10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(LeSessionController *outer$, Event *capture$0, id<LeRemoteDeviceListener> capture$1) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$10 *new_LeSessionController_$10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(LeSessionController *outer$, Event *capture$0, id<LeRemoteDeviceListener> capture$1) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_10 *create_LeSessionController_10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(LeSessionController *outer$, Event *capture$0, id<LeRemoteDeviceListener> capture$1);
 
-__attribute__((unused)) static LeSessionController_$10 *create_LeSessionController_$10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(LeSessionController *outer$, Event *capture$0, id<LeRemoteDeviceListener> capture$1);
-
-@interface LeSessionController_$11 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_11 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   Event *val$event_;
 }
 
-- (void)run;
-
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                                   withEvent:(Event *)capture$0;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$11)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_11)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$11, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$11, val$event_, Event *)
+__attribute__((unused)) static void LeSessionController_11_initWithLeSessionController_withEvent_(LeSessionController_11 *self, LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static void LeSessionController_$11_initWithLeSessionController_withEvent_(LeSessionController_$11 *self, LeSessionController *outer$, Event *capture$0);
+__attribute__((unused)) static LeSessionController_11 *new_LeSessionController_11_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$11 *new_LeSessionController_$11_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_11 *create_LeSessionController_11_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static LeSessionController_$11 *create_LeSessionController_$11_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
-
-@interface LeSessionController_$12 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_12 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   Event *val$event_;
 }
 
-- (void)run;
-
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                                   withEvent:(Event *)capture$0;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$12)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_12)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$12, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$12, val$event_, Event *)
+__attribute__((unused)) static void LeSessionController_12_initWithLeSessionController_withEvent_(LeSessionController_12 *self, LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static void LeSessionController_$12_initWithLeSessionController_withEvent_(LeSessionController_$12 *self, LeSessionController *outer$, Event *capture$0);
+__attribute__((unused)) static LeSessionController_12 *new_LeSessionController_12_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$12 *new_LeSessionController_$12_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_12 *create_LeSessionController_12_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static LeSessionController_$12 *create_LeSessionController_$12_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
-
-@interface LeSessionController_$13 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_13 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   Event *val$event_;
@@ -390,77 +348,66 @@ __attribute__((unused)) static LeSessionController_$12 *create_LeSessionControll
   id<LeGattCharacteristic> val$characteristic_;
 }
 
-- (void)run;
-
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                                   withEvent:(Event *)capture$0
                            withJavaUtilUUID:(JavaUtilUUID *)capture$1
                    withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$13)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_13)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$13, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$13, val$event_, Event *)
-J2OBJC_FIELD_SETTER(LeSessionController_$13, val$uuid_, JavaUtilUUID *)
-J2OBJC_FIELD_SETTER(LeSessionController_$13, val$characteristic_, id<LeGattCharacteristic>)
+__attribute__((unused)) static void LeSessionController_13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController_13 *self, LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2);
 
-__attribute__((unused)) static void LeSessionController_$13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController_$13 *self, LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2);
+__attribute__((unused)) static LeSessionController_13 *new_LeSessionController_13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$13 *new_LeSessionController_$13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_13 *create_LeSessionController_13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2);
 
-__attribute__((unused)) static LeSessionController_$13 *create_LeSessionController_$13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2);
-
-@interface LeSessionController_$14 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_14 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   Event *val$event_;
 }
 
-- (void)run;
-
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                                   withEvent:(Event *)capture$0;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$14)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_14)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$14, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$14, val$event_, Event *)
+__attribute__((unused)) static void LeSessionController_14_initWithLeSessionController_withEvent_(LeSessionController_14 *self, LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static void LeSessionController_$14_initWithLeSessionController_withEvent_(LeSessionController_$14 *self, LeSessionController *outer$, Event *capture$0);
+__attribute__((unused)) static LeSessionController_14 *new_LeSessionController_14_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$14 *new_LeSessionController_$14_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_14 *create_LeSessionController_14_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static LeSessionController_$14 *create_LeSessionController_$14_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
-
-@interface LeSessionController_$15 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_15 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   Event *val$event_;
 }
 
-- (void)run;
-
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                                   withEvent:(Event *)capture$0;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$15)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_15)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$15, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$15, val$event_, Event *)
+__attribute__((unused)) static void LeSessionController_15_initWithLeSessionController_withEvent_(LeSessionController_15 *self, LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static void LeSessionController_$15_initWithLeSessionController_withEvent_(LeSessionController_$15 *self, LeSessionController *outer$, Event *capture$0);
+__attribute__((unused)) static LeSessionController_15 *new_LeSessionController_15_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$15 *new_LeSessionController_$15_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_15 *create_LeSessionController_15_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static LeSessionController_$15 *create_LeSessionController_$15_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
-
-@interface LeSessionController_$16 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_16 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   Event *val$event_;
@@ -468,51 +415,45 @@ __attribute__((unused)) static LeSessionController_$15 *create_LeSessionControll
   id<LeGattCharacteristic> val$characteristic2_;
 }
 
-- (void)run;
-
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                                   withEvent:(Event *)capture$0
                            withJavaUtilUUID:(JavaUtilUUID *)capture$1
                    withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$16)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_16)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$16, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$16, val$event_, Event *)
-J2OBJC_FIELD_SETTER(LeSessionController_$16, val$uuid2_, JavaUtilUUID *)
-J2OBJC_FIELD_SETTER(LeSessionController_$16, val$characteristic2_, id<LeGattCharacteristic>)
+__attribute__((unused)) static void LeSessionController_16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController_16 *self, LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2);
 
-__attribute__((unused)) static void LeSessionController_$16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController_$16 *self, LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2);
+__attribute__((unused)) static LeSessionController_16 *new_LeSessionController_16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$16 *new_LeSessionController_$16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_16 *create_LeSessionController_16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2);
 
-__attribute__((unused)) static LeSessionController_$16 *create_LeSessionController_$16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2);
-
-@interface LeSessionController_$17 : NSObject < JavaLangRunnable > {
+@interface LeSessionController_17 : NSObject < JavaLangRunnable > {
  @public
   LeSessionController *this$0_;
   Event *val$event_;
 }
 
-- (void)run;
-
 - (instancetype)initWithLeSessionController:(LeSessionController *)outer$
                                   withEvent:(Event *)capture$0;
 
+- (void)run;
+
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(LeSessionController_$17)
+J2OBJC_EMPTY_STATIC_INIT(LeSessionController_17)
 
-J2OBJC_FIELD_SETTER(LeSessionController_$17, this$0_, LeSessionController *)
-J2OBJC_FIELD_SETTER(LeSessionController_$17, val$event_, Event *)
+__attribute__((unused)) static void LeSessionController_17_initWithLeSessionController_withEvent_(LeSessionController_17 *self, LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static void LeSessionController_$17_initWithLeSessionController_withEvent_(LeSessionController_$17 *self, LeSessionController *outer$, Event *capture$0);
+__attribute__((unused)) static LeSessionController_17 *new_LeSessionController_17_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static LeSessionController_$17 *new_LeSessionController_$17_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) NS_RETURNS_RETAINED;
+__attribute__((unused)) static LeSessionController_17 *create_LeSessionController_17_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
 
-__attribute__((unused)) static LeSessionController_$17 *create_LeSessionController_$17_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0);
+__attribute__((unused)) static void LeSessionController_SourceType_initWithNSString_withInt_(LeSessionController_SourceType *self, NSString *__name, jint __ordinal);
 
 NSString *LeSessionController_TAG = @"LeBlueController";
 
@@ -691,7 +632,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
     stopSession_ = false;
     JreStrongAssign(&self->sessionName_, sessionName);
     [((id<JavaUtilConcurrentLocksCondition>) nil_chk(condition_)) signalAll];
-    [create_JavaLangThread_initWithJavaLangRunnable_(create_LeSessionController_$1_initWithLeSessionController_(self)) start];
+    [create_JavaLangThread_initWithJavaLangRunnable_(create_LeSessionController_1_initWithLeSessionController_(self)) start];
   }
   @finally {
     [lock_ unlock];
@@ -794,10 +735,10 @@ NSString *LeSessionController_TAG = @"LeBlueController";
       JavaUtilUUID *uuid2;
       switch ([(LeEventType *) cast_chk(event->type_, [LeEventType class]) ordinal]) {
         case LeEventType_Enum_mockRemoteDeviceFound:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$2_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_2_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_remoteDeviceFound:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$3_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_3_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_mockRemoteDeviceConnected:
         {
@@ -807,12 +748,12 @@ NSString *LeSessionController_TAG = @"LeBlueController";
           while (b__ < e__) {
             id<LeRemoteDeviceListener> leRemoteListener = *b__++;
             id<LeRemoteDeviceListener> listener = leRemoteListener;
-            [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, listener, event)];
+            [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, listener, event)];
           }
         }
         break;
         case LeEventType_Enum_remoteDeviceConnected:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$5_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_5_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_mockRemoteDeviceDisconnected:
         {
@@ -822,12 +763,12 @@ NSString *LeSessionController_TAG = @"LeBlueController";
           while (b__ < e__) {
             id<LeRemoteDeviceListener> leRemoteListener = *b__++;
             id<LeRemoteDeviceListener> listener = leRemoteListener;
-            [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, listener, event)];
+            [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, listener, event)];
           }
         }
         break;
         case LeEventType_Enum_remoteDeviceDisconnected:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$7_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_7_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_mockRemoteDeviceClosed:
         {
@@ -837,12 +778,12 @@ NSString *LeSessionController_TAG = @"LeBlueController";
           while (b__ < e__) {
             id<LeRemoteDeviceListener> leRemoteListener = *b__++;
             id<LeRemoteDeviceListener> listener = leRemoteListener;
-            [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, listener, event)];
+            [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, listener, event)];
           }
         }
         break;
         case LeEventType_Enum_remoteDeviceClosed:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$9_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_9_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_mockRemoteDeviceServicesDiscovered:
         {
@@ -852,36 +793,36 @@ NSString *LeSessionController_TAG = @"LeBlueController";
           while (b__ < e__) {
             id<LeRemoteDeviceListener> leRemoteListener = *b__++;
             id<LeRemoteDeviceListener> listener = leRemoteListener;
-            [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(self, event, listener)];
+            [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(self, event, listener)];
           }
         }
         break;
         case LeEventType_Enum_remoteDeviceServicesDiscovered:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$11_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_11_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_remoteDeviceRssiRead:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$12_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_12_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_mockCharacteristicChangedWithMockedValue:
         [((id<JavaUtilMap>) nil_chk(characteristicsValues_)) putWithId:JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(event->values_), 0)) withId:LeUtil_stringToBytesWithNSString_(IOSObjectArray_Get(nil_chk(event->values_), 1))];
         case LeEventType_Enum_mockCharacteristicChanged:
         characteristic = [self createOrReturnCharacteristicWithNSString:IOSObjectArray_Get(nil_chk(event->values_), 0)];
         uuid = JavaUtilUUID_fromStringWithNSString_([((id<Session>) nil_chk(session_)) getSourceIdentificationWithInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(event->values_), 0)))) intValue]]);
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, event, uuid, characteristic)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, event, uuid, characteristic)];
         break;
         case LeEventType_Enum_characteristicChanged:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$14_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_14_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_characteristicWritten:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$15_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_15_initWithLeSessionController_withEvent_(self, event)];
         break;
         case LeEventType_Enum_mockCharacteristicNotificationChanged:
         characteristic2 = [self createOrReturnCharacteristicWithNSString:IOSObjectArray_Get(nil_chk(event->values_), 0)];
         uuid2 = JavaUtilUUID_fromStringWithNSString_([((id<Session>) nil_chk(session_)) getSourceIdentificationWithInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(event->values_), 0)))) intValue]]);
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, event, uuid2, characteristic2)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, event, uuid2, characteristic2)];
         break;
         case LeEventType_Enum_characteristicNotificationChanged:
-        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_$17_initWithLeSessionController_withEvent_(self, event)];
+        [self runCurrentEventOnUiThreadWithJavaLangRunnable:create_LeSessionController_17_initWithLeSessionController_withEvent_(self, event)];
         break;
         default:
         switch ([(LeEventType *) cast_chk(event->type_, [LeEventType class]) ordinal]) {
@@ -1753,7 +1694,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
     { "characteristicsKeys_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 97, -1 },
     { "remoteDeviceListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x0, -1, -1, 98, -1 },
   };
-  static const void *ptrTable[] = { "LSession;", "LSession;Z", "eventValue", "I", "eventBooleanValue", "pointReached", "LNSString;", "waitForPointOrEvent", "LJavaLangInterruptedException;", "updateCurrentEvent", "LEvent;", "waitForPoint", "waitForEvent", "startSession", "runCurrentEventOnUiThread", "LJavaLangRunnable;", "workOnEvent", "checkEvent", "LLeEventType;LLeDeviceMock;[LNSString;", "LLeEventType;LLeRemoteDeviceMock;[LNSString;", "LLeEventType;LLeGattServiceMock;[LNSString;", "LLeEventType;LLeGattCharacteristicMock;[LNSString;", "checkEventWithSourceId", "LLeEventType;LLeSessionController_SourceType;I[LNSString;", "deviceStartScanning", "LLeDeviceMock;", "LLeDeviceMock;[LJavaUtilUUID;", "deviceStopScanning", "remoteDeviceConnect", "LLeRemoteDeviceMock;", "remoteDeviceStartServiceDiscovery", "LLeRemoteDeviceMock;[LJavaUtilUUID;", "remoteDeviceClose", "remoteDeviceDisconnect", "getCharacteristicListener", "remoteDeviceSetCharacteristicListener", "LLeRemoteDeviceMock;LLeCharacteristicListener;[LJavaUtilUUID;", "getCharacteristicWriteListener", "remoteDeviceSetCharacteristicWriteListener", "LLeRemoteDeviceMock;LLeCharacteristicWriteListener;[LJavaUtilUUID;", "serviceEnableCharacteristicNotification", "LLeGattServiceMock;LJavaUtilUUID;", "getDevice", "getDeviceKey", "addDevice", "ILLeDeviceMock;", "createRemoteDevice", "createOrReturnRemoteDevice", "getRemoteDeviceKey", "getRemoteDevice", "createGattService", "getGattServiceKey", "LLeGattServiceMock;", "getDeviceListener", "addDeviceListener", "ILLeDeviceListener;", "getDeviceListenerKey", "LLeDeviceListener;", "createOrReturnCharacteristic", "getCharacteristicKey", "LLeGattCharacteristicMock;", "getCharacteristic", "serviceGetCharacteristic", "deviceAddListener", "LLeDeviceMock;LLeDeviceListener;", "deviceRemoveListener", "getRemoteDeviceListener", "remoteDeviceAddListener", "LLeRemoteDeviceMock;LLeRemoteDeviceListener;", "remoteDeviceRemoveListener", "deviceCheckBleHardwareAvailable", "deviceIsBtEnabled", "remoteDeviceGetAddress", "remoteDeviceGetName", "serviceGetUuid", "characteristicGetValue", "characteristicGetIntValue", "LLeGattCharacteristicMock;LLeFormat;I", "characteristicSetValue", "LLeGattCharacteristicMock;[B", "LLeGattCharacteristicMock;[BLJavaLangBoolean;", "remoteDeviceReadRssi", "characteristicRead", &LeSessionController_TAG, "Ljava/util/List<Lhoutbecke/rs/le/session/Event;>;", "Ljava/util/Map<Ljava/lang/Integer;[LB;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeCharacteristicListener;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeCharacteristicWriteListener;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeDeviceMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeDeviceMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeRemoteDeviceMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeRemoteDeviceMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeGattServiceMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeGattServiceMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeDeviceListener;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeDeviceListener;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeGattCharacteristicMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeGattCharacteristicMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeRemoteDeviceListener;>;", "LLeSessionController_RunnableWrapper;LLeSessionController_SourceType;" };
+  static const void *ptrTable[] = { "LSession;", "LSession;Z", "eventValue", "I", "eventBooleanValue", "pointReached", "LNSString;", "waitForPointOrEvent", "LJavaLangInterruptedException;", "updateCurrentEvent", "LEvent;", "waitForPoint", "waitForEvent", "startSession", "runCurrentEventOnUiThread", "LJavaLangRunnable;", "workOnEvent", "checkEvent", "LLeEventType;LLeDeviceMock;[LNSString;", "LLeEventType;LLeRemoteDeviceMock;[LNSString;", "LLeEventType;LLeGattServiceMock;[LNSString;", "LLeEventType;LLeGattCharacteristicMock;[LNSString;", "checkEventWithSourceId", "LLeEventType;LLeSessionController_SourceType;I[LNSString;", "deviceStartScanning", "LLeDeviceMock;", "LLeDeviceMock;[LJavaUtilUUID;", "deviceStopScanning", "remoteDeviceConnect", "LLeRemoteDeviceMock;", "remoteDeviceStartServiceDiscovery", "LLeRemoteDeviceMock;[LJavaUtilUUID;", "remoteDeviceClose", "remoteDeviceDisconnect", "getCharacteristicListener", "remoteDeviceSetCharacteristicListener", "LLeRemoteDeviceMock;LLeCharacteristicListener;[LJavaUtilUUID;", "getCharacteristicWriteListener", "remoteDeviceSetCharacteristicWriteListener", "LLeRemoteDeviceMock;LLeCharacteristicWriteListener;[LJavaUtilUUID;", "serviceEnableCharacteristicNotification", "LLeGattServiceMock;LJavaUtilUUID;", "getDevice", "getDeviceKey", "addDevice", "ILLeDeviceMock;", "createRemoteDevice", "createOrReturnRemoteDevice", "getRemoteDeviceKey", "getRemoteDevice", "createGattService", "getGattServiceKey", "LLeGattServiceMock;", "getDeviceListener", "addDeviceListener", "ILLeDeviceListener;", "getDeviceListenerKey", "LLeDeviceListener;", "createOrReturnCharacteristic", "getCharacteristicKey", "LLeGattCharacteristicMock;", "getCharacteristic", "serviceGetCharacteristic", "deviceAddListener", "LLeDeviceMock;LLeDeviceListener;", "deviceRemoveListener", "getRemoteDeviceListener", "remoteDeviceAddListener", "LLeRemoteDeviceMock;LLeRemoteDeviceListener;", "remoteDeviceRemoveListener", "deviceCheckBleHardwareAvailable", "deviceIsBtEnabled", "remoteDeviceGetAddress", "remoteDeviceGetName", "serviceGetUuid", "characteristicGetValue", "characteristicGetIntValue", "LLeGattCharacteristicMock;LLeFormat;I", "characteristicSetValue", "LLeGattCharacteristicMock;[B", "LLeGattCharacteristicMock;[BLJavaLangBoolean;", "remoteDeviceReadRssi", "characteristicRead", &LeSessionController_TAG, "Ljava/util/List<Lhoutbecke/rs/le/session/Event;>;", "Ljava/util/Map<Ljava/lang/Integer;[B>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeCharacteristicListener;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeCharacteristicWriteListener;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeDeviceMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeDeviceMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeRemoteDeviceMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeRemoteDeviceMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeGattServiceMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeGattServiceMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeDeviceListener;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeDeviceListener;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/mock/LeGattCharacteristicMock;>;", "Ljava/util/Map<Lhoutbecke/rs/le/mock/LeGattCharacteristicMock;Ljava/lang/Integer;>;", "Ljava/util/Map<Ljava/lang/Integer;Lhoutbecke/rs/le/LeRemoteDeviceListener;>;", "LLeSessionController_RunnableWrapper;LLeSessionController_SourceType;" };
   static const J2ObjcClassInfo _LeSessionController = { "LeSessionController", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x1, 83, 32, -1, 99, -1, -1, -1 };
   return &_LeSessionController;
 }
@@ -1780,7 +1721,7 @@ void LeSessionController_initWithSession_withBoolean_(LeSessionController *self,
   JreStrongAssign(&self->point_, @"");
   self->waitingForEvent_ = false;
   JreStrongAssign(&self->sessionName_, nil);
-  JreVolatileStrongAssignAndConsume(&self->mockedEvents_, new_JavaUtilArrayList_init());
+  JreVolatileStrongAssign(&self->mockedEvents_, create_JavaUtilArrayList_init());
   JreVolatileStrongAssign(&self->stackedEvent_, nil);
   self->sessionIsRunning_ = false;
   self->stopSession_ = false;
@@ -1813,6 +1754,56 @@ LeSessionController *create_LeSessionController_initWithSession_withBoolean_(id<
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController)
+
+@implementation LeSessionController_1
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$ {
+  LeSessionController_1_initWithLeSessionController_(self, outer$);
+  return self;
+}
+
+- (void)run {
+  [((JavaLangThread *) nil_chk(JavaLangThread_currentThread())) setNameWithNSString:@"LeSessionController"];
+  [this$0_ startSessionInThread];
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "startSessionWithNSString:" };
+  static const J2ObjcClassInfo _LeSessionController_1 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 1, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_1;
+}
+
+@end
+
+void LeSessionController_1_initWithLeSessionController_(LeSessionController_1 *self, LeSessionController *outer$) {
+  JreStrongAssign(&self->this$0_, outer$);
+  NSObject_init(self);
+}
+
+LeSessionController_1 *new_LeSessionController_1_initWithLeSessionController_(LeSessionController *outer$) {
+  J2OBJC_NEW_IMPL(LeSessionController_1, initWithLeSessionController_, outer$)
+}
+
+LeSessionController_1 *create_LeSessionController_1_initWithLeSessionController_(LeSessionController *outer$) {
+  J2OBJC_CREATE_IMPL(LeSessionController_1, initWithLeSessionController_, outer$)
+}
 
 @implementation LeSessionController_RunnableWrapper
 
@@ -1857,7 +1848,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController)
     { "runnable_", "LJavaLangRunnable;", .constantValue.asLong = 0, 0x10, -1, -1, -1, -1 },
     { "started_", "Z", .constantValue.asLong = 0, 0x1, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "LLeSessionController;LJavaLangRunnable;", "LLeSessionController;" };
+  static const void *ptrTable[] = { "LJavaLangRunnable;", "LLeSessionController;" };
   static const J2ObjcClassInfo _LeSessionController_RunnableWrapper = { "RunnableWrapper", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x2, 2, 3, 1, -1, -1, -1, -1 };
   return &_LeSessionController_RunnableWrapper;
 }
@@ -1880,6 +1871,921 @@ LeSessionController_RunnableWrapper *create_LeSessionController_RunnableWrapper_
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_RunnableWrapper)
+
+@implementation LeSessionController_2
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
+  LeSessionController_2_initWithLeSessionController_withEvent_(self, outer$, capture$0);
+  return self;
+}
+
+- (void)run {
+  {
+    IOSObjectArray *a__ = [((id<Mocker>) nil_chk([((id<Session>) nil_chk(this$0_->session_)) getDeviceMockerWithInt:((Event *) nil_chk(val$event_))->source_])) getDeviceListenersWithLeMockController:this$0_ withInt:val$event_->source_];
+    id<LeDeviceListener> const *b__ = ((IOSObjectArray *) nil_chk(a__))->buffer_;
+    id<LeDeviceListener> const *e__ = b__ + a__->size_;
+    while (b__ < e__) {
+      id<LeDeviceListener> leListener = *b__++;
+      [((id<LeDeviceListener>) nil_chk(leListener)) leDeviceFoundWithLeDevice:[this$0_ getDeviceWithInt:val$event_->source_] withLeRemoteDevice:[this$0_ createOrReturnRemoteDeviceWithInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 0)))) intValue] withLeDeviceMock:[this$0_ getDeviceWithInt:val$event_->source_]] withInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 1)))) intValue] withLeScanRecord:LeUtil_parseLeScanRecordWithByteArray_(LeUtil_stringToBytesWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 2)))];
+    }
+  }
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withEvent:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_2 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_2;
+}
+
+@end
+
+void LeSessionController_2_initWithLeSessionController_withEvent_(LeSessionController_2 *self, LeSessionController *outer$, Event *capture$0) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  NSObject_init(self);
+}
+
+LeSessionController_2 *new_LeSessionController_2_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_NEW_IMPL(LeSessionController_2, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+LeSessionController_2 *create_LeSessionController_2_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_CREATE_IMPL(LeSessionController_2, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+@implementation LeSessionController_3
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
+  LeSessionController_3_initWithLeSessionController_withEvent_(self, outer$, capture$0);
+  return self;
+}
+
+- (void)run {
+  [((id<LeDeviceListener>) nil_chk([this$0_ getDeviceListenerWithInt:((Event *) nil_chk(val$event_))->source_])) leDeviceFoundWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ createOrReturnRemoteDeviceWithInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 1)))) intValue] withLeDeviceMock:[this$0_ getDeviceWithInt:val$event_->source_]] withInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 2)))) intValue] withLeScanRecord:LeUtil_parseLeScanRecordWithByteArray_(LeUtil_stringToBytesWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 3)))];
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withEvent:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_3 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_3;
+}
+
+@end
+
+void LeSessionController_3_initWithLeSessionController_withEvent_(LeSessionController_3 *self, LeSessionController *outer$, Event *capture$0) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  NSObject_init(self);
+}
+
+LeSessionController_3 *new_LeSessionController_3_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_NEW_IMPL(LeSessionController_3, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+LeSessionController_3 *create_LeSessionController_3_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_CREATE_IMPL(LeSessionController_3, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+@implementation LeSessionController_4
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                  withEvent:(Event *)capture$1 {
+  LeSessionController_4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, outer$, capture$0, capture$1);
+  return self;
+}
+
+- (void)run {
+  [((id<LeRemoteDeviceListener>) nil_chk(val$listener_)) leDevicesConnectedWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(((Event *) nil_chk(val$event_))->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithInt:val$event_->source_]];
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$listener_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withLeRemoteDeviceListener:withEvent:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$listener_", "LLeRemoteDeviceListener;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_4 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 3, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_4;
+}
+
+@end
+
+void LeSessionController_4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_4 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$listener_, capture$0);
+  JreStrongAssign(&self->val$event_, capture$1);
+  NSObject_init(self);
+}
+
+LeSessionController_4 *new_LeSessionController_4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
+  J2OBJC_NEW_IMPL(LeSessionController_4, initWithLeSessionController_withLeRemoteDeviceListener_withEvent_, outer$, capture$0, capture$1)
+}
+
+LeSessionController_4 *create_LeSessionController_4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
+  J2OBJC_CREATE_IMPL(LeSessionController_4, initWithLeSessionController_withLeRemoteDeviceListener_withEvent_, outer$, capture$0, capture$1)
+}
+
+@implementation LeSessionController_5
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
+  LeSessionController_5_initWithLeSessionController_withEvent_(self, outer$, capture$0);
+  return self;
+}
+
+- (void)run {
+  [((id<LeRemoteDeviceListener>) nil_chk([this$0_ getRemoteDeviceListenerWithInt:((Event *) nil_chk(val$event_))->source_])) leDevicesConnectedWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)]];
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withEvent:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_5 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_5;
+}
+
+@end
+
+void LeSessionController_5_initWithLeSessionController_withEvent_(LeSessionController_5 *self, LeSessionController *outer$, Event *capture$0) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  NSObject_init(self);
+}
+
+LeSessionController_5 *new_LeSessionController_5_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_NEW_IMPL(LeSessionController_5, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+LeSessionController_5 *create_LeSessionController_5_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_CREATE_IMPL(LeSessionController_5, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+@implementation LeSessionController_6
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                  withEvent:(Event *)capture$1 {
+  LeSessionController_6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, outer$, capture$0, capture$1);
+  return self;
+}
+
+- (void)run {
+  [((id<LeRemoteDeviceListener>) nil_chk(val$listener_)) leDevicesDisconnectedWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(((Event *) nil_chk(val$event_))->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithInt:val$event_->source_]];
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$listener_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withLeRemoteDeviceListener:withEvent:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$listener_", "LLeRemoteDeviceListener;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_6 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 3, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_6;
+}
+
+@end
+
+void LeSessionController_6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_6 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$listener_, capture$0);
+  JreStrongAssign(&self->val$event_, capture$1);
+  NSObject_init(self);
+}
+
+LeSessionController_6 *new_LeSessionController_6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
+  J2OBJC_NEW_IMPL(LeSessionController_6, initWithLeSessionController_withLeRemoteDeviceListener_withEvent_, outer$, capture$0, capture$1)
+}
+
+LeSessionController_6 *create_LeSessionController_6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
+  J2OBJC_CREATE_IMPL(LeSessionController_6, initWithLeSessionController_withLeRemoteDeviceListener_withEvent_, outer$, capture$0, capture$1)
+}
+
+@implementation LeSessionController_7
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
+  LeSessionController_7_initWithLeSessionController_withEvent_(self, outer$, capture$0);
+  return self;
+}
+
+- (void)run {
+  [((id<LeRemoteDeviceListener>) nil_chk([this$0_ getRemoteDeviceListenerWithInt:((Event *) nil_chk(val$event_))->source_])) leDevicesDisconnectedWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)]];
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withEvent:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_7 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_7;
+}
+
+@end
+
+void LeSessionController_7_initWithLeSessionController_withEvent_(LeSessionController_7 *self, LeSessionController *outer$, Event *capture$0) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  NSObject_init(self);
+}
+
+LeSessionController_7 *new_LeSessionController_7_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_NEW_IMPL(LeSessionController_7, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+LeSessionController_7 *create_LeSessionController_7_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_CREATE_IMPL(LeSessionController_7, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+@implementation LeSessionController_8
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                  withEvent:(Event *)capture$1 {
+  LeSessionController_8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, outer$, capture$0, capture$1);
+  return self;
+}
+
+- (void)run {
+  [((id<LeRemoteDeviceListener>) nil_chk(val$listener_)) leDevicesClosedWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(((Event *) nil_chk(val$event_))->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithInt:val$event_->source_]];
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$listener_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withLeRemoteDeviceListener:withEvent:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$listener_", "LLeRemoteDeviceListener;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_8 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 3, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_8;
+}
+
+@end
+
+void LeSessionController_8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_8 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$listener_, capture$0);
+  JreStrongAssign(&self->val$event_, capture$1);
+  NSObject_init(self);
+}
+
+LeSessionController_8 *new_LeSessionController_8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
+  J2OBJC_NEW_IMPL(LeSessionController_8, initWithLeSessionController_withLeRemoteDeviceListener_withEvent_, outer$, capture$0, capture$1)
+}
+
+LeSessionController_8 *create_LeSessionController_8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
+  J2OBJC_CREATE_IMPL(LeSessionController_8, initWithLeSessionController_withLeRemoteDeviceListener_withEvent_, outer$, capture$0, capture$1)
+}
+
+@implementation LeSessionController_9
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
+  LeSessionController_9_initWithLeSessionController_withEvent_(self, outer$, capture$0);
+  return self;
+}
+
+- (void)run {
+  [((id<LeRemoteDeviceListener>) nil_chk([this$0_ getRemoteDeviceListenerWithInt:((Event *) nil_chk(val$event_))->source_])) leDevicesClosedWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)]];
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withEvent:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_9 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_9;
+}
+
+@end
+
+void LeSessionController_9_initWithLeSessionController_withEvent_(LeSessionController_9 *self, LeSessionController *outer$, Event *capture$0) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  NSObject_init(self);
+}
+
+LeSessionController_9 *new_LeSessionController_9_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_NEW_IMPL(LeSessionController_9, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+LeSessionController_9 *create_LeSessionController_9_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_CREATE_IMPL(LeSessionController_9, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+@implementation LeSessionController_10
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0
+                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$1 {
+  LeSessionController_10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(self, outer$, capture$0, capture$1);
+  return self;
+}
+
+- (void)run {
+  IOSObjectArray *services = [IOSObjectArray arrayWithLength:((IOSObjectArray *) nil_chk(((Event *) nil_chk(val$event_))->values_))->size_ - 2 type:LeGattServiceMock_class_()];
+  for (jint k = 0; k < services->size_; k++) IOSObjectArray_Set(services, k, [this$0_ createGattServiceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), k + 2)]);
+  [((id<LeRemoteDeviceListener>) nil_chk(val$listener_)) serviceDiscoveredWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithInt:val$event_->source_] withLeGattStatus:LeGattStatus_fromStringWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 1)) withLeGattServiceArray:services];
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  RELEASE_(val$listener_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withEvent:withLeRemoteDeviceListener:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$listener_", "LLeRemoteDeviceListener;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_10 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 3, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_10;
+}
+
+@end
+
+void LeSessionController_10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(LeSessionController_10 *self, LeSessionController *outer$, Event *capture$0, id<LeRemoteDeviceListener> capture$1) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  JreStrongAssign(&self->val$listener_, capture$1);
+  NSObject_init(self);
+}
+
+LeSessionController_10 *new_LeSessionController_10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(LeSessionController *outer$, Event *capture$0, id<LeRemoteDeviceListener> capture$1) {
+  J2OBJC_NEW_IMPL(LeSessionController_10, initWithLeSessionController_withEvent_withLeRemoteDeviceListener_, outer$, capture$0, capture$1)
+}
+
+LeSessionController_10 *create_LeSessionController_10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(LeSessionController *outer$, Event *capture$0, id<LeRemoteDeviceListener> capture$1) {
+  J2OBJC_CREATE_IMPL(LeSessionController_10, initWithLeSessionController_withEvent_withLeRemoteDeviceListener_, outer$, capture$0, capture$1)
+}
+
+@implementation LeSessionController_11
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
+  LeSessionController_11_initWithLeSessionController_withEvent_(self, outer$, capture$0);
+  return self;
+}
+
+- (void)run {
+  IOSObjectArray *services = [IOSObjectArray arrayWithLength:((IOSObjectArray *) nil_chk(((Event *) nil_chk(val$event_))->values_))->size_ - 3 type:LeGattServiceMock_class_()];
+  for (jint k = 0; k < services->size_; k++) IOSObjectArray_Set(services, k, [this$0_ createGattServiceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), k + 3)]);
+  [((id<LeRemoteDeviceListener>) nil_chk([this$0_ getRemoteDeviceListenerWithInt:val$event_->source_])) serviceDiscoveredWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)] withLeGattStatus:LeGattStatus_fromStringWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 2)) withLeGattServiceArray:services];
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withEvent:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_11 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_11;
+}
+
+@end
+
+void LeSessionController_11_initWithLeSessionController_withEvent_(LeSessionController_11 *self, LeSessionController *outer$, Event *capture$0) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  NSObject_init(self);
+}
+
+LeSessionController_11 *new_LeSessionController_11_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_NEW_IMPL(LeSessionController_11, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+LeSessionController_11 *create_LeSessionController_11_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_CREATE_IMPL(LeSessionController_11, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+@implementation LeSessionController_12
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
+  LeSessionController_12_initWithLeSessionController_withEvent_(self, outer$, capture$0);
+  return self;
+}
+
+- (void)run {
+  [((id<LeRemoteDeviceListener>) nil_chk([this$0_ getRemoteDeviceListenerWithInt:((Event *) nil_chk(val$event_))->source_])) rssiReadWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)] withInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 2)))) intValue]];
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withEvent:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_12 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_12;
+}
+
+@end
+
+void LeSessionController_12_initWithLeSessionController_withEvent_(LeSessionController_12 *self, LeSessionController *outer$, Event *capture$0) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  NSObject_init(self);
+}
+
+LeSessionController_12 *new_LeSessionController_12_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_NEW_IMPL(LeSessionController_12, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+LeSessionController_12 *create_LeSessionController_12_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_CREATE_IMPL(LeSessionController_12, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+@implementation LeSessionController_13
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0
+                           withJavaUtilUUID:(JavaUtilUUID *)capture$1
+                   withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2 {
+  LeSessionController_13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, outer$, capture$0, capture$1, capture$2);
+  return self;
+}
+
+- (void)run {
+  {
+    IOSObjectArray *a__ = [((id<Mocker>) nil_chk([((id<Session>) nil_chk(this$0_->session_)) getRemoteDeviceMockerWithInt:((Event *) nil_chk(val$event_))->source_])) getCharacteristicListenersWithLeMockController:this$0_ withInt:val$event_->source_];
+    id<LeCharacteristicListener> const *b__ = ((IOSObjectArray *) nil_chk(a__))->buffer_;
+    id<LeCharacteristicListener> const *e__ = b__ + a__->size_;
+    while (b__ < e__) {
+      id<LeCharacteristicListener> leCharacteristicListener = *b__++;
+      [((id<LeCharacteristicListener>) nil_chk(leCharacteristicListener)) leCharacteristicChangedWithJavaUtilUUID:val$uuid_ withLeRemoteDevice:[this$0_ getRemoteDeviceWithInt:val$event_->source_] withLeGattCharacteristic:val$characteristic_];
+    }
+  }
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  RELEASE_(val$uuid_);
+  RELEASE_(val$characteristic_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withEvent:withJavaUtilUUID:withLeGattCharacteristic:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$uuid_", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$characteristic_", "LLeGattCharacteristic;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_13 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 4, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_13;
+}
+
+@end
+
+void LeSessionController_13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController_13 *self, LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  JreStrongAssign(&self->val$uuid_, capture$1);
+  JreStrongAssign(&self->val$characteristic_, capture$2);
+  NSObject_init(self);
+}
+
+LeSessionController_13 *new_LeSessionController_13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) {
+  J2OBJC_NEW_IMPL(LeSessionController_13, initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_, outer$, capture$0, capture$1, capture$2)
+}
+
+LeSessionController_13 *create_LeSessionController_13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) {
+  J2OBJC_CREATE_IMPL(LeSessionController_13, initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_, outer$, capture$0, capture$1, capture$2)
+}
+
+@implementation LeSessionController_14
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
+  LeSessionController_14_initWithLeSessionController_withEvent_(self, outer$, capture$0);
+  return self;
+}
+
+- (void)run {
+  JavaUtilUUID *uuid = nil;
+  if (IOSObjectArray_Get(nil_chk(((Event *) nil_chk(val$event_))->values_), 0) != nil && ![((NSString *) nil_chk(IOSObjectArray_Get(val$event_->values_, 0))) isEqual:@"null"]) uuid = JavaUtilUUID_fromStringWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 0));
+  [((id<LeCharacteristicListener>) nil_chk([this$0_ getCharacteristicListenerWithInt:val$event_->source_])) leCharacteristicChangedWithJavaUtilUUID:uuid withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)] withLeGattCharacteristic:[this$0_ getCharacteristicWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 2)]];
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withEvent:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_14 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_14;
+}
+
+@end
+
+void LeSessionController_14_initWithLeSessionController_withEvent_(LeSessionController_14 *self, LeSessionController *outer$, Event *capture$0) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  NSObject_init(self);
+}
+
+LeSessionController_14 *new_LeSessionController_14_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_NEW_IMPL(LeSessionController_14, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+LeSessionController_14 *create_LeSessionController_14_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_CREATE_IMPL(LeSessionController_14, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+@implementation LeSessionController_15
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
+  LeSessionController_15_initWithLeSessionController_withEvent_(self, outer$, capture$0);
+  return self;
+}
+
+- (void)run {
+  JavaUtilUUID *uuid = nil;
+  if (IOSObjectArray_Get(nil_chk(((Event *) nil_chk(val$event_))->values_), 0) != nil && ![((NSString *) nil_chk(IOSObjectArray_Get(val$event_->values_, 0))) isEqual:@"null"]) uuid = JavaUtilUUID_fromStringWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 0));
+  id<LeCharacteristicWriteListener> characteristicWriteListener = [this$0_ getCharacteristicWriteListenerWithInt:val$event_->source_];
+  [((id<LeCharacteristicWriteListener>) nil_chk(characteristicWriteListener)) leCharacteristicWrittenWithJavaUtilUUID:uuid withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)] withLeGattCharacteristic:[this$0_ getCharacteristicWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 2)] withBoolean:true];
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withEvent:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_15 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_15;
+}
+
+@end
+
+void LeSessionController_15_initWithLeSessionController_withEvent_(LeSessionController_15 *self, LeSessionController *outer$, Event *capture$0) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  NSObject_init(self);
+}
+
+LeSessionController_15 *new_LeSessionController_15_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_NEW_IMPL(LeSessionController_15, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+LeSessionController_15 *create_LeSessionController_15_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_CREATE_IMPL(LeSessionController_15, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+@implementation LeSessionController_16
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0
+                           withJavaUtilUUID:(JavaUtilUUID *)capture$1
+                   withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2 {
+  LeSessionController_16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, outer$, capture$0, capture$1, capture$2);
+  return self;
+}
+
+- (void)run {
+  {
+    IOSObjectArray *a__ = [((id<Mocker>) nil_chk([((id<Session>) nil_chk(this$0_->session_)) getRemoteDeviceMockerWithInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(((Event *) nil_chk(val$event_))->values_), 2)))) intValue]])) getCharacteristicListenersWithLeMockController:this$0_ withInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 2)))) intValue]];
+    id<LeCharacteristicListener> const *b__ = ((IOSObjectArray *) nil_chk(a__))->buffer_;
+    id<LeCharacteristicListener> const *e__ = b__ + a__->size_;
+    while (b__ < e__) {
+      id<LeCharacteristicListener> leCharacteristicListener = *b__++;
+      [((id<LeCharacteristicListener>) nil_chk(leCharacteristicListener)) leCharacteristicNotificationChangedWithJavaUtilUUID:val$uuid2_ withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 2)] withLeGattCharacteristic:val$characteristic2_ withBoolean:JavaLangBoolean_parseBooleanWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 3))];
+    }
+  }
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  RELEASE_(val$uuid2_);
+  RELEASE_(val$characteristic2_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withEvent:withJavaUtilUUID:withLeGattCharacteristic:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$uuid2_", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$characteristic2_", "LLeGattCharacteristic;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_16 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 4, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_16;
+}
+
+@end
+
+void LeSessionController_16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController_16 *self, LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  JreStrongAssign(&self->val$uuid2_, capture$1);
+  JreStrongAssign(&self->val$characteristic2_, capture$2);
+  NSObject_init(self);
+}
+
+LeSessionController_16 *new_LeSessionController_16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) {
+  J2OBJC_NEW_IMPL(LeSessionController_16, initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_, outer$, capture$0, capture$1, capture$2)
+}
+
+LeSessionController_16 *create_LeSessionController_16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) {
+  J2OBJC_CREATE_IMPL(LeSessionController_16, initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_, outer$, capture$0, capture$1, capture$2)
+}
+
+@implementation LeSessionController_17
+
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
+  LeSessionController_17_initWithLeSessionController_withEvent_(self, outer$, capture$0);
+  return self;
+}
+
+- (void)run {
+  JavaUtilUUID *uuid = nil;
+  if (IOSObjectArray_Get(nil_chk(((Event *) nil_chk(val$event_))->values_), 0) != nil && ![((NSString *) nil_chk(IOSObjectArray_Get(val$event_->values_, 0))) isEqual:@"null"]) uuid = JavaUtilUUID_fromStringWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 0));
+  [((id<LeCharacteristicListener>) nil_chk([this$0_ getCharacteristicListenerWithInt:val$event_->source_])) leCharacteristicNotificationChangedWithJavaUtilUUID:uuid withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)] withLeGattCharacteristic:[this$0_ getCharacteristicWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 2)] withBoolean:JavaLangBoolean_parseBooleanWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 3))];
+}
+
+- (void)dealloc {
+  RELEASE_(this$0_);
+  RELEASE_(val$event_);
+  [super dealloc];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithLeSessionController:withEvent:);
+  methods[1].selector = @selector(run);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
+  static const J2ObjcClassInfo _LeSessionController_17 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  return &_LeSessionController_17;
+}
+
+@end
+
+void LeSessionController_17_initWithLeSessionController_withEvent_(LeSessionController_17 *self, LeSessionController *outer$, Event *capture$0) {
+  JreStrongAssign(&self->this$0_, outer$);
+  JreStrongAssign(&self->val$event_, capture$0);
+  NSObject_init(self);
+}
+
+LeSessionController_17 *new_LeSessionController_17_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_NEW_IMPL(LeSessionController_17, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
+
+LeSessionController_17 *create_LeSessionController_17_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
+  J2OBJC_CREATE_IMPL(LeSessionController_17, initWithLeSessionController_withEvent_, outer$, capture$0)
+}
 
 J2OBJC_INITIALIZED_DEFN(LeSessionController_SourceType)
 
@@ -1989,968 +2895,3 @@ LeSessionController_SourceType *LeSessionController_SourceType_fromOrdinal(NSUIn
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_SourceType)
-
-@implementation LeSessionController_$1
-
-- (void)run {
-  [((JavaLangThread *) nil_chk(JavaLangThread_currentThread())) setNameWithNSString:@"LeSessionController"];
-  [this$0_ startSessionInThread];
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$ {
-  LeSessionController_$1_initWithLeSessionController_(self, outer$);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;", "startSessionWithNSString:" };
-  static const J2ObjcClassInfo _LeSessionController_$1 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 1, 0, -1, 1, -1, -1 };
-  return &_LeSessionController_$1;
-}
-
-@end
-
-void LeSessionController_$1_initWithLeSessionController_(LeSessionController_$1 *self, LeSessionController *outer$) {
-  JreStrongAssign(&self->this$0_, outer$);
-  NSObject_init(self);
-}
-
-LeSessionController_$1 *new_LeSessionController_$1_initWithLeSessionController_(LeSessionController *outer$) {
-  J2OBJC_NEW_IMPL(LeSessionController_$1, initWithLeSessionController_, outer$)
-}
-
-LeSessionController_$1 *create_LeSessionController_$1_initWithLeSessionController_(LeSessionController *outer$) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$1, initWithLeSessionController_, outer$)
-}
-
-@implementation LeSessionController_$2
-
-- (void)run {
-  {
-    IOSObjectArray *a__ = [((id<Mocker>) nil_chk([((id<Session>) nil_chk(this$0_->session_)) getDeviceMockerWithInt:((Event *) nil_chk(val$event_))->source_])) getDeviceListenersWithLeMockController:this$0_ withInt:val$event_->source_];
-    id<LeDeviceListener> const *b__ = ((IOSObjectArray *) nil_chk(a__))->buffer_;
-    id<LeDeviceListener> const *e__ = b__ + a__->size_;
-    while (b__ < e__) {
-      id<LeDeviceListener> leListener = *b__++;
-      [((id<LeDeviceListener>) nil_chk(leListener)) leDeviceFoundWithLeDevice:[this$0_ getDeviceWithInt:val$event_->source_] withLeRemoteDevice:[this$0_ createOrReturnRemoteDeviceWithInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 0)))) intValue] withLeDeviceMock:[this$0_ getDeviceWithInt:val$event_->source_]] withInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 1)))) intValue] withLeScanRecord:LeUtil_parseLeScanRecordWithByteArray_(LeUtil_stringToBytesWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 2)))];
-    }
-  }
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
-  LeSessionController_$2_initWithLeSessionController_withEvent_(self, outer$, capture$0);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$event_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withEvent:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LEvent;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$2 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$2;
-}
-
-@end
-
-void LeSessionController_$2_initWithLeSessionController_withEvent_(LeSessionController_$2 *self, LeSessionController *outer$, Event *capture$0) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$event_, capture$0);
-  NSObject_init(self);
-}
-
-LeSessionController_$2 *new_LeSessionController_$2_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_NEW_IMPL(LeSessionController_$2, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-LeSessionController_$2 *create_LeSessionController_$2_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$2, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-@implementation LeSessionController_$3
-
-- (void)run {
-  [((id<LeDeviceListener>) nil_chk([this$0_ getDeviceListenerWithInt:((Event *) nil_chk(val$event_))->source_])) leDeviceFoundWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ createOrReturnRemoteDeviceWithInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 1)))) intValue] withLeDeviceMock:[this$0_ getDeviceWithInt:val$event_->source_]] withInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 2)))) intValue] withLeScanRecord:LeUtil_parseLeScanRecordWithByteArray_(LeUtil_stringToBytesWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 3)))];
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
-  LeSessionController_$3_initWithLeSessionController_withEvent_(self, outer$, capture$0);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$event_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withEvent:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LEvent;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$3 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$3;
-}
-
-@end
-
-void LeSessionController_$3_initWithLeSessionController_withEvent_(LeSessionController_$3 *self, LeSessionController *outer$, Event *capture$0) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$event_, capture$0);
-  NSObject_init(self);
-}
-
-LeSessionController_$3 *new_LeSessionController_$3_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_NEW_IMPL(LeSessionController_$3, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-LeSessionController_$3 *create_LeSessionController_$3_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$3, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-@implementation LeSessionController_$4
-
-- (void)run {
-  [((id<LeRemoteDeviceListener>) nil_chk(val$listener_)) leDevicesConnectedWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(((Event *) nil_chk(val$event_))->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithInt:val$event_->source_]];
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                  withEvent:(Event *)capture$1 {
-  LeSessionController_$4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, outer$, capture$0, capture$1);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$listener_);
-  RELEASE_(val$event_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withLeRemoteDeviceListener:withEvent:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$listener_", "LLeRemoteDeviceListener;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LLeRemoteDeviceListener;LEvent;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$4 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 3, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$4;
-}
-
-@end
-
-void LeSessionController_$4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_$4 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$listener_, capture$0);
-  JreStrongAssign(&self->val$event_, capture$1);
-  NSObject_init(self);
-}
-
-LeSessionController_$4 *new_LeSessionController_$4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
-  J2OBJC_NEW_IMPL(LeSessionController_$4, initWithLeSessionController_withLeRemoteDeviceListener_withEvent_, outer$, capture$0, capture$1)
-}
-
-LeSessionController_$4 *create_LeSessionController_$4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$4, initWithLeSessionController_withLeRemoteDeviceListener_withEvent_, outer$, capture$0, capture$1)
-}
-
-@implementation LeSessionController_$5
-
-- (void)run {
-  [((id<LeRemoteDeviceListener>) nil_chk([this$0_ getRemoteDeviceListenerWithInt:((Event *) nil_chk(val$event_))->source_])) leDevicesConnectedWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)]];
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
-  LeSessionController_$5_initWithLeSessionController_withEvent_(self, outer$, capture$0);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$event_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withEvent:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LEvent;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$5 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$5;
-}
-
-@end
-
-void LeSessionController_$5_initWithLeSessionController_withEvent_(LeSessionController_$5 *self, LeSessionController *outer$, Event *capture$0) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$event_, capture$0);
-  NSObject_init(self);
-}
-
-LeSessionController_$5 *new_LeSessionController_$5_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_NEW_IMPL(LeSessionController_$5, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-LeSessionController_$5 *create_LeSessionController_$5_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$5, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-@implementation LeSessionController_$6
-
-- (void)run {
-  [((id<LeRemoteDeviceListener>) nil_chk(val$listener_)) leDevicesDisconnectedWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(((Event *) nil_chk(val$event_))->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithInt:val$event_->source_]];
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                  withEvent:(Event *)capture$1 {
-  LeSessionController_$6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, outer$, capture$0, capture$1);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$listener_);
-  RELEASE_(val$event_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withLeRemoteDeviceListener:withEvent:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$listener_", "LLeRemoteDeviceListener;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LLeRemoteDeviceListener;LEvent;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$6 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 3, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$6;
-}
-
-@end
-
-void LeSessionController_$6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_$6 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$listener_, capture$0);
-  JreStrongAssign(&self->val$event_, capture$1);
-  NSObject_init(self);
-}
-
-LeSessionController_$6 *new_LeSessionController_$6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
-  J2OBJC_NEW_IMPL(LeSessionController_$6, initWithLeSessionController_withLeRemoteDeviceListener_withEvent_, outer$, capture$0, capture$1)
-}
-
-LeSessionController_$6 *create_LeSessionController_$6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$6, initWithLeSessionController_withLeRemoteDeviceListener_withEvent_, outer$, capture$0, capture$1)
-}
-
-@implementation LeSessionController_$7
-
-- (void)run {
-  [((id<LeRemoteDeviceListener>) nil_chk([this$0_ getRemoteDeviceListenerWithInt:((Event *) nil_chk(val$event_))->source_])) leDevicesDisconnectedWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)]];
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
-  LeSessionController_$7_initWithLeSessionController_withEvent_(self, outer$, capture$0);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$event_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withEvent:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LEvent;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$7 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$7;
-}
-
-@end
-
-void LeSessionController_$7_initWithLeSessionController_withEvent_(LeSessionController_$7 *self, LeSessionController *outer$, Event *capture$0) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$event_, capture$0);
-  NSObject_init(self);
-}
-
-LeSessionController_$7 *new_LeSessionController_$7_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_NEW_IMPL(LeSessionController_$7, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-LeSessionController_$7 *create_LeSessionController_$7_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$7, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-@implementation LeSessionController_$8
-
-- (void)run {
-  [((id<LeRemoteDeviceListener>) nil_chk(val$listener_)) leDevicesClosedWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(((Event *) nil_chk(val$event_))->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithInt:val$event_->source_]];
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                  withEvent:(Event *)capture$1 {
-  LeSessionController_$8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, outer$, capture$0, capture$1);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$listener_);
-  RELEASE_(val$event_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withLeRemoteDeviceListener:withEvent:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$listener_", "LLeRemoteDeviceListener;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LLeRemoteDeviceListener;LEvent;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$8 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 3, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$8;
-}
-
-@end
-
-void LeSessionController_$8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController_$8 *self, LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$listener_, capture$0);
-  JreStrongAssign(&self->val$event_, capture$1);
-  NSObject_init(self);
-}
-
-LeSessionController_$8 *new_LeSessionController_$8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
-  J2OBJC_NEW_IMPL(LeSessionController_$8, initWithLeSessionController_withLeRemoteDeviceListener_withEvent_, outer$, capture$0, capture$1)
-}
-
-LeSessionController_$8 *create_LeSessionController_$8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(LeSessionController *outer$, id<LeRemoteDeviceListener> capture$0, Event *capture$1) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$8, initWithLeSessionController_withLeRemoteDeviceListener_withEvent_, outer$, capture$0, capture$1)
-}
-
-@implementation LeSessionController_$9
-
-- (void)run {
-  [((id<LeRemoteDeviceListener>) nil_chk([this$0_ getRemoteDeviceListenerWithInt:((Event *) nil_chk(val$event_))->source_])) leDevicesClosedWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)]];
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
-  LeSessionController_$9_initWithLeSessionController_withEvent_(self, outer$, capture$0);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$event_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withEvent:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LEvent;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$9 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$9;
-}
-
-@end
-
-void LeSessionController_$9_initWithLeSessionController_withEvent_(LeSessionController_$9 *self, LeSessionController *outer$, Event *capture$0) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$event_, capture$0);
-  NSObject_init(self);
-}
-
-LeSessionController_$9 *new_LeSessionController_$9_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_NEW_IMPL(LeSessionController_$9, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-LeSessionController_$9 *create_LeSessionController_$9_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$9, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-@implementation LeSessionController_$10
-
-- (void)run {
-  IOSObjectArray *services = [IOSObjectArray arrayWithLength:((IOSObjectArray *) nil_chk(((Event *) nil_chk(val$event_))->values_))->size_ - 2 type:LeGattServiceMock_class_()];
-  for (jint k = 0; k < services->size_; k++) IOSObjectArray_Set(services, k, [this$0_ createGattServiceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), k + 2)]);
-  [((id<LeRemoteDeviceListener>) nil_chk(val$listener_)) serviceDiscoveredWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithInt:val$event_->source_] withLeGattStatus:LeGattStatus_fromStringWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 1)) withLeGattServiceArray:services];
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0
-                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$1 {
-  LeSessionController_$10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(self, outer$, capture$0, capture$1);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$event_);
-  RELEASE_(val$listener_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withEvent:withLeRemoteDeviceListener:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$listener_", "LLeRemoteDeviceListener;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LEvent;LLeRemoteDeviceListener;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$10 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 3, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$10;
-}
-
-@end
-
-void LeSessionController_$10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(LeSessionController_$10 *self, LeSessionController *outer$, Event *capture$0, id<LeRemoteDeviceListener> capture$1) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$event_, capture$0);
-  JreStrongAssign(&self->val$listener_, capture$1);
-  NSObject_init(self);
-}
-
-LeSessionController_$10 *new_LeSessionController_$10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(LeSessionController *outer$, Event *capture$0, id<LeRemoteDeviceListener> capture$1) {
-  J2OBJC_NEW_IMPL(LeSessionController_$10, initWithLeSessionController_withEvent_withLeRemoteDeviceListener_, outer$, capture$0, capture$1)
-}
-
-LeSessionController_$10 *create_LeSessionController_$10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(LeSessionController *outer$, Event *capture$0, id<LeRemoteDeviceListener> capture$1) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$10, initWithLeSessionController_withEvent_withLeRemoteDeviceListener_, outer$, capture$0, capture$1)
-}
-
-@implementation LeSessionController_$11
-
-- (void)run {
-  IOSObjectArray *services = [IOSObjectArray arrayWithLength:((IOSObjectArray *) nil_chk(((Event *) nil_chk(val$event_))->values_))->size_ - 3 type:LeGattServiceMock_class_()];
-  for (jint k = 0; k < services->size_; k++) IOSObjectArray_Set(services, k, [this$0_ createGattServiceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), k + 3)]);
-  [((id<LeRemoteDeviceListener>) nil_chk([this$0_ getRemoteDeviceListenerWithInt:val$event_->source_])) serviceDiscoveredWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)] withLeGattStatus:LeGattStatus_fromStringWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 2)) withLeGattServiceArray:services];
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
-  LeSessionController_$11_initWithLeSessionController_withEvent_(self, outer$, capture$0);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$event_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withEvent:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LEvent;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$11 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$11;
-}
-
-@end
-
-void LeSessionController_$11_initWithLeSessionController_withEvent_(LeSessionController_$11 *self, LeSessionController *outer$, Event *capture$0) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$event_, capture$0);
-  NSObject_init(self);
-}
-
-LeSessionController_$11 *new_LeSessionController_$11_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_NEW_IMPL(LeSessionController_$11, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-LeSessionController_$11 *create_LeSessionController_$11_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$11, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-@implementation LeSessionController_$12
-
-- (void)run {
-  [((id<LeRemoteDeviceListener>) nil_chk([this$0_ getRemoteDeviceListenerWithInt:((Event *) nil_chk(val$event_))->source_])) rssiReadWithLeDevice:[this$0_ getDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 0)] withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)] withInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 2)))) intValue]];
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
-  LeSessionController_$12_initWithLeSessionController_withEvent_(self, outer$, capture$0);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$event_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withEvent:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LEvent;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$12 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$12;
-}
-
-@end
-
-void LeSessionController_$12_initWithLeSessionController_withEvent_(LeSessionController_$12 *self, LeSessionController *outer$, Event *capture$0) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$event_, capture$0);
-  NSObject_init(self);
-}
-
-LeSessionController_$12 *new_LeSessionController_$12_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_NEW_IMPL(LeSessionController_$12, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-LeSessionController_$12 *create_LeSessionController_$12_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$12, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-@implementation LeSessionController_$13
-
-- (void)run {
-  {
-    IOSObjectArray *a__ = [((id<Mocker>) nil_chk([((id<Session>) nil_chk(this$0_->session_)) getRemoteDeviceMockerWithInt:((Event *) nil_chk(val$event_))->source_])) getCharacteristicListenersWithLeMockController:this$0_ withInt:val$event_->source_];
-    id<LeCharacteristicListener> const *b__ = ((IOSObjectArray *) nil_chk(a__))->buffer_;
-    id<LeCharacteristicListener> const *e__ = b__ + a__->size_;
-    while (b__ < e__) {
-      id<LeCharacteristicListener> leCharacteristicListener = *b__++;
-      [((id<LeCharacteristicListener>) nil_chk(leCharacteristicListener)) leCharacteristicChangedWithJavaUtilUUID:val$uuid_ withLeRemoteDevice:[this$0_ getRemoteDeviceWithInt:val$event_->source_] withLeGattCharacteristic:val$characteristic_];
-    }
-  }
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0
-                           withJavaUtilUUID:(JavaUtilUUID *)capture$1
-                   withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2 {
-  LeSessionController_$13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, outer$, capture$0, capture$1, capture$2);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$event_);
-  RELEASE_(val$uuid_);
-  RELEASE_(val$characteristic_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withEvent:withJavaUtilUUID:withLeGattCharacteristic:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$uuid_", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$characteristic_", "LLeGattCharacteristic;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LEvent;LJavaUtilUUID;LLeGattCharacteristic;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$13 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 4, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$13;
-}
-
-@end
-
-void LeSessionController_$13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController_$13 *self, LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$event_, capture$0);
-  JreStrongAssign(&self->val$uuid_, capture$1);
-  JreStrongAssign(&self->val$characteristic_, capture$2);
-  NSObject_init(self);
-}
-
-LeSessionController_$13 *new_LeSessionController_$13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) {
-  J2OBJC_NEW_IMPL(LeSessionController_$13, initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_, outer$, capture$0, capture$1, capture$2)
-}
-
-LeSessionController_$13 *create_LeSessionController_$13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$13, initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_, outer$, capture$0, capture$1, capture$2)
-}
-
-@implementation LeSessionController_$14
-
-- (void)run {
-  JavaUtilUUID *uuid = nil;
-  if (IOSObjectArray_Get(nil_chk(((Event *) nil_chk(val$event_))->values_), 0) != nil && ![((NSString *) nil_chk(IOSObjectArray_Get(val$event_->values_, 0))) isEqual:@"null"]) uuid = JavaUtilUUID_fromStringWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 0));
-  [((id<LeCharacteristicListener>) nil_chk([this$0_ getCharacteristicListenerWithInt:val$event_->source_])) leCharacteristicChangedWithJavaUtilUUID:uuid withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)] withLeGattCharacteristic:[this$0_ getCharacteristicWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 2)]];
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
-  LeSessionController_$14_initWithLeSessionController_withEvent_(self, outer$, capture$0);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$event_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withEvent:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LEvent;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$14 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$14;
-}
-
-@end
-
-void LeSessionController_$14_initWithLeSessionController_withEvent_(LeSessionController_$14 *self, LeSessionController *outer$, Event *capture$0) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$event_, capture$0);
-  NSObject_init(self);
-}
-
-LeSessionController_$14 *new_LeSessionController_$14_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_NEW_IMPL(LeSessionController_$14, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-LeSessionController_$14 *create_LeSessionController_$14_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$14, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-@implementation LeSessionController_$15
-
-- (void)run {
-  JavaUtilUUID *uuid = nil;
-  if (IOSObjectArray_Get(nil_chk(((Event *) nil_chk(val$event_))->values_), 0) != nil && ![((NSString *) nil_chk(IOSObjectArray_Get(val$event_->values_, 0))) isEqual:@"null"]) uuid = JavaUtilUUID_fromStringWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 0));
-  id<LeCharacteristicWriteListener> characteristicWriteListener = [this$0_ getCharacteristicWriteListenerWithInt:val$event_->source_];
-  [((id<LeCharacteristicWriteListener>) nil_chk(characteristicWriteListener)) leCharacteristicWrittenWithJavaUtilUUID:uuid withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)] withLeGattCharacteristic:[this$0_ getCharacteristicWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 2)] withBoolean:true];
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
-  LeSessionController_$15_initWithLeSessionController_withEvent_(self, outer$, capture$0);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$event_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withEvent:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LEvent;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$15 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$15;
-}
-
-@end
-
-void LeSessionController_$15_initWithLeSessionController_withEvent_(LeSessionController_$15 *self, LeSessionController *outer$, Event *capture$0) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$event_, capture$0);
-  NSObject_init(self);
-}
-
-LeSessionController_$15 *new_LeSessionController_$15_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_NEW_IMPL(LeSessionController_$15, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-LeSessionController_$15 *create_LeSessionController_$15_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$15, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-@implementation LeSessionController_$16
-
-- (void)run {
-  {
-    IOSObjectArray *a__ = [((id<Mocker>) nil_chk([((id<Session>) nil_chk(this$0_->session_)) getRemoteDeviceMockerWithInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(((Event *) nil_chk(val$event_))->values_), 2)))) intValue]])) getCharacteristicListenersWithLeMockController:this$0_ withInt:[((JavaLangInteger *) nil_chk(JavaLangInteger_valueOfWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 2)))) intValue]];
-    id<LeCharacteristicListener> const *b__ = ((IOSObjectArray *) nil_chk(a__))->buffer_;
-    id<LeCharacteristicListener> const *e__ = b__ + a__->size_;
-    while (b__ < e__) {
-      id<LeCharacteristicListener> leCharacteristicListener = *b__++;
-      [((id<LeCharacteristicListener>) nil_chk(leCharacteristicListener)) leCharacteristicNotificationChangedWithJavaUtilUUID:val$uuid2_ withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 2)] withLeGattCharacteristic:val$characteristic2_ withBoolean:JavaLangBoolean_parseBooleanWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 3))];
-    }
-  }
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0
-                           withJavaUtilUUID:(JavaUtilUUID *)capture$1
-                   withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2 {
-  LeSessionController_$16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, outer$, capture$0, capture$1, capture$2);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$event_);
-  RELEASE_(val$uuid2_);
-  RELEASE_(val$characteristic2_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withEvent:withJavaUtilUUID:withLeGattCharacteristic:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$uuid2_", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$characteristic2_", "LLeGattCharacteristic;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LEvent;LJavaUtilUUID;LLeGattCharacteristic;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$16 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 4, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$16;
-}
-
-@end
-
-void LeSessionController_$16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController_$16 *self, LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$event_, capture$0);
-  JreStrongAssign(&self->val$uuid2_, capture$1);
-  JreStrongAssign(&self->val$characteristic2_, capture$2);
-  NSObject_init(self);
-}
-
-LeSessionController_$16 *new_LeSessionController_$16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) {
-  J2OBJC_NEW_IMPL(LeSessionController_$16, initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_, outer$, capture$0, capture$1, capture$2)
-}
-
-LeSessionController_$16 *create_LeSessionController_$16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(LeSessionController *outer$, Event *capture$0, JavaUtilUUID *capture$1, id<LeGattCharacteristic> capture$2) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$16, initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_, outer$, capture$0, capture$1, capture$2)
-}
-
-@implementation LeSessionController_$17
-
-- (void)run {
-  JavaUtilUUID *uuid = nil;
-  if (IOSObjectArray_Get(nil_chk(((Event *) nil_chk(val$event_))->values_), 0) != nil && ![((NSString *) nil_chk(IOSObjectArray_Get(val$event_->values_, 0))) isEqual:@"null"]) uuid = JavaUtilUUID_fromStringWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 0));
-  [((id<LeCharacteristicListener>) nil_chk([this$0_ getCharacteristicListenerWithInt:val$event_->source_])) leCharacteristicNotificationChangedWithJavaUtilUUID:uuid withLeRemoteDevice:[this$0_ getRemoteDeviceWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 1)] withLeGattCharacteristic:[this$0_ getCharacteristicWithNSString:IOSObjectArray_Get(nil_chk(val$event_->values_), 2)] withBoolean:JavaLangBoolean_parseBooleanWithNSString_(IOSObjectArray_Get(nil_chk(val$event_->values_), 3))];
-}
-
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
-  LeSessionController_$17_initWithLeSessionController_withEvent_(self, outer$, capture$0);
-  return self;
-}
-
-- (void)dealloc {
-  RELEASE_(this$0_);
-  RELEASE_(val$event_);
-  [super dealloc];
-}
-
-+ (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(run);
-  methods[1].selector = @selector(initWithLeSessionController:withEvent:);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-  };
-  static const void *ptrTable[] = { "LLeSessionController;LEvent;", "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_$17 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 1, -1, 2, -1, -1 };
-  return &_LeSessionController_$17;
-}
-
-@end
-
-void LeSessionController_$17_initWithLeSessionController_withEvent_(LeSessionController_$17 *self, LeSessionController *outer$, Event *capture$0) {
-  JreStrongAssign(&self->this$0_, outer$);
-  JreStrongAssign(&self->val$event_, capture$0);
-  NSObject_init(self);
-}
-
-LeSessionController_$17 *new_LeSessionController_$17_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_NEW_IMPL(LeSessionController_$17, initWithLeSessionController_withEvent_, outer$, capture$0)
-}
-
-LeSessionController_$17 *create_LeSessionController_$17_initWithLeSessionController_withEvent_(LeSessionController *outer$, Event *capture$0) {
-  J2OBJC_CREATE_IMPL(LeSessionController_$17, initWithLeSessionController_withEvent_, outer$, capture$0)
-}

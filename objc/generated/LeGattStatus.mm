@@ -116,6 +116,10 @@ LeGattStatus *LeGattStatus_values_[9];
 
 @end
 
+void LeGattStatus_initWithNSString_withInt_(LeGattStatus *self, NSString *__name, jint __ordinal) {
+  JavaLangEnum_initWithNSString_withInt_(self, __name, __ordinal);
+}
+
 LeGattStatus *LeGattStatus_fromStringWithNSString_(NSString *status) {
   LeGattStatus_initialize();
   {
@@ -128,10 +132,6 @@ LeGattStatus *LeGattStatus_fromStringWithNSString_(NSString *status) {
     }
   }
   return nil;
-}
-
-void LeGattStatus_initWithNSString_withInt_(LeGattStatus *self, NSString *__name, jint __ordinal) {
-  JavaLangEnum_initWithNSString_withInt_(self, __name, __ordinal);
 }
 
 IOSObjectArray *LeGattStatus_values() {
