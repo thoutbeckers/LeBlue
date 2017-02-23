@@ -70,6 +70,9 @@ task compileTranslatedLeBlueJavaTest(type:Exec) {
     args "-I${file("objc/generated/").path}"
     args "-ObjC", "-ljunit", "-ljre_emul"
     args "-o", "testrunner"
+    args "-Wno-nullability-completeness"
+    args "-Wno-objc-property-no-attribute"
+    args "-Wno-error"
     FileTree tree = fileTree(dir: "objc/generated/", include: '**/*.mm')
     args tree
 
