@@ -190,7 +190,7 @@ public class LeDevice43 implements LeDevice {
     public void startScanning(UUID... uuids) {
         BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
         ScanSettings settings = new ScanSettings.Builder()
-                .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).setReportDelay(500).setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
+                .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).setReportDelay(100).setNumOfMatches(ScanSettings.MATCH_NUM_MAX_ADVERTISEMENT)
                 .setUseHardwareBatchingIfSupported(true).build();
         List<ScanFilter> filters = new ArrayList<>();
         ScanFilter.Builder builder = new ScanFilter.Builder();
@@ -206,7 +206,7 @@ public class LeDevice43 implements LeDevice {
     public void startScanning(List<List<UUID>> filters) {
         BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
         ScanSettings settings = new ScanSettings.Builder()
-                .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).setReportDelay(500).setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
+                .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).setReportDelay(100).setNumOfMatches(ScanSettings.MATCH_NUM_MAX_ADVERTISEMENT)
                 .setUseHardwareBatchingIfSupported(true).build();
         List<ScanFilter> scanFilters = new ArrayList<>();
         for (List<UUID> filter : filters){
