@@ -8,6 +8,13 @@
 
 @implementation HoutbeckeRsLeDummyDummyLeRemoteDevice
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  HoutbeckeRsLeDummyDummyLeRemoteDevice_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
 - (void)addListenerWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)listener {
 }
 
@@ -48,15 +55,9 @@
 - (void)readRssi {
 }
 
-J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
-  HoutbeckeRsLeDummyDummyLeRemoteDevice_init(self);
-  return self;
-}
-J2OBJC_IGNORE_DESIGNATED_END
-
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, 0, 1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, 2, 1, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, -1, -1, -1, -1, -1, -1 },
@@ -69,23 +70,22 @@ J2OBJC_IGNORE_DESIGNATED_END
     { NULL, "V", 0x81, 7, 8, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(addListenerWithLeRemoteDeviceListener:);
-  methods[1].selector = @selector(removeListenerWithLeRemoteDeviceListener:);
-  methods[2].selector = @selector(getAddress);
-  methods[3].selector = @selector(connect);
-  methods[4].selector = @selector(disconnect);
-  methods[5].selector = @selector(close);
-  methods[6].selector = @selector(startServicesDiscovery);
-  methods[7].selector = @selector(startServicesDiscoveryWithJavaUtilUUIDArray:);
-  methods[8].selector = @selector(setCharacteristicWriteListenerWithLeCharacteristicWriteListener:withJavaUtilUUIDArray:);
-  methods[9].selector = @selector(setCharacteristicListenerWithLeCharacteristicListener:withJavaUtilUUIDArray:);
-  methods[10].selector = @selector(getName);
-  methods[11].selector = @selector(readRssi);
-  methods[12].selector = @selector(init);
+  methods[0].selector = @selector(init);
+  methods[1].selector = @selector(addListenerWithLeRemoteDeviceListener:);
+  methods[2].selector = @selector(removeListenerWithLeRemoteDeviceListener:);
+  methods[3].selector = @selector(getAddress);
+  methods[4].selector = @selector(connect);
+  methods[5].selector = @selector(disconnect);
+  methods[6].selector = @selector(close);
+  methods[7].selector = @selector(startServicesDiscovery);
+  methods[8].selector = @selector(startServicesDiscoveryWithJavaUtilUUIDArray:);
+  methods[9].selector = @selector(setCharacteristicWriteListenerWithLeCharacteristicWriteListener:withJavaUtilUUIDArray:);
+  methods[10].selector = @selector(setCharacteristicListenerWithLeCharacteristicListener:withJavaUtilUUIDArray:);
+  methods[11].selector = @selector(getName);
+  methods[12].selector = @selector(readRssi);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "addListener", "LLeRemoteDeviceListener;", "removeListener", "startServicesDiscovery", "[LJavaUtilUUID;", "setCharacteristicWriteListener", "LLeCharacteristicWriteListener;[LJavaUtilUUID;", "setCharacteristicListener", "LLeCharacteristicListener;[LJavaUtilUUID;" };
   static const J2ObjcClassInfo _HoutbeckeRsLeDummyDummyLeRemoteDevice = { "DummyLeRemoteDevice", "houtbecke.rs.le.dummy", ptrTable, methods, NULL, 7, 0x1, 13, 0, -1, -1, -1, -1, -1 };

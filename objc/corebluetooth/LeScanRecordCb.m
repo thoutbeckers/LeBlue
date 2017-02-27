@@ -44,7 +44,7 @@
     for (CBUUID* suuid in serviceIds){
         
         [services addObject:[suuid toJavaUtilUUID] ];
-        class= [[suuid toJavaUtilUUID] getClass];
+        class= [[suuid toJavaUtilUUID] java_getClass];
     }
     return [IOSObjectArray arrayWithNSArray:services type:class];
 

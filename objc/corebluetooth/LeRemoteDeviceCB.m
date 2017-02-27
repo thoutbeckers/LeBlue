@@ -135,7 +135,7 @@
 - (void) serviceFound {
 
     for (id<LeRemoteDeviceListener> listener in _listeners){
-        [listener serviceDiscoveredWithLeDevice:_device withLeRemoteDevice:self withLeGattStatus:LeGattStatus_get_SUCCESS() withLeGattServiceArray:[IOSObjectArray arrayWithNSArray:[services allValues]  type:[LeGattServiceCB getClass]] ];
+        [listener serviceDiscoveredWithLeDevice:_device withLeRemoteDevice:self withLeGattStatus:LeGattStatus_get_SUCCESS() withLeGattServiceArray:[IOSObjectArray arrayWithNSArray:[services allValues]  type:[LeGattServiceCB java_getClass]] ];
 
     }
 

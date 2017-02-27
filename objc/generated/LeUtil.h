@@ -61,6 +61,12 @@ inline IOSCharArray *LeUtil_get_hexArray();
 FOUNDATION_EXPORT IOSCharArray *LeUtil_hexArray;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeUtil, hexArray, IOSCharArray *)
 
+FOUNDATION_EXPORT void LeUtil_init(LeUtil *self);
+
+FOUNDATION_EXPORT LeUtil *new_LeUtil_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT LeUtil *create_LeUtil_init();
+
 FOUNDATION_EXPORT NSString *LeUtil_bytesToStringWithByteArray_(IOSByteArray *bytes);
 
 FOUNDATION_EXPORT IOSByteArray *LeUtil_stringToBytesWithNSString_(NSString *string);
@@ -82,12 +88,6 @@ FOUNDATION_EXPORT IOSObjectArray *LeUtil_extendWithNSStringArray_withNSString_(I
 FOUNDATION_EXPORT NSString *LeUtil_fourDigitStringWithInt_(jint value);
 
 FOUNDATION_EXPORT id<LeScanRecord> LeUtil_parseLeScanRecordWithByteArray_(IOSByteArray *scanrecord);
-
-FOUNDATION_EXPORT void LeUtil_init(LeUtil *self);
-
-FOUNDATION_EXPORT LeUtil *new_LeUtil_init() NS_RETURNS_RETAINED;
-
-FOUNDATION_EXPORT LeUtil *create_LeUtil_init();
 
 J2OBJC_TYPE_LITERAL_HEADER(LeUtil)
 

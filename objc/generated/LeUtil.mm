@@ -24,6 +24,13 @@ IOSCharArray *LeUtil_hexArray;
   return LeUtil_hexArray;
 }
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  LeUtil_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
 + (NSString *)bytesToStringWithByteArray:(IOSByteArray *)bytes {
   return LeUtil_bytesToStringWithByteArray_(bytes);
 }
@@ -72,15 +79,9 @@ IOSCharArray *LeUtil_hexArray;
   return LeUtil_parseLeScanRecordWithByteArray_(scanrecord);
 }
 
-J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
-  LeUtil_init(self);
-  return self;
-}
-J2OBJC_IGNORE_DESIGNATED_END
-
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x9, 0, 1, -1, -1, -1, -1 },
     { NULL, "[B", 0x9, 2, 3, -1, -1, -1, -1 },
     { NULL, "[B", 0x9, 4, 3, -1, -1, -1, -1 },
@@ -92,22 +93,21 @@ J2OBJC_IGNORE_DESIGNATED_END
     { NULL, "[LNSString;", 0x9, 12, 14, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x9, 15, 16, -1, -1, -1, -1 },
     { NULL, "LLeScanRecord;", 0x9, 17, 1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(bytesToStringWithByteArray:);
-  methods[1].selector = @selector(stringToBytesWithNSString:);
-  methods[2].selector = @selector(hexStringToBytesWithNSString:);
-  methods[3].selector = @selector(bytesToHexStringWithByteArray:);
-  methods[4].selector = @selector(getStringsFromUUIDsWithJavaUtilUUIDArray:);
-  methods[5].selector = @selector(putUUIDsInStringArrayWithJavaUtilUUIDArray:withNSStringArray:withInt:);
-  methods[6].selector = @selector(intsToBytesWithIntArray:);
-  methods[7].selector = @selector(extendWithNSStringArray:withIntArray:);
-  methods[8].selector = @selector(extendWithNSStringArray:withNSString:);
-  methods[9].selector = @selector(fourDigitStringWithInt:);
-  methods[10].selector = @selector(parseLeScanRecordWithByteArray:);
-  methods[11].selector = @selector(init);
+  methods[0].selector = @selector(init);
+  methods[1].selector = @selector(bytesToStringWithByteArray:);
+  methods[2].selector = @selector(stringToBytesWithNSString:);
+  methods[3].selector = @selector(hexStringToBytesWithNSString:);
+  methods[4].selector = @selector(bytesToHexStringWithByteArray:);
+  methods[5].selector = @selector(getStringsFromUUIDsWithJavaUtilUUIDArray:);
+  methods[6].selector = @selector(putUUIDsInStringArrayWithJavaUtilUUIDArray:withNSStringArray:withInt:);
+  methods[7].selector = @selector(intsToBytesWithIntArray:);
+  methods[8].selector = @selector(extendWithNSStringArray:withIntArray:);
+  methods[9].selector = @selector(extendWithNSStringArray:withNSString:);
+  methods[10].selector = @selector(fourDigitStringWithInt:);
+  methods[11].selector = @selector(parseLeScanRecordWithByteArray:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "hexArray", "[C", .constantValue.asLong = 0, 0x1c, -1, 18, -1, -1 },
@@ -126,6 +126,18 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 @end
 
+void LeUtil_init(LeUtil *self) {
+  NSObject_init(self);
+}
+
+LeUtil *new_LeUtil_init() {
+  J2OBJC_NEW_IMPL(LeUtil, init)
+}
+
+LeUtil *create_LeUtil_init() {
+  J2OBJC_CREATE_IMPL(LeUtil, init)
+}
+
 NSString *LeUtil_bytesToStringWithByteArray_(IOSByteArray *bytes) {
   LeUtil_initialize();
   if (bytes == nil) return @"";
@@ -140,7 +152,7 @@ NSString *LeUtil_bytesToStringWithByteArray_(IOSByteArray *bytes) {
     }
   }
   NSString *bytesString = [builder description];
-  if (((jint) [((NSString *) nil_chk(bytesString)) length]) > 0) return [bytesString substring:0 endIndex:((jint) [bytesString length]) - 1];
+  if (((jint) [((NSString *) nil_chk(bytesString)) length]) > 0) return [bytesString java_substring:0 endIndex:((jint) [bytesString length]) - 1];
   return bytesString;
 }
 
@@ -178,7 +190,7 @@ NSString *LeUtil_bytesToHexStringWithByteArray_(IOSByteArray *bytes) {
     *IOSCharArray_GetRef(hexChars, j * 2) = IOSCharArray_Get(nil_chk(LeUtil_hexArray), JreURShift32(v, 4));
     *IOSCharArray_GetRef(hexChars, j * 2 + 1) = IOSCharArray_Get(LeUtil_hexArray, v & (jint) 0x0F);
   }
-  return [NSString stringWithCharacters:hexChars];
+  return [NSString java_stringWithCharacters:hexChars];
 }
 
 IOSObjectArray *LeUtil_getStringsFromUUIDsWithJavaUtilUUIDArray_(IOSObjectArray *uuids) {
@@ -222,7 +234,7 @@ IOSObjectArray *LeUtil_extendWithNSStringArray_withNSString_(IOSObjectArray *arg
 NSString *LeUtil_fourDigitStringWithInt_(jint value) {
   LeUtil_initialize();
   NSString *ret = JreStrcat("I", value);
-  if (((jint) [ret length]) > 4) return [ret substring:0 endIndex:4];
+  if (((jint) [ret length]) > 4) return [ret java_substring:0 endIndex:4];
   while (((jint) [ret length]) < 4) ret = JreStrcat("C$", '0', ret);
   return ret;
 }
@@ -230,18 +242,6 @@ NSString *LeUtil_fourDigitStringWithInt_(jint value) {
 id<LeScanRecord> LeUtil_parseLeScanRecordWithByteArray_(IOSByteArray *scanrecord) {
   LeUtil_initialize();
   return create_LeScanRecordImpl_initWithByteArray_(scanrecord);
-}
-
-void LeUtil_init(LeUtil *self) {
-  NSObject_init(self);
-}
-
-LeUtil *new_LeUtil_init() {
-  J2OBJC_NEW_IMPL(LeUtil, init)
-}
-
-LeUtil *create_LeUtil_init() {
-  J2OBJC_CREATE_IMPL(LeUtil, init)
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeUtil)

@@ -11,6 +11,13 @@ __attribute__((unused)) static IOSObjectArray *MockedResponseTest__Annotations$0
 
 @implementation MockedResponseTest
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  MockedResponseTest_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
 - (void)testMockedResponse {
   MockedResponseObject *mr = create_MockedResponseObject_initWithNSStringArray_([IOSObjectArray arrayWithLength:0 type:NSString_class_()]);
   JreAssert(([mr isForArgumentsWithNSStringArray:nil]), (@"houtbecke/rs/le/MockedResponseTest.java:12 condition failed: assert mr.isForArguments(null);"));
@@ -32,22 +39,15 @@ __attribute__((unused)) static IOSObjectArray *MockedResponseTest__Annotations$0
   JreAssert(([mr isSelfDestroying]), (@"houtbecke/rs/le/MockedResponseTest.java:36 condition failed: assert mr.isSelfDestroying();"));
 }
 
-J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
-  MockedResponseTest_init(self);
-  return self;
-}
-J2OBJC_IGNORE_DESIGNATED_END
-
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
-    { NULL, "V", 0x1, -1, -1, -1, -1, 0, -1 },
     { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, 0, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(testMockedResponse);
-  methods[1].selector = @selector(init);
+  methods[0].selector = @selector(init);
+  methods[1].selector = @selector(testMockedResponse);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { (void *)&MockedResponseTest__Annotations$0 };
   static const J2ObjcClassInfo _MockedResponseTest = { "MockedResponseTest", "houtbecke.rs.le", ptrTable, methods, NULL, 7, 0x1, 2, 0, -1, -1, -1, -1, -1 };

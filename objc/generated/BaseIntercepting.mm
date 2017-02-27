@@ -11,7 +11,7 @@
 }
 
 - (NSString *)description {
-  return JreStrcat("$CI$", [((NSString *) nil_chk([[self getClass] getSimpleName])) replace:@"Intercepting" withSequence:@""], '[', id__, @"] ");
+  return JreStrcat("$CI$", [((NSString *) nil_chk([[self java_getClass] getSimpleName])) java_replace:@"Intercepting" withSequence:@""], '[', id__, @"] ");
 }
 
 + (const J2ObjcClassInfo *)__metadata {

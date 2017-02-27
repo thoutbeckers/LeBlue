@@ -181,12 +181,12 @@
 
 - (void)remoteListenerAddedWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                    withInterceptingLeRemoteDeviceListener:(InterceptingLeRemoteDeviceListener *)iListener {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceAddListener) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", ((InterceptingLeRemoteDeviceListener *) nil_chk(iListener))->id__) } count:1 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceAddListener) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", ((BaseIntercepting *) nil_chk(iListener))->id__) } count:1 type:NSString_class_()]];
 }
 
 - (void)remoteListenerRemovedWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                      withInterceptingLeRemoteDeviceListener:(InterceptingLeRemoteDeviceListener *)iListener {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceRemoveListener) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", ((InterceptingLeRemoteDeviceListener *) nil_chk(iListener))->id__) } count:1 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceRemoveListener) withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", ((BaseIntercepting *) nil_chk(iListener))->id__) } count:1 type:NSString_class_()]];
 }
 
 - (void)gotAddressWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
@@ -231,7 +231,7 @@
                                                      withJavaUtilUUID:(JavaUtilUUID *)uuid
                                        withInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                                  withInterceptingLeGattCharacteristic:(InterceptingLeGattCharacteristic *)iLeGattCharacteristic {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicChanged) withBaseIntercepting:iLeCharacteristicListener withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description], JreStrcat("I", ((InterceptingLeRemoteDevice *) nil_chk(iLeRemoteDevice))->id__), JreStrcat("I", ((InterceptingLeGattCharacteristic *) nil_chk(iLeGattCharacteristic))->id__) } count:3 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicChanged) withBaseIntercepting:iLeCharacteristicListener withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description], JreStrcat("I", ((BaseIntercepting *) nil_chk(iLeRemoteDevice))->id__), JreStrcat("I", ((BaseIntercepting *) nil_chk(iLeGattCharacteristic))->id__) } count:3 type:NSString_class_()]];
 }
 
 - (void)characteristicNotificationChangedWithInterceptingLeCharacteristicListener:(InterceptingLeCharacteristicListener *)iLeCharacteristicListener
@@ -239,7 +239,7 @@
                                                    withInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                                              withInterceptingLeGattCharacteristic:(InterceptingLeGattCharacteristic *)iLeGattCharacteristic
                                                               withJavaLangBoolean:(JavaLangBoolean *)success {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicNotificationChanged) withBaseIntercepting:iLeCharacteristicListener withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description], JreStrcat("I", ((InterceptingLeRemoteDevice *) nil_chk(iLeRemoteDevice))->id__), JreStrcat("I", ((InterceptingLeGattCharacteristic *) nil_chk(iLeGattCharacteristic))->id__), [((JavaLangBoolean *) nil_chk(success)) description] } count:4 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicNotificationChanged) withBaseIntercepting:iLeCharacteristicListener withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description], JreStrcat("I", ((BaseIntercepting *) nil_chk(iLeRemoteDevice))->id__), JreStrcat("I", ((BaseIntercepting *) nil_chk(iLeGattCharacteristic))->id__), [((JavaLangBoolean *) nil_chk(success)) description] } count:4 type:NSString_class_()]];
 }
 
 - (void)characteristicWrittenWithInterceptingLeCharacteristicWriteListener:(InterceptingLeCharacteristicWriteListener *)iLeCharacteristicWriteListener
@@ -247,7 +247,7 @@
                                             withInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                                       withInterceptingLeGattCharacteristic:(InterceptingLeGattCharacteristic *)iLeGattCharacteristic
                                                        withJavaLangBoolean:(JavaLangBoolean *)success {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicWritten) withBaseIntercepting:iLeCharacteristicWriteListener withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description], JreStrcat("I", ((InterceptingLeRemoteDevice *) nil_chk(iLeRemoteDevice))->id__), JreStrcat("I", ((InterceptingLeGattCharacteristic *) nil_chk(iLeGattCharacteristic))->id__), [((JavaLangBoolean *) nil_chk(success)) description] } count:4 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, characteristicWritten) withBaseIntercepting:iLeCharacteristicWriteListener withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ [((JavaUtilUUID *) nil_chk(uuid)) description], JreStrcat("I", ((BaseIntercepting *) nil_chk(iLeRemoteDevice))->id__), JreStrcat("I", ((BaseIntercepting *) nil_chk(iLeGattCharacteristic))->id__), [((JavaLangBoolean *) nil_chk(success)) description] } count:4 type:NSString_class_()]];
 }
 
 - (void)characteristicListenerSetWithInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
