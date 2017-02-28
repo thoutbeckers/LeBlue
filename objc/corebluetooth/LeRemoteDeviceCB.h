@@ -38,8 +38,9 @@
 }
 
 @property (strong)CBPeripheral* peripheral;
+@property (readonly) CBCentralManager* centralManager;
 
--(id) initWith:(CBPeripheral*) peripheral device:(LeDeviceCB*)device;
+-(id) initWith:(CBPeripheral*) peripheral device:(LeDeviceCB*)device centralManager:(CBCentralManager*)centralManager;
 - (void) connected;
 - (void) disconnected;
 - (void) setName:(NSString *) name;

@@ -17,7 +17,8 @@
     NSMutableSet* delegates;
 
 }
-@property (readonly) CBCentralManager* centralManager;
 @property (strong) NSMutableDictionary* remoteDevices;
+@property (strong) NSMutableArray<CBCentralManager*>* centralManagers;
+
 
 @end

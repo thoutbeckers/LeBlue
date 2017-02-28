@@ -10,6 +10,7 @@
 #import "LeDeviceListener.h"
 #import "LeRemoteDeviceCB.h"
 #import "HelpersCB.h"
+#include "java/util/List.h"
 
 #import "LeScanRecordCb.h"
 #import "LeDeviceState.h"
@@ -22,11 +23,13 @@
     {
         delegates = [[NSMutableSet alloc] init];
         _remoteDevices = [NSMutableDictionary new];
+        _centralManagers  = [NSMutableArray new];
+  
+        [_centralManagers addObject: [[CBCentralManager alloc]
+                                      initWithDelegate:self
+                                      queue:dispatch_get_main_queue()]];
 
-        _centralManager = [[CBCentralManager alloc]
-                           initWithDelegate:self
-                           queue:dispatch_get_main_queue()];
-        
+    
     }
     return self;
 }
@@ -41,30 +44,53 @@
 }
 
 - (bool)checkBleHardwareAvailable{
-    return( ( _centralManager.state != CBCentralManagerStateUnsupported)?1 : 0);
+    return( ( [_centralManagers objectAtIndex:0].state != CBCentralManagerStateUnsupported)?1 : 0);
 }
 
 - (bool)isBtEnabled{
-    return( ( _centralManager.state == CBCentralManagerStatePoweredOn)?1 : 0);
+    return( ( [_centralManagers objectAtIndex:0].state == CBCentralManagerStatePoweredOn)?1 : 0);
 }
 
 - (void)startScanning{
 NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber  numberWithBool:YES], CBCentralManagerScanOptionAllowDuplicatesKey, nil];
-       [_centralManager scanForPeripheralsWithServices:nil options:options];
-   // NSLog(@"startScanning");
+       [[_centralManagers objectAtIndex:0] scanForPeripheralsWithServices:nil options:options];
 
 }
 
 - (void)startScanningWithJavaUtilUUIDArray:(IOSObjectArray *)uuids{
-    [_centralManager scanForPeripheralsWithServices:[uuids toCBUUIDArray] options:nil];
-   //  NSLog(@"startScanning with uuid");
-
+    [[_centralManagers objectAtIndex:0] scanForPeripheralsWithServices:[uuids toCBUUIDArray] options:nil];
 }
 
-- (void)stopScanning{
-    [_centralManager stopScan];
-   // NSLog(@"stopScanning");
+- (void)startScanningWithJavaUtilList:(id<JavaUtilList>)filters{
+    
+    while ([filters size] > [_centralManagers count]){
+        
+    [_centralManagers addObject: [[CBCentralManager alloc]
+                                  initWithDelegate:self
+                                  queue:dispatch_get_main_queue()]];
+    }
+    
+    
+    int i =0;
+    for (id<JavaUtilList> __strong filter in nil_chk(filters)) {
+        NSMutableArray<CBUUID*> *array = [NSMutableArray new];
+        
+        for (JavaUtilUUID * __strong uuid in nil_chk(filter)) {
+        
+            [array addObject:[uuid toCBUUID]];
+        }
+        [[_centralManagers objectAtIndex:i] scanForPeripheralsWithServices:array options:nil];
+        i++;
+    }
+    
+}
 
+
+
+- (void)stopScanning{
+    for(CBCentralManager * cm in  _centralManagers){
+        [cm stopScan];
+    }
 }
 
 
@@ -108,12 +134,11 @@ NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber  nu
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
     
- //   NSLog(@"peripheral discovered %@", peripheral.identifier);
 
   LeRemoteDeviceCB * remoteDevice  = [_remoteDevices objectForKey:peripheral.identifier];
     
     if ([_remoteDevices objectForKey:peripheral.identifier] == nil){
-        remoteDevice = [[LeRemoteDeviceCB alloc] initWith:peripheral device:self];
+        remoteDevice = [[LeRemoteDeviceCB alloc] initWith:peripheral device:self centralManager:central];
         [_remoteDevices setObject:remoteDevice forKey:peripheral.identifier];
     }
 
@@ -128,8 +153,6 @@ NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber  nu
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
 
-  //  NSLog(@"didDisconnectPeripheral %@ %@",[peripheral name],error);
-
     LeRemoteDeviceCB  *remoteDevice = [_remoteDevices objectForKey: peripheral.identifier];
     if (remoteDevice)
         [remoteDevice disconnected];
@@ -137,8 +160,6 @@ NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber  nu
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
  {
-    //  NSLog(@"didConnectPeripheral %@ ",[peripheral name]);
-
       LeRemoteDeviceCB  *remoteDevice = [_remoteDevices objectForKey: peripheral.identifier];
      if (remoteDevice)[remoteDevice connected];
      
@@ -148,8 +169,6 @@ NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber  nu
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     
- //   NSLog(@"didFailToConnectPeripheral %@ %@ ",[peripheral name],error);
-
 }
 
 
