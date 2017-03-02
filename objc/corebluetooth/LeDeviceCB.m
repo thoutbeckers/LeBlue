@@ -71,17 +71,32 @@ NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber  nu
     }
     
     
-    int i =0;
-    for (id<JavaUtilList> __strong filter in nil_chk(filters)) {
-        NSMutableArray<CBUUID*> *array = [NSMutableArray new];
-        
-        for (JavaUtilUUID * __strong uuid in nil_chk(filter)) {
-        
-            [array addObject:[uuid toCBUUID]];
+    - (void)startScanningWithJavaUtilList:(id<JavaUtilList>)filters{
+
+        while ([filters size] > [_centralManagers count]){
+
+        [_centralManagers addObject: [[CBCentralManager alloc]
+                                      initWithDelegate:self
+                                      queue:dispatch_get_main_queue()]];
         }
-        [[_centralManagers objectAtIndex:i] scanForPeripheralsWithServices:array options:nil];
-        i++;
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+        int i =0;
+        for (id<JavaUtilList> __strong filter in nil_chk(filters)) {
+
+            NSMutableArray<CBUUID*> *array = [NSMutableArray new];
+
+            for (JavaUtilUUID * __strong uuid in nil_chk(filter)) {
+
+                [array addObject:[uuid toCBUUID]];
+            }
+            [[_centralManagers objectAtIndex:i] scanForPeripheralsWithServices:array options:nil];
+            i++;
+        }
+        });
+
     }
+
     
 }
 
@@ -89,8 +104,9 @@ NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber  nu
 
 - (void)stopScanning{
     for(CBCentralManager * cm in  _centralManagers){
-        [cm stopScan];
-    }
+        if (cm.state == CBCentralManagerStatePoweredOn)
+            [cm stopScan];
+       }
 }
 
 
