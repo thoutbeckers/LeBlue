@@ -61,46 +61,32 @@ NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber  nu
     [[_centralManagers objectAtIndex:0] scanForPeripheralsWithServices:[uuids toCBUUIDArray] options:nil];
 }
 
+
 - (void)startScanningWithJavaUtilList:(id<JavaUtilList>)filters{
-    
-    while ([filters size] > [_centralManagers count]){
-        
-    [_centralManagers addObject: [[CBCentralManager alloc]
-                                  initWithDelegate:self
-                                  queue:dispatch_get_main_queue()]];
-    }
-    
-    
-    - (void)startScanningWithJavaUtilList:(id<JavaUtilList>)filters{
 
-        while ([filters size] > [_centralManagers count]){
+      while ([filters size] > [_centralManagers count]){
 
-        [_centralManagers addObject: [[CBCentralManager alloc]
-                                      initWithDelegate:self
-                                      queue:dispatch_get_main_queue()]];
-        }
+      [_centralManagers addObject: [[CBCentralManager alloc]
+                                    initWithDelegate:self
+                                    queue:dispatch_get_main_queue()]];
+      }
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
-        int i =0;
-        for (id<JavaUtilList> __strong filter in nil_chk(filters)) {
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+      int i =0;
+      for (id<JavaUtilList> __strong filter in nil_chk(filters)) {
 
-            NSMutableArray<CBUUID*> *array = [NSMutableArray new];
+          NSMutableArray<CBUUID*> *array = [NSMutableArray new];
 
-            for (JavaUtilUUID * __strong uuid in nil_chk(filter)) {
+          for (JavaUtilUUID * __strong uuid in nil_chk(filter)) {
 
-                [array addObject:[uuid toCBUUID]];
-            }
-            [[_centralManagers objectAtIndex:i] scanForPeripheralsWithServices:array options:nil];
-            i++;
-        }
-        });
+              [array addObject:[uuid toCBUUID]];
+          }
+          [[_centralManagers objectAtIndex:i] scanForPeripheralsWithServices:array options:nil];
+          i++;
+      }
+      });
 
-    }
-
-    
-}
-
-
+ }
 
 - (void)stopScanning{
     for(CBCentralManager * cm in  _centralManagers){
