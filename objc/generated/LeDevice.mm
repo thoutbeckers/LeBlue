@@ -16,6 +16,7 @@
     { NULL, "Z", 0x401, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x401, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x481, 3, 4, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, 3, 5, -1, 6, -1, -1 },
     { NULL, "V", 0x401, -1, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
@@ -26,10 +27,11 @@
   methods[3].selector = @selector(isBtEnabled);
   methods[4].selector = @selector(startScanning);
   methods[5].selector = @selector(startScanningWithJavaUtilUUIDArray:);
-  methods[6].selector = @selector(stopScanning);
+  methods[6].selector = @selector(startScanningWithJavaUtilList:);
+  methods[7].selector = @selector(stopScanning);
   #pragma clang diagnostic pop
-  static const void *ptrTable[] = { "addListener", "LLeDeviceListener;", "removeListener", "startScanning", "[LJavaUtilUUID;" };
-  static const J2ObjcClassInfo _LeDevice = { "LeDevice", "houtbecke.rs.le", ptrTable, methods, NULL, 7, 0x609, 7, 0, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "addListener", "LLeDeviceListener;", "removeListener", "startScanning", "[LJavaUtilUUID;", "LJavaUtilList;", "(Ljava/util/List<Ljava/util/List<Ljava/util/UUID;>;>;)V" };
+  static const J2ObjcClassInfo _LeDevice = { "LeDevice", "houtbecke.rs.le", ptrTable, methods, NULL, 7, 0x609, 8, 0, -1, -1, -1, -1, -1 };
   return &_LeDevice;
 }
 

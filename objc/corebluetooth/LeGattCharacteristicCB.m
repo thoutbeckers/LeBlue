@@ -66,8 +66,7 @@
 
 -(void)setValueWithByteArray:(IOSByteArray *)value withBoolean:(bool)withResponse{
 
-    if (withResponse){
-
+    if ( (_characteristic.properties & CBCharacteristicPropertyWrite)  &&  (  (withResponse )|| !(_characteristic.properties & CBCharacteristicPropertyWriteWithoutResponse) ) ){
         [_remoteDevice.peripheral writeValue:[value toNSData]
                            forCharacteristic:_characteristic type:CBCharacteristicWriteWithResponse];
     }else{

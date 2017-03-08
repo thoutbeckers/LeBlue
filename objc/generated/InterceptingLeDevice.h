@@ -22,6 +22,7 @@
 
 @class IOSObjectArray;
 @class LeInterceptor;
+@protocol JavaUtilList;
 @protocol LeDeviceListener;
 
 @interface InterceptingLeDevice : LeIntercepting < LeDevice > {
@@ -47,6 +48,8 @@
 - (void)removeListenerWithLeDeviceListener:(id<LeDeviceListener>)listener;
 
 - (void)startScanning;
+
+- (void)startScanningWithJavaUtilList:(id<JavaUtilList>)filters;
 
 - (void)startScanningWithJavaUtilUUIDArray:(IOSObjectArray *)uuids;
 

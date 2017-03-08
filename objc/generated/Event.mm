@@ -62,7 +62,7 @@
 
 - (jboolean)isEqual:(id)o {
   if (self == o) return true;
-  if (o == nil || [self getClass] != (id) [o getClass]) return false;
+  if (o == nil || [self java_getClass] != [o java_getClass]) return false;
   Event *event = (Event *) cast_chk(o, [Event class]);
   if (source_ != event->source_) return false;
   if (type_ != event->type_) return false;

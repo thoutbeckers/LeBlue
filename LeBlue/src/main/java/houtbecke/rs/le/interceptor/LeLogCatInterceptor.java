@@ -3,6 +3,7 @@ package houtbecke.rs.le.interceptor;
 import android.util.Log;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeDeviceState;
@@ -108,6 +109,12 @@ public class LeLogCatInterceptor extends LeInterceptor {
     @Override
     public void startedScanning(InterceptingLeDevice iLeDevice, UUID[] uuids) {
         Log.i(TAG, "startedScanning: "+iLeDevice+Arrays.toString(uuids));
+    }
+
+    @Override
+    public void startedScanning(InterceptingLeDevice iLeDevice, List<List<UUID>> filters) {
+        for (List<UUID> filter :filters)
+            Log.i(TAG, "startedScanning: "+iLeDevice+Arrays.toString(filter.toArray()));
     }
 
     @Override

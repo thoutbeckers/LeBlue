@@ -27,10 +27,18 @@
 #include "java/lang/Boolean.h"
 #include "java/lang/System.h"
 #include "java/util/HashMap.h"
+#include "java/util/List.h"
 #include "java/util/Map.h"
 #include "java/util/UUID.h"
 
 @implementation LeInterceptor
+
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  LeInterceptor_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
 
 - (InterceptingLeRemoteDevice *)getInterceptingLeRemoteDeviceWithLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice {
   InterceptingLeRemoteDevice *iRemoteDevice = [((id<JavaUtilMap>) nil_chk(iRemoteDevices_)) getWithId:leRemoteDevice];
@@ -206,6 +214,12 @@
   [self doesNotRecognizeSelector:_cmd];
 }
 
+- (void)startedScanningWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice
+                               withJavaUtilList:(id<JavaUtilList>)filters {
+  // can't call an abstract method
+  [self doesNotRecognizeSelector:_cmd];
+}
+
 - (void)stoppedScanningWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice {
   // can't call an abstract method
   [self doesNotRecognizeSelector:_cmd];
@@ -351,13 +365,6 @@
   [self doesNotRecognizeSelector:_cmd];
 }
 
-J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
-  LeInterceptor_init(self);
-  return self;
-}
-J2OBJC_IGNORE_DESIGNATED_END
-
 - (void)dealloc {
   RELEASE_(iDevices_);
   RELEASE_(iDeviceListeners_);
@@ -372,6 +379,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LInterceptingLeRemoteDevice;", 0x1, 0, 1, -1, -1, -1, -1 },
     { NULL, "LInterceptingLeDevice;", 0x1, 2, 3, -1, -1, -1, -1 },
     { NULL, "LInterceptingLeDeviceListener;", 0x1, 4, 5, -1, -1, -1, -1 },
@@ -395,94 +403,95 @@ J2OBJC_IGNORE_DESIGNATED_END
     { NULL, "V", 0x401, 38, 37, -1, -1, -1, -1 },
     { NULL, "V", 0x401, 39, 35, -1, -1, -1, -1 },
     { NULL, "V", 0x401, 39, 40, -1, -1, -1, -1 },
-    { NULL, "V", 0x401, 41, 35, -1, -1, -1, -1 },
-    { NULL, "V", 0x401, 42, 43, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, 39, 41, -1, 42, -1, -1 },
+    { NULL, "V", 0x401, 43, 35, -1, -1, -1, -1 },
     { NULL, "V", 0x401, 44, 45, -1, -1, -1, -1 },
     { NULL, "V", 0x401, 46, 47, -1, -1, -1, -1 },
-    { NULL, "V", 0x401, 48, 47, -1, -1, -1, -1 },
-    { NULL, "V", 0x401, 49, 50, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, 48, 49, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, 50, 49, -1, -1, -1, -1 },
     { NULL, "V", 0x401, 51, 52, -1, -1, -1, -1 },
-    { NULL, "V", 0x401, 53, 52, -1, -1, -1, -1 },
-    { NULL, "V", 0x401, 54, 52, -1, -1, -1, -1 },
-    { NULL, "V", 0x401, 55, 52, -1, -1, -1, -1 },
-    { NULL, "V", 0x401, 55, 56, -1, -1, -1, -1 },
-    { NULL, "V", 0x401, 57, 50, -1, -1, -1, -1 },
-    { NULL, "V", 0x401, 58, 59, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, 53, 54, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, 55, 54, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, 56, 54, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, 57, 54, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, 57, 58, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, 59, 52, -1, -1, -1, -1 },
     { NULL, "V", 0x401, 60, 61, -1, -1, -1, -1 },
     { NULL, "V", 0x401, 62, 63, -1, -1, -1, -1 },
     { NULL, "V", 0x401, 64, 65, -1, -1, -1, -1 },
     { NULL, "V", 0x401, 66, 67, -1, -1, -1, -1 },
-    { NULL, "V", 0x401, 68, 43, -1, -1, -1, -1 },
     { NULL, "V", 0x401, 68, 69, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, 70, 45, -1, -1, -1, -1 },
     { NULL, "V", 0x401, 70, 71, -1, -1, -1, -1 },
     { NULL, "V", 0x401, 72, 73, -1, -1, -1, -1 },
-    { NULL, "V", 0x401, 74, 52, -1, -1, -1, -1 },
-    { NULL, "V", 0x401, 75, 76, -1, -1, -1, -1 },
-    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, 74, 75, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, 76, 54, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, 77, 78, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(getInterceptingLeRemoteDeviceWithLeRemoteDevice:);
-  methods[1].selector = @selector(getInterceptingLeDeviceWithLeDevice:);
-  methods[2].selector = @selector(getInterceptingLeDeviceListenerWithLeDeviceListener:);
-  methods[3].selector = @selector(getInterceptingLeRemoteDeviceListenerWithLeRemoteDeviceListener:);
-  methods[4].selector = @selector(getInterceptingLeGattServiceWithLeGattService:);
-  methods[5].selector = @selector(serviceGotCharacteristicWithInterceptingLeGattService:withLeGattCharacteristic:);
-  methods[6].selector = @selector(getInterceptingCharacteristicsListenerWithLeCharacteristicListener:);
-  methods[7].selector = @selector(getInterceptingCharacteristicsWriteListenerWithLeCharacteristicWriteListener:);
-  methods[8].selector = @selector(getInterceptingLeGattCharacteristicWithLeGattCharacteristic:);
-  methods[9].selector = @selector(listenerAddedWithInterceptingLeDevice:withInterceptingLeDeviceListener:);
-  methods[10].selector = @selector(deviceFoundWithInterceptingLeDeviceListener:withInterceptingLeDevice:withInterceptingLeRemoteDevice:withInt:withLeScanRecord:);
-  methods[11].selector = @selector(deviceStateWithInterceptingLeDeviceListener:withInterceptingLeDevice:withLeDeviceState:);
-  methods[12].selector = @selector(connectedWithInterceptingLeRemoteDeviceListener:withInterceptingLeDevice:withInterceptingLeRemoteDevice:);
-  methods[13].selector = @selector(disconnectedWithInterceptingLeRemoteDeviceListener:withInterceptingLeDevice:withInterceptingLeRemoteDevice:);
-  methods[14].selector = @selector(closedWithInterceptingLeRemoteDeviceListener:withInterceptingLeDevice:withInterceptingLeRemoteDevice:);
-  methods[15].selector = @selector(gotUUIDWithInterceptingLeGattService:withJavaUtilUUID:);
-  methods[16].selector = @selector(enabledCharacteristicNotificationWithInterceptingLeGattService:withJavaUtilUUID:withBoolean:);
-  methods[17].selector = @selector(servicesDiscoveredWithInterceptingLeRemoteDeviceListener:withInterceptingLeDevice:withInterceptingLeRemoteDevice:withLeGattStatus:withInterceptingLeGattServiceArray:);
-  methods[18].selector = @selector(listenerRemovedWithInterceptingLeDevice:);
-  methods[19].selector = @selector(checkedBleHardwareAvailableWithInterceptingLeDevice:withBoolean:);
-  methods[20].selector = @selector(wasBtEnabledWithInterceptingLeDevice:withBoolean:);
-  methods[21].selector = @selector(startedScanningWithInterceptingLeDevice:);
-  methods[22].selector = @selector(startedScanningWithInterceptingLeDevice:withJavaUtilUUIDArray:);
-  methods[23].selector = @selector(stoppedScanningWithInterceptingLeDevice:);
-  methods[24].selector = @selector(gotValueWithInterceptingLeGattCharacteristic:withByteArray:);
-  methods[25].selector = @selector(gotIntValueWithInterceptingLeGattCharacteristic:withLeFormat:withInt:);
-  methods[26].selector = @selector(remoteListenerAddedWithInterceptingLeRemoteDevice:withInterceptingLeRemoteDeviceListener:);
-  methods[27].selector = @selector(remoteListenerRemovedWithInterceptingLeRemoteDevice:withInterceptingLeRemoteDeviceListener:);
-  methods[28].selector = @selector(gotAddressWithInterceptingLeRemoteDevice:withNSString:);
-  methods[29].selector = @selector(connectingWithInterceptingLeRemoteDevice:);
-  methods[30].selector = @selector(disconnectingWithInterceptingLeRemoteDevice:);
-  methods[31].selector = @selector(closingWithInterceptingLeRemoteDevice:);
-  methods[32].selector = @selector(serviceDiscoveryStartedWithInterceptingLeRemoteDevice:);
-  methods[33].selector = @selector(serviceDiscoveryStartedWithInterceptingLeRemoteDevice:withJavaUtilUUIDArray:);
-  methods[34].selector = @selector(gotRemoteDeviceNameWithInterceptingLeRemoteDevice:withNSString:);
-  methods[35].selector = @selector(characteristicChangedWithInterceptingLeCharacteristicListener:withJavaUtilUUID:withInterceptingLeRemoteDevice:withInterceptingLeGattCharacteristic:);
-  methods[36].selector = @selector(characteristicNotificationChangedWithInterceptingLeCharacteristicListener:withJavaUtilUUID:withInterceptingLeRemoteDevice:withInterceptingLeGattCharacteristic:withJavaLangBoolean:);
-  methods[37].selector = @selector(characteristicWrittenWithInterceptingLeCharacteristicWriteListener:withJavaUtilUUID:withInterceptingLeRemoteDevice:withInterceptingLeGattCharacteristic:withJavaLangBoolean:);
-  methods[38].selector = @selector(characteristicListenerSetWithInterceptingLeRemoteDevice:withInterceptingLeCharacteristicListener:withJavaUtilUUIDArray:);
-  methods[39].selector = @selector(characteristicWriteListenerSetWithInterceptingLeRemoteDevice:withInterceptingLeCharacteristicWriteListener:withJavaUtilUUIDArray:);
-  methods[40].selector = @selector(setValueWithInterceptingLeGattCharacteristic:withByteArray:);
-  methods[41].selector = @selector(setValueWithInterceptingLeGattCharacteristic:withByteArray:withJavaLangBoolean:);
-  methods[42].selector = @selector(gotCharacteristicWithInterceptingLeGattService:withInterceptingLeGattCharacteristic:);
-  methods[43].selector = @selector(rssiReadWithInterceptingLeRemoteDeviceListener:withInterceptingLeDevice:withInterceptingLeRemoteDevice:withInt:);
-  methods[44].selector = @selector(readRssiWithInterceptingLeRemoteDevice:);
-  methods[45].selector = @selector(readWithInterceptingLeGattCharacteristic:);
-  methods[46].selector = @selector(init);
+  methods[0].selector = @selector(init);
+  methods[1].selector = @selector(getInterceptingLeRemoteDeviceWithLeRemoteDevice:);
+  methods[2].selector = @selector(getInterceptingLeDeviceWithLeDevice:);
+  methods[3].selector = @selector(getInterceptingLeDeviceListenerWithLeDeviceListener:);
+  methods[4].selector = @selector(getInterceptingLeRemoteDeviceListenerWithLeRemoteDeviceListener:);
+  methods[5].selector = @selector(getInterceptingLeGattServiceWithLeGattService:);
+  methods[6].selector = @selector(serviceGotCharacteristicWithInterceptingLeGattService:withLeGattCharacteristic:);
+  methods[7].selector = @selector(getInterceptingCharacteristicsListenerWithLeCharacteristicListener:);
+  methods[8].selector = @selector(getInterceptingCharacteristicsWriteListenerWithLeCharacteristicWriteListener:);
+  methods[9].selector = @selector(getInterceptingLeGattCharacteristicWithLeGattCharacteristic:);
+  methods[10].selector = @selector(listenerAddedWithInterceptingLeDevice:withInterceptingLeDeviceListener:);
+  methods[11].selector = @selector(deviceFoundWithInterceptingLeDeviceListener:withInterceptingLeDevice:withInterceptingLeRemoteDevice:withInt:withLeScanRecord:);
+  methods[12].selector = @selector(deviceStateWithInterceptingLeDeviceListener:withInterceptingLeDevice:withLeDeviceState:);
+  methods[13].selector = @selector(connectedWithInterceptingLeRemoteDeviceListener:withInterceptingLeDevice:withInterceptingLeRemoteDevice:);
+  methods[14].selector = @selector(disconnectedWithInterceptingLeRemoteDeviceListener:withInterceptingLeDevice:withInterceptingLeRemoteDevice:);
+  methods[15].selector = @selector(closedWithInterceptingLeRemoteDeviceListener:withInterceptingLeDevice:withInterceptingLeRemoteDevice:);
+  methods[16].selector = @selector(gotUUIDWithInterceptingLeGattService:withJavaUtilUUID:);
+  methods[17].selector = @selector(enabledCharacteristicNotificationWithInterceptingLeGattService:withJavaUtilUUID:withBoolean:);
+  methods[18].selector = @selector(servicesDiscoveredWithInterceptingLeRemoteDeviceListener:withInterceptingLeDevice:withInterceptingLeRemoteDevice:withLeGattStatus:withInterceptingLeGattServiceArray:);
+  methods[19].selector = @selector(listenerRemovedWithInterceptingLeDevice:);
+  methods[20].selector = @selector(checkedBleHardwareAvailableWithInterceptingLeDevice:withBoolean:);
+  methods[21].selector = @selector(wasBtEnabledWithInterceptingLeDevice:withBoolean:);
+  methods[22].selector = @selector(startedScanningWithInterceptingLeDevice:);
+  methods[23].selector = @selector(startedScanningWithInterceptingLeDevice:withJavaUtilUUIDArray:);
+  methods[24].selector = @selector(startedScanningWithInterceptingLeDevice:withJavaUtilList:);
+  methods[25].selector = @selector(stoppedScanningWithInterceptingLeDevice:);
+  methods[26].selector = @selector(gotValueWithInterceptingLeGattCharacteristic:withByteArray:);
+  methods[27].selector = @selector(gotIntValueWithInterceptingLeGattCharacteristic:withLeFormat:withInt:);
+  methods[28].selector = @selector(remoteListenerAddedWithInterceptingLeRemoteDevice:withInterceptingLeRemoteDeviceListener:);
+  methods[29].selector = @selector(remoteListenerRemovedWithInterceptingLeRemoteDevice:withInterceptingLeRemoteDeviceListener:);
+  methods[30].selector = @selector(gotAddressWithInterceptingLeRemoteDevice:withNSString:);
+  methods[31].selector = @selector(connectingWithInterceptingLeRemoteDevice:);
+  methods[32].selector = @selector(disconnectingWithInterceptingLeRemoteDevice:);
+  methods[33].selector = @selector(closingWithInterceptingLeRemoteDevice:);
+  methods[34].selector = @selector(serviceDiscoveryStartedWithInterceptingLeRemoteDevice:);
+  methods[35].selector = @selector(serviceDiscoveryStartedWithInterceptingLeRemoteDevice:withJavaUtilUUIDArray:);
+  methods[36].selector = @selector(gotRemoteDeviceNameWithInterceptingLeRemoteDevice:withNSString:);
+  methods[37].selector = @selector(characteristicChangedWithInterceptingLeCharacteristicListener:withJavaUtilUUID:withInterceptingLeRemoteDevice:withInterceptingLeGattCharacteristic:);
+  methods[38].selector = @selector(characteristicNotificationChangedWithInterceptingLeCharacteristicListener:withJavaUtilUUID:withInterceptingLeRemoteDevice:withInterceptingLeGattCharacteristic:withJavaLangBoolean:);
+  methods[39].selector = @selector(characteristicWrittenWithInterceptingLeCharacteristicWriteListener:withJavaUtilUUID:withInterceptingLeRemoteDevice:withInterceptingLeGattCharacteristic:withJavaLangBoolean:);
+  methods[40].selector = @selector(characteristicListenerSetWithInterceptingLeRemoteDevice:withInterceptingLeCharacteristicListener:withJavaUtilUUIDArray:);
+  methods[41].selector = @selector(characteristicWriteListenerSetWithInterceptingLeRemoteDevice:withInterceptingLeCharacteristicWriteListener:withJavaUtilUUIDArray:);
+  methods[42].selector = @selector(setValueWithInterceptingLeGattCharacteristic:withByteArray:);
+  methods[43].selector = @selector(setValueWithInterceptingLeGattCharacteristic:withByteArray:withJavaLangBoolean:);
+  methods[44].selector = @selector(gotCharacteristicWithInterceptingLeGattService:withInterceptingLeGattCharacteristic:);
+  methods[45].selector = @selector(rssiReadWithInterceptingLeRemoteDeviceListener:withInterceptingLeDevice:withInterceptingLeRemoteDevice:withInt:);
+  methods[46].selector = @selector(readRssiWithInterceptingLeRemoteDevice:);
+  methods[47].selector = @selector(readWithInterceptingLeGattCharacteristic:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
-    { "iDevices_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 77, -1 },
-    { "iDeviceListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 78, -1 },
-    { "iRemoteDevices_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 79, -1 },
-    { "iRemoteDeviceListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 80, -1 },
-    { "iGattServices_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 81, -1 },
-    { "iGattCharacteristics_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 82, -1 },
-    { "iCharacteristicListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 83, -1 },
-    { "iCharacteristicWriteListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 84, -1 },
+    { "iDevices_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 79, -1 },
+    { "iDeviceListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 80, -1 },
+    { "iRemoteDevices_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 81, -1 },
+    { "iRemoteDeviceListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 82, -1 },
+    { "iGattServices_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 83, -1 },
+    { "iGattCharacteristics_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 84, -1 },
+    { "iCharacteristicListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 85, -1 },
+    { "iCharacteristicWriteListeners_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x1, -1, -1, 86, -1 },
     { "counter_", "I", .constantValue.asLong = 0, 0x41, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "getInterceptingLeRemoteDevice", "LLeRemoteDevice;", "getInterceptingLeDevice", "LLeDevice;", "getInterceptingLeDeviceListener", "LLeDeviceListener;", "getInterceptingLeRemoteDeviceListener", "LLeRemoteDeviceListener;", "getInterceptingLeGattService", "LLeGattService;", "serviceGotCharacteristic", "LInterceptingLeGattService;LLeGattCharacteristic;", "getInterceptingCharacteristicsListener", "LLeCharacteristicListener;", "getInterceptingCharacteristicsWriteListener", "LLeCharacteristicWriteListener;", "getInterceptingLeGattCharacteristic", "LLeGattCharacteristic;", "listenerAdded", "LInterceptingLeDevice;LInterceptingLeDeviceListener;", "deviceFound", "LInterceptingLeDeviceListener;LInterceptingLeDevice;LInterceptingLeRemoteDevice;ILLeScanRecord;", "deviceState", "LInterceptingLeDeviceListener;LInterceptingLeDevice;LLeDeviceState;", "connected", "LInterceptingLeRemoteDeviceListener;LInterceptingLeDevice;LInterceptingLeRemoteDevice;", "disconnected", "closed", "gotUUID", "LInterceptingLeGattService;LJavaUtilUUID;", "enabledCharacteristicNotification", "LInterceptingLeGattService;LJavaUtilUUID;Z", "servicesDiscovered", "LInterceptingLeRemoteDeviceListener;LInterceptingLeDevice;LInterceptingLeRemoteDevice;LLeGattStatus;[LInterceptingLeGattService;", "listenerRemoved", "LInterceptingLeDevice;", "checkedBleHardwareAvailable", "LInterceptingLeDevice;Z", "wasBtEnabled", "startedScanning", "LInterceptingLeDevice;[LJavaUtilUUID;", "stoppedScanning", "gotValue", "LInterceptingLeGattCharacteristic;[B", "gotIntValue", "LInterceptingLeGattCharacteristic;LLeFormat;I", "remoteListenerAdded", "LInterceptingLeRemoteDevice;LInterceptingLeRemoteDeviceListener;", "remoteListenerRemoved", "gotAddress", "LInterceptingLeRemoteDevice;LNSString;", "connecting", "LInterceptingLeRemoteDevice;", "disconnecting", "closing", "serviceDiscoveryStarted", "LInterceptingLeRemoteDevice;[LJavaUtilUUID;", "gotRemoteDeviceName", "characteristicChanged", "LInterceptingLeCharacteristicListener;LJavaUtilUUID;LInterceptingLeRemoteDevice;LInterceptingLeGattCharacteristic;", "characteristicNotificationChanged", "LInterceptingLeCharacteristicListener;LJavaUtilUUID;LInterceptingLeRemoteDevice;LInterceptingLeGattCharacteristic;LJavaLangBoolean;", "characteristicWritten", "LInterceptingLeCharacteristicWriteListener;LJavaUtilUUID;LInterceptingLeRemoteDevice;LInterceptingLeGattCharacteristic;LJavaLangBoolean;", "characteristicListenerSet", "LInterceptingLeRemoteDevice;LInterceptingLeCharacteristicListener;[LJavaUtilUUID;", "characteristicWriteListenerSet", "LInterceptingLeRemoteDevice;LInterceptingLeCharacteristicWriteListener;[LJavaUtilUUID;", "setValue", "LInterceptingLeGattCharacteristic;[BLJavaLangBoolean;", "gotCharacteristic", "LInterceptingLeGattService;LInterceptingLeGattCharacteristic;", "rssiRead", "LInterceptingLeRemoteDeviceListener;LInterceptingLeDevice;LInterceptingLeRemoteDevice;I", "readRssi", "read", "LInterceptingLeGattCharacteristic;", "Ljava/util/Map<Lhoutbecke/rs/le/LeDevice;Lhoutbecke/rs/le/interceptor/InterceptingLeDevice;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeDeviceListener;Lhoutbecke/rs/le/interceptor/InterceptingLeDeviceListener;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeRemoteDevice;Lhoutbecke/rs/le/interceptor/InterceptingLeRemoteDevice;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeRemoteDeviceListener;Lhoutbecke/rs/le/interceptor/InterceptingLeRemoteDeviceListener;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeGattService;Lhoutbecke/rs/le/interceptor/InterceptingLeGattService;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeGattCharacteristic;Lhoutbecke/rs/le/interceptor/InterceptingLeGattCharacteristic;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeCharacteristicListener;Lhoutbecke/rs/le/interceptor/InterceptingLeCharacteristicListener;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeCharacteristicWriteListener;Lhoutbecke/rs/le/interceptor/InterceptingLeCharacteristicWriteListener;>;" };
-  static const J2ObjcClassInfo _LeInterceptor = { "LeInterceptor", "houtbecke.rs.le.interceptor", ptrTable, methods, fields, 7, 0x401, 47, 9, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "getInterceptingLeRemoteDevice", "LLeRemoteDevice;", "getInterceptingLeDevice", "LLeDevice;", "getInterceptingLeDeviceListener", "LLeDeviceListener;", "getInterceptingLeRemoteDeviceListener", "LLeRemoteDeviceListener;", "getInterceptingLeGattService", "LLeGattService;", "serviceGotCharacteristic", "LInterceptingLeGattService;LLeGattCharacteristic;", "getInterceptingCharacteristicsListener", "LLeCharacteristicListener;", "getInterceptingCharacteristicsWriteListener", "LLeCharacteristicWriteListener;", "getInterceptingLeGattCharacteristic", "LLeGattCharacteristic;", "listenerAdded", "LInterceptingLeDevice;LInterceptingLeDeviceListener;", "deviceFound", "LInterceptingLeDeviceListener;LInterceptingLeDevice;LInterceptingLeRemoteDevice;ILLeScanRecord;", "deviceState", "LInterceptingLeDeviceListener;LInterceptingLeDevice;LLeDeviceState;", "connected", "LInterceptingLeRemoteDeviceListener;LInterceptingLeDevice;LInterceptingLeRemoteDevice;", "disconnected", "closed", "gotUUID", "LInterceptingLeGattService;LJavaUtilUUID;", "enabledCharacteristicNotification", "LInterceptingLeGattService;LJavaUtilUUID;Z", "servicesDiscovered", "LInterceptingLeRemoteDeviceListener;LInterceptingLeDevice;LInterceptingLeRemoteDevice;LLeGattStatus;[LInterceptingLeGattService;", "listenerRemoved", "LInterceptingLeDevice;", "checkedBleHardwareAvailable", "LInterceptingLeDevice;Z", "wasBtEnabled", "startedScanning", "LInterceptingLeDevice;[LJavaUtilUUID;", "LInterceptingLeDevice;LJavaUtilList;", "(Lhoutbecke/rs/le/interceptor/InterceptingLeDevice;Ljava/util/List<Ljava/util/List<Ljava/util/UUID;>;>;)V", "stoppedScanning", "gotValue", "LInterceptingLeGattCharacteristic;[B", "gotIntValue", "LInterceptingLeGattCharacteristic;LLeFormat;I", "remoteListenerAdded", "LInterceptingLeRemoteDevice;LInterceptingLeRemoteDeviceListener;", "remoteListenerRemoved", "gotAddress", "LInterceptingLeRemoteDevice;LNSString;", "connecting", "LInterceptingLeRemoteDevice;", "disconnecting", "closing", "serviceDiscoveryStarted", "LInterceptingLeRemoteDevice;[LJavaUtilUUID;", "gotRemoteDeviceName", "characteristicChanged", "LInterceptingLeCharacteristicListener;LJavaUtilUUID;LInterceptingLeRemoteDevice;LInterceptingLeGattCharacteristic;", "characteristicNotificationChanged", "LInterceptingLeCharacteristicListener;LJavaUtilUUID;LInterceptingLeRemoteDevice;LInterceptingLeGattCharacteristic;LJavaLangBoolean;", "characteristicWritten", "LInterceptingLeCharacteristicWriteListener;LJavaUtilUUID;LInterceptingLeRemoteDevice;LInterceptingLeGattCharacteristic;LJavaLangBoolean;", "characteristicListenerSet", "LInterceptingLeRemoteDevice;LInterceptingLeCharacteristicListener;[LJavaUtilUUID;", "characteristicWriteListenerSet", "LInterceptingLeRemoteDevice;LInterceptingLeCharacteristicWriteListener;[LJavaUtilUUID;", "setValue", "LInterceptingLeGattCharacteristic;[BLJavaLangBoolean;", "gotCharacteristic", "LInterceptingLeGattService;LInterceptingLeGattCharacteristic;", "rssiRead", "LInterceptingLeRemoteDeviceListener;LInterceptingLeDevice;LInterceptingLeRemoteDevice;I", "readRssi", "read", "LInterceptingLeGattCharacteristic;", "Ljava/util/Map<Lhoutbecke/rs/le/LeDevice;Lhoutbecke/rs/le/interceptor/InterceptingLeDevice;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeDeviceListener;Lhoutbecke/rs/le/interceptor/InterceptingLeDeviceListener;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeRemoteDevice;Lhoutbecke/rs/le/interceptor/InterceptingLeRemoteDevice;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeRemoteDeviceListener;Lhoutbecke/rs/le/interceptor/InterceptingLeRemoteDeviceListener;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeGattService;Lhoutbecke/rs/le/interceptor/InterceptingLeGattService;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeGattCharacteristic;Lhoutbecke/rs/le/interceptor/InterceptingLeGattCharacteristic;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeCharacteristicListener;Lhoutbecke/rs/le/interceptor/InterceptingLeCharacteristicListener;>;", "Ljava/util/Map<Lhoutbecke/rs/le/LeCharacteristicWriteListener;Lhoutbecke/rs/le/interceptor/InterceptingLeCharacteristicWriteListener;>;" };
+  static const J2ObjcClassInfo _LeInterceptor = { "LeInterceptor", "houtbecke.rs.le.interceptor", ptrTable, methods, fields, 7, 0x401, 48, 9, -1, -1, -1, -1, -1 };
   return &_LeInterceptor;
 }
 

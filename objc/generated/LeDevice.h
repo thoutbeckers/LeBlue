@@ -13,6 +13,7 @@
 #define LeDevice_
 
 @class IOSObjectArray;
+@protocol JavaUtilList;
 @protocol LeDeviceListener;
 
 @protocol LeDevice < JavaObject >
@@ -28,6 +29,8 @@
 - (void)startScanning;
 
 - (void)startScanningWithJavaUtilUUIDArray:(IOSObjectArray *)uuids;
+
+- (void)startScanningWithJavaUtilList:(id<JavaUtilList>)filters;
 
 - (void)stopScanning;
 

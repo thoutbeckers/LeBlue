@@ -1,5 +1,6 @@
 package houtbecke.rs.le.mock;
 
+import java.util.List;
 import java.util.UUID;
 
 import houtbecke.rs.le.LeDevice;
@@ -43,6 +44,11 @@ public class LeDeviceMock implements LeDevice {
     @Override
     public void startScanning(UUID... uuids) {
         controller.deviceStartScanning(this, uuids);
+    }
+
+    @Override
+    public void startScanning(List<List<UUID>> filters) {
+        controller.deviceStartScanning(this, filters);
     }
 
     @Override

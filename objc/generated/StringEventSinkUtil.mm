@@ -9,6 +9,13 @@
 
 @implementation StringEventSinkUtil
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  StringEventSinkUtil_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
 - (NSString *)writeWithEventSink:(id<EventSink>)eventSink {
   JavaLangStringBuilder *sb = create_JavaLangStringBuilder_init();
   {
@@ -24,22 +31,15 @@
   return [sb description];
 }
 
-J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
-  StringEventSinkUtil_init(self);
-  return self;
-}
-J2OBJC_IGNORE_DESIGNATED_END
-
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
-    { NULL, "LNSString;", 0x1, 0, 1, -1, -1, -1, -1 },
     { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, "LNSString;", 0x1, 0, 1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(writeWithEventSink:);
-  methods[1].selector = @selector(init);
+  methods[0].selector = @selector(init);
+  methods[1].selector = @selector(writeWithEventSink:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "write", "LEventSink;" };
   static const J2ObjcClassInfo _StringEventSinkUtil = { "StringEventSinkUtil", "houtbecke.rs.le.interceptor", ptrTable, methods, NULL, 7, 0x1, 2, 0, -1, -1, -1, -1, -1 };

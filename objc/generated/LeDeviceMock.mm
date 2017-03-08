@@ -4,6 +4,7 @@
 #include "LeDeviceListener.h"
 #include "LeDeviceMock.h"
 #include "LeMockController.h"
+#include "java/util/List.h"
 
 @implementation LeDeviceMock
 
@@ -37,6 +38,10 @@
   [((id<LeMockController>) nil_chk(controller_)) deviceStartScanningWithLeDeviceMock:self withJavaUtilUUIDArray:uuids];
 }
 
+- (void)startScanningWithJavaUtilList:(id<JavaUtilList>)filters {
+  [((id<LeMockController>) nil_chk(controller_)) deviceStartScanningWithLeDeviceMock:self withJavaUtilList:filters];
+}
+
 - (void)stopScanning {
   [((id<LeMockController>) nil_chk(controller_)) deviceStopScanningWithLeDeviceMock:self];
 }
@@ -55,6 +60,7 @@
     { NULL, "Z", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x81, 4, 5, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 4, 6, -1, 7, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
@@ -66,13 +72,14 @@
   methods[4].selector = @selector(isBtEnabled);
   methods[5].selector = @selector(startScanning);
   methods[6].selector = @selector(startScanningWithJavaUtilUUIDArray:);
-  methods[7].selector = @selector(stopScanning);
+  methods[7].selector = @selector(startScanningWithJavaUtilList:);
+  methods[8].selector = @selector(stopScanning);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "controller_", "LLeMockController;", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "ILLeMockController;", "addListener", "LLeDeviceListener;", "removeListener", "startScanning", "[LJavaUtilUUID;" };
-  static const J2ObjcClassInfo _LeDeviceMock = { "LeDeviceMock", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x1, 8, 1, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "ILLeMockController;", "addListener", "LLeDeviceListener;", "removeListener", "startScanning", "[LJavaUtilUUID;", "LJavaUtilList;", "(Ljava/util/List<Ljava/util/List<Ljava/util/UUID;>;>;)V" };
+  static const J2ObjcClassInfo _LeDeviceMock = { "LeDeviceMock", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x1, 9, 1, -1, -1, -1, -1, -1 };
   return &_LeDeviceMock;
 }
 

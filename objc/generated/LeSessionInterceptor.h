@@ -34,6 +34,7 @@
 @class LeFormat;
 @class LeGattStatus;
 @protocol EventSink;
+@protocol JavaUtilList;
 @protocol LeScanRecord;
 
 @interface LeSessionInterceptor : LeInterceptor {
@@ -163,6 +164,9 @@
                                  withJavaLangBoolean:(JavaLangBoolean *)withResponse;
 
 - (void)startedScanningWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice;
+
+- (void)startedScanningWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice
+                               withJavaUtilList:(id<JavaUtilList>)filters;
 
 - (void)startedScanningWithInterceptingLeDevice:(InterceptingLeDevice *)iLeDevice
                           withJavaUtilUUIDArray:(IOSObjectArray *)uuids;

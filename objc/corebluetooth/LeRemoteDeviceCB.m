@@ -26,7 +26,7 @@
 @implementation LeRemoteDeviceCB
 
 
--(id) initWith:(CBPeripheral*) peripheral device:(LeDeviceCB*)device
+-(id) initWith:(CBPeripheral*) peripheral device:(LeDeviceCB*)device centralManager:(CBCentralManager*)centralManager
 {
     self = [super init];
     if (self)
@@ -35,7 +35,7 @@
         _listeners = [[NSMutableSet alloc] init];
         _uuidListeners = [[NSMutableDictionary alloc] init];
         _uuidWriteListeners = [[NSMutableDictionary alloc] init];
-
+        _centralManager=centralManager;
         _device = device;
 
     }
@@ -43,7 +43,6 @@
 }
 
 - (void)addListenerWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)listener{
-  //  NSLog(@"add addListenerWithLeRemoteDeviceListener");
     [_listeners addObject: listener];
 
 
@@ -62,13 +61,13 @@
 
 - (void)connect{
     _peripheral.delegate = self;
-     [_device.centralManager connectPeripheral:_peripheral options:nil];
+     [_centralManager connectPeripheral:_peripheral options:nil];
 }
 
 
 - (void)disconnect{
     [services removeAllObjects];
-     [_device.centralManager cancelPeripheralConnection:_peripheral];
+     [_centralManager cancelPeripheralConnection:_peripheral];
 }
 
 - (void)close{
@@ -78,12 +77,10 @@
 }
 
 - (void)startServicesDiscovery{
- //   NSLog(@"startServicesDiscovery");
     [_peripheral discoverServices:nil];
 }
 
 - (void)startServicesDiscoveryWithJavaUtilUUIDArray:(IOSObjectArray *)uuids{
-//    NSLog(@"startServicesDiscovery with uuids");
     [_peripheral discoverServices:[uuids toCBUUIDArray] ];
 }
 
@@ -135,7 +132,7 @@
 - (void) serviceFound {
 
     for (id<LeRemoteDeviceListener> listener in _listeners){
-        [listener serviceDiscoveredWithLeDevice:_device withLeRemoteDevice:self withLeGattStatus:LeGattStatus_get_SUCCESS() withLeGattServiceArray:[IOSObjectArray arrayWithNSArray:[services allValues]  type:[LeGattServiceCB getClass]] ];
+        [listener serviceDiscoveredWithLeDevice:_device withLeRemoteDevice:self withLeGattStatus:LeGattStatus_get_SUCCESS() withLeGattServiceArray:[IOSObjectArray arrayWithNSArray:[services allValues]  type:[LeGattServiceCB java_getClass]] ];
 
     }
 
@@ -161,7 +158,6 @@
 #pragma mark CBPeripheralDelegate
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
-  //  NSLog(@"didDiscoverServices:");
 
     if (error) NSLog(@"Error: %@", error.localizedDescription);
     else
@@ -189,14 +185,12 @@
 
 - (void) peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
-  //  NSLog(@"didDiscoverCharacteristicsForService: %@ ",service.UUID.stringValue);
 
     if (error) NSLog(@"Error: %@", error.localizedDescription);
 
     for (unsigned int i=0; i<service.characteristics.count ; i++)
     {
         CBCharacteristic* c = [service.characteristics objectAtIndex:i];
-     //   NSLog(@"Discovered Characteristic %@ for service %@", c.UUID.stringValue, service.UUID.stringValue);
         LeGattServiceCB*  gattServiceCB = [services objectForKey:service.UUID];
         [gattServiceCB.characteristics setObject:c forKey:c.UUID];
 

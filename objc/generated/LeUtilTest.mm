@@ -20,6 +20,13 @@ __attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$2();
 
 @implementation LeUtilTest
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  LeUtilTest_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
 - (void)testScanRecord {
   IOSByteArray *scanrecord = LeUtil_stringToBytesWithNSString_(@"2,1,6,3,2,13,24,15,9,87,97,104,111,111,32,72,82,77,32,118,50,46,49,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0");
   id<LeScanRecord> leScanRecord = LeUtil_parseLeScanRecordWithByteArray_(scanrecord);
@@ -47,26 +54,19 @@ __attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$2();
   OrgJunitAssert_assertArrayEqualsWithByteArray_withByteArray_(byteArray, LeUtil_hexStringToBytesWithNSString_(hexString));
 }
 
-J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
-  LeUtilTest_init(self);
-  return self;
-}
-J2OBJC_IGNORE_DESIGNATED_END
-
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, 0, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, 1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, 2, -1 },
-    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(testScanRecord);
-  methods[1].selector = @selector(testStringToByte);
-  methods[2].selector = @selector(testHexString);
-  methods[3].selector = @selector(init);
+  methods[0].selector = @selector(init);
+  methods[1].selector = @selector(testScanRecord);
+  methods[2].selector = @selector(testStringToByte);
+  methods[3].selector = @selector(testHexString);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { (void *)&LeUtilTest__Annotations$0, (void *)&LeUtilTest__Annotations$1, (void *)&LeUtilTest__Annotations$2 };
   static const J2ObjcClassInfo _LeUtilTest = { "LeUtilTest", "houtbecke.rs.le", ptrTable, methods, NULL, 7, 0x1, 4, 0, -1, -1, -1, -1, -1 };
