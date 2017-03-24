@@ -81,7 +81,8 @@ NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber  nu
 
               [array addObject:[uuid toCBUUID]];
           }
-          [[_centralManagers objectAtIndex:i] scanForPeripheralsWithServices:array options:nil];
+          if ([_centralManagers objectAtIndex:i].state == CBCentralManagerStatePoweredOn)
+                [[_centralManagers objectAtIndex:i] scanForPeripheralsWithServices:array options:nil];
           i++;
       }
       });
