@@ -60,17 +60,8 @@ public class ListEventSinkSource implements EventSink, EventSource {
 
     @Override
     public Event[] getEvents(){
-        lock.readLock().lock();
-        try {
             this.correctDelay();
-            return events.toArray(new Event[events.size()]
-
-
-            );
-        }finally {
-            lock.readLock().unlock();
-
-        }
+            return events.toArray(new Event[events.size()]);
     }
 
 
