@@ -52,13 +52,12 @@
 }
 
 - (void)startScanning{
-NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber  numberWithBool:YES], CBCentralManagerScanOptionAllowDuplicatesKey, nil];
-       [[_centralManagers objectAtIndex:0] scanForPeripheralsWithServices:nil options:options];
+       [[_centralManagers objectAtIndex:0] scanForPeripheralsWithServices:nil options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
 
 }
 
 - (void)startScanningWithJavaUtilUUIDArray:(IOSObjectArray *)uuids{
-    [[_centralManagers objectAtIndex:0] scanForPeripheralsWithServices:[uuids toCBUUIDArray] options:nil];
+    [[_centralManagers objectAtIndex:0] scanForPeripheralsWithServices:[uuids toCBUUIDArray] options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
 }
 
 
@@ -82,7 +81,7 @@ NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber  nu
               [array addObject:[uuid toCBUUID]];
           }
           if ([_centralManagers objectAtIndex:i].state == CBCentralManagerStatePoweredOn)
-                [[_centralManagers objectAtIndex:i] scanForPeripheralsWithServices:array options:nil];
+                [[_centralManagers objectAtIndex:i] scanForPeripheralsWithServices:array options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
           i++;
       }
       });
