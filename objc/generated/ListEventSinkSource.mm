@@ -6,6 +6,9 @@
 #include "ListEventSinkSource.h"
 #include "java/util/Iterator.h"
 #include "java/util/LinkedList.h"
+#include "java/util/concurrent/locks/Lock.h"
+#include "java/util/concurrent/locks/ReadWriteLock.h"
+#include "java/util/concurrent/locks/ReentrantReadWriteLock.h"
 
 @interface ListEventSinkSource ()
 
@@ -30,12 +33,18 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 - (void)addEventWithEvent:(Event *)event {
-  if (limit_ == -1) {
-    [((JavaUtilLinkedList *) nil_chk(events_)) addLastWithId:event];
+  [((id<JavaUtilConcurrentLocksLock>) nil_chk([((id<JavaUtilConcurrentLocksReadWriteLock>) nil_chk(lock_)) writeLock])) lock];
+  @try {
+    if (limit_ == -1) {
+      [((JavaUtilLinkedList *) nil_chk(events_)) addLastWithId:event];
+    }
+    else {
+      if (limit_ <= [((JavaUtilLinkedList *) nil_chk(events_)) size]) [((JavaUtilLinkedList *) nil_chk(events_)) removeFirst];
+      [((JavaUtilLinkedList *) nil_chk(events_)) addLastWithId:event];
+    }
   }
-  else {
-    if (limit_ <= [((JavaUtilLinkedList *) nil_chk(events_)) size]) [((JavaUtilLinkedList *) nil_chk(events_)) removeFirst];
-    [((JavaUtilLinkedList *) nil_chk(events_)) addLastWithId:event];
+  @finally {
+    [((id<JavaUtilConcurrentLocksLock>) nil_chk([((id<JavaUtilConcurrentLocksReadWriteLock>) nil_chk(lock_)) writeLock])) unlock];
   }
 }
 
@@ -49,8 +58,14 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 - (Event *)nextEvent {
-  if (iterator_ == nil) JreStrongAssign(&iterator_, [((JavaUtilLinkedList *) nil_chk(events_)) iterator]);
-  return [((id<JavaUtilIterator>) nil_chk(iterator_)) next];
+  [((id<JavaUtilConcurrentLocksLock>) nil_chk([((id<JavaUtilConcurrentLocksReadWriteLock>) nil_chk(lock_)) readLock])) lock];
+  @try {
+    if (iterator_ == nil) JreStrongAssign(&iterator_, [((JavaUtilLinkedList *) nil_chk(events_)) iterator]);
+    return [((id<JavaUtilIterator>) nil_chk(iterator_)) next];
+  }
+  @finally {
+    [((id<JavaUtilConcurrentLocksLock>) nil_chk([((id<JavaUtilConcurrentLocksReadWriteLock>) nil_chk(lock_)) readLock])) unlock];
+  }
 }
 
 - (jboolean)hasMoreEvent {
@@ -67,6 +82,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 - (void)dealloc {
   RELEASE_(events_);
+  RELEASE_(lock_);
   RELEASE_(iterator_);
   [super dealloc];
 }
@@ -97,11 +113,12 @@ J2OBJC_IGNORE_DESIGNATED_END
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "events_", "LJavaUtilLinkedList;", .constantValue.asLong = 0, 0x0, -1, -1, 3, -1 },
+    { "lock_", "LJavaUtilConcurrentLocksReadWriteLock;", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
     { "iterator_", "LJavaUtilIterator;", .constantValue.asLong = 0, 0x0, -1, -1, 4, -1 },
     { "limit_", "I", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "I", "addEvent", "LEvent;", "Ljava/util/LinkedList<Lhoutbecke/rs/le/session/Event;>;", "Ljava/util/Iterator<Lhoutbecke/rs/le/session/Event;>;" };
-  static const J2ObjcClassInfo _ListEventSinkSource = { "ListEventSinkSource", "houtbecke.rs.le.session", ptrTable, methods, fields, 7, 0x1, 9, 3, -1, -1, -1, -1, -1 };
+  static const J2ObjcClassInfo _ListEventSinkSource = { "ListEventSinkSource", "houtbecke.rs.le.session", ptrTable, methods, fields, 7, 0x1, 9, 4, -1, -1, -1, -1, -1 };
   return &_ListEventSinkSource;
 }
 
@@ -110,6 +127,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 void ListEventSinkSource_init(ListEventSinkSource *self) {
   NSObject_init(self);
   JreStrongAssignAndConsume(&self->events_, new_JavaUtilLinkedList_init());
+  JreStrongAssignAndConsume(&self->lock_, new_JavaUtilConcurrentLocksReentrantReadWriteLock_init());
   JreStrongAssign(&self->iterator_, nil);
   self->limit_ = -1;
 }
@@ -125,6 +143,7 @@ ListEventSinkSource *create_ListEventSinkSource_init() {
 void ListEventSinkSource_initWithInt_(ListEventSinkSource *self, jint limit) {
   NSObject_init(self);
   JreStrongAssignAndConsume(&self->events_, new_JavaUtilLinkedList_init());
+  JreStrongAssignAndConsume(&self->lock_, new_JavaUtilConcurrentLocksReentrantReadWriteLock_init());
   JreStrongAssign(&self->iterator_, nil);
   self->limit_ = -1;
   if (limit > 1) self->limit_ = limit;
@@ -139,15 +158,21 @@ ListEventSinkSource *create_ListEventSinkSource_initWithInt_(jint limit) {
 }
 
 void ListEventSinkSource_correctDelay(ListEventSinkSource *self) {
-  jlong lastTimeStamp = 0;
-  for (Event * __strong event in nil_chk(self->events_)) {
-    if (lastTimeStamp == 0) {
-      ((Event *) nil_chk(event))->delay_ = 0;
+  [((id<JavaUtilConcurrentLocksLock>) nil_chk([((id<JavaUtilConcurrentLocksReadWriteLock>) nil_chk(self->lock_)) writeLock])) lock];
+  @try {
+    jlong lastTimeStamp = 0;
+    for (Event * __strong event in nil_chk(self->events_)) {
+      if (lastTimeStamp == 0) {
+        ((Event *) nil_chk(event))->delay_ = 0;
+      }
+      else {
+        ((Event *) nil_chk(event))->delay_ = (jint) (event->timeStamp_ - lastTimeStamp);
+      }
+      lastTimeStamp = event->timeStamp_;
     }
-    else {
-      ((Event *) nil_chk(event))->delay_ = (jint) (event->timeStamp_ - lastTimeStamp);
-    }
-    lastTimeStamp = event->timeStamp_;
+  }
+  @finally {
+    [((id<JavaUtilConcurrentLocksLock>) nil_chk([((id<JavaUtilConcurrentLocksReadWriteLock>) nil_chk(self->lock_)) writeLock])) unlock];
   }
 }
 

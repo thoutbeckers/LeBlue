@@ -23,11 +23,13 @@
 @class Event;
 @class IOSObjectArray;
 @class JavaUtilLinkedList;
+@protocol JavaUtilConcurrentLocksReadWriteLock;
 @protocol JavaUtilIterator;
 
 @interface ListEventSinkSource : NSObject < EventSink, EventSource > {
  @public
   JavaUtilLinkedList *events_;
+  id<JavaUtilConcurrentLocksReadWriteLock> lock_;
   id<JavaUtilIterator> iterator_;
   jint limit_;
 }
@@ -55,6 +57,7 @@
 J2OBJC_EMPTY_STATIC_INIT(ListEventSinkSource)
 
 J2OBJC_FIELD_SETTER(ListEventSinkSource, events_, JavaUtilLinkedList *)
+J2OBJC_FIELD_SETTER(ListEventSinkSource, lock_, id<JavaUtilConcurrentLocksReadWriteLock>)
 J2OBJC_FIELD_SETTER(ListEventSinkSource, iterator_, id<JavaUtilIterator>)
 
 FOUNDATION_EXPORT void ListEventSinkSource_init(ListEventSinkSource *self);
