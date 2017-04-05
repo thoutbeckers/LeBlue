@@ -54,7 +54,13 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 - (IOSObjectArray *)getEvents {
   ListEventSinkSource_correctDelay(self);
-  return [((JavaUtilLinkedList *) nil_chk(events_)) toArrayWithNSObjectArray:[IOSObjectArray arrayWithLength:[events_ size] type:Event_class_()]];
+  [((id<JavaUtilConcurrentLocksLock>) nil_chk([((id<JavaUtilConcurrentLocksReadWriteLock>) nil_chk(lock_)) readLock])) lock];
+  @try {
+    return [((JavaUtilLinkedList *) nil_chk(events_)) toArrayWithNSObjectArray:[IOSObjectArray arrayWithLength:[events_ size] type:Event_class_()]];
+  }
+  @finally {
+    [((id<JavaUtilConcurrentLocksLock>) nil_chk([((id<JavaUtilConcurrentLocksReadWriteLock>) nil_chk(lock_)) readLock])) unlock];
+  }
 }
 
 - (Event *)nextEvent {
