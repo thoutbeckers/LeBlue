@@ -299,6 +299,11 @@
     [_peripheral readRSSI];
 }
 
+- (void)refreshDeviceCache{
+    // does not work on ios
+}
+
+
 @end
 
 
