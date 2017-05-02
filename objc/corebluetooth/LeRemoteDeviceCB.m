@@ -60,20 +60,26 @@
 }
 
 - (void)connect{
-    _peripheral.delegate = self;
-     [_centralManager connectPeripheral:_peripheral options:nil];
+    if(_peripheral!=nil){
+         _peripheral.delegate = self;
+        [_centralManager connectPeripheral:_peripheral options:nil];
+     }
 }
 
 
 - (void)disconnect{
-    [services removeAllObjects];
-     [_centralManager cancelPeripheralConnection:_peripheral];
+    if(_peripheral!=nil){
+        [services removeAllObjects];
+        [_centralManager cancelPeripheralConnection:_peripheral];
+     }
 }
 
 - (void)close{
-    _peripheral.delegate = nil;
-    [[_device remoteDevices] removeObjectForKey:_peripheral.identifier];
-    _peripheral = nil;
+    if(_peripheral!=nil){
+        _peripheral.delegate = nil;
+        [[_device remoteDevices] removeObjectForKey:_peripheral.identifier];
+        _peripheral = nil;
+    }
 }
 
 - (void)startServicesDiscovery{
