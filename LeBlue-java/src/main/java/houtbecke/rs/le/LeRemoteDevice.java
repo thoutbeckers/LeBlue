@@ -28,4 +28,6 @@ public interface LeRemoteDevice {
     String getName();
 
     void readRssi();
-}
+
+    void refreshDeviceCache();
+    }
