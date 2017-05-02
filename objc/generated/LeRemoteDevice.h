@@ -45,6 +45,8 @@
 
 - (void)readRssi;
 
+- (void)refreshDeviceCache;
+
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(LeRemoteDevice)

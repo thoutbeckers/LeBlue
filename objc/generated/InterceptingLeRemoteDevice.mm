@@ -114,6 +114,12 @@
   }
 }
 
+- (void)refreshDeviceCache {
+  @synchronized(leInterceptor_) {
+    [((id<LeRemoteDevice>) nil_chk(leRemoteDevice_)) refreshDeviceCache];
+  }
+}
+
 - (jboolean)isEqual:(id)o {
   if ([o isKindOfClass:[InterceptingLeRemoteDevice class]]) return [((id<LeRemoteDevice>) nil_chk(leRemoteDevice_)) isEqual:((InterceptingLeRemoteDevice *) nil_chk(((InterceptingLeRemoteDevice *) cast_chk(o, [InterceptingLeRemoteDevice class]))))->leRemoteDevice_];
   return [((id<LeRemoteDevice>) nil_chk(leRemoteDevice_)) isEqual:o];
@@ -147,6 +153,7 @@
     { NULL, "V", 0x81, 8, 9, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "Z", 0x1, 10, 11, -1, -1, -1, -1 },
     { NULL, "I", 0x1, 12, -1, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, 13, -1, -1, -1, -1, -1 },
@@ -166,15 +173,16 @@
   methods[10].selector = @selector(setCharacteristicListenerWithLeCharacteristicListener:withJavaUtilUUIDArray:);
   methods[11].selector = @selector(getName);
   methods[12].selector = @selector(readRssi);
-  methods[13].selector = @selector(isEqual:);
-  methods[14].selector = @selector(hash);
-  methods[15].selector = @selector(description);
+  methods[13].selector = @selector(refreshDeviceCache);
+  methods[14].selector = @selector(isEqual:);
+  methods[15].selector = @selector(hash);
+  methods[16].selector = @selector(description);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "leRemoteDevice_", "LLeRemoteDevice;", .constantValue.asLong = 0, 0x11, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeRemoteDevice;LLeInterceptor;", "addListener", "LLeRemoteDeviceListener;", "removeListener", "startServicesDiscovery", "[LJavaUtilUUID;", "setCharacteristicWriteListener", "LLeCharacteristicWriteListener;[LJavaUtilUUID;", "setCharacteristicListener", "LLeCharacteristicListener;[LJavaUtilUUID;", "equals", "LNSObject;", "hashCode", "toString" };
-  static const J2ObjcClassInfo _InterceptingLeRemoteDevice = { "InterceptingLeRemoteDevice", "houtbecke.rs.le.interceptor", ptrTable, methods, fields, 7, 0x1, 16, 1, -1, -1, -1, -1, -1 };
+  static const J2ObjcClassInfo _InterceptingLeRemoteDevice = { "InterceptingLeRemoteDevice", "houtbecke.rs.le.interceptor", ptrTable, methods, fields, 7, 0x1, 17, 1, -1, -1, -1, -1, -1 };
   return &_InterceptingLeRemoteDevice;
 }
 
