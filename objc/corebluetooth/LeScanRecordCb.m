@@ -53,15 +53,13 @@
 
 - (bool)hasServiceWithJavaUtilUUID:(JavaUtilUUID *)uuid{
     NSArray* serviceIds = [_advertisementData objectForKey:CBAdvertisementDataServiceUUIDsKey];
-    
+    if (serviceIds == nil) return 0;
+
     for (CBUUID* suuid in serviceIds){
         if ( [uuid isEqual: [suuid toJavaUtilUUID]]){
             return 1;
         }
-       
-        
     }
-    
     return 0;
 }
 
