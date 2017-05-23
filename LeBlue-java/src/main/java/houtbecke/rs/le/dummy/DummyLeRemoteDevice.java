@@ -67,4 +67,9 @@ public class DummyLeRemoteDevice implements LeRemoteDevice {
     public void readRssi() {
 
     }
+
+    @Override
+    public void refreshDeviceCache() {
+
+    }
 }

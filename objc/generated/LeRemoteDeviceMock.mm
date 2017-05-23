@@ -70,6 +70,9 @@
   [((id<LeMockController>) nil_chk(mockController_)) remoteDeviceReadRssiWithLeRemoteDeviceMock:self];
 }
 
+- (void)refreshDeviceCache {
+}
+
 - (jboolean)isEqual:(id)o {
   while ([o isKindOfClass:[InterceptingLeRemoteDevice class]]) o = ((InterceptingLeRemoteDevice *) nil_chk(((InterceptingLeRemoteDevice *) cast_chk(o, [InterceptingLeRemoteDevice class]))))->leRemoteDevice_;
   if ([o isKindOfClass:[LeRemoteDeviceMock class]]) return [((JavaLangInteger *) nil_chk(((LeRemoteDeviceMock *) nil_chk(((LeRemoteDeviceMock *) cast_chk(o, [LeRemoteDeviceMock class]))))->key_)) isEqual:key_];
@@ -102,6 +105,7 @@
     { NULL, "V", 0x81, 8, 9, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "Z", 0x1, 10, 11, -1, -1, -1, -1 },
     { NULL, "I", 0x1, 12, -1, -1, -1, -1, -1 },
   };
@@ -120,8 +124,9 @@
   methods[10].selector = @selector(setCharacteristicListenerWithLeCharacteristicListener:withJavaUtilUUIDArray:);
   methods[11].selector = @selector(getName);
   methods[12].selector = @selector(readRssi);
-  methods[13].selector = @selector(isEqual:);
-  methods[14].selector = @selector(hash);
+  methods[13].selector = @selector(refreshDeviceCache);
+  methods[14].selector = @selector(isEqual:);
+  methods[15].selector = @selector(hash);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "mockController_", "LLeMockController;", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
@@ -129,7 +134,7 @@
     { "key_", "LJavaLangInteger;", .constantValue.asLong = 0, 0x10, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "ILLeMockController;LLeDeviceMock;", "addListener", "LLeRemoteDeviceListener;", "removeListener", "startServicesDiscovery", "[LJavaUtilUUID;", "setCharacteristicWriteListener", "LLeCharacteristicWriteListener;[LJavaUtilUUID;", "setCharacteristicListener", "LLeCharacteristicListener;[LJavaUtilUUID;", "equals", "LNSObject;", "hashCode" };
-  static const J2ObjcClassInfo _LeRemoteDeviceMock = { "LeRemoteDeviceMock", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x1, 15, 3, -1, -1, -1, -1, -1 };
+  static const J2ObjcClassInfo _LeRemoteDeviceMock = { "LeRemoteDeviceMock", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x1, 16, 3, -1, -1, -1, -1, -1 };
   return &_LeRemoteDeviceMock;
 }
 

@@ -55,6 +55,8 @@
 
 - (void)readRssi;
 
+- (void)refreshDeviceCache;
+
 - (void)removeListenerWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)listener;
 
 - (void)setCharacteristicListenerWithLeCharacteristicListener:(id<LeCharacteristicListener>)listener

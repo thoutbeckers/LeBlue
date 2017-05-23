@@ -101,18 +101,21 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
     @Override
+    public void refreshDeviceCache(){
+        if (gatt != null)
+            refreshDeviceCache(gatt);
+    }
+
+    @Override
     public void close() {
         this.queue.clear();
-        if (gatt != null) {
-            refreshDeviceCache(gatt);
             if (gatt != null)
                 gatt.close();
             gatt = null;
             for (LeRemoteDeviceListener listener: listeners)
                 listener.leDevicesClosed(leDevice43, this);
-
-        }
     }
+
     @Override
     public void startServicesDiscovery(UUID... uuids){
         //scanning for specific services is not supported on android
@@ -167,9 +170,9 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
                 for (LeRemoteDeviceListener listener : listeners)
                     listener.leDevicesConnected(leDevice43, this);
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
-                close();
                 for (LeRemoteDeviceListener listener : listeners)
                     listener.leDevicesDisconnected(leDevice43, this);
+                close();
             }
         } catch (Throwable t) {
             Log.w("LeBlue", "error during onConnectionStateChange callback", t);

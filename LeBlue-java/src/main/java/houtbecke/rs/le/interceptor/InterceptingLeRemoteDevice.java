@@ -122,6 +122,14 @@ public class InterceptingLeRemoteDevice extends LeIntercepting implements LeRemo
     }
 
     @Override
+    public void refreshDeviceCache() {
+        synchronized(leInterceptor) {
+           //TODO leInterceptor
+            leRemoteDevice.refreshDeviceCache();
+        }
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o instanceof InterceptingLeRemoteDevice)
             return leRemoteDevice.equals(((InterceptingLeRemoteDevice)o).leRemoteDevice);
