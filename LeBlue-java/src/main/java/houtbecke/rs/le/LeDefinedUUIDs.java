@@ -6,9 +6,12 @@ public class LeDefinedUUIDs {
 	
 	public static class Service {
 		final static public UUID HEART_RATE               = UUID.fromString("0000180d-0000-1000-8000-00805f9b34fb");
-	    final static public UUID CYCLING_POWER               = UUID.fromString("00001818-0000-1000-8000-00805f9b34fb");
+		final static public UUID CYCLING_POWER               = UUID.fromString("00001818-0000-1000-8000-00805f9b34fb");
         final static public UUID CYCLING_SPEED_AND_CADENCE   = UUID.fromString("00001816-0000-1000-8000-00805f9b34fb");
-        final static public UUID BATTERY   = UUID.fromString("0000180f-0000-1000-8000-00805f9b34fb");
+		final static public UUID RUNNING_SPEED_AND_CADENCE   = UUID.fromString("00001814-0000-1000-8000-00805f9b34fb");
+
+
+		final static public UUID BATTERY   = UUID.fromString("0000180f-0000-1000-8000-00805f9b34fb");
         final static public UUID DEVICE_INFORMATION   = UUID.fromString("0000180a-0000-1000-8000-00805f9b34fb");
 		final static public UUID GENERIC_ATTRIBUTE   = UUID.fromString("00001801-0000-1000-8000-00805f9b34fb");
 
