@@ -33,7 +33,10 @@ class LeGattService43 implements LeGattService {
 
     @Override
     public LeGattCharacteristic getCharacteristic(UUID uuid) {
-        BluetoothGattCharacteristic characteristic = getGattService().getCharacteristic(uuid);
+        BluetoothGattService service = getGattService();
+        if (service == null)
+            return null;
+        BluetoothGattCharacteristic characteristic = service.getCharacteristic(uuid);
         if (characteristic == null || leRemoteDevice43.gatt == null)
             return null;
         return new LeGattCharacteristic43(leRemoteDevice43.gatt, characteristic,leRemoteDevice43);
