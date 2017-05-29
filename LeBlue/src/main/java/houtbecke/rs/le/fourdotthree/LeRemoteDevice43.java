@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothProfile;
+import android.os.Build;
 import android.util.Log;
 
 import java.lang.reflect.Method;
@@ -69,17 +70,17 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             return;
         }
 
-        remoteDevice43.connectGatt(leDevice43.context, false, this);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            remoteDevice43.connectGatt(leDevice43.context, false, this,BluetoothDevice.TRANSPORT_LE);
+        }else{
+            remoteDevice43.connectGatt(leDevice43.context, false, this);
+        }
     }
 
     @Override
     public void disconnect() {
         if (gatt != null) {
             gatt.disconnect();
-            close();
-            for (LeRemoteDeviceListener listener: listeners)
-                listener.leDevicesDisconnected(leDevice43, this);
         }
     }
 
@@ -100,18 +101,21 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
     @Override
+    public void refreshDeviceCache(){
+        if (gatt != null)
+            refreshDeviceCache(gatt);
+    }
+
+    @Override
     public void close() {
         this.queue.clear();
-        if (gatt != null) {
-            refreshDeviceCache(gatt);
             if (gatt != null)
                 gatt.close();
             gatt = null;
             for (LeRemoteDeviceListener listener: listeners)
                 listener.leDevicesClosed(leDevice43, this);
-
-        }
     }
+
     @Override
     public void startServicesDiscovery(UUID... uuids){
         //scanning for specific services is not supported on android
@@ -166,9 +170,9 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
                 for (LeRemoteDeviceListener listener : listeners)
                     listener.leDevicesConnected(leDevice43, this);
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
-                close();
                 for (LeRemoteDeviceListener listener : listeners)
                     listener.leDevicesDisconnected(leDevice43, this);
+                close();
             }
         } catch (Throwable t) {
             Log.w("LeBlue", "error during onConnectionStateChange callback", t);
