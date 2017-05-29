@@ -46,6 +46,7 @@ J2OBJC_INITIALIZED_DEFN(LeDefinedUUIDs_Service)
 JavaUtilUUID *LeDefinedUUIDs_Service_HEART_RATE;
 JavaUtilUUID *LeDefinedUUIDs_Service_CYCLING_POWER;
 JavaUtilUUID *LeDefinedUUIDs_Service_CYCLING_SPEED_AND_CADENCE;
+JavaUtilUUID *LeDefinedUUIDs_Service_RUNNING_SPEED_AND_CADENCE;
 JavaUtilUUID *LeDefinedUUIDs_Service_BATTERY;
 JavaUtilUUID *LeDefinedUUIDs_Service_DEVICE_INFORMATION;
 JavaUtilUUID *LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE;
@@ -62,6 +63,10 @@ JavaUtilUUID *LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE;
 
 + (JavaUtilUUID *)CYCLING_SPEED_AND_CADENCE {
   return LeDefinedUUIDs_Service_CYCLING_SPEED_AND_CADENCE;
+}
+
++ (JavaUtilUUID *)RUNNING_SPEED_AND_CADENCE {
+  return LeDefinedUUIDs_Service_RUNNING_SPEED_AND_CADENCE;
 }
 
 + (JavaUtilUUID *)BATTERY {
@@ -95,12 +100,13 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "HEART_RATE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 0, -1, -1 },
     { "CYCLING_POWER", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 1, -1, -1 },
     { "CYCLING_SPEED_AND_CADENCE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 2, -1, -1 },
-    { "BATTERY", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 3, -1, -1 },
-    { "DEVICE_INFORMATION", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 4, -1, -1 },
-    { "GENERIC_ATTRIBUTE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 5, -1, -1 },
+    { "RUNNING_SPEED_AND_CADENCE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 3, -1, -1 },
+    { "BATTERY", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 4, -1, -1 },
+    { "DEVICE_INFORMATION", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 5, -1, -1 },
+    { "GENERIC_ATTRIBUTE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 6, -1, -1 },
   };
-  static const void *ptrTable[] = { &LeDefinedUUIDs_Service_HEART_RATE, &LeDefinedUUIDs_Service_CYCLING_POWER, &LeDefinedUUIDs_Service_CYCLING_SPEED_AND_CADENCE, &LeDefinedUUIDs_Service_BATTERY, &LeDefinedUUIDs_Service_DEVICE_INFORMATION, &LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE, "LLeDefinedUUIDs;" };
-  static const J2ObjcClassInfo _LeDefinedUUIDs_Service = { "Service", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x9, 1, 6, 6, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { &LeDefinedUUIDs_Service_HEART_RATE, &LeDefinedUUIDs_Service_CYCLING_POWER, &LeDefinedUUIDs_Service_CYCLING_SPEED_AND_CADENCE, &LeDefinedUUIDs_Service_RUNNING_SPEED_AND_CADENCE, &LeDefinedUUIDs_Service_BATTERY, &LeDefinedUUIDs_Service_DEVICE_INFORMATION, &LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE, "LLeDefinedUUIDs;" };
+  static const J2ObjcClassInfo _LeDefinedUUIDs_Service = { "Service", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x9, 1, 7, 7, -1, -1, -1, -1 };
   return &_LeDefinedUUIDs_Service;
 }
 
@@ -109,6 +115,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     JreStrongAssign(&LeDefinedUUIDs_Service_HEART_RATE, JavaUtilUUID_fromStringWithNSString_(@"0000180d-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Service_CYCLING_POWER, JavaUtilUUID_fromStringWithNSString_(@"00001818-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Service_CYCLING_SPEED_AND_CADENCE, JavaUtilUUID_fromStringWithNSString_(@"00001816-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Service_RUNNING_SPEED_AND_CADENCE, JavaUtilUUID_fromStringWithNSString_(@"00001814-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Service_BATTERY, JavaUtilUUID_fromStringWithNSString_(@"0000180f-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Service_DEVICE_INFORMATION, JavaUtilUUID_fromStringWithNSString_(@"0000180a-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE, JavaUtilUUID_fromStringWithNSString_(@"00001801-0000-1000-8000-00805f9b34fb"));
