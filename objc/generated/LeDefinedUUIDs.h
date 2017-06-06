@@ -47,6 +47,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs)
 
 + (JavaUtilUUID *)CYCLING_SPEED_AND_CADENCE;
 
++ (JavaUtilUUID *)RUNNING_SPEED_AND_CADENCE;
+
 + (JavaUtilUUID *)BATTERY;
 
 + (JavaUtilUUID *)DEVICE_INFORMATION;
@@ -75,6 +77,11 @@ inline JavaUtilUUID *LeDefinedUUIDs_Service_get_CYCLING_SPEED_AND_CADENCE();
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_CYCLING_SPEED_AND_CADENCE;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, CYCLING_SPEED_AND_CADENCE, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Service_get_RUNNING_SPEED_AND_CADENCE();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_RUNNING_SPEED_AND_CADENCE;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, RUNNING_SPEED_AND_CADENCE, JavaUtilUUID *)
 
 inline JavaUtilUUID *LeDefinedUUIDs_Service_get_BATTERY();
 /*! INTERNAL ONLY - Use accessor function from above. */
