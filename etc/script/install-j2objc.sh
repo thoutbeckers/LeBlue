@@ -59,7 +59,6 @@ if [ ! -d "j2objc" ] || [ ! -d "j2objc/j2objc-${j2objc_version}" ]; then
 
 
     unzip -o -q j2objc-${j2objc_version}.zip
-    mv j2objc-${j2objc_version} j2objc/j2objc-${j2objc_version}
 fi
 
 export J2OBJC_HOME=$(PWD)/j2objc/j2objc-${j2objc_version}
