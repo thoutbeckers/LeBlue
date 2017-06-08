@@ -577,7 +577,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
         [((id<JavaUtilConcurrentLocksCondition>) nil_chk(condition_)) awaitWithLong:1000 withJavaUtilConcurrentTimeUnit:JreLoadEnum(JavaUtilConcurrentTimeUnit, MILLISECONDS)];
       }
       @catch (JavaLangInterruptedException *e) {
-        [((JavaLangInterruptedException *) nil_chk(e)) printStackTrace];
+        [e printStackTrace];
       }
     }
     return waitingForEvent_;
@@ -594,7 +594,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
       [((id<JavaUtilConcurrentLocksCondition>) nil_chk(condition_)) await];
     }
     @catch (JavaLangInterruptedException *e) {
-      [((JavaLangInterruptedException *) nil_chk(e)) printStackTrace];
+      [e printStackTrace];
     }
     [self updateCurrentEventWithEvent:event];
     [self checkPause];
@@ -604,7 +604,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
       [condition_ await];
     }
     @catch (JavaLangInterruptedException *e) {
-      [((JavaLangInterruptedException *) nil_chk(e)) printStackTrace];
+      [e printStackTrace];
     }
     waitingForEvent_ = false;
     [((id<JavaUtilConcurrentLocksCondition>) nil_chk(condition_)) signalAll];
@@ -953,7 +953,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
             [((id<JavaUtilConcurrentLocksCondition>) nil_chk(condition_)) await];
           }
           @catch (JavaLangInterruptedException *e) {
-            [((JavaLangInterruptedException *) nil_chk(e)) printStackTrace];
+            [e printStackTrace];
           }
           if (currentEvent_ != nil) JreVolatileStrongAssign(&stackedEvent_, currentEvent_);
           [self updateCurrentEventWithEvent:nil];
@@ -961,7 +961,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
             [((id<JavaUtilConcurrentLocksCondition>) nil_chk(condition_)) await];
           }
           @catch (JavaLangInterruptedException *e) {
-            [((JavaLangInterruptedException *) nil_chk(e)) printStackTrace];
+            [e printStackTrace];
           }
         }
         return true;
@@ -1799,7 +1799,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController)
     { "this$0_", "LLeSessionController;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "startSessionWithNSString:" };
-  static const J2ObjcClassInfo _LeSessionController_1 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 1, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_1 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 1, 0, -1, 1, -1, -1 };
   return &_LeSessionController_1;
 }
 
@@ -1832,6 +1832,7 @@ LeSessionController_1 *create_LeSessionController_1_initWithLeSessionController_
     started_ = true;
     [this$0_ updateCurrentEventWithEvent:nil];
     [((id<JavaUtilConcurrentLocksCondition>) nil_chk(this$0_->condition_)) signalAll];
+    
     ;
   }
   @finally {
@@ -1926,7 +1927,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_RunnableWrapper)
     { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_2 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_2 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 2, 0, -1, 1, -1, -1 };
   return &_LeSessionController_2;
 }
 
@@ -1979,7 +1980,7 @@ LeSessionController_2 *create_LeSessionController_2_initWithLeSessionController_
     { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_3 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_3 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 2, 0, -1, 1, -1, -1 };
   return &_LeSessionController_3;
 }
 
@@ -2035,7 +2036,7 @@ LeSessionController_3 *create_LeSessionController_3_initWithLeSessionController_
     { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_4 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 3, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_4 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 3, 0, -1, 1, -1, -1 };
   return &_LeSessionController_4;
 }
 
@@ -2089,7 +2090,7 @@ LeSessionController_4 *create_LeSessionController_4_initWithLeSessionController_
     { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_5 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_5 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 2, 0, -1, 1, -1, -1 };
   return &_LeSessionController_5;
 }
 
@@ -2145,7 +2146,7 @@ LeSessionController_5 *create_LeSessionController_5_initWithLeSessionController_
     { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_6 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 3, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_6 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 3, 0, -1, 1, -1, -1 };
   return &_LeSessionController_6;
 }
 
@@ -2199,7 +2200,7 @@ LeSessionController_6 *create_LeSessionController_6_initWithLeSessionController_
     { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_7 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_7 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 2, 0, -1, 1, -1, -1 };
   return &_LeSessionController_7;
 }
 
@@ -2255,7 +2256,7 @@ LeSessionController_7 *create_LeSessionController_7_initWithLeSessionController_
     { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_8 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 3, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_8 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 3, 0, -1, 1, -1, -1 };
   return &_LeSessionController_8;
 }
 
@@ -2309,7 +2310,7 @@ LeSessionController_8 *create_LeSessionController_8_initWithLeSessionController_
     { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_9 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_9 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 2, 0, -1, 1, -1, -1 };
   return &_LeSessionController_9;
 }
 
@@ -2367,7 +2368,7 @@ LeSessionController_9 *create_LeSessionController_9_initWithLeSessionController_
     { "val$listener_", "LLeRemoteDeviceListener;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_10 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 3, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_10 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 3, 0, -1, 1, -1, -1 };
   return &_LeSessionController_10;
 }
 
@@ -2423,7 +2424,7 @@ LeSessionController_10 *create_LeSessionController_10_initWithLeSessionControlle
     { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_11 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_11 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 2, 0, -1, 1, -1, -1 };
   return &_LeSessionController_11;
 }
 
@@ -2476,7 +2477,7 @@ LeSessionController_11 *create_LeSessionController_11_initWithLeSessionControlle
     { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_12 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_12 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 2, 0, -1, 1, -1, -1 };
   return &_LeSessionController_12;
 }
 
@@ -2543,7 +2544,7 @@ LeSessionController_12 *create_LeSessionController_12_initWithLeSessionControlle
     { "val$characteristic_", "LLeGattCharacteristic;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_13 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 4, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_13 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 4, 0, -1, 1, -1, -1 };
   return &_LeSessionController_13;
 }
 
@@ -2600,7 +2601,7 @@ LeSessionController_13 *create_LeSessionController_13_initWithLeSessionControlle
     { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_14 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_14 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 2, 0, -1, 1, -1, -1 };
   return &_LeSessionController_14;
 }
 
@@ -2656,7 +2657,7 @@ LeSessionController_14 *create_LeSessionController_14_initWithLeSessionControlle
     { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_15 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_15 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 2, 0, -1, 1, -1, -1 };
   return &_LeSessionController_15;
 }
 
@@ -2723,7 +2724,7 @@ LeSessionController_15 *create_LeSessionController_15_initWithLeSessionControlle
     { "val$characteristic2_", "LLeGattCharacteristic;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_16 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 4, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_16 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 4, 0, -1, 1, -1, -1 };
   return &_LeSessionController_16;
 }
 
@@ -2780,7 +2781,7 @@ LeSessionController_16 *create_LeSessionController_16_initWithLeSessionControlle
     { "val$event_", "LEvent;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeSessionController;", "workOnEventWithEvent:" };
-  static const J2ObjcClassInfo _LeSessionController_17 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8008, 2, 2, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeSessionController_17 = { "", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x8018, 2, 2, 0, -1, 1, -1, -1 };
   return &_LeSessionController_17;
 }
 

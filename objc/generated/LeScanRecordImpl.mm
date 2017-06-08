@@ -134,7 +134,8 @@ __attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_ini
 }
 
 - (void)parse {
-  jint recordLength, recordPos = 0;
+  jint recordLength;
+  jint recordPos = 0;
   while (recordPos < ((IOSByteArray *) nil_chk(scanrecord_))->size_ && ((recordLength = IOSByteArray_Get(scanrecord_, recordPos++) & (jint) 0xFF) != 0)) {
     jint type = IOSByteArray_Get(scanrecord_, recordPos++) & (jint) 0xFF;
     IOSByteArray *record = JavaUtilArrays_copyOfRangeWithByteArray_withInt_withInt_(scanrecord_, recordPos, recordPos + recordLength - 1);
@@ -239,7 +240,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeScanRecordImpl)
     { "val$record_", "[B", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeScanRecordImpl;", "parse" };
-  static const J2ObjcClassInfo _LeScanRecordImpl_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8008, 3, 2, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeScanRecordImpl_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 3, 2, 0, -1, 1, -1, -1 };
   return &_LeScanRecordImpl_1;
 }
 

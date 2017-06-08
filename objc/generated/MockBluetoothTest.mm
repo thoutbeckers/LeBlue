@@ -546,7 +546,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockBluetoothTest)
     { "val$foundRemoteDevice_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "leDeviceFound", "LLeDevice;LLeRemoteDevice;ILLeScanRecord;", "leDeviceState", "LLeDevice;LLeDeviceState;", "LMockBluetoothTest;", "testController" };
-  static const J2ObjcClassInfo _MockBluetoothTest_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8008, 3, 2, 4, -1, 5, -1, -1 };
+  static const J2ObjcClassInfo _MockBluetoothTest_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 3, 2, 4, -1, 5, -1, -1 };
   return &_MockBluetoothTest_1;
 }
 
@@ -664,7 +664,7 @@ MockBluetoothTest_1 *create_MockBluetoothTest_1_initWithMockBluetoothTest_withJa
     { "val$rssiValue_", "[I", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "leDevicesConnected", "LLeDevice;LLeRemoteDevice;", "leDevicesDisconnected", "leDevicesClosed", "serviceDiscovered", "LLeDevice;LLeRemoteDevice;LLeGattStatus;[LLeGattService;", "rssiRead", "LLeDevice;LLeRemoteDevice;I", "LMockBluetoothTest;", "testController" };
-  static const J2ObjcClassInfo _MockBluetoothTest_2 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8008, 6, 8, 8, -1, 9, -1, -1 };
+  static const J2ObjcClassInfo _MockBluetoothTest_2 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 6, 8, 8, -1, 9, -1, -1 };
   return &_MockBluetoothTest_2;
 }
 
@@ -743,7 +743,7 @@ MockBluetoothTest_2 *create_MockBluetoothTest_2_initWithMockBluetoothTest_withJa
     { "val$notificationChanged_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "leCharacteristicChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;", "leCharacteristicNotificationChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", "LMockBluetoothTest;", "testController" };
-  static const J2ObjcClassInfo _MockBluetoothTest_3 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8008, 3, 4, 4, -1, 5, -1, -1 };
+  static const J2ObjcClassInfo _MockBluetoothTest_3 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 3, 4, 4, -1, 5, -1, -1 };
   return &_MockBluetoothTest_3;
 }
 
@@ -807,7 +807,7 @@ MockBluetoothTest_3 *create_MockBluetoothTest_3_initWithMockBluetoothTest_withLe
     { "val$changed_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "leCharacteristicWritten", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", "LMockBluetoothTest;", "testController" };
-  static const J2ObjcClassInfo _MockBluetoothTest_4 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8008, 2, 3, 2, -1, 3, -1, -1 };
+  static const J2ObjcClassInfo _MockBluetoothTest_4 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 2, 3, 2, -1, 3, -1, -1 };
   return &_MockBluetoothTest_4;
 }
 
