@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeGattDescriptorValue
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeGattDescriptorValue_) && (INCLUDE_ALL_LeGattDescriptorValue || defined(INCLUDE_LeGattDescriptorValue))
 #define LeGattDescriptorValue_
 
@@ -49,4 +54,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeGattDescriptorValue)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeGattDescriptorValue")

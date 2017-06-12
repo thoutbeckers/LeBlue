@@ -152,7 +152,7 @@ NSString *LeUtil_bytesToStringWithByteArray_(IOSByteArray *bytes) {
     }
   }
   NSString *bytesString = [builder description];
-  if (((jint) [((NSString *) nil_chk(bytesString)) length]) > 0) return [bytesString java_substring:0 endIndex:((jint) [bytesString length]) - 1];
+  if ([((NSString *) nil_chk(bytesString)) java_length] > 0) return [bytesString java_substring:0 endIndex:[bytesString java_length] - 1];
   return bytesString;
 }
 
@@ -172,7 +172,7 @@ IOSByteArray *LeUtil_stringToBytesWithNSString_(NSString *string) {
 
 IOSByteArray *LeUtil_hexStringToBytesWithNSString_(NSString *s) {
   LeUtil_initialize();
-  jint len = ((jint) [((NSString *) nil_chk(s)) length]);
+  jint len = [((NSString *) nil_chk(s)) java_length];
   IOSByteArray *data = [IOSByteArray arrayWithLength:len / 2];
   for (jint i = 0; i < len; i += 2) {
     *IOSByteArray_GetRef(data, i / 2) = (jbyte) ((JreLShift32(JavaLangCharacter_digitWithChar_withInt_([s charAtWithInt:i], 16), 4)) + JavaLangCharacter_digitWithChar_withInt_([s charAtWithInt:i + 1], 16));
@@ -234,8 +234,8 @@ IOSObjectArray *LeUtil_extendWithNSStringArray_withNSString_(IOSObjectArray *arg
 NSString *LeUtil_fourDigitStringWithInt_(jint value) {
   LeUtil_initialize();
   NSString *ret = JreStrcat("I", value);
-  if (((jint) [ret length]) > 4) return [ret java_substring:0 endIndex:4];
-  while (((jint) [ret length]) < 4) ret = JreStrcat("C$", '0', ret);
+  if ([ret java_length] > 4) return [ret java_substring:0 endIndex:4];
+  while ([ret java_length] < 4) ret = JreStrcat("C$", '0', ret);
   return ret;
 }
 

@@ -376,7 +376,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(SessionSwitchingTest)
     { "val$foundRemoteDevice_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "leDeviceFound", "LLeDevice;LLeRemoteDevice;ILLeScanRecord;", "leDeviceState", "LLeDevice;LLeDeviceState;", "LSessionSwitchingTest;", "testController" };
-  static const J2ObjcClassInfo _SessionSwitchingTest_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8008, 3, 2, 4, -1, 5, -1, -1 };
+  static const J2ObjcClassInfo _SessionSwitchingTest_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 3, 2, 4, -1, 5, -1, -1 };
   return &_SessionSwitchingTest_1;
 }
 
@@ -459,7 +459,7 @@ SessionSwitchingTest_1 *create_SessionSwitchingTest_1_initWithSessionSwitchingTe
     { "val$service_", "[LNSObject;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "leDevicesConnected", "LLeDevice;LLeRemoteDevice;", "leDevicesDisconnected", "leDevicesClosed", "serviceDiscovered", "LLeDevice;LLeRemoteDevice;LLeGattStatus;[LLeGattService;", "rssiRead", "LLeDevice;LLeRemoteDevice;I", "LSessionSwitchingTest;", "testController" };
-  static const J2ObjcClassInfo _SessionSwitchingTest_2 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8008, 6, 2, 8, -1, 9, -1, -1 };
+  static const J2ObjcClassInfo _SessionSwitchingTest_2 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 6, 2, 8, -1, 9, -1, -1 };
   return &_SessionSwitchingTest_2;
 }
 
@@ -519,7 +519,7 @@ SessionSwitchingTest_2 *create_SessionSwitchingTest_2_initWithSessionSwitchingTe
     { "val$valueRead_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "leCharacteristicChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;", "leCharacteristicNotificationChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", "LSessionSwitchingTest;", "testController" };
-  static const J2ObjcClassInfo _SessionSwitchingTest_3 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8008, 3, 1, 4, -1, 5, -1, -1 };
+  static const J2ObjcClassInfo _SessionSwitchingTest_3 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 3, 1, 4, -1, 5, -1, -1 };
   return &_SessionSwitchingTest_3;
 }
 

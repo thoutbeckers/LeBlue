@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeSessionController
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeSessionController_) && (INCLUDE_ALL_LeSessionController || defined(INCLUDE_LeSessionController))
 #define LeSessionController_
 
@@ -402,4 +407,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeSessionController_SourceType)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeSessionController")

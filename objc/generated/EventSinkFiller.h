@@ -23,7 +23,8 @@
   ListEventSinkSource *listEventSinkSource_;
   jint defaultDelay_;
   SessionObject *and__;
-  jint currentRemoteDevice_, currentCharacteristic_;
+  jint currentRemoteDevice_;
+  jint currentCharacteristic_;
 }
 
 + (jint)DEFAULT_DEVICE_ID;

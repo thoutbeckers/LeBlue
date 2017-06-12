@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeGattStatus
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeGattStatus_) && (INCLUDE_ALL_LeGattStatus || defined(INCLUDE_LeGattStatus))
 #define LeGattStatus_
 
@@ -111,4 +116,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeGattStatus)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeGattStatus")

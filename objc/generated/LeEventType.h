@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeEventType
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeEventType_) && (INCLUDE_ALL_LeEventType || defined(INCLUDE_LeEventType))
 #define LeEventType_
 
@@ -339,4 +344,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeEventType)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeEventType")
