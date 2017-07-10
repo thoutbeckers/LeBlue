@@ -163,6 +163,10 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
         super.onConnectionStateChange(gatt, status, newState);
 
+        if (status!=BluetoothGatt.GATT_SUCCESS){
+            leDevice43.log(Log.ERROR,"LeBlue","onConnectionStateChange " + status);
+        }
+
         try {
 
             if (newState == BluetoothProfile.STATE_CONNECTED) {
@@ -182,6 +186,10 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     @Override
     public void onServicesDiscovered(BluetoothGatt gatt, int status) {
         super.onServicesDiscovered(gatt, status);
+
+        if (status!=BluetoothGatt.GATT_SUCCESS){
+            leDevice43.log(Log.ERROR,"LeBlue","onServicesDiscovered " + status);
+        }
 
         try {
 
@@ -237,7 +245,9 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
         try {
             this.characteristicNotificationChanged(gatt,descriptor.getCharacteristic(),(status==gatt.GATT_SUCCESS));
-
+            if (status!=BluetoothGatt.GATT_SUCCESS){
+                leDevice43.log(Log.ERROR,"LeBlue","onDescriptorWrite " + status);
+            }
             queue.remove();
             sendFirst();
 
@@ -252,7 +262,9 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     public void onCharacteristicRead (BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status){
         queue.remove();
         sendFirst();
-
+        if (status!=BluetoothGatt.GATT_SUCCESS){
+            leDevice43.log(Log.ERROR,"LeBlue","onDescriptorWrite " + status);
+        }
         if(status==gatt.GATT_SUCCESS)
             this.characteristicUpdated(gatt,characteristic);
 
@@ -320,7 +332,9 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
         try {
             boolean succes = (status ==  gatt.GATT_SUCCESS);
-
+            if (status!=BluetoothGatt.GATT_SUCCESS){
+                leDevice43.log(Log.ERROR,"LeBlue","onCharacteristicWrite " + status);
+            }
             UUID uuid = characteristic.getUuid();
 
             LeCharacteristicWriteListener nullListener = uuidCharacteristicWriteListeners.get(null);
