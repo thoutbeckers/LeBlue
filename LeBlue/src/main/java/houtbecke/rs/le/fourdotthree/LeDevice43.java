@@ -28,6 +28,7 @@ import java.util.UUID;
 import javax.inject.Inject;
 
 import houtbecke.rs.le.BleException;
+import houtbecke.rs.le.ErrorLogger;
 import houtbecke.rs.le.LeDefinedUUIDs;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
@@ -47,6 +48,32 @@ import static no.nordicsemi.android.support.v18.scanner.ScanSettings.CALLBACK_TY
 public class LeDevice43 implements LeDevice {
 
     final Context context;
+
+
+    public void setErrorLogger(ErrorLogger errorLogger) {
+        if (errorLogger!=null)
+            this.errorLogger = errorLogger;
+    }
+
+    protected void log(int priority, String tag, String msg){
+        if (errorLogger!=null){
+            errorLogger.log(priority,tag,msg);
+        }else{
+            Log.println(priority,tag,msg);
+        }
+    }
+
+    protected void logException(Exception e){
+        if (errorLogger!=null){
+            errorLogger.logException(e);
+        }else{
+            if (e!=null)
+                e.printStackTrace();
+        }
+    }
+
+
+    ErrorLogger errorLogger;
 
     Collection<LeDeviceListener> listeners = new HashSet<>();
     @Override
@@ -140,7 +167,7 @@ public class LeDevice43 implements LeDevice {
         @Override
         public void onLeScan(final BluetoothDevice device, final int rssi, final byte[] scanRecord) {
             LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, device);
-            Log.i("LeBlue", "scan record: " + LeUtil.bytesToString(scanRecord));
+            log(Log.INFO,"LeBlue", "scan record: " + LeUtil.bytesToString(scanRecord));
             for(LeDeviceListener listener: listeners)
                 listener.leDeviceFound(LeDevice43.this, device43, rssi, LeUtil.parseLeScanRecord(scanRecord));
         }
@@ -156,9 +183,7 @@ public class LeDevice43 implements LeDevice {
             }
         }
         public void	onScanFailed(int errorCode){
-            Log.e("LeBlue", "onScanFailed: " + errorCode);
-
-
+            log(Log.ERROR,"LeBlue", "scan record: " + "onScanFailed: " + errorCode);
         }
         public void	onScanResult(int callbackType, ScanResult result){
             if (callbackType==CALLBACK_TYPE_MATCH_LOST) return;
@@ -167,7 +192,6 @@ public class LeDevice43 implements LeDevice {
 
         void sendScanResult( ScanResult result){
             LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, result.getDevice());
-            Log.i("LeBlue", "scan record: " + LeUtil.bytesToString(result.getScanRecord().getBytes()));
             for(LeDeviceListener listener: listeners)
                 listener.leDeviceFound(LeDevice43.this, device43, result.getRssi(), LeUtil.parseLeScanRecord(result.getScanRecord().getBytes()));
 
