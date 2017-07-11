@@ -13,6 +13,7 @@
 #define LeDevice_
 
 @class IOSObjectArray;
+@protocol ErrorLogger;
 @protocol JavaUtilList;
 @protocol LeDeviceListener;
 
@@ -33,6 +34,8 @@
 - (void)startScanningWithJavaUtilList:(id<JavaUtilList>)filters;
 
 - (void)stopScanning;
+
+- (void)setErrorLoggerWithErrorLogger:(id<ErrorLogger>)errorLogger;
 
 @end
 
