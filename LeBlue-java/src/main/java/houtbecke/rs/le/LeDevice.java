@@ -52,5 +52,5 @@ public interface LeDevice {
     void stopScanning();
 
 
-
+    void setErrorLogger(ErrorLogger errorLogger);
 }
