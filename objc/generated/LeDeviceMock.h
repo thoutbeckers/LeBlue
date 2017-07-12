@@ -17,6 +17,7 @@
 #include "LeDevice.h"
 
 @class IOSObjectArray;
+@protocol ErrorLogger;
 @protocol JavaUtilList;
 @protocol LeDeviceListener;
 @protocol LeMockController;
@@ -38,6 +39,8 @@
 - (jboolean)isBtEnabled;
 
 - (void)removeListenerWithLeDeviceListener:(id<LeDeviceListener>)listener;
+
+- (void)setErrorLoggerWithErrorLogger:(id<ErrorLogger>)errorLogger;
 
 - (void)startScanning;
 

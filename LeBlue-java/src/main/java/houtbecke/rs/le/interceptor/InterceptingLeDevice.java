@@ -3,6 +3,7 @@ package houtbecke.rs.le.interceptor;
 import java.util.List;
 import java.util.UUID;
 
+import houtbecke.rs.le.ErrorLogger;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
 
@@ -81,6 +82,11 @@ public class InterceptingLeDevice extends LeIntercepting implements LeDevice {
             leInterceptor.stoppedScanning(this);
             leDevice.stopScanning();
         }
+    }
+
+    @Override
+    public void setErrorLogger(ErrorLogger errorLogger) {
+        leDevice.setErrorLogger(errorLogger);
     }
 
     @Override

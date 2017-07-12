@@ -1,4 +1,5 @@
 
+#include "ErrorLogger.h"
 #include "IOSObjectArray.h"
 #include "InterceptingLeDevice.h"
 #include "InterceptingLeDeviceListener.h"
@@ -91,6 +92,10 @@
   }
 }
 
+- (void)setErrorLoggerWithErrorLogger:(id<ErrorLogger>)errorLogger {
+  [((id<LeDevice>) nil_chk(leDevice_)) setErrorLoggerWithErrorLogger:errorLogger];
+}
+
 - (jboolean)isEqual:(id)o {
   if (self == o) return true;
   if (o == nil) return false;
@@ -120,8 +125,9 @@
     { NULL, "V", 0xa1, 4, 5, -1, -1, -1, -1 },
     { NULL, "V", 0x1, 4, 6, -1, 7, -1, -1 },
     { NULL, "V", 0x21, -1, -1, -1, -1, -1, -1 },
-    { NULL, "Z", 0x1, 8, 9, -1, -1, -1, -1 },
-    { NULL, "I", 0x1, 10, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 8, 9, -1, -1, -1, -1 },
+    { NULL, "Z", 0x1, 10, 11, -1, -1, -1, -1 },
+    { NULL, "I", 0x1, 12, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -134,14 +140,15 @@
   methods[6].selector = @selector(startScanningWithJavaUtilUUIDArray:);
   methods[7].selector = @selector(startScanningWithJavaUtilList:);
   methods[8].selector = @selector(stopScanning);
-  methods[9].selector = @selector(isEqual:);
-  methods[10].selector = @selector(hash);
+  methods[9].selector = @selector(setErrorLoggerWithErrorLogger:);
+  methods[10].selector = @selector(isEqual:);
+  methods[11].selector = @selector(hash);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "leDevice_", "LLeDevice;", .constantValue.asLong = 0, 0x10, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "LLeDevice;LLeInterceptor;", "addListener", "LLeDeviceListener;", "removeListener", "startScanning", "[LJavaUtilUUID;", "LJavaUtilList;", "(Ljava/util/List<Ljava/util/List<Ljava/util/UUID;>;>;)V", "equals", "LNSObject;", "hashCode" };
-  static const J2ObjcClassInfo _InterceptingLeDevice = { "InterceptingLeDevice", "houtbecke.rs.le.interceptor", ptrTable, methods, fields, 7, 0x1, 11, 1, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "LLeDevice;LLeInterceptor;", "addListener", "LLeDeviceListener;", "removeListener", "startScanning", "[LJavaUtilUUID;", "LJavaUtilList;", "(Ljava/util/List<Ljava/util/List<Ljava/util/UUID;>;>;)V", "setErrorLogger", "LErrorLogger;", "equals", "LNSObject;", "hashCode" };
+  static const J2ObjcClassInfo _InterceptingLeDevice = { "InterceptingLeDevice", "houtbecke.rs.le.interceptor", ptrTable, methods, fields, 7, 0x1, 12, 1, -1, -1, -1, -1, -1 };
   return &_InterceptingLeDevice;
 }
 

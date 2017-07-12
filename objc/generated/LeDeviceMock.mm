@@ -1,4 +1,5 @@
 
+#include "ErrorLogger.h"
 #include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
 #include "LeDeviceListener.h"
@@ -46,6 +47,9 @@
   [((id<LeMockController>) nil_chk(controller_)) deviceStopScanningWithLeDeviceMock:self];
 }
 
+- (void)setErrorLoggerWithErrorLogger:(id<ErrorLogger>)errorLogger {
+}
+
 - (void)dealloc {
   RELEASE_(controller_);
   [super dealloc];
@@ -62,6 +66,7 @@
     { NULL, "V", 0x81, 4, 5, -1, -1, -1, -1 },
     { NULL, "V", 0x1, 4, 6, -1, 7, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 8, 9, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -74,12 +79,13 @@
   methods[6].selector = @selector(startScanningWithJavaUtilUUIDArray:);
   methods[7].selector = @selector(startScanningWithJavaUtilList:);
   methods[8].selector = @selector(stopScanning);
+  methods[9].selector = @selector(setErrorLoggerWithErrorLogger:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "controller_", "LLeMockController;", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "ILLeMockController;", "addListener", "LLeDeviceListener;", "removeListener", "startScanning", "[LJavaUtilUUID;", "LJavaUtilList;", "(Ljava/util/List<Ljava/util/List<Ljava/util/UUID;>;>;)V" };
-  static const J2ObjcClassInfo _LeDeviceMock = { "LeDeviceMock", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x1, 9, 1, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "ILLeMockController;", "addListener", "LLeDeviceListener;", "removeListener", "startScanning", "[LJavaUtilUUID;", "LJavaUtilList;", "(Ljava/util/List<Ljava/util/List<Ljava/util/UUID;>;>;)V", "setErrorLogger", "LErrorLogger;" };
+  static const J2ObjcClassInfo _LeDeviceMock = { "LeDeviceMock", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x1, 10, 1, -1, -1, -1, -1, -1 };
   return &_LeDeviceMock;
 }
 

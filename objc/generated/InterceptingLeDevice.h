@@ -22,6 +22,7 @@
 
 @class IOSObjectArray;
 @class LeInterceptor;
+@protocol ErrorLogger;
 @protocol JavaUtilList;
 @protocol LeDeviceListener;
 
@@ -46,6 +47,8 @@
 - (jboolean)isBtEnabled;
 
 - (void)removeListenerWithLeDeviceListener:(id<LeDeviceListener>)listener;
+
+- (void)setErrorLoggerWithErrorLogger:(id<ErrorLogger>)errorLogger;
 
 - (void)startScanning;
 

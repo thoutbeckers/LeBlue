@@ -3,6 +3,7 @@ package houtbecke.rs.le.mock;
 import java.util.List;
 import java.util.UUID;
 
+import houtbecke.rs.le.ErrorLogger;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
 
@@ -54,6 +55,11 @@ public class LeDeviceMock implements LeDevice {
     @Override
     public void stopScanning() {
         controller.deviceStopScanning(this);
+    }
+
+    @Override
+    public void setErrorLogger(ErrorLogger errorLogger) {
+
     }
 
 //    public void findLeDevice(LeRemoteDevice remoteDevice, int rssi, byte[] scanRecord) {
