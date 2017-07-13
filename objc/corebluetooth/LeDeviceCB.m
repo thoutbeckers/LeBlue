@@ -172,7 +172,9 @@
 {
     
 }
+- (void)setErrorLoggerWithErrorLogger:(id<ErrorLogger>)errorLogger{
 
+}
 
 
 @end

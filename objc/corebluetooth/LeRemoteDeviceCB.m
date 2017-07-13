@@ -309,11 +309,6 @@
     // does not work on ios
 }
 
-- (void)setErrorLoggerWithErrorLogger:(id<ErrorLogger>)errorLogger{
-
-}
-
-
 
 @end
 
