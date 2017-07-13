@@ -45,5 +45,7 @@ dependencies {
     testCompile "junit:junit:${junitVersion}"
     compile project(':LeBlue-java')
     compile 'no.nordicsemi.android.support.v18:scanner:1.0.0'
+    compile "com.android.support:support-compat:${supportVersion}"
+
 
 }
