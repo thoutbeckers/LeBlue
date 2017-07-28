@@ -1,5 +1,6 @@
 package houtbecke.rs.le.fourdotthree;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
@@ -14,6 +15,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.ParcelUuid;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -43,6 +45,7 @@ import no.nordicsemi.android.support.v18.scanner.ScanFilter;
 import no.nordicsemi.android.support.v18.scanner.ScanResult;
 import no.nordicsemi.android.support.v18.scanner.ScanSettings;
 
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static no.nordicsemi.android.support.v18.scanner.ScanSettings.CALLBACK_TYPE_MATCH_LOST;
 
 public class LeDevice43 implements LeDevice {
@@ -206,12 +209,14 @@ public class LeDevice43 implements LeDevice {
 
     @Override
     public void startScanning() {
+        if(!hasPermission() )return;
         BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
         scanner.startScan(scanCallback);
     }
 
     @Override
     public void startScanning(UUID... uuids) {
+        if(!hasPermission() )return;
         BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
         ScanSettings settings = new ScanSettings.Builder()
                 .setScanMode(ScanSettings.SCAN_MODE_BALANCED).setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
@@ -228,6 +233,7 @@ public class LeDevice43 implements LeDevice {
 
     @Override
     public void startScanning(List<List<UUID>> filters) {
+        if(!hasPermission() )return;
         BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
         ScanSettings settings = new ScanSettings.Builder()
                 .setScanMode(ScanSettings.SCAN_MODE_BALANCED).setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
@@ -250,6 +256,7 @@ public class LeDevice43 implements LeDevice {
 
     @Override
 	public void stopScanning() {
+        if(!hasPermission() )return;
         BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
         scanner.stopScan(scanCallback);
 	}
@@ -304,8 +311,19 @@ public class LeDevice43 implements LeDevice {
     public void disable() {
         bluetoothAdapter.disable();
     }
+  
     public void enable() {
         bluetoothAdapter.enable();
     }
 
+    private boolean hasPermission(){
+        boolean bluetooth = ContextCompat.checkSelfPermission(context,
+                Manifest.permission.BLUETOOTH_ADMIN) ==PERMISSION_GRANTED;
+        boolean coarse = ContextCompat.checkSelfPermission(context,
+                Manifest.permission.ACCESS_COARSE_LOCATION) ==PERMISSION_GRANTED;
+        boolean fine = ContextCompat.checkSelfPermission(context,
+                Manifest.permission.ACCESS_FINE_LOCATION) ==PERMISSION_GRANTED;
+        return (bluetooth && (coarse || fine));
+
+    }
 }
