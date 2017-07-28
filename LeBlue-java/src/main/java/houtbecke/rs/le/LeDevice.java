@@ -53,4 +53,8 @@ public interface LeDevice {
 
 
     void setErrorLogger(ErrorLogger errorLogger);
+
+    void disable();
+    void enable();
+
 }

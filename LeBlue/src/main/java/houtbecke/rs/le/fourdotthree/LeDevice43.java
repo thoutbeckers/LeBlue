@@ -299,4 +299,13 @@ public class LeDevice43 implements LeDevice {
                 return LeGattStatus.FAILURE;
         }
     }
+
+
+    public void disable() {
+        bluetoothAdapter.disable();
+    }
+    public void enable() {
+        bluetoothAdapter.enable();
+    }
+
 }
