@@ -19,6 +19,8 @@
     { NULL, "V", 0x401, 3, 5, -1, 6, -1, -1 },
     { NULL, "V", 0x401, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x401, 7, 8, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, -1, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -31,9 +33,11 @@
   methods[6].selector = @selector(startScanningWithJavaUtilList:);
   methods[7].selector = @selector(stopScanning);
   methods[8].selector = @selector(setErrorLoggerWithErrorLogger:);
+  methods[9].selector = @selector(disable);
+  methods[10].selector = @selector(enable);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "addListener", "LLeDeviceListener;", "removeListener", "startScanning", "[LJavaUtilUUID;", "LJavaUtilList;", "(Ljava/util/List<Ljava/util/List<Ljava/util/UUID;>;>;)V", "setErrorLogger", "LErrorLogger;" };
-  static const J2ObjcClassInfo _LeDevice = { "LeDevice", "houtbecke.rs.le", ptrTable, methods, NULL, 7, 0x609, 9, 0, -1, -1, -1, -1, -1 };
+  static const J2ObjcClassInfo _LeDevice = { "LeDevice", "houtbecke.rs.le", ptrTable, methods, NULL, 7, 0x609, 11, 0, -1, -1, -1, -1, -1 };
   return &_LeDevice;
 }
 

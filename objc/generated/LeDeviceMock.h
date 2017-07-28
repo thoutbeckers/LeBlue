@@ -36,6 +36,10 @@
 
 - (jboolean)checkBleHardwareAvailable;
 
+- (void)disable;
+
+- (void)enable;
+
 - (jboolean)isBtEnabled;
 
 - (void)removeListenerWithLeDeviceListener:(id<LeDeviceListener>)listener;

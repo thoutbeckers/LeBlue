@@ -90,6 +90,16 @@ public class InterceptingLeDevice extends LeIntercepting implements LeDevice {
     }
 
     @Override
+    public void disable() {
+
+    }
+
+    @Override
+    public void enable() {
+
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;

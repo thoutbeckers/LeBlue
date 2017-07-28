@@ -62,6 +62,17 @@ public class LeDeviceMock implements LeDevice {
 
     }
 
+    @Override
+    public void disable() {
+
+    }
+
+    @Override
+    public void enable(){
+
+    }
+
+
 //    public void findLeDevice(LeRemoteDevice remoteDevice, int rssi, byte[] scanRecord) {
 //        for (LeDeviceListener listener: listeners)
 //            listener.leDeviceFound(this, remoteDevice, rssi, scanRecord);

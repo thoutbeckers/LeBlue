@@ -40,6 +40,10 @@
 
 - (jboolean)checkBleHardwareAvailable;
 
+- (void)disable;
+
+- (void)enable;
+
 - (jboolean)isEqual:(id)o;
 
 - (NSUInteger)hash;

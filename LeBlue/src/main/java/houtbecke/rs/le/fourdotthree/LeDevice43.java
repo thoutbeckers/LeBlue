@@ -308,6 +308,14 @@ public class LeDevice43 implements LeDevice {
     }
 
 
+    public void disable() {
+        bluetoothAdapter.disable();
+    }
+  
+    public void enable() {
+        bluetoothAdapter.enable();
+    }
+
     private boolean hasPermission(){
         boolean bluetooth = ContextCompat.checkSelfPermission(context,
                 Manifest.permission.BLUETOOTH_ADMIN) ==PERMISSION_GRANTED;
