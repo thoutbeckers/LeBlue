@@ -290,6 +290,10 @@
 
 - (jboolean)shouldLog;
 
+// Disallowed inherited constructors, do not use.
+
+- (instancetype)init NS_UNAVAILABLE;
+
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(LeSessionController)
@@ -357,7 +361,7 @@ typedef NS_ENUM(NSUInteger, LeSessionController_SourceType_Enum) {
   LeSessionController_SourceType_Enum_gattCharacteristic = 3,
 };
 
-@interface LeSessionController_SourceType : JavaLangEnum < NSCopying >
+@interface LeSessionController_SourceType : JavaLangEnum
 
 + (LeSessionController_SourceType * __nonnull)device;
 
@@ -375,7 +379,6 @@ typedef NS_ENUM(NSUInteger, LeSessionController_SourceType_Enum) {
 
 #pragma mark Package-Private
 
-- (id)copyWithZone:(NSZone *)zone;
 - (LeSessionController_SourceType_Enum)toNSEnum;
 
 @end

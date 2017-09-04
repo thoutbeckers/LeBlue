@@ -21,7 +21,7 @@
   @synchronized(leInterceptor_) {
     IOSByteArray *value = [((id<LeGattCharacteristic>) nil_chk(leGattCharacteristic_)) getValue];
     [((LeInterceptor *) nil_chk(leInterceptor_)) gotValueWithInterceptingLeGattCharacteristic:self withByteArray:value];
-    return value;
+    return JreRetainedLocalValue(value);
   }
 }
 

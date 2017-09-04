@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, LeFormat_Enum) {
   LeFormat_Enum_FORMAT_FLOAT = 7,
 };
 
-@interface LeFormat : JavaLangEnum < NSCopying >
+@interface LeFormat : JavaLangEnum
 
 + (LeFormat * __nonnull)FORMAT_UINT8;
 
@@ -64,7 +64,6 @@ typedef NS_ENUM(NSUInteger, LeFormat_Enum) {
 
 #pragma mark Package-Private
 
-- (id)copyWithZone:(NSZone *)zone;
 - (LeFormat_Enum)toNSEnum;
 
 @end

@@ -77,7 +77,7 @@ typedef NS_ENUM(NSUInteger, LeEventType_Enum) {
   LeEventType_Enum_mockPointReached = 46,
 };
 
-@interface LeEventType : JavaLangEnum < NSCopying, EventType >
+@interface LeEventType : JavaLangEnum < EventType >
 
 + (LeEventType * __nonnull)deviceStartScanning;
 
@@ -181,7 +181,6 @@ typedef NS_ENUM(NSUInteger, LeEventType_Enum) {
 
 #pragma mark Package-Private
 
-- (id)copyWithZone:(NSZone *)zone;
 - (LeEventType_Enum)toNSEnum;
 
 @end

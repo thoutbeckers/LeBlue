@@ -48,6 +48,10 @@
                                    withLeGattCharacteristic:(id<LeGattCharacteristic>)characteristic
                                                 withBoolean:(jboolean)success;
 
+// Disallowed inherited constructors, do not use.
+
+- (instancetype)initWithLeInterceptor:(LeInterceptor *)arg0 NS_UNAVAILABLE;
+
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(InterceptingLeCharacteristicListener)

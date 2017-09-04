@@ -213,10 +213,6 @@ LeEventType *LeEventType_values_[47];
   return (LeEventType_Enum)[self ordinal];
 }
 
-- (id)copyWithZone:(NSZone *)zone {
-  return self;
-}
-
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, "[LLeEventType;", 0x9, -1, -1, -1, -1, -1, -1 },
