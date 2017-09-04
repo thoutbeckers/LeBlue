@@ -35,7 +35,7 @@ typedef NS_ENUM(NSUInteger, LeGattStatus_Enum) {
   LeGattStatus_Enum_FAILURE = 8,
 };
 
-@interface LeGattStatus : JavaLangEnum < NSCopying >
+@interface LeGattStatus : JavaLangEnum
 
 + (LeGattStatus * __nonnull)SUCCESS;
 
@@ -65,7 +65,6 @@ typedef NS_ENUM(NSUInteger, LeGattStatus_Enum) {
 
 #pragma mark Package-Private
 
-- (id)copyWithZone:(NSZone *)zone;
 - (LeGattStatus_Enum)toNSEnum;
 
 @end

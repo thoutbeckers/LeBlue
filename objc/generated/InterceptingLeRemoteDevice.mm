@@ -40,7 +40,7 @@
   @synchronized(leInterceptor_) {
     NSString *address = [((id<LeRemoteDevice>) nil_chk(leRemoteDevice_)) getAddress];
     [((LeInterceptor *) nil_chk(leInterceptor_)) gotAddressWithInterceptingLeRemoteDevice:self withNSString:address];
-    return address;
+    return JreRetainedLocalValue(address);
   }
 }
 
@@ -103,7 +103,7 @@
   @synchronized(leInterceptor_) {
     NSString *name = [((id<LeRemoteDevice>) nil_chk(leRemoteDevice_)) getName];
     [((LeInterceptor *) nil_chk(leInterceptor_)) gotRemoteDeviceNameWithInterceptingLeRemoteDevice:self withNSString:name];
-    return name;
+    return JreRetainedLocalValue(name);
   }
 }
 

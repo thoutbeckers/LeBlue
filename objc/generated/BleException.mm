@@ -34,7 +34,7 @@
 @end
 
 void BleException_initWithNSString_withJavaLangException_(BleException *self, NSString *message, JavaLangException *e) {
-  JavaLangException_initWithNSString_withNSException_(self, message, e);
+  JavaLangException_initWithNSString_withJavaLangThrowable_(self, message, e);
 }
 
 BleException *new_BleException_initWithNSString_withJavaLangException_(NSString *message, JavaLangException *e) {
