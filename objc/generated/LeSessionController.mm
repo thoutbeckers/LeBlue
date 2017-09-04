@@ -684,7 +684,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
     }
     @catch (JavaLangException *e) {
       JreStrongAssign(&sessionException_, e);
-      @throw create_JavaLangRuntimeException_initWithNSString_withNSException_(JreStrcat("$@", @"error processing session at event ", event), e);
+      @throw create_JavaLangRuntimeException_initWithNSString_withJavaLangThrowable_(JreStrcat("$@", @"error processing session at event ", event), e);
     }
     @finally {
       sessionIsRunning_ = false;
@@ -2833,10 +2833,6 @@ LeSessionController_SourceType *LeSessionController_SourceType_values_[4];
 
 - (LeSessionController_SourceType_Enum)toNSEnum {
   return (LeSessionController_SourceType_Enum)[self ordinal];
-}
-
-- (id)copyWithZone:(NSZone *)zone {
-  return self;
 }
 
 + (const J2ObjcClassInfo *)__metadata {

@@ -65,10 +65,6 @@ LeGattStatus *LeGattStatus_values_[9];
   return (LeGattStatus_Enum)[self ordinal];
 }
 
-- (id)copyWithZone:(NSZone *)zone {
-  return self;
-}
-
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, "LLeGattStatus;", 0x9, 0, 1, -1, -1, -1, -1 },

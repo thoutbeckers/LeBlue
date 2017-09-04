@@ -20,17 +20,17 @@
   @synchronized(leInterceptor_) {
     JavaUtilUUID *uuid = [((id<LeGattService>) nil_chk(leGattService_)) getUuid];
     [((LeInterceptor *) nil_chk(leInterceptor_)) gotUUIDWithInterceptingLeGattService:self withJavaUtilUUID:uuid];
-    return uuid;
+    return JreRetainedLocalValue(uuid);
   }
 }
 
 - (id<LeGattCharacteristic>)getCharacteristicWithJavaUtilUUID:(JavaUtilUUID *)uuid {
   @synchronized(leInterceptor_) {
     id<LeGattCharacteristic> leGattCharacteristic = [((id<LeGattService>) nil_chk(leGattService_)) getCharacteristicWithJavaUtilUUID:uuid];
-    if (leGattCharacteristic == nil) return nil;
+    if (leGattCharacteristic == nil) return JreRetainedLocalValue(nil);
     InterceptingLeGattCharacteristic *iLeGattCharacteristic = [((LeInterceptor *) nil_chk(leInterceptor_)) serviceGotCharacteristicWithInterceptingLeGattService:self withLeGattCharacteristic:leGattCharacteristic];
     [leInterceptor_ gotCharacteristicWithInterceptingLeGattService:self withInterceptingLeGattCharacteristic:iLeGattCharacteristic];
-    return iLeGattCharacteristic;
+    return JreRetainedLocalValue(iLeGattCharacteristic);
   }
 }
 

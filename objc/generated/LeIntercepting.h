@@ -27,6 +27,10 @@
 
 - (instancetype)initWithLeInterceptor:(LeInterceptor *)leInterceptor;
 
+// Disallowed inherited constructors, do not use.
+
+- (instancetype)initWithInt:(jint)arg0 NS_UNAVAILABLE;
+
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(LeIntercepting)

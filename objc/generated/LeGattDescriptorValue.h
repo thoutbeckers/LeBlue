@@ -23,17 +23,13 @@
 
 @class IOSObjectArray;
 
-@interface LeGattDescriptorValue : JavaLangEnum < NSCopying >
+@interface LeGattDescriptorValue : JavaLangEnum
 
 #pragma mark Public
 
 + (LeGattDescriptorValue *)valueOfWithNSString:(NSString *)name;
 
 + (IOSObjectArray *)values;
-
-#pragma mark Package-Private
-
-- (id)copyWithZone:(NSZone *)zone;
 
 @end
 

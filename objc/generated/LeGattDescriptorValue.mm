@@ -19,10 +19,6 @@ LeGattDescriptorValue *LeGattDescriptorValue_values_[0];
   return LeGattDescriptorValue_valueOfWithNSString_(name);
 }
 
-- (id)copyWithZone:(NSZone *)zone {
-  return self;
-}
-
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, "[LLeGattDescriptorValue;", 0x9, -1, -1, -1, -1, -1, -1 },

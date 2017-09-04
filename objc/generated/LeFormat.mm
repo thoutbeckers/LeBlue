@@ -72,10 +72,6 @@ LeFormat *LeFormat_values_[8];
   return (LeFormat_Enum)[self ordinal];
 }
 
-- (id)copyWithZone:(NSZone *)zone {
-  return self;
-}
-
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, "I", 0x1, -1, -1, -1, -1, -1, -1 },

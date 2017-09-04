@@ -33,10 +33,6 @@ LeDeviceState *LeDeviceState_values_[2];
   return (LeDeviceState_Enum)[self ordinal];
 }
 
-- (id)copyWithZone:(NSZone *)zone {
-  return self;
-}
-
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, "[LLeDeviceState;", 0x9, -1, -1, -1, -1, -1, -1 },
