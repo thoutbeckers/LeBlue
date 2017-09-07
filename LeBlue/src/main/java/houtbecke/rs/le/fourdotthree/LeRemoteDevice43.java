@@ -21,9 +21,12 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeCharacteristicWriteListener;
+import houtbecke.rs.le.LeDeviceListener;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeRemoteDevice;
@@ -32,30 +35,60 @@ import houtbecke.rs.le.LeUtil;
 
 public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteDevice {
 
-    final LeDevice43 leDevice43;
-    final BluetoothDevice remoteDevice43;
+    private final LeDevice43 leDevice43;
+    private final BluetoothDevice remoteDevice43;
 
-    final Map<UUID, LeCharacteristicListener> uuidCharacteristicListeners = new HashMap<UUID, LeCharacteristicListener>(0);
-    final Map<UUID, LeCharacteristicWriteListener> uuidCharacteristicWriteListeners = new HashMap<UUID, LeCharacteristicWriteListener>(0);
+    private final Map<UUID, LeCharacteristicListener> uuidCharacteristicListeners = new HashMap<UUID, LeCharacteristicListener>(0);
+    private final Map<UUID, LeCharacteristicWriteListener> uuidCharacteristicWriteListeners = new HashMap<UUID, LeCharacteristicWriteListener>(0);
 
-    final ConcurrentLinkedQueue<Object> queue = new ConcurrentLinkedQueue<>();
+    private final ConcurrentLinkedQueue<Object> queue = new ConcurrentLinkedQueue<>();
 
     public LeRemoteDevice43(LeDevice43 leDevice43, BluetoothDevice device)  {
         this.leDevice43 = leDevice43;
         this.remoteDevice43 = device;
     }
 
-    Set<LeRemoteDeviceListener> listeners = new LinkedHashSet<>();
+    private final Set<LeRemoteDeviceListener> listeners = new LinkedHashSet<>();
+    private final ReadWriteLock listenerReadWriteLock = new ReentrantReadWriteLock();
+
+
+    private interface L {
+        void l(LeRemoteDeviceListener l);
+    }
+
+    private void listeners(L l) {
+        listenerReadWriteLock.readLock().lock();
+        try {
+            for (LeRemoteDeviceListener listener: listeners)
+                l.l(listener);
+        } finally {
+            listenerReadWriteLock.readLock().unlock();
+        }
+    }
+
+
     @Override
     public void addListener(LeRemoteDeviceListener listener) {
-        if (listeners.contains(listener))
-            listeners.remove(listener);
+        listenerReadWriteLock.writeLock().lock();
+        try
+        {
+            if (listeners.contains(listener))
+                listeners.remove(listener);
 
-        listeners.add(listener);
+            listeners.add(listener);        } finally {
+            listenerReadWriteLock.writeLock().unlock();
+        }
     }
+
     @Override
     public void removeListener(LeRemoteDeviceListener listener) {
-        listeners.remove(listener);
+        listenerReadWriteLock.writeLock().lock();
+        try
+        {
+            listeners.remove(listener);
+        } finally {
+            listenerReadWriteLock.writeLock().unlock();
+        }
     }
 
     @Override
@@ -112,8 +145,16 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             if (gatt != null)
                 gatt.close();
             gatt = null;
-            for (LeRemoteDeviceListener listener: listeners)
-                listener.leDevicesClosed(leDevice43, this);
+
+        listeners(
+                new L() {
+                    @Override
+                    public void l(LeRemoteDeviceListener l) {
+                        l.leDevicesClosed(leDevice43, LeRemoteDevice43.this);
+                    }
+                });
+
+
     }
 
     @Override
@@ -171,11 +212,23 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
             if (newState == BluetoothProfile.STATE_CONNECTED) {
                 this.gatt = gatt;
-                for (LeRemoteDeviceListener listener : listeners)
-                    listener.leDevicesConnected(leDevice43, this);
+                listeners(
+                        new L() {
+                            @Override
+                            public void l(LeRemoteDeviceListener l) {
+                                l.leDevicesConnected(leDevice43, LeRemoteDevice43.this);
+                            }
+                        });
+
+
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
-                for (LeRemoteDeviceListener listener : listeners)
-                    listener.leDevicesDisconnected(leDevice43, this);
+                listeners(
+                        new L() {
+                            @Override
+                            public void l(LeRemoteDeviceListener l) {
+                                l.leDevicesDisconnected(leDevice43, LeRemoteDevice43.this);
+                            }
+                        });
                 close();
             }
         } catch (Throwable t) {
@@ -184,7 +237,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
     @Override
-    public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+    public void onServicesDiscovered(BluetoothGatt gatt,final int status) {
         super.onServicesDiscovered(gatt, status);
 
         if (status!=BluetoothGatt.GATT_SUCCESS){
@@ -194,15 +247,20 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         try {
 
             List<BluetoothGattService> services43 = gatt.getServices();
-            LeGattService[] services = new LeGattService[services43.size()];
+            final LeGattService[] services = new LeGattService[services43.size()];
             for (int i = 0; i < services43.size(); i++)
                 services[i] = new LeGattService43(leDevice43, this, services43.get(i).getUuid());
 
+            listeners(
+                    new L() {
+                        @Override
+                        public void l(LeRemoteDeviceListener l) {
+                            l.serviceDiscovered(leDevice43, LeRemoteDevice43.this, leDevice43.toGattStatus(status), services);
 
-            LeRemoteDeviceListener[] arrayListeners = new LeRemoteDeviceListener[listeners.size()];
-            arrayListeners = listeners.toArray(arrayListeners);
-            for (LeRemoteDeviceListener listener : arrayListeners)
-                listener.serviceDiscovered(leDevice43, this, leDevice43.toGattStatus(status), services);
+                        }
+                    });
+
+
         } catch (Throwable t) {
             Log.w("LeBlue", "error during onServicesDiscovered callback", t);
         }
