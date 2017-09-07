@@ -25,6 +25,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 
 import javax.inject.Inject;
@@ -79,13 +81,43 @@ public class LeDevice43 implements LeDevice {
     ErrorLogger errorLogger;
 
     Collection<LeDeviceListener> listeners = new HashSet<>();
+    private final ReadWriteLock listenerReadWriteLock = new ReentrantReadWriteLock();
+
+
+    private interface L {
+        void l(LeDeviceListener l);
+    }
+
+    private void listeners(L l) {
+        listenerReadWriteLock.readLock().lock();
+        try {
+            for (LeDeviceListener listener: listeners)
+                l.l(listener);
+        } finally {
+            listenerReadWriteLock.readLock().unlock();
+        }
+    }
+
+
     @Override
     public void addListener(LeDeviceListener listener) {
-        listeners.add(listener);
+        listenerReadWriteLock.writeLock().lock();
+        try
+        {
+            listeners.add(listener);
+        } finally {
+            listenerReadWriteLock.writeLock().unlock();
+        }
     }
     @Override
     public void removeListener(LeDeviceListener listener) {
-        listeners.remove(listener);
+        listenerReadWriteLock.writeLock().lock();
+        try
+        {
+            listeners.remove(listener);
+        } finally {
+            listenerReadWriteLock.writeLock().unlock();
+        }
     }
 
     @Inject
@@ -132,8 +164,16 @@ public class LeDevice43 implements LeDevice {
                         return;
                 }
 
-                for(LeDeviceListener listener: listeners)
-                    listener.leDeviceState(LeDevice43.this,deviceState);
+
+                final LeDeviceState finalLeDeviceState = deviceState;
+                listeners(
+                new L() {
+                    @Override
+                    public void l(LeDeviceListener l) {
+                        l.leDeviceState(LeDevice43.this, finalLeDeviceState);
+                    }
+                });
+
             }
         }
     };
@@ -169,10 +209,18 @@ public class LeDevice43 implements LeDevice {
     private BluetoothAdapter.LeScanCallback deviceFoundCallback = new BluetoothAdapter.LeScanCallback() {
         @Override
         public void onLeScan(final BluetoothDevice device, final int rssi, final byte[] scanRecord) {
-            LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, device);
+            final LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, device);
             log(Log.INFO,"LeBlue", "scan record: " + LeUtil.bytesToString(scanRecord));
-            for(LeDeviceListener listener: listeners)
-                listener.leDeviceFound(LeDevice43.this, device43, rssi, LeUtil.parseLeScanRecord(scanRecord));
+
+            listeners(
+                    new L() {
+                        @Override
+                        public void l(LeDeviceListener l) {
+                            l.leDeviceFound(LeDevice43.this, device43, rssi, LeUtil.parseLeScanRecord(scanRecord));
+                        }
+                    });
+
+
         }
     };
 
@@ -193,15 +241,17 @@ public class LeDevice43 implements LeDevice {
                 sendScanResult(result);
             }
 
-        void sendScanResult( ScanResult result){
-            LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, result.getDevice());
-            for(LeDeviceListener listener: listeners)
-                listener.leDeviceFound(LeDevice43.this, device43, result.getRssi(), LeUtil.parseLeScanRecord(result.getScanRecord().getBytes()));
-
+        void sendScanResult(final ScanResult result){
+            final LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, result.getDevice());
+            listeners(
+                    new L() {
+                        @Override
+                        public void l(LeDeviceListener l) {
+                            l.leDeviceFound(LeDevice43.this, device43, result.getRssi(), LeUtil.parseLeScanRecord(result.getScanRecord().getBytes()));
+                        }
+                    });
 
         }
-
-
 
     };
 
