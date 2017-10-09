@@ -12,7 +12,7 @@ matrix:
 env:
     global:
     - TERM=dumb
-    - J2OBJC_VERSION=2.0.3
+    - J2OBJC_VERSION=2.0.4
 
 android:
   components:
