@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "LeRemoteDeviceCB.h"
-#import "IOSClass.h"
 #import "HelpersCB.h"
 
 #import "LeGattCharacteristic.h"
-@interface LeGattCharacteristicCB : IOSClass<LeGattCharacteristic>{
+@interface LeGattCharacteristicCB : NSObject<LeGattCharacteristic>{
     LeRemoteDeviceCB* _remoteDevice;
     CBCharacteristic * _characteristic;
     JavaUtilUUID * _javaUUID;
