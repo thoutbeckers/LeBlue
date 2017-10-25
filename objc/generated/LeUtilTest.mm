@@ -12,11 +12,11 @@
 #include "org/junit/Assert.h"
 #include "org/junit/Test.h"
 
-__attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$0();
+__attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$0(void);
 
-__attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$1();
+__attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$1(void);
 
-__attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$2();
+__attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$2(void);
 
 @implementation LeUtilTest
 

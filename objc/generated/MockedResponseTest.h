@@ -26,9 +26,9 @@ J2OBJC_EMPTY_STATIC_INIT(MockedResponseTest)
 
 FOUNDATION_EXPORT void MockedResponseTest_init(MockedResponseTest *self);
 
-FOUNDATION_EXPORT MockedResponseTest *new_MockedResponseTest_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT MockedResponseTest *new_MockedResponseTest_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT MockedResponseTest *create_MockedResponseTest_init();
+FOUNDATION_EXPORT MockedResponseTest *create_MockedResponseTest_init(void);
 
 J2OBJC_TYPE_LITERAL_HEADER(MockedResponseTest)
 

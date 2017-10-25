@@ -137,11 +137,11 @@ J2OBJC_FIELD_SETTER(SessionObject, sourceIdentifications_, id<JavaUtilMap>)
 
 FOUNDATION_EXPORT void SessionObject_init(SessionObject *self);
 
-FOUNDATION_EXPORT SessionObject *new_SessionObject_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT SessionObject *new_SessionObject_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT SessionObject *create_SessionObject_init();
+FOUNDATION_EXPORT SessionObject *create_SessionObject_init(void);
 
-FOUNDATION_EXPORT SessionObject *SessionObject_newSession();
+FOUNDATION_EXPORT SessionObject *SessionObject_newSession(void);
 
 J2OBJC_TYPE_LITERAL_HEADER(SessionObject)
 
