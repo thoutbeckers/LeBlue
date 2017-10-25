@@ -32,9 +32,9 @@ J2OBJC_EMPTY_STATIC_INIT(StringEventSinkUtil)
 
 FOUNDATION_EXPORT void StringEventSinkUtil_init(StringEventSinkUtil *self);
 
-FOUNDATION_EXPORT StringEventSinkUtil *new_StringEventSinkUtil_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT StringEventSinkUtil *new_StringEventSinkUtil_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT StringEventSinkUtil *create_StringEventSinkUtil_init();
+FOUNDATION_EXPORT StringEventSinkUtil *create_StringEventSinkUtil_init(void);
 
 J2OBJC_TYPE_LITERAL_HEADER(StringEventSinkUtil)
 

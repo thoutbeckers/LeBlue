@@ -73,33 +73,33 @@ J2OBJC_STATIC_INIT(LeFormat)
 /*! INTERNAL ONLY - Use enum accessors declared below. */
 FOUNDATION_EXPORT LeFormat *LeFormat_values_[];
 
-inline LeFormat *LeFormat_get_FORMAT_UINT8();
+inline LeFormat *LeFormat_get_FORMAT_UINT8(void);
 J2OBJC_ENUM_CONSTANT(LeFormat, FORMAT_UINT8)
 
-inline LeFormat *LeFormat_get_FORMAT_UINT16();
+inline LeFormat *LeFormat_get_FORMAT_UINT16(void);
 J2OBJC_ENUM_CONSTANT(LeFormat, FORMAT_UINT16)
 
-inline LeFormat *LeFormat_get_FORMAT_UINT32();
+inline LeFormat *LeFormat_get_FORMAT_UINT32(void);
 J2OBJC_ENUM_CONSTANT(LeFormat, FORMAT_UINT32)
 
-inline LeFormat *LeFormat_get_FORMAT_SINT8();
+inline LeFormat *LeFormat_get_FORMAT_SINT8(void);
 J2OBJC_ENUM_CONSTANT(LeFormat, FORMAT_SINT8)
 
-inline LeFormat *LeFormat_get_FORMAT_SINT16();
+inline LeFormat *LeFormat_get_FORMAT_SINT16(void);
 J2OBJC_ENUM_CONSTANT(LeFormat, FORMAT_SINT16)
 
-inline LeFormat *LeFormat_get_FORMAT_SINT32();
+inline LeFormat *LeFormat_get_FORMAT_SINT32(void);
 J2OBJC_ENUM_CONSTANT(LeFormat, FORMAT_SINT32)
 
-inline LeFormat *LeFormat_get_FORMAT_SFLOAT();
+inline LeFormat *LeFormat_get_FORMAT_SFLOAT(void);
 J2OBJC_ENUM_CONSTANT(LeFormat, FORMAT_SFLOAT)
 
-inline LeFormat *LeFormat_get_FORMAT_FLOAT();
+inline LeFormat *LeFormat_get_FORMAT_FLOAT(void);
 J2OBJC_ENUM_CONSTANT(LeFormat, FORMAT_FLOAT)
 
 FOUNDATION_EXPORT LeFormat *LeFormat_fromStringWithNSString_(NSString *status);
 
-FOUNDATION_EXPORT IOSObjectArray *LeFormat_values();
+FOUNDATION_EXPORT IOSObjectArray *LeFormat_values(void);
 
 FOUNDATION_EXPORT LeFormat *LeFormat_valueOfWithNSString_(NSString *name);
 

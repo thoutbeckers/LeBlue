@@ -48,45 +48,45 @@ J2OBJC_FIELD_SETTER(MockerTest, sessionController_, LeSessionController *)
 J2OBJC_FIELD_SETTER(MockerTest, device_, id<LeDevice>)
 J2OBJC_FIELD_SETTER(MockerTest, remoteDevice_, id<LeRemoteDevice>)
 
-inline jint MockerTest_get_LE_REMOTE_DEVICE();
+inline jint MockerTest_get_LE_REMOTE_DEVICE(void);
 #define MockerTest_LE_REMOTE_DEVICE 11
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_REMOTE_DEVICE, jint)
 
-inline jint MockerTest_get_LE_REMOTE_DEVICE_2();
+inline jint MockerTest_get_LE_REMOTE_DEVICE_2(void);
 #define MockerTest_LE_REMOTE_DEVICE_2 12
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_REMOTE_DEVICE_2, jint)
 
-inline jint MockerTest_get_LE_REMOTE_DEVICE_3();
+inline jint MockerTest_get_LE_REMOTE_DEVICE_3(void);
 #define MockerTest_LE_REMOTE_DEVICE_3 13
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_REMOTE_DEVICE_3, jint)
 
-inline jint MockerTest_get_LE_SERVICE_1_1();
+inline jint MockerTest_get_LE_SERVICE_1_1(void);
 #define MockerTest_LE_SERVICE_1_1 101
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_SERVICE_1_1, jint)
 
-inline jint MockerTest_get_LE_SERVICE_1_2();
+inline jint MockerTest_get_LE_SERVICE_1_2(void);
 #define MockerTest_LE_SERVICE_1_2 102
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_SERVICE_1_2, jint)
 
-inline jint MockerTest_get_LE_SERVICE_2_1();
+inline jint MockerTest_get_LE_SERVICE_2_1(void);
 #define MockerTest_LE_SERVICE_2_1 201
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_SERVICE_2_1, jint)
 
-inline jint MockerTest_get_LE_CHARACTERISTIC_1_1();
+inline jint MockerTest_get_LE_CHARACTERISTIC_1_1(void);
 #define MockerTest_LE_CHARACTERISTIC_1_1 1001
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_CHARACTERISTIC_1_1, jint)
 
-inline jint MockerTest_get_LE_CHARACTERISTIC_1_2();
+inline jint MockerTest_get_LE_CHARACTERISTIC_1_2(void);
 #define MockerTest_LE_CHARACTERISTIC_1_2 1002
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_CHARACTERISTIC_1_2, jint)
 
-inline jint MockerTest_get_LE_CHARACTERISTIC_2_1();
+inline jint MockerTest_get_LE_CHARACTERISTIC_2_1(void);
 #define MockerTest_LE_CHARACTERISTIC_2_1 2001
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_CHARACTERISTIC_2_1, jint)
 
-__attribute__((unused)) static IOSObjectArray *MockerTest__Annotations$0();
+__attribute__((unused)) static IOSObjectArray *MockerTest__Annotations$0(void);
 
-__attribute__((unused)) static IOSObjectArray *MockerTest__Annotations$1();
+__attribute__((unused)) static IOSObjectArray *MockerTest__Annotations$1(void);
 
 @interface MockerTest_1 : NSObject < LeDeviceListener > {
  @public

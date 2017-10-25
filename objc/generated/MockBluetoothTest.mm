@@ -50,49 +50,49 @@ J2OBJC_FIELD_SETTER(MockBluetoothTest, sessionController_, LeSessionController *
 J2OBJC_FIELD_SETTER(MockBluetoothTest, device_, id<LeDevice>)
 J2OBJC_FIELD_SETTER(MockBluetoothTest, remoteDevice_, id<LeRemoteDevice>)
 
-inline jint MockBluetoothTest_get_LE_DEVICE();
+inline jint MockBluetoothTest_get_LE_DEVICE(void);
 #define MockBluetoothTest_LE_DEVICE 0
 J2OBJC_STATIC_FIELD_CONSTANT(MockBluetoothTest, LE_DEVICE, jint)
 
-inline jint MockBluetoothTest_get_LE_DEVICE_LISTENER();
+inline jint MockBluetoothTest_get_LE_DEVICE_LISTENER(void);
 #define MockBluetoothTest_LE_DEVICE_LISTENER 1
 J2OBJC_STATIC_FIELD_CONSTANT(MockBluetoothTest, LE_DEVICE_LISTENER, jint)
 
-inline jint MockBluetoothTest_get_LE_REMOTE_DEVICE();
+inline jint MockBluetoothTest_get_LE_REMOTE_DEVICE(void);
 #define MockBluetoothTest_LE_REMOTE_DEVICE 2
 J2OBJC_STATIC_FIELD_CONSTANT(MockBluetoothTest, LE_REMOTE_DEVICE, jint)
 
-inline jint MockBluetoothTest_get_LE_REMOTE_DEVICE_LISTENER();
+inline jint MockBluetoothTest_get_LE_REMOTE_DEVICE_LISTENER(void);
 #define MockBluetoothTest_LE_REMOTE_DEVICE_LISTENER 3
 J2OBJC_STATIC_FIELD_CONSTANT(MockBluetoothTest, LE_REMOTE_DEVICE_LISTENER, jint)
 
-inline jint MockBluetoothTest_get_LE_SERVICE_1();
+inline jint MockBluetoothTest_get_LE_SERVICE_1(void);
 #define MockBluetoothTest_LE_SERVICE_1 4
 J2OBJC_STATIC_FIELD_CONSTANT(MockBluetoothTest, LE_SERVICE_1, jint)
 
-inline jint MockBluetoothTest_get_LE_CHARACTERISTIC_1_1();
+inline jint MockBluetoothTest_get_LE_CHARACTERISTIC_1_1(void);
 #define MockBluetoothTest_LE_CHARACTERISTIC_1_1 5
 J2OBJC_STATIC_FIELD_CONSTANT(MockBluetoothTest, LE_CHARACTERISTIC_1_1, jint)
 
-inline jint MockBluetoothTest_get_LE_CHARACTERISTIC_1_2();
+inline jint MockBluetoothTest_get_LE_CHARACTERISTIC_1_2(void);
 #define MockBluetoothTest_LE_CHARACTERISTIC_1_2 6
 J2OBJC_STATIC_FIELD_CONSTANT(MockBluetoothTest, LE_CHARACTERISTIC_1_2, jint)
 
-inline jint MockBluetoothTest_get_LE_CHARACTERISTIC_LISTENER();
+inline jint MockBluetoothTest_get_LE_CHARACTERISTIC_LISTENER(void);
 #define MockBluetoothTest_LE_CHARACTERISTIC_LISTENER 7
 J2OBJC_STATIC_FIELD_CONSTANT(MockBluetoothTest, LE_CHARACTERISTIC_LISTENER, jint)
 
-inline jint MockBluetoothTest_get_LE_CHARACTERISTIC_WRITE_LISTENER();
+inline jint MockBluetoothTest_get_LE_CHARACTERISTIC_WRITE_LISTENER(void);
 #define MockBluetoothTest_LE_CHARACTERISTIC_WRITE_LISTENER 8
 J2OBJC_STATIC_FIELD_CONSTANT(MockBluetoothTest, LE_CHARACTERISTIC_WRITE_LISTENER, jint)
 
-inline jint MockBluetoothTest_get_RSSI();
+inline jint MockBluetoothTest_get_RSSI(void);
 #define MockBluetoothTest_RSSI 9
 J2OBJC_STATIC_FIELD_CONSTANT(MockBluetoothTest, RSSI, jint)
 
-__attribute__((unused)) static IOSObjectArray *MockBluetoothTest__Annotations$0();
+__attribute__((unused)) static IOSObjectArray *MockBluetoothTest__Annotations$0(void);
 
-__attribute__((unused)) static IOSObjectArray *MockBluetoothTest__Annotations$1();
+__attribute__((unused)) static IOSObjectArray *MockBluetoothTest__Annotations$1(void);
 
 @interface MockBluetoothTest_1 : NSObject < LeDeviceListener > {
  @public

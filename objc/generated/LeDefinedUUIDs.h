@@ -24,9 +24,9 @@ J2OBJC_EMPTY_STATIC_INIT(LeDefinedUUIDs)
 
 FOUNDATION_EXPORT void LeDefinedUUIDs_init(LeDefinedUUIDs *self);
 
-FOUNDATION_EXPORT LeDefinedUUIDs *new_LeDefinedUUIDs_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT LeDefinedUUIDs *new_LeDefinedUUIDs_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT LeDefinedUUIDs *create_LeDefinedUUIDs_init();
+FOUNDATION_EXPORT LeDefinedUUIDs *create_LeDefinedUUIDs_init(void);
 
 J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs)
 
@@ -63,46 +63,46 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs)
 
 J2OBJC_STATIC_INIT(LeDefinedUUIDs_Service)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Service_get_HEART_RATE();
+inline JavaUtilUUID *LeDefinedUUIDs_Service_get_HEART_RATE(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_HEART_RATE;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, HEART_RATE, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Service_get_CYCLING_POWER();
+inline JavaUtilUUID *LeDefinedUUIDs_Service_get_CYCLING_POWER(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_CYCLING_POWER;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, CYCLING_POWER, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Service_get_CYCLING_SPEED_AND_CADENCE();
+inline JavaUtilUUID *LeDefinedUUIDs_Service_get_CYCLING_SPEED_AND_CADENCE(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_CYCLING_SPEED_AND_CADENCE;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, CYCLING_SPEED_AND_CADENCE, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Service_get_RUNNING_SPEED_AND_CADENCE();
+inline JavaUtilUUID *LeDefinedUUIDs_Service_get_RUNNING_SPEED_AND_CADENCE(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_RUNNING_SPEED_AND_CADENCE;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, RUNNING_SPEED_AND_CADENCE, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Service_get_BATTERY();
+inline JavaUtilUUID *LeDefinedUUIDs_Service_get_BATTERY(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_BATTERY;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, BATTERY, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Service_get_DEVICE_INFORMATION();
+inline JavaUtilUUID *LeDefinedUUIDs_Service_get_DEVICE_INFORMATION(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_DEVICE_INFORMATION;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, DEVICE_INFORMATION, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Service_get_GENERIC_ATTRIBUTE();
+inline JavaUtilUUID *LeDefinedUUIDs_Service_get_GENERIC_ATTRIBUTE(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, GENERIC_ATTRIBUTE, JavaUtilUUID *)
 
 FOUNDATION_EXPORT void LeDefinedUUIDs_Service_init(LeDefinedUUIDs_Service *self);
 
-FOUNDATION_EXPORT LeDefinedUUIDs_Service *new_LeDefinedUUIDs_Service_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT LeDefinedUUIDs_Service *new_LeDefinedUUIDs_Service_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT LeDefinedUUIDs_Service *create_LeDefinedUUIDs_Service_init();
+FOUNDATION_EXPORT LeDefinedUUIDs_Service *create_LeDefinedUUIDs_Service_init(void);
 
 J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Service)
 
@@ -149,76 +149,76 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Service)
 
 J2OBJC_STATIC_INIT(LeDefinedUUIDs_Characteristic)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_HEART_RATE_MEASUREMENT();
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_HEART_RATE_MEASUREMENT(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_HEART_RATE_MEASUREMENT;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, HEART_RATE_MEASUREMENT, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_MANUFACTURER_STRING();
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_MANUFACTURER_STRING(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_MANUFACTURER_STRING;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, MANUFACTURER_STRING, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_MODEL_NUMBER_STRING();
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_MODEL_NUMBER_STRING(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_MODEL_NUMBER_STRING;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, MODEL_NUMBER_STRING, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_SERIAL_NUMBER_STRING();
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_SERIAL_NUMBER_STRING(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_SERIAL_NUMBER_STRING;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, SERIAL_NUMBER_STRING, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_FIRMWARE_REVISION_STRING();
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_FIRMWARE_REVISION_STRING(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_FIRMWARE_REVISION_STRING;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, FIRMWARE_REVISION_STRING, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_HARDWARE_REVISION_STRING();
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_HARDWARE_REVISION_STRING(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_HARDWARE_REVISION_STRING;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, HARDWARE_REVISION_STRING, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_APPEARANCE();
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_APPEARANCE(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_APPEARANCE;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, APPEARANCE, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_BODY_SENSOR_LOCATION();
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_BODY_SENSOR_LOCATION(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_BODY_SENSOR_LOCATION;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, BODY_SENSOR_LOCATION, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_BATTERY_LEVEL();
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_BATTERY_LEVEL(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_BATTERY_LEVEL;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, BATTERY_LEVEL, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_CYCLING_POWER_MEASUREMENT();
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_CYCLING_POWER_MEASUREMENT(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_CYCLING_POWER_MEASUREMENT;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, CYCLING_POWER_MEASUREMENT, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_CYCLING_POWER_CONTROL_POINT();
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_CYCLING_POWER_CONTROL_POINT(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_CYCLING_POWER_CONTROL_POINT;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, CYCLING_POWER_CONTROL_POINT, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_CSC_MEASUREMENT();
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_CSC_MEASUREMENT(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_CSC_MEASUREMENT;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, CSC_MEASUREMENT, JavaUtilUUID *)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_SERVICE_CHANGED();
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_SERVICE_CHANGED(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_SERVICE_CHANGED;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, SERVICE_CHANGED, JavaUtilUUID *)
 
 FOUNDATION_EXPORT void LeDefinedUUIDs_Characteristic_init(LeDefinedUUIDs_Characteristic *self);
 
-FOUNDATION_EXPORT LeDefinedUUIDs_Characteristic *new_LeDefinedUUIDs_Characteristic_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT LeDefinedUUIDs_Characteristic *new_LeDefinedUUIDs_Characteristic_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT LeDefinedUUIDs_Characteristic *create_LeDefinedUUIDs_Characteristic_init();
+FOUNDATION_EXPORT LeDefinedUUIDs_Characteristic *create_LeDefinedUUIDs_Characteristic_init(void);
 
 J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Characteristic)
 
@@ -241,16 +241,16 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Characteristic)
 
 J2OBJC_STATIC_INIT(LeDefinedUUIDs_Descriptor)
 
-inline JavaUtilUUID *LeDefinedUUIDs_Descriptor_get_CHAR_CLIENT_CONFIG();
+inline JavaUtilUUID *LeDefinedUUIDs_Descriptor_get_CHAR_CLIENT_CONFIG(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Descriptor_CHAR_CLIENT_CONFIG;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Descriptor, CHAR_CLIENT_CONFIG, JavaUtilUUID *)
 
 FOUNDATION_EXPORT void LeDefinedUUIDs_Descriptor_init(LeDefinedUUIDs_Descriptor *self);
 
-FOUNDATION_EXPORT LeDefinedUUIDs_Descriptor *new_LeDefinedUUIDs_Descriptor_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT LeDefinedUUIDs_Descriptor *new_LeDefinedUUIDs_Descriptor_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT LeDefinedUUIDs_Descriptor *create_LeDefinedUUIDs_Descriptor_init();
+FOUNDATION_EXPORT LeDefinedUUIDs_Descriptor *create_LeDefinedUUIDs_Descriptor_init(void);
 
 J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Descriptor)
 

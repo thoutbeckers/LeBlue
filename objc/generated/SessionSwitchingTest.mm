@@ -46,21 +46,21 @@ J2OBJC_FIELD_SETTER(SessionSwitchingTest, sessionController_, LeSessionControlle
 J2OBJC_FIELD_SETTER(SessionSwitchingTest, device_, id<LeDevice>)
 J2OBJC_FIELD_SETTER(SessionSwitchingTest, remoteDevice_, id<LeRemoteDevice>)
 
-inline jint SessionSwitchingTest_get_LE_REMOTE_DEVICE();
+inline jint SessionSwitchingTest_get_LE_REMOTE_DEVICE(void);
 #define SessionSwitchingTest_LE_REMOTE_DEVICE 1
 J2OBJC_STATIC_FIELD_CONSTANT(SessionSwitchingTest, LE_REMOTE_DEVICE, jint)
 
-inline jint SessionSwitchingTest_get_LE_SERVICE();
+inline jint SessionSwitchingTest_get_LE_SERVICE(void);
 #define SessionSwitchingTest_LE_SERVICE 1
 J2OBJC_STATIC_FIELD_CONSTANT(SessionSwitchingTest, LE_SERVICE, jint)
 
-inline jint SessionSwitchingTest_get_LE_CHARACTERISTIC();
+inline jint SessionSwitchingTest_get_LE_CHARACTERISTIC(void);
 #define SessionSwitchingTest_LE_CHARACTERISTIC 1
 J2OBJC_STATIC_FIELD_CONSTANT(SessionSwitchingTest, LE_CHARACTERISTIC, jint)
 
-__attribute__((unused)) static IOSObjectArray *SessionSwitchingTest__Annotations$0();
+__attribute__((unused)) static IOSObjectArray *SessionSwitchingTest__Annotations$0(void);
 
-__attribute__((unused)) static IOSObjectArray *SessionSwitchingTest__Annotations$1();
+__attribute__((unused)) static IOSObjectArray *SessionSwitchingTest__Annotations$1(void);
 
 @interface SessionSwitchingTest_1 : NSObject < LeDeviceListener > {
  @public
