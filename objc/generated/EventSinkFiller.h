@@ -95,7 +95,7 @@ J2OBJC_EMPTY_STATIC_INIT(EventSinkFiller)
 J2OBJC_FIELD_SETTER(EventSinkFiller, listEventSinkSource_, ListEventSinkSource *)
 J2OBJC_FIELD_SETTER(EventSinkFiller, and__, SessionObject *)
 
-inline jint EventSinkFiller_get_DEFAULT_DEVICE_ID();
+inline jint EventSinkFiller_get_DEFAULT_DEVICE_ID(void);
 #define EventSinkFiller_DEFAULT_DEVICE_ID 0
 J2OBJC_STATIC_FIELD_CONSTANT(EventSinkFiller, DEFAULT_DEVICE_ID, jint)
 

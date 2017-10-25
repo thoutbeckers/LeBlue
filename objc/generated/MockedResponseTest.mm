@@ -7,7 +7,7 @@
 #include "java/lang/annotation/Annotation.h"
 #include "org/junit/Test.h"
 
-__attribute__((unused)) static IOSObjectArray *MockedResponseTest__Annotations$0();
+__attribute__((unused)) static IOSObjectArray *MockedResponseTest__Annotations$0(void);
 
 @implementation MockedResponseTest
 
