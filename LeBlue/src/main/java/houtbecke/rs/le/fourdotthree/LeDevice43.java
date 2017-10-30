@@ -215,44 +215,43 @@ public class LeDevice43 implements LeDevice {
     }
 
     @Override
-    public void startScanning(UUID... uuids) {
-        if(!hasPermission() )return;
-        BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
-        ScanSettings settings = new ScanSettings.Builder()
-                .setScanMode(ScanSettings.SCAN_MODE_BALANCED).setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
-                .setUseHardwareBatchingIfSupported(false).build();
-        List<ScanFilter> filters = new ArrayList<>();
-        ScanFilter.Builder builder = new ScanFilter.Builder();
-        for (UUID uuid : uuids ){
-            builder  = builder.setServiceUuid(new ParcelUuid(uuid));
-
+    public void startScanning(final UUID... uuids) {
+        if(!hasPermission()) {
+            return;
         }
-        filters.add(new ScanFilter.Builder().build());
-        scanner.startScan(filters, settings, scanCallback);
+
+        final BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
+        final List<ScanFilter> scanFilters = new ArrayList<>();
+        for(UUID uuid : uuids) {
+            scanFilters.add(new ScanFilter.Builder().setServiceUuid(new ParcelUuid(uuid)).build());
+        }
+        startScanning(scanner, scanFilters);
     }
 
     @Override
-    public void startScanning(List<List<UUID>> filters) {
-        if(!hasPermission() )return;
-        BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
-        ScanSettings settings = new ScanSettings.Builder()
-                .setScanMode(ScanSettings.SCAN_MODE_BALANCED).setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
-                .setUseHardwareBatchingIfSupported(false).build();
-        List<ScanFilter> scanFilters = new ArrayList<>();
-        for (List<UUID> filter : filters){
-            ScanFilter.Builder builder = new ScanFilter.Builder();
-            for (UUID uuid : filter ){
-                builder  = builder.setServiceUuid(new ParcelUuid(uuid));
-
-            }
-            scanFilters.add(new ScanFilter.Builder().build());
-
+    public void startScanning(final List<List<UUID>> filters) {
+        if(!hasPermission()) {
+            return;
         }
-        scanner.startScan(scanFilters, settings, scanCallback);
+
+        final BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
+        final List<ScanFilter> scanFilters = new ArrayList<>();
+        for(List<UUID> filter : filters) {
+            for(UUID uuid : filter) {
+                scanFilters.add(new ScanFilter.Builder().setServiceUuid(new ParcelUuid(uuid)).build());
+            }
+        }
+        startScanning(scanner, scanFilters);
     }
 
-
-
+    private void startScanning(final BluetoothLeScannerCompat scanner, final List<ScanFilter> scanFilters) {
+        final ScanSettings settings = new ScanSettings.Builder()
+                .setScanMode(ScanSettings.SCAN_MODE_BALANCED)
+                .setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
+                .setUseHardwareBatchingIfSupported(false)
+                .build();
+        scanner.startScan(scanFilters, settings, scanCallback);
+    }
 
     @Override
 	public void stopScanning() {
