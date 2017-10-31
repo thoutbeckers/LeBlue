@@ -30,9 +30,9 @@ J2OBJC_EMPTY_STATIC_INIT(LeUtilTest)
 
 FOUNDATION_EXPORT void LeUtilTest_init(LeUtilTest *self);
 
-FOUNDATION_EXPORT LeUtilTest *new_LeUtilTest_init(void) NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT LeUtilTest *new_LeUtilTest_init() NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT LeUtilTest *create_LeUtilTest_init(void);
+FOUNDATION_EXPORT LeUtilTest *create_LeUtilTest_init();
 
 J2OBJC_TYPE_LITERAL_HEADER(LeUtilTest)
 

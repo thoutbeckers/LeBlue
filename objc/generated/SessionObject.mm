@@ -52,7 +52,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 - (DeviceMockerObject *)withFakeDeviceWithIntArray:(IOSIntArray *)remoteDevices {
-  return [((DeviceMockerObject *) nil_chk(([((DeviceMockerObject *) nil_chk([self withDeviceMocker])) hasRemoteDevicesWithInt:0 withByteArray:[IOSByteArray arrayWithBytes:(jbyte[]){ 0 } count:1] withIntArray:remoteDevices]))) withFakeDeviceListeners];
+  return [((DeviceMockerObject *) nil_chk([((DeviceMockerObject *) nil_chk([self withDeviceMocker])) hasRemoteDevicesWithInt:0 withByteArray:[IOSByteArray arrayWithBytes:(jbyte[]){ 0 } count:1] withIntArray:remoteDevices])) withFakeDeviceListeners];
 }
 
 - (DeviceMockerObject *)withFakeDevicesWithIntArray:(IOSIntArray *)remoteDevices

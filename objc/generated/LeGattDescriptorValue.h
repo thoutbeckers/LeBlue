@@ -38,7 +38,7 @@ J2OBJC_EMPTY_STATIC_INIT(LeGattDescriptorValue)
 /*! INTERNAL ONLY - Use enum accessors declared below. */
 FOUNDATION_EXPORT LeGattDescriptorValue *LeGattDescriptorValue_values_[];
 
-FOUNDATION_EXPORT IOSObjectArray *LeGattDescriptorValue_values(void);
+FOUNDATION_EXPORT IOSObjectArray *LeGattDescriptorValue_values();
 
 FOUNDATION_EXPORT LeGattDescriptorValue *LeGattDescriptorValue_valueOfWithNSString_(NSString *name);
 
