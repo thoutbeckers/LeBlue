@@ -10,11 +10,10 @@
 #import "LeGattService.h"
 #import "LeDeviceCB.h"
 #import "LeRemoteDeviceCB.h"
-#import "IOSClass.h"
 #import "IOSObjectArray.h"
 #import "IOSPrimitiveArray.h"
 
-@interface LeGattServiceCB : IOSClass<LeGattService>
+@interface LeGattServiceCB : NSObject<LeGattService>
 {
     CBService * _service;
     LeDeviceCB * _device;
