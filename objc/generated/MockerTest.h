@@ -40,9 +40,9 @@ J2OBJC_EMPTY_STATIC_INIT(MockerTest)
 
 FOUNDATION_EXPORT void MockerTest_init(MockerTest *self);
 
-FOUNDATION_EXPORT MockerTest *new_MockerTest_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT MockerTest *new_MockerTest_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT MockerTest *create_MockerTest_init();
+FOUNDATION_EXPORT MockerTest *create_MockerTest_init(void);
 
 J2OBJC_TYPE_LITERAL_HEADER(MockerTest)
 

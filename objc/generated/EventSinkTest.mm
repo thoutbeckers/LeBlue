@@ -14,9 +14,9 @@
 #include "org/junit/Before.h"
 #include "org/junit/Test.h"
 
-__attribute__((unused)) static IOSObjectArray *EventSinkTest__Annotations$0();
+__attribute__((unused)) static IOSObjectArray *EventSinkTest__Annotations$0(void);
 
-__attribute__((unused)) static IOSObjectArray *EventSinkTest__Annotations$1();
+__attribute__((unused)) static IOSObjectArray *EventSinkTest__Annotations$1(void);
 
 @implementation EventSinkTest
 
