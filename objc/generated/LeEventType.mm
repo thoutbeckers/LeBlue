@@ -283,9 +283,12 @@ LeEventType *LeEventType_values_[47];
     size_t allocSize = 47 * objSize;
     uintptr_t ptr = (uintptr_t)calloc(allocSize, 1);
     id e;
+    id names[] = {
+      @"deviceStartScanning", @"deviceStopScanning", @"deviceRemoveListener", @"deviceCheckBleHardwareAvailable", @"deviceIsBtEnabled", @"deviceAddListener", @"remoteDeviceConnect", @"remoteDeviceStartServiceDiscovery", @"remoteDeviceClose", @"remoteDeviceDisconnect", @"serviceEnableCharacteristicNotification", @"remoteDeviceGetAddress", @"remoteDeviceAddListener", @"remoteDeviceRemoveListener", @"remoteDeviceSetCharacteristicListener", @"remoteDeviceSetCharacteristicWriteListener", @"remoteDeviceReadRssi", @"serviceGetUUID", @"characteristicGetValue", @"characteristicGetIntValue", @"remoteDeviceGetName", @"serviceGetCharacteristic", @"characteristicSetValue", @"characteristicRead", @"remoteDeviceFound", @"deviceState", @"mockRemoteDeviceFound", @"remoteDeviceConnected", @"mockRemoteDeviceConnected", @"remoteDeviceDisconnected", @"remoteDeviceClosed", @"mockRemoteDeviceDisconnected", @"mockRemoteDeviceClosed", @"remoteDeviceServicesDiscovered", @"remoteDeviceRssiRead", @"mockRemoteDeviceServicesDiscovered", @"deviceRemoteDeviceServicesDiscovered", @"characteristicChanged", @"characteristicNotificationChanged", @"characteristicWritten", @"mockCharacteristicChanged", @"mockCharacteristicChangedWithMockedValue", @"mockCharacteristicMockedValue", @"mockCharacteristicClearMockedValue", @"mockCharacteristicNotificationChanged", @"mockWaitForPoint", @"mockPointReached",
+    };
     for (jint i = 0; i < 47; i++) {
       (LeEventType_values_[i] = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
-      LeEventType_initWithNSString_withInt_(e, JreEnumConstantName(LeEventType_class_(), i), i);
+      LeEventType_initWithNSString_withInt_(e, names[i], i);
     }
     J2OBJC_SET_INITIALIZED(LeEventType)
   }

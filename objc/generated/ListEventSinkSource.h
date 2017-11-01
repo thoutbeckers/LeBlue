@@ -62,9 +62,9 @@ J2OBJC_FIELD_SETTER(ListEventSinkSource, iterator_, id<JavaUtilIterator>)
 
 FOUNDATION_EXPORT void ListEventSinkSource_init(ListEventSinkSource *self);
 
-FOUNDATION_EXPORT ListEventSinkSource *new_ListEventSinkSource_init(void) NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT ListEventSinkSource *new_ListEventSinkSource_init() NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT ListEventSinkSource *create_ListEventSinkSource_init(void);
+FOUNDATION_EXPORT ListEventSinkSource *create_ListEventSinkSource_init();
 
 FOUNDATION_EXPORT void ListEventSinkSource_initWithInt_(ListEventSinkSource *self, jint limit);
 

@@ -12,11 +12,11 @@
 #include "org/junit/Assert.h"
 #include "org/junit/Test.h"
 
-__attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$0(void);
+__attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$0();
 
-__attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$1(void);
+__attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$1();
 
-__attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$2(void);
+__attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$2();
 
 @implementation LeUtilTest
 
@@ -30,15 +30,15 @@ J2OBJC_IGNORE_DESIGNATED_END
 - (void)testScanRecord {
   IOSByteArray *scanrecord = LeUtil_stringToBytesWithNSString_(@"2,1,6,3,2,13,24,15,9,87,97,104,111,111,32,72,82,77,32,118,50,46,49,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0");
   id<LeScanRecord> leScanRecord = LeUtil_parseLeScanRecordWithByteArray_(scanrecord);
-  JreAssert([((id<LeScanRecord>) nil_chk(leScanRecord)) hasServiceWithJavaUtilUUID:JreLoadStatic(LeDefinedUUIDs_Service, HEART_RATE)], @"houtbecke/rs/le/LeUtilTest.java:21 condition failed: assert leScanRecord.hasService(LeDefinedUUIDs.Service.HEART_RATE);");
+  JreAssert(([((id<LeScanRecord>) nil_chk(leScanRecord)) hasServiceWithJavaUtilUUID:JreLoadStatic(LeDefinedUUIDs_Service, HEART_RATE)]), (@"houtbecke/rs/le/LeUtilTest.java:21 condition failed: assert leScanRecord.hasService(LeDefinedUUIDs.Service.HEART_RATE);"));
   scanrecord = LeUtil_stringToBytesWithNSString_(@"15,9,84,97,99,120,32,65,78,84,32,66,114,97,107,101,2,1,5,17,7,95,103,98,80,-83,-122,17,-30,-98,-106,8,12,5,-92,-102,102,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0");
   leScanRecord = LeUtil_parseLeScanRecordWithByteArray_(scanrecord);
-  JreAssert([((id<LeScanRecord>) nil_chk(leScanRecord)) hasServiceWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"669aa405-0c08-969e-e211-86ad5062675f")], @"houtbecke/rs/le/LeUtilTest.java:25 condition failed: assert leScanRecord.hasService( UUID.fromString(\"669aa405-0c08-969e-e211-86ad5062675f\"));");
+  JreAssert(([((id<LeScanRecord>) nil_chk(leScanRecord)) hasServiceWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"669aa405-0c08-969e-e211-86ad5062675f")]), (@"houtbecke/rs/le/LeUtilTest.java:25 condition failed: assert leScanRecord.hasService( UUID.fromString(\"669aa405-0c08-969e-e211-86ad5062675f\"));"));
   scanrecord = LeUtil_stringToBytesWithNSString_(@"13,9,84,97,99,120,32,66,117,115,104,105,100,111,2,1,6,5,3,24,24,22,24,17,7,95,103,98,80,-83,-122,17,-30,-98,-106,8,12,5,-92,-102,102,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0");
   leScanRecord = LeUtil_parseLeScanRecordWithByteArray_(scanrecord);
-  JreAssert([((id<LeScanRecord>) nil_chk(leScanRecord)) hasServiceWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"669aa405-0c08-969e-e211-86ad5062675f")], @"houtbecke/rs/le/LeUtilTest.java:29 condition failed: assert leScanRecord.hasService( UUID.fromString(\"669aa405-0c08-969e-e211-86ad5062675f\"));");
+  JreAssert(([((id<LeScanRecord>) nil_chk(leScanRecord)) hasServiceWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"669aa405-0c08-969e-e211-86ad5062675f")]), (@"houtbecke/rs/le/LeUtilTest.java:29 condition failed: assert leScanRecord.hasService( UUID.fromString(\"669aa405-0c08-969e-e211-86ad5062675f\"));"));
   leScanRecord = LeUtil_parseLeScanRecordWithByteArray_([IOSByteArray arrayWithLength:0]);
-  JreAssert(((IOSObjectArray *) nil_chk([((id<LeScanRecord>) nil_chk(leScanRecord)) getServices]))->size_ == 0, @"houtbecke/rs/le/LeUtilTest.java:32 condition failed: assert leScanRecord.getServices().length == 0;");
+  JreAssert((((IOSObjectArray *) nil_chk([((id<LeScanRecord>) nil_chk(leScanRecord)) getServices]))->size_ == 0), (@"houtbecke/rs/le/LeUtilTest.java:32 condition failed: assert leScanRecord.getServices().length == 0;"));
 }
 
 - (void)testStringToByte {

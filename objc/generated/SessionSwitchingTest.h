@@ -55,9 +55,9 @@ J2OBJC_EMPTY_STATIC_INIT(SessionSwitchingTest)
 
 FOUNDATION_EXPORT void SessionSwitchingTest_init(SessionSwitchingTest *self);
 
-FOUNDATION_EXPORT SessionSwitchingTest *new_SessionSwitchingTest_init(void) NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT SessionSwitchingTest *new_SessionSwitchingTest_init() NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT SessionSwitchingTest *create_SessionSwitchingTest_init(void);
+FOUNDATION_EXPORT SessionSwitchingTest *create_SessionSwitchingTest_init();
 
 J2OBJC_TYPE_LITERAL_HEADER(SessionSwitchingTest)
 
