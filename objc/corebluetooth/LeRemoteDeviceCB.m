@@ -172,7 +172,6 @@
         _servicesDiscovered = _peripheral.services.count;
         services = [[NSMutableDictionary alloc] init];
         servicesCB = [[NSMutableArray alloc] init];
-        _serviceFoundSent = false;
 
         if (_peripheral.services.count == 0 ) return;
 
@@ -180,10 +179,9 @@
         {
             CBService* service = [_peripheral.services objectAtIndex:i];
             LeGattServiceCB *  gattServiceCB = [[LeGattServiceCB alloc] initWith:service device:_device remoteDevice:self ];
-            [services setObject:gattServiceCB forKey:service.UUID];
             [servicesCB addObject:service];
+            [peripheral discoverCharacteristics:nil forService:service];
         }
-        [peripheral discoverCharacteristics:nil forService:[servicesCB objectAtIndex:_servicesDiscovered-1]];
 
     }
 }
@@ -202,13 +200,16 @@
 
     }
 
-        if (_servicesDiscovered >0)
-          {
-                  _servicesDiscovered--;
-                 [peripheral discoverCharacteristics:nil forService:[servicesCB objectAtIndex:_servicesDiscovered]];
-          }else{
-                [self serviceFound];
-           }
+       Boolean found =  false;
+       @synchronized(self) {
+           _servicesDiscovered--;
+       }
+       if (_servicesDiscovered == 0)
+       {
+           found = true;
+       }
+       if (found)
+           [self serviceFound];
 }
 
 - (void) peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
