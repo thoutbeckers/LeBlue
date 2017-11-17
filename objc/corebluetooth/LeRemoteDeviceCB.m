@@ -178,6 +178,7 @@
         {
             CBService* service = [_peripheral.services objectAtIndex:i];
             LeGattServiceCB *  gattServiceCB = [[LeGattServiceCB alloc] initWith:service device:_device remoteDevice:self ];
+            [services setObject:gattServiceCB forKey:service.UUID];
             [peripheral discoverCharacteristics:nil forService:service];
         }
 
