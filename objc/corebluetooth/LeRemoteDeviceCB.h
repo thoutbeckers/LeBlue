@@ -24,7 +24,7 @@
     _uuidListeners;
     NSMutableDictionary*
     _uuidWriteListeners;
-    NSMutableArray * servicesCB;
+    NSMutableDictionary * services;
     id<LeCharacteristicListener>
     nullListener;
     id<LeCharacteristicWriteListener>

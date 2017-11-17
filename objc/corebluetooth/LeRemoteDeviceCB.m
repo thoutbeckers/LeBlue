@@ -171,7 +171,6 @@
 
         _servicesDiscovered = _peripheral.services.count;
         services = [[NSMutableDictionary alloc] init];
-        servicesCB = [[NSMutableArray alloc] init];
 
         if (_peripheral.services.count == 0 ) return;
 
@@ -179,7 +178,6 @@
         {
             CBService* service = [_peripheral.services objectAtIndex:i];
             LeGattServiceCB *  gattServiceCB = [[LeGattServiceCB alloc] initWith:service device:_device remoteDevice:self ];
-            [servicesCB addObject:service];
             [peripheral discoverCharacteristics:nil forService:service];
         }
 
