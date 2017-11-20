@@ -56,16 +56,16 @@
 
 J2OBJC_STATIC_INIT(LeUtil)
 
-inline IOSCharArray *LeUtil_get_hexArray(void);
+inline IOSCharArray *LeUtil_get_hexArray();
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT IOSCharArray *LeUtil_hexArray;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeUtil, hexArray, IOSCharArray *)
 
 FOUNDATION_EXPORT void LeUtil_init(LeUtil *self);
 
-FOUNDATION_EXPORT LeUtil *new_LeUtil_init(void) NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT LeUtil *new_LeUtil_init() NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT LeUtil *create_LeUtil_init(void);
+FOUNDATION_EXPORT LeUtil *create_LeUtil_init();
 
 FOUNDATION_EXPORT NSString *LeUtil_bytesToStringWithByteArray_(IOSByteArray *bytes);
 

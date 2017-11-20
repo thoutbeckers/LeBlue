@@ -322,7 +322,7 @@ J2OBJC_FIELD_SETTER(LeSessionController, characteristics_, id<JavaUtilMap>)
 J2OBJC_FIELD_SETTER(LeSessionController, characteristicsKeys_, id<JavaUtilMap>)
 J2OBJC_FIELD_SETTER(LeSessionController, remoteDeviceListeners_, id<JavaUtilMap>)
 
-inline NSString *LeSessionController_get_TAG(void);
+inline NSString *LeSessionController_get_TAG();
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT NSString *LeSessionController_TAG;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeSessionController, TAG, NSString *)
@@ -388,19 +388,19 @@ J2OBJC_STATIC_INIT(LeSessionController_SourceType)
 /*! INTERNAL ONLY - Use enum accessors declared below. */
 FOUNDATION_EXPORT LeSessionController_SourceType *LeSessionController_SourceType_values_[];
 
-inline LeSessionController_SourceType *LeSessionController_SourceType_get_device(void);
+inline LeSessionController_SourceType *LeSessionController_SourceType_get_device();
 J2OBJC_ENUM_CONSTANT(LeSessionController_SourceType, device)
 
-inline LeSessionController_SourceType *LeSessionController_SourceType_get_remoteDevice(void);
+inline LeSessionController_SourceType *LeSessionController_SourceType_get_remoteDevice();
 J2OBJC_ENUM_CONSTANT(LeSessionController_SourceType, remoteDevice)
 
-inline LeSessionController_SourceType *LeSessionController_SourceType_get_gattService(void);
+inline LeSessionController_SourceType *LeSessionController_SourceType_get_gattService();
 J2OBJC_ENUM_CONSTANT(LeSessionController_SourceType, gattService)
 
-inline LeSessionController_SourceType *LeSessionController_SourceType_get_gattCharacteristic(void);
+inline LeSessionController_SourceType *LeSessionController_SourceType_get_gattCharacteristic();
 J2OBJC_ENUM_CONSTANT(LeSessionController_SourceType, gattCharacteristic)
 
-FOUNDATION_EXPORT IOSObjectArray *LeSessionController_SourceType_values(void);
+FOUNDATION_EXPORT IOSObjectArray *LeSessionController_SourceType_values();
 
 FOUNDATION_EXPORT LeSessionController_SourceType *LeSessionController_SourceType_valueOfWithNSString_(NSString *name);
 

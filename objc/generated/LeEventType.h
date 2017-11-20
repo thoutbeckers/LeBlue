@@ -190,148 +190,148 @@ J2OBJC_STATIC_INIT(LeEventType)
 /*! INTERNAL ONLY - Use enum accessors declared below. */
 FOUNDATION_EXPORT LeEventType *LeEventType_values_[];
 
-inline LeEventType *LeEventType_get_deviceStartScanning(void);
+inline LeEventType *LeEventType_get_deviceStartScanning();
 J2OBJC_ENUM_CONSTANT(LeEventType, deviceStartScanning)
 
-inline LeEventType *LeEventType_get_deviceStopScanning(void);
+inline LeEventType *LeEventType_get_deviceStopScanning();
 J2OBJC_ENUM_CONSTANT(LeEventType, deviceStopScanning)
 
-inline LeEventType *LeEventType_get_deviceRemoveListener(void);
+inline LeEventType *LeEventType_get_deviceRemoveListener();
 J2OBJC_ENUM_CONSTANT(LeEventType, deviceRemoveListener)
 
-inline LeEventType *LeEventType_get_deviceCheckBleHardwareAvailable(void);
+inline LeEventType *LeEventType_get_deviceCheckBleHardwareAvailable();
 J2OBJC_ENUM_CONSTANT(LeEventType, deviceCheckBleHardwareAvailable)
 
-inline LeEventType *LeEventType_get_deviceIsBtEnabled(void);
+inline LeEventType *LeEventType_get_deviceIsBtEnabled();
 J2OBJC_ENUM_CONSTANT(LeEventType, deviceIsBtEnabled)
 
-inline LeEventType *LeEventType_get_deviceAddListener(void);
+inline LeEventType *LeEventType_get_deviceAddListener();
 J2OBJC_ENUM_CONSTANT(LeEventType, deviceAddListener)
 
-inline LeEventType *LeEventType_get_remoteDeviceConnect(void);
+inline LeEventType *LeEventType_get_remoteDeviceConnect();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceConnect)
 
-inline LeEventType *LeEventType_get_remoteDeviceStartServiceDiscovery(void);
+inline LeEventType *LeEventType_get_remoteDeviceStartServiceDiscovery();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceStartServiceDiscovery)
 
-inline LeEventType *LeEventType_get_remoteDeviceClose(void);
+inline LeEventType *LeEventType_get_remoteDeviceClose();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceClose)
 
-inline LeEventType *LeEventType_get_remoteDeviceDisconnect(void);
+inline LeEventType *LeEventType_get_remoteDeviceDisconnect();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceDisconnect)
 
-inline LeEventType *LeEventType_get_serviceEnableCharacteristicNotification(void);
+inline LeEventType *LeEventType_get_serviceEnableCharacteristicNotification();
 J2OBJC_ENUM_CONSTANT(LeEventType, serviceEnableCharacteristicNotification)
 
-inline LeEventType *LeEventType_get_remoteDeviceGetAddress(void);
+inline LeEventType *LeEventType_get_remoteDeviceGetAddress();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceGetAddress)
 
-inline LeEventType *LeEventType_get_remoteDeviceAddListener(void);
+inline LeEventType *LeEventType_get_remoteDeviceAddListener();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceAddListener)
 
-inline LeEventType *LeEventType_get_remoteDeviceRemoveListener(void);
+inline LeEventType *LeEventType_get_remoteDeviceRemoveListener();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceRemoveListener)
 
-inline LeEventType *LeEventType_get_remoteDeviceSetCharacteristicListener(void);
+inline LeEventType *LeEventType_get_remoteDeviceSetCharacteristicListener();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceSetCharacteristicListener)
 
-inline LeEventType *LeEventType_get_remoteDeviceSetCharacteristicWriteListener(void);
+inline LeEventType *LeEventType_get_remoteDeviceSetCharacteristicWriteListener();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceSetCharacteristicWriteListener)
 
-inline LeEventType *LeEventType_get_remoteDeviceReadRssi(void);
+inline LeEventType *LeEventType_get_remoteDeviceReadRssi();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceReadRssi)
 
-inline LeEventType *LeEventType_get_serviceGetUUID(void);
+inline LeEventType *LeEventType_get_serviceGetUUID();
 J2OBJC_ENUM_CONSTANT(LeEventType, serviceGetUUID)
 
-inline LeEventType *LeEventType_get_characteristicGetValue(void);
+inline LeEventType *LeEventType_get_characteristicGetValue();
 J2OBJC_ENUM_CONSTANT(LeEventType, characteristicGetValue)
 
-inline LeEventType *LeEventType_get_characteristicGetIntValue(void);
+inline LeEventType *LeEventType_get_characteristicGetIntValue();
 J2OBJC_ENUM_CONSTANT(LeEventType, characteristicGetIntValue)
 
-inline LeEventType *LeEventType_get_remoteDeviceGetName(void);
+inline LeEventType *LeEventType_get_remoteDeviceGetName();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceGetName)
 
-inline LeEventType *LeEventType_get_serviceGetCharacteristic(void);
+inline LeEventType *LeEventType_get_serviceGetCharacteristic();
 J2OBJC_ENUM_CONSTANT(LeEventType, serviceGetCharacteristic)
 
-inline LeEventType *LeEventType_get_characteristicSetValue(void);
+inline LeEventType *LeEventType_get_characteristicSetValue();
 J2OBJC_ENUM_CONSTANT(LeEventType, characteristicSetValue)
 
-inline LeEventType *LeEventType_get_characteristicRead(void);
+inline LeEventType *LeEventType_get_characteristicRead();
 J2OBJC_ENUM_CONSTANT(LeEventType, characteristicRead)
 
-inline LeEventType *LeEventType_get_remoteDeviceFound(void);
+inline LeEventType *LeEventType_get_remoteDeviceFound();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceFound)
 
-inline LeEventType *LeEventType_get_deviceState(void);
+inline LeEventType *LeEventType_get_deviceState();
 J2OBJC_ENUM_CONSTANT(LeEventType, deviceState)
 
-inline LeEventType *LeEventType_get_mockRemoteDeviceFound(void);
+inline LeEventType *LeEventType_get_mockRemoteDeviceFound();
 J2OBJC_ENUM_CONSTANT(LeEventType, mockRemoteDeviceFound)
 
-inline LeEventType *LeEventType_get_remoteDeviceConnected(void);
+inline LeEventType *LeEventType_get_remoteDeviceConnected();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceConnected)
 
-inline LeEventType *LeEventType_get_mockRemoteDeviceConnected(void);
+inline LeEventType *LeEventType_get_mockRemoteDeviceConnected();
 J2OBJC_ENUM_CONSTANT(LeEventType, mockRemoteDeviceConnected)
 
-inline LeEventType *LeEventType_get_remoteDeviceDisconnected(void);
+inline LeEventType *LeEventType_get_remoteDeviceDisconnected();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceDisconnected)
 
-inline LeEventType *LeEventType_get_remoteDeviceClosed(void);
+inline LeEventType *LeEventType_get_remoteDeviceClosed();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceClosed)
 
-inline LeEventType *LeEventType_get_mockRemoteDeviceDisconnected(void);
+inline LeEventType *LeEventType_get_mockRemoteDeviceDisconnected();
 J2OBJC_ENUM_CONSTANT(LeEventType, mockRemoteDeviceDisconnected)
 
-inline LeEventType *LeEventType_get_mockRemoteDeviceClosed(void);
+inline LeEventType *LeEventType_get_mockRemoteDeviceClosed();
 J2OBJC_ENUM_CONSTANT(LeEventType, mockRemoteDeviceClosed)
 
-inline LeEventType *LeEventType_get_remoteDeviceServicesDiscovered(void);
+inline LeEventType *LeEventType_get_remoteDeviceServicesDiscovered();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceServicesDiscovered)
 
-inline LeEventType *LeEventType_get_remoteDeviceRssiRead(void);
+inline LeEventType *LeEventType_get_remoteDeviceRssiRead();
 J2OBJC_ENUM_CONSTANT(LeEventType, remoteDeviceRssiRead)
 
-inline LeEventType *LeEventType_get_mockRemoteDeviceServicesDiscovered(void);
+inline LeEventType *LeEventType_get_mockRemoteDeviceServicesDiscovered();
 J2OBJC_ENUM_CONSTANT(LeEventType, mockRemoteDeviceServicesDiscovered)
 
-inline LeEventType *LeEventType_get_deviceRemoteDeviceServicesDiscovered(void);
+inline LeEventType *LeEventType_get_deviceRemoteDeviceServicesDiscovered();
 J2OBJC_ENUM_CONSTANT(LeEventType, deviceRemoteDeviceServicesDiscovered)
 
-inline LeEventType *LeEventType_get_characteristicChanged(void);
+inline LeEventType *LeEventType_get_characteristicChanged();
 J2OBJC_ENUM_CONSTANT(LeEventType, characteristicChanged)
 
-inline LeEventType *LeEventType_get_characteristicNotificationChanged(void);
+inline LeEventType *LeEventType_get_characteristicNotificationChanged();
 J2OBJC_ENUM_CONSTANT(LeEventType, characteristicNotificationChanged)
 
-inline LeEventType *LeEventType_get_characteristicWritten(void);
+inline LeEventType *LeEventType_get_characteristicWritten();
 J2OBJC_ENUM_CONSTANT(LeEventType, characteristicWritten)
 
-inline LeEventType *LeEventType_get_mockCharacteristicChanged(void);
+inline LeEventType *LeEventType_get_mockCharacteristicChanged();
 J2OBJC_ENUM_CONSTANT(LeEventType, mockCharacteristicChanged)
 
-inline LeEventType *LeEventType_get_mockCharacteristicChangedWithMockedValue(void);
+inline LeEventType *LeEventType_get_mockCharacteristicChangedWithMockedValue();
 J2OBJC_ENUM_CONSTANT(LeEventType, mockCharacteristicChangedWithMockedValue)
 
-inline LeEventType *LeEventType_get_mockCharacteristicMockedValue(void);
+inline LeEventType *LeEventType_get_mockCharacteristicMockedValue();
 J2OBJC_ENUM_CONSTANT(LeEventType, mockCharacteristicMockedValue)
 
-inline LeEventType *LeEventType_get_mockCharacteristicClearMockedValue(void);
+inline LeEventType *LeEventType_get_mockCharacteristicClearMockedValue();
 J2OBJC_ENUM_CONSTANT(LeEventType, mockCharacteristicClearMockedValue)
 
-inline LeEventType *LeEventType_get_mockCharacteristicNotificationChanged(void);
+inline LeEventType *LeEventType_get_mockCharacteristicNotificationChanged();
 J2OBJC_ENUM_CONSTANT(LeEventType, mockCharacteristicNotificationChanged)
 
-inline LeEventType *LeEventType_get_mockWaitForPoint(void);
+inline LeEventType *LeEventType_get_mockWaitForPoint();
 J2OBJC_ENUM_CONSTANT(LeEventType, mockWaitForPoint)
 
-inline LeEventType *LeEventType_get_mockPointReached(void);
+inline LeEventType *LeEventType_get_mockPointReached();
 J2OBJC_ENUM_CONSTANT(LeEventType, mockPointReached)
 
-FOUNDATION_EXPORT IOSObjectArray *LeEventType_values(void);
+FOUNDATION_EXPORT IOSObjectArray *LeEventType_values();
 
 FOUNDATION_EXPORT LeEventType *LeEventType_valueOfWithNSString_(NSString *name);
 

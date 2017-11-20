@@ -168,7 +168,7 @@ J2OBJC_FIELD_SETTER(MockerObject, listeners_, id<JavaUtilMap>)
 J2OBJC_FIELD_SETTER(MockerObject, sessionObject_, SessionObject *)
 J2OBJC_FIELD_SETTER(MockerObject, and__, SessionObject *)
 
-inline jint MockerObject_get_sourceCounter(void);
+inline jint MockerObject_get_sourceCounter();
 inline jint MockerObject_set_sourceCounter(jint value);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT volatile_jint MockerObject_sourceCounter;

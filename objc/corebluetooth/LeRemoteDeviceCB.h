@@ -25,13 +25,11 @@
     NSMutableDictionary*
     _uuidWriteListeners;
     NSMutableDictionary * services;
-    NSMutableArray * servicesCB;
     id<LeCharacteristicListener>
     nullListener;
     id<LeCharacteristicWriteListener>
     nullWriteListener;
     unsigned long _servicesDiscovered;
-    BOOL _serviceFoundSent;
     NSString * _cachedName;
     NSString * _cachedAdress;
 

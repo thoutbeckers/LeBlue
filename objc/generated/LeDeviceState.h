@@ -51,13 +51,13 @@ J2OBJC_STATIC_INIT(LeDeviceState)
 /*! INTERNAL ONLY - Use enum accessors declared below. */
 FOUNDATION_EXPORT LeDeviceState *LeDeviceState_values_[];
 
-inline LeDeviceState *LeDeviceState_get_OFF(void);
+inline LeDeviceState *LeDeviceState_get_OFF();
 J2OBJC_ENUM_CONSTANT(LeDeviceState, OFF)
 
-inline LeDeviceState *LeDeviceState_get_ON(void);
+inline LeDeviceState *LeDeviceState_get_ON();
 J2OBJC_ENUM_CONSTANT(LeDeviceState, ON)
 
-FOUNDATION_EXPORT IOSObjectArray *LeDeviceState_values(void);
+FOUNDATION_EXPORT IOSObjectArray *LeDeviceState_values();
 
 FOUNDATION_EXPORT LeDeviceState *LeDeviceState_valueOfWithNSString_(NSString *name);
 

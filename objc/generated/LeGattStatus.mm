@@ -99,9 +99,12 @@ LeGattStatus *LeGattStatus_values_[9];
     size_t allocSize = 9 * objSize;
     uintptr_t ptr = (uintptr_t)calloc(allocSize, 1);
     id e;
+    id names[] = {
+      @"SUCCESS", @"READ_NOT_PERMITTED", @"WRITE_NOT_PERMITTED", @"INSUFFICIENT_AUTHENTICATION", @"REQUEST_NOT_SUPPORTED", @"INSUFFICIENT_ENCRYPTION", @"INVALID_OFFSET", @"INVALID_ATTRIBUTE_LENGTH", @"FAILURE",
+    };
     for (jint i = 0; i < 9; i++) {
       (LeGattStatus_values_[i] = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
-      LeGattStatus_initWithNSString_withInt_(e, JreEnumConstantName(LeGattStatus_class_(), i), i);
+      LeGattStatus_initWithNSString_withInt_(e, names[i], i);
     }
     J2OBJC_SET_INITIALIZED(LeGattStatus)
   }

@@ -11,32 +11,22 @@
 @implementation IOSObjectArray (helpersCB)
 
 - (BOOL) hasNil{
-    JavaUtilUUID * const *b__ = ((IOSObjectArray *) nil_chk(self))->buffer_;
-    JavaUtilUUID * const *e__ = b__ + self->size_;
-    while (b__ < e__) {
-        JavaUtilUUID *uuid = (*b__++);
+    for (id uuid in self) {
         if (uuid==nil)
             return TRUE;
             }
     return FALSE;
-
 }
 
 - (NSMutableArray * )toCBUUIDArray
 {
-    
     NSMutableArray * array = [[NSMutableArray alloc] init];
-    JavaUtilUUID * const *b__ = ((IOSObjectArray *) nil_chk(self))->buffer_;
-    JavaUtilUUID * const *e__ = b__ + self->size_;
-    while (b__ < e__) {
-        JavaUtilUUID *uuid = (*b__++);
+    for (id uuid in self) {
         if (uuid!=nil)
             [array addObject:[uuid toCBUUID]];
     }
     return array;
 }
-
-
 
 @end
 
