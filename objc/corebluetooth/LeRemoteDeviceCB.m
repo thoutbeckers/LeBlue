@@ -164,51 +164,54 @@
 #pragma mark CBPeripheralDelegate
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
+    @synchronized(self) {
 
-    if (error) NSLog(@"Error: %@", error.localizedDescription);
-    else
-    {
-
-        _servicesDiscovered = _peripheral.services.count;
-        services = [[NSMutableDictionary alloc] init];
-
-        if (_peripheral.services.count == 0 ) return;
-
-        for (unsigned int i=0; i<_peripheral.services.count; i++)
+        if (error) NSLog(@"Error: %@", error.localizedDescription);
+        else
         {
-            CBService* service = [_peripheral.services objectAtIndex:i];
-            LeGattServiceCB *  gattServiceCB = [[LeGattServiceCB alloc] initWith:service device:_device remoteDevice:self ];
-            [services setObject:gattServiceCB forKey:service.UUID];
-            [peripheral discoverCharacteristics:nil forService:service];
-        }
 
+            _servicesDiscovered = _peripheral.services.count;
+            services = [[NSMutableDictionary alloc] init];
+
+            if (_peripheral.services.count == 0 ) return;
+
+            for (unsigned int i=0; i<_peripheral.services.count; i++)
+            {
+                CBService* service = [_peripheral.services objectAtIndex:i];
+                LeGattServiceCB *  gattServiceCB = [[LeGattServiceCB alloc] initWith:service device:_device remoteDevice:self ];
+                [services setObject:gattServiceCB forKey:service.UUID];
+                [peripheral discoverCharacteristics:nil forService:service];
+            }
+
+        }
     }
 }
 
 
 - (void) peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
+    BOOL foundAllServices = NO;
+    @synchronized(self) {
 
-    if (error) NSLog(@"Error: %@", error.localizedDescription);
+        if (error) NSLog(@"Error: %@", error.localizedDescription);
 
-    for (unsigned int i=0; i<service.characteristics.count ; i++)
-    {
-        CBCharacteristic* c = [service.characteristics objectAtIndex:i];
-        LeGattServiceCB*  gattServiceCB = [services objectForKey:service.UUID];
-        [gattServiceCB.characteristics setObject:c forKey:c.UUID];
+        for (unsigned int i=0; i<service.characteristics.count ; i++)
+        {
+            CBCharacteristic* c = [service.characteristics objectAtIndex:i];
+            LeGattServiceCB*  gattServiceCB = [services objectForKey:service.UUID];
+            [gattServiceCB.characteristics setObject:c forKey:c.UUID];
 
+        }
+
+        _servicesDiscovered--;
+
+        if (_servicesDiscovered == 0)
+        {
+            foundAllServices = YES;
+        }
     }
-
-       Boolean found =  false;
-       @synchronized(self) {
-           _servicesDiscovered--;
-       }
-       if (_servicesDiscovered == 0)
-       {
-           found = true;
-       }
-       if (found)
-           [self serviceFound];
+    if (foundAllServices)
+        [self serviceFound];
 }
 
 - (void) peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
@@ -269,7 +272,7 @@
 
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
-    
+
     Boolean succes = characteristic.isNotifying;
 
     if (error){
