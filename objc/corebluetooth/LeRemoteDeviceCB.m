@@ -61,9 +61,9 @@
 
 - (void)connect{
     if(_peripheral!=nil){
-         _peripheral.delegate = self;
+        _peripheral.delegate = self;
         [_centralManager connectPeripheral:_peripheral options:nil];
-     }
+    }
 }
 
 
@@ -71,7 +71,7 @@
     if(_peripheral!=nil){
         [services removeAllObjects];
         [_centralManager cancelPeripheralConnection:_peripheral];
-     }
+    }
 }
 
 - (void)close{
@@ -91,7 +91,7 @@
 }
 
 - (void)setCharacteristicListenerWithLeCharacteristicListener:(id<LeCharacteristicListener>)listener
-                                         withJavaUtilUUIDArray:(IOSObjectArray *)uuids{
+                                        withJavaUtilUUIDArray:(IOSObjectArray *)uuids{
     if (uuids == nil ||  [uuids hasNil] || [uuids length] == 0){
         nullListener = listener;
     }else {
@@ -148,7 +148,7 @@
 
     for (id<LeRemoteDeviceListener> listener in _listeners){
         [listener leDevicesConnectedWithLeDevice:_device withLeRemoteDevice:self];
-        }
+    }
 }
 
 
@@ -164,54 +164,42 @@
 #pragma mark CBPeripheralDelegate
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
-    @synchronized(self) {
 
-        if (error) NSLog(@"Error: %@", error.localizedDescription);
-        else
+    if (error) NSLog(@"Error: %@", error.localizedDescription);
+    else
+    {
+
+        services = [[NSMutableDictionary alloc] init];
+
+        if (_peripheral.services.count == 0 ) return;
+
+        for (unsigned int i=0; i<_peripheral.services.count; i++)
         {
-
-            _servicesDiscovered = _peripheral.services.count;
-            services = [[NSMutableDictionary alloc] init];
-
-            if (_peripheral.services.count == 0 ) return;
-
-            for (unsigned int i=0; i<_peripheral.services.count; i++)
-            {
-                CBService* service = [_peripheral.services objectAtIndex:i];
-                LeGattServiceCB *  gattServiceCB = [[LeGattServiceCB alloc] initWith:service device:_device remoteDevice:self ];
-                [services setObject:gattServiceCB forKey:service.UUID];
-                [peripheral discoverCharacteristics:nil forService:service];
-            }
-
+            CBService* service = [_peripheral.services objectAtIndex:i];
+            LeGattServiceCB *  gattServiceCB = [[LeGattServiceCB alloc] initWith:service device:_device remoteDevice:self ];
+            [services setObject:gattServiceCB forKey:service.UUID];
+            [peripheral discoverCharacteristics:nil forService:service];
         }
+
     }
+
 }
 
 
 - (void) peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
-    BOOL foundAllServices = NO;
-    @synchronized(self) {
+    if (error) NSLog(@"Error: %@", error.localizedDescription);
 
-        if (error) NSLog(@"Error: %@", error.localizedDescription);
+    for (unsigned int i=0; i<service.characteristics.count ; i++)
+    {
+        CBCharacteristic* c = [service.characteristics objectAtIndex:i];
+        LeGattServiceCB*  gattServiceCB = [services objectForKey:service.UUID];
+        [gattServiceCB.characteristics setObject:c forKey:c.UUID];
 
-        for (unsigned int i=0; i<service.characteristics.count ; i++)
-        {
-            CBCharacteristic* c = [service.characteristics objectAtIndex:i];
-            LeGattServiceCB*  gattServiceCB = [services objectForKey:service.UUID];
-            [gattServiceCB.characteristics setObject:c forKey:c.UUID];
-
-        }
-
-        _servicesDiscovered--;
-
-        if (_servicesDiscovered == 0)
-        {
-            foundAllServices = YES;
-        }
     }
-    if (foundAllServices)
-        [self serviceFound];
+
+    [self serviceFound];
+
 }
 
 - (void) peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
@@ -243,15 +231,15 @@
 {
 
 
-   if (error){
-         NSLog(@"Error didWriteValueForCharacteristic: %@ %@",characteristic.UUID.stringValue,   error.localizedDescription);
-     }else{
+    if (error){
+        NSLog(@"Error didWriteValueForCharacteristic: %@ %@",characteristic.UUID.stringValue,   error.localizedDescription);
+    }else{
 
-         id<LeGattCharacteristic>  leGattCharacteristic = [[LeGattCharacteristicCB alloc] initWith: characteristic remoteDevice:self];
+        id<LeGattCharacteristic>  leGattCharacteristic = [[LeGattCharacteristicCB alloc] initWith: characteristic remoteDevice:self];
 
-             [self  characteristicWrittenJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] LeGattCharacteristic:leGattCharacteristic];
+        [self  characteristicWrittenJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] LeGattCharacteristic:leGattCharacteristic];
 
-     }
+    }
 }
 
 
@@ -261,13 +249,13 @@
 
     if (nullWriteListener != nil){
         [nullWriteListener leCharacteristicWrittenWithJavaUtilUUID:uuid withLeRemoteDevice:self
-                                      withLeGattCharacteristic:leGattCharacteristic withBoolean:YES];
+                                          withLeGattCharacteristic:leGattCharacteristic withBoolean:YES];
     }
 
     if (uuidWriteListener != nil){
         [uuidWriteListener leCharacteristicWrittenWithJavaUtilUUID:uuid withLeRemoteDevice:self
-                                      withLeGattCharacteristic:leGattCharacteristic withBoolean:YES];
-        }
+                                          withLeGattCharacteristic:leGattCharacteristic withBoolean:YES];
+    }
 }
 
 
@@ -292,7 +280,7 @@
 
         if (uuidListener != nil){
             [uuidListener leCharacteristicNotificationChangedWithJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] withLeRemoteDevice:self
-                                         withLeGattCharacteristic:leGattCharacteristic withBoolean:succes];
+                                                     withLeGattCharacteristic:leGattCharacteristic withBoolean:succes];
         }
     }
 
@@ -300,7 +288,7 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error{
     for (id<LeRemoteDeviceListener> listener in _listeners){
-            [listener rssiReadWithLeDevice:_device withLeRemoteDevice:self  withInt:(int)[RSSI integerValue]];
+        [listener rssiReadWithLeDevice:_device withLeRemoteDevice:self  withInt:(int)[RSSI integerValue]];
     }
 }
 
