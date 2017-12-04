@@ -29,7 +29,6 @@
     nullListener;
     id<LeCharacteristicWriteListener>
     nullWriteListener;
-    unsigned long _servicesDiscovered;
     NSString * _cachedName;
     NSString * _cachedAdress;
 
