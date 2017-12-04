@@ -96,8 +96,12 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         return remoteDevice43.getAddress();
     }
 
+
+
     @Override
     public void connect() {
+        unpair(remoteDevice43);
+
         if (gatt != null) {
             gatt.connect();
             return;
@@ -131,6 +135,20 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         catch (Exception localException) {
         }
         return false;
+    }
+
+    private void unpair(final BluetoothDevice bluetoothDevice){
+        // unpair to prevent connection problems
+       if (bluetoothDevice.getBondState() != BluetoothDevice.BOND_NONE) {
+           try {
+               Method localMethod = bluetoothDevice.getClass().getMethod("removeBond", (Class[]) null);
+               ;
+               if (localMethod != null) {
+                   localMethod.invoke(bluetoothDevice, (Object[]) null);
+               }
+           } catch (Exception localException) {
+           }
+       }
     }
 
     @Override
