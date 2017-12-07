@@ -302,7 +302,7 @@ public class LeDevice43 implements LeDevice {
                 .setUseHardwareBatchingIfSupported(false)
                 .setUseHardwareFilteringIfSupported(false)//scanning with filters is unreliable on some older samsung phones
                 .build();
-            scanner.startScan(scanFilters, settings, scanCallback);
+        scanner.startScan(scanFilters, settings, scanCallback);
     }
 
     @Override
