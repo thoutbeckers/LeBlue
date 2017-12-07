@@ -300,13 +300,9 @@ public class LeDevice43 implements LeDevice {
                 .setScanMode(ScanSettings.SCAN_MODE_BALANCED)
                 .setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
                 .setUseHardwareBatchingIfSupported(false)
+                .setUseHardwareFilteringIfSupported(false)//scanning with filters is unreliable on some older samsung phones
                 .build();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             scanner.startScan(scanFilters, settings, scanCallback);
-        } else {
-            //scanning with filters is unreliable on some older samsung phones
-            scanner.startScan(scanCallback);
-        }
     }
 
     @Override
