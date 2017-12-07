@@ -196,6 +196,8 @@ public class LeDevice43 implements LeDevice {
 	
 	@Override
     public boolean isBtEnabled() {
+        if  (ContextCompat.checkSelfPermission(context,Manifest.permission.BLUETOOTH) != PERMISSION_GRANTED)
+            return false;
 		final BluetoothManager manager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
 		if(manager == null) return false;
 		
