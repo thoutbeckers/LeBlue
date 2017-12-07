@@ -4,9 +4,6 @@ import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
-import android.bluetooth.BluetoothGattCharacteristic;
-import android.bluetooth.BluetoothGattDescriptor;
-import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -33,12 +30,9 @@ import javax.inject.Inject;
 
 import houtbecke.rs.le.BleException;
 import houtbecke.rs.le.ErrorLogger;
-import houtbecke.rs.le.LeDefinedUUIDs;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
 import houtbecke.rs.le.LeDeviceState;
-import houtbecke.rs.le.LeGattCharacteristic;
-import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeGattStatus;
 import houtbecke.rs.le.LeUtil;
 import no.nordicsemi.android.support.v18.scanner.BluetoothLeScannerCompat;
@@ -301,6 +295,7 @@ public class LeDevice43 implements LeDevice {
                 .setScanMode(ScanSettings.SCAN_MODE_BALANCED)
                 .setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
                 .setUseHardwareBatchingIfSupported(false)
+                .setUseHardwareFilteringIfSupported(false)//scanning with filters is unreliable on some older samsung phones
                 .build();
         scanner.startScan(scanFilters, settings, scanCallback);
     }
