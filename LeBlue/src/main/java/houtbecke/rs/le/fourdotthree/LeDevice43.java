@@ -267,12 +267,6 @@ public class LeDevice43 implements LeDevice {
 
     @Override
     public void startScanning(final UUID... uuids) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M){ //scanning with filters is unreliable on some older samsung phones
-            this.startScanning();
-            return;
-        }
-
-
         if(!hasPermission()) {
             return;
         }
@@ -307,7 +301,12 @@ public class LeDevice43 implements LeDevice {
                 .setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
                 .setUseHardwareBatchingIfSupported(false)
                 .build();
-        scanner.startScan(scanFilters, settings, scanCallback);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            scanner.startScan(scanFilters, settings, scanCallback);
+        } else {
+            //scanning with filters is unreliable on some older samsung phones
+            scanner.startScan(scanCallback);
+        }
     }
 
     @Override
