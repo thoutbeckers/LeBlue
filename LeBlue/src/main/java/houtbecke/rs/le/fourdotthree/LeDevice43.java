@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Handler;
 import android.os.ParcelUuid;
 import android.support.v4.content.ContextCompat;
@@ -266,6 +267,12 @@ public class LeDevice43 implements LeDevice {
 
     @Override
     public void startScanning(final UUID... uuids) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M){ //scanning with filters is unreliable on some older samsung phones
+            this.startScanning();
+            return;
+        }
+
+
         if(!hasPermission()) {
             return;
         }
