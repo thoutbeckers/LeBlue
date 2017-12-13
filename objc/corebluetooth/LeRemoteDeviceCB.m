@@ -61,9 +61,9 @@
 
 - (void)connect{
     if(_peripheral!=nil){
-         _peripheral.delegate = self;
+        _peripheral.delegate = self;
         [_centralManager connectPeripheral:_peripheral options:nil];
-     }
+    }
 }
 
 
@@ -71,7 +71,7 @@
     if(_peripheral!=nil){
         [services removeAllObjects];
         [_centralManager cancelPeripheralConnection:_peripheral];
-     }
+    }
 }
 
 - (void)close{
@@ -91,7 +91,7 @@
 }
 
 - (void)setCharacteristicListenerWithLeCharacteristicListener:(id<LeCharacteristicListener>)listener
-                                         withJavaUtilUUIDArray:(IOSObjectArray *)uuids{
+                                        withJavaUtilUUIDArray:(IOSObjectArray *)uuids{
     if (uuids == nil ||  [uuids hasNil] || [uuids length] == 0){
         nullListener = listener;
     }else {
@@ -148,7 +148,7 @@
 
     for (id<LeRemoteDeviceListener> listener in _listeners){
         [listener leDevicesConnectedWithLeDevice:_device withLeRemoteDevice:self];
-        }
+    }
 }
 
 
@@ -169,10 +169,7 @@
     else
     {
 
-        _servicesDiscovered = _peripheral.services.count;
         services = [[NSMutableDictionary alloc] init];
-        servicesCB = [[NSMutableArray alloc] init];
-        _serviceFoundSent = false;
 
         if (_peripheral.services.count == 0 ) return;
 
@@ -181,17 +178,16 @@
             CBService* service = [_peripheral.services objectAtIndex:i];
             LeGattServiceCB *  gattServiceCB = [[LeGattServiceCB alloc] initWith:service device:_device remoteDevice:self ];
             [services setObject:gattServiceCB forKey:service.UUID];
-            [servicesCB addObject:service];
+            [peripheral discoverCharacteristics:nil forService:service];
         }
-        [peripheral discoverCharacteristics:nil forService:[servicesCB objectAtIndex:_servicesDiscovered-1]];
 
     }
+
 }
 
 
 - (void) peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
-
     if (error) NSLog(@"Error: %@", error.localizedDescription);
 
     for (unsigned int i=0; i<service.characteristics.count ; i++)
@@ -202,13 +198,8 @@
 
     }
 
-        if (_servicesDiscovered >0)
-          {
-                  _servicesDiscovered--;
-                 [peripheral discoverCharacteristics:nil forService:[servicesCB objectAtIndex:_servicesDiscovered]];
-          }else{
-                [self serviceFound];
-           }
+    [self serviceFound];
+
 }
 
 - (void) peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
@@ -240,15 +231,15 @@
 {
 
 
-   if (error){
-         NSLog(@"Error didWriteValueForCharacteristic: %@ %@",characteristic.UUID.stringValue,   error.localizedDescription);
-     }else{
+    if (error){
+        NSLog(@"Error didWriteValueForCharacteristic: %@ %@",characteristic.UUID.stringValue,   error.localizedDescription);
+    }else{
 
-         id<LeGattCharacteristic>  leGattCharacteristic = [[LeGattCharacteristicCB alloc] initWith: characteristic remoteDevice:self];
+        id<LeGattCharacteristic>  leGattCharacteristic = [[LeGattCharacteristicCB alloc] initWith: characteristic remoteDevice:self];
 
-             [self  characteristicWrittenJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] LeGattCharacteristic:leGattCharacteristic];
+        [self  characteristicWrittenJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] LeGattCharacteristic:leGattCharacteristic];
 
-     }
+    }
 }
 
 
@@ -258,18 +249,18 @@
 
     if (nullWriteListener != nil){
         [nullWriteListener leCharacteristicWrittenWithJavaUtilUUID:uuid withLeRemoteDevice:self
-                                      withLeGattCharacteristic:leGattCharacteristic withBoolean:YES];
+                                          withLeGattCharacteristic:leGattCharacteristic withBoolean:YES];
     }
 
     if (uuidWriteListener != nil){
         [uuidWriteListener leCharacteristicWrittenWithJavaUtilUUID:uuid withLeRemoteDevice:self
-                                      withLeGattCharacteristic:leGattCharacteristic withBoolean:YES];
-        }
+                                          withLeGattCharacteristic:leGattCharacteristic withBoolean:YES];
+    }
 }
 
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
-    
+
     Boolean succes = characteristic.isNotifying;
 
     if (error){
@@ -289,7 +280,7 @@
 
         if (uuidListener != nil){
             [uuidListener leCharacteristicNotificationChangedWithJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] withLeRemoteDevice:self
-                                         withLeGattCharacteristic:leGattCharacteristic withBoolean:succes];
+                                                     withLeGattCharacteristic:leGattCharacteristic withBoolean:succes];
         }
     }
 
@@ -297,7 +288,7 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error{
     for (id<LeRemoteDeviceListener> listener in _listeners){
-            [listener rssiReadWithLeDevice:_device withLeRemoteDevice:self  withInt:(int)[RSSI integerValue]];
+        [listener rssiReadWithLeDevice:_device withLeRemoteDevice:self  withInt:(int)[RSSI integerValue]];
     }
 }
 

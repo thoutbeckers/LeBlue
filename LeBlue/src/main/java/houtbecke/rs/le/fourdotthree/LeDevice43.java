@@ -4,9 +4,6 @@ import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
-import android.bluetooth.BluetoothGattCharacteristic;
-import android.bluetooth.BluetoothGattDescriptor;
-import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -25,18 +22,17 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 
 import javax.inject.Inject;
 
 import houtbecke.rs.le.BleException;
 import houtbecke.rs.le.ErrorLogger;
-import houtbecke.rs.le.LeDefinedUUIDs;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
 import houtbecke.rs.le.LeDeviceState;
-import houtbecke.rs.le.LeGattCharacteristic;
-import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeGattStatus;
 import houtbecke.rs.le.LeUtil;
 import no.nordicsemi.android.support.v18.scanner.BluetoothLeScannerCompat;
@@ -79,13 +75,43 @@ public class LeDevice43 implements LeDevice {
     ErrorLogger errorLogger;
 
     Collection<LeDeviceListener> listeners = new HashSet<>();
+    private final ReadWriteLock listenerReadWriteLock = new ReentrantReadWriteLock();
+
+
+    private interface L {
+        void l(LeDeviceListener l);
+    }
+
+    private void listeners(L l) {
+        listenerReadWriteLock.readLock().lock();
+        try {
+            for (LeDeviceListener listener: listeners)
+                l.l(listener);
+        } finally {
+            listenerReadWriteLock.readLock().unlock();
+        }
+    }
+
+
     @Override
     public void addListener(LeDeviceListener listener) {
-        listeners.add(listener);
+        listenerReadWriteLock.writeLock().lock();
+        try
+        {
+            listeners.add(listener);
+        } finally {
+            listenerReadWriteLock.writeLock().unlock();
+        }
     }
     @Override
     public void removeListener(LeDeviceListener listener) {
-        listeners.remove(listener);
+        listenerReadWriteLock.writeLock().lock();
+        try
+        {
+            listeners.remove(listener);
+        } finally {
+            listenerReadWriteLock.writeLock().unlock();
+        }
     }
 
     @Inject
@@ -132,8 +158,16 @@ public class LeDevice43 implements LeDevice {
                         return;
                 }
 
-                for(LeDeviceListener listener: listeners)
-                    listener.leDeviceState(LeDevice43.this,deviceState);
+
+                final LeDeviceState finalLeDeviceState = deviceState;
+                listeners(
+                new L() {
+                    @Override
+                    public void l(LeDeviceListener l) {
+                        l.leDeviceState(LeDevice43.this, finalLeDeviceState);
+                    }
+                });
+
             }
         }
     };
@@ -156,6 +190,8 @@ public class LeDevice43 implements LeDevice {
 	
 	@Override
     public boolean isBtEnabled() {
+        if  (ContextCompat.checkSelfPermission(context,Manifest.permission.BLUETOOTH) != PERMISSION_GRANTED)
+            return false;
 		final BluetoothManager manager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
 		if(manager == null) return false;
 		
@@ -169,10 +205,18 @@ public class LeDevice43 implements LeDevice {
     private BluetoothAdapter.LeScanCallback deviceFoundCallback = new BluetoothAdapter.LeScanCallback() {
         @Override
         public void onLeScan(final BluetoothDevice device, final int rssi, final byte[] scanRecord) {
-            LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, device);
+            final LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, device);
             log(Log.INFO,"LeBlue", "scan record: " + LeUtil.bytesToString(scanRecord));
-            for(LeDeviceListener listener: listeners)
-                listener.leDeviceFound(LeDevice43.this, device43, rssi, LeUtil.parseLeScanRecord(scanRecord));
+
+            listeners(
+                    new L() {
+                        @Override
+                        public void l(LeDeviceListener l) {
+                            l.leDeviceFound(LeDevice43.this, device43, rssi, LeUtil.parseLeScanRecord(scanRecord));
+                        }
+                    });
+
+
         }
     };
 
@@ -193,15 +237,17 @@ public class LeDevice43 implements LeDevice {
                 sendScanResult(result);
             }
 
-        void sendScanResult( ScanResult result){
-            LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, result.getDevice());
-            for(LeDeviceListener listener: listeners)
-                listener.leDeviceFound(LeDevice43.this, device43, result.getRssi(), LeUtil.parseLeScanRecord(result.getScanRecord().getBytes()));
-
+        void sendScanResult(final ScanResult result){
+            final LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, result.getDevice());
+            listeners(
+                    new L() {
+                        @Override
+                        public void l(LeDeviceListener l) {
+                            l.leDeviceFound(LeDevice43.this, device43, result.getRssi(), LeUtil.parseLeScanRecord(result.getScanRecord().getBytes()));
+                        }
+                    });
 
         }
-
-
 
     };
 
@@ -215,44 +261,44 @@ public class LeDevice43 implements LeDevice {
     }
 
     @Override
-    public void startScanning(UUID... uuids) {
-        if(!hasPermission() )return;
-        BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
-        ScanSettings settings = new ScanSettings.Builder()
-                .setScanMode(ScanSettings.SCAN_MODE_BALANCED).setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
-                .setUseHardwareBatchingIfSupported(false).build();
-        List<ScanFilter> filters = new ArrayList<>();
-        ScanFilter.Builder builder = new ScanFilter.Builder();
-        for (UUID uuid : uuids ){
-            builder  = builder.setServiceUuid(new ParcelUuid(uuid));
-
+    public void startScanning(final UUID... uuids) {
+        if(!hasPermission()) {
+            return;
         }
-        filters.add(new ScanFilter.Builder().build());
-        scanner.startScan(filters, settings, scanCallback);
+
+        final BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
+        final List<ScanFilter> scanFilters = new ArrayList<>();
+        for(UUID uuid : uuids) {
+            scanFilters.add(new ScanFilter.Builder().setServiceUuid(new ParcelUuid(uuid)).build());
+        }
+        startScanning(scanner, scanFilters);
     }
 
     @Override
-    public void startScanning(List<List<UUID>> filters) {
-        if(!hasPermission() )return;
-        BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
-        ScanSettings settings = new ScanSettings.Builder()
-                .setScanMode(ScanSettings.SCAN_MODE_BALANCED).setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
-                .setUseHardwareBatchingIfSupported(false).build();
-        List<ScanFilter> scanFilters = new ArrayList<>();
-        for (List<UUID> filter : filters){
-            ScanFilter.Builder builder = new ScanFilter.Builder();
-            for (UUID uuid : filter ){
-                builder  = builder.setServiceUuid(new ParcelUuid(uuid));
-
-            }
-            scanFilters.add(new ScanFilter.Builder().build());
-
+    public void startScanning(final List<List<UUID>> filters) {
+        if(!hasPermission()) {
+            return;
         }
-        scanner.startScan(scanFilters, settings, scanCallback);
+
+        final BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
+        final List<ScanFilter> scanFilters = new ArrayList<>();
+        for(List<UUID> filter : filters) {
+            for(UUID uuid : filter) {
+                scanFilters.add(new ScanFilter.Builder().setServiceUuid(new ParcelUuid(uuid)).build());
+            }
+        }
+        startScanning(scanner, scanFilters);
     }
 
-
-
+    private void startScanning(final BluetoothLeScannerCompat scanner, final List<ScanFilter> scanFilters) {
+        final ScanSettings settings = new ScanSettings.Builder()
+                .setScanMode(ScanSettings.SCAN_MODE_BALANCED)
+                .setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
+                .setUseHardwareBatchingIfSupported(false)
+                .setUseHardwareFilteringIfSupported(false)//scanning with filters is unreliable on some older samsung phones
+                .build();
+        scanner.startScan(scanFilters, settings, scanCallback);
+    }
 
     @Override
 	public void stopScanning() {
