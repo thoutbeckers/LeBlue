@@ -156,8 +156,8 @@
 
     for (id<LeRemoteDeviceListener> listener in _listeners){
         [listener leDevicesDisconnectedWithLeDevice:_device withLeRemoteDevice:self];
+        [listener leDevicesClosedWithLeDevice:_device withLeRemoteDevice:self];
     }
-
 }
 
 
