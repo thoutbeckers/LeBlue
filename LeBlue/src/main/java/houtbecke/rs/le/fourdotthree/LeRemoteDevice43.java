@@ -34,10 +34,13 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     private final Map<UUID, LeCharacteristicWriteListener> uuidCharacteristicWriteListeners = new HashMap<>(0);
 
     private final ConcurrentLinkedQueue<Object> queue = new ConcurrentLinkedQueue<>();
+  
+    private boolean isAvailable;
 
-    LeRemoteDevice43(LeDevice43 leDevice43, BluetoothDevice device)  {
+     LeRemoteDevice43(LeDevice43 leDevice43, BluetoothDevice device)  {
         this.leDevice43 = leDevice43;
         this.remoteDevice43 = device;
+        isAvailable = true;
     }
 
     private final Set<LeRemoteDeviceListener> listeners = new CopyOnWriteArraySet<>();
@@ -131,20 +134,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
     @Override
     public void close() {
-        this.queue.clear();
-            if (gatt != null)
-                gatt.close();
-            gatt = null;
-
-        listeners(
-                new L() {
-                    @Override
-                    public void l(LeRemoteDeviceListener l) {
-                        l.leDevicesClosed(leDevice43, LeRemoteDevice43.this);
-                    }
-                });
-
-
+        isAvailable = false;
     }
 
     @Override
@@ -202,6 +192,10 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
             if (newState == BluetoothProfile.STATE_CONNECTED) {
                 this.gatt = gatt;
+                if (!isAvailable) {
+                    disconnect();
+                    return;
+                }
                 listeners(
                         new L() {
                             @Override
@@ -217,9 +211,13 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
                             @Override
                             public void l(LeRemoteDeviceListener l) {
                                 l.leDevicesDisconnected(leDevice43, LeRemoteDevice43.this);
+                                l.leDevicesClosed(leDevice43, LeRemoteDevice43.this);
                             }
                         });
-                close();
+                this.queue.clear();
+                if (gatt != null)
+                    gatt.close();
+                this.gatt = null;
             }
         } catch (Throwable t) {
             Log.w("LeBlue", "error during onConnectionStateChange callback", t);
