@@ -11,87 +11,59 @@ import android.os.Build;
 import android.util.Log;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeCharacteristicWriteListener;
-import houtbecke.rs.le.LeDeviceListener;
-import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeRemoteDevice;
 import houtbecke.rs.le.LeRemoteDeviceListener;
-import houtbecke.rs.le.LeUtil;
 
 public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteDevice {
 
     private final LeDevice43 leDevice43;
     private final BluetoothDevice remoteDevice43;
 
-    private final Map<UUID, LeCharacteristicListener> uuidCharacteristicListeners = new HashMap<UUID, LeCharacteristicListener>(0);
-    private final Map<UUID, LeCharacteristicWriteListener> uuidCharacteristicWriteListeners = new HashMap<UUID, LeCharacteristicWriteListener>(0);
+    private final Map<UUID, LeCharacteristicListener> uuidCharacteristicListeners = new HashMap<>(0);
+    private final Map<UUID, LeCharacteristicWriteListener> uuidCharacteristicWriteListeners = new HashMap<>(0);
 
     private final ConcurrentLinkedQueue<Object> queue = new ConcurrentLinkedQueue<>();
-
+  
     private boolean isAvailable;
 
-    public LeRemoteDevice43(LeDevice43 leDevice43, BluetoothDevice device)  {
+     LeRemoteDevice43(LeDevice43 leDevice43, BluetoothDevice device)  {
         this.leDevice43 = leDevice43;
         this.remoteDevice43 = device;
         isAvailable = true;
     }
 
-    private final Set<LeRemoteDeviceListener> listeners = new LinkedHashSet<>();
-    private final ReadWriteLock listenerReadWriteLock = new ReentrantReadWriteLock();
-
+    private final Set<LeRemoteDeviceListener> listeners = new CopyOnWriteArraySet<>();
 
     private interface L {
         void l(LeRemoteDeviceListener l);
     }
 
     private void listeners(L l) {
-        listenerReadWriteLock.readLock().lock();
-        try {
-            for (LeRemoteDeviceListener listener: listeners)
-                l.l(listener);
-        } finally {
-            listenerReadWriteLock.readLock().unlock();
+        for(LeRemoteDeviceListener listener : listeners) {
+            l.l(listener);
         }
     }
 
 
     @Override
     public void addListener(LeRemoteDeviceListener listener) {
-        listenerReadWriteLock.writeLock().lock();
-        try
-        {
-            if (listeners.contains(listener))
-                listeners.remove(listener);
-
-            listeners.add(listener);        } finally {
-            listenerReadWriteLock.writeLock().unlock();
-        }
+        listeners.add(listener);
     }
 
     @Override
     public void removeListener(LeRemoteDeviceListener listener) {
-        listenerReadWriteLock.writeLock().lock();
-        try
-        {
-            listeners.remove(listener);
-        } finally {
-            listenerReadWriteLock.writeLock().unlock();
-        }
+        listeners.remove(listener);
     }
 
     @Override
