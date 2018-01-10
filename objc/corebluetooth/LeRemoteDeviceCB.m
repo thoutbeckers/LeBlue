@@ -136,8 +136,10 @@
 }
 
 - (void) serviceFound {
-
-    for (id<LeRemoteDeviceListener> listener in _listeners){
+    NSMutableSet* listenersCopy = [[NSMutableSet alloc] initWithCapacity: [_listeners count]];
+    [listenersCopy addObjectsFromArray: _listeners];
+    
+    for (id<LeRemoteDeviceListener> listener in listenersCopy){
         [listener serviceDiscoveredWithLeDevice:_device withLeRemoteDevice:self withLeGattStatus:LeGattStatus_get_SUCCESS() withLeGattServiceArray:[IOSObjectArray arrayWithNSArray:[services allValues]  type:[LeGattServiceCB java_getClass]] ];
 
     }
@@ -145,16 +147,20 @@
 }
 
 - (void) connected {
-
-    for (id<LeRemoteDeviceListener> listener in _listeners){
+    NSMutableSet* listenersCopy = [[NSMutableSet alloc] initWithCapacity: [_listeners count]];
+    [listenersCopy addObjectsFromArray: _listeners];
+    
+    for (id<LeRemoteDeviceListener> listener in listenersCopy){
         [listener leDevicesConnectedWithLeDevice:_device withLeRemoteDevice:self];
     }
 }
 
 
 - (void) disconnected {
-
-    for (id<LeRemoteDeviceListener> listener in _listeners){
+    NSMutableSet* listenersCopy = [[NSMutableSet alloc] initWithCapacity: [_listeners count]];
+    [listenersCopy addObjectsFromArray: _listeners];
+    
+    for (id<LeRemoteDeviceListener> listener in listenersCopy){
         [listener leDevicesDisconnectedWithLeDevice:_device withLeRemoteDevice:self];
         [listener leDevicesClosedWithLeDevice:_device withLeRemoteDevice:self];
     }
@@ -287,7 +293,10 @@
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error{
-    for (id<LeRemoteDeviceListener> listener in _listeners){
+    NSMutableSet* listenersCopy = [[NSMutableSet alloc] initWithCapacity: [_listeners count]];
+    [listenersCopy addObjectsFromArray: _listeners];
+    
+    for (id<LeRemoteDeviceListener> listener in listenersCopy){
         [listener rssiReadWithLeDevice:_device withLeRemoteDevice:self  withInt:(int)[RSSI integerValue]];
     }
 }
