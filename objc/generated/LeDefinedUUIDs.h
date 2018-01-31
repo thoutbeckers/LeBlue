@@ -49,6 +49,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs)
 
 + (JavaUtilUUID *)RUNNING_SPEED_AND_CADENCE;
 
++ (JavaUtilUUID *)FITNESS_MACHINE;
+
 + (JavaUtilUUID *)BATTERY;
 
 + (JavaUtilUUID *)DEVICE_INFORMATION;
@@ -82,6 +84,11 @@ inline JavaUtilUUID *LeDefinedUUIDs_Service_get_RUNNING_SPEED_AND_CADENCE();
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_RUNNING_SPEED_AND_CADENCE;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, RUNNING_SPEED_AND_CADENCE, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Service_get_FITNESS_MACHINE();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_FITNESS_MACHINE;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, FITNESS_MACHINE, JavaUtilUUID *)
 
 inline JavaUtilUUID *LeDefinedUUIDs_Service_get_BATTERY();
 /*! INTERNAL ONLY - Use accessor function from above. */
@@ -140,6 +147,26 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Service)
 + (JavaUtilUUID *)CSC_MEASUREMENT;
 
 + (JavaUtilUUID *)SERVICE_CHANGED;
+
++ (JavaUtilUUID *)FITNESS_MACHINE_FEATURE;
+
++ (JavaUtilUUID *)INDOOR_BIKE_DATA;
+
++ (JavaUtilUUID *)TRAINING_STATUS;
+
++ (JavaUtilUUID *)SUPPORTED_SPEED_RANGE;
+
++ (JavaUtilUUID *)SUPPORTED_INCLINATION_RANGE;
+
++ (JavaUtilUUID *)SUPPORTED_RESISTANCE_LEVEL_RANGE;
+
++ (JavaUtilUUID *)SUPPORTED_HEART_RATE_RANGE;
+
++ (JavaUtilUUID *)SUPPORTED_POWER_RANGE;
+
++ (JavaUtilUUID *)FITNESS_MACHINE_CONTROL_POINT;
+
++ (JavaUtilUUID *)FITNESS_MACHINE_STATUS;
 
 #pragma mark Public
 
@@ -213,6 +240,56 @@ inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_SERVICE_CHANGED();
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_SERVICE_CHANGED;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, SERVICE_CHANGED, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_FITNESS_MACHINE_FEATURE();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_FEATURE;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, FITNESS_MACHINE_FEATURE, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_INDOOR_BIKE_DATA();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_INDOOR_BIKE_DATA;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, INDOOR_BIKE_DATA, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_TRAINING_STATUS();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_TRAINING_STATUS;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, TRAINING_STATUS, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_SUPPORTED_SPEED_RANGE();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_SUPPORTED_SPEED_RANGE;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, SUPPORTED_SPEED_RANGE, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_SUPPORTED_INCLINATION_RANGE();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_SUPPORTED_INCLINATION_RANGE;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, SUPPORTED_INCLINATION_RANGE, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_SUPPORTED_RESISTANCE_LEVEL_RANGE();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_SUPPORTED_RESISTANCE_LEVEL_RANGE;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, SUPPORTED_RESISTANCE_LEVEL_RANGE, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_SUPPORTED_HEART_RATE_RANGE();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_SUPPORTED_HEART_RATE_RANGE;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, SUPPORTED_HEART_RATE_RANGE, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_SUPPORTED_POWER_RANGE();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_SUPPORTED_POWER_RANGE;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, SUPPORTED_POWER_RANGE, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_FITNESS_MACHINE_CONTROL_POINT();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_CONTROL_POINT;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, FITNESS_MACHINE_CONTROL_POINT, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_FITNESS_MACHINE_STATUS();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_STATUS;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, FITNESS_MACHINE_STATUS, JavaUtilUUID *)
 
 FOUNDATION_EXPORT void LeDefinedUUIDs_Characteristic_init(LeDefinedUUIDs_Characteristic *self);
 
