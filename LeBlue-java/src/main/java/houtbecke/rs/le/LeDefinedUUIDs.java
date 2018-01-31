@@ -9,8 +9,7 @@ public class LeDefinedUUIDs {
 		final static public UUID CYCLING_POWER               = UUID.fromString("00001818-0000-1000-8000-00805f9b34fb");
         final static public UUID CYCLING_SPEED_AND_CADENCE   = UUID.fromString("00001816-0000-1000-8000-00805f9b34fb");
 		final static public UUID RUNNING_SPEED_AND_CADENCE   = UUID.fromString("00001814-0000-1000-8000-00805f9b34fb");
-
-
+		final static public UUID FITNESS_MACHINE   = UUID.fromString("00001826-0000-1000-8000-00805f9b34fb");
 		final static public UUID BATTERY   = UUID.fromString("0000180f-0000-1000-8000-00805f9b34fb");
         final static public UUID DEVICE_INFORMATION   = UUID.fromString("0000180a-0000-1000-8000-00805f9b34fb");
 		final static public UUID GENERIC_ATTRIBUTE   = UUID.fromString("00001801-0000-1000-8000-00805f9b34fb");
@@ -32,6 +31,17 @@ public class LeDefinedUUIDs {
         final static public UUID CYCLING_POWER_CONTROL_POINT = UUID.fromString("00002a66-0000-1000-8000-00805f9b34fb");
         final static public UUID CSC_MEASUREMENT             = UUID.fromString("00002a5b-0000-1000-8000-00805f9b34fb");
 		final static public UUID SERVICE_CHANGED             = UUID.fromString("00002a05-0000-1000-8000-00805f9b34fb");
+		final static public UUID FITNESS_MACHINE_FEATURE      = UUID.fromString("00002acc-0000-1000-8000-00805f9b34fb");
+		final static public UUID INDOOR_BIKE_DATA             = UUID.fromString("00002ad2-0000-1000-8000-00805f9b34fb");
+		final static public UUID TRAINING_STATUS              = UUID.fromString("00002ad3-0000-1000-8000-00805f9b34fb");
+		final static public UUID SUPPORTED_SPEED_RANGE        = UUID.fromString("00002ad4-0000-1000-8000-00805f9b34fb");
+		final static public UUID SUPPORTED_INCLINATION_RANGE  = UUID.fromString("00002ad5-0000-1000-8000-00805f9b34fb");
+		final static public UUID SUPPORTED_RESISTANCE_LEVEL_RANGE  = UUID.fromString("00002ad6-0000-1000-8000-00805f9b34fb");
+		final static public UUID SUPPORTED_HEART_RATE_RANGE   = UUID.fromString("00002ad7-0000-1000-8000-00805f9b34fb");
+		final static public UUID SUPPORTED_POWER_RANGE        = UUID.fromString("00002ad8-0000-1000-8000-00805f9b34fb");
+		final static public UUID FITNESS_MACHINE_CONTROL_POINT = UUID.fromString("00002ad9-0000-1000-8000-00805f9b34fb");
+		final static public UUID FITNESS_MACHINE_STATUS       = UUID.fromString("00002ada-0000-1000-8000-00805f9b34fb");
+
 
 	}
 	
