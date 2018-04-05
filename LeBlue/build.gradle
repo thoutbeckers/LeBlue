@@ -8,7 +8,6 @@ repositories {
 
 android {
     compileSdkVersion compileSdkVersionProp.toInteger()
-    buildToolsVersion "$buildToolsVersionProp"
 
     defaultConfig {
         minSdkVersion 18
@@ -40,12 +39,12 @@ android.testOptions.unitTests.all {
 
 
 dependencies {
-    provided 'javax.inject:javax.inject:1'
-    provided "com.google.code.gson:gson:${gsonVersion}"
-    testCompile "junit:junit:${junitVersion}"
-    compile project(':LeBlue-java')
-    compile 'no.nordicsemi.android.support.v18:scanner:1.0.0'
-    compile "com.android.support:support-compat:${supportVersion}"
+    compileOnly 'javax.inject:javax.inject:1'
+    compileOnly "com.google.code.gson:gson:${gsonVersion}"
+    testImplementation "junit:junit:${junitVersion}"
+    implementation project(':LeBlue-java')
+    implementation 'no.nordicsemi.android.support.v18:scanner:1.0.0'
+    implementation "com.android.support:support-compat:${supportVersion}"
 
 
 }
