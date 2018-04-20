@@ -48,45 +48,45 @@ J2OBJC_FIELD_SETTER(MockerTest, sessionController_, LeSessionController *)
 J2OBJC_FIELD_SETTER(MockerTest, device_, id<LeDevice>)
 J2OBJC_FIELD_SETTER(MockerTest, remoteDevice_, id<LeRemoteDevice>)
 
-inline jint MockerTest_get_LE_REMOTE_DEVICE();
+inline jint MockerTest_get_LE_REMOTE_DEVICE(void);
 #define MockerTest_LE_REMOTE_DEVICE 11
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_REMOTE_DEVICE, jint)
 
-inline jint MockerTest_get_LE_REMOTE_DEVICE_2();
+inline jint MockerTest_get_LE_REMOTE_DEVICE_2(void);
 #define MockerTest_LE_REMOTE_DEVICE_2 12
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_REMOTE_DEVICE_2, jint)
 
-inline jint MockerTest_get_LE_REMOTE_DEVICE_3();
+inline jint MockerTest_get_LE_REMOTE_DEVICE_3(void);
 #define MockerTest_LE_REMOTE_DEVICE_3 13
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_REMOTE_DEVICE_3, jint)
 
-inline jint MockerTest_get_LE_SERVICE_1_1();
+inline jint MockerTest_get_LE_SERVICE_1_1(void);
 #define MockerTest_LE_SERVICE_1_1 101
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_SERVICE_1_1, jint)
 
-inline jint MockerTest_get_LE_SERVICE_1_2();
+inline jint MockerTest_get_LE_SERVICE_1_2(void);
 #define MockerTest_LE_SERVICE_1_2 102
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_SERVICE_1_2, jint)
 
-inline jint MockerTest_get_LE_SERVICE_2_1();
+inline jint MockerTest_get_LE_SERVICE_2_1(void);
 #define MockerTest_LE_SERVICE_2_1 201
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_SERVICE_2_1, jint)
 
-inline jint MockerTest_get_LE_CHARACTERISTIC_1_1();
+inline jint MockerTest_get_LE_CHARACTERISTIC_1_1(void);
 #define MockerTest_LE_CHARACTERISTIC_1_1 1001
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_CHARACTERISTIC_1_1, jint)
 
-inline jint MockerTest_get_LE_CHARACTERISTIC_1_2();
+inline jint MockerTest_get_LE_CHARACTERISTIC_1_2(void);
 #define MockerTest_LE_CHARACTERISTIC_1_2 1002
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_CHARACTERISTIC_1_2, jint)
 
-inline jint MockerTest_get_LE_CHARACTERISTIC_2_1();
+inline jint MockerTest_get_LE_CHARACTERISTIC_2_1(void);
 #define MockerTest_LE_CHARACTERISTIC_2_1 2001
 J2OBJC_STATIC_FIELD_CONSTANT(MockerTest, LE_CHARACTERISTIC_2_1, jint)
 
-__attribute__((unused)) static IOSObjectArray *MockerTest__Annotations$0();
+__attribute__((unused)) static IOSObjectArray *MockerTest__Annotations$0(void);
 
-__attribute__((unused)) static IOSObjectArray *MockerTest__Annotations$1();
+__attribute__((unused)) static IOSObjectArray *MockerTest__Annotations$1(void);
 
 @interface MockerTest_1 : NSObject < LeDeviceListener > {
  @public
@@ -94,8 +94,8 @@ __attribute__((unused)) static IOSObjectArray *MockerTest__Annotations$1();
   IOSIntArray *val$foundRemoteDevices_;
 }
 
-- (instancetype)initWithMockerTest:(MockerTest *)outer$
-                      withIntArray:(IOSIntArray *)capture$0;
+- (instancetype __nonnull)initWithMockerTest:(MockerTest *)outer$
+                                withIntArray:(IOSIntArray *)capture$0;
 
 - (void)leDeviceFoundWithLeDevice:(id<LeDevice>)leDeviceFound
                withLeRemoteDevice:(id<LeRemoteDevice>)leFoundRemoteDevice
@@ -120,7 +120,7 @@ __attribute__((unused)) static MockerTest_1 *create_MockerTest_1_initWithMockerT
   IOSObjectArray *val$foundRemoteDevice2_;
 }
 
-- (instancetype)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0;
+- (instancetype __nonnull)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0;
 
 - (void)leDeviceFoundWithLeDevice:(id<LeDevice>)leDeviceFound
                withLeRemoteDevice:(id<LeRemoteDevice>)leFoundRemoteDevice
@@ -148,10 +148,10 @@ __attribute__((unused)) static MockerTest_2 *create_MockerTest_2_initWithJavaLan
   IOSObjectArray *val$service_;
 }
 
-- (instancetype)initWithMockerTest:(MockerTest *)outer$
-          withJavaLangBooleanArray:(IOSObjectArray *)capture$0
-          withJavaLangBooleanArray:(IOSObjectArray *)capture$1
-            withLeGattServiceArray:(IOSObjectArray *)capture$2;
+- (instancetype __nonnull)initWithMockerTest:(MockerTest *)outer$
+                    withJavaLangBooleanArray:(IOSObjectArray *)capture$0
+                    withJavaLangBooleanArray:(IOSObjectArray *)capture$1
+                      withLeGattServiceArray:(IOSObjectArray *)capture$2;
 
 - (void)leDevicesConnectedWithLeDevice:(id<LeDevice>)leDeviceFoundOn
                     withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice;
@@ -189,10 +189,10 @@ __attribute__((unused)) static MockerTest_3 *create_MockerTest_3_initWithMockerT
   IOSObjectArray *val$changedNotification_;
 }
 
-- (instancetype)initWithMockerTest:(MockerTest *)outer$
-          withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$0
-          withJavaLangBooleanArray:(IOSObjectArray *)capture$1
-          withJavaLangBooleanArray:(IOSObjectArray *)capture$2;
+- (instancetype __nonnull)initWithMockerTest:(MockerTest *)outer$
+                    withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$0
+                    withJavaLangBooleanArray:(IOSObjectArray *)capture$1
+                    withJavaLangBooleanArray:(IOSObjectArray *)capture$2;
 
 - (void)leCharacteristicChangedWithJavaUtilUUID:(JavaUtilUUID *)uuid
                              withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice
@@ -218,7 +218,7 @@ __attribute__((unused)) static MockerTest_4 *create_MockerTest_4_initWithMockerT
   IOSObjectArray *val$service_;
 }
 
-- (instancetype)initWithLeGattServiceArray:(IOSObjectArray *)capture$0;
+- (instancetype __nonnull)initWithLeGattServiceArray:(IOSObjectArray *)capture$0;
 
 - (void)leDevicesConnectedWithLeDevice:(id<LeDevice>)leDevice
                     withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice;
@@ -251,7 +251,7 @@ __attribute__((unused)) static MockerTest_5 *create_MockerTest_5_initWithLeGattS
 @implementation MockerTest
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
+- (instancetype __nonnull)init {
   MockerTest_init(self);
   return self;
 }
@@ -274,7 +274,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 - (void)testController {
   ListEventSinkSource *events = [self createSource];
-  JreStrongAssignAndConsume(&sessionController_, new_LeSessionController_initWithSession_([((GattServiceMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((SessionObject *) nil_chk(((DeviceMockerObject *) nil_chk([((DeviceMockerObject *) nil_chk([((DeviceMockerObject *) nil_chk([((SessionObject *) nil_chk([((SessionObject *) nil_chk(SessionObject_newSession())) setDefaultSourceWithEventSource:events])) withDeviceMocker])) withFakeDeviceListeners])) hasRemoteDevicesWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ MockerTest_LE_REMOTE_DEVICE_3, MockerTest_LE_REMOTE_DEVICE } count:2]]))->and__)) withRemoteDeviceMockerWithInt:MockerTest_LE_REMOTE_DEVICE])) mocksRemoteDeviceWithNSString:@"0001:0002:0003:0004" withNSString:@"d1234" withBoolean:true])) withFakeRemoteDeviceListeners])) withFakeCharacteristicsListeners])) hasServicesWithLeGattStatus:JreLoadEnum(LeGattStatus, SUCCESS) withIntArray:[IOSIntArray arrayWithInts:(jint[]){ MockerTest_LE_SERVICE_1_1, MockerTest_LE_SERVICE_1_2 } count:2]]))->and__ withRemoteDeviceMockerWithInt:MockerTest_LE_REMOTE_DEVICE_2])) mocksRemoteDeviceWithNSString:@"0005:0006:0007:0008" withNSString:@"d5678" withBoolean:true])) withFakeRemoteDeviceListeners])) withFakeCharacteristicsListeners])) hasServicesWithLeGattStatus:JreLoadEnum(LeGattStatus, SUCCESS) withIntArray:[IOSIntArray arrayWithInts:(jint[]){ MockerTest_LE_SERVICE_2_1 } count:1]]))->and__ withGattServiceMockerWithInt:MockerTest_LE_SERVICE_1_1])) mocksServiceWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789aaaa")])) canNotifyWithInt:MockerTest_LE_CHARACTERISTIC_1_2 withJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789bbcc") withInt:MockerTest_LE_REMOTE_DEVICE withJavaLangBoolean:JavaLangBoolean_valueOfWithBoolean_(true)])) hasCharacteristicWithInt:MockerTest_LE_CHARACTERISTIC_1_1 withJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789bbbb")]))->and__ withGattCharacteristicsMockerWithInt:MockerTest_LE_CHARACTERISTIC_1_1])) mocksCharacteristic])) hasFixedValueWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 0, 1, 2 } count:3]]))->and__ withGattCharacteristicsMockerWithInt:MockerTest_LE_CHARACTERISTIC_1_2])) mocksCharacteristicWithNSString:@"12345678-1234-1234-1234-123456789bbcc"])) hasFixedValueWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 0, 1, 2 } count:3]]))->and__ withGattCharacteristicsMockerWithInt:MockerTest_LE_CHARACTERISTIC_2_1])) mocksCharacteristicWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789eeee")])) hasValueWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 0, 1, 2 } count:3]])) hasValueWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 3, 4, 5 } count:3]])) hasFixedValueWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 6, 7, 8 } count:3]]))->and__ withGattServiceMockerWithInt:MockerTest_LE_SERVICE_2_1])) mocksServiceWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789dddd")])) hasCharacteristicWithInt:MockerTest_LE_CHARACTERISTIC_2_1])) end]));
+  JreStrongAssignAndConsume(&sessionController_, new_LeSessionController_initWithSession_([((GattServiceMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk(([((CharacteristicsMockerObject *) nil_chk(([((CharacteristicsMockerObject *) nil_chk(([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk(([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk(([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk(([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk(([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((SessionObject *) nil_chk(((DeviceMockerObject *) nil_chk(([((DeviceMockerObject *) nil_chk([((DeviceMockerObject *) nil_chk([((SessionObject *) nil_chk([((SessionObject *) nil_chk(SessionObject_newSession())) setDefaultSourceWithEventSource:events])) withDeviceMocker])) withFakeDeviceListeners])) hasRemoteDevicesWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ MockerTest_LE_REMOTE_DEVICE_3, MockerTest_LE_REMOTE_DEVICE } count:2]])))->and__)) withRemoteDeviceMockerWithInt:MockerTest_LE_REMOTE_DEVICE])) mocksRemoteDeviceWithNSString:@"0001:0002:0003:0004" withNSString:@"d1234" withBoolean:true])) withFakeRemoteDeviceListeners])) withFakeCharacteristicsListeners])) hasServicesWithLeGattStatus:JreLoadEnum(LeGattStatus, SUCCESS) withIntArray:[IOSIntArray arrayWithInts:(jint[]){ MockerTest_LE_SERVICE_1_1, MockerTest_LE_SERVICE_1_2 } count:2]])))->and__ withRemoteDeviceMockerWithInt:MockerTest_LE_REMOTE_DEVICE_2])) mocksRemoteDeviceWithNSString:@"0005:0006:0007:0008" withNSString:@"d5678" withBoolean:true])) withFakeRemoteDeviceListeners])) withFakeCharacteristicsListeners])) hasServicesWithLeGattStatus:JreLoadEnum(LeGattStatus, SUCCESS) withIntArray:[IOSIntArray arrayWithInts:(jint[]){ MockerTest_LE_SERVICE_2_1 } count:1]])))->and__ withGattServiceMockerWithInt:MockerTest_LE_SERVICE_1_1])) mocksServiceWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789aaaa")])) canNotifyWithInt:MockerTest_LE_CHARACTERISTIC_1_2 withJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789bbcc") withInt:MockerTest_LE_REMOTE_DEVICE withJavaLangBoolean:JavaLangBoolean_valueOfWithBoolean_(true)])) hasCharacteristicWithInt:MockerTest_LE_CHARACTERISTIC_1_1 withJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789bbbb")]))->and__ withGattCharacteristicsMockerWithInt:MockerTest_LE_CHARACTERISTIC_1_1])) mocksCharacteristic])) hasFixedValueWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 0, 1, 2 } count:3]])))->and__ withGattCharacteristicsMockerWithInt:MockerTest_LE_CHARACTERISTIC_1_2])) mocksCharacteristicWithNSString:@"12345678-1234-1234-1234-123456789bbcc"])) hasFixedValueWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 0, 1, 2 } count:3]])))->and__ withGattCharacteristicsMockerWithInt:MockerTest_LE_CHARACTERISTIC_2_1])) mocksCharacteristicWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789eeee")])) hasValueWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 0, 1, 2 } count:3]]))) hasValueWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 3, 4, 5 } count:3]]))) hasFixedValueWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 6, 7, 8 } count:3]])))->and__ withGattServiceMockerWithInt:MockerTest_LE_SERVICE_2_1])) mocksServiceWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789dddd")])) hasCharacteristicWithInt:MockerTest_LE_CHARACTERISTIC_2_1])) end]));
   JreStrongAssignAndConsume(&device_, new_LeDeviceMock_initWithInt_withLeMockController_(EventSinkFiller_DEFAULT_DEVICE_ID, sessionController_));
   [((LeSessionController *) nil_chk(sessionController_)) startDefaultSession];
   OrgJunitAssert_assertTrueWithBoolean_([((LeSessionController *) nil_chk(sessionController_)) waitTillSessionStarted]);
@@ -308,7 +308,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   OrgJunitAssert_assertTrueWithBoolean_([((JavaLangBoolean *) nil_chk(IOSObjectArray_Get(discovered, 0))) booleanValue]);
   OrgJunitAssert_assertTrueWithBoolean_([((JavaUtilUUID *) nil_chk([((id<LeGattService>) nil_chk(IOSObjectArray_Get(service, 0))) getUuid])) isEqual:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789aaaa")]);
   id<LeGattCharacteristic> characteristic = [((id<LeGattService>) nil_chk(IOSObjectArray_Get(service, 0))) getCharacteristicWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789bbbb")];
-  JreAssert((characteristic != nil), (@"houtbecke/rs/le/MockerTest.java:186 condition failed: assert characteristic != null;"));
+  JreAssert(characteristic != nil, @"houtbecke/rs/le/MockerTest.java:186 condition failed: assert characteristic != null;");
   IOSByteArray *byteArray1 = [((id<LeGattCharacteristic>) nil_chk(characteristic)) getValue];
   OrgJunitAssert_assertEqualsWithLong_withLong_(IOSByteArray_Get(nil_chk(byteArray1), 0), 0);
   OrgJunitAssert_assertEqualsWithLong_withLong_(IOSByteArray_Get(byteArray1, 1), 1);
@@ -388,6 +388,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(setUp);
   methods[2].selector = @selector(createSource);
@@ -441,8 +442,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockerTest)
 
 @implementation MockerTest_1
 
-- (instancetype)initWithMockerTest:(MockerTest *)outer$
-                      withIntArray:(IOSIntArray *)capture$0 {
+- (instancetype __nonnull)initWithMockerTest:(MockerTest *)outer$
+                                withIntArray:(IOSIntArray *)capture$0 {
   MockerTest_1_initWithMockerTest_withIntArray_(self, outer$, capture$0);
   return self;
 }
@@ -482,6 +483,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockerTest)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithMockerTest:withIntArray:);
   methods[1].selector = @selector(leDeviceFoundWithLeDevice:withLeRemoteDevice:withInt:withLeScanRecord:);
   methods[2].selector = @selector(leDeviceStateWithLeDevice:withLeDeviceState:);
@@ -513,7 +515,7 @@ MockerTest_1 *create_MockerTest_1_initWithMockerTest_withIntArray_(MockerTest *o
 
 @implementation MockerTest_2
 
-- (instancetype)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0 {
+- (instancetype __nonnull)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0 {
   MockerTest_2_initWithJavaLangBooleanArray_(self, capture$0);
   return self;
 }
@@ -542,6 +544,7 @@ MockerTest_1 *create_MockerTest_1_initWithMockerTest_withIntArray_(MockerTest *o
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaLangBooleanArray:);
   methods[1].selector = @selector(leDeviceFoundWithLeDevice:withLeRemoteDevice:withInt:withLeScanRecord:);
   methods[2].selector = @selector(leDeviceStateWithLeDevice:withLeDeviceState:);
@@ -571,10 +574,10 @@ MockerTest_2 *create_MockerTest_2_initWithJavaLangBooleanArray_(IOSObjectArray *
 
 @implementation MockerTest_3
 
-- (instancetype)initWithMockerTest:(MockerTest *)outer$
-          withJavaLangBooleanArray:(IOSObjectArray *)capture$0
-          withJavaLangBooleanArray:(IOSObjectArray *)capture$1
-            withLeGattServiceArray:(IOSObjectArray *)capture$2 {
+- (instancetype __nonnull)initWithMockerTest:(MockerTest *)outer$
+                    withJavaLangBooleanArray:(IOSObjectArray *)capture$0
+                    withJavaLangBooleanArray:(IOSObjectArray *)capture$1
+                      withLeGattServiceArray:(IOSObjectArray *)capture$2 {
   MockerTest_3_initWithMockerTest_withJavaLangBooleanArray_withJavaLangBooleanArray_withLeGattServiceArray_(self, outer$, capture$0, capture$1, capture$2);
   return self;
 }
@@ -633,6 +636,7 @@ MockerTest_2 *create_MockerTest_2_initWithJavaLangBooleanArray_(IOSObjectArray *
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithMockerTest:withJavaLangBooleanArray:withJavaLangBooleanArray:withLeGattServiceArray:);
   methods[1].selector = @selector(leDevicesConnectedWithLeDevice:withLeRemoteDevice:);
   methods[2].selector = @selector(leDevicesDisconnectedWithLeDevice:withLeRemoteDevice:);
@@ -671,10 +675,10 @@ MockerTest_3 *create_MockerTest_3_initWithMockerTest_withJavaLangBooleanArray_wi
 
 @implementation MockerTest_4
 
-- (instancetype)initWithMockerTest:(MockerTest *)outer$
-          withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$0
-          withJavaLangBooleanArray:(IOSObjectArray *)capture$1
-          withJavaLangBooleanArray:(IOSObjectArray *)capture$2 {
+- (instancetype __nonnull)initWithMockerTest:(MockerTest *)outer$
+                    withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$0
+                    withJavaLangBooleanArray:(IOSObjectArray *)capture$1
+                    withJavaLangBooleanArray:(IOSObjectArray *)capture$2 {
   MockerTest_4_initWithMockerTest_withLeGattCharacteristic_withJavaLangBooleanArray_withJavaLangBooleanArray_(self, outer$, capture$0, capture$1, capture$2);
   return self;
 }
@@ -711,6 +715,7 @@ MockerTest_3 *create_MockerTest_3_initWithMockerTest_withJavaLangBooleanArray_wi
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithMockerTest:withLeGattCharacteristic:withJavaLangBooleanArray:withJavaLangBooleanArray:);
   methods[1].selector = @selector(leCharacteristicChangedWithJavaUtilUUID:withLeRemoteDevice:withLeGattCharacteristic:);
   methods[2].selector = @selector(leCharacteristicNotificationChangedWithJavaUtilUUID:withLeRemoteDevice:withLeGattCharacteristic:withBoolean:);
@@ -746,7 +751,7 @@ MockerTest_4 *create_MockerTest_4_initWithMockerTest_withLeGattCharacteristic_wi
 
 @implementation MockerTest_5
 
-- (instancetype)initWithLeGattServiceArray:(IOSObjectArray *)capture$0 {
+- (instancetype __nonnull)initWithLeGattServiceArray:(IOSObjectArray *)capture$0 {
   MockerTest_5_initWithLeGattServiceArray_(self, capture$0);
   return self;
 }
@@ -791,6 +796,7 @@ MockerTest_4 *create_MockerTest_4_initWithMockerTest_withLeGattCharacteristic_wi
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeGattServiceArray:);
   methods[1].selector = @selector(leDevicesConnectedWithLeDevice:withLeRemoteDevice:);
   methods[2].selector = @selector(leDevicesDisconnectedWithLeDevice:withLeRemoteDevice:);

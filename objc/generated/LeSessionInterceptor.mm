@@ -51,7 +51,7 @@
   [((id<EventSink>) nil_chk(sink_)) addEventWithEvent:create_Event_initWithEventType_withBaseIntercepting_withNSStringArray_(type, interceptor, values)];
 }
 
-- (instancetype)initWithEventSink:(id<EventSink>)sink {
+- (instancetype __nonnull)initWithEventSink:(id<EventSink>)sink {
   LeSessionInterceptor_initWithEventSink_(self, sink);
   return self;
 }
@@ -349,6 +349,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(drainEventWithLeEventType:withBaseIntercepting:withBaseIntercepting:withBaseIntercepting:withNSStringArray:);
   methods[1].selector = @selector(drainEventWithLeEventType:withBaseIntercepting:withBaseIntercepting:withNSStringArray:);
   methods[2].selector = @selector(drainEventWithLeEventType:withBaseIntercepting:withNSStringArray:);

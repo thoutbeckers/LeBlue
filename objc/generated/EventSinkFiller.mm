@@ -20,13 +20,13 @@
   return and__;
 }
 
-- (instancetype)initWithListEventSinkSource:(ListEventSinkSource *)listEventSinkSource {
+- (instancetype __nonnull)initWithListEventSinkSource:(ListEventSinkSource *)listEventSinkSource {
   EventSinkFiller_initWithListEventSinkSource_(self, listEventSinkSource);
   return self;
 }
 
-- (instancetype)initWithListEventSinkSource:(ListEventSinkSource *)listEventSinkSource
-                          withSessionObject:(SessionObject *)sessionObject {
+- (instancetype __nonnull)initWithListEventSinkSource:(ListEventSinkSource *)listEventSinkSource
+                                    withSessionObject:(SessionObject *)sessionObject {
   EventSinkFiller_initWithListEventSinkSource_withSessionObject_(self, listEventSinkSource, sessionObject);
   return self;
 }
@@ -146,6 +146,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(end);
   methods[1].selector = @selector(initWithListEventSinkSource:);
   methods[2].selector = @selector(initWithListEventSinkSource:withSessionObject:);

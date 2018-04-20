@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeGattServiceMock
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeGattServiceMock_) && (INCLUDE_ALL_LeGattServiceMock || defined(INCLUDE_LeGattServiceMock))
 #define LeGattServiceMock_
 
@@ -29,8 +34,8 @@
 
 #pragma mark Public
 
-- (instancetype)initWithJavaLangInteger:(JavaLangInteger *)key
-                   withLeMockController:(id<LeMockController>)mockController;
+- (instancetype __nonnull)initWithJavaLangInteger:(JavaLangInteger *)key
+                             withLeMockController:(id<LeMockController>)mockController;
 
 - (jboolean)enableCharacteristicNotificationWithJavaUtilUUID:(JavaUtilUUID *)characteristic;
 
@@ -44,7 +49,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -65,4 +70,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeGattServiceMock)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeGattServiceMock")

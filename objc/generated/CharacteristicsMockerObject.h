@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_CharacteristicsMockerObject
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (CharacteristicsMockerObject_) && (INCLUDE_ALL_CharacteristicsMockerObject || defined(INCLUDE_CharacteristicsMockerObject))
 #define CharacteristicsMockerObject_
 
@@ -26,8 +31,8 @@
 
 #pragma mark Public
 
-- (instancetype)initWithSessionObject:(SessionObject *)sessionObject
-                              withInt:(jint)sessionSource;
+- (instancetype __nonnull)initWithSessionObject:(SessionObject *)sessionObject
+                                        withInt:(jint)sessionSource;
 
 - (CharacteristicsMockerObject *)hasFixedValueWithByteArray:(IOSByteArray *)values;
 
@@ -61,4 +66,8 @@ J2OBJC_TYPE_LITERAL_HEADER(CharacteristicsMockerObject)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_CharacteristicsMockerObject")

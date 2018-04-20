@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeRemoteDevice
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeRemoteDevice_) && (INCLUDE_ALL_LeRemoteDevice || defined(INCLUDE_LeRemoteDevice))
 #define LeRemoteDevice_
 
@@ -57,4 +62,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeRemoteDevice)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeRemoteDevice")

@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_BaseIntercepting
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (BaseIntercepting_) && (INCLUDE_ALL_BaseIntercepting || defined(INCLUDE_BaseIntercepting))
 #define BaseIntercepting_
 
@@ -19,7 +24,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithInt:(jint)id_;
+- (instancetype __nonnull)initWithInt:(jint)id_;
 
 - (NSString *)description;
 
@@ -35,4 +40,8 @@ J2OBJC_TYPE_LITERAL_HEADER(BaseIntercepting)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_BaseIntercepting")

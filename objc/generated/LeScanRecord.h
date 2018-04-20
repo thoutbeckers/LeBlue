@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeScanRecord
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeScanRecord_) && (INCLUDE_ALL_LeScanRecord || defined(INCLUDE_LeScanRecord))
 #define LeScanRecord_
 
@@ -41,4 +46,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeScanRecord)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeScanRecord")

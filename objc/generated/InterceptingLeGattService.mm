@@ -10,8 +10,8 @@
 
 @implementation InterceptingLeGattService
 
-- (instancetype)initWithLeGattService:(id<LeGattService>)leGattService
-                    withLeInterceptor:(LeInterceptor *)leInterceptor {
+- (instancetype __nonnull)initWithLeGattService:(id<LeGattService>)leGattService
+                              withLeInterceptor:(LeInterceptor *)leInterceptor {
   InterceptingLeGattService_initWithLeGattService_withLeInterceptor_(self, leGattService, leInterceptor);
   return self;
 }
@@ -69,6 +69,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeGattService:withLeInterceptor:);
   methods[1].selector = @selector(getUuid);
   methods[2].selector = @selector(getCharacteristicWithJavaUtilUUID:);

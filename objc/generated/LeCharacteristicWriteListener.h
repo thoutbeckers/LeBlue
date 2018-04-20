@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeCharacteristicWriteListener
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeCharacteristicWriteListener_) && (INCLUDE_ALL_LeCharacteristicWriteListener || defined(INCLUDE_LeCharacteristicWriteListener))
 #define LeCharacteristicWriteListener_
 
@@ -33,4 +38,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeCharacteristicWriteListener)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeCharacteristicWriteListener")

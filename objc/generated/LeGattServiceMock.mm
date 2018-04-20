@@ -10,8 +10,8 @@
 
 @implementation LeGattServiceMock
 
-- (instancetype)initWithJavaLangInteger:(JavaLangInteger *)key
-                   withLeMockController:(id<LeMockController>)mockController {
+- (instancetype __nonnull)initWithJavaLangInteger:(JavaLangInteger *)key
+                             withLeMockController:(id<LeMockController>)mockController {
   LeGattServiceMock_initWithJavaLangInteger_withLeMockController_(self, key, mockController);
   return self;
 }
@@ -55,6 +55,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaLangInteger:withLeMockController:);
   methods[1].selector = @selector(getUuid);
   methods[2].selector = @selector(getCharacteristicWithJavaUtilUUID:);

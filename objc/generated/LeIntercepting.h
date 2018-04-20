@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeIntercepting
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeIntercepting_) && (INCLUDE_ALL_LeIntercepting || defined(INCLUDE_LeIntercepting))
 #define LeIntercepting_
 
@@ -25,11 +30,11 @@
 
 #pragma mark Public
 
-- (instancetype)initWithLeInterceptor:(LeInterceptor *)leInterceptor;
+- (instancetype __nonnull)initWithLeInterceptor:(LeInterceptor *)leInterceptor;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithInt:(jint)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithInt:(jint)arg0 NS_UNAVAILABLE;
 
 @end
 
@@ -49,4 +54,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeIntercepting)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeIntercepting")

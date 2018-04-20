@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_GattServiceMockerObject
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (GattServiceMockerObject_) && (INCLUDE_ALL_GattServiceMockerObject || defined(INCLUDE_GattServiceMockerObject))
 #define GattServiceMockerObject_
 
@@ -24,8 +29,8 @@
 
 #pragma mark Public
 
-- (instancetype)initWithSessionObject:(SessionObject *)sessionObject
-                              withInt:(jint)sessionSource;
+- (instancetype __nonnull)initWithSessionObject:(SessionObject *)sessionObject
+                                        withInt:(jint)sessionSource;
 
 - (GattServiceMockerObject *)canNotifyWithInt:(jint)characteristic
                                       withInt:(jint)remoteId
@@ -67,4 +72,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GattServiceMockerObject)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_GattServiceMockerObject")

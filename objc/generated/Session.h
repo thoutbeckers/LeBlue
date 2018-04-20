@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_Session
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (Session_) && (INCLUDE_ALL_Session || defined(INCLUDE_Session))
 #define Session_
 
@@ -47,4 +52,8 @@ J2OBJC_TYPE_LITERAL_HEADER(Session)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_Session")

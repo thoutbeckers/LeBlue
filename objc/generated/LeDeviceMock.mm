@@ -9,8 +9,8 @@
 
 @implementation LeDeviceMock
 
-- (instancetype)initWithInt:(jint)key
-       withLeMockController:(id<LeMockController>)leMockController {
+- (instancetype __nonnull)initWithInt:(jint)key
+                 withLeMockController:(id<LeMockController>)leMockController {
   LeDeviceMock_initWithInt_withLeMockController_(self, key, leMockController);
   return self;
 }
@@ -78,6 +78,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithInt:withLeMockController:);
   methods[1].selector = @selector(addListenerWithLeDeviceListener:);
   methods[2].selector = @selector(removeListenerWithLeDeviceListener:);

@@ -61,7 +61,7 @@ J2OBJC_FIELD_SETTER(LeSessionController, point_, NSString *)
   LeSessionController *this$0_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$;
 
 - (void)run;
 
@@ -82,8 +82,8 @@ __attribute__((unused)) static LeSessionController_1 *create_LeSessionController
   jboolean started_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                       withJavaLangRunnable:(id<JavaLangRunnable>)runnable;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                 withJavaLangRunnable:(id<JavaLangRunnable>)runnable;
 
 - (void)run;
 
@@ -107,8 +107,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeSessionController_RunnableWrapper)
   Event *val$event_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -128,8 +128,8 @@ __attribute__((unused)) static LeSessionController_2 *create_LeSessionController
   Event *val$event_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -150,9 +150,9 @@ __attribute__((unused)) static LeSessionController_3 *create_LeSessionController
   Event *val$event_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                  withEvent:(Event *)capture$1;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                            withEvent:(Event *)capture$1;
 
 - (void)run;
 
@@ -172,8 +172,8 @@ __attribute__((unused)) static LeSessionController_4 *create_LeSessionController
   Event *val$event_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -194,9 +194,9 @@ __attribute__((unused)) static LeSessionController_5 *create_LeSessionController
   Event *val$event_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                  withEvent:(Event *)capture$1;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                            withEvent:(Event *)capture$1;
 
 - (void)run;
 
@@ -216,8 +216,8 @@ __attribute__((unused)) static LeSessionController_6 *create_LeSessionController
   Event *val$event_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -238,9 +238,9 @@ __attribute__((unused)) static LeSessionController_7 *create_LeSessionController
   Event *val$event_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                  withEvent:(Event *)capture$1;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                            withEvent:(Event *)capture$1;
 
 - (void)run;
 
@@ -260,8 +260,8 @@ __attribute__((unused)) static LeSessionController_8 *create_LeSessionController
   Event *val$event_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -282,9 +282,9 @@ __attribute__((unused)) static LeSessionController_9 *create_LeSessionController
   id<LeRemoteDeviceListener> val$listener_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0
-                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$1;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0
+                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$1;
 
 - (void)run;
 
@@ -304,8 +304,8 @@ __attribute__((unused)) static LeSessionController_10 *create_LeSessionControlle
   Event *val$event_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -325,8 +325,8 @@ __attribute__((unused)) static LeSessionController_11 *create_LeSessionControlle
   Event *val$event_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -348,10 +348,10 @@ __attribute__((unused)) static LeSessionController_12 *create_LeSessionControlle
   id<LeGattCharacteristic> val$characteristic_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0
-                           withJavaUtilUUID:(JavaUtilUUID *)capture$1
-                   withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0
+                                     withJavaUtilUUID:(JavaUtilUUID *)capture$1
+                             withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2;
 
 - (void)run;
 
@@ -371,8 +371,8 @@ __attribute__((unused)) static LeSessionController_13 *create_LeSessionControlle
   Event *val$event_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -392,8 +392,8 @@ __attribute__((unused)) static LeSessionController_14 *create_LeSessionControlle
   Event *val$event_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -415,10 +415,10 @@ __attribute__((unused)) static LeSessionController_15 *create_LeSessionControlle
   id<LeGattCharacteristic> val$characteristic2_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0
-                           withJavaUtilUUID:(JavaUtilUUID *)capture$1
-                   withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0
+                                     withJavaUtilUUID:(JavaUtilUUID *)capture$1
+                             withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2;
 
 - (void)run;
 
@@ -438,8 +438,8 @@ __attribute__((unused)) static LeSessionController_16 *create_LeSessionControlle
   Event *val$event_;
 }
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0;
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -467,13 +467,13 @@ NSString *LeSessionController_TAG = @"LeBlueController";
   return ![@"true" isEqual:JavaLangSystem_getPropertyWithNSString_(@"doNotLog")];
 }
 
-- (instancetype)initWithSession:(id<Session>)session {
+- (instancetype __nonnull)initWithSession:(id<Session>)session {
   LeSessionController_initWithSession_(self, session);
   return self;
 }
 
-- (instancetype)initWithSession:(id<Session>)session
-                    withBoolean:(jboolean)strict {
+- (instancetype __nonnull)initWithSession:(id<Session>)session
+                              withBoolean:(jboolean)strict {
   LeSessionController_initWithSession_withBoolean_(self, session, strict);
   return self;
 }
@@ -1588,6 +1588,7 @@ NSString *LeSessionController_TAG = @"LeBlueController";
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(shouldLog);
   methods[1].selector = @selector(initWithSession:);
   methods[2].selector = @selector(initWithSession:withBoolean:);
@@ -1770,7 +1771,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController)
 
 @implementation LeSessionController_1
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$ {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$ {
   LeSessionController_1_initWithLeSessionController_(self, outer$);
   return self;
 }
@@ -1792,6 +1793,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -1820,8 +1822,8 @@ LeSessionController_1 *create_LeSessionController_1_initWithLeSessionController_
 
 @implementation LeSessionController_RunnableWrapper
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                       withJavaLangRunnable:(id<JavaLangRunnable>)runnable {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                 withJavaLangRunnable:(id<JavaLangRunnable>)runnable {
   LeSessionController_RunnableWrapper_initWithLeSessionController_withJavaLangRunnable_(self, outer$, runnable);
   return self;
 }
@@ -1854,6 +1856,7 @@ LeSessionController_1 *create_LeSessionController_1_initWithLeSessionController_
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withJavaLangRunnable:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -1888,8 +1891,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_RunnableWrapper)
 
 @implementation LeSessionController_2
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0 {
   LeSessionController_2_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -1919,6 +1922,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_RunnableWrapper)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withEvent:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -1949,8 +1953,8 @@ LeSessionController_2 *create_LeSessionController_2_initWithLeSessionController_
 
 @implementation LeSessionController_3
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0 {
   LeSessionController_3_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -1972,6 +1976,7 @@ LeSessionController_2 *create_LeSessionController_2_initWithLeSessionController_
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withEvent:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2002,9 +2007,9 @@ LeSessionController_3 *create_LeSessionController_3_initWithLeSessionController_
 
 @implementation LeSessionController_4
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                  withEvent:(Event *)capture$1 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                            withEvent:(Event *)capture$1 {
   LeSessionController_4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, outer$, capture$0, capture$1);
   return self;
 }
@@ -2027,6 +2032,7 @@ LeSessionController_3 *create_LeSessionController_3_initWithLeSessionController_
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withLeRemoteDeviceListener:withEvent:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2059,8 +2065,8 @@ LeSessionController_4 *create_LeSessionController_4_initWithLeSessionController_
 
 @implementation LeSessionController_5
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0 {
   LeSessionController_5_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2082,6 +2088,7 @@ LeSessionController_4 *create_LeSessionController_4_initWithLeSessionController_
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withEvent:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2112,9 +2119,9 @@ LeSessionController_5 *create_LeSessionController_5_initWithLeSessionController_
 
 @implementation LeSessionController_6
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                  withEvent:(Event *)capture$1 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                            withEvent:(Event *)capture$1 {
   LeSessionController_6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, outer$, capture$0, capture$1);
   return self;
 }
@@ -2137,6 +2144,7 @@ LeSessionController_5 *create_LeSessionController_5_initWithLeSessionController_
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withLeRemoteDeviceListener:withEvent:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2169,8 +2177,8 @@ LeSessionController_6 *create_LeSessionController_6_initWithLeSessionController_
 
 @implementation LeSessionController_7
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0 {
   LeSessionController_7_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2192,6 +2200,7 @@ LeSessionController_6 *create_LeSessionController_6_initWithLeSessionController_
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withEvent:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2222,9 +2231,9 @@ LeSessionController_7 *create_LeSessionController_7_initWithLeSessionController_
 
 @implementation LeSessionController_8
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                  withEvent:(Event *)capture$1 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                            withEvent:(Event *)capture$1 {
   LeSessionController_8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, outer$, capture$0, capture$1);
   return self;
 }
@@ -2247,6 +2256,7 @@ LeSessionController_7 *create_LeSessionController_7_initWithLeSessionController_
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withLeRemoteDeviceListener:withEvent:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2279,8 +2289,8 @@ LeSessionController_8 *create_LeSessionController_8_initWithLeSessionController_
 
 @implementation LeSessionController_9
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0 {
   LeSessionController_9_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2302,6 +2312,7 @@ LeSessionController_8 *create_LeSessionController_8_initWithLeSessionController_
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withEvent:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2332,9 +2343,9 @@ LeSessionController_9 *create_LeSessionController_9_initWithLeSessionController_
 
 @implementation LeSessionController_10
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0
-                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$1 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0
+                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$1 {
   LeSessionController_10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(self, outer$, capture$0, capture$1);
   return self;
 }
@@ -2359,6 +2370,7 @@ LeSessionController_9 *create_LeSessionController_9_initWithLeSessionController_
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withEvent:withLeRemoteDeviceListener:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2391,8 +2403,8 @@ LeSessionController_10 *create_LeSessionController_10_initWithLeSessionControlle
 
 @implementation LeSessionController_11
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0 {
   LeSessionController_11_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2416,6 +2428,7 @@ LeSessionController_10 *create_LeSessionController_10_initWithLeSessionControlle
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withEvent:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2446,8 +2459,8 @@ LeSessionController_11 *create_LeSessionController_11_initWithLeSessionControlle
 
 @implementation LeSessionController_12
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0 {
   LeSessionController_12_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2469,6 +2482,7 @@ LeSessionController_11 *create_LeSessionController_11_initWithLeSessionControlle
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withEvent:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2499,10 +2513,10 @@ LeSessionController_12 *create_LeSessionController_12_initWithLeSessionControlle
 
 @implementation LeSessionController_13
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0
-                           withJavaUtilUUID:(JavaUtilUUID *)capture$1
-                   withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0
+                                     withJavaUtilUUID:(JavaUtilUUID *)capture$1
+                             withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2 {
   LeSessionController_13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, outer$, capture$0, capture$1, capture$2);
   return self;
 }
@@ -2534,6 +2548,7 @@ LeSessionController_12 *create_LeSessionController_12_initWithLeSessionControlle
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withEvent:withJavaUtilUUID:withLeGattCharacteristic:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2568,8 +2583,8 @@ LeSessionController_13 *create_LeSessionController_13_initWithLeSessionControlle
 
 @implementation LeSessionController_14
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0 {
   LeSessionController_14_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2593,6 +2608,7 @@ LeSessionController_13 *create_LeSessionController_13_initWithLeSessionControlle
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withEvent:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2623,8 +2639,8 @@ LeSessionController_14 *create_LeSessionController_14_initWithLeSessionControlle
 
 @implementation LeSessionController_15
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0 {
   LeSessionController_15_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2649,6 +2665,7 @@ LeSessionController_14 *create_LeSessionController_14_initWithLeSessionControlle
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withEvent:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2679,10 +2696,10 @@ LeSessionController_15 *create_LeSessionController_15_initWithLeSessionControlle
 
 @implementation LeSessionController_16
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0
-                           withJavaUtilUUID:(JavaUtilUUID *)capture$1
-                   withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0
+                                     withJavaUtilUUID:(JavaUtilUUID *)capture$1
+                             withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2 {
   LeSessionController_16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, outer$, capture$0, capture$1, capture$2);
   return self;
 }
@@ -2714,6 +2731,7 @@ LeSessionController_15 *create_LeSessionController_15_initWithLeSessionControlle
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withEvent:withJavaUtilUUID:withLeGattCharacteristic:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2748,8 +2766,8 @@ LeSessionController_16 *create_LeSessionController_16_initWithLeSessionControlle
 
 @implementation LeSessionController_17
 
-- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
-                                  withEvent:(Event *)capture$0 {
+- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
+                                            withEvent:(Event *)capture$0 {
   LeSessionController_17_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2773,6 +2791,7 @@ LeSessionController_16 *create_LeSessionController_16_initWithLeSessionControlle
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeSessionController:withEvent:);
   methods[1].selector = @selector(run);
   #pragma clang diagnostic pop
@@ -2842,6 +2861,7 @@ LeSessionController_SourceType *LeSessionController_SourceType_values_[4];
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(values);
   methods[1].selector = @selector(valueOfWithNSString:);
   #pragma clang diagnostic pop
@@ -2862,12 +2882,9 @@ LeSessionController_SourceType *LeSessionController_SourceType_values_[4];
     size_t allocSize = 4 * objSize;
     uintptr_t ptr = (uintptr_t)calloc(allocSize, 1);
     id e;
-    id names[] = {
-      @"device", @"remoteDevice", @"gattService", @"gattCharacteristic",
-    };
     for (jint i = 0; i < 4; i++) {
-      (LeSessionController_SourceType_values_[i] = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
-      LeSessionController_SourceType_initWithNSString_withInt_(e, names[i], i);
+      ((void)(LeSessionController_SourceType_values_[i] = e = objc_constructInstance(self, (void *)ptr)), ptr += objSize);
+      LeSessionController_SourceType_initWithNSString_withInt_(e, JreEnumConstantName(LeSessionController_SourceType_class_(), i), i);
     }
     J2OBJC_SET_INITIALIZED(LeSessionController_SourceType)
   }

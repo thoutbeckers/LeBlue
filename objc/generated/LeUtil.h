@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeUtil
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeUtil_) && (INCLUDE_ALL_LeUtil || defined(INCLUDE_LeUtil))
 #define LeUtil_
 
@@ -24,7 +29,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 + (NSString *)bytesToHexStringWithByteArray:(IOSByteArray *)bytes;
 
@@ -56,16 +61,16 @@
 
 J2OBJC_STATIC_INIT(LeUtil)
 
-inline IOSCharArray *LeUtil_get_hexArray();
+inline IOSCharArray *LeUtil_get_hexArray(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT IOSCharArray *LeUtil_hexArray;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeUtil, hexArray, IOSCharArray *)
 
 FOUNDATION_EXPORT void LeUtil_init(LeUtil *self);
 
-FOUNDATION_EXPORT LeUtil *new_LeUtil_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT LeUtil *new_LeUtil_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT LeUtil *create_LeUtil_init();
+FOUNDATION_EXPORT LeUtil *create_LeUtil_init(void);
 
 FOUNDATION_EXPORT NSString *LeUtil_bytesToStringWithByteArray_(IOSByteArray *bytes);
 
@@ -95,4 +100,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeUtil)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeUtil")

@@ -11,8 +11,8 @@
 
 @implementation InterceptingLeGattCharacteristic
 
-- (instancetype)initWithLeGattCharacteristic:(id<LeGattCharacteristic>)leGattCharacteristic
-                           withLeInterceptor:(LeInterceptor *)leInterceptor {
+- (instancetype __nonnull)initWithLeGattCharacteristic:(id<LeGattCharacteristic>)leGattCharacteristic
+                                     withLeInterceptor:(LeInterceptor *)leInterceptor {
   InterceptingLeGattCharacteristic_initWithLeGattCharacteristic_withLeInterceptor_(self, leGattCharacteristic, leInterceptor);
   return self;
 }
@@ -85,6 +85,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeGattCharacteristic:withLeInterceptor:);
   methods[1].selector = @selector(getValue);
   methods[2].selector = @selector(getIntValueWithLeFormat:withInt:);

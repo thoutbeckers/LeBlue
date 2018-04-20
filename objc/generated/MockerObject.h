@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_MockerObject
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (MockerObject_) && (INCLUDE_ALL_MockerObject || defined(INCLUDE_MockerObject))
 #define MockerObject_
 
@@ -47,8 +52,8 @@
 
 #pragma mark Public
 
-- (instancetype)initWithSessionObject:(SessionObject *)sessionObject
-                              withInt:(jint)sessionSource;
+- (instancetype __nonnull)initWithSessionObject:(SessionObject *)sessionObject
+                                        withInt:(jint)sessionSource;
 
 - (SessionObject *)end;
 
@@ -157,7 +162,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -168,7 +173,7 @@ J2OBJC_FIELD_SETTER(MockerObject, listeners_, id<JavaUtilMap>)
 J2OBJC_FIELD_SETTER(MockerObject, sessionObject_, SessionObject *)
 J2OBJC_FIELD_SETTER(MockerObject, and__, SessionObject *)
 
-inline jint MockerObject_get_sourceCounter();
+inline jint MockerObject_get_sourceCounter(void);
 inline jint MockerObject_set_sourceCounter(jint value);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT volatile_jint MockerObject_sourceCounter;
@@ -188,4 +193,8 @@ J2OBJC_TYPE_LITERAL_HEADER(MockerObject)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_MockerObject")

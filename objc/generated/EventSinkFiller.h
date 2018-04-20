@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_EventSinkFiller
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (EventSinkFiller_) && (INCLUDE_ALL_EventSinkFiller || defined(INCLUDE_EventSinkFiller))
 #define EventSinkFiller_
 
@@ -31,10 +36,10 @@
 
 #pragma mark Public
 
-- (instancetype)initWithListEventSinkSource:(ListEventSinkSource *)listEventSinkSource;
+- (instancetype __nonnull)initWithListEventSinkSource:(ListEventSinkSource *)listEventSinkSource;
 
-- (instancetype)initWithListEventSinkSource:(ListEventSinkSource *)listEventSinkSource
-                          withSessionObject:(SessionObject *)sessionObject;
+- (instancetype __nonnull)initWithListEventSinkSource:(ListEventSinkSource *)listEventSinkSource
+                                    withSessionObject:(SessionObject *)sessionObject;
 
 - (EventSinkFiller *)addDeviceEventWithLeEventType:(LeEventType *)type
                                            withInt:(jint)secondSource
@@ -86,7 +91,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -95,7 +100,7 @@ J2OBJC_EMPTY_STATIC_INIT(EventSinkFiller)
 J2OBJC_FIELD_SETTER(EventSinkFiller, listEventSinkSource_, ListEventSinkSource *)
 J2OBJC_FIELD_SETTER(EventSinkFiller, and__, SessionObject *)
 
-inline jint EventSinkFiller_get_DEFAULT_DEVICE_ID();
+inline jint EventSinkFiller_get_DEFAULT_DEVICE_ID(void);
 #define EventSinkFiller_DEFAULT_DEVICE_ID 0
 J2OBJC_STATIC_FIELD_CONSTANT(EventSinkFiller, DEFAULT_DEVICE_ID, jint)
 
@@ -117,4 +122,8 @@ J2OBJC_TYPE_LITERAL_HEADER(EventSinkFiller)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_EventSinkFiller")

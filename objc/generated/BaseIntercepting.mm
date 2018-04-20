@@ -5,7 +5,7 @@
 
 @implementation BaseIntercepting
 
-- (instancetype)initWithInt:(jint)id_ {
+- (instancetype __nonnull)initWithInt:(jint)id_ {
   BaseIntercepting_initWithInt_(self, id_);
   return self;
 }
@@ -21,6 +21,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithInt:);
   methods[1].selector = @selector(description);
   #pragma clang diagnostic pop

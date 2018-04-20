@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_MockedResponse
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (MockedResponse_) && (INCLUDE_ALL_MockedResponse || defined(INCLUDE_MockedResponse))
 #define MockedResponse_
 
@@ -34,4 +39,8 @@ J2OBJC_TYPE_LITERAL_HEADER(MockedResponse)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_MockedResponse")

@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeCharacteristicListener
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeCharacteristicListener_) && (INCLUDE_ALL_LeCharacteristicListener || defined(INCLUDE_LeCharacteristicListener))
 #define LeCharacteristicListener_
 
@@ -37,4 +42,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeCharacteristicListener)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeCharacteristicListener")

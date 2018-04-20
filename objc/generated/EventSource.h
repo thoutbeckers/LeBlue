@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_EventSource
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (EventSource_) && (INCLUDE_ALL_EventSource || defined(INCLUDE_EventSource))
 #define EventSource_
 
@@ -32,4 +37,8 @@ J2OBJC_TYPE_LITERAL_HEADER(EventSource)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_EventSource")

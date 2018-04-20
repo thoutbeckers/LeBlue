@@ -12,8 +12,8 @@
 
 @implementation CharacteristicsMockerObject
 
-- (instancetype)initWithSessionObject:(SessionObject *)sessionObject
-                              withInt:(jint)sessionSource {
+- (instancetype __nonnull)initWithSessionObject:(SessionObject *)sessionObject
+                                        withInt:(jint)sessionSource {
   CharacteristicsMockerObject_initWithSessionObject_withInt_(self, sessionObject, sessionSource);
   return self;
 }
@@ -76,6 +76,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithSessionObject:withInt:);
   methods[1].selector = @selector(mocksCharacteristic);
   methods[2].selector = @selector(mocksCharacteristicWithJavaUtilUUID:);

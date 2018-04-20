@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_DeviceMockerObject
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (DeviceMockerObject_) && (INCLUDE_ALL_DeviceMockerObject || defined(INCLUDE_DeviceMockerObject))
 #define DeviceMockerObject_
 
@@ -24,8 +29,8 @@
 
 #pragma mark Public
 
-- (instancetype)initWithSessionObject:(SessionObject *)sessionObject
-                              withInt:(jint)sessionSource;
+- (instancetype __nonnull)initWithSessionObject:(SessionObject *)sessionObject
+                                        withInt:(jint)sessionSource;
 
 - (DeviceMockerObject *)hasRemoteDeviceWithByteArray:(IOSByteArray *)scanRecord
                                              withInt:(jint)remoteDevice;
@@ -54,4 +59,8 @@ J2OBJC_TYPE_LITERAL_HEADER(DeviceMockerObject)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_DeviceMockerObject")

@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_InterceptingLeGattCharacteristic
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (InterceptingLeGattCharacteristic_) && (INCLUDE_ALL_InterceptingLeGattCharacteristic || defined(INCLUDE_InterceptingLeGattCharacteristic))
 #define InterceptingLeGattCharacteristic_
 
@@ -31,8 +36,8 @@
 
 #pragma mark Public
 
-- (instancetype)initWithLeGattCharacteristic:(id<LeGattCharacteristic>)leGattCharacteristic
-                           withLeInterceptor:(LeInterceptor *)leInterceptor;
+- (instancetype __nonnull)initWithLeGattCharacteristic:(id<LeGattCharacteristic>)leGattCharacteristic
+                                     withLeInterceptor:(LeInterceptor *)leInterceptor;
 
 - (jboolean)isEqual:(id)o;
 
@@ -52,7 +57,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithLeInterceptor:(LeInterceptor *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithLeInterceptor:(LeInterceptor *)arg0 NS_UNAVAILABLE;
 
 @end
 
@@ -72,4 +77,8 @@ J2OBJC_TYPE_LITERAL_HEADER(InterceptingLeGattCharacteristic)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_InterceptingLeGattCharacteristic")

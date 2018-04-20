@@ -13,9 +13,9 @@
 
 @implementation LeRemoteDeviceMock
 
-- (instancetype)initWithInt:(jint)key
-       withLeMockController:(id<LeMockController>)mockController
-           withLeDeviceMock:(LeDeviceMock *)leDeviceMock {
+- (instancetype __nonnull)initWithInt:(jint)key
+                 withLeMockController:(id<LeMockController>)mockController
+                     withLeDeviceMock:(LeDeviceMock *)leDeviceMock {
   LeRemoteDeviceMock_initWithInt_withLeMockController_withLeDeviceMock_(self, key, mockController, leDeviceMock);
   return self;
 }
@@ -111,6 +111,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithInt:withLeMockController:withLeDeviceMock:);
   methods[1].selector = @selector(addListenerWithLeRemoteDeviceListener:);
   methods[2].selector = @selector(removeListenerWithLeRemoteDeviceListener:);

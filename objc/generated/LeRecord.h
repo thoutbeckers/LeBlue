@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeRecord
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeRecord_) && (INCLUDE_ALL_LeRecord || defined(INCLUDE_LeRecord))
 #define LeRecord_
 
@@ -30,4 +35,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeRecord)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeRecord")
