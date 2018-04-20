@@ -1,15 +1,15 @@
 apply plugin: 'java'
 apply plugin: 'jacoco'
 
-targetCompatibility = '1.7'
-sourceCompatibility = '1.7'
+targetCompatibility = '1.8'
+sourceCompatibility = '1.8'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
+    testImplementation "junit:junit:$junitVersion"
 
 }
 
