@@ -57,11 +57,9 @@ if [ ! -d "j2objc" ] || [ ! -d "j2objc/j2objc-${j2objc_version}" ]; then
     cat j2objc-${j2objc_version}.zip.part? > j2objc-${j2objc_version}.zip
     rm j2objc-${j2objc_version}.zip.part?
 
-
-    unzip -o -q j2objc-${j2objc_version}.zip
+    unzip  -o -q j2objc-${j2objc_version}.zip
+    mv j2objc-${j2objc_version} j2objc/j2objc-${j2objc_version}
 fi
 
-cd j2objc-${j2objc_version}; pwd; ls -l ; ./j2objcc --version; cd ..
-export J2OBJC_HOME=$(PWD)/j2objc-${j2objc_version}
-
-
+export J2OBJC_HOME=$(PWD)/j2objc/j2objc-${j2objc_version}
+$J2OBJC_HOME/j2objc -version

@@ -8,11 +8,14 @@ matrix:
           language: generic
           jdk: oraclejdk8
           osx_image: xcode9
+          cache:
+            cocoapods: true
+            directories:
+                - j2objc
 
 env:
     global:
     - TERM=dumb
-    - J2OBJC_VERSION=2.0.3
 
 android:
   components:
@@ -36,7 +39,6 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then pip install --user codecov ; fi
 
 script:
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export J2OBJC_HOME=$(PWD)/j2objc-${J2OBJC_VERSION}; fi
     - ./gradlew :LeBlue-java:test
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./gradlew :LeBlue:testDebug ;fi
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then git checkout $TRAVIS_BRANCH ; fi
