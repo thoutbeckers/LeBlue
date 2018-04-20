@@ -35,7 +35,7 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo y | android update sdk -u -a -t android-27 ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo y | android update sdk -u -a -t extra-google-m2repository ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo y | android update sdk -u -a -t extra-android-m2repository ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then etc/script/install-j2objc.sh ; export; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then . ./etc/script/install-j2objc.sh ; export; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then pip install --user codecov ; fi
 
 script:
