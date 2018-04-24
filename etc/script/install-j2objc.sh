@@ -1,5 +1,5 @@
 #!/bin/bash
-j2objc_version=2.1
+j2objc_version=2.1.1
 link=https://github.com/google/j2objc/releases/download/${j2objc_version}/j2objc-${j2objc_version}.zip
 if [ ! -d "j2objc" ] || [ ! -d "j2objc/j2objc-${j2objc_version}" ]; then
     if [ -d "j2objc" ]; then
