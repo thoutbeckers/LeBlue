@@ -15,6 +15,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(leDeviceFoundWithLeDevice:withLeRemoteDevice:withInt:withLeScanRecord:);
   methods[1].selector = @selector(leDeviceStateWithLeDevice:withLeDeviceState:);
   #pragma clang diagnostic pop

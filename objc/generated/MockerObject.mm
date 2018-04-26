@@ -42,8 +42,8 @@ volatile_jint MockerObject_sourceCounter = 0;
   return sessionObject_;
 }
 
-- (instancetype)initWithSessionObject:(SessionObject *)sessionObject
-                              withInt:(jint)sessionSource {
+- (instancetype __nonnull)initWithSessionObject:(SessionObject *)sessionObject
+                                        withInt:(jint)sessionSource {
   MockerObject_initWithSessionObject_withInt_(self, sessionObject, sessionSource);
   return self;
 }
@@ -326,6 +326,7 @@ volatile_jint MockerObject_sourceCounter = 0;
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(getDelay);
   methods[1].selector = @selector(end);
   methods[2].selector = @selector(initWithSessionObject:withInt:);

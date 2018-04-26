@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeScanRecordImpl
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeScanRecordImpl_) && (INCLUDE_ALL_LeScanRecordImpl || defined(INCLUDE_LeScanRecordImpl))
 #define LeScanRecordImpl_
 
@@ -30,7 +35,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithByteArray:(IOSByteArray *)scanrecord;
+- (instancetype __nonnull)initWithByteArray:(IOSByteArray *)scanrecord;
 
 - (NSString *)getLocalName;
 
@@ -50,7 +55,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -71,4 +76,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeScanRecordImpl)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeScanRecordImpl")

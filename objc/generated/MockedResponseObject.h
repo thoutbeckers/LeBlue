@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_MockedResponseObject
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (MockedResponseObject_) && (INCLUDE_ALL_MockedResponseObject || defined(INCLUDE_MockedResponseObject))
 #define MockedResponseObject_
 
@@ -28,17 +33,17 @@
 
 #pragma mark Public
 
-- (instancetype)initWithEvent:(Event *)nextMockedEvent;
+- (instancetype __nonnull)initWithEvent:(Event *)nextMockedEvent;
 
-- (instancetype)initWithEventArray:(IOSObjectArray *)nextMockedEvents;
+- (instancetype __nonnull)initWithEventArray:(IOSObjectArray *)nextMockedEvents;
 
-- (instancetype)initWithEvent:(Event *)nextMockedEvent
-            withNSStringArray:(IOSObjectArray *)mockedResultValues;
+- (instancetype __nonnull)initWithEvent:(Event *)nextMockedEvent
+                      withNSStringArray:(IOSObjectArray *)mockedResultValues;
 
-- (instancetype)initWithEventArray:(IOSObjectArray *)nextMockedEvents
-                 withNSStringArray:(IOSObjectArray *)mockedResultValues;
+- (instancetype __nonnull)initWithEventArray:(IOSObjectArray *)nextMockedEvents
+                           withNSStringArray:(IOSObjectArray *)mockedResultValues;
 
-- (instancetype)initWithNSStringArray:(IOSObjectArray *)mockedResultValues;
+- (instancetype __nonnull)initWithNSStringArray:(IOSObjectArray *)mockedResultValues;
 
 - (void)addEventsWithEventArray:(IOSObjectArray *)events;
 
@@ -57,7 +62,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -101,4 +106,8 @@ J2OBJC_TYPE_LITERAL_HEADER(MockedResponseObject)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_MockedResponseObject")

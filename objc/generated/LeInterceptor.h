@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeInterceptor
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeInterceptor_) && (INCLUDE_ALL_LeInterceptor || defined(INCLUDE_LeInterceptor))
 #define LeInterceptor_
 
@@ -54,7 +59,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (void)characteristicChangedWithInterceptingLeCharacteristicListener:(InterceptingLeCharacteristicListener *)iLeCharacteristicListener
                                                      withJavaUtilUUID:(JavaUtilUUID *)uuid
@@ -226,4 +231,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeInterceptor)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeInterceptor")

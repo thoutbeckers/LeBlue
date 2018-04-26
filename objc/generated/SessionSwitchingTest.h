@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_SessionSwitchingTest
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (SessionSwitchingTest_) && (INCLUDE_ALL_SessionSwitchingTest || defined(INCLUDE_SessionSwitchingTest))
 #define SessionSwitchingTest_
 
@@ -21,7 +26,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (ListEventSinkSource *)createSource1;
 
@@ -55,9 +60,9 @@ J2OBJC_EMPTY_STATIC_INIT(SessionSwitchingTest)
 
 FOUNDATION_EXPORT void SessionSwitchingTest_init(SessionSwitchingTest *self);
 
-FOUNDATION_EXPORT SessionSwitchingTest *new_SessionSwitchingTest_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT SessionSwitchingTest *new_SessionSwitchingTest_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT SessionSwitchingTest *create_SessionSwitchingTest_init();
+FOUNDATION_EXPORT SessionSwitchingTest *create_SessionSwitchingTest_init(void);
 
 J2OBJC_TYPE_LITERAL_HEADER(SessionSwitchingTest)
 
@@ -65,4 +70,8 @@ J2OBJC_TYPE_LITERAL_HEADER(SessionSwitchingTest)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_SessionSwitchingTest")

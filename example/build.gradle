@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion compileSdkVersionProp.toInteger()
-    buildToolsVersion "$buildToolsVersionProp"
 
     defaultConfig {
         minSdkVersion 18
@@ -14,25 +13,22 @@ android {
             proguardFile getDefaultProguardFile('proguard-android.txt')
         }
     }
-    productFlavors {
-        defaultFlavor {
-            proguardFile 'proguard-rules.txt'
-        }
-    }
+
 
     packagingOptions {
         exclude 'LICENSE.txt'
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    compile project(':LeBlue')
-    compile "com.android.support:appcompat-v7:${supportVersion}"
+    implementation project(':LeBlue')
+    implementation "com.android.support:appcompat-v7:${supportVersion}"
+    implementation project(path: ':LeBlue-java')
 }
 
 task testClasses {

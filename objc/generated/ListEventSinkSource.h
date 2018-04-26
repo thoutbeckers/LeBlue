@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_ListEventSinkSource
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (ListEventSinkSource_) && (INCLUDE_ALL_ListEventSinkSource || defined(INCLUDE_ListEventSinkSource))
 #define ListEventSinkSource_
 
@@ -36,9 +41,9 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithInt:(jint)limit;
+- (instancetype __nonnull)initWithInt:(jint)limit;
 
 - (void)addEventWithEvent:(Event *)event;
 
@@ -62,9 +67,9 @@ J2OBJC_FIELD_SETTER(ListEventSinkSource, iterator_, id<JavaUtilIterator>)
 
 FOUNDATION_EXPORT void ListEventSinkSource_init(ListEventSinkSource *self);
 
-FOUNDATION_EXPORT ListEventSinkSource *new_ListEventSinkSource_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT ListEventSinkSource *new_ListEventSinkSource_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT ListEventSinkSource *create_ListEventSinkSource_init();
+FOUNDATION_EXPORT ListEventSinkSource *create_ListEventSinkSource_init(void);
 
 FOUNDATION_EXPORT void ListEventSinkSource_initWithInt_(ListEventSinkSource *self, jint limit);
 
@@ -78,4 +83,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ListEventSinkSource)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_ListEventSinkSource")

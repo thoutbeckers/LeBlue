@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_SessionObject
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (SessionObject_) && (INCLUDE_ALL_SessionObject || defined(INCLUDE_SessionObject))
 #define SessionObject_
 
@@ -43,7 +48,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (jint)getDefaultDelay;
 
@@ -137,11 +142,11 @@ J2OBJC_FIELD_SETTER(SessionObject, sourceIdentifications_, id<JavaUtilMap>)
 
 FOUNDATION_EXPORT void SessionObject_init(SessionObject *self);
 
-FOUNDATION_EXPORT SessionObject *new_SessionObject_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT SessionObject *new_SessionObject_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT SessionObject *create_SessionObject_init();
+FOUNDATION_EXPORT SessionObject *create_SessionObject_init(void);
 
-FOUNDATION_EXPORT SessionObject *SessionObject_newSession();
+FOUNDATION_EXPORT SessionObject *SessionObject_newSession(void);
 
 J2OBJC_TYPE_LITERAL_HEADER(SessionObject)
 
@@ -149,4 +154,8 @@ J2OBJC_TYPE_LITERAL_HEADER(SessionObject)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_SessionObject")

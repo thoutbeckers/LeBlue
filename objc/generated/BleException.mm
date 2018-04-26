@@ -5,13 +5,13 @@
 
 @implementation BleException
 
-- (instancetype)initWithNSString:(NSString *)message
-           withJavaLangException:(JavaLangException *)e {
+- (instancetype __nonnull)initWithNSString:(NSString *)message
+                     withJavaLangException:(JavaLangException *)e {
   BleException_initWithNSString_withJavaLangException_(self, message, e);
   return self;
 }
 
-- (instancetype)initWithNSString:(NSString *)message {
+- (instancetype __nonnull)initWithNSString:(NSString *)message {
   BleException_initWithNSString_(self, message);
   return self;
 }
@@ -23,6 +23,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithNSString:withJavaLangException:);
   methods[1].selector = @selector(initWithNSString:);
   #pragma clang diagnostic pop

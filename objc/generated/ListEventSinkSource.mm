@@ -21,13 +21,13 @@ __attribute__((unused)) static void ListEventSinkSource_correctDelay(ListEventSi
 @implementation ListEventSinkSource
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
+- (instancetype __nonnull)init {
   ListEventSinkSource_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
 
-- (instancetype)initWithInt:(jint)limit {
+- (instancetype __nonnull)initWithInt:(jint)limit {
   ListEventSinkSource_initWithInt_(self, limit);
   return self;
 }
@@ -107,6 +107,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(initWithInt:);
   methods[2].selector = @selector(addEventWithEvent:);

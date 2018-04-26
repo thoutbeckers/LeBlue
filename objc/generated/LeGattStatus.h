@@ -74,36 +74,36 @@ J2OBJC_STATIC_INIT(LeGattStatus)
 /*! INTERNAL ONLY - Use enum accessors declared below. */
 FOUNDATION_EXPORT LeGattStatus *LeGattStatus_values_[];
 
-inline LeGattStatus *LeGattStatus_get_SUCCESS();
+inline LeGattStatus *LeGattStatus_get_SUCCESS(void);
 J2OBJC_ENUM_CONSTANT(LeGattStatus, SUCCESS)
 
-inline LeGattStatus *LeGattStatus_get_READ_NOT_PERMITTED();
+inline LeGattStatus *LeGattStatus_get_READ_NOT_PERMITTED(void);
 J2OBJC_ENUM_CONSTANT(LeGattStatus, READ_NOT_PERMITTED)
 
-inline LeGattStatus *LeGattStatus_get_WRITE_NOT_PERMITTED();
+inline LeGattStatus *LeGattStatus_get_WRITE_NOT_PERMITTED(void);
 J2OBJC_ENUM_CONSTANT(LeGattStatus, WRITE_NOT_PERMITTED)
 
-inline LeGattStatus *LeGattStatus_get_INSUFFICIENT_AUTHENTICATION();
+inline LeGattStatus *LeGattStatus_get_INSUFFICIENT_AUTHENTICATION(void);
 J2OBJC_ENUM_CONSTANT(LeGattStatus, INSUFFICIENT_AUTHENTICATION)
 
-inline LeGattStatus *LeGattStatus_get_REQUEST_NOT_SUPPORTED();
+inline LeGattStatus *LeGattStatus_get_REQUEST_NOT_SUPPORTED(void);
 J2OBJC_ENUM_CONSTANT(LeGattStatus, REQUEST_NOT_SUPPORTED)
 
-inline LeGattStatus *LeGattStatus_get_INSUFFICIENT_ENCRYPTION();
+inline LeGattStatus *LeGattStatus_get_INSUFFICIENT_ENCRYPTION(void);
 J2OBJC_ENUM_CONSTANT(LeGattStatus, INSUFFICIENT_ENCRYPTION)
 
-inline LeGattStatus *LeGattStatus_get_INVALID_OFFSET();
+inline LeGattStatus *LeGattStatus_get_INVALID_OFFSET(void);
 J2OBJC_ENUM_CONSTANT(LeGattStatus, INVALID_OFFSET)
 
-inline LeGattStatus *LeGattStatus_get_INVALID_ATTRIBUTE_LENGTH();
+inline LeGattStatus *LeGattStatus_get_INVALID_ATTRIBUTE_LENGTH(void);
 J2OBJC_ENUM_CONSTANT(LeGattStatus, INVALID_ATTRIBUTE_LENGTH)
 
-inline LeGattStatus *LeGattStatus_get_FAILURE();
+inline LeGattStatus *LeGattStatus_get_FAILURE(void);
 J2OBJC_ENUM_CONSTANT(LeGattStatus, FAILURE)
 
 FOUNDATION_EXPORT LeGattStatus *LeGattStatus_fromStringWithNSString_(NSString *status);
 
-FOUNDATION_EXPORT IOSObjectArray *LeGattStatus_values();
+FOUNDATION_EXPORT IOSObjectArray *LeGattStatus_values(void);
 
 FOUNDATION_EXPORT LeGattStatus *LeGattStatus_valueOfWithNSString_(NSString *name);
 

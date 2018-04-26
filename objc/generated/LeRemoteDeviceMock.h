@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeRemoteDeviceMock
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeRemoteDeviceMock_) && (INCLUDE_ALL_LeRemoteDeviceMock || defined(INCLUDE_LeRemoteDeviceMock))
 #define LeRemoteDeviceMock_
 
@@ -33,9 +38,9 @@
 
 #pragma mark Public
 
-- (instancetype)initWithInt:(jint)key
-       withLeMockController:(id<LeMockController>)mockController
-           withLeDeviceMock:(LeDeviceMock *)leDeviceMock;
+- (instancetype __nonnull)initWithInt:(jint)key
+                 withLeMockController:(id<LeMockController>)mockController
+                     withLeDeviceMock:(LeDeviceMock *)leDeviceMock;
 
 - (void)addListenerWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)listener;
 
@@ -71,7 +76,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -93,4 +98,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeRemoteDeviceMock)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeRemoteDeviceMock")

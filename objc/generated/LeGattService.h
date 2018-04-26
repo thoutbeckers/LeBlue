@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeGattService
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeGattService_) && (INCLUDE_ALL_LeGattService || defined(INCLUDE_LeGattService))
 #define LeGattService_
 
@@ -33,4 +38,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeGattService)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeGattService")

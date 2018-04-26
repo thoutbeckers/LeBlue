@@ -15,6 +15,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(addEventWithEvent:);
   methods[1].selector = @selector(getEvents);
   #pragma clang diagnostic pop

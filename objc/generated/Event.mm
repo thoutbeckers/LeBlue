@@ -11,47 +11,47 @@
 
 @implementation Event
 
-- (instancetype)initWithEventType:(id<EventType>)type
-             withBaseIntercepting:(BaseIntercepting *)source
-                withNSStringArray:(IOSObjectArray *)values {
+- (instancetype __nonnull)initWithEventType:(id<EventType>)type
+                       withBaseIntercepting:(BaseIntercepting *)source
+                          withNSStringArray:(IOSObjectArray *)values {
   Event_initWithEventType_withBaseIntercepting_withNSStringArray_(self, type, source, values);
   return self;
 }
 
-- (instancetype)initWithEventType:(id<EventType>)type
-                          withInt:(jint)delay
-             withBaseIntercepting:(BaseIntercepting *)source
-                withNSStringArray:(IOSObjectArray *)values {
+- (instancetype __nonnull)initWithEventType:(id<EventType>)type
+                                    withInt:(jint)delay
+                       withBaseIntercepting:(BaseIntercepting *)source
+                          withNSStringArray:(IOSObjectArray *)values {
   Event_initWithEventType_withInt_withBaseIntercepting_withNSStringArray_(self, type, delay, source, values);
   return self;
 }
 
-- (instancetype)initWithEventType:(id<EventType>)type
-                          withInt:(jint)source
-                      withBoolean:(jboolean)value {
+- (instancetype __nonnull)initWithEventType:(id<EventType>)type
+                                    withInt:(jint)source
+                                withBoolean:(jboolean)value {
   Event_initWithEventType_withInt_withBoolean_(self, type, source, value);
   return self;
 }
 
-- (instancetype)initWithEventType:(id<EventType>)type
-                          withInt:(jint)delay
-                          withInt:(jint)source
-                      withBoolean:(jboolean)value {
+- (instancetype __nonnull)initWithEventType:(id<EventType>)type
+                                    withInt:(jint)delay
+                                    withInt:(jint)source
+                                withBoolean:(jboolean)value {
   Event_initWithEventType_withInt_withInt_withBoolean_(self, type, delay, source, value);
   return self;
 }
 
-- (instancetype)initWithEventType:(id<EventType>)type
-                          withInt:(jint)source
-                withNSStringArray:(IOSObjectArray *)values {
+- (instancetype __nonnull)initWithEventType:(id<EventType>)type
+                                    withInt:(jint)source
+                          withNSStringArray:(IOSObjectArray *)values {
   Event_initWithEventType_withInt_withNSStringArray_(self, type, source, values);
   return self;
 }
 
-- (instancetype)initWithEventType:(id<EventType>)type
-                          withInt:(jint)delay
-                          withInt:(jint)source
-                withNSStringArray:(IOSObjectArray *)values {
+- (instancetype __nonnull)initWithEventType:(id<EventType>)type
+                                    withInt:(jint)delay
+                                    withInt:(jint)source
+                          withNSStringArray:(IOSObjectArray *)values {
   Event_initWithEventType_withInt_withInt_withNSStringArray_(self, type, delay, source, values);
   return self;
 }
@@ -97,6 +97,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithEventType:withBaseIntercepting:withNSStringArray:);
   methods[1].selector = @selector(initWithEventType:withInt:withBaseIntercepting:withNSStringArray:);
   methods[2].selector = @selector(initWithEventType:withInt:withBoolean:);

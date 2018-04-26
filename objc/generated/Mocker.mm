@@ -17,6 +17,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(mockWithLeMockController:withLeEventType:withInt:withNSStringArray:);
   methods[1].selector = @selector(getDeviceListenersWithLeMockController:withInt:);
   methods[2].selector = @selector(getRemoteDeviceListenersWithLeMockController:withInt:);

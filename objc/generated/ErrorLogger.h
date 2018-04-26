@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_ErrorLogger
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (ErrorLogger_) && (INCLUDE_ALL_ErrorLogger || defined(INCLUDE_ErrorLogger))
 #define ErrorLogger_
 
@@ -32,4 +37,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ErrorLogger)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_ErrorLogger")

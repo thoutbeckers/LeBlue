@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_StringEventSinkUtil
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (StringEventSinkUtil_) && (INCLUDE_ALL_StringEventSinkUtil || defined(INCLUDE_StringEventSinkUtil))
 #define StringEventSinkUtil_
 
@@ -22,7 +27,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (NSString *)writeWithEventSink:(id<EventSink>)eventSink;
 
@@ -32,9 +37,9 @@ J2OBJC_EMPTY_STATIC_INIT(StringEventSinkUtil)
 
 FOUNDATION_EXPORT void StringEventSinkUtil_init(StringEventSinkUtil *self);
 
-FOUNDATION_EXPORT StringEventSinkUtil *new_StringEventSinkUtil_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT StringEventSinkUtil *new_StringEventSinkUtil_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT StringEventSinkUtil *create_StringEventSinkUtil_init();
+FOUNDATION_EXPORT StringEventSinkUtil *create_StringEventSinkUtil_init(void);
 
 J2OBJC_TYPE_LITERAL_HEADER(StringEventSinkUtil)
 
@@ -42,4 +47,8 @@ J2OBJC_TYPE_LITERAL_HEADER(StringEventSinkUtil)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_StringEventSinkUtil")

@@ -23,7 +23,7 @@
 @implementation SessionObject
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
+- (instancetype __nonnull)init {
   SessionObject_init(self);
   return self;
 }
@@ -52,7 +52,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 - (DeviceMockerObject *)withFakeDeviceWithIntArray:(IOSIntArray *)remoteDevices {
-  return [((DeviceMockerObject *) nil_chk([((DeviceMockerObject *) nil_chk([self withDeviceMocker])) hasRemoteDevicesWithInt:0 withByteArray:[IOSByteArray arrayWithBytes:(jbyte[]){ 0 } count:1] withIntArray:remoteDevices])) withFakeDeviceListeners];
+  return [((DeviceMockerObject *) nil_chk(([((DeviceMockerObject *) nil_chk([self withDeviceMocker])) hasRemoteDevicesWithInt:0 withByteArray:[IOSByteArray arrayWithBytes:(jbyte[]){ 0 } count:1] withIntArray:remoteDevices]))) withFakeDeviceListeners];
 }
 
 - (DeviceMockerObject *)withFakeDevicesWithIntArray:(IOSIntArray *)remoteDevices
@@ -255,6 +255,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(newSession);
   methods[2].selector = @selector(withObjectMockerWithInt:);

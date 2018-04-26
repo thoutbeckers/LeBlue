@@ -46,21 +46,21 @@ J2OBJC_FIELD_SETTER(SessionSwitchingTest, sessionController_, LeSessionControlle
 J2OBJC_FIELD_SETTER(SessionSwitchingTest, device_, id<LeDevice>)
 J2OBJC_FIELD_SETTER(SessionSwitchingTest, remoteDevice_, id<LeRemoteDevice>)
 
-inline jint SessionSwitchingTest_get_LE_REMOTE_DEVICE();
+inline jint SessionSwitchingTest_get_LE_REMOTE_DEVICE(void);
 #define SessionSwitchingTest_LE_REMOTE_DEVICE 1
 J2OBJC_STATIC_FIELD_CONSTANT(SessionSwitchingTest, LE_REMOTE_DEVICE, jint)
 
-inline jint SessionSwitchingTest_get_LE_SERVICE();
+inline jint SessionSwitchingTest_get_LE_SERVICE(void);
 #define SessionSwitchingTest_LE_SERVICE 1
 J2OBJC_STATIC_FIELD_CONSTANT(SessionSwitchingTest, LE_SERVICE, jint)
 
-inline jint SessionSwitchingTest_get_LE_CHARACTERISTIC();
+inline jint SessionSwitchingTest_get_LE_CHARACTERISTIC(void);
 #define SessionSwitchingTest_LE_CHARACTERISTIC 1
 J2OBJC_STATIC_FIELD_CONSTANT(SessionSwitchingTest, LE_CHARACTERISTIC, jint)
 
-__attribute__((unused)) static IOSObjectArray *SessionSwitchingTest__Annotations$0();
+__attribute__((unused)) static IOSObjectArray *SessionSwitchingTest__Annotations$0(void);
 
-__attribute__((unused)) static IOSObjectArray *SessionSwitchingTest__Annotations$1();
+__attribute__((unused)) static IOSObjectArray *SessionSwitchingTest__Annotations$1(void);
 
 @interface SessionSwitchingTest_1 : NSObject < LeDeviceListener > {
  @public
@@ -68,8 +68,8 @@ __attribute__((unused)) static IOSObjectArray *SessionSwitchingTest__Annotations
   IOSObjectArray *val$foundRemoteDevice_;
 }
 
-- (instancetype)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
-                    withJavaLangBooleanArray:(IOSObjectArray *)capture$0;
+- (instancetype __nonnull)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
+                              withJavaLangBooleanArray:(IOSObjectArray *)capture$0;
 
 - (void)leDeviceFoundWithLeDevice:(id<LeDevice>)leDeviceFound
                withLeRemoteDevice:(id<LeRemoteDevice>)leFoundRemoteDevice
@@ -95,8 +95,8 @@ __attribute__((unused)) static SessionSwitchingTest_1 *create_SessionSwitchingTe
   IOSObjectArray *val$service_;
 }
 
-- (instancetype)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
-                           withNSObjectArray:(IOSObjectArray *)capture$0;
+- (instancetype __nonnull)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
+                                     withNSObjectArray:(IOSObjectArray *)capture$0;
 
 - (void)leDevicesConnectedWithLeDevice:(id<LeDevice>)leDeviceFoundOn
                     withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice;
@@ -131,7 +131,7 @@ __attribute__((unused)) static SessionSwitchingTest_2 *create_SessionSwitchingTe
   IOSObjectArray *val$valueRead_;
 }
 
-- (instancetype)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0;
+- (instancetype __nonnull)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0;
 
 - (void)leCharacteristicChangedWithJavaUtilUUID:(JavaUtilUUID *)uuid
                              withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice
@@ -155,7 +155,7 @@ __attribute__((unused)) static SessionSwitchingTest_3 *create_SessionSwitchingTe
 @implementation SessionSwitchingTest
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
+- (instancetype __nonnull)init {
   SessionSwitchingTest_init(self);
   return self;
 }
@@ -185,16 +185,16 @@ J2OBJC_IGNORE_DESIGNATED_END
 - (void)testController {
   ListEventSinkSource *events1 = [self createSource1];
   ListEventSinkSource *events2 = [self createSource2];
-  JreStrongAssignAndConsume(&sessionController_, new_LeSessionController_initWithSession_([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((SessionObject *) nil_chk(((DeviceMockerObject *) nil_chk([((DeviceMockerObject *) nil_chk([((SessionObject *) nil_chk([((SessionObject *) nil_chk([((SessionObject *) nil_chk(SessionObject_newSession())) setDefaultSourceWithEventSource:events1])) withNamedEventSourceWithNSString:@"values" withEventSource:events2])) withDeviceMocker])) withFakeDeviceListeners]))->and__)) withRemoteDeviceMockerWithInt:SessionSwitchingTest_LE_REMOTE_DEVICE])) mocksRemoteDeviceWithNSString:@"0001:0002:0003:0004" withNSString:@"d1234" withBoolean:true])) withFakeRemoteDeviceListeners])) withFakeCharacteristicsListeners])) hasServicesWithLeGattStatus:JreLoadEnum(LeGattStatus, SUCCESS) withIntArray:[IOSIntArray arrayWithInts:(jint[]){ SessionSwitchingTest_LE_SERVICE } count:1]]))->and__ withGattServiceMockerWithInt:SessionSwitchingTest_LE_SERVICE])) mocksServiceWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789aaaa")])) hasCharacteristicWithInt:SessionSwitchingTest_LE_CHARACTERISTIC withJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789bbbb")]))->and__ withGattCharacteristicsMockerWithInt:SessionSwitchingTest_LE_CHARACTERISTIC])) mocksCharacteristic])) hasFixedValueWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 0, 1, 2 } count:3]])) end]));
+  JreStrongAssignAndConsume(&sessionController_, new_LeSessionController_initWithSession_([((CharacteristicsMockerObject *) nil_chk(([((CharacteristicsMockerObject *) nil_chk([((CharacteristicsMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((GattServiceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk(([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((RemoteDeviceMockerObject *) nil_chk([((SessionObject *) nil_chk(((DeviceMockerObject *) nil_chk([((DeviceMockerObject *) nil_chk([((SessionObject *) nil_chk([((SessionObject *) nil_chk([((SessionObject *) nil_chk(SessionObject_newSession())) setDefaultSourceWithEventSource:events1])) withNamedEventSourceWithNSString:@"values" withEventSource:events2])) withDeviceMocker])) withFakeDeviceListeners]))->and__)) withRemoteDeviceMockerWithInt:SessionSwitchingTest_LE_REMOTE_DEVICE])) mocksRemoteDeviceWithNSString:@"0001:0002:0003:0004" withNSString:@"d1234" withBoolean:true])) withFakeRemoteDeviceListeners])) withFakeCharacteristicsListeners])) hasServicesWithLeGattStatus:JreLoadEnum(LeGattStatus, SUCCESS) withIntArray:[IOSIntArray arrayWithInts:(jint[]){ SessionSwitchingTest_LE_SERVICE } count:1]])))->and__ withGattServiceMockerWithInt:SessionSwitchingTest_LE_SERVICE])) mocksServiceWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789aaaa")])) hasCharacteristicWithInt:SessionSwitchingTest_LE_CHARACTERISTIC withJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789bbbb")]))->and__ withGattCharacteristicsMockerWithInt:SessionSwitchingTest_LE_CHARACTERISTIC])) mocksCharacteristic])) hasFixedValueWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 0, 1, 2 } count:3]]))) end]));
   JreStrongAssignAndConsume(&device_, new_LeDeviceMock_initWithInt_withLeMockController_(EventSinkFiller_DEFAULT_DEVICE_ID, sessionController_));
   [((LeSessionController *) nil_chk(sessionController_)) startDefaultSession];
-  JreAssert(([((LeSessionController *) nil_chk(sessionController_)) waitTillSessionStarted]), (@"houtbecke/rs/le/SessionSwitchingTest.java:55 condition failed: assert sessionController.waitTillSessionStarted();"));
+  JreAssert([((LeSessionController *) nil_chk(sessionController_)) waitTillSessionStarted], @"houtbecke/rs/le/SessionSwitchingTest.java:55 condition failed: assert sessionController.waitTillSessionStarted();");
   IOSObjectArray *foundRemoteDevice = [IOSObjectArray arrayWithLength:1 type:JavaLangBoolean_class_()];
   IOSObjectArray_Set(foundRemoteDevice, 0, JavaLangBoolean_valueOfWithBoolean_(false));
   [((LeDeviceMock *) nil_chk(((LeDeviceMock *) cast_chk(device_, [LeDeviceMock class])))) addListenerWithLeDeviceListener:create_SessionSwitchingTest_1_initWithSessionSwitchingTest_withJavaLangBooleanArray_(self, foundRemoteDevice)];
   [((id<LeDevice>) nil_chk(device_)) startScanning];
   JavaLangThread_sleepWithLong_(100);
-  JreAssert((IOSObjectArray_Get(foundRemoteDevice, 0)), (@"houtbecke/rs/le/SessionSwitchingTest.java:80 condition failed: assert foundRemoteDevice[0];"));
+  JreAssert(IOSObjectArray_Get(foundRemoteDevice, 0), @"houtbecke/rs/le/SessionSwitchingTest.java:80 condition failed: assert foundRemoteDevice[0];");
   IOSObjectArray *service = [IOSObjectArray arrayWithLength:1 type:NSObject_class_()];
   [((id<LeRemoteDevice>) nil_chk(remoteDevice_)) addListenerWithLeRemoteDeviceListener:create_SessionSwitchingTest_2_initWithSessionSwitchingTest_withNSObjectArray_(self, service)];
   [((id<LeRemoteDevice>) nil_chk(remoteDevice_)) connect];
@@ -205,15 +205,15 @@ J2OBJC_IGNORE_DESIGNATED_END
   IOSObjectArray_Set(valueRead, 0, JavaLangBoolean_valueOfWithBoolean_(false));
   [((id<LeRemoteDevice>) nil_chk(remoteDevice_)) setCharacteristicListenerWithLeCharacteristicListener:create_SessionSwitchingTest_3_initWithJavaLangBooleanArray_(valueRead) withJavaUtilUUIDArray:[IOSObjectArray arrayWithObjects:(id[]){ JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc") } count:1 type:JavaUtilUUID_class_()]];
   [((LeSessionController *) nil_chk(sessionController_)) pointReachedWithNSString:@"ready"];
-  JreAssert((![((JavaLangBoolean *) nil_chk(IOSObjectArray_Get(valueRead, 0))) booleanValue]), (@"houtbecke/rs/le/SessionSwitchingTest.java:138 condition failed: assert !valueRead[0];"));
+  JreAssert(![((JavaLangBoolean *) nil_chk(IOSObjectArray_Get(valueRead, 0))) booleanValue], @"houtbecke/rs/le/SessionSwitchingTest.java:138 condition failed: assert !valueRead[0];");
   [((LeSessionController *) nil_chk(sessionController_)) startSessionWithNSString:@"values"];
   JavaLangThread_sleepWithLong_(100);
-  JreAssert((IOSObjectArray_Get(valueRead, 0)), (@"houtbecke/rs/le/SessionSwitchingTest.java:143 condition failed: assert valueRead[0];"));
+  JreAssert(IOSObjectArray_Get(valueRead, 0), @"houtbecke/rs/le/SessionSwitchingTest.java:143 condition failed: assert valueRead[0];");
   [((LeSessionController *) nil_chk(sessionController_)) pointReachedWithNSString:@"done"];
   [((LeSessionController *) nil_chk(sessionController_)) waitForFinishedSession];
-  JreAssert((![((ListEventSinkSource *) nil_chk(events1)) hasMoreEvent]), (@"houtbecke/rs/le/SessionSwitchingTest.java:149 condition failed: assert !events1.hasMoreEvent();"));
-  JreAssert((![((ListEventSinkSource *) nil_chk(events2)) hasMoreEvent]), (@"houtbecke/rs/le/SessionSwitchingTest.java:150 condition failed: assert !events2.hasMoreEvent();"));
-  JreAssert(([((LeSessionController *) nil_chk(sessionController_)) getSessionException] == nil), (@"houtbecke/rs/le/SessionSwitchingTest.java:151 condition failed: assert sessionController.getSessionException() == null;"));
+  JreAssert(![((ListEventSinkSource *) nil_chk(events1)) hasMoreEvent], @"houtbecke/rs/le/SessionSwitchingTest.java:149 condition failed: assert !events1.hasMoreEvent();");
+  JreAssert(![((ListEventSinkSource *) nil_chk(events2)) hasMoreEvent], @"houtbecke/rs/le/SessionSwitchingTest.java:150 condition failed: assert !events2.hasMoreEvent();");
+  JreAssert([((LeSessionController *) nil_chk(sessionController_)) getSessionException] == nil, @"houtbecke/rs/le/SessionSwitchingTest.java:151 condition failed: assert sessionController.getSessionException() == null;");
 }
 
 - (LeSessionController *)getSessionController {
@@ -278,6 +278,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(setUp);
   methods[2].selector = @selector(createSource1);
@@ -332,8 +333,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(SessionSwitchingTest)
 
 @implementation SessionSwitchingTest_1
 
-- (instancetype)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
-                    withJavaLangBooleanArray:(IOSObjectArray *)capture$0 {
+- (instancetype __nonnull)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
+                              withJavaLangBooleanArray:(IOSObjectArray *)capture$0 {
   SessionSwitchingTest_1_initWithSessionSwitchingTest_withJavaLangBooleanArray_(self, outer$, capture$0);
   return self;
 }
@@ -342,9 +343,9 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(SessionSwitchingTest)
                withLeRemoteDevice:(id<LeRemoteDevice>)leFoundRemoteDevice
                           withInt:(jint)rssi
                  withLeScanRecord:(id<LeScanRecord>)scanRecord {
-  JreAssert(([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDeviceFound]), (@"houtbecke/rs/le/SessionSwitchingTest.java:62 condition failed: assert getDevice().equals(leDeviceFound);"));
-  JreAssert((leFoundRemoteDevice != nil), (@"houtbecke/rs/le/SessionSwitchingTest.java:63 condition failed: assert leFoundRemoteDevice != null;"));
-  JreAssert((rssi == 123), (@"houtbecke/rs/le/SessionSwitchingTest.java:64 condition failed: assert rssi == 123;"));
+  JreAssert([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDeviceFound], @"houtbecke/rs/le/SessionSwitchingTest.java:62 condition failed: assert getDevice().equals(leDeviceFound);");
+  JreAssert(leFoundRemoteDevice != nil, @"houtbecke/rs/le/SessionSwitchingTest.java:63 condition failed: assert leFoundRemoteDevice != null;");
+  JreAssert(rssi == 123, @"houtbecke/rs/le/SessionSwitchingTest.java:64 condition failed: assert rssi == 123;");
   [this$0_ setRemoteDeviceWithLeRemoteDevice:leFoundRemoteDevice];
   IOSObjectArray_Set(nil_chk(val$foundRemoteDevice_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
 }
@@ -367,6 +368,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(SessionSwitchingTest)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithSessionSwitchingTest:withJavaLangBooleanArray:);
   methods[1].selector = @selector(leDeviceFoundWithLeDevice:withLeRemoteDevice:withInt:withLeScanRecord:);
   methods[2].selector = @selector(leDeviceStateWithLeDevice:withLeDeviceState:);
@@ -398,15 +400,15 @@ SessionSwitchingTest_1 *create_SessionSwitchingTest_1_initWithSessionSwitchingTe
 
 @implementation SessionSwitchingTest_2
 
-- (instancetype)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
-                           withNSObjectArray:(IOSObjectArray *)capture$0 {
+- (instancetype __nonnull)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
+                                     withNSObjectArray:(IOSObjectArray *)capture$0 {
   SessionSwitchingTest_2_initWithSessionSwitchingTest_withNSObjectArray_(self, outer$, capture$0);
   return self;
 }
 
 - (void)leDevicesConnectedWithLeDevice:(id<LeDevice>)leDeviceFoundOn
                     withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice {
-  JreAssert(([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice]), (@"houtbecke/rs/le/SessionSwitchingTest.java:86 condition failed: assert getRemoteDevice().equals(leRemoteDevice);"));
+  JreAssert([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice], @"houtbecke/rs/le/SessionSwitchingTest.java:86 condition failed: assert getRemoteDevice().equals(leRemoteDevice);");
 }
 
 - (void)leDevicesDisconnectedWithLeDevice:(id<LeDevice>)leDevice
@@ -421,7 +423,7 @@ SessionSwitchingTest_1 *create_SessionSwitchingTest_1_initWithSessionSwitchingTe
                    withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice
                      withLeGattStatus:(LeGattStatus *)status
                withLeGattServiceArray:(IOSObjectArray *)gatts {
-  JreAssert(([((id<LeRemoteDevice>) nil_chk(leRemoteDevice)) isEqual:[this$0_ getRemoteDevice]]), (@"houtbecke/rs/le/SessionSwitchingTest.java:101 condition failed: assert leRemoteDevice.equals(getRemoteDevice());"));
+  JreAssert([((id<LeRemoteDevice>) nil_chk(leRemoteDevice)) isEqual:[this$0_ getRemoteDevice]], @"houtbecke/rs/le/SessionSwitchingTest.java:101 condition failed: assert leRemoteDevice.equals(getRemoteDevice());");
   IOSObjectArray_Set(nil_chk(val$service_), 0, (IOSObjectArray_Get(nil_chk(gatts), 0)));
 }
 
@@ -447,6 +449,7 @@ SessionSwitchingTest_1 *create_SessionSwitchingTest_1_initWithSessionSwitchingTe
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithSessionSwitchingTest:withNSObjectArray:);
   methods[1].selector = @selector(leDevicesConnectedWithLeDevice:withLeRemoteDevice:);
   methods[2].selector = @selector(leDevicesDisconnectedWithLeDevice:withLeRemoteDevice:);
@@ -481,7 +484,7 @@ SessionSwitchingTest_2 *create_SessionSwitchingTest_2_initWithSessionSwitchingTe
 
 @implementation SessionSwitchingTest_3
 
-- (instancetype)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0 {
+- (instancetype __nonnull)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0 {
   SessionSwitchingTest_3_initWithJavaLangBooleanArray_(self, capture$0);
   return self;
 }
@@ -511,6 +514,7 @@ SessionSwitchingTest_2 *create_SessionSwitchingTest_2_initWithSessionSwitchingTe
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaLangBooleanArray:);
   methods[1].selector = @selector(leCharacteristicChangedWithJavaUtilUUID:withLeRemoteDevice:withLeGattCharacteristic:);
   methods[2].selector = @selector(leCharacteristicNotificationChangedWithJavaUtilUUID:withLeRemoteDevice:withLeGattCharacteristic:withBoolean:);

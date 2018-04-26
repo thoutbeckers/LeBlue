@@ -6,7 +6,7 @@
 
 @implementation LeIntercepting
 
-- (instancetype)initWithLeInterceptor:(LeInterceptor *)leInterceptor {
+- (instancetype __nonnull)initWithLeInterceptor:(LeInterceptor *)leInterceptor {
   LeIntercepting_initWithLeInterceptor_(self, leInterceptor);
   return self;
 }
@@ -22,6 +22,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeInterceptor:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {

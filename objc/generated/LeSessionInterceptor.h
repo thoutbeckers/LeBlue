@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeSessionInterceptor
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeSessionInterceptor_) && (INCLUDE_ALL_LeSessionInterceptor || defined(INCLUDE_LeSessionInterceptor))
 #define LeSessionInterceptor_
 
@@ -44,7 +49,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithEventSink:(id<EventSink>)sink;
+- (instancetype __nonnull)initWithEventSink:(id<EventSink>)sink;
 
 - (void)characteristicChangedWithInterceptingLeCharacteristicListener:(InterceptingLeCharacteristicListener *)iLeCharacteristicListener
                                                      withJavaUtilUUID:(JavaUtilUUID *)uuid
@@ -195,7 +200,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -215,4 +220,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeSessionInterceptor)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeSessionInterceptor")

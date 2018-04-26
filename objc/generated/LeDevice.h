@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeDevice
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeDevice_) && (INCLUDE_ALL_LeDevice || defined(INCLUDE_LeDevice))
 #define LeDevice_
 
@@ -51,4 +56,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDevice)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeDevice")

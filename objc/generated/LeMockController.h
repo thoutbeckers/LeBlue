@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_LeMockController
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (LeMockController_) && (INCLUDE_ALL_LeMockController || defined(INCLUDE_LeMockController))
 #define LeMockController_
 
@@ -125,4 +130,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeMockController)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_LeMockController")

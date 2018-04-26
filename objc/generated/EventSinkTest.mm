@@ -14,14 +14,14 @@
 #include "org/junit/Before.h"
 #include "org/junit/Test.h"
 
-__attribute__((unused)) static IOSObjectArray *EventSinkTest__Annotations$0();
+__attribute__((unused)) static IOSObjectArray *EventSinkTest__Annotations$0(void);
 
-__attribute__((unused)) static IOSObjectArray *EventSinkTest__Annotations$1();
+__attribute__((unused)) static IOSObjectArray *EventSinkTest__Annotations$1(void);
 
 @implementation EventSinkTest
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
+- (instancetype __nonnull)init {
   EventSinkTest_init(self);
   return self;
 }
@@ -54,6 +54,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(setUp);
   methods[2].selector = @selector(testLimit);

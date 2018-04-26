@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_InterceptingLeDevice
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (InterceptingLeDevice_) && (INCLUDE_ALL_InterceptingLeDevice || defined(INCLUDE_InterceptingLeDevice))
 #define InterceptingLeDevice_
 
@@ -33,8 +38,8 @@
 
 #pragma mark Public
 
-- (instancetype)initWithLeDevice:(id<LeDevice>)leDevice
-               withLeInterceptor:(LeInterceptor *)leInterceptor;
+- (instancetype __nonnull)initWithLeDevice:(id<LeDevice>)leDevice
+                         withLeInterceptor:(LeInterceptor *)leInterceptor;
 
 - (void)addListenerWithLeDeviceListener:(id<LeDeviceListener>)listener;
 
@@ -64,7 +69,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithLeInterceptor:(LeInterceptor *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithLeInterceptor:(LeInterceptor *)arg0 NS_UNAVAILABLE;
 
 @end
 
@@ -84,4 +89,8 @@ J2OBJC_TYPE_LITERAL_HEADER(InterceptingLeDevice)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_InterceptingLeDevice")

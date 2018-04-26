@@ -8,7 +8,7 @@
 
 @implementation LeGattCharacteristicMock
 
-- (instancetype)initWithLeMockController:(id<LeMockController>)mockController {
+- (instancetype __nonnull)initWithLeMockController:(id<LeMockController>)mockController {
   LeGattCharacteristicMock_initWithLeMockController_(self, mockController);
   return self;
 }
@@ -51,6 +51,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeMockController:);
   methods[1].selector = @selector(getValue);
   methods[2].selector = @selector(getIntValueWithLeFormat:withInt:);

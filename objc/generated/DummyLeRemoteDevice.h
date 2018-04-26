@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_DummyLeRemoteDevice
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (HoutbeckeRsLeDummyDummyLeRemoteDevice_) && (INCLUDE_ALL_DummyLeRemoteDevice || defined(INCLUDE_HoutbeckeRsLeDummyDummyLeRemoteDevice))
 #define HoutbeckeRsLeDummyDummyLeRemoteDevice_
 
@@ -25,7 +30,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (void)addListenerWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)listener;
 
@@ -61,12 +66,16 @@ J2OBJC_EMPTY_STATIC_INIT(HoutbeckeRsLeDummyDummyLeRemoteDevice)
 
 FOUNDATION_EXPORT void HoutbeckeRsLeDummyDummyLeRemoteDevice_init(HoutbeckeRsLeDummyDummyLeRemoteDevice *self);
 
-FOUNDATION_EXPORT HoutbeckeRsLeDummyDummyLeRemoteDevice *new_HoutbeckeRsLeDummyDummyLeRemoteDevice_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT HoutbeckeRsLeDummyDummyLeRemoteDevice *new_HoutbeckeRsLeDummyDummyLeRemoteDevice_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT HoutbeckeRsLeDummyDummyLeRemoteDevice *create_HoutbeckeRsLeDummyDummyLeRemoteDevice_init();
+FOUNDATION_EXPORT HoutbeckeRsLeDummyDummyLeRemoteDevice *create_HoutbeckeRsLeDummyDummyLeRemoteDevice_init(void);
 
 J2OBJC_TYPE_LITERAL_HEADER(HoutbeckeRsLeDummyDummyLeRemoteDevice)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_DummyLeRemoteDevice")

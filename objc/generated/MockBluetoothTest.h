@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_MockBluetoothTest
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (MockBluetoothTest_) && (INCLUDE_ALL_MockBluetoothTest || defined(INCLUDE_MockBluetoothTest))
 #define MockBluetoothTest_
 
@@ -21,7 +26,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (ListEventSinkSource *)createSource;
 
@@ -63,9 +68,9 @@ J2OBJC_EMPTY_STATIC_INIT(MockBluetoothTest)
 
 FOUNDATION_EXPORT void MockBluetoothTest_init(MockBluetoothTest *self);
 
-FOUNDATION_EXPORT MockBluetoothTest *new_MockBluetoothTest_init() NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT MockBluetoothTest *new_MockBluetoothTest_init(void) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT MockBluetoothTest *create_MockBluetoothTest_init();
+FOUNDATION_EXPORT MockBluetoothTest *create_MockBluetoothTest_init(void);
 
 J2OBJC_TYPE_LITERAL_HEADER(MockBluetoothTest)
 
@@ -73,4 +78,8 @@ J2OBJC_TYPE_LITERAL_HEADER(MockBluetoothTest)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_MockBluetoothTest")

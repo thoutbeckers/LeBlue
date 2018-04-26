@@ -40,6 +40,7 @@ LeDeviceState *LeDeviceState_values_[2];
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(values);
   methods[1].selector = @selector(valueOfWithNSString:);
   #pragma clang diagnostic pop
@@ -58,12 +59,9 @@ LeDeviceState *LeDeviceState_values_[2];
     size_t allocSize = 2 * objSize;
     uintptr_t ptr = (uintptr_t)calloc(allocSize, 1);
     id e;
-    id names[] = {
-      @"OFF", @"ON",
-    };
     for (jint i = 0; i < 2; i++) {
-      (LeDeviceState_values_[i] = e = objc_constructInstance(self, (void *)ptr), ptr += objSize);
-      LeDeviceState_initWithNSString_withInt_(e, names[i], i);
+      ((void)(LeDeviceState_values_[i] = e = objc_constructInstance(self, (void *)ptr)), ptr += objSize);
+      LeDeviceState_initWithNSString_withInt_(e, JreEnumConstantName(LeDeviceState_class_(), i), i);
     }
     J2OBJC_SET_INITIALIZED(LeDeviceState)
   }

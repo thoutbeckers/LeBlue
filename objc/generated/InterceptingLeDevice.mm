@@ -13,8 +13,8 @@
 
 @implementation InterceptingLeDevice
 
-- (instancetype)initWithLeDevice:(id<LeDevice>)leDevice
-               withLeInterceptor:(LeInterceptor *)leInterceptor {
+- (instancetype __nonnull)initWithLeDevice:(id<LeDevice>)leDevice
+                         withLeInterceptor:(LeInterceptor *)leInterceptor {
   InterceptingLeDevice_initWithLeDevice_withLeInterceptor_(self, leDevice, leInterceptor);
   return self;
 }
@@ -139,6 +139,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeDevice:withLeInterceptor:);
   methods[1].selector = @selector(addListenerWithLeDeviceListener:);
   methods[2].selector = @selector(removeListenerWithLeDeviceListener:);

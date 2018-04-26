@@ -55,29 +55,29 @@ J2OBJC_FIELD_SETTER(MockedResponseObject, nextMockedEvents_, IOSObjectArray *)
   return [value_ isEqual:IOSObjectArray_Get(values, pos_)];
 }
 
-- (instancetype)initWithEvent:(Event *)nextMockedEvent {
+- (instancetype __nonnull)initWithEvent:(Event *)nextMockedEvent {
   MockedResponseObject_initWithEvent_(self, nextMockedEvent);
   return self;
 }
 
-- (instancetype)initWithNSStringArray:(IOSObjectArray *)mockedResultValues {
+- (instancetype __nonnull)initWithNSStringArray:(IOSObjectArray *)mockedResultValues {
   MockedResponseObject_initWithNSStringArray_(self, mockedResultValues);
   return self;
 }
 
-- (instancetype)initWithEvent:(Event *)nextMockedEvent
-            withNSStringArray:(IOSObjectArray *)mockedResultValues {
+- (instancetype __nonnull)initWithEvent:(Event *)nextMockedEvent
+                      withNSStringArray:(IOSObjectArray *)mockedResultValues {
   MockedResponseObject_initWithEvent_withNSStringArray_(self, nextMockedEvent, mockedResultValues);
   return self;
 }
 
-- (instancetype)initWithEventArray:(IOSObjectArray *)nextMockedEvents {
+- (instancetype __nonnull)initWithEventArray:(IOSObjectArray *)nextMockedEvents {
   MockedResponseObject_initWithEventArray_(self, nextMockedEvents);
   return self;
 }
 
-- (instancetype)initWithEventArray:(IOSObjectArray *)nextMockedEvents
-                 withNSStringArray:(IOSObjectArray *)mockedResultValues {
+- (instancetype __nonnull)initWithEventArray:(IOSObjectArray *)nextMockedEvents
+                           withNSStringArray:(IOSObjectArray *)mockedResultValues {
   MockedResponseObject_initWithEventArray_withNSStringArray_(self, nextMockedEvents, mockedResultValues);
   return self;
 }
@@ -106,6 +106,7 @@ J2OBJC_FIELD_SETTER(MockedResponseObject, nextMockedEvents_, IOSObjectArray *)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(getMockedResultValues);
   methods[1].selector = @selector(addEventsWithEventArray:);
   methods[2].selector = @selector(getNextMockedEvents);

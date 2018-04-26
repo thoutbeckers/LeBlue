@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_InterceptingLeCharacteristicListener
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (InterceptingLeCharacteristicListener_) && (INCLUDE_ALL_InterceptingLeCharacteristicListener || defined(INCLUDE_InterceptingLeCharacteristicListener))
 #define InterceptingLeCharacteristicListener_
 
@@ -32,8 +37,8 @@
 
 #pragma mark Public
 
-- (instancetype)initWithLeCharacteristicListener:(id<LeCharacteristicListener>)leCharacteristicListener
-                               withLeInterceptor:(LeInterceptor *)leInterceptor;
+- (instancetype __nonnull)initWithLeCharacteristicListener:(id<LeCharacteristicListener>)leCharacteristicListener
+                                         withLeInterceptor:(LeInterceptor *)leInterceptor;
 
 - (jboolean)isEqual:(id)o;
 
@@ -50,7 +55,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithLeInterceptor:(LeInterceptor *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithLeInterceptor:(LeInterceptor *)arg0 NS_UNAVAILABLE;
 
 @end
 
@@ -70,4 +75,8 @@ J2OBJC_TYPE_LITERAL_HEADER(InterceptingLeCharacteristicListener)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_InterceptingLeCharacteristicListener")

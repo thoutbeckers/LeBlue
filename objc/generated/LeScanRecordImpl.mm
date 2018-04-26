@@ -20,8 +20,8 @@
   IOSByteArray *val$record_;
 }
 
-- (instancetype)initWithInt:(jint)capture$0
-              withByteArray:(IOSByteArray *)capture$1;
+- (instancetype __nonnull)initWithInt:(jint)capture$0
+                        withByteArray:(IOSByteArray *)capture$1;
 
 - (jint)getType;
 
@@ -39,7 +39,7 @@ __attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_ini
 
 @implementation LeScanRecordImpl
 
-- (instancetype)initWithByteArray:(IOSByteArray *)scanrecord {
+- (instancetype __nonnull)initWithByteArray:(IOSByteArray *)scanrecord {
   LeScanRecordImpl_initWithByteArray_(self, scanrecord);
   return self;
 }
@@ -165,6 +165,7 @@ __attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_ini
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithByteArray:);
   methods[1].selector = @selector(getRecords);
   methods[2].selector = @selector(getRecordsWithIntArray:);
@@ -204,8 +205,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeScanRecordImpl)
 
 @implementation LeScanRecordImpl_1
 
-- (instancetype)initWithInt:(jint)capture$0
-              withByteArray:(IOSByteArray *)capture$1 {
+- (instancetype __nonnull)initWithInt:(jint)capture$0
+                        withByteArray:(IOSByteArray *)capture$1 {
   LeScanRecordImpl_1_initWithInt_withByteArray_(self, capture$0, capture$1);
   return self;
 }
@@ -231,6 +232,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeScanRecordImpl)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithInt:withByteArray:);
   methods[1].selector = @selector(getType);
   methods[2].selector = @selector(getRecordContent);

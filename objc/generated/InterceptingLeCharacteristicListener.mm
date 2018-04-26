@@ -13,8 +13,8 @@
 
 @implementation InterceptingLeCharacteristicListener
 
-- (instancetype)initWithLeCharacteristicListener:(id<LeCharacteristicListener>)leCharacteristicListener
-                               withLeInterceptor:(LeInterceptor *)leInterceptor {
+- (instancetype __nonnull)initWithLeCharacteristicListener:(id<LeCharacteristicListener>)leCharacteristicListener
+                                         withLeInterceptor:(LeInterceptor *)leInterceptor {
   InterceptingLeCharacteristicListener_initWithLeCharacteristicListener_withLeInterceptor_(self, leCharacteristicListener, leInterceptor);
   return self;
 }
@@ -64,6 +64,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeCharacteristicListener:withLeInterceptor:);
   methods[1].selector = @selector(leCharacteristicChangedWithJavaUtilUUID:withLeRemoteDevice:withLeGattCharacteristic:);
   methods[2].selector = @selector(leCharacteristicNotificationChangedWithJavaUtilUUID:withLeRemoteDevice:withLeGattCharacteristic:withBoolean:);

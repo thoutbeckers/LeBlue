@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_InterceptingLeRemoteDeviceListener
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (InterceptingLeRemoteDeviceListener_) && (INCLUDE_ALL_InterceptingLeRemoteDeviceListener || defined(INCLUDE_InterceptingLeRemoteDeviceListener))
 #define InterceptingLeRemoteDeviceListener_
 
@@ -33,8 +38,8 @@
 
 #pragma mark Public
 
-- (instancetype)initWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)leRemoteDeviceListener
-                             withLeInterceptor:(LeInterceptor *)leInterceptor;
+- (instancetype __nonnull)initWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)leRemoteDeviceListener
+                                       withLeInterceptor:(LeInterceptor *)leInterceptor;
 
 - (jboolean)isEqual:(id)o;
 
@@ -60,7 +65,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithLeInterceptor:(LeInterceptor *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithLeInterceptor:(LeInterceptor *)arg0 NS_UNAVAILABLE;
 
 @end
 
@@ -80,4 +85,8 @@ J2OBJC_TYPE_LITERAL_HEADER(InterceptingLeRemoteDeviceListener)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_InterceptingLeRemoteDeviceListener")

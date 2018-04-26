@@ -16,8 +16,8 @@
 
 @implementation InterceptingLeRemoteDeviceListener
 
-- (instancetype)initWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)leRemoteDeviceListener
-                             withLeInterceptor:(LeInterceptor *)leInterceptor {
+- (instancetype __nonnull)initWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)leRemoteDeviceListener
+                                       withLeInterceptor:(LeInterceptor *)leInterceptor {
   InterceptingLeRemoteDeviceListener_initWithLeRemoteDeviceListener_withLeInterceptor_(self, leRemoteDeviceListener, leInterceptor);
   return self;
 }
@@ -96,6 +96,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithLeRemoteDeviceListener:withLeInterceptor:);
   methods[1].selector = @selector(leDevicesConnectedWithLeDevice:withLeRemoteDevice:);
   methods[2].selector = @selector(leDevicesDisconnectedWithLeDevice:withLeRemoteDevice:);

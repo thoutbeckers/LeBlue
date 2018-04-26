@@ -9,6 +9,11 @@
 #endif
 #undef RESTRICT_Event
 
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #if !defined (Event_) && (INCLUDE_ALL_Event || defined(INCLUDE_Event))
 #define Event_
 
@@ -27,32 +32,32 @@
 
 #pragma mark Public
 
-- (instancetype)initWithEventType:(id<EventType>)type
-             withBaseIntercepting:(BaseIntercepting *)source
-                withNSStringArray:(IOSObjectArray *)values;
+- (instancetype __nonnull)initWithEventType:(id<EventType>)type
+                       withBaseIntercepting:(BaseIntercepting *)source
+                          withNSStringArray:(IOSObjectArray *)values;
 
-- (instancetype)initWithEventType:(id<EventType>)type
-                          withInt:(jint)delay
-             withBaseIntercepting:(BaseIntercepting *)source
-                withNSStringArray:(IOSObjectArray *)values;
+- (instancetype __nonnull)initWithEventType:(id<EventType>)type
+                                    withInt:(jint)delay
+                       withBaseIntercepting:(BaseIntercepting *)source
+                          withNSStringArray:(IOSObjectArray *)values;
 
-- (instancetype)initWithEventType:(id<EventType>)type
-                          withInt:(jint)source
-                      withBoolean:(jboolean)value;
+- (instancetype __nonnull)initWithEventType:(id<EventType>)type
+                                    withInt:(jint)source
+                                withBoolean:(jboolean)value;
 
-- (instancetype)initWithEventType:(id<EventType>)type
-                          withInt:(jint)delay
-                          withInt:(jint)source
-                      withBoolean:(jboolean)value;
+- (instancetype __nonnull)initWithEventType:(id<EventType>)type
+                                    withInt:(jint)delay
+                                    withInt:(jint)source
+                                withBoolean:(jboolean)value;
 
-- (instancetype)initWithEventType:(id<EventType>)type
-                          withInt:(jint)delay
-                          withInt:(jint)source
-                withNSStringArray:(IOSObjectArray *)values;
+- (instancetype __nonnull)initWithEventType:(id<EventType>)type
+                                    withInt:(jint)delay
+                                    withInt:(jint)source
+                          withNSStringArray:(IOSObjectArray *)values;
 
-- (instancetype)initWithEventType:(id<EventType>)type
-                          withInt:(jint)source
-                withNSStringArray:(IOSObjectArray *)values;
+- (instancetype __nonnull)initWithEventType:(id<EventType>)type
+                                    withInt:(jint)source
+                          withNSStringArray:(IOSObjectArray *)values;
 
 - (jboolean)isEqual:(id)o;
 
@@ -62,7 +67,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -113,4 +118,8 @@ J2OBJC_TYPE_LITERAL_HEADER(Event)
 
 #endif
 
+
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
 #pragma pop_macro("INCLUDE_ALL_Event")

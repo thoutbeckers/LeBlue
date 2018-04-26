@@ -14,6 +14,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(setValue);
   #pragma clang diagnostic pop
   static const J2ObjcClassInfo _LeGattDescriptor = { "LeGattDescriptor", "houtbecke.rs.le", NULL, methods, NULL, 7, 0x609, 1, 0, -1, -1, -1, -1, -1 };
