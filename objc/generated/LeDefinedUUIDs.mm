@@ -159,7 +159,10 @@ JavaUtilUUID *LeDefinedUUIDs_Characteristic_HARDWARE_REVISION_STRING;
 JavaUtilUUID *LeDefinedUUIDs_Characteristic_APPEARANCE;
 JavaUtilUUID *LeDefinedUUIDs_Characteristic_BODY_SENSOR_LOCATION;
 JavaUtilUUID *LeDefinedUUIDs_Characteristic_BATTERY_LEVEL;
+JavaUtilUUID *LeDefinedUUIDs_Characteristic_SENSOR_LOCATION;
 JavaUtilUUID *LeDefinedUUIDs_Characteristic_CYCLING_POWER_MEASUREMENT;
+JavaUtilUUID *LeDefinedUUIDs_Characteristic_CYCLING_POWER_VECTOR;
+JavaUtilUUID *LeDefinedUUIDs_Characteristic_CYCLING_POWER_FEATURE;
 JavaUtilUUID *LeDefinedUUIDs_Characteristic_CYCLING_POWER_CONTROL_POINT;
 JavaUtilUUID *LeDefinedUUIDs_Characteristic_CSC_MEASUREMENT;
 JavaUtilUUID *LeDefinedUUIDs_Characteristic_SERVICE_CHANGED;
@@ -212,8 +215,20 @@ JavaUtilUUID *LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_STATUS;
   return LeDefinedUUIDs_Characteristic_BATTERY_LEVEL;
 }
 
++ (JavaUtilUUID *)SENSOR_LOCATION {
+  return LeDefinedUUIDs_Characteristic_SENSOR_LOCATION;
+}
+
 + (JavaUtilUUID *)CYCLING_POWER_MEASUREMENT {
   return LeDefinedUUIDs_Characteristic_CYCLING_POWER_MEASUREMENT;
+}
+
++ (JavaUtilUUID *)CYCLING_POWER_VECTOR {
+  return LeDefinedUUIDs_Characteristic_CYCLING_POWER_VECTOR;
+}
+
++ (JavaUtilUUID *)CYCLING_POWER_FEATURE {
+  return LeDefinedUUIDs_Characteristic_CYCLING_POWER_FEATURE;
 }
 
 + (JavaUtilUUID *)CYCLING_POWER_CONTROL_POINT {
@@ -294,23 +309,26 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "APPEARANCE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 6, -1, -1 },
     { "BODY_SENSOR_LOCATION", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 7, -1, -1 },
     { "BATTERY_LEVEL", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 8, -1, -1 },
-    { "CYCLING_POWER_MEASUREMENT", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 9, -1, -1 },
-    { "CYCLING_POWER_CONTROL_POINT", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 10, -1, -1 },
-    { "CSC_MEASUREMENT", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 11, -1, -1 },
-    { "SERVICE_CHANGED", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 12, -1, -1 },
-    { "FITNESS_MACHINE_FEATURE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 13, -1, -1 },
-    { "INDOOR_BIKE_DATA", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 14, -1, -1 },
-    { "TRAINING_STATUS", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 15, -1, -1 },
-    { "SUPPORTED_SPEED_RANGE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 16, -1, -1 },
-    { "SUPPORTED_INCLINATION_RANGE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 17, -1, -1 },
-    { "SUPPORTED_RESISTANCE_LEVEL_RANGE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 18, -1, -1 },
-    { "SUPPORTED_HEART_RATE_RANGE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 19, -1, -1 },
-    { "SUPPORTED_POWER_RANGE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 20, -1, -1 },
-    { "FITNESS_MACHINE_CONTROL_POINT", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 21, -1, -1 },
-    { "FITNESS_MACHINE_STATUS", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 22, -1, -1 },
+    { "SENSOR_LOCATION", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 9, -1, -1 },
+    { "CYCLING_POWER_MEASUREMENT", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 10, -1, -1 },
+    { "CYCLING_POWER_VECTOR", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 11, -1, -1 },
+    { "CYCLING_POWER_FEATURE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 12, -1, -1 },
+    { "CYCLING_POWER_CONTROL_POINT", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 13, -1, -1 },
+    { "CSC_MEASUREMENT", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 14, -1, -1 },
+    { "SERVICE_CHANGED", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 15, -1, -1 },
+    { "FITNESS_MACHINE_FEATURE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 16, -1, -1 },
+    { "INDOOR_BIKE_DATA", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 17, -1, -1 },
+    { "TRAINING_STATUS", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 18, -1, -1 },
+    { "SUPPORTED_SPEED_RANGE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 19, -1, -1 },
+    { "SUPPORTED_INCLINATION_RANGE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 20, -1, -1 },
+    { "SUPPORTED_RESISTANCE_LEVEL_RANGE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 21, -1, -1 },
+    { "SUPPORTED_HEART_RATE_RANGE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 22, -1, -1 },
+    { "SUPPORTED_POWER_RANGE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 23, -1, -1 },
+    { "FITNESS_MACHINE_CONTROL_POINT", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 24, -1, -1 },
+    { "FITNESS_MACHINE_STATUS", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 25, -1, -1 },
   };
-  static const void *ptrTable[] = { &LeDefinedUUIDs_Characteristic_HEART_RATE_MEASUREMENT, &LeDefinedUUIDs_Characteristic_MANUFACTURER_STRING, &LeDefinedUUIDs_Characteristic_MODEL_NUMBER_STRING, &LeDefinedUUIDs_Characteristic_SERIAL_NUMBER_STRING, &LeDefinedUUIDs_Characteristic_FIRMWARE_REVISION_STRING, &LeDefinedUUIDs_Characteristic_HARDWARE_REVISION_STRING, &LeDefinedUUIDs_Characteristic_APPEARANCE, &LeDefinedUUIDs_Characteristic_BODY_SENSOR_LOCATION, &LeDefinedUUIDs_Characteristic_BATTERY_LEVEL, &LeDefinedUUIDs_Characteristic_CYCLING_POWER_MEASUREMENT, &LeDefinedUUIDs_Characteristic_CYCLING_POWER_CONTROL_POINT, &LeDefinedUUIDs_Characteristic_CSC_MEASUREMENT, &LeDefinedUUIDs_Characteristic_SERVICE_CHANGED, &LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_FEATURE, &LeDefinedUUIDs_Characteristic_INDOOR_BIKE_DATA, &LeDefinedUUIDs_Characteristic_TRAINING_STATUS, &LeDefinedUUIDs_Characteristic_SUPPORTED_SPEED_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_INCLINATION_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_RESISTANCE_LEVEL_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_HEART_RATE_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_POWER_RANGE, &LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_CONTROL_POINT, &LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_STATUS, "LLeDefinedUUIDs;" };
-  static const J2ObjcClassInfo _LeDefinedUUIDs_Characteristic = { "Characteristic", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x9, 1, 23, 23, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { &LeDefinedUUIDs_Characteristic_HEART_RATE_MEASUREMENT, &LeDefinedUUIDs_Characteristic_MANUFACTURER_STRING, &LeDefinedUUIDs_Characteristic_MODEL_NUMBER_STRING, &LeDefinedUUIDs_Characteristic_SERIAL_NUMBER_STRING, &LeDefinedUUIDs_Characteristic_FIRMWARE_REVISION_STRING, &LeDefinedUUIDs_Characteristic_HARDWARE_REVISION_STRING, &LeDefinedUUIDs_Characteristic_APPEARANCE, &LeDefinedUUIDs_Characteristic_BODY_SENSOR_LOCATION, &LeDefinedUUIDs_Characteristic_BATTERY_LEVEL, &LeDefinedUUIDs_Characteristic_SENSOR_LOCATION, &LeDefinedUUIDs_Characteristic_CYCLING_POWER_MEASUREMENT, &LeDefinedUUIDs_Characteristic_CYCLING_POWER_VECTOR, &LeDefinedUUIDs_Characteristic_CYCLING_POWER_FEATURE, &LeDefinedUUIDs_Characteristic_CYCLING_POWER_CONTROL_POINT, &LeDefinedUUIDs_Characteristic_CSC_MEASUREMENT, &LeDefinedUUIDs_Characteristic_SERVICE_CHANGED, &LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_FEATURE, &LeDefinedUUIDs_Characteristic_INDOOR_BIKE_DATA, &LeDefinedUUIDs_Characteristic_TRAINING_STATUS, &LeDefinedUUIDs_Characteristic_SUPPORTED_SPEED_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_INCLINATION_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_RESISTANCE_LEVEL_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_HEART_RATE_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_POWER_RANGE, &LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_CONTROL_POINT, &LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_STATUS, "LLeDefinedUUIDs;" };
+  static const J2ObjcClassInfo _LeDefinedUUIDs_Characteristic = { "Characteristic", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x9, 1, 26, 26, -1, -1, -1, -1 };
   return &_LeDefinedUUIDs_Characteristic;
 }
 
@@ -325,7 +343,10 @@ J2OBJC_IGNORE_DESIGNATED_END
     JreStrongAssign(&LeDefinedUUIDs_Characteristic_APPEARANCE, JavaUtilUUID_fromStringWithNSString_(@"00002a01-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Characteristic_BODY_SENSOR_LOCATION, JavaUtilUUID_fromStringWithNSString_(@"00002a38-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Characteristic_BATTERY_LEVEL, JavaUtilUUID_fromStringWithNSString_(@"00002a19-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_SENSOR_LOCATION, JavaUtilUUID_fromStringWithNSString_(@"00002a5d-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Characteristic_CYCLING_POWER_MEASUREMENT, JavaUtilUUID_fromStringWithNSString_(@"00002a63-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_CYCLING_POWER_VECTOR, JavaUtilUUID_fromStringWithNSString_(@"00002a64-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_CYCLING_POWER_FEATURE, JavaUtilUUID_fromStringWithNSString_(@"00002a65-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Characteristic_CYCLING_POWER_CONTROL_POINT, JavaUtilUUID_fromStringWithNSString_(@"00002a66-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Characteristic_CSC_MEASUREMENT, JavaUtilUUID_fromStringWithNSString_(@"00002a5b-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Characteristic_SERVICE_CHANGED, JavaUtilUUID_fromStringWithNSString_(@"00002a05-0000-1000-8000-00805f9b34fb"));

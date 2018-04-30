@@ -145,7 +145,13 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Service)
 
 + (JavaUtilUUID *)BATTERY_LEVEL;
 
++ (JavaUtilUUID *)SENSOR_LOCATION;
+
 + (JavaUtilUUID *)CYCLING_POWER_MEASUREMENT;
+
++ (JavaUtilUUID *)CYCLING_POWER_VECTOR;
+
++ (JavaUtilUUID *)CYCLING_POWER_FEATURE;
 
 + (JavaUtilUUID *)CYCLING_POWER_CONTROL_POINT;
 
@@ -226,10 +232,25 @@ inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_BATTERY_LEVEL(void);
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_BATTERY_LEVEL;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, BATTERY_LEVEL, JavaUtilUUID *)
 
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_SENSOR_LOCATION(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_SENSOR_LOCATION;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, SENSOR_LOCATION, JavaUtilUUID *)
+
 inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_CYCLING_POWER_MEASUREMENT(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_CYCLING_POWER_MEASUREMENT;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, CYCLING_POWER_MEASUREMENT, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_CYCLING_POWER_VECTOR(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_CYCLING_POWER_VECTOR;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, CYCLING_POWER_VECTOR, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_CYCLING_POWER_FEATURE(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_CYCLING_POWER_FEATURE;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, CYCLING_POWER_FEATURE, JavaUtilUUID *)
 
 inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_CYCLING_POWER_CONTROL_POINT(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
