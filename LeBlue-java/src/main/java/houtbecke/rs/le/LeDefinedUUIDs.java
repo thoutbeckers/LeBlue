@@ -32,7 +32,8 @@ public class LeDefinedUUIDs {
 		final static public UUID CYCLING_POWER_VECTOR  = UUID.fromString("00002a64-0000-1000-8000-00805f9b34fb");
 		final static public UUID CYCLING_POWER_FEATURE   = UUID.fromString("00002a65-0000-1000-8000-00805f9b34fb");
         final static public UUID CYCLING_POWER_CONTROL_POINT = UUID.fromString("00002a66-0000-1000-8000-00805f9b34fb");
-        final static public UUID CSC_MEASUREMENT             = UUID.fromString("00002a5b-0000-1000-8000-00805f9b34fb");
+		final static public UUID CSC_MEASUREMENT             = UUID.fromString("00002a5b-0000-1000-8000-00805f9b34fb");
+		final static public UUID CSC_FEATURE             = UUID.fromString("00002a5c-0000-1000-8000-00805f9b34fb");
 		final static public UUID SERVICE_CHANGED             = UUID.fromString("00002a05-0000-1000-8000-00805f9b34fb");
 		final static public UUID FITNESS_MACHINE_FEATURE      = UUID.fromString("00002acc-0000-1000-8000-00805f9b34fb");
 		final static public UUID INDOOR_BIKE_DATA             = UUID.fromString("00002ad2-0000-1000-8000-00805f9b34fb");
