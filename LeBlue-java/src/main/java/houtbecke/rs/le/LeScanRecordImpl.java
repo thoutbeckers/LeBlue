@@ -88,6 +88,16 @@ public class LeScanRecordImpl implements LeScanRecord {
     }
 
     @Override
+    public byte[] getManufacturerData() {
+        LeRecord[] manufacturerData =  getRecords(0xFF);
+        if (manufacturerData.length>0)
+            return manufacturerData[0].getRecordContent();
+        return null;
+    }
+
+
+
+    @Override
     public byte[] getRawData() {
         return scanrecord;
     }
