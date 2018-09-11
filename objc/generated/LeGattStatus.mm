@@ -154,3 +154,5 @@ LeGattStatus *LeGattStatus_fromOrdinal(NSUInteger ordinal) {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeGattStatus)
+
+J2OBJC_NAME_MAPPING(LeGattStatus, "houtbecke.rs.le", "")

@@ -11,6 +11,7 @@
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
@@ -24,6 +25,7 @@
 @protocol LeScanRecord;
 
 @interface LeUtil : NSObject
+@property (readonly, class, strong) IOSCharArray *hexArray NS_SWIFT_NAME(hexArray);
 
 + (IOSCharArray *)hexArray;
 

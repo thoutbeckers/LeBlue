@@ -11,6 +11,7 @@
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
@@ -30,6 +31,8 @@ typedef NS_ENUM(NSUInteger, LeDeviceState_Enum) {
 
 @interface LeDeviceState : JavaLangEnum
 
+@property (readonly, class, nonnull) LeDeviceState *OFF NS_SWIFT_NAME(OFF);
+@property (readonly, class, nonnull) LeDeviceState *ON NS_SWIFT_NAME(ON);
 + (LeDeviceState * __nonnull)OFF;
 
 + (LeDeviceState * __nonnull)ON;

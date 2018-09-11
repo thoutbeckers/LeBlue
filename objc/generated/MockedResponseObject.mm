@@ -55,29 +55,29 @@ J2OBJC_FIELD_SETTER(MockedResponseObject, nextMockedEvents_, IOSObjectArray *)
   return [value_ isEqual:IOSObjectArray_Get(values, pos_)];
 }
 
-- (instancetype __nonnull)initWithEvent:(Event *)nextMockedEvent {
+- (instancetype)initWithEvent:(Event *)nextMockedEvent {
   MockedResponseObject_initWithEvent_(self, nextMockedEvent);
   return self;
 }
 
-- (instancetype __nonnull)initWithNSStringArray:(IOSObjectArray *)mockedResultValues {
+- (instancetype)initWithNSStringArray:(IOSObjectArray *)mockedResultValues {
   MockedResponseObject_initWithNSStringArray_(self, mockedResultValues);
   return self;
 }
 
-- (instancetype __nonnull)initWithEvent:(Event *)nextMockedEvent
-                      withNSStringArray:(IOSObjectArray *)mockedResultValues {
+- (instancetype)initWithEvent:(Event *)nextMockedEvent
+            withNSStringArray:(IOSObjectArray *)mockedResultValues {
   MockedResponseObject_initWithEvent_withNSStringArray_(self, nextMockedEvent, mockedResultValues);
   return self;
 }
 
-- (instancetype __nonnull)initWithEventArray:(IOSObjectArray *)nextMockedEvents {
+- (instancetype)initWithEventArray:(IOSObjectArray *)nextMockedEvents {
   MockedResponseObject_initWithEventArray_(self, nextMockedEvents);
   return self;
 }
 
-- (instancetype __nonnull)initWithEventArray:(IOSObjectArray *)nextMockedEvents
-                           withNSStringArray:(IOSObjectArray *)mockedResultValues {
+- (instancetype)initWithEventArray:(IOSObjectArray *)nextMockedEvents
+                 withNSStringArray:(IOSObjectArray *)mockedResultValues {
   MockedResponseObject_initWithEventArray_withNSStringArray_(self, nextMockedEvents, mockedResultValues);
   return self;
 }
@@ -200,3 +200,5 @@ MockedResponseObject *create_MockedResponseObject_initWithEventArray_withNSStrin
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockedResponseObject)
+
+J2OBJC_NAME_MAPPING(MockedResponseObject, "houtbecke.rs.le.session", "")

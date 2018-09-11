@@ -16,8 +16,8 @@
 
 @implementation InterceptingLeRemoteDeviceListener
 
-- (instancetype __nonnull)initWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)leRemoteDeviceListener
-                                       withLeInterceptor:(LeInterceptor *)leInterceptor {
+- (instancetype)initWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)leRemoteDeviceListener
+                             withLeInterceptor:(LeInterceptor *)leInterceptor {
   InterceptingLeRemoteDeviceListener_initWithLeRemoteDeviceListener_withLeInterceptor_(self, leRemoteDeviceListener, leInterceptor);
   return self;
 }
@@ -130,3 +130,5 @@ InterceptingLeRemoteDeviceListener *create_InterceptingLeRemoteDeviceListener_in
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(InterceptingLeRemoteDeviceListener)
+
+J2OBJC_NAME_MAPPING(InterceptingLeRemoteDeviceListener, "houtbecke.rs.le.interceptor", "")

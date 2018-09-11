@@ -11,6 +11,7 @@
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
@@ -45,6 +46,7 @@
   SessionObject *sessionObject_;
   SessionObject *and__;
 }
+@property (class) jint sourceCounter NS_SWIFT_NAME(sourceCounter);
 
 + (jint)sourceCounter;
 

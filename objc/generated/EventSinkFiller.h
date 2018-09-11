@@ -11,6 +11,7 @@
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
@@ -31,6 +32,7 @@
   jint currentRemoteDevice_;
   jint currentCharacteristic_;
 }
+@property (readonly, class) jint DEFAULT_DEVICE_ID NS_SWIFT_NAME(DEFAULT_DEVICE_ID);
 
 + (jint)DEFAULT_DEVICE_ID;
 

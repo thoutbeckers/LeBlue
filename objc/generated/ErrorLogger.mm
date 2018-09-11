@@ -27,3 +27,5 @@
 @end
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(ErrorLogger)
+
+J2OBJC_NAME_MAPPING(ErrorLogger, "houtbecke.rs.le", "")

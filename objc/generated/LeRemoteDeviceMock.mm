@@ -13,9 +13,9 @@
 
 @implementation LeRemoteDeviceMock
 
-- (instancetype __nonnull)initWithInt:(jint)key
-                 withLeMockController:(id<LeMockController>)mockController
-                     withLeDeviceMock:(LeDeviceMock *)leDeviceMock {
+- (instancetype)initWithInt:(jint)key
+       withLeMockController:(id<LeMockController>)mockController
+           withLeDeviceMock:(LeDeviceMock *)leDeviceMock {
   LeRemoteDeviceMock_initWithInt_withLeMockController_withLeDeviceMock_(self, key, mockController, leDeviceMock);
   return self;
 }
@@ -157,3 +157,5 @@ LeRemoteDeviceMock *create_LeRemoteDeviceMock_initWithInt_withLeMockController_w
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeRemoteDeviceMock)
+
+J2OBJC_NAME_MAPPING(LeRemoteDeviceMock, "houtbecke.rs.le.mock", "")

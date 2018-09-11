@@ -31,3 +31,5 @@
 @end
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(MockedResponse)
+
+J2OBJC_NAME_MAPPING(MockedResponse, "houtbecke.rs.le.session", "")

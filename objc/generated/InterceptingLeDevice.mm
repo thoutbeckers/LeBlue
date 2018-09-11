@@ -13,8 +13,8 @@
 
 @implementation InterceptingLeDevice
 
-- (instancetype __nonnull)initWithLeDevice:(id<LeDevice>)leDevice
-                         withLeInterceptor:(LeInterceptor *)leInterceptor {
+- (instancetype)initWithLeDevice:(id<LeDevice>)leDevice
+               withLeInterceptor:(LeInterceptor *)leInterceptor {
   InterceptingLeDevice_initWithLeDevice_withLeInterceptor_(self, leDevice, leInterceptor);
   return self;
 }
@@ -180,3 +180,5 @@ InterceptingLeDevice *create_InterceptingLeDevice_initWithLeDevice_withLeInterce
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(InterceptingLeDevice)
+
+J2OBJC_NAME_MAPPING(InterceptingLeDevice, "houtbecke.rs.le.interceptor", "")

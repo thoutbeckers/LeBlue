@@ -21,7 +21,7 @@ __attribute__((unused)) static IOSObjectArray *EventSinkTest__Annotations$1(void
 @implementation EventSinkTest
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   EventSinkTest_init(self);
   return self;
 }
@@ -87,3 +87,5 @@ IOSObjectArray *EventSinkTest__Annotations$1() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(EventSinkTest)
+
+J2OBJC_NAME_MAPPING(EventSinkTest, "houtbecke.rs.le", "")

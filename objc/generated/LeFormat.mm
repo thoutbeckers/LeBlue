@@ -176,3 +176,5 @@ LeFormat *LeFormat_fromOrdinal(NSUInteger ordinal) {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeFormat)
+
+J2OBJC_NAME_MAPPING(LeFormat, "houtbecke.rs.le", "")

@@ -16,8 +16,8 @@
 
 @implementation RemoteDeviceMockerObject
 
-- (instancetype __nonnull)initWithSessionObject:(SessionObject *)sessionObject
-                                        withInt:(jint)sessionSource {
+- (instancetype)initWithSessionObject:(SessionObject *)sessionObject
+                              withInt:(jint)sessionSource {
   RemoteDeviceMockerObject_initWithSessionObject_withInt_(self, sessionObject, sessionSource);
   return self;
 }
@@ -126,3 +126,5 @@ RemoteDeviceMockerObject *create_RemoteDeviceMockerObject_initWithSessionObject_
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(RemoteDeviceMockerObject)
+
+J2OBJC_NAME_MAPPING(RemoteDeviceMockerObject, "houtbecke.rs.le.session", "")

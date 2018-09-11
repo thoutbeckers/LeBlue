@@ -1,5 +1,5 @@
 #!/bin/bash
-j2objc_version=2.1.1
+j2objc_version=2.2
 link=https://github.com/google/j2objc/releases/download/${j2objc_version}/j2objc-${j2objc_version}.zip
 if [ ! -d "j2objc" ] || [ ! -d "j2objc/j2objc-${j2objc_version}" ]; then
     if [ -d "j2objc" ]; then
@@ -47,12 +47,20 @@ if [ ! -d "j2objc" ] || [ ! -d "j2objc/j2objc-${j2objc_version}" ]; then
     done
     for i in {1..5}
     do
-       curl --range 1000000000- -o j2objc-${j2objc_version}.zip.part6 -L ${link}
+       curl --range 1000000000-1199999999 -o j2objc-${j2objc_version}.zip.part6 -L ${link}
        status=$?
        if [ "$status" -eq 0 ]; then
           break
        fi
     done
+    for i in {1..5}
+        do
+           curl --range 1200000000- -o j2objc-${j2objc_version}.zip.part7 -L ${link}
+           status=$?
+           if [ "$status" -eq 0 ]; then
+              break
+           fi
+        done
 
     cat j2objc-${j2objc_version}.zip.part? > j2objc-${j2objc_version}.zip
     rm j2objc-${j2objc_version}.zip.part?

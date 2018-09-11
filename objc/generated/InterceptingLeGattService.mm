@@ -10,8 +10,8 @@
 
 @implementation InterceptingLeGattService
 
-- (instancetype __nonnull)initWithLeGattService:(id<LeGattService>)leGattService
-                              withLeInterceptor:(LeInterceptor *)leInterceptor {
+- (instancetype)initWithLeGattService:(id<LeGattService>)leGattService
+                    withLeInterceptor:(LeInterceptor *)leInterceptor {
   InterceptingLeGattService_initWithLeGattService_withLeInterceptor_(self, leGattService, leInterceptor);
   return self;
 }
@@ -101,3 +101,5 @@ InterceptingLeGattService *create_InterceptingLeGattService_initWithLeGattServic
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(InterceptingLeGattService)
+
+J2OBJC_NAME_MAPPING(InterceptingLeGattService, "houtbecke.rs.le.interceptor", "")

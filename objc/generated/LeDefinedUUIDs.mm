@@ -6,7 +6,7 @@
 @implementation LeDefinedUUIDs
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   LeDefinedUUIDs_init(self);
   return self;
 }
@@ -41,6 +41,8 @@ LeDefinedUUIDs *create_LeDefinedUUIDs_init() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeDefinedUUIDs)
+
+J2OBJC_NAME_MAPPING(LeDefinedUUIDs, "houtbecke.rs.le", "")
 
 J2OBJC_INITIALIZED_DEFN(LeDefinedUUIDs_Service)
 
@@ -88,7 +90,7 @@ JavaUtilUUID *LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE;
 }
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   LeDefinedUUIDs_Service_init(self);
   return self;
 }
@@ -289,7 +291,7 @@ JavaUtilUUID *LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_STATUS;
 }
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   LeDefinedUUIDs_Characteristic_init(self);
   return self;
 }
@@ -398,7 +400,7 @@ JavaUtilUUID *LeDefinedUUIDs_Descriptor_CHAR_CLIENT_CONFIG;
 }
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   LeDefinedUUIDs_Descriptor_init(self);
   return self;
 }

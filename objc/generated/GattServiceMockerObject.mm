@@ -13,8 +13,8 @@
 
 @implementation GattServiceMockerObject
 
-- (instancetype __nonnull)initWithSessionObject:(SessionObject *)sessionObject
-                                        withInt:(jint)sessionSource {
+- (instancetype)initWithSessionObject:(SessionObject *)sessionObject
+                              withInt:(jint)sessionSource {
   GattServiceMockerObject_initWithSessionObject_withInt_(self, sessionObject, sessionSource);
   return self;
 }
@@ -105,3 +105,5 @@ GattServiceMockerObject *create_GattServiceMockerObject_initWithSessionObject_wi
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GattServiceMockerObject)
+
+J2OBJC_NAME_MAPPING(GattServiceMockerObject, "houtbecke.rs.le.session", "")

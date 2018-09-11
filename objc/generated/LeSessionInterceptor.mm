@@ -51,7 +51,7 @@
   [((id<EventSink>) nil_chk(sink_)) addEventWithEvent:create_Event_initWithEventType_withBaseIntercepting_withNSStringArray_(type, interceptor, values)];
 }
 
-- (instancetype __nonnull)initWithEventSink:(id<EventSink>)sink {
+- (instancetype)initWithEventSink:(id<EventSink>)sink {
   LeSessionInterceptor_initWithEventSink_(self, sink);
   return self;
 }
@@ -417,3 +417,5 @@ LeSessionInterceptor *create_LeSessionInterceptor_initWithEventSink_(id<EventSin
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionInterceptor)
+
+J2OBJC_NAME_MAPPING(LeSessionInterceptor, "houtbecke.rs.le.interceptor", "")

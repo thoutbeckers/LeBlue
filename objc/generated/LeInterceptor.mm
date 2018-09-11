@@ -34,7 +34,7 @@
 @implementation LeInterceptor
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   LeInterceptor_init(self);
   return self;
 }
@@ -512,3 +512,5 @@ void LeInterceptor_init(LeInterceptor *self) {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeInterceptor)
+
+J2OBJC_NAME_MAPPING(LeInterceptor, "houtbecke.rs.le.interceptor", "")

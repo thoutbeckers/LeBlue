@@ -11,6 +11,7 @@
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
@@ -79,6 +80,53 @@ typedef NS_ENUM(NSUInteger, LeEventType_Enum) {
 
 @interface LeEventType : JavaLangEnum < EventType >
 
+@property (readonly, class, nonnull) LeEventType *deviceStartScanning NS_SWIFT_NAME(deviceStartScanning);
+@property (readonly, class, nonnull) LeEventType *deviceStopScanning NS_SWIFT_NAME(deviceStopScanning);
+@property (readonly, class, nonnull) LeEventType *deviceRemoveListener NS_SWIFT_NAME(deviceRemoveListener);
+@property (readonly, class, nonnull) LeEventType *deviceCheckBleHardwareAvailable NS_SWIFT_NAME(deviceCheckBleHardwareAvailable);
+@property (readonly, class, nonnull) LeEventType *deviceIsBtEnabled NS_SWIFT_NAME(deviceIsBtEnabled);
+@property (readonly, class, nonnull) LeEventType *deviceAddListener NS_SWIFT_NAME(deviceAddListener);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceConnect NS_SWIFT_NAME(remoteDeviceConnect);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceStartServiceDiscovery NS_SWIFT_NAME(remoteDeviceStartServiceDiscovery);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceClose NS_SWIFT_NAME(remoteDeviceClose);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceDisconnect NS_SWIFT_NAME(remoteDeviceDisconnect);
+@property (readonly, class, nonnull) LeEventType *serviceEnableCharacteristicNotification NS_SWIFT_NAME(serviceEnableCharacteristicNotification);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceGetAddress NS_SWIFT_NAME(remoteDeviceGetAddress);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceAddListener NS_SWIFT_NAME(remoteDeviceAddListener);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceRemoveListener NS_SWIFT_NAME(remoteDeviceRemoveListener);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceSetCharacteristicListener NS_SWIFT_NAME(remoteDeviceSetCharacteristicListener);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceSetCharacteristicWriteListener NS_SWIFT_NAME(remoteDeviceSetCharacteristicWriteListener);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceReadRssi NS_SWIFT_NAME(remoteDeviceReadRssi);
+@property (readonly, class, nonnull) LeEventType *serviceGetUUID NS_SWIFT_NAME(serviceGetUUID);
+@property (readonly, class, nonnull) LeEventType *characteristicGetValue NS_SWIFT_NAME(characteristicGetValue);
+@property (readonly, class, nonnull) LeEventType *characteristicGetIntValue NS_SWIFT_NAME(characteristicGetIntValue);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceGetName NS_SWIFT_NAME(remoteDeviceGetName);
+@property (readonly, class, nonnull) LeEventType *serviceGetCharacteristic NS_SWIFT_NAME(serviceGetCharacteristic);
+@property (readonly, class, nonnull) LeEventType *characteristicSetValue NS_SWIFT_NAME(characteristicSetValue);
+@property (readonly, class, nonnull) LeEventType *characteristicRead NS_SWIFT_NAME(characteristicRead);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceFound NS_SWIFT_NAME(remoteDeviceFound);
+@property (readonly, class, nonnull) LeEventType *deviceState NS_SWIFT_NAME(deviceState);
+@property (readonly, class, nonnull) LeEventType *mockRemoteDeviceFound NS_SWIFT_NAME(mockRemoteDeviceFound);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceConnected NS_SWIFT_NAME(remoteDeviceConnected);
+@property (readonly, class, nonnull) LeEventType *mockRemoteDeviceConnected NS_SWIFT_NAME(mockRemoteDeviceConnected);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceDisconnected NS_SWIFT_NAME(remoteDeviceDisconnected);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceClosed NS_SWIFT_NAME(remoteDeviceClosed);
+@property (readonly, class, nonnull) LeEventType *mockRemoteDeviceDisconnected NS_SWIFT_NAME(mockRemoteDeviceDisconnected);
+@property (readonly, class, nonnull) LeEventType *mockRemoteDeviceClosed NS_SWIFT_NAME(mockRemoteDeviceClosed);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceServicesDiscovered NS_SWIFT_NAME(remoteDeviceServicesDiscovered);
+@property (readonly, class, nonnull) LeEventType *remoteDeviceRssiRead NS_SWIFT_NAME(remoteDeviceRssiRead);
+@property (readonly, class, nonnull) LeEventType *mockRemoteDeviceServicesDiscovered NS_SWIFT_NAME(mockRemoteDeviceServicesDiscovered);
+@property (readonly, class, nonnull) LeEventType *deviceRemoteDeviceServicesDiscovered NS_SWIFT_NAME(deviceRemoteDeviceServicesDiscovered);
+@property (readonly, class, nonnull) LeEventType *characteristicChanged NS_SWIFT_NAME(characteristicChanged);
+@property (readonly, class, nonnull) LeEventType *characteristicNotificationChanged NS_SWIFT_NAME(characteristicNotificationChanged);
+@property (readonly, class, nonnull) LeEventType *characteristicWritten NS_SWIFT_NAME(characteristicWritten);
+@property (readonly, class, nonnull) LeEventType *mockCharacteristicChanged NS_SWIFT_NAME(mockCharacteristicChanged);
+@property (readonly, class, nonnull) LeEventType *mockCharacteristicChangedWithMockedValue NS_SWIFT_NAME(mockCharacteristicChangedWithMockedValue);
+@property (readonly, class, nonnull) LeEventType *mockCharacteristicMockedValue NS_SWIFT_NAME(mockCharacteristicMockedValue);
+@property (readonly, class, nonnull) LeEventType *mockCharacteristicClearMockedValue NS_SWIFT_NAME(mockCharacteristicClearMockedValue);
+@property (readonly, class, nonnull) LeEventType *mockCharacteristicNotificationChanged NS_SWIFT_NAME(mockCharacteristicNotificationChanged);
+@property (readonly, class, nonnull) LeEventType *mockWaitForPoint NS_SWIFT_NAME(mockWaitForPoint);
+@property (readonly, class, nonnull) LeEventType *mockPointReached NS_SWIFT_NAME(mockPointReached);
 + (LeEventType * __nonnull)deviceStartScanning;
 
 + (LeEventType * __nonnull)deviceStopScanning;

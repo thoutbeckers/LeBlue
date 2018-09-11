@@ -61,7 +61,7 @@ J2OBJC_FIELD_SETTER(LeSessionController, point_, NSString *)
   LeSessionController *this$0_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$;
 
 - (void)run;
 
@@ -82,8 +82,8 @@ __attribute__((unused)) static LeSessionController_1 *create_LeSessionController
   jboolean started_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                 withJavaLangRunnable:(id<JavaLangRunnable>)runnable;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                       withJavaLangRunnable:(id<JavaLangRunnable>)runnable;
 
 - (void)run;
 
@@ -107,8 +107,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeSessionController_RunnableWrapper)
   Event *val$event_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -128,8 +128,8 @@ __attribute__((unused)) static LeSessionController_2 *create_LeSessionController
   Event *val$event_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -150,9 +150,9 @@ __attribute__((unused)) static LeSessionController_3 *create_LeSessionController
   Event *val$event_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                            withEvent:(Event *)capture$1;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                  withEvent:(Event *)capture$1;
 
 - (void)run;
 
@@ -172,8 +172,8 @@ __attribute__((unused)) static LeSessionController_4 *create_LeSessionController
   Event *val$event_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -194,9 +194,9 @@ __attribute__((unused)) static LeSessionController_5 *create_LeSessionController
   Event *val$event_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                            withEvent:(Event *)capture$1;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                  withEvent:(Event *)capture$1;
 
 - (void)run;
 
@@ -216,8 +216,8 @@ __attribute__((unused)) static LeSessionController_6 *create_LeSessionController
   Event *val$event_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -238,9 +238,9 @@ __attribute__((unused)) static LeSessionController_7 *create_LeSessionController
   Event *val$event_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                            withEvent:(Event *)capture$1;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                  withEvent:(Event *)capture$1;
 
 - (void)run;
 
@@ -260,8 +260,8 @@ __attribute__((unused)) static LeSessionController_8 *create_LeSessionController
   Event *val$event_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -282,9 +282,9 @@ __attribute__((unused)) static LeSessionController_9 *create_LeSessionController
   id<LeRemoteDeviceListener> val$listener_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0
-                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$1;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0
+                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$1;
 
 - (void)run;
 
@@ -304,8 +304,8 @@ __attribute__((unused)) static LeSessionController_10 *create_LeSessionControlle
   Event *val$event_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -325,8 +325,8 @@ __attribute__((unused)) static LeSessionController_11 *create_LeSessionControlle
   Event *val$event_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -348,10 +348,10 @@ __attribute__((unused)) static LeSessionController_12 *create_LeSessionControlle
   id<LeGattCharacteristic> val$characteristic_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0
-                                     withJavaUtilUUID:(JavaUtilUUID *)capture$1
-                             withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0
+                           withJavaUtilUUID:(JavaUtilUUID *)capture$1
+                   withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2;
 
 - (void)run;
 
@@ -371,8 +371,8 @@ __attribute__((unused)) static LeSessionController_13 *create_LeSessionControlle
   Event *val$event_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -392,8 +392,8 @@ __attribute__((unused)) static LeSessionController_14 *create_LeSessionControlle
   Event *val$event_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -415,10 +415,10 @@ __attribute__((unused)) static LeSessionController_15 *create_LeSessionControlle
   id<LeGattCharacteristic> val$characteristic2_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0
-                                     withJavaUtilUUID:(JavaUtilUUID *)capture$1
-                             withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0
+                           withJavaUtilUUID:(JavaUtilUUID *)capture$1
+                   withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2;
 
 - (void)run;
 
@@ -438,8 +438,8 @@ __attribute__((unused)) static LeSessionController_16 *create_LeSessionControlle
   Event *val$event_;
 }
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0;
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0;
 
 - (void)run;
 
@@ -467,13 +467,13 @@ NSString *LeSessionController_TAG = @"LeBlueController";
   return ![@"true" isEqual:JavaLangSystem_getPropertyWithNSString_(@"doNotLog")];
 }
 
-- (instancetype __nonnull)initWithSession:(id<Session>)session {
+- (instancetype)initWithSession:(id<Session>)session {
   LeSessionController_initWithSession_(self, session);
   return self;
 }
 
-- (instancetype __nonnull)initWithSession:(id<Session>)session
-                              withBoolean:(jboolean)strict {
+- (instancetype)initWithSession:(id<Session>)session
+                    withBoolean:(jboolean)strict {
   LeSessionController_initWithSession_withBoolean_(self, session, strict);
   return self;
 }
@@ -1769,9 +1769,11 @@ LeSessionController *create_LeSessionController_initWithSession_withBoolean_(id<
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController)
 
+J2OBJC_NAME_MAPPING(LeSessionController, "houtbecke.rs.le.mock", "")
+
 @implementation LeSessionController_1
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$ {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$ {
   LeSessionController_1_initWithLeSessionController_(self, outer$);
   return self;
 }
@@ -1822,8 +1824,8 @@ LeSessionController_1 *create_LeSessionController_1_initWithLeSessionController_
 
 @implementation LeSessionController_RunnableWrapper
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                 withJavaLangRunnable:(id<JavaLangRunnable>)runnable {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                       withJavaLangRunnable:(id<JavaLangRunnable>)runnable {
   LeSessionController_RunnableWrapper_initWithLeSessionController_withJavaLangRunnable_(self, outer$, runnable);
   return self;
 }
@@ -1891,8 +1893,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeSessionController_RunnableWrapper)
 
 @implementation LeSessionController_2
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
   LeSessionController_2_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -1953,8 +1955,8 @@ LeSessionController_2 *create_LeSessionController_2_initWithLeSessionController_
 
 @implementation LeSessionController_3
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
   LeSessionController_3_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2007,9 +2009,9 @@ LeSessionController_3 *create_LeSessionController_3_initWithLeSessionController_
 
 @implementation LeSessionController_4
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                            withEvent:(Event *)capture$1 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                  withEvent:(Event *)capture$1 {
   LeSessionController_4_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, outer$, capture$0, capture$1);
   return self;
 }
@@ -2065,8 +2067,8 @@ LeSessionController_4 *create_LeSessionController_4_initWithLeSessionController_
 
 @implementation LeSessionController_5
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
   LeSessionController_5_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2119,9 +2121,9 @@ LeSessionController_5 *create_LeSessionController_5_initWithLeSessionController_
 
 @implementation LeSessionController_6
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                            withEvent:(Event *)capture$1 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                  withEvent:(Event *)capture$1 {
   LeSessionController_6_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, outer$, capture$0, capture$1);
   return self;
 }
@@ -2177,8 +2179,8 @@ LeSessionController_6 *create_LeSessionController_6_initWithLeSessionController_
 
 @implementation LeSessionController_7
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
   LeSessionController_7_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2231,9 +2233,9 @@ LeSessionController_7 *create_LeSessionController_7_initWithLeSessionController_
 
 @implementation LeSessionController_8
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
-                                            withEvent:(Event *)capture$1 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$0
+                                  withEvent:(Event *)capture$1 {
   LeSessionController_8_initWithLeSessionController_withLeRemoteDeviceListener_withEvent_(self, outer$, capture$0, capture$1);
   return self;
 }
@@ -2289,8 +2291,8 @@ LeSessionController_8 *create_LeSessionController_8_initWithLeSessionController_
 
 @implementation LeSessionController_9
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
   LeSessionController_9_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2343,9 +2345,9 @@ LeSessionController_9 *create_LeSessionController_9_initWithLeSessionController_
 
 @implementation LeSessionController_10
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0
-                           withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$1 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0
+                 withLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)capture$1 {
   LeSessionController_10_initWithLeSessionController_withEvent_withLeRemoteDeviceListener_(self, outer$, capture$0, capture$1);
   return self;
 }
@@ -2403,8 +2405,8 @@ LeSessionController_10 *create_LeSessionController_10_initWithLeSessionControlle
 
 @implementation LeSessionController_11
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
   LeSessionController_11_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2459,8 +2461,8 @@ LeSessionController_11 *create_LeSessionController_11_initWithLeSessionControlle
 
 @implementation LeSessionController_12
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
   LeSessionController_12_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2513,10 +2515,10 @@ LeSessionController_12 *create_LeSessionController_12_initWithLeSessionControlle
 
 @implementation LeSessionController_13
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0
-                                     withJavaUtilUUID:(JavaUtilUUID *)capture$1
-                             withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0
+                           withJavaUtilUUID:(JavaUtilUUID *)capture$1
+                   withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2 {
   LeSessionController_13_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, outer$, capture$0, capture$1, capture$2);
   return self;
 }
@@ -2583,8 +2585,8 @@ LeSessionController_13 *create_LeSessionController_13_initWithLeSessionControlle
 
 @implementation LeSessionController_14
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
   LeSessionController_14_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2639,8 +2641,8 @@ LeSessionController_14 *create_LeSessionController_14_initWithLeSessionControlle
 
 @implementation LeSessionController_15
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
   LeSessionController_15_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
@@ -2696,10 +2698,10 @@ LeSessionController_15 *create_LeSessionController_15_initWithLeSessionControlle
 
 @implementation LeSessionController_16
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0
-                                     withJavaUtilUUID:(JavaUtilUUID *)capture$1
-                             withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0
+                           withJavaUtilUUID:(JavaUtilUUID *)capture$1
+                   withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$2 {
   LeSessionController_16_initWithLeSessionController_withEvent_withJavaUtilUUID_withLeGattCharacteristic_(self, outer$, capture$0, capture$1, capture$2);
   return self;
 }
@@ -2766,8 +2768,8 @@ LeSessionController_16 *create_LeSessionController_16_initWithLeSessionControlle
 
 @implementation LeSessionController_17
 
-- (instancetype __nonnull)initWithLeSessionController:(LeSessionController *)outer$
-                                            withEvent:(Event *)capture$0 {
+- (instancetype)initWithLeSessionController:(LeSessionController *)outer$
+                                  withEvent:(Event *)capture$0 {
   LeSessionController_17_initWithLeSessionController_withEvent_(self, outer$, capture$0);
   return self;
 }
