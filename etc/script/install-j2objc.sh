@@ -54,13 +54,13 @@ if [ ! -d "j2objc" ] || [ ! -d "j2objc/j2objc-${j2objc_version}" ]; then
        fi
     done
     for i in {1..5}
-        do
-           curl --range 1200000000- -o j2objc-${j2objc_version}.zip.part7 -L ${link}
-           status=$?
-           if [ "$status" -eq 0 ]; then
-              break
-           fi
-        done
+    do
+        curl --range 1200000000- -o j2objc-${j2objc_version}.zip.part7 -L ${link}
+        status=$?
+        if [ "$status" -eq 0 ]; then
+            break
+        fi
+    done
 
     cat j2objc-${j2objc_version}.zip.part? > j2objc-${j2objc_version}.zip
     rm j2objc-${j2objc_version}.zip.part?
