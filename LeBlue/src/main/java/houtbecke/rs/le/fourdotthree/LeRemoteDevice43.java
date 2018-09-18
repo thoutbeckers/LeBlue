@@ -75,8 +75,6 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
     @Override
     public void connect() {
-        Log.v("LeBlue", "connect");
-
         unpair(remoteDevice43);
         leDevice43.remoteDevices.put(remoteDevice43.getAddress(),this);
         if (gatt != null) {
@@ -93,8 +91,6 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
     @Override
     public void disconnect() {
-        Log.v("LeBlue", "disconnect");
-
         if (gatt != null) {
             gatt.disconnect();
         }
@@ -191,13 +187,10 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         if (status!=BluetoothGatt.GATT_SUCCESS){
             leDevice43.log(Log.ERROR,"LeBlue","onConnectionStateChange " + status);
         }
-        Log.v("LeBlue", "onConnectionStateChange " + newState + " " + status);
 
         try {
 
             if (newState == BluetoothProfile.STATE_CONNECTED) {
-                Log.v("LeBlue", "onconnected");
-
                 this.gatt = gatt;
                 if (!isAvailable) {
                     disconnect();
@@ -208,9 +201,6 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
 
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
-                Log.v("LeBlue", "ondisconnected");
-
-
                 this.queue.clear();
                 if (gatt != null)
                     gatt.close();

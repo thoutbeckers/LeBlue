@@ -168,13 +168,11 @@ public class LeDevice43 implements LeDevice {
                         l -> l.leDeviceState(LeDevice43.this, finalLeDeviceState));
 
             }  else if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
-                Log.v("LeBlue", "ACL_CONNECTED: " + device);
             } else if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
 
                 final LeRemoteDevice43 remoteDevice43 = remoteDevices.remove(device.getAddress());
                 if (remoteDevice43 != null)
                     remoteDevice43.notifyDisconnected();
-                Log.v("LeBlue", "ACL_DISCONNECTED: " + device);
             }
         }
     };
@@ -213,7 +211,6 @@ public class LeDevice43 implements LeDevice {
         @Override
         public void onLeScan(final BluetoothDevice device, final int rssi, final byte[] scanRecord) {
             final LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, device);
-            log(Log.INFO,"LeBlue", "scan record: " + LeUtil.bytesToString(scanRecord));
 
             listeners(
                     l -> l.leDeviceFound(LeDevice43.this, device43, rssi, LeUtil.parseLeScanRecord(scanRecord)));
