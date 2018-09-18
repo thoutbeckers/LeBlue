@@ -157,6 +157,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Service)
 
 + (JavaUtilUUID *)CSC_MEASUREMENT;
 
++ (JavaUtilUUID *)CSC_FEATURE;
+
 + (JavaUtilUUID *)SERVICE_CHANGED;
 
 + (JavaUtilUUID *)FITNESS_MACHINE_FEATURE;
@@ -261,6 +263,11 @@ inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_CSC_MEASUREMENT(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_CSC_MEASUREMENT;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, CSC_MEASUREMENT, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_CSC_FEATURE(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_CSC_FEATURE;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, CSC_FEATURE, JavaUtilUUID *)
 
 inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_SERVICE_CHANGED(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
