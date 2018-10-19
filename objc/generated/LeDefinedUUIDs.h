@@ -54,6 +54,7 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs)
 @property (readonly, class, strong) JavaUtilUUID *BATTERY NS_SWIFT_NAME(BATTERY);
 @property (readonly, class, strong) JavaUtilUUID *DEVICE_INFORMATION NS_SWIFT_NAME(DEVICE_INFORMATION);
 @property (readonly, class, strong) JavaUtilUUID *GENERIC_ATTRIBUTE NS_SWIFT_NAME(GENERIC_ATTRIBUTE);
+@property (readonly, class, strong) JavaUtilUUID *GENERIC_ACCESS NS_SWIFT_NAME(GENERIC_ACCESS);
 
 + (JavaUtilUUID *)HEART_RATE;
 
@@ -169,6 +170,7 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Service)
 @property (readonly, class, strong) JavaUtilUUID *SUPPORTED_POWER_RANGE NS_SWIFT_NAME(SUPPORTED_POWER_RANGE);
 @property (readonly, class, strong) JavaUtilUUID *FITNESS_MACHINE_CONTROL_POINT NS_SWIFT_NAME(FITNESS_MACHINE_CONTROL_POINT);
 @property (readonly, class, strong) JavaUtilUUID *FITNESS_MACHINE_STATUS NS_SWIFT_NAME(FITNESS_MACHINE_STATUS);
+@property (readonly, class, strong) JavaUtilUUID *DEVICE_NAME NS_SWIFT_NAME(DEVICE_NAME);
 
 + (JavaUtilUUID *)HEART_RATE_MEASUREMENT;
 
