@@ -71,6 +71,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs)
 
 + (JavaUtilUUID *)GENERIC_ATTRIBUTE;
 
++ (JavaUtilUUID *)GENERIC_ACCESS;
+
 #pragma mark Public
 
 - (instancetype __nonnull)init;
@@ -118,6 +120,11 @@ inline JavaUtilUUID *LeDefinedUUIDs_Service_get_GENERIC_ATTRIBUTE(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, GENERIC_ATTRIBUTE, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Service_get_GENERIC_ACCESS(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_GENERIC_ACCESS;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, GENERIC_ACCESS, JavaUtilUUID *)
 
 FOUNDATION_EXPORT void LeDefinedUUIDs_Service_init(LeDefinedUUIDs_Service *self);
 
@@ -216,6 +223,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Service)
 + (JavaUtilUUID *)FITNESS_MACHINE_CONTROL_POINT;
 
 + (JavaUtilUUID *)FITNESS_MACHINE_STATUS;
+
++ (JavaUtilUUID *)DEVICE_NAME;
 
 #pragma mark Public
 
@@ -359,6 +368,11 @@ inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_FITNESS_MACHINE_STATUS(vo
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_STATUS;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, FITNESS_MACHINE_STATUS, JavaUtilUUID *)
+
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_DEVICE_NAME(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_DEVICE_NAME;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, DEVICE_NAME, JavaUtilUUID *)
 
 FOUNDATION_EXPORT void LeDefinedUUIDs_Characteristic_init(LeDefinedUUIDs_Characteristic *self);
 

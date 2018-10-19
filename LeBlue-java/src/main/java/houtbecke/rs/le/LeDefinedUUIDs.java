@@ -13,8 +13,7 @@ public class LeDefinedUUIDs {
 		final static public UUID BATTERY   = UUID.fromString("0000180f-0000-1000-8000-00805f9b34fb");
         final static public UUID DEVICE_INFORMATION   = UUID.fromString("0000180a-0000-1000-8000-00805f9b34fb");
 		final static public UUID GENERIC_ATTRIBUTE   = UUID.fromString("00001801-0000-1000-8000-00805f9b34fb");
-
-
+		final static public UUID GENERIC_ACCESS  = UUID.fromString("00001800-0000-1000-8000-00805f9b34fb");
     }
 	
 	public static class Characteristic {
@@ -45,6 +44,7 @@ public class LeDefinedUUIDs {
 		final static public UUID SUPPORTED_POWER_RANGE        = UUID.fromString("00002ad8-0000-1000-8000-00805f9b34fb");
 		final static public UUID FITNESS_MACHINE_CONTROL_POINT = UUID.fromString("00002ad9-0000-1000-8000-00805f9b34fb");
 		final static public UUID FITNESS_MACHINE_STATUS       = UUID.fromString("00002ada-0000-1000-8000-00805f9b34fb");
+		final static public UUID DEVICE_NAME       = UUID.fromString("00002a00-0000-1000-8000-00805f9b34fb");
 	}
 	
 	public static class Descriptor {
