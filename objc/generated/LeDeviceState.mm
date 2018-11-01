@@ -99,3 +99,5 @@ LeDeviceState *LeDeviceState_fromOrdinal(NSUInteger ordinal) {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeDeviceState)
+
+J2OBJC_NAME_MAPPING(LeDeviceState, "houtbecke.rs.le", "")

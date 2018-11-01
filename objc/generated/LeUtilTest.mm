@@ -21,7 +21,7 @@ __attribute__((unused)) static IOSObjectArray *LeUtilTest__Annotations$2(void);
 @implementation LeUtilTest
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   LeUtilTest_init(self);
   return self;
 }
@@ -101,3 +101,5 @@ IOSObjectArray *LeUtilTest__Annotations$2() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeUtilTest)
+
+J2OBJC_NAME_MAPPING(LeUtilTest, "houtbecke.rs.le", "")

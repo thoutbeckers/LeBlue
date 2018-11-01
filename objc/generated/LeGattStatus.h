@@ -11,6 +11,7 @@
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
@@ -37,6 +38,15 @@ typedef NS_ENUM(NSUInteger, LeGattStatus_Enum) {
 
 @interface LeGattStatus : JavaLangEnum
 
+@property (readonly, class, nonnull) LeGattStatus *SUCCESS NS_SWIFT_NAME(SUCCESS);
+@property (readonly, class, nonnull) LeGattStatus *READ_NOT_PERMITTED NS_SWIFT_NAME(READ_NOT_PERMITTED);
+@property (readonly, class, nonnull) LeGattStatus *WRITE_NOT_PERMITTED NS_SWIFT_NAME(WRITE_NOT_PERMITTED);
+@property (readonly, class, nonnull) LeGattStatus *INSUFFICIENT_AUTHENTICATION NS_SWIFT_NAME(INSUFFICIENT_AUTHENTICATION);
+@property (readonly, class, nonnull) LeGattStatus *REQUEST_NOT_SUPPORTED NS_SWIFT_NAME(REQUEST_NOT_SUPPORTED);
+@property (readonly, class, nonnull) LeGattStatus *INSUFFICIENT_ENCRYPTION NS_SWIFT_NAME(INSUFFICIENT_ENCRYPTION);
+@property (readonly, class, nonnull) LeGattStatus *INVALID_OFFSET NS_SWIFT_NAME(INVALID_OFFSET);
+@property (readonly, class, nonnull) LeGattStatus *INVALID_ATTRIBUTE_LENGTH NS_SWIFT_NAME(INVALID_ATTRIBUTE_LENGTH);
+@property (readonly, class, nonnull) LeGattStatus *FAILURE NS_SWIFT_NAME(FAILURE);
 + (LeGattStatus * __nonnull)SUCCESS;
 
 + (LeGattStatus * __nonnull)READ_NOT_PERMITTED;

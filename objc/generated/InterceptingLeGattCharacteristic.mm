@@ -11,8 +11,8 @@
 
 @implementation InterceptingLeGattCharacteristic
 
-- (instancetype __nonnull)initWithLeGattCharacteristic:(id<LeGattCharacteristic>)leGattCharacteristic
-                                     withLeInterceptor:(LeInterceptor *)leInterceptor {
+- (instancetype)initWithLeGattCharacteristic:(id<LeGattCharacteristic>)leGattCharacteristic
+                           withLeInterceptor:(LeInterceptor *)leInterceptor {
   InterceptingLeGattCharacteristic_initWithLeGattCharacteristic_withLeInterceptor_(self, leGattCharacteristic, leInterceptor);
   return self;
 }
@@ -119,3 +119,5 @@ InterceptingLeGattCharacteristic *create_InterceptingLeGattCharacteristic_initWi
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(InterceptingLeGattCharacteristic)
+
+J2OBJC_NAME_MAPPING(InterceptingLeGattCharacteristic, "houtbecke.rs.le.interceptor", "")

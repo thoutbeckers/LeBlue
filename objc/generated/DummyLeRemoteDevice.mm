@@ -9,7 +9,7 @@
 @implementation HoutbeckeRsLeDummyDummyLeRemoteDevice
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   HoutbeckeRsLeDummyDummyLeRemoteDevice_init(self);
   return self;
 }

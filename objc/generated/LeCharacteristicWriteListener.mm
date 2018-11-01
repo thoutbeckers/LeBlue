@@ -25,3 +25,5 @@
 @end
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(LeCharacteristicWriteListener)
+
+J2OBJC_NAME_MAPPING(LeCharacteristicWriteListener, "houtbecke.rs.le", "")

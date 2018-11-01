@@ -24,3 +24,5 @@
 @end
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(LeGattDescriptor)
+
+J2OBJC_NAME_MAPPING(LeGattDescriptor, "houtbecke.rs.le", "")

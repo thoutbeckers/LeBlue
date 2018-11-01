@@ -10,7 +10,7 @@
 @implementation StringEventSinkUtil
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   StringEventSinkUtil_init(self);
   return self;
 }
@@ -62,3 +62,5 @@ StringEventSinkUtil *create_StringEventSinkUtil_init() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(StringEventSinkUtil)
+
+J2OBJC_NAME_MAPPING(StringEventSinkUtil, "houtbecke.rs.le.interceptor", "")

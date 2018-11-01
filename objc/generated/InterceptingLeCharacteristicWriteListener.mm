@@ -14,8 +14,8 @@
 
 @implementation InterceptingLeCharacteristicWriteListener
 
-- (instancetype __nonnull)initWithLeCharacteristicWriteListener:(id<LeCharacteristicWriteListener>)leCharacteristicWriteListener
-                                              withLeInterceptor:(LeInterceptor *)leInterceptor {
+- (instancetype)initWithLeCharacteristicWriteListener:(id<LeCharacteristicWriteListener>)leCharacteristicWriteListener
+                                    withLeInterceptor:(LeInterceptor *)leInterceptor {
   InterceptingLeCharacteristicWriteListener_initWithLeCharacteristicWriteListener_withLeInterceptor_(self, leCharacteristicWriteListener, leInterceptor);
   return self;
 }
@@ -85,3 +85,5 @@ InterceptingLeCharacteristicWriteListener *create_InterceptingLeCharacteristicWr
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(InterceptingLeCharacteristicWriteListener)
+
+J2OBJC_NAME_MAPPING(InterceptingLeCharacteristicWriteListener, "houtbecke.rs.le.interceptor", "")

@@ -94,8 +94,8 @@ __attribute__((unused)) static IOSObjectArray *MockerTest__Annotations$1(void);
   IOSIntArray *val$foundRemoteDevices_;
 }
 
-- (instancetype __nonnull)initWithMockerTest:(MockerTest *)outer$
-                                withIntArray:(IOSIntArray *)capture$0;
+- (instancetype)initWithMockerTest:(MockerTest *)outer$
+                      withIntArray:(IOSIntArray *)capture$0;
 
 - (void)leDeviceFoundWithLeDevice:(id<LeDevice>)leDeviceFound
                withLeRemoteDevice:(id<LeRemoteDevice>)leFoundRemoteDevice
@@ -120,7 +120,7 @@ __attribute__((unused)) static MockerTest_1 *create_MockerTest_1_initWithMockerT
   IOSObjectArray *val$foundRemoteDevice2_;
 }
 
-- (instancetype __nonnull)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0;
+- (instancetype)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0;
 
 - (void)leDeviceFoundWithLeDevice:(id<LeDevice>)leDeviceFound
                withLeRemoteDevice:(id<LeRemoteDevice>)leFoundRemoteDevice
@@ -148,10 +148,10 @@ __attribute__((unused)) static MockerTest_2 *create_MockerTest_2_initWithJavaLan
   IOSObjectArray *val$service_;
 }
 
-- (instancetype __nonnull)initWithMockerTest:(MockerTest *)outer$
-                    withJavaLangBooleanArray:(IOSObjectArray *)capture$0
-                    withJavaLangBooleanArray:(IOSObjectArray *)capture$1
-                      withLeGattServiceArray:(IOSObjectArray *)capture$2;
+- (instancetype)initWithMockerTest:(MockerTest *)outer$
+          withJavaLangBooleanArray:(IOSObjectArray *)capture$0
+          withJavaLangBooleanArray:(IOSObjectArray *)capture$1
+            withLeGattServiceArray:(IOSObjectArray *)capture$2;
 
 - (void)leDevicesConnectedWithLeDevice:(id<LeDevice>)leDeviceFoundOn
                     withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice;
@@ -189,10 +189,10 @@ __attribute__((unused)) static MockerTest_3 *create_MockerTest_3_initWithMockerT
   IOSObjectArray *val$changedNotification_;
 }
 
-- (instancetype __nonnull)initWithMockerTest:(MockerTest *)outer$
-                    withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$0
-                    withJavaLangBooleanArray:(IOSObjectArray *)capture$1
-                    withJavaLangBooleanArray:(IOSObjectArray *)capture$2;
+- (instancetype)initWithMockerTest:(MockerTest *)outer$
+          withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$0
+          withJavaLangBooleanArray:(IOSObjectArray *)capture$1
+          withJavaLangBooleanArray:(IOSObjectArray *)capture$2;
 
 - (void)leCharacteristicChangedWithJavaUtilUUID:(JavaUtilUUID *)uuid
                              withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice
@@ -218,7 +218,7 @@ __attribute__((unused)) static MockerTest_4 *create_MockerTest_4_initWithMockerT
   IOSObjectArray *val$service_;
 }
 
-- (instancetype __nonnull)initWithLeGattServiceArray:(IOSObjectArray *)capture$0;
+- (instancetype)initWithLeGattServiceArray:(IOSObjectArray *)capture$0;
 
 - (void)leDevicesConnectedWithLeDevice:(id<LeDevice>)leDevice
                     withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice;
@@ -251,7 +251,7 @@ __attribute__((unused)) static MockerTest_5 *create_MockerTest_5_initWithLeGattS
 @implementation MockerTest
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   MockerTest_init(self);
   return self;
 }
@@ -440,10 +440,12 @@ IOSObjectArray *MockerTest__Annotations$1() {
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockerTest)
 
+J2OBJC_NAME_MAPPING(MockerTest, "houtbecke.rs.le", "")
+
 @implementation MockerTest_1
 
-- (instancetype __nonnull)initWithMockerTest:(MockerTest *)outer$
-                                withIntArray:(IOSIntArray *)capture$0 {
+- (instancetype)initWithMockerTest:(MockerTest *)outer$
+                      withIntArray:(IOSIntArray *)capture$0 {
   MockerTest_1_initWithMockerTest_withIntArray_(self, outer$, capture$0);
   return self;
 }
@@ -515,7 +517,7 @@ MockerTest_1 *create_MockerTest_1_initWithMockerTest_withIntArray_(MockerTest *o
 
 @implementation MockerTest_2
 
-- (instancetype __nonnull)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0 {
+- (instancetype)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0 {
   MockerTest_2_initWithJavaLangBooleanArray_(self, capture$0);
   return self;
 }
@@ -574,10 +576,10 @@ MockerTest_2 *create_MockerTest_2_initWithJavaLangBooleanArray_(IOSObjectArray *
 
 @implementation MockerTest_3
 
-- (instancetype __nonnull)initWithMockerTest:(MockerTest *)outer$
-                    withJavaLangBooleanArray:(IOSObjectArray *)capture$0
-                    withJavaLangBooleanArray:(IOSObjectArray *)capture$1
-                      withLeGattServiceArray:(IOSObjectArray *)capture$2 {
+- (instancetype)initWithMockerTest:(MockerTest *)outer$
+          withJavaLangBooleanArray:(IOSObjectArray *)capture$0
+          withJavaLangBooleanArray:(IOSObjectArray *)capture$1
+            withLeGattServiceArray:(IOSObjectArray *)capture$2 {
   MockerTest_3_initWithMockerTest_withJavaLangBooleanArray_withJavaLangBooleanArray_withLeGattServiceArray_(self, outer$, capture$0, capture$1, capture$2);
   return self;
 }
@@ -675,10 +677,10 @@ MockerTest_3 *create_MockerTest_3_initWithMockerTest_withJavaLangBooleanArray_wi
 
 @implementation MockerTest_4
 
-- (instancetype __nonnull)initWithMockerTest:(MockerTest *)outer$
-                    withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$0
-                    withJavaLangBooleanArray:(IOSObjectArray *)capture$1
-                    withJavaLangBooleanArray:(IOSObjectArray *)capture$2 {
+- (instancetype)initWithMockerTest:(MockerTest *)outer$
+          withLeGattCharacteristic:(id<LeGattCharacteristic>)capture$0
+          withJavaLangBooleanArray:(IOSObjectArray *)capture$1
+          withJavaLangBooleanArray:(IOSObjectArray *)capture$2 {
   MockerTest_4_initWithMockerTest_withLeGattCharacteristic_withJavaLangBooleanArray_withJavaLangBooleanArray_(self, outer$, capture$0, capture$1, capture$2);
   return self;
 }
@@ -751,7 +753,7 @@ MockerTest_4 *create_MockerTest_4_initWithMockerTest_withLeGattCharacteristic_wi
 
 @implementation MockerTest_5
 
-- (instancetype __nonnull)initWithLeGattServiceArray:(IOSObjectArray *)capture$0 {
+- (instancetype)initWithLeGattServiceArray:(IOSObjectArray *)capture$0 {
   MockerTest_5_initWithLeGattServiceArray_(self, capture$0);
   return self;
 }

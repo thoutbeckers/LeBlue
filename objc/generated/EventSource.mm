@@ -28,3 +28,5 @@
 @end
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(EventSource)
+
+J2OBJC_NAME_MAPPING(EventSource, "houtbecke.rs.le.session", "")

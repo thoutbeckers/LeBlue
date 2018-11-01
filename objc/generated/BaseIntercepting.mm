@@ -5,7 +5,7 @@
 
 @implementation BaseIntercepting
 
-- (instancetype __nonnull)initWithInt:(jint)id_ {
+- (instancetype)initWithInt:(jint)id_ {
   BaseIntercepting_initWithInt_(self, id_);
   return self;
 }
@@ -41,3 +41,5 @@ void BaseIntercepting_initWithInt_(BaseIntercepting *self, jint id_) {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(BaseIntercepting)
+
+J2OBJC_NAME_MAPPING(BaseIntercepting, "houtbecke.rs.le.interceptor", "")

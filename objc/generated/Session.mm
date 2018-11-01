@@ -41,3 +41,5 @@
 @end
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(Session)
+
+J2OBJC_NAME_MAPPING(Session, "houtbecke.rs.le.session", "")

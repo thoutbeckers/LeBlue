@@ -9,8 +9,8 @@
 
 @implementation LeDeviceMock
 
-- (instancetype __nonnull)initWithInt:(jint)key
-                 withLeMockController:(id<LeMockController>)leMockController {
+- (instancetype)initWithInt:(jint)key
+       withLeMockController:(id<LeMockController>)leMockController {
   LeDeviceMock_initWithInt_withLeMockController_(self, key, leMockController);
   return self;
 }
@@ -117,3 +117,5 @@ LeDeviceMock *create_LeDeviceMock_initWithInt_withLeMockController_(jint key, id
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeDeviceMock)
+
+J2OBJC_NAME_MAPPING(LeDeviceMock, "houtbecke.rs.le.mock", "")
