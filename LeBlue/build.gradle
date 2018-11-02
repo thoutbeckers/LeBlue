@@ -43,8 +43,8 @@ dependencies {
     compileOnly "com.google.code.gson:gson:${gsonVersion}"
     testImplementation "junit:junit:${junitVersion}"
     implementation project(':LeBlue-java')
-    implementation 'no.nordicsemi.android.support.v18:scanner:1.0.0'
-    implementation "com.android.support:support-compat:${supportVersion}"
+    implementation "no.nordicsemi.android.support.v18:scanner:${nordicScannerVersion}"
+    implementation "androidx.core:core:${androidCoreVersion}"
 
 
 }

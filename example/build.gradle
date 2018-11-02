@@ -27,7 +27,7 @@ android {
 
 dependencies {
     implementation project(':LeBlue')
-    implementation "com.android.support:appcompat-v7:${supportVersion}"
+    implementation "androidx.appcompat:appcompat:${appCompatVersion}"
     implementation project(path: ':LeBlue-java')
 }
 
