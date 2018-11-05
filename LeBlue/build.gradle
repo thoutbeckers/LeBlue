@@ -10,7 +10,7 @@ android {
     compileSdkVersion compileSdkVersionProp.toInteger()
 
     defaultConfig {
-        minSdkVersion 18
+        minSdkVersion minSdkVersionProp
         targetSdkVersion targetSdkVersionProp.toInteger()
         versionCode 1
         versionName "1.0"

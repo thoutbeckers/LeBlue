@@ -4,7 +4,7 @@ android {
     compileSdkVersion compileSdkVersionProp.toInteger()
 
     defaultConfig {
-        minSdkVersion 18
+        minSdkVersion minSdkVersionProp
         targetSdkVersion targetSdkVersionProp.toInteger()
     }
     buildTypes {
