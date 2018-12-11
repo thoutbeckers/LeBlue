@@ -276,9 +276,8 @@
     }
 
     if (uuidListener != nil) {
-        [[uuidListener leCharacteristicNotificationChangedWithJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] withLeRemoteDevice:self
+        [uuidListener leCharacteristicNotificationChangedWithJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] withLeRemoteDevice:self
                                                   withLeGattCharacteristic:leGattCharacteristic withBoolean:success];
-         ]
     }
 
 }
