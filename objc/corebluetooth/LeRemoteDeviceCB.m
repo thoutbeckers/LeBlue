@@ -261,27 +261,24 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
 
-    Boolean succes = characteristic.isNotifying;
+    Boolean success = characteristic.isNotifying;
 
     if (error){
         NSLog(@"Error changing notification state: %@", error.localizedDescription);
-    }else{
-        id<LeCharacteristicListener> uuidListener =  [_uuidListeners objectForKey:
-                                                      [characteristic UUID] ];
-        id<LeGattCharacteristic>  leGattCharacteristic = [[LeGattCharacteristicCB alloc] initWith: characteristic remoteDevice:self];
+    }
+    id<LeCharacteristicListener> uuidListener =  [_uuidListeners objectForKey:
+                                                  [characteristic UUID] ];
+    id<LeGattCharacteristic>  leGattCharacteristic = [[LeGattCharacteristicCB alloc] initWith: characteristic remoteDevice:self];
 
-        if (nullListener != nil){
+    if (nullListener != nil){
+        [nullListener leCharacteristicNotificationChangedWithJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] withLeRemoteDevice:self
+                                                 withLeGattCharacteristic:leGattCharacteristic withBoolean:success];
+    }
 
-            [nullListener leCharacteristicNotificationChangedWithJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] withLeRemoteDevice:self
-                                                     withLeGattCharacteristic:leGattCharacteristic withBoolean:succes];
-
-
-        }
-
-        if (uuidListener != nil){
-            [uuidListener leCharacteristicNotificationChangedWithJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] withLeRemoteDevice:self
-                                                     withLeGattCharacteristic:leGattCharacteristic withBoolean:succes];
-        }
+    if (uuidListener != nil) {
+        [[uuidListener leCharacteristicNotificationChangedWithJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] withLeRemoteDevice:self
+                                                  withLeGattCharacteristic:leGattCharacteristic withBoolean:success];
+         ]
     }
 
 }
