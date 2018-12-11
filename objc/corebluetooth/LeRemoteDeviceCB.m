@@ -238,7 +238,7 @@
         NSLog(@"Error didWriteValueForCharacteristic: %@ %@",characteristic.UUID.stringValue,   error.localizedDescription);
     }
     id<LeGattCharacteristic>  leGattCharacteristic = [[LeGattCharacteristicCB alloc] initWith: characteristic remoteDevice:self];
-    [self  characteristicWrittenJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] LeGattCharacteristic:leGattCharacteristic];
+    [self  characteristicWrittenJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] LeGattCharacteristic:leGattCharacteristic success:success];
 
 }
 
@@ -276,9 +276,8 @@
     }
 
     if (uuidListener != nil) {
-        [[uuidListener leCharacteristicNotificationChangedWithJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] withLeRemoteDevice:self
+        [uuidListener leCharacteristicNotificationChangedWithJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] withLeRemoteDevice:self
                                                   withLeGattCharacteristic:leGattCharacteristic withBoolean:success];
-         ]
     }
 
 }
