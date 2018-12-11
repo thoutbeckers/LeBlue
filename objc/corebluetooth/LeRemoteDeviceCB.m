@@ -137,7 +137,7 @@
 
 - (void) serviceFound {
     NSSet* listenersCopy = [NSSet setWithSet: _listeners];
-    
+
     for (id<LeRemoteDeviceListener> listener in listenersCopy){
         [listener serviceDiscoveredWithLeDevice:_device withLeRemoteDevice:self withLeGattStatus:LeGattStatus_get_SUCCESS() withLeGattServiceArray:[IOSObjectArray arrayWithNSArray:[services allValues]  type:[LeGattServiceCB java_getClass]] ];
 
@@ -147,7 +147,7 @@
 
 - (void) connected {
     NSSet* listenersCopy = [NSSet setWithSet: _listeners];
-    
+
     for (id<LeRemoteDeviceListener> listener in listenersCopy){
         [listener leDevicesConnectedWithLeDevice:_device withLeRemoteDevice:self];
     }
@@ -156,7 +156,7 @@
 
 - (void) disconnected {
     NSSet* listenersCopy = [NSSet setWithSet: _listeners];
-    
+
     for (id<LeRemoteDeviceListener> listener in listenersCopy){
         [listener leDevicesDisconnectedWithLeDevice:_device withLeRemoteDevice:self];
         [listener leDevicesClosedWithLeDevice:_device withLeRemoteDevice:self];
@@ -232,32 +232,29 @@
 
 - (void) peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
-
-
+    Boolean success = true;
     if (error){
+        success = false;
         NSLog(@"Error didWriteValueForCharacteristic: %@ %@",characteristic.UUID.stringValue,   error.localizedDescription);
-    }else{
-
-        id<LeGattCharacteristic>  leGattCharacteristic = [[LeGattCharacteristicCB alloc] initWith: characteristic remoteDevice:self];
-
-        [self  characteristicWrittenJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] LeGattCharacteristic:leGattCharacteristic];
-
     }
+    id<LeGattCharacteristic>  leGattCharacteristic = [[LeGattCharacteristicCB alloc] initWith: characteristic remoteDevice:self];
+    [self  characteristicWrittenJavaUtilUUID:[[characteristic UUID] toJavaUtilUUID] LeGattCharacteristic:leGattCharacteristic];
+
 }
 
 
-- (void) characteristicWrittenJavaUtilUUID:(JavaUtilUUID *)uuid LeGattCharacteristic:(id<LeGattCharacteristic>) leGattCharacteristic
+- (void) characteristicWrittenJavaUtilUUID:(JavaUtilUUID *)uuid LeGattCharacteristic:(id<LeGattCharacteristic>) leGattCharacteristic success:(Boolean)success
 {
     id<LeCharacteristicWriteListener> uuidWriteListener =  [_uuidWriteListeners objectForKey: [uuid toCBUUID] ];
 
     if (nullWriteListener != nil){
         [nullWriteListener leCharacteristicWrittenWithJavaUtilUUID:uuid withLeRemoteDevice:self
-                                          withLeGattCharacteristic:leGattCharacteristic withBoolean:YES];
+                                          withLeGattCharacteristic:leGattCharacteristic withBoolean:success];
     }
 
     if (uuidWriteListener != nil){
         [uuidWriteListener leCharacteristicWrittenWithJavaUtilUUID:uuid withLeRemoteDevice:self
-                                          withLeGattCharacteristic:leGattCharacteristic withBoolean:YES];
+                                          withLeGattCharacteristic:leGattCharacteristic withBoolean:success];
     }
 }
 
@@ -291,7 +288,7 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error{
     NSSet* listenersCopy = [NSSet setWithSet: _listeners];
-    
+
     for (id<LeRemoteDeviceListener> listener in listenersCopy){
         [listener rssiReadWithLeDevice:_device withLeRemoteDevice:self  withInt:(int)[RSSI integerValue]];
     }
