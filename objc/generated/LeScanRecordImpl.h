@@ -40,6 +40,8 @@
 
 - (NSString *)getLocalName;
 
+- (IOSByteArray *)getManufacturerData;
+
 - (IOSByteArray *)getRawData;
 
 - (IOSObjectArray *)getRecords;

@@ -35,6 +35,8 @@
 
 - (NSString *)getLocalName;
 
+- (IOSByteArray *)getManufacturerData;
+
 - (IOSByteArray *)getRawData;
 
 @end

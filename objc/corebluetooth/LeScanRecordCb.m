@@ -72,4 +72,14 @@
    return [_advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
 }
 
+
+- (IOSByteArray *) getManufacturerData {
+    NSData *  data = [_advertisementData objectForKey:CBAdvertisementDataManufacturerDataKey];
+    if (data == nil) return nil;
+    return [IOSByteArray newArrayWithBytes:[data bytes] count:[data length]];
+}
+
+
+
+
 @end

@@ -12,6 +12,7 @@ public class LeScanRecordImpl implements LeScanRecord {
 
     final byte[] scanrecord;
     final Collection<LeRecord> records = new ArrayList<>();
+
     public LeScanRecordImpl(byte[] scanrecord) {
         this.scanrecord = scanrecord;
         parse();
@@ -26,18 +27,18 @@ public class LeScanRecordImpl implements LeScanRecord {
     @Override
     public LeRecord[] getRecords(int... types) {
         int len = 0;
-        for (LeRecord record: records)
-            for (int type: types)
-                len+= record.getType() == type ? 1 : 0;
+        for (LeRecord record : records)
+            for (int type : types)
+                len += record.getType() == type ? 1 : 0;
 
         LeRecord[] ret = new LeRecord[len];
         int count = 0;
-        for (LeRecord record: records)
-            for (int type: types)
-            if (record.getType() == type) {
-                ret[count] = record;
-                count++;
-            }
+        for (LeRecord record : records)
+            for (int type : types)
+                if (record.getType() == type) {
+                    ret[count] = record;
+                    count++;
+                }
         return ret;
     }
 
@@ -47,7 +48,7 @@ public class LeScanRecordImpl implements LeScanRecord {
         LeRecord[] uuids128 = getRecords(6, 7);
 
         List<UUID> uuidList = new ArrayList<>();
-        for (LeRecord record: uuids16) {
+        for (LeRecord record : uuids16) {
             ByteBuffer buffer = ByteBuffer.wrap(record.getRecordContent()).order(ByteOrder.LITTLE_ENDIAN);
 
             while (buffer.remaining() >= 2)
@@ -55,7 +56,7 @@ public class LeScanRecordImpl implements LeScanRecord {
                         "%08x-0000-1000-8000-00805f9b34fb", buffer.getShort())));
 
         }
-        for (LeRecord record: uuids128) {
+        for (LeRecord record : uuids128) {
             ByteBuffer buffer = ByteBuffer.wrap(record.getRecordContent()).order(ByteOrder.LITTLE_ENDIAN);
             while (buffer.remaining() >= 16) {
                 long lsb = buffer.getLong();
@@ -67,24 +68,31 @@ public class LeScanRecordImpl implements LeScanRecord {
         return uuidList.toArray(uuids);
     }
 
-
-    public boolean hasService(UUID uuid ){
+    public boolean hasService(UUID uuid) {
         UUID[] uuids = getServices();
-        for(UUID u :uuids){
+        for (UUID u : uuids) {
             if (u.equals(uuid)) return true;
         }
         return false;
     }
 
+    @Override
+    public String getLocalName() {
+        LeRecord[] localName = getRecords(9);
+        if (localName.length > 0) {
+            return new String(localName[0].getRecordContent());
+        } else {
+            return null;
+        }
+    }
 
     @Override
-    public String getLocalName()
-    {
-        LeRecord[] localName =  getRecords(9);
-        if (localName.length>0)
-            return new String(localName[0].getRecordContent());
-        else
-            return null;
+    public byte[] getManufacturerData() {
+        LeRecord[] manufacturerData = getRecords(0xFF);
+        if (manufacturerData.length > 0) {
+            return manufacturerData[0].getRecordContent();
+        }
+        return null;
     }
 
     @Override
@@ -95,7 +103,7 @@ public class LeScanRecordImpl implements LeScanRecord {
     void parse() {
         int recordLength, recordPos = 0;
         while (recordPos < scanrecord.length && ((recordLength = scanrecord[recordPos++] & 0xFF) != 0)) {
-            final int type = scanrecord[recordPos++]  & 0xFF;
+            final int type = scanrecord[recordPos++] & 0xFF;
             final byte[] record = Arrays.copyOfRange(scanrecord, recordPos, recordPos + recordLength - 1);
             if (type != 0) {
                 records.add(new LeRecord() {
@@ -110,7 +118,7 @@ public class LeScanRecordImpl implements LeScanRecord {
                     }
                 });
             }
-            recordPos += recordLength -1;
+            recordPos += recordLength - 1;
         }
     }
 

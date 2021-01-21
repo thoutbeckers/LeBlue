@@ -129,6 +129,12 @@ __attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_ini
   else return nil;
 }
 
+- (IOSByteArray *)getManufacturerData {
+  IOSObjectArray *manufacturerData = [self getRecordsWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ (jint) 0xFF } count:1]];
+  if (((IOSObjectArray *) nil_chk(manufacturerData))->size_ > 0) return [((id<LeRecord>) nil_chk(IOSObjectArray_Get(manufacturerData, 0))) getRecordContent];
+  return nil;
+}
+
 - (IOSByteArray *)getRawData {
   return scanrecord_;
 }
@@ -161,6 +167,7 @@ __attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_ini
     { NULL, "Z", 0x1, 3, 4, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "[B", 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, "[B", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x0, -1, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
@@ -172,15 +179,16 @@ __attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_ini
   methods[3].selector = @selector(getServices);
   methods[4].selector = @selector(hasServiceWithJavaUtilUUID:);
   methods[5].selector = @selector(getLocalName);
-  methods[6].selector = @selector(getRawData);
-  methods[7].selector = @selector(parse);
+  methods[6].selector = @selector(getManufacturerData);
+  methods[7].selector = @selector(getRawData);
+  methods[8].selector = @selector(parse);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "scanrecord_", "[B", .constantValue.asLong = 0, 0x10, -1, -1, -1, -1 },
     { "records_", "LJavaUtilCollection;", .constantValue.asLong = 0, 0x10, -1, -1, 5, -1 },
   };
   static const void *ptrTable[] = { "[B", "getRecords", "[I", "hasService", "LJavaUtilUUID;", "Ljava/util/Collection<Lhoutbecke/rs/le/LeRecord;>;" };
-  static const J2ObjcClassInfo _LeScanRecordImpl = { "LeScanRecordImpl", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x1, 8, 2, -1, -1, -1, -1, -1 };
+  static const J2ObjcClassInfo _LeScanRecordImpl = { "LeScanRecordImpl", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x1, 9, 2, -1, -1, -1, -1, -1 };
   return &_LeScanRecordImpl;
 }
 
