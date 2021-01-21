@@ -12,7 +12,7 @@ __attribute__((unused)) static IOSObjectArray *MockedResponseTest__Annotations$0
 @implementation MockedResponseTest
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   MockedResponseTest_init(self);
   return self;
 }
@@ -74,3 +74,5 @@ IOSObjectArray *MockedResponseTest__Annotations$0() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockedResponseTest)
+
+J2OBJC_NAME_MAPPING(MockedResponseTest, "houtbecke.rs.le", "")

@@ -45,3 +45,5 @@
 @end
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(LeDevice)
+
+J2OBJC_NAME_MAPPING(LeDevice, "houtbecke.rs.le", "")

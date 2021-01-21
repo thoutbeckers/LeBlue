@@ -68,8 +68,8 @@ __attribute__((unused)) static IOSObjectArray *SessionSwitchingTest__Annotations
   IOSObjectArray *val$foundRemoteDevice_;
 }
 
-- (instancetype __nonnull)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
-                              withJavaLangBooleanArray:(IOSObjectArray *)capture$0;
+- (instancetype)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
+                    withJavaLangBooleanArray:(IOSObjectArray *)capture$0;
 
 - (void)leDeviceFoundWithLeDevice:(id<LeDevice>)leDeviceFound
                withLeRemoteDevice:(id<LeRemoteDevice>)leFoundRemoteDevice
@@ -95,8 +95,8 @@ __attribute__((unused)) static SessionSwitchingTest_1 *create_SessionSwitchingTe
   IOSObjectArray *val$service_;
 }
 
-- (instancetype __nonnull)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
-                                     withNSObjectArray:(IOSObjectArray *)capture$0;
+- (instancetype)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
+                           withNSObjectArray:(IOSObjectArray *)capture$0;
 
 - (void)leDevicesConnectedWithLeDevice:(id<LeDevice>)leDeviceFoundOn
                     withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice;
@@ -131,7 +131,7 @@ __attribute__((unused)) static SessionSwitchingTest_2 *create_SessionSwitchingTe
   IOSObjectArray *val$valueRead_;
 }
 
-- (instancetype __nonnull)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0;
+- (instancetype)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0;
 
 - (void)leCharacteristicChangedWithJavaUtilUUID:(JavaUtilUUID *)uuid
                              withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice
@@ -155,7 +155,7 @@ __attribute__((unused)) static SessionSwitchingTest_3 *create_SessionSwitchingTe
 @implementation SessionSwitchingTest
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   SessionSwitchingTest_init(self);
   return self;
 }
@@ -331,10 +331,12 @@ IOSObjectArray *SessionSwitchingTest__Annotations$1() {
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(SessionSwitchingTest)
 
+J2OBJC_NAME_MAPPING(SessionSwitchingTest, "houtbecke.rs.le", "")
+
 @implementation SessionSwitchingTest_1
 
-- (instancetype __nonnull)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
-                              withJavaLangBooleanArray:(IOSObjectArray *)capture$0 {
+- (instancetype)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
+                    withJavaLangBooleanArray:(IOSObjectArray *)capture$0 {
   SessionSwitchingTest_1_initWithSessionSwitchingTest_withJavaLangBooleanArray_(self, outer$, capture$0);
   return self;
 }
@@ -400,8 +402,8 @@ SessionSwitchingTest_1 *create_SessionSwitchingTest_1_initWithSessionSwitchingTe
 
 @implementation SessionSwitchingTest_2
 
-- (instancetype __nonnull)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
-                                     withNSObjectArray:(IOSObjectArray *)capture$0 {
+- (instancetype)initWithSessionSwitchingTest:(SessionSwitchingTest *)outer$
+                           withNSObjectArray:(IOSObjectArray *)capture$0 {
   SessionSwitchingTest_2_initWithSessionSwitchingTest_withNSObjectArray_(self, outer$, capture$0);
   return self;
 }
@@ -484,7 +486,7 @@ SessionSwitchingTest_2 *create_SessionSwitchingTest_2_initWithSessionSwitchingTe
 
 @implementation SessionSwitchingTest_3
 
-- (instancetype __nonnull)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0 {
+- (instancetype)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0 {
   SessionSwitchingTest_3_initWithJavaLangBooleanArray_(self, capture$0);
   return self;
 }

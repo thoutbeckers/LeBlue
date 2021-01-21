@@ -76,7 +76,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     @Override
     public void connect() {
         unpair(remoteDevice43);
-
+        leDevice43.remoteDevices.put(remoteDevice43.getAddress(),this);
         if (gatt != null) {
             gatt.connect();
             return;
@@ -197,31 +197,27 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
                     return;
                 }
                 listeners(
-                        new L() {
-                            @Override
-                            public void l(LeRemoteDeviceListener l) {
-                                l.leDevicesConnected(leDevice43, LeRemoteDevice43.this);
-                            }
-                        });
+                        l -> l.leDevicesConnected(leDevice43, LeRemoteDevice43.this));
 
 
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
-                listeners(
-                        new L() {
-                            @Override
-                            public void l(LeRemoteDeviceListener l) {
-                                l.leDevicesDisconnected(leDevice43, LeRemoteDevice43.this);
-                                l.leDevicesClosed(leDevice43, LeRemoteDevice43.this);
-                            }
-                        });
                 this.queue.clear();
                 if (gatt != null)
                     gatt.close();
                 this.gatt = null;
+
             }
         } catch (Throwable t) {
             Log.w("LeBlue", "error during onConnectionStateChange callback", t);
         }
+    }
+
+    protected void notifyDisconnected(){
+        listeners(
+                l -> {
+                    l.leDevicesDisconnected(leDevice43, LeRemoteDevice43.this);
+                    l.leDevicesClosed(leDevice43, LeRemoteDevice43.this);
+                });
     }
 
     @Override
@@ -240,13 +236,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
                 services[i] = new LeGattService43(leDevice43, this, services43.get(i).getUuid());
 
             listeners(
-                    new L() {
-                        @Override
-                        public void l(LeRemoteDeviceListener l) {
-                            l.serviceDiscovered(leDevice43, LeRemoteDevice43.this, leDevice43.toGattStatus(status), services);
-
-                        }
-                    });
+                    l -> l.serviceDiscovered(leDevice43, LeRemoteDevice43.this, leDevice43.toGattStatus(status), services));
 
 
         } catch (Throwable t) {

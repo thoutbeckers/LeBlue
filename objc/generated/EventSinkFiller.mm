@@ -20,13 +20,13 @@
   return and__;
 }
 
-- (instancetype __nonnull)initWithListEventSinkSource:(ListEventSinkSource *)listEventSinkSource {
+- (instancetype)initWithListEventSinkSource:(ListEventSinkSource *)listEventSinkSource {
   EventSinkFiller_initWithListEventSinkSource_(self, listEventSinkSource);
   return self;
 }
 
-- (instancetype __nonnull)initWithListEventSinkSource:(ListEventSinkSource *)listEventSinkSource
-                                    withSessionObject:(SessionObject *)sessionObject {
+- (instancetype)initWithListEventSinkSource:(ListEventSinkSource *)listEventSinkSource
+                          withSessionObject:(SessionObject *)sessionObject {
   EventSinkFiller_initWithListEventSinkSource_withSessionObject_(self, listEventSinkSource, sessionObject);
   return self;
 }
@@ -207,3 +207,5 @@ EventSinkFiller *create_EventSinkFiller_initWithListEventSinkSource_withSessionO
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(EventSinkFiller)
+
+J2OBJC_NAME_MAPPING(EventSinkFiller, "houtbecke.rs.le.session", "")

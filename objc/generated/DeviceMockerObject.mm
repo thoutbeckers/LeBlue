@@ -14,8 +14,8 @@
 
 @implementation DeviceMockerObject
 
-- (instancetype __nonnull)initWithSessionObject:(SessionObject *)sessionObject
-                                        withInt:(jint)sessionSource {
+- (instancetype)initWithSessionObject:(SessionObject *)sessionObject
+                              withInt:(jint)sessionSource {
   DeviceMockerObject_initWithSessionObject_withInt_(self, sessionObject, sessionSource);
   return self;
 }
@@ -84,3 +84,5 @@ DeviceMockerObject *create_DeviceMockerObject_initWithSessionObject_withInt_(Ses
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(DeviceMockerObject)
+
+J2OBJC_NAME_MAPPING(DeviceMockerObject, "houtbecke.rs.le.session", "")

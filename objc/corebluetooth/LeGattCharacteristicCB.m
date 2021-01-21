@@ -76,7 +76,7 @@
                            forCharacteristic:_characteristic type:CBCharacteristicWriteWithoutResponse];
 
         //needed because android always sends a response
-        [_remoteDevice  characteristicWrittenJavaUtilUUID:_javaUUID LeGattCharacteristic:self];
+        [_remoteDevice  characteristicWrittenJavaUtilUUID:_javaUUID LeGattCharacteristic:self success:true];
 
     }
 

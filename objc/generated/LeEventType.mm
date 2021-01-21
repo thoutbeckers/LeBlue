@@ -324,3 +324,5 @@ LeEventType *LeEventType_fromOrdinal(NSUInteger ordinal) {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeEventType)
+
+J2OBJC_NAME_MAPPING(LeEventType, "houtbecke.rs.le.session", "")

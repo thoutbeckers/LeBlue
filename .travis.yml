@@ -6,8 +6,7 @@ matrix:
           jdk: oraclejdk8
         - os: osx
           language: generic
-          jdk: oraclejdk8
-          osx_image: xcode9
+          osx_image: xcode9.3
           cache:
             cocoapods: true
             directories:
@@ -21,8 +20,8 @@ android:
   components:
   - tools
   - platform-tools
-  - build-tools-27.0.3
-  - android-27
+  - build-tools-28.0.3
+  - android-28
   - extra-android-support
   - extra-android-m2repository
   - extra-google-m2repository
@@ -31,8 +30,8 @@ android:
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo y | android update sdk -u -a -t tools ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo y | android update sdk -u -a -t platform-tools ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo y | android update sdk -u -a -t build-tools-27.0.3 ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo y | android update sdk -u -a -t android-27 ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo y | android update sdk -u -a -t build-tools-28.0.3 ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo y | android update sdk -u -a -t android-28 ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo y | android update sdk -u -a -t extra-google-m2repository ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo y | android update sdk -u -a -t extra-android-m2repository ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then . ./etc/script/install-j2objc.sh ; export; fi

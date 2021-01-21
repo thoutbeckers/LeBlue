@@ -12,8 +12,8 @@
 
 @implementation CharacteristicsMockerObject
 
-- (instancetype __nonnull)initWithSessionObject:(SessionObject *)sessionObject
-                                        withInt:(jint)sessionSource {
+- (instancetype)initWithSessionObject:(SessionObject *)sessionObject
+                              withInt:(jint)sessionSource {
   CharacteristicsMockerObject_initWithSessionObject_withInt_(self, sessionObject, sessionSource);
   return self;
 }
@@ -107,3 +107,5 @@ CharacteristicsMockerObject *create_CharacteristicsMockerObject_initWithSessionO
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(CharacteristicsMockerObject)
+
+J2OBJC_NAME_MAPPING(CharacteristicsMockerObject, "houtbecke.rs.le.session", "")

@@ -10,8 +10,8 @@
 
 @implementation LeGattServiceMock
 
-- (instancetype __nonnull)initWithJavaLangInteger:(JavaLangInteger *)key
-                             withLeMockController:(id<LeMockController>)mockController {
+- (instancetype)initWithJavaLangInteger:(JavaLangInteger *)key
+                   withLeMockController:(id<LeMockController>)mockController {
   LeGattServiceMock_initWithJavaLangInteger_withLeMockController_(self, key, mockController);
   return self;
 }
@@ -89,3 +89,5 @@ LeGattServiceMock *create_LeGattServiceMock_initWithJavaLangInteger_withLeMockCo
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeGattServiceMock)
+
+J2OBJC_NAME_MAPPING(LeGattServiceMock, "houtbecke.rs.le.mock", "")

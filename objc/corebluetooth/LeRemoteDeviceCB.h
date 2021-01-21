@@ -41,7 +41,7 @@
 - (void) connected;
 - (void) disconnected;
 - (void) setName:(NSString *) name;
-- (void) characteristicWrittenJavaUtilUUID:(JavaUtilUUID *)uuid LeGattCharacteristic:(id<LeGattCharacteristic>) leGattCharacteristic;
+- (void) characteristicWrittenJavaUtilUUID:(JavaUtilUUID *)uuid LeGattCharacteristic:(id<LeGattCharacteristic>) leGattCharacteristic success:(Boolean)success;
 
 
 @end

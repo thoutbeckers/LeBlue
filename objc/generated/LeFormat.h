@@ -11,6 +11,7 @@
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
@@ -36,6 +37,14 @@ typedef NS_ENUM(NSUInteger, LeFormat_Enum) {
 
 @interface LeFormat : JavaLangEnum
 
+@property (readonly, class, nonnull) LeFormat *FORMAT_UINT8 NS_SWIFT_NAME(FORMAT_UINT8);
+@property (readonly, class, nonnull) LeFormat *FORMAT_UINT16 NS_SWIFT_NAME(FORMAT_UINT16);
+@property (readonly, class, nonnull) LeFormat *FORMAT_UINT32 NS_SWIFT_NAME(FORMAT_UINT32);
+@property (readonly, class, nonnull) LeFormat *FORMAT_SINT8 NS_SWIFT_NAME(FORMAT_SINT8);
+@property (readonly, class, nonnull) LeFormat *FORMAT_SINT16 NS_SWIFT_NAME(FORMAT_SINT16);
+@property (readonly, class, nonnull) LeFormat *FORMAT_SINT32 NS_SWIFT_NAME(FORMAT_SINT32);
+@property (readonly, class, nonnull) LeFormat *FORMAT_SFLOAT NS_SWIFT_NAME(FORMAT_SFLOAT);
+@property (readonly, class, nonnull) LeFormat *FORMAT_FLOAT NS_SWIFT_NAME(FORMAT_FLOAT);
 + (LeFormat * __nonnull)FORMAT_UINT8;
 
 + (LeFormat * __nonnull)FORMAT_UINT16;

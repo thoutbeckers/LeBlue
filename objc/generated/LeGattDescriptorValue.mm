@@ -57,3 +57,5 @@ LeGattDescriptorValue *LeGattDescriptorValue_fromOrdinal(NSUInteger ordinal) {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeGattDescriptorValue)
+
+J2OBJC_NAME_MAPPING(LeGattDescriptorValue, "houtbecke.rs.le", "")

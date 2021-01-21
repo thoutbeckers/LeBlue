@@ -42,8 +42,8 @@ volatile_jint MockerObject_sourceCounter = 0;
   return sessionObject_;
 }
 
-- (instancetype __nonnull)initWithSessionObject:(SessionObject *)sessionObject
-                                        withInt:(jint)sessionSource {
+- (instancetype)initWithSessionObject:(SessionObject *)sessionObject
+                              withInt:(jint)sessionSource {
   MockerObject_initWithSessionObject_withInt_(self, sessionObject, sessionSource);
   return self;
 }
@@ -405,3 +405,5 @@ MockerObject *MockerObject_newMockerWithSessionObject_withInt_(SessionObject *se
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(MockerObject)
+
+J2OBJC_NAME_MAPPING(MockerObject, "houtbecke.rs.le.session", "")

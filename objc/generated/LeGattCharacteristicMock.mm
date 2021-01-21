@@ -8,7 +8,7 @@
 
 @implementation LeGattCharacteristicMock
 
-- (instancetype __nonnull)initWithLeMockController:(id<LeMockController>)mockController {
+- (instancetype)initWithLeMockController:(id<LeMockController>)mockController {
   LeGattCharacteristicMock_initWithLeMockController_(self, mockController);
   return self;
 }
@@ -83,3 +83,5 @@ LeGattCharacteristicMock *create_LeGattCharacteristicMock_initWithLeMockControll
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeGattCharacteristicMock)
+
+J2OBJC_NAME_MAPPING(LeGattCharacteristicMock, "houtbecke.rs.le.mock", "")

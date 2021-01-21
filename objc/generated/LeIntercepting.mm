@@ -6,7 +6,7 @@
 
 @implementation LeIntercepting
 
-- (instancetype __nonnull)initWithLeInterceptor:(LeInterceptor *)leInterceptor {
+- (instancetype)initWithLeInterceptor:(LeInterceptor *)leInterceptor {
   LeIntercepting_initWithLeInterceptor_(self, leInterceptor);
   return self;
 }
@@ -49,3 +49,5 @@ LeIntercepting *create_LeIntercepting_initWithLeInterceptor_(LeInterceptor *leIn
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeIntercepting)
+
+J2OBJC_NAME_MAPPING(LeIntercepting, "houtbecke.rs.le.interceptor", "")

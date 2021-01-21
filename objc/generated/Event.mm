@@ -11,47 +11,47 @@
 
 @implementation Event
 
-- (instancetype __nonnull)initWithEventType:(id<EventType>)type
-                       withBaseIntercepting:(BaseIntercepting *)source
-                          withNSStringArray:(IOSObjectArray *)values {
+- (instancetype)initWithEventType:(id<EventType>)type
+             withBaseIntercepting:(BaseIntercepting *)source
+                withNSStringArray:(IOSObjectArray *)values {
   Event_initWithEventType_withBaseIntercepting_withNSStringArray_(self, type, source, values);
   return self;
 }
 
-- (instancetype __nonnull)initWithEventType:(id<EventType>)type
-                                    withInt:(jint)delay
-                       withBaseIntercepting:(BaseIntercepting *)source
-                          withNSStringArray:(IOSObjectArray *)values {
+- (instancetype)initWithEventType:(id<EventType>)type
+                          withInt:(jint)delay
+             withBaseIntercepting:(BaseIntercepting *)source
+                withNSStringArray:(IOSObjectArray *)values {
   Event_initWithEventType_withInt_withBaseIntercepting_withNSStringArray_(self, type, delay, source, values);
   return self;
 }
 
-- (instancetype __nonnull)initWithEventType:(id<EventType>)type
-                                    withInt:(jint)source
-                                withBoolean:(jboolean)value {
+- (instancetype)initWithEventType:(id<EventType>)type
+                          withInt:(jint)source
+                      withBoolean:(jboolean)value {
   Event_initWithEventType_withInt_withBoolean_(self, type, source, value);
   return self;
 }
 
-- (instancetype __nonnull)initWithEventType:(id<EventType>)type
-                                    withInt:(jint)delay
-                                    withInt:(jint)source
-                                withBoolean:(jboolean)value {
+- (instancetype)initWithEventType:(id<EventType>)type
+                          withInt:(jint)delay
+                          withInt:(jint)source
+                      withBoolean:(jboolean)value {
   Event_initWithEventType_withInt_withInt_withBoolean_(self, type, delay, source, value);
   return self;
 }
 
-- (instancetype __nonnull)initWithEventType:(id<EventType>)type
-                                    withInt:(jint)source
-                          withNSStringArray:(IOSObjectArray *)values {
+- (instancetype)initWithEventType:(id<EventType>)type
+                          withInt:(jint)source
+                withNSStringArray:(IOSObjectArray *)values {
   Event_initWithEventType_withInt_withNSStringArray_(self, type, source, values);
   return self;
 }
 
-- (instancetype __nonnull)initWithEventType:(id<EventType>)type
-                                    withInt:(jint)delay
-                                    withInt:(jint)source
-                          withNSStringArray:(IOSObjectArray *)values {
+- (instancetype)initWithEventType:(id<EventType>)type
+                          withInt:(jint)delay
+                          withInt:(jint)source
+                withNSStringArray:(IOSObjectArray *)values {
   Event_initWithEventType_withInt_withInt_withNSStringArray_(self, type, delay, source, values);
   return self;
 }
@@ -200,3 +200,5 @@ Event *create_Event_initWithEventType_withInt_withInt_withNSStringArray_(id<Even
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(Event)
+
+J2OBJC_NAME_MAPPING(Event, "houtbecke.rs.le.session", "")

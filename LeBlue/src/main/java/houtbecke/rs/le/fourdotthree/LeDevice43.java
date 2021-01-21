@@ -12,7 +12,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.ParcelUuid;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -77,7 +77,6 @@ public class LeDevice43 implements LeDevice {
     Collection<LeDeviceListener> listeners = new HashSet<>();
     private final ReadWriteLock listenerReadWriteLock = new ReentrantReadWriteLock();
 
-
     private interface L {
         void l(LeDeviceListener l);
     }
@@ -128,7 +127,10 @@ public class LeDevice43 implements LeDevice {
             if (bluetoothAdapter == null) {
                 throw new BleException("Bluetooth Adapter not found");
             }
-            IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+            filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
+            filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
             context.registerReceiver(receiver, filter);
 
         } catch (BleException ble) {
@@ -142,6 +144,7 @@ public class LeDevice43 implements LeDevice {
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
+            BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
             if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
                 final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE,
@@ -161,13 +164,14 @@ public class LeDevice43 implements LeDevice {
 
                 final LeDeviceState finalLeDeviceState = deviceState;
                 listeners(
-                new L() {
-                    @Override
-                    public void l(LeDeviceListener l) {
-                        l.leDeviceState(LeDevice43.this, finalLeDeviceState);
-                    }
-                });
+                        l -> l.leDeviceState(LeDevice43.this, finalLeDeviceState));
 
+            }  else if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
+            } else if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
+
+                final LeRemoteDevice43 remoteDevice43 = remoteDevices.remove(device.getAddress());
+                if (remoteDevice43 != null)
+                    remoteDevice43.notifyDisconnected();
             }
         }
     };
@@ -206,15 +210,9 @@ public class LeDevice43 implements LeDevice {
         @Override
         public void onLeScan(final BluetoothDevice device, final int rssi, final byte[] scanRecord) {
             final LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, device);
-            log(Log.INFO,"LeBlue", "scan record: " + LeUtil.bytesToString(scanRecord));
 
             listeners(
-                    new L() {
-                        @Override
-                        public void l(LeDeviceListener l) {
-                            l.leDeviceFound(LeDevice43.this, device43, rssi, LeUtil.parseLeScanRecord(scanRecord));
-                        }
-                    });
+                    l -> l.leDeviceFound(LeDevice43.this, device43, rssi, LeUtil.parseLeScanRecord(scanRecord)));
 
 
         }
@@ -240,12 +238,7 @@ public class LeDevice43 implements LeDevice {
         void sendScanResult(final ScanResult result){
             final LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, result.getDevice());
             listeners(
-                    new L() {
-                        @Override
-                        public void l(LeDeviceListener l) {
-                            l.leDeviceFound(LeDevice43.this, device43, result.getRssi(), LeUtil.parseLeScanRecord(result.getScanRecord().getBytes()));
-                        }
-                    });
+                    l -> l.leDeviceFound(LeDevice43.this, device43, result.getRssi(), LeUtil.parseLeScanRecord(result.getScanRecord().getBytes())));
 
         }
 
@@ -322,7 +315,7 @@ public class LeDevice43 implements LeDevice {
         return bluetoothAdapter.getAddress().hashCode();
     }
 
-    private Map<String, LeRemoteDevice43> remoteDevices = new LinkedHashMap<String, LeRemoteDevice43>();
+    protected Map<String, LeRemoteDevice43> remoteDevices = new LinkedHashMap<String, LeRemoteDevice43>();
 
     final BluetoothManager mBluetoothManager;
     final BluetoothAdapter bluetoothAdapter;

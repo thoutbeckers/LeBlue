@@ -21,13 +21,13 @@ __attribute__((unused)) static void ListEventSinkSource_correctDelay(ListEventSi
 @implementation ListEventSinkSource
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   ListEventSinkSource_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
 
-- (instancetype __nonnull)initWithInt:(jint)limit {
+- (instancetype)initWithInt:(jint)limit {
   ListEventSinkSource_initWithInt_(self, limit);
   return self;
 }
@@ -184,3 +184,5 @@ void ListEventSinkSource_correctDelay(ListEventSinkSource *self) {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ListEventSinkSource)
+
+J2OBJC_NAME_MAPPING(ListEventSinkSource, "houtbecke.rs.le.session", "")

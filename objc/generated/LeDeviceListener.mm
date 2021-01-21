@@ -27,3 +27,5 @@
 @end
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(LeDeviceListener)
+
+J2OBJC_NAME_MAPPING(LeDeviceListener, "houtbecke.rs.le", "")

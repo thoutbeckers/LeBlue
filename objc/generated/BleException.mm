@@ -5,13 +5,13 @@
 
 @implementation BleException
 
-- (instancetype __nonnull)initWithNSString:(NSString *)message
-                     withJavaLangException:(JavaLangException *)e {
+- (instancetype)initWithNSString:(NSString *)message
+           withJavaLangException:(JavaLangException *)e {
   BleException_initWithNSString_withJavaLangException_(self, message, e);
   return self;
 }
 
-- (instancetype __nonnull)initWithNSString:(NSString *)message {
+- (instancetype)initWithNSString:(NSString *)message {
   BleException_initWithNSString_(self, message);
   return self;
 }
@@ -59,3 +59,5 @@ BleException *create_BleException_initWithNSString_(NSString *message) {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(BleException)
+
+J2OBJC_NAME_MAPPING(BleException, "houtbecke.rs.le", "")

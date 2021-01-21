@@ -25,3 +25,5 @@
 @end
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(EventSinkUtil)
+
+J2OBJC_NAME_MAPPING(EventSinkUtil, "houtbecke.rs.le.interceptor", "")

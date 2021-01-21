@@ -20,8 +20,8 @@
   IOSByteArray *val$record_;
 }
 
-- (instancetype __nonnull)initWithInt:(jint)capture$0
-                        withByteArray:(IOSByteArray *)capture$1;
+- (instancetype)initWithInt:(jint)capture$0
+              withByteArray:(IOSByteArray *)capture$1;
 
 - (jint)getType;
 
@@ -39,7 +39,7 @@ __attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_ini
 
 @implementation LeScanRecordImpl
 
-- (instancetype __nonnull)initWithByteArray:(IOSByteArray *)scanrecord {
+- (instancetype)initWithByteArray:(IOSByteArray *)scanrecord {
   LeScanRecordImpl_initWithByteArray_(self, scanrecord);
   return self;
 }
@@ -211,10 +211,12 @@ LeScanRecordImpl *create_LeScanRecordImpl_initWithByteArray_(IOSByteArray *scanr
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeScanRecordImpl)
 
+J2OBJC_NAME_MAPPING(LeScanRecordImpl, "houtbecke.rs.le", "")
+
 @implementation LeScanRecordImpl_1
 
-- (instancetype __nonnull)initWithInt:(jint)capture$0
-                        withByteArray:(IOSByteArray *)capture$1 {
+- (instancetype)initWithInt:(jint)capture$0
+              withByteArray:(IOSByteArray *)capture$1 {
   LeScanRecordImpl_1_initWithInt_withByteArray_(self, capture$0, capture$1);
   return self;
 }

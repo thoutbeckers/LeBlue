@@ -25,7 +25,7 @@ IOSCharArray *LeUtil_hexArray;
 }
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   LeUtil_init(self);
   return self;
 }
@@ -246,3 +246,5 @@ id<LeScanRecord> LeUtil_parseLeScanRecordWithByteArray_(IOSByteArray *scanrecord
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeUtil)
+
+J2OBJC_NAME_MAPPING(LeUtil, "houtbecke.rs.le", "")

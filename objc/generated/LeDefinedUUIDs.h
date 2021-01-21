@@ -11,6 +11,7 @@
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
@@ -45,6 +46,15 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs)
 @class JavaUtilUUID;
 
 @interface LeDefinedUUIDs_Service : NSObject
+@property (readonly, class, strong) JavaUtilUUID *HEART_RATE NS_SWIFT_NAME(HEART_RATE);
+@property (readonly, class, strong) JavaUtilUUID *CYCLING_POWER NS_SWIFT_NAME(CYCLING_POWER);
+@property (readonly, class, strong) JavaUtilUUID *CYCLING_SPEED_AND_CADENCE NS_SWIFT_NAME(CYCLING_SPEED_AND_CADENCE);
+@property (readonly, class, strong) JavaUtilUUID *RUNNING_SPEED_AND_CADENCE NS_SWIFT_NAME(RUNNING_SPEED_AND_CADENCE);
+@property (readonly, class, strong) JavaUtilUUID *FITNESS_MACHINE NS_SWIFT_NAME(FITNESS_MACHINE);
+@property (readonly, class, strong) JavaUtilUUID *BATTERY NS_SWIFT_NAME(BATTERY);
+@property (readonly, class, strong) JavaUtilUUID *DEVICE_INFORMATION NS_SWIFT_NAME(DEVICE_INFORMATION);
+@property (readonly, class, strong) JavaUtilUUID *GENERIC_ATTRIBUTE NS_SWIFT_NAME(GENERIC_ATTRIBUTE);
+@property (readonly, class, strong) JavaUtilUUID *GENERIC_ACCESS NS_SWIFT_NAME(GENERIC_ACCESS);
 
 + (JavaUtilUUID *)HEART_RATE;
 
@@ -61,6 +71,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs)
 + (JavaUtilUUID *)DEVICE_INFORMATION;
 
 + (JavaUtilUUID *)GENERIC_ATTRIBUTE;
+
++ (JavaUtilUUID *)GENERIC_ACCESS;
 
 #pragma mark Public
 
@@ -110,6 +122,11 @@ inline JavaUtilUUID *LeDefinedUUIDs_Service_get_GENERIC_ATTRIBUTE(void);
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, GENERIC_ATTRIBUTE, JavaUtilUUID *)
 
+inline JavaUtilUUID *LeDefinedUUIDs_Service_get_GENERIC_ACCESS(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Service_GENERIC_ACCESS;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Service, GENERIC_ACCESS, JavaUtilUUID *)
+
 FOUNDATION_EXPORT void LeDefinedUUIDs_Service_init(LeDefinedUUIDs_Service *self);
 
 FOUNDATION_EXPORT LeDefinedUUIDs_Service *new_LeDefinedUUIDs_Service_init(void) NS_RETURNS_RETAINED;
@@ -126,6 +143,34 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Service)
 @class JavaUtilUUID;
 
 @interface LeDefinedUUIDs_Characteristic : NSObject
+@property (readonly, class, strong) JavaUtilUUID *HEART_RATE_MEASUREMENT NS_SWIFT_NAME(HEART_RATE_MEASUREMENT);
+@property (readonly, class, strong) JavaUtilUUID *MANUFACTURER_STRING NS_SWIFT_NAME(MANUFACTURER_STRING);
+@property (readonly, class, strong) JavaUtilUUID *MODEL_NUMBER_STRING NS_SWIFT_NAME(MODEL_NUMBER_STRING);
+@property (readonly, class, strong) JavaUtilUUID *SERIAL_NUMBER_STRING NS_SWIFT_NAME(SERIAL_NUMBER_STRING);
+@property (readonly, class, strong) JavaUtilUUID *FIRMWARE_REVISION_STRING NS_SWIFT_NAME(FIRMWARE_REVISION_STRING);
+@property (readonly, class, strong) JavaUtilUUID *HARDWARE_REVISION_STRING NS_SWIFT_NAME(HARDWARE_REVISION_STRING);
+@property (readonly, class, strong) JavaUtilUUID *APPEARANCE NS_SWIFT_NAME(APPEARANCE);
+@property (readonly, class, strong) JavaUtilUUID *BODY_SENSOR_LOCATION NS_SWIFT_NAME(BODY_SENSOR_LOCATION);
+@property (readonly, class, strong) JavaUtilUUID *BATTERY_LEVEL NS_SWIFT_NAME(BATTERY_LEVEL);
+@property (readonly, class, strong) JavaUtilUUID *SENSOR_LOCATION NS_SWIFT_NAME(SENSOR_LOCATION);
+@property (readonly, class, strong) JavaUtilUUID *CYCLING_POWER_MEASUREMENT NS_SWIFT_NAME(CYCLING_POWER_MEASUREMENT);
+@property (readonly, class, strong) JavaUtilUUID *CYCLING_POWER_VECTOR NS_SWIFT_NAME(CYCLING_POWER_VECTOR);
+@property (readonly, class, strong) JavaUtilUUID *CYCLING_POWER_FEATURE NS_SWIFT_NAME(CYCLING_POWER_FEATURE);
+@property (readonly, class, strong) JavaUtilUUID *CYCLING_POWER_CONTROL_POINT NS_SWIFT_NAME(CYCLING_POWER_CONTROL_POINT);
+@property (readonly, class, strong) JavaUtilUUID *CSC_MEASUREMENT NS_SWIFT_NAME(CSC_MEASUREMENT);
+@property (readonly, class, strong) JavaUtilUUID *CSC_FEATURE NS_SWIFT_NAME(CSC_FEATURE);
+@property (readonly, class, strong) JavaUtilUUID *SERVICE_CHANGED NS_SWIFT_NAME(SERVICE_CHANGED);
+@property (readonly, class, strong) JavaUtilUUID *FITNESS_MACHINE_FEATURE NS_SWIFT_NAME(FITNESS_MACHINE_FEATURE);
+@property (readonly, class, strong) JavaUtilUUID *INDOOR_BIKE_DATA NS_SWIFT_NAME(INDOOR_BIKE_DATA);
+@property (readonly, class, strong) JavaUtilUUID *TRAINING_STATUS NS_SWIFT_NAME(TRAINING_STATUS);
+@property (readonly, class, strong) JavaUtilUUID *SUPPORTED_SPEED_RANGE NS_SWIFT_NAME(SUPPORTED_SPEED_RANGE);
+@property (readonly, class, strong) JavaUtilUUID *SUPPORTED_INCLINATION_RANGE NS_SWIFT_NAME(SUPPORTED_INCLINATION_RANGE);
+@property (readonly, class, strong) JavaUtilUUID *SUPPORTED_RESISTANCE_LEVEL_RANGE NS_SWIFT_NAME(SUPPORTED_RESISTANCE_LEVEL_RANGE);
+@property (readonly, class, strong) JavaUtilUUID *SUPPORTED_HEART_RATE_RANGE NS_SWIFT_NAME(SUPPORTED_HEART_RATE_RANGE);
+@property (readonly, class, strong) JavaUtilUUID *SUPPORTED_POWER_RANGE NS_SWIFT_NAME(SUPPORTED_POWER_RANGE);
+@property (readonly, class, strong) JavaUtilUUID *FITNESS_MACHINE_CONTROL_POINT NS_SWIFT_NAME(FITNESS_MACHINE_CONTROL_POINT);
+@property (readonly, class, strong) JavaUtilUUID *FITNESS_MACHINE_STATUS NS_SWIFT_NAME(FITNESS_MACHINE_STATUS);
+@property (readonly, class, strong) JavaUtilUUID *DEVICE_NAME NS_SWIFT_NAME(DEVICE_NAME);
 
 + (JavaUtilUUID *)HEART_RATE_MEASUREMENT;
 
@@ -180,6 +225,8 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Service)
 + (JavaUtilUUID *)FITNESS_MACHINE_CONTROL_POINT;
 
 + (JavaUtilUUID *)FITNESS_MACHINE_STATUS;
+
++ (JavaUtilUUID *)DEVICE_NAME;
 
 #pragma mark Public
 
@@ -324,6 +371,11 @@ inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_FITNESS_MACHINE_STATUS(vo
 FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_STATUS;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, FITNESS_MACHINE_STATUS, JavaUtilUUID *)
 
+inline JavaUtilUUID *LeDefinedUUIDs_Characteristic_get_DEVICE_NAME(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilUUID *LeDefinedUUIDs_Characteristic_DEVICE_NAME;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(LeDefinedUUIDs_Characteristic, DEVICE_NAME, JavaUtilUUID *)
+
 FOUNDATION_EXPORT void LeDefinedUUIDs_Characteristic_init(LeDefinedUUIDs_Characteristic *self);
 
 FOUNDATION_EXPORT LeDefinedUUIDs_Characteristic *new_LeDefinedUUIDs_Characteristic_init(void) NS_RETURNS_RETAINED;
@@ -340,6 +392,7 @@ J2OBJC_TYPE_LITERAL_HEADER(LeDefinedUUIDs_Characteristic)
 @class JavaUtilUUID;
 
 @interface LeDefinedUUIDs_Descriptor : NSObject
+@property (readonly, class, strong) JavaUtilUUID *CHAR_CLIENT_CONFIG NS_SWIFT_NAME(CHAR_CLIENT_CONFIG);
 
 + (JavaUtilUUID *)CHAR_CLIENT_CONFIG;
 

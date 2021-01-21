@@ -89,3 +89,5 @@
 @end
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(LeMockController)
+
+J2OBJC_NAME_MAPPING(LeMockController, "houtbecke.rs.le.mock", "")

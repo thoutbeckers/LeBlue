@@ -6,7 +6,7 @@
 @implementation LeDefinedUUIDs
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   LeDefinedUUIDs_init(self);
   return self;
 }
@@ -42,6 +42,8 @@ LeDefinedUUIDs *create_LeDefinedUUIDs_init() {
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeDefinedUUIDs)
 
+J2OBJC_NAME_MAPPING(LeDefinedUUIDs, "houtbecke.rs.le", "")
+
 J2OBJC_INITIALIZED_DEFN(LeDefinedUUIDs_Service)
 
 JavaUtilUUID *LeDefinedUUIDs_Service_HEART_RATE;
@@ -52,6 +54,7 @@ JavaUtilUUID *LeDefinedUUIDs_Service_FITNESS_MACHINE;
 JavaUtilUUID *LeDefinedUUIDs_Service_BATTERY;
 JavaUtilUUID *LeDefinedUUIDs_Service_DEVICE_INFORMATION;
 JavaUtilUUID *LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE;
+JavaUtilUUID *LeDefinedUUIDs_Service_GENERIC_ACCESS;
 
 @implementation LeDefinedUUIDs_Service
 
@@ -87,8 +90,12 @@ JavaUtilUUID *LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE;
   return LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE;
 }
 
++ (JavaUtilUUID *)GENERIC_ACCESS {
+  return LeDefinedUUIDs_Service_GENERIC_ACCESS;
+}
+
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   LeDefinedUUIDs_Service_init(self);
   return self;
 }
@@ -112,9 +119,10 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "BATTERY", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 5, -1, -1 },
     { "DEVICE_INFORMATION", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 6, -1, -1 },
     { "GENERIC_ATTRIBUTE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 7, -1, -1 },
+    { "GENERIC_ACCESS", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 8, -1, -1 },
   };
-  static const void *ptrTable[] = { &LeDefinedUUIDs_Service_HEART_RATE, &LeDefinedUUIDs_Service_CYCLING_POWER, &LeDefinedUUIDs_Service_CYCLING_SPEED_AND_CADENCE, &LeDefinedUUIDs_Service_RUNNING_SPEED_AND_CADENCE, &LeDefinedUUIDs_Service_FITNESS_MACHINE, &LeDefinedUUIDs_Service_BATTERY, &LeDefinedUUIDs_Service_DEVICE_INFORMATION, &LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE, "LLeDefinedUUIDs;" };
-  static const J2ObjcClassInfo _LeDefinedUUIDs_Service = { "Service", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x9, 1, 8, 8, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { &LeDefinedUUIDs_Service_HEART_RATE, &LeDefinedUUIDs_Service_CYCLING_POWER, &LeDefinedUUIDs_Service_CYCLING_SPEED_AND_CADENCE, &LeDefinedUUIDs_Service_RUNNING_SPEED_AND_CADENCE, &LeDefinedUUIDs_Service_FITNESS_MACHINE, &LeDefinedUUIDs_Service_BATTERY, &LeDefinedUUIDs_Service_DEVICE_INFORMATION, &LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE, &LeDefinedUUIDs_Service_GENERIC_ACCESS, "LLeDefinedUUIDs;" };
+  static const J2ObjcClassInfo _LeDefinedUUIDs_Service = { "Service", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x9, 1, 9, 9, -1, -1, -1, -1 };
   return &_LeDefinedUUIDs_Service;
 }
 
@@ -128,6 +136,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     JreStrongAssign(&LeDefinedUUIDs_Service_BATTERY, JavaUtilUUID_fromStringWithNSString_(@"0000180f-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Service_DEVICE_INFORMATION, JavaUtilUUID_fromStringWithNSString_(@"0000180a-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Service_GENERIC_ATTRIBUTE, JavaUtilUUID_fromStringWithNSString_(@"00001801-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Service_GENERIC_ACCESS, JavaUtilUUID_fromStringWithNSString_(@"00001800-0000-1000-8000-00805f9b34fb"));
     J2OBJC_SET_INITIALIZED(LeDefinedUUIDs_Service)
   }
 }
@@ -177,6 +186,7 @@ JavaUtilUUID *LeDefinedUUIDs_Characteristic_SUPPORTED_HEART_RATE_RANGE;
 JavaUtilUUID *LeDefinedUUIDs_Characteristic_SUPPORTED_POWER_RANGE;
 JavaUtilUUID *LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_CONTROL_POINT;
 JavaUtilUUID *LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_STATUS;
+JavaUtilUUID *LeDefinedUUIDs_Characteristic_DEVICE_NAME;
 
 @implementation LeDefinedUUIDs_Characteristic
 
@@ -288,8 +298,12 @@ JavaUtilUUID *LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_STATUS;
   return LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_STATUS;
 }
 
++ (JavaUtilUUID *)DEVICE_NAME {
+  return LeDefinedUUIDs_Characteristic_DEVICE_NAME;
+}
+
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   LeDefinedUUIDs_Characteristic_init(self);
   return self;
 }
@@ -332,9 +346,10 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "SUPPORTED_POWER_RANGE", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 24, -1, -1 },
     { "FITNESS_MACHINE_CONTROL_POINT", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 25, -1, -1 },
     { "FITNESS_MACHINE_STATUS", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 26, -1, -1 },
+    { "DEVICE_NAME", "LJavaUtilUUID;", .constantValue.asLong = 0, 0x19, -1, 27, -1, -1 },
   };
-  static const void *ptrTable[] = { &LeDefinedUUIDs_Characteristic_HEART_RATE_MEASUREMENT, &LeDefinedUUIDs_Characteristic_MANUFACTURER_STRING, &LeDefinedUUIDs_Characteristic_MODEL_NUMBER_STRING, &LeDefinedUUIDs_Characteristic_SERIAL_NUMBER_STRING, &LeDefinedUUIDs_Characteristic_FIRMWARE_REVISION_STRING, &LeDefinedUUIDs_Characteristic_HARDWARE_REVISION_STRING, &LeDefinedUUIDs_Characteristic_APPEARANCE, &LeDefinedUUIDs_Characteristic_BODY_SENSOR_LOCATION, &LeDefinedUUIDs_Characteristic_BATTERY_LEVEL, &LeDefinedUUIDs_Characteristic_SENSOR_LOCATION, &LeDefinedUUIDs_Characteristic_CYCLING_POWER_MEASUREMENT, &LeDefinedUUIDs_Characteristic_CYCLING_POWER_VECTOR, &LeDefinedUUIDs_Characteristic_CYCLING_POWER_FEATURE, &LeDefinedUUIDs_Characteristic_CYCLING_POWER_CONTROL_POINT, &LeDefinedUUIDs_Characteristic_CSC_MEASUREMENT, &LeDefinedUUIDs_Characteristic_CSC_FEATURE, &LeDefinedUUIDs_Characteristic_SERVICE_CHANGED, &LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_FEATURE, &LeDefinedUUIDs_Characteristic_INDOOR_BIKE_DATA, &LeDefinedUUIDs_Characteristic_TRAINING_STATUS, &LeDefinedUUIDs_Characteristic_SUPPORTED_SPEED_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_INCLINATION_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_RESISTANCE_LEVEL_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_HEART_RATE_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_POWER_RANGE, &LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_CONTROL_POINT, &LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_STATUS, "LLeDefinedUUIDs;" };
-  static const J2ObjcClassInfo _LeDefinedUUIDs_Characteristic = { "Characteristic", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x9, 1, 27, 27, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { &LeDefinedUUIDs_Characteristic_HEART_RATE_MEASUREMENT, &LeDefinedUUIDs_Characteristic_MANUFACTURER_STRING, &LeDefinedUUIDs_Characteristic_MODEL_NUMBER_STRING, &LeDefinedUUIDs_Characteristic_SERIAL_NUMBER_STRING, &LeDefinedUUIDs_Characteristic_FIRMWARE_REVISION_STRING, &LeDefinedUUIDs_Characteristic_HARDWARE_REVISION_STRING, &LeDefinedUUIDs_Characteristic_APPEARANCE, &LeDefinedUUIDs_Characteristic_BODY_SENSOR_LOCATION, &LeDefinedUUIDs_Characteristic_BATTERY_LEVEL, &LeDefinedUUIDs_Characteristic_SENSOR_LOCATION, &LeDefinedUUIDs_Characteristic_CYCLING_POWER_MEASUREMENT, &LeDefinedUUIDs_Characteristic_CYCLING_POWER_VECTOR, &LeDefinedUUIDs_Characteristic_CYCLING_POWER_FEATURE, &LeDefinedUUIDs_Characteristic_CYCLING_POWER_CONTROL_POINT, &LeDefinedUUIDs_Characteristic_CSC_MEASUREMENT, &LeDefinedUUIDs_Characteristic_CSC_FEATURE, &LeDefinedUUIDs_Characteristic_SERVICE_CHANGED, &LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_FEATURE, &LeDefinedUUIDs_Characteristic_INDOOR_BIKE_DATA, &LeDefinedUUIDs_Characteristic_TRAINING_STATUS, &LeDefinedUUIDs_Characteristic_SUPPORTED_SPEED_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_INCLINATION_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_RESISTANCE_LEVEL_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_HEART_RATE_RANGE, &LeDefinedUUIDs_Characteristic_SUPPORTED_POWER_RANGE, &LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_CONTROL_POINT, &LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_STATUS, &LeDefinedUUIDs_Characteristic_DEVICE_NAME, "LLeDefinedUUIDs;" };
+  static const J2ObjcClassInfo _LeDefinedUUIDs_Characteristic = { "Characteristic", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x9, 1, 28, 28, -1, -1, -1, -1 };
   return &_LeDefinedUUIDs_Characteristic;
 }
 
@@ -367,6 +382,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     JreStrongAssign(&LeDefinedUUIDs_Characteristic_SUPPORTED_POWER_RANGE, JavaUtilUUID_fromStringWithNSString_(@"00002ad8-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_CONTROL_POINT, JavaUtilUUID_fromStringWithNSString_(@"00002ad9-0000-1000-8000-00805f9b34fb"));
     JreStrongAssign(&LeDefinedUUIDs_Characteristic_FITNESS_MACHINE_STATUS, JavaUtilUUID_fromStringWithNSString_(@"00002ada-0000-1000-8000-00805f9b34fb"));
+    JreStrongAssign(&LeDefinedUUIDs_Characteristic_DEVICE_NAME, JavaUtilUUID_fromStringWithNSString_(@"00002a00-0000-1000-8000-00805f9b34fb"));
     J2OBJC_SET_INITIALIZED(LeDefinedUUIDs_Characteristic)
   }
 }
@@ -398,7 +414,7 @@ JavaUtilUUID *LeDefinedUUIDs_Descriptor_CHAR_CLIENT_CONFIG;
 }
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype __nonnull)init {
+- (instancetype)init {
   LeDefinedUUIDs_Descriptor_init(self);
   return self;
 }

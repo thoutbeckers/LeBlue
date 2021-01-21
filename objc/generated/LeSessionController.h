@@ -11,6 +11,7 @@
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
@@ -79,6 +80,7 @@
   id<JavaUtilMap> characteristicsKeys_;
   id<JavaUtilMap> remoteDeviceListeners_;
 }
+@property (readonly, copy, class) NSString *TAG NS_SWIFT_NAME(TAG);
 
 + (NSString *)TAG;
 
@@ -363,6 +365,10 @@ typedef NS_ENUM(NSUInteger, LeSessionController_SourceType_Enum) {
 
 @interface LeSessionController_SourceType : JavaLangEnum
 
+@property (readonly, class, nonnull) LeSessionController_SourceType *device NS_SWIFT_NAME(device);
+@property (readonly, class, nonnull) LeSessionController_SourceType *remoteDevice NS_SWIFT_NAME(remoteDevice);
+@property (readonly, class, nonnull) LeSessionController_SourceType *gattService NS_SWIFT_NAME(gattService);
+@property (readonly, class, nonnull) LeSessionController_SourceType *gattCharacteristic NS_SWIFT_NAME(gattCharacteristic);
 + (LeSessionController_SourceType * __nonnull)device;
 
 + (LeSessionController_SourceType * __nonnull)remoteDevice;
