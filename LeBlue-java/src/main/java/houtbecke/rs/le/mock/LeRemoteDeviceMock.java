@@ -88,6 +88,11 @@ public class LeRemoteDeviceMock implements LeRemoteDevice {
     }
 
     @Override
+    public void unpair() {
+
+    }
+
+    @Override
     public boolean equals(Object o) {
         // if the device we are comparing with is wrapped by an intercepting device use the root device to compare
         while (o instanceof InterceptingLeRemoteDevice)

@@ -72,4 +72,9 @@ public class DummyLeRemoteDevice implements LeRemoteDevice {
     public void refreshDeviceCache() {
 
     }
+
+    @Override
+    public void unpair() {
+
+    }
 }

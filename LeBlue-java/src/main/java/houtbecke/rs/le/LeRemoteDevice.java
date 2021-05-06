@@ -1,6 +1,5 @@
 package houtbecke.rs.le;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface LeRemoteDevice {
@@ -30,4 +29,6 @@ public interface LeRemoteDevice {
     void readRssi();
 
     void refreshDeviceCache();
+
+    void unpair();
     }
