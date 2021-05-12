@@ -122,10 +122,10 @@ task removeHeader  {
 
             //remove generated comments
 
-            contents = contents.substring(contents.indexOf('\n') + 1);
-            contents = contents.substring(contents.indexOf('\n') + 1);
-            contents = contents.substring(contents.indexOf('\n') + 1);
-            contents = contents.substring(contents.indexOf('\n') + 1);
+            contents = contents.substring(contents.indexOf('\n') + 1)
+            contents = contents.substring(contents.indexOf('\n') + 1)
+            contents = contents.substring(contents.indexOf('\n') + 1)
+            contents = contents.substring(contents.indexOf('\n') + 1)
 
             new File(file.path).write(contents, 'UTF-8')
         }
