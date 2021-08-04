@@ -12,8 +12,9 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.ParcelUuid;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
+
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,7 +25,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-
 
 import javax.inject.Inject;
 
@@ -206,7 +206,7 @@ public class LeDevice43 implements LeDevice {
 	}
 
     /* defines callback for scanning results */
-    private BluetoothAdapter.LeScanCallback deviceFoundCallback = new BluetoothAdapter.LeScanCallback() {
+    private final BluetoothAdapter.LeScanCallback deviceFoundCallback = new BluetoothAdapter.LeScanCallback() {
         @Override
         public void onLeScan(final BluetoothDevice device, final int rssi, final byte[] scanRecord) {
             final LeRemoteDevice43 device43 = new LeRemoteDevice43(LeDevice43.this, device);
@@ -214,23 +214,23 @@ public class LeDevice43 implements LeDevice {
             listeners(
                     l -> l.leDeviceFound(LeDevice43.this, device43, rssi, LeUtil.parseLeScanRecord(scanRecord)));
 
-
         }
     };
 
-
     /* defines callback for scanning results */
-    private ScanCallback scanCallback = new ScanCallback() {
-        public void onBatchScanResults(List<ScanResult> results){
-            for (ScanResult result :results){
+    private final ScanCallback scanCallback = new ScanCallback() {
+        public void onBatchScanResults(List<ScanResult> results) {
+            for (ScanResult result : results) {
                 sendScanResult(result);
 
             }
         }
-        public void	onScanFailed(int errorCode){
-            log(Log.ERROR,"LeBlue", "scan record: " + "onScanFailed: " + errorCode);
+
+        public void onScanFailed(int errorCode) {
+            log(Log.ERROR, "LeBlue", "scan record: " + "onScanFailed: " + errorCode);
         }
-        public void	onScanResult(int callbackType, ScanResult result){
+
+        public void onScanResult(int callbackType, ScanResult result) {
             if (callbackType==CALLBACK_TYPE_MATCH_LOST) return;
                 sendScanResult(result);
             }
@@ -283,15 +283,7 @@ public class LeDevice43 implements LeDevice {
         startScanning(scanner, scanFilters);
     }
 
-    private void startScanning(final BluetoothLeScannerCompat scanner, final List<ScanFilter> scanFilters) {
-        final ScanSettings settings = new ScanSettings.Builder()
-                .setScanMode(ScanSettings.SCAN_MODE_BALANCED)
-                .setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
-                .setUseHardwareBatchingIfSupported(false)
-                .setUseHardwareFilteringIfSupported(false)//scanning with filters is unreliable on some older samsung phones
-                .build();
-        scanner.startScan(scanFilters, settings, scanCallback);
-    }
+    private final Handler mTimerHandler = new Handler();
 
     @Override
 	public void stopScanning() {
@@ -320,10 +312,18 @@ public class LeDevice43 implements LeDevice {
     final BluetoothManager mBluetoothManager;
     final BluetoothAdapter bluetoothAdapter;
 
-    private Handler mTimerHandler = new Handler();
+    private void startScanning(final BluetoothLeScannerCompat scanner, final List<ScanFilter> scanFilters) {
+        final ScanSettings settings = new ScanSettings.Builder()
+                .setScanMode(ScanSettings.SCAN_MODE_BALANCED)
+                .setNumOfMatches(ScanSettings.MATCH_NUM_MAX_ADVERTISEMENT)
+                .setUseHardwareBatchingIfSupported(false)
+                .setUseHardwareFilteringIfSupported(false)//scanning with filters is unreliable on some older samsung phones
+                .build();
+        scanner.startScan(scanFilters, settings, scanCallback);
+    }
 
     LeGattStatus toGattStatus(int status) {
-        switch(status) {
+        switch (status) {
             case BluetoothGatt.GATT_SUCCESS:
                 return LeGattStatus.SUCCESS;
             case BluetoothGatt.GATT_READ_NOT_PERMITTED:
