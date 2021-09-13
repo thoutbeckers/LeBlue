@@ -56,13 +56,13 @@ public class SessionSwitchingTest {
         final Boolean[] foundRemoteDevice  = new Boolean[1];
         foundRemoteDevice[0] =false;
 
-        ((LeDeviceMock) device).addListener(new LeDeviceListener() {
+        device.addListener(new LeDeviceListener() {
             @Override
             public void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, LeScanRecord scanRecord) {
                 assert getDevice().equals(leDeviceFound);
                 assert leFoundRemoteDevice != null;
                 assert rssi == 123;
-               // assert scanRecord.getRawData() == new ArrayList<Integer>(Arrays.asList(0, 1, 2));
+                // assert scanRecord.getRawData() == new ArrayList<Integer>(Arrays.asList(0, 1, 2));
 
                 setRemoteDevice(leFoundRemoteDevice);
 

@@ -11,7 +11,7 @@ public enum LeFormat {
     FORMAT_SFLOAT(0x32),
     FORMAT_FLOAT(0x34);
 
-    private int format;
+    private final int format;
     public int format() {
         return format;
     }

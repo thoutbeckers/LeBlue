@@ -1,7 +1,7 @@
 package houtbecke.rs.le;
 
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,8 +19,6 @@ import houtbecke.rs.le.session.EventSinkFiller;
 import houtbecke.rs.le.session.LeEventType;
 import houtbecke.rs.le.session.ListEventSinkSource;
 import houtbecke.rs.le.session.SessionObject;
-
-import static org.junit.Assert.assertTrue;
 
 public class MockBluetoothTest {
     @Before
@@ -104,8 +102,7 @@ public class MockBluetoothTest {
 
         final Boolean[] foundRemoteDevice = new Boolean[]{false};
 
-
-        ((InterceptingLeDevice) device).addListener(new LeDeviceListener() {
+        device.addListener(new LeDeviceListener() {
             @Override
             public void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, LeScanRecord scanRecord) {
                 assert getDevice().equals(leDeviceFound);
@@ -123,7 +120,7 @@ public class MockBluetoothTest {
             }
 
         });
-        ((InterceptingLeDevice) device).startScanning();
+        device.startScanning();
         Thread.sleep(100);
         assert foundRemoteDevice[0];
 

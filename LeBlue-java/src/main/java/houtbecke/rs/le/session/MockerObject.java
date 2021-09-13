@@ -173,7 +173,7 @@ public class MockerObject implements Mocker {
         return withMock(sessionSource, method, value);
     }
     public MockerObject withMock(int source, EventType method, String value) {
-        getMocksList(source, method).add(new MockedResponseObject(new String[] {value}));
+        getMocksList(source, method).add(new MockedResponseObject(value));
         return this;
     }
 

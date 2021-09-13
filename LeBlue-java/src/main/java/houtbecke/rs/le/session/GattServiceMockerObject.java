@@ -1,13 +1,11 @@
 package houtbecke.rs.le.session;
 
-import java.util.UUID;
-
 import static houtbecke.rs.le.session.LeEventType.mockCharacteristicNotificationChanged;
-import static houtbecke.rs.le.session.LeEventType.mockRemoteDeviceClosed;
-import static houtbecke.rs.le.session.LeEventType.remoteDeviceClose;
 import static houtbecke.rs.le.session.LeEventType.serviceEnableCharacteristicNotification;
 import static houtbecke.rs.le.session.LeEventType.serviceGetCharacteristic;
 import static houtbecke.rs.le.session.LeEventType.serviceGetUUID;
+
+import java.util.UUID;
 
 public class GattServiceMockerObject extends MockerObject {
     public GattServiceMockerObject(SessionObject sessionObject, int sessionSource) {
@@ -16,7 +14,7 @@ public class GattServiceMockerObject extends MockerObject {
 
     public GattServiceMockerObject mocksService(UUID uuid) {
         withMock(serviceGetUUID, uuid.toString());
-      return this;
+        return this;
     }
 
     public GattServiceMockerObject hasCharacteristic(int characteristic) {
@@ -44,7 +42,7 @@ public class GattServiceMockerObject extends MockerObject {
     public GattServiceMockerObject canNotify(int characteristicId,int remoteId, String uuid,String enable) {
         sessionObject.setSourceIdentification(characteristicId, uuid);
 
-        withMock(serviceEnableCharacteristicNotification, new MockedResponseObject(new Event(mockCharacteristicNotificationChanged, getDelay(), sessionSource, characteristicId+"", uuid.toString(), remoteId+"", enable)));
+        withMock(serviceEnableCharacteristicNotification, new MockedResponseObject(new Event(mockCharacteristicNotificationChanged, getDelay(), sessionSource, characteristicId + "", uuid, remoteId + "", enable)));
 
         return this;
     }

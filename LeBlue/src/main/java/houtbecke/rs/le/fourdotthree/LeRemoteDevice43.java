@@ -235,7 +235,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     @Override
     public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
         try {
-            this.characteristicNotificationChanged(gatt, descriptor.getCharacteristic(), (status == gatt.GATT_SUCCESS));
+            this.characteristicNotificationChanged(gatt, descriptor.getCharacteristic(), (status == BluetoothGatt.GATT_SUCCESS));
             if (status != BluetoothGatt.GATT_SUCCESS) {
                 leDevice43.log(Log.ERROR, "LeBlue", "onDescriptorWrite " + status);
             }
@@ -254,7 +254,9 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         if (status != BluetoothGatt.GATT_SUCCESS) {
             leDevice43.log(Log.ERROR, "LeBlue", "onDescriptorWrite " + status);
         }
-        if (status == gatt.GATT_SUCCESS) { this.characteristicUpdated(gatt, characteristic); }
+        if (status == BluetoothGatt.GATT_SUCCESS) {
+            this.characteristicUpdated(gatt, characteristic);
+        }
 
     }
 
@@ -319,7 +321,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         sendFirst();
 
         try {
-            boolean succes = (status == gatt.GATT_SUCCESS);
+            boolean succes = (status == BluetoothGatt.GATT_SUCCESS);
             if (status != BluetoothGatt.GATT_SUCCESS) {
                 leDevice43.log(Log.ERROR, "LeBlue", "onCharacteristicWrite " + status);
             }
@@ -396,7 +398,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         //workaround for https://code.google.com/p/android/issues/detail?id=81130
         try {
             BluetoothGatt localBluetoothGatt = gatt;
-            Method localMethod = localBluetoothGatt.getClass().getMethod("refresh", new Class[0]);
+            Method localMethod = localBluetoothGatt.getClass().getMethod("refresh");
             if (localMethod != null) {
                 boolean bool = ((Boolean) localMethod.invoke(localBluetoothGatt, new Object[0])).booleanValue();
                 return bool;
@@ -411,7 +413,6 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         if (bluetoothDevice.getBondState() != BluetoothDevice.BOND_NONE) {
             try {
                 Method localMethod = bluetoothDevice.getClass().getMethod("removeBond", (Class[]) null);
-                ;
                 if (localMethod != null) {
                     localMethod.invoke(bluetoothDevice, (Object[]) null);
                 }
