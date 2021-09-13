@@ -126,13 +126,14 @@ public class LeScanRecordImpl implements LeScanRecord {
     public byte[] getServiceData(UUID serviceUUID) {
         LeRecord[] serviceDataRecords = getRecords(0x16);
         for (LeRecord record : serviceDataRecords) {
-            if (record.getRecordContent().length < 3) {
+            byte[] recordContent = record.getRecordContent();
+            if (recordContent.length < 3) {
                 continue;
             }
 
-            byte[] serviceDataId = Arrays.copyOfRange(scanrecord, 0, 2);
-            byte[] serviceData = Arrays.copyOfRange(scanrecord, 2, scanrecord.length - 2);
-            ByteBuffer serviceDataIdWrapped = ByteBuffer.wrap(serviceDataId);
+            byte[] serviceDataId = Arrays.copyOfRange(recordContent, 0, 2);
+            byte[] serviceData = Arrays.copyOfRange(recordContent, 2, recordContent.length);
+            ByteBuffer serviceDataIdWrapped = ByteBuffer.wrap(serviceDataId).order(ByteOrder.LITTLE_ENDIAN);
 
             UUID foundServiceUUID = UUID.fromString(String.format("%08x-0000-1000-8000-00805f9b34fb", serviceDataIdWrapped.getShort()));
 
