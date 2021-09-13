@@ -48,6 +48,8 @@
 
 - (IOSObjectArray *)getRecordsWithIntArray:(IOSIntArray *)types;
 
+- (IOSByteArray *)getServiceDataWithJavaUtilUUID:(JavaUtilUUID *)serviceUUID;
+
 - (IOSObjectArray *)getServices;
 
 - (jboolean)hasServiceWithJavaUtilUUID:(JavaUtilUUID *)uuid;

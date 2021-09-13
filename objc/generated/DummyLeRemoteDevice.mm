@@ -58,6 +58,9 @@ J2OBJC_IGNORE_DESIGNATED_END
 - (void)refreshDeviceCache {
 }
 
+- (void)unpair {
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
@@ -72,6 +75,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     { NULL, "V", 0x81, 5, 6, -1, -1, -1, -1 },
     { NULL, "V", 0x81, 7, 8, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
   };
@@ -92,9 +96,10 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[11].selector = @selector(getName);
   methods[12].selector = @selector(readRssi);
   methods[13].selector = @selector(refreshDeviceCache);
+  methods[14].selector = @selector(unpair);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "addListener", "LLeRemoteDeviceListener;", "removeListener", "startServicesDiscovery", "[LJavaUtilUUID;", "setCharacteristicWriteListener", "LLeCharacteristicWriteListener;[LJavaUtilUUID;", "setCharacteristicListener", "LLeCharacteristicListener;[LJavaUtilUUID;" };
-  static const J2ObjcClassInfo _HoutbeckeRsLeDummyDummyLeRemoteDevice = { "DummyLeRemoteDevice", "houtbecke.rs.le.dummy", ptrTable, methods, NULL, 7, 0x1, 14, 0, -1, -1, -1, -1, -1 };
+  static const J2ObjcClassInfo _HoutbeckeRsLeDummyDummyLeRemoteDevice = { "DummyLeRemoteDevice", "houtbecke.rs.le.dummy", ptrTable, methods, NULL, 7, 0x1, 15, 0, -1, -1, -1, -1, -1 };
   return &_HoutbeckeRsLeDummyDummyLeRemoteDevice;
 }
 

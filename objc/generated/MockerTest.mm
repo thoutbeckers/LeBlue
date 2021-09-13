@@ -495,7 +495,7 @@ J2OBJC_NAME_MAPPING(MockerTest, "houtbecke.rs.le", "")
     { "val$foundRemoteDevices_", "[I", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "leDeviceFound", "LLeDevice;LLeRemoteDevice;ILLeScanRecord;", "leDeviceState", "LLeDevice;LLeDeviceState;", "LMockerTest;", "testController" };
-  static const J2ObjcClassInfo _MockerTest_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 3, 2, 4, -1, 5, -1, -1 };
+  static const J2ObjcClassInfo _MockerTest_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 3, 2, 4, -1, 5, -1, -1 };
   return &_MockerTest_1;
 }
 
@@ -555,7 +555,7 @@ MockerTest_1 *create_MockerTest_1_initWithMockerTest_withIntArray_(MockerTest *o
     { "val$foundRemoteDevice2_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "leDeviceFound", "LLeDevice;LLeRemoteDevice;ILLeScanRecord;", "leDeviceState", "LLeDevice;LLeDeviceState;", "LMockerTest;", "testController" };
-  static const J2ObjcClassInfo _MockerTest_2 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 3, 1, 4, -1, 5, -1, -1 };
+  static const J2ObjcClassInfo _MockerTest_2 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 3, 1, 4, -1, 5, -1, -1 };
   return &_MockerTest_2;
 }
 
@@ -653,7 +653,7 @@ MockerTest_2 *create_MockerTest_2_initWithJavaLangBooleanArray_(IOSObjectArray *
     { "val$service_", "[LLeGattService;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "leDevicesConnected", "LLeDevice;LLeRemoteDevice;", "leDevicesDisconnected", "leDevicesClosed", "serviceDiscovered", "LLeDevice;LLeRemoteDevice;LLeGattStatus;[LLeGattService;", "rssiRead", "LLeDevice;LLeRemoteDevice;I", "LMockerTest;", "testController" };
-  static const J2ObjcClassInfo _MockerTest_3 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 6, 4, 8, -1, 9, -1, -1 };
+  static const J2ObjcClassInfo _MockerTest_3 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 6, 4, 8, -1, 9, -1, -1 };
   return &_MockerTest_3;
 }
 
@@ -729,7 +729,7 @@ MockerTest_3 *create_MockerTest_3_initWithMockerTest_withJavaLangBooleanArray_wi
     { "val$changedNotification_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "leCharacteristicChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;", "leCharacteristicNotificationChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", "LMockerTest;", "testController" };
-  static const J2ObjcClassInfo _MockerTest_4 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 3, 4, 4, -1, 5, -1, -1 };
+  static const J2ObjcClassInfo _MockerTest_4 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 3, 4, 4, -1, 5, -1, -1 };
   return &_MockerTest_4;
 }
 
@@ -810,7 +810,7 @@ MockerTest_4 *create_MockerTest_4_initWithMockerTest_withLeGattCharacteristic_wi
     { "val$service_", "[LLeGattService;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "leDevicesConnected", "LLeDevice;LLeRemoteDevice;", "leDevicesDisconnected", "leDevicesClosed", "serviceDiscovered", "LLeDevice;LLeRemoteDevice;LLeGattStatus;[LLeGattService;", "rssiRead", "LLeDevice;LLeRemoteDevice;I", "LMockerTest;", "testController" };
-  static const J2ObjcClassInfo _MockerTest_5 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 6, 1, 8, -1, 9, -1, -1 };
+  static const J2ObjcClassInfo _MockerTest_5 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 6, 1, 8, -1, 9, -1, -1 };
   return &_MockerTest_5;
 }
 

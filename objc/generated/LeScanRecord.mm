@@ -17,6 +17,7 @@
     { NULL, "LNSString;", 0x401, -1, -1, -1, -1, -1, -1 },
     { NULL, "[B", 0x401, -1, -1, -1, -1, -1, -1 },
     { NULL, "[B", 0x401, -1, -1, -1, -1, -1, -1 },
+    { NULL, "[B", 0x401, 4, 3, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -28,9 +29,10 @@
   methods[4].selector = @selector(getLocalName);
   methods[5].selector = @selector(getManufacturerData);
   methods[6].selector = @selector(getRawData);
+  methods[7].selector = @selector(getServiceDataWithJavaUtilUUID:);
   #pragma clang diagnostic pop
-  static const void *ptrTable[] = { "getRecords", "[I", "hasService", "LJavaUtilUUID;" };
-  static const J2ObjcClassInfo _LeScanRecord = { "LeScanRecord", "houtbecke.rs.le", ptrTable, methods, NULL, 7, 0x609, 7, 0, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "getRecords", "[I", "hasService", "LJavaUtilUUID;", "getServiceData" };
+  static const J2ObjcClassInfo _LeScanRecord = { "LeScanRecord", "houtbecke.rs.le", ptrTable, methods, NULL, 7, 0x609, 8, 0, -1, -1, -1, -1, -1 };
   return &_LeScanRecord;
 }
 

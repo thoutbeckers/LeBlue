@@ -125,13 +125,19 @@ __attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_ini
 
 - (NSString *)getLocalName {
   IOSObjectArray *localName = [self getRecordsWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ 9 } count:1]];
-  if (((IOSObjectArray *) nil_chk(localName))->size_ > 0) return [NSString java_stringWithBytes:[((id<LeRecord>) nil_chk(IOSObjectArray_Get(localName, 0))) getRecordContent]];
-  else return nil;
+  if (((IOSObjectArray *) nil_chk(localName))->size_ > 0) {
+    return [NSString java_stringWithBytes:[((id<LeRecord>) nil_chk(IOSObjectArray_Get(localName, 0))) getRecordContent]];
+  }
+  else {
+    return nil;
+  }
 }
 
 - (IOSByteArray *)getManufacturerData {
   IOSObjectArray *manufacturerData = [self getRecordsWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ (jint) 0xFF } count:1]];
-  if (((IOSObjectArray *) nil_chk(manufacturerData))->size_ > 0) return [((id<LeRecord>) nil_chk(IOSObjectArray_Get(manufacturerData, 0))) getRecordContent];
+  if (((IOSObjectArray *) nil_chk(manufacturerData))->size_ > 0) {
+    return [((id<LeRecord>) nil_chk(IOSObjectArray_Get(manufacturerData, 0))) getRecordContent];
+  }
   return nil;
 }
 
@@ -152,6 +158,29 @@ __attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_ini
   }
 }
 
+- (IOSByteArray *)getServiceDataWithJavaUtilUUID:(JavaUtilUUID *)serviceUUID {
+  IOSObjectArray *serviceDataRecords = [self getRecordsWithIntArray:[IOSIntArray arrayWithInts:(jint[]){ (jint) 0x16 } count:1]];
+  {
+    IOSObjectArray *a__ = serviceDataRecords;
+    id<LeRecord> const *b__ = ((IOSObjectArray *) nil_chk(a__))->buffer_;
+    id<LeRecord> const *e__ = b__ + a__->size_;
+    while (b__ < e__) {
+      id<LeRecord> record = *b__++;
+      if (((IOSByteArray *) nil_chk([((id<LeRecord>) nil_chk(record)) getRecordContent]))->size_ < 3) {
+        continue;
+      }
+      IOSByteArray *serviceDataId = JavaUtilArrays_copyOfRangeWithByteArray_withInt_withInt_(scanrecord_, 0, 2);
+      IOSByteArray *serviceData = JavaUtilArrays_copyOfRangeWithByteArray_withInt_withInt_(scanrecord_, 2, ((IOSByteArray *) nil_chk(scanrecord_))->size_ - 2);
+      JavaNioByteBuffer *serviceDataIdWrapped = JavaNioByteBuffer_wrapWithByteArray_(serviceDataId);
+      JavaUtilUUID *foundServiceUUID = JavaUtilUUID_fromStringWithNSString_(NSString_java_formatWithNSString_withNSObjectArray_(@"%08x-0000-1000-8000-00805f9b34fb", [IOSObjectArray arrayWithObjects:(id[]){ JavaLangShort_valueOfWithShort_([((JavaNioByteBuffer *) nil_chk(serviceDataIdWrapped)) getShort]) } count:1 type:NSObject_class_()]));
+      if ([((JavaUtilUUID *) nil_chk(foundServiceUUID)) isEqual:serviceUUID]) {
+        return serviceData;
+      }
+    }
+  }
+  return nil;
+}
+
 - (void)dealloc {
   RELEASE_(scanrecord_);
   RELEASE_(records_);
@@ -169,6 +198,7 @@ __attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_ini
     { NULL, "[B", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "[B", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "[B", 0x1, 5, 4, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -182,13 +212,14 @@ __attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_ini
   methods[6].selector = @selector(getManufacturerData);
   methods[7].selector = @selector(getRawData);
   methods[8].selector = @selector(parse);
+  methods[9].selector = @selector(getServiceDataWithJavaUtilUUID:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "scanrecord_", "[B", .constantValue.asLong = 0, 0x10, -1, -1, -1, -1 },
-    { "records_", "LJavaUtilCollection;", .constantValue.asLong = 0, 0x10, -1, -1, 5, -1 },
+    { "records_", "LJavaUtilCollection;", .constantValue.asLong = 0, 0x10, -1, -1, 6, -1 },
   };
-  static const void *ptrTable[] = { "[B", "getRecords", "[I", "hasService", "LJavaUtilUUID;", "Ljava/util/Collection<Lhoutbecke/rs/le/LeRecord;>;" };
-  static const J2ObjcClassInfo _LeScanRecordImpl = { "LeScanRecordImpl", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x1, 9, 2, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "[B", "getRecords", "[I", "hasService", "LJavaUtilUUID;", "getServiceData", "Ljava/util/Collection<Lhoutbecke/rs/le/LeRecord;>;" };
+  static const J2ObjcClassInfo _LeScanRecordImpl = { "LeScanRecordImpl", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x1, 10, 2, -1, -1, -1, -1, -1 };
   return &_LeScanRecordImpl;
 }
 
@@ -252,7 +283,7 @@ J2OBJC_NAME_MAPPING(LeScanRecordImpl, "houtbecke.rs.le", "")
     { "val$record_", "[B", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LLeScanRecordImpl;", "parse" };
-  static const J2ObjcClassInfo _LeScanRecordImpl_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 3, 2, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _LeScanRecordImpl_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 3, 2, 0, -1, 1, -1, -1 };
   return &_LeScanRecordImpl_1;
 }
 

@@ -61,6 +61,8 @@
 
 - (void)startServicesDiscoveryWithJavaUtilUUIDArray:(IOSObjectArray *)uuids;
 
+- (void)unpair;
+
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(HoutbeckeRsLeDummyDummyLeRemoteDevice)

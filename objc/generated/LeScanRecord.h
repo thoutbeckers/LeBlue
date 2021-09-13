@@ -39,6 +39,8 @@
 
 - (IOSByteArray *)getRawData;
 
+- (IOSByteArray *)getServiceDataWithJavaUtilUUID:(JavaUtilUUID *)serviceId;
+
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(LeScanRecord)

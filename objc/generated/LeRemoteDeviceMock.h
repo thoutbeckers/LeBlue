@@ -75,6 +75,8 @@
 
 - (void)startServicesDiscoveryWithJavaUtilUUIDArray:(IOSObjectArray *)uuids;
 
+- (void)unpair;
+
 // Disallowed inherited constructors, do not use.
 
 - (instancetype __nonnull)init NS_UNAVAILABLE;

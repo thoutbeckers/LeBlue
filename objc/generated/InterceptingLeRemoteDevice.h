@@ -76,6 +76,8 @@
 
 - (NSString *)description;
 
+- (void)unpair;
+
 // Disallowed inherited constructors, do not use.
 
 - (instancetype __nonnull)initWithLeInterceptor:(LeInterceptor *)arg0 NS_UNAVAILABLE;

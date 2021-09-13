@@ -12,4 +12,5 @@ public interface LeScanRecord {
     byte[] getManufacturerData();
     byte[] getRawData();
 
+    byte[] getServiceData(UUID serviceId);
 }

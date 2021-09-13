@@ -23,6 +23,7 @@
     { NULL, "LNSString;", 0x401, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x401, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x401, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x401, -1, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -40,9 +41,10 @@
   methods[10].selector = @selector(getName);
   methods[11].selector = @selector(readRssi);
   methods[12].selector = @selector(refreshDeviceCache);
+  methods[13].selector = @selector(unpair);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "addListener", "LLeRemoteDeviceListener;", "removeListener", "startServicesDiscovery", "[LJavaUtilUUID;", "setCharacteristicWriteListener", "LLeCharacteristicWriteListener;[LJavaUtilUUID;", "setCharacteristicListener", "LLeCharacteristicListener;[LJavaUtilUUID;" };
-  static const J2ObjcClassInfo _LeRemoteDevice = { "LeRemoteDevice", "houtbecke.rs.le", ptrTable, methods, NULL, 7, 0x609, 13, 0, -1, -1, -1, -1, -1 };
+  static const J2ObjcClassInfo _LeRemoteDevice = { "LeRemoteDevice", "houtbecke.rs.le", ptrTable, methods, NULL, 7, 0x609, 14, 0, -1, -1, -1, -1, -1 };
   return &_LeRemoteDevice;
 }
 

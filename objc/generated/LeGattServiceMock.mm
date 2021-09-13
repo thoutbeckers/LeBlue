@@ -30,7 +30,7 @@
 
 - (jboolean)isEqual:(id)o {
   while ([o isKindOfClass:[InterceptingLeGattService class]]) o = ((InterceptingLeGattService *) nil_chk(((InterceptingLeGattService *) cast_chk(o, [InterceptingLeGattService class]))))->leGattService_;
-  if ([o isKindOfClass:[LeGattServiceMock class]]) return [((JavaLangInteger *) nil_chk(((LeGattServiceMock *) nil_chk(((LeGattServiceMock *) cast_chk(o, [LeGattServiceMock class]))))->key_)) isEqual:key_];
+  if ([o isKindOfClass:[LeGattServiceMock class]]) return [((JavaLangInteger *) nil_chk(((LeGattServiceMock *) nil_chk(((LeGattServiceMock *) o)))->key_)) isEqual:key_];
   return o == self;
 }
 
