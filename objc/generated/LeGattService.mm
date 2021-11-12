@@ -5,6 +5,7 @@
 #include "LeGattService.h"
 #include "java/lang/annotation/Annotation.h"
 #include "javax/annotation/Nonnull.h"
+#include "javax/annotation/Nullable.h"
 #include "javax/annotation/meta/When.h"
 
 @interface LeGattService : NSObject
@@ -46,7 +47,7 @@ IOSObjectArray *LeGattService__Annotations$0() {
 }
 
 IOSObjectArray *LeGattService__Annotations$1() {
-  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()];
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNullable() } count:1 type:JavaLangAnnotationAnnotation_class_()];
 }
 
 IOSObjectArray *LeGattService__Annotations$2() {

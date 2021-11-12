@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 
 public interface LeScanRecord {
 
-    @Nonnull
+    @Nullable
     UUID[] getServices();
 
     boolean hasService(@Nonnull UUID uuid);

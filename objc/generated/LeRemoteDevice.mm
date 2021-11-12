@@ -79,7 +79,7 @@ IOSObjectArray *LeRemoteDevice__Annotations$1() {
 }
 
 IOSObjectArray *LeRemoteDevice__Annotations$2() {
-  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()];
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNullable() } count:1 type:JavaLangAnnotationAnnotation_class_()];
 }
 
 IOSObjectArray *LeRemoteDevice__Annotations$3() {

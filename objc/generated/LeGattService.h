@@ -25,7 +25,7 @@
 
 - (JavaUtilUUID * __nonnull)getUuid;
 
-- (id<LeGattCharacteristic> __nonnull)getCharacteristicWithJavaUtilUUID:(JavaUtilUUID * __nonnull)uuid;
+- (id<LeGattCharacteristic> __nullable)getCharacteristicWithJavaUtilUUID:(JavaUtilUUID * __nonnull)uuid;
 
 - (jboolean)enableCharacteristicNotificationWithJavaUtilUUID:(JavaUtilUUID * __nonnull)characteristic;
 

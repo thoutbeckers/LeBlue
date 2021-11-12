@@ -3,13 +3,14 @@ package houtbecke.rs.le;
 import java.util.UUID;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public interface LeGattService {
 
     @Nonnull
     UUID getUuid();
 
-    @Nonnull
+    @Nullable
     LeGattCharacteristic getCharacteristic(@Nonnull UUID uuid);
 
     boolean enableCharacteristicNotification(@Nonnull UUID characteristic);

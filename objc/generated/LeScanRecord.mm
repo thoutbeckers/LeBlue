@@ -51,7 +51,7 @@ __attribute__((unused)) static IOSObjectArray *LeScanRecord__Annotations$5(void)
 @end
 
 IOSObjectArray *LeScanRecord__Annotations$0() {
-  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()];
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNullable() } count:1 type:JavaLangAnnotationAnnotation_class_()];
 }
 
 IOSObjectArray *LeScanRecord__Annotations$1() {

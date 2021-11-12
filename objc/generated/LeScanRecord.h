@@ -24,7 +24,7 @@
 
 @protocol LeScanRecord < JavaObject >
 
-- (IOSObjectArray * __nonnull)getServices;
+- (IOSObjectArray * __nullable)getServices;
 
 - (jboolean)hasServiceWithJavaUtilUUID:(JavaUtilUUID * __nonnull)uuid;
 

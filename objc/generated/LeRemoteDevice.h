@@ -29,7 +29,7 @@
 
 - (void)removeListenerWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener> __nonnull)listener;
 
-- (NSString * __nonnull)getAddress;
+- (NSString * __nullable)getAddress;
 
 - (void)connect;
 

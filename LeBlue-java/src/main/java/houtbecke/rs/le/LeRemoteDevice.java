@@ -11,7 +11,7 @@ public interface LeRemoteDevice {
 
     void removeListener(@Nonnull LeRemoteDeviceListener listener);
 
-    @Nonnull
+    @Nullable
     String getAddress();
 
     void connect();
