@@ -33,7 +33,9 @@ __attribute__((unused)) static IOSObjectArray *InterceptingLeCharacteristicListe
                        withLeGattCharacteristic:(id<LeGattCharacteristic>)characteristic {
   InterceptingLeRemoteDevice *iLeRemoteDevice = [((LeInterceptor *) nil_chk(leInterceptor_)) getInterceptingLeRemoteDeviceWithLeRemoteDevice:remoteDevice];
   InterceptingLeGattCharacteristic *iLeGattCharacteristic = [leInterceptor_ getInterceptingLeGattCharacteristicWithLeGattCharacteristic:characteristic];
-  if (leCharacteristicListener_ != nil) [leCharacteristicListener_ leCharacteristicChangedWithJavaUtilUUID:uuid withLeRemoteDevice:iLeRemoteDevice withLeGattCharacteristic:iLeGattCharacteristic];
+  if (leCharacteristicListener_ != nil) {
+    [leCharacteristicListener_ leCharacteristicChangedWithJavaUtilUUID:uuid withLeRemoteDevice:iLeRemoteDevice withLeGattCharacteristic:iLeGattCharacteristic];
+  }
   [leInterceptor_ characteristicChangedWithInterceptingLeCharacteristicListener:self withJavaUtilUUID:uuid withInterceptingLeRemoteDevice:iLeRemoteDevice withInterceptingLeGattCharacteristic:iLeGattCharacteristic];
 }
 
@@ -43,7 +45,9 @@ __attribute__((unused)) static IOSObjectArray *InterceptingLeCharacteristicListe
                                                 withBoolean:(jboolean)success {
   InterceptingLeRemoteDevice *iLeRemoteDevice = [((LeInterceptor *) nil_chk(leInterceptor_)) getInterceptingLeRemoteDeviceWithLeRemoteDevice:remoteDevice];
   InterceptingLeGattCharacteristic *iLeGattCharacteristic = [leInterceptor_ getInterceptingLeGattCharacteristicWithLeGattCharacteristic:characteristic];
-  if (leCharacteristicListener_ != nil) [leCharacteristicListener_ leCharacteristicNotificationChangedWithJavaUtilUUID:uuid withLeRemoteDevice:iLeRemoteDevice withLeGattCharacteristic:iLeGattCharacteristic withBoolean:success];
+  if (leCharacteristicListener_ != nil) {
+    [leCharacteristicListener_ leCharacteristicNotificationChangedWithJavaUtilUUID:uuid withLeRemoteDevice:iLeRemoteDevice withLeGattCharacteristic:iLeGattCharacteristic withBoolean:success];
+  }
   [leInterceptor_ characteristicNotificationChangedWithInterceptingLeCharacteristicListener:self withJavaUtilUUID:uuid withInterceptingLeRemoteDevice:iLeRemoteDevice withInterceptingLeGattCharacteristic:iLeGattCharacteristic withJavaLangBoolean:JavaLangBoolean_valueOfWithBoolean_(success)];
 }
 

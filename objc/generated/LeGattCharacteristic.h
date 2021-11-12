@@ -25,10 +25,10 @@
 
 - (IOSByteArray * __nullable)getValue;
 
+- (void)setValueWithByteArray:(IOSByteArray * __nonnull)value;
+
 - (jint)getIntValueWithLeFormat:(LeFormat * __nonnull)format
                         withInt:(jint)index;
-
-- (void)setValueWithByteArray:(IOSByteArray * __nonnull)value;
 
 - (void)setValueWithByteArray:(IOSByteArray * __nonnull)value
                   withBoolean:(jboolean)withResponse;

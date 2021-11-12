@@ -66,7 +66,9 @@ __attribute__((unused)) static IOSObjectArray *InterceptingLeRemoteDeviceListene
   InterceptingLeDevice *iLeDevice = [((LeInterceptor *) nil_chk(leInterceptor_)) getInterceptingLeDeviceWithLeDevice:leDevice];
   InterceptingLeRemoteDevice *iLeRemoteDevice = [leInterceptor_ getInterceptingLeRemoteDeviceWithLeRemoteDevice:leRemoteDevice];
   IOSObjectArray *iLeGattServices = [IOSObjectArray arrayWithLength:((IOSObjectArray *) nil_chk(gatts))->size_ type:InterceptingLeGattService_class_()];
-  for (jint k = 0; k < gatts->size_; k++) IOSObjectArray_Set(iLeGattServices, k, [leInterceptor_ getInterceptingLeGattServiceWithLeGattService:IOSObjectArray_Get(gatts, k)]);
+  for (jint k = 0; k < gatts->size_; k++) {
+    IOSObjectArray_Set(iLeGattServices, k, [leInterceptor_ getInterceptingLeGattServiceWithLeGattService:IOSObjectArray_Get(gatts, k)]);
+  }
   [leInterceptor_ servicesDiscoveredWithInterceptingLeRemoteDeviceListener:self withInterceptingLeDevice:iLeDevice withInterceptingLeRemoteDevice:iLeRemoteDevice withLeGattStatus:status withInterceptingLeGattServiceArray:iLeGattServices];
   [((id<LeRemoteDeviceListener>) nil_chk(leRemoteDeviceListener_)) serviceDiscoveredWithLeDevice:iLeDevice withLeRemoteDevice:iLeRemoteDevice withLeGattStatus:status withLeGattServiceArray:iLeGattServices];
 }

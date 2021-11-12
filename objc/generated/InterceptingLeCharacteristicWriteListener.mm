@@ -33,7 +33,9 @@ __attribute__((unused)) static IOSObjectArray *InterceptingLeCharacteristicWrite
                                     withBoolean:(jboolean)success {
   InterceptingLeRemoteDevice *iLeRemoteDevice = [((LeInterceptor *) nil_chk(leInterceptor_)) getInterceptingLeRemoteDeviceWithLeRemoteDevice:remoteDevice];
   InterceptingLeGattCharacteristic *iLeGattCharacteristic = [leInterceptor_ getInterceptingLeGattCharacteristicWithLeGattCharacteristic:characteristic];
-  if (leCharacteristicWriteListener_ != nil) [leCharacteristicWriteListener_ leCharacteristicWrittenWithJavaUtilUUID:uuid withLeRemoteDevice:iLeRemoteDevice withLeGattCharacteristic:iLeGattCharacteristic withBoolean:success];
+  if (leCharacteristicWriteListener_ != nil) {
+    [leCharacteristicWriteListener_ leCharacteristicWrittenWithJavaUtilUUID:uuid withLeRemoteDevice:iLeRemoteDevice withLeGattCharacteristic:iLeGattCharacteristic withBoolean:success];
+  }
   [leInterceptor_ characteristicWrittenWithInterceptingLeCharacteristicWriteListener:self withJavaUtilUUID:uuid withInterceptingLeRemoteDevice:iLeRemoteDevice withInterceptingLeGattCharacteristic:iLeGattCharacteristic withJavaLangBoolean:JavaLangBoolean_valueOfWithBoolean_(success)];
 }
 

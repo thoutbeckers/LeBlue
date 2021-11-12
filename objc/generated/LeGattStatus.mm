@@ -131,7 +131,9 @@ LeGattStatus *LeGattStatus_fromStringWithNSString_(NSString *status) {
     LeGattStatus * const *e__ = b__ + a__->size_;
     while (b__ < e__) {
       LeGattStatus *leGattStatus = *b__++;
-      if ([((NSString *) nil_chk([((LeGattStatus *) nil_chk(leGattStatus)) description])) isEqual:status]) return leGattStatus;
+      if ([((NSString *) nil_chk([((LeGattStatus *) nil_chk(leGattStatus)) description])) isEqual:status]) {
+        return leGattStatus;
+      }
     }
   }
   return nil;

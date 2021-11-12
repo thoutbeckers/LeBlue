@@ -92,7 +92,9 @@ __attribute__((unused)) static IOSObjectArray *InterceptingLeRemoteDevice__Annot
                                                   withJavaUtilUUIDArray:(IOSObjectArray *)uuids {
   @synchronized(leInterceptor_) {
     InterceptingLeCharacteristicWriteListener *iCharacteristicsWriteListener = nil;
-    if (listener != nil) iCharacteristicsWriteListener = [((LeInterceptor *) nil_chk(leInterceptor_)) getInterceptingCharacteristicsWriteListenerWithLeCharacteristicWriteListener:listener];
+    if (listener != nil) {
+      iCharacteristicsWriteListener = [((LeInterceptor *) nil_chk(leInterceptor_)) getInterceptingCharacteristicsWriteListenerWithLeCharacteristicWriteListener:listener];
+    }
     [((LeInterceptor *) nil_chk(leInterceptor_)) characteristicWriteListenerSetWithInterceptingLeRemoteDevice:self withInterceptingLeCharacteristicWriteListener:iCharacteristicsWriteListener withJavaUtilUUIDArray:uuids];
     [((id<LeRemoteDevice>) nil_chk(leRemoteDevice_)) setCharacteristicWriteListenerWithLeCharacteristicWriteListener:iCharacteristicsWriteListener withJavaUtilUUIDArray:uuids];
   }

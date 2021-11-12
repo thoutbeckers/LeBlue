@@ -214,7 +214,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   [((id<LeDevice>) nil_chk(device_)) addListenerWithLeDeviceListener:create_SessionSwitchingTest_1_initWithSessionSwitchingTest_withJavaLangBooleanArray_(self, foundRemoteDevice)];
   [((id<LeDevice>) nil_chk(device_)) startScanning];
   JavaLangThread_sleepWithLong_(100);
-  JreAssert(IOSObjectArray_Get(foundRemoteDevice, 0), @"houtbecke/rs/le/SessionSwitchingTest.java:82 condition failed: assert foundRemoteDevice[0];");
+  JreAssert(IOSObjectArray_Get(foundRemoteDevice, 0), @"houtbecke/rs/le/SessionSwitchingTest.java:84 condition failed: assert foundRemoteDevice[0];");
   IOSObjectArray *service = [IOSObjectArray arrayWithLength:1 type:NSObject_class_()];
   [((id<LeRemoteDevice>) nil_chk(remoteDevice_)) addListenerWithLeRemoteDeviceListener:create_SessionSwitchingTest_2_initWithSessionSwitchingTest_withNSObjectArray_(self, service)];
   [((id<LeRemoteDevice>) nil_chk(remoteDevice_)) connect];
@@ -225,15 +225,15 @@ J2OBJC_IGNORE_DESIGNATED_END
   IOSObjectArray_Set(valueRead, 0, JavaLangBoolean_valueOfWithBoolean_(false));
   [((id<LeRemoteDevice>) nil_chk(remoteDevice_)) setCharacteristicListenerWithLeCharacteristicListener:create_SessionSwitchingTest_3_initWithJavaLangBooleanArray_(valueRead) withJavaUtilUUIDArray:[IOSObjectArray arrayWithObjects:(id[]){ JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc") } count:1 type:JavaUtilUUID_class_()]];
   [((LeSessionController *) nil_chk(sessionController_)) pointReachedWithNSString:@"ready"];
-  JreAssert(![((JavaLangBoolean *) nil_chk(IOSObjectArray_Get(valueRead, 0))) booleanValue], @"houtbecke/rs/le/SessionSwitchingTest.java:141 condition failed: assert !valueRead[0];");
+  JreAssert(![((JavaLangBoolean *) nil_chk(IOSObjectArray_Get(valueRead, 0))) booleanValue], @"houtbecke/rs/le/SessionSwitchingTest.java:145 condition failed: assert !valueRead[0];");
   [((LeSessionController *) nil_chk(sessionController_)) startSessionWithNSString:@"values"];
   JavaLangThread_sleepWithLong_(100);
-  JreAssert(IOSObjectArray_Get(valueRead, 0), @"houtbecke/rs/le/SessionSwitchingTest.java:146 condition failed: assert valueRead[0];");
+  JreAssert(IOSObjectArray_Get(valueRead, 0), @"houtbecke/rs/le/SessionSwitchingTest.java:150 condition failed: assert valueRead[0];");
   [((LeSessionController *) nil_chk(sessionController_)) pointReachedWithNSString:@"done"];
   [((LeSessionController *) nil_chk(sessionController_)) waitForFinishedSession];
-  JreAssert(![((ListEventSinkSource *) nil_chk(events1)) hasMoreEvent], @"houtbecke/rs/le/SessionSwitchingTest.java:152 condition failed: assert !events1.hasMoreEvent();");
-  JreAssert(![((ListEventSinkSource *) nil_chk(events2)) hasMoreEvent], @"houtbecke/rs/le/SessionSwitchingTest.java:153 condition failed: assert !events2.hasMoreEvent();");
-  JreAssert([((LeSessionController *) nil_chk(sessionController_)) getSessionException] == nil, @"houtbecke/rs/le/SessionSwitchingTest.java:154 condition failed: assert sessionController.getSessionException() == null;");
+  JreAssert(![((ListEventSinkSource *) nil_chk(events1)) hasMoreEvent], @"houtbecke/rs/le/SessionSwitchingTest.java:156 condition failed: assert !events1.hasMoreEvent();");
+  JreAssert(![((ListEventSinkSource *) nil_chk(events2)) hasMoreEvent], @"houtbecke/rs/le/SessionSwitchingTest.java:157 condition failed: assert !events2.hasMoreEvent();");
+  JreAssert([((LeSessionController *) nil_chk(sessionController_)) getSessionException] == nil, @"houtbecke/rs/le/SessionSwitchingTest.java:158 condition failed: assert sessionController.getSessionException() == null;");
 }
 
 - (LeSessionController *)getSessionController {
@@ -365,9 +365,9 @@ J2OBJC_NAME_MAPPING(SessionSwitchingTest, "houtbecke.rs.le", "")
                withLeRemoteDevice:(id<LeRemoteDevice>)leFoundRemoteDevice
                           withInt:(jint)rssi
                  withLeScanRecord:(id<LeScanRecord>)scanRecord {
-  JreAssert([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDeviceFound], @"houtbecke/rs/le/SessionSwitchingTest.java:64 condition failed: assert getDevice().equals(leDeviceFound);");
-  JreAssert(leFoundRemoteDevice != nil, @"houtbecke/rs/le/SessionSwitchingTest.java:65 condition failed: assert leFoundRemoteDevice != null;");
-  JreAssert(rssi == 123, @"houtbecke/rs/le/SessionSwitchingTest.java:66 condition failed: assert rssi == 123;");
+  JreAssert([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDeviceFound], @"houtbecke/rs/le/SessionSwitchingTest.java:65 condition failed: assert getDevice().equals(leDeviceFound);");
+  JreAssert(leFoundRemoteDevice != nil, @"houtbecke/rs/le/SessionSwitchingTest.java:66 condition failed: assert leFoundRemoteDevice != null;");
+  JreAssert(rssi == 123, @"houtbecke/rs/le/SessionSwitchingTest.java:67 condition failed: assert rssi == 123;");
   [this$0_ setRemoteDeviceWithLeRemoteDevice:leFoundRemoteDevice];
   IOSObjectArray_Set(nil_chk(val$foundRemoteDevice_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
 }
@@ -438,7 +438,7 @@ IOSObjectArray *SessionSwitchingTest_1__Annotations$1() {
 
 - (void)leDevicesConnectedWithLeDevice:(id<LeDevice>)leDeviceFoundOn
                     withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice {
-  JreAssert([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice], @"houtbecke/rs/le/SessionSwitchingTest.java:88 condition failed: assert getRemoteDevice().equals(leRemoteDevice);");
+  JreAssert([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice], @"houtbecke/rs/le/SessionSwitchingTest.java:90 condition failed: assert getRemoteDevice().equals(leRemoteDevice);");
 }
 
 - (void)leDevicesDisconnectedWithLeDevice:(id<LeDevice>)leDevice
@@ -453,7 +453,7 @@ IOSObjectArray *SessionSwitchingTest_1__Annotations$1() {
                    withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice
                      withLeGattStatus:(LeGattStatus *)status
                withLeGattServiceArray:(IOSObjectArray *)gatts {
-  JreAssert([((id<LeRemoteDevice>) nil_chk(leRemoteDevice)) isEqual:[this$0_ getRemoteDevice]], @"houtbecke/rs/le/SessionSwitchingTest.java:104 condition failed: assert leRemoteDevice.equals(getRemoteDevice());");
+  JreAssert([((id<LeRemoteDevice>) nil_chk(leRemoteDevice)) isEqual:[this$0_ getRemoteDevice]], @"houtbecke/rs/le/SessionSwitchingTest.java:106 condition failed: assert leRemoteDevice.equals(getRemoteDevice());");
   IOSObjectArray_Set(nil_chk(val$service_), 0, (IOSObjectArray_Get(nil_chk(gatts), 0)));
 }
 

@@ -494,7 +494,9 @@ J2OBJC_NAME_MAPPING(MockerTest, "houtbecke.rs.le", "")
       OrgJunitAssert_assertNotNullWithId_(leFoundRemoteDevice);
       OrgJunitAssert_assertEqualsWithLong_withLong_(rssi, 123);
       [((JavaIoPrintStream *) nil_chk(JreLoadStatic(JavaLangSystem, out))) printlnWithNSString:[((id<LeRemoteDevice>) nil_chk(leFoundRemoteDevice)) getAddress]];
-      if ([((NSString *) nil_chk([leFoundRemoteDevice getAddress])) isEqual:@"0001:0002:0003:0004"] || [((NSString *) nil_chk([leFoundRemoteDevice getAddress])) isEqual:@"0005:0006:0007:0008"]) [this$0_ setRemoteDeviceWithLeRemoteDevice:leFoundRemoteDevice];
+      if ([((NSString *) nil_chk([leFoundRemoteDevice getAddress])) isEqual:@"0001:0002:0003:0004"] || [((NSString *) nil_chk([leFoundRemoteDevice getAddress])) isEqual:@"0005:0006:0007:0008"]) {
+        [this$0_ setRemoteDeviceWithLeRemoteDevice:leFoundRemoteDevice];
+      }
       (*IOSIntArray_GetRef(nil_chk(val$foundRemoteDevices_), 0))++;
       [this$0_ java_notify];
     }
