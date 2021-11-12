@@ -1,5 +1,7 @@
 package houtbecke.rs.le.interceptor;
 
+import javax.annotation.Nonnull;
+
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
@@ -23,8 +25,8 @@ public class InterceptingLeGattCharacteristic extends LeIntercepting implements 
     }
 
     @Override
-    public int getIntValue(LeFormat format, int index) {
-        synchronized(leInterceptor) {
+    public int getIntValue(@Nonnull LeFormat format, int index) {
+        synchronized (leInterceptor) {
             int value = leGattCharacteristic.getIntValue(format, index);
             leInterceptor.gotIntValue(this, format, value);
             return value;
@@ -32,18 +34,18 @@ public class InterceptingLeGattCharacteristic extends LeIntercepting implements 
     }
 
     @Override
-    public void setValue(byte[] value) {
-        synchronized(leInterceptor) {
+    public void setValue(@Nonnull byte[] value) {
+        synchronized (leInterceptor) {
             leGattCharacteristic.setValue(value);
             leInterceptor.setValue(this, value);
         }
     }
 
     @Override
-    public void setValue(byte[] value, boolean withResponse) {
-        synchronized(leInterceptor) {
-            leGattCharacteristic.setValue(value,withResponse);
-            leInterceptor.setValue(this, value,withResponse);
+    public void setValue(@Nonnull byte[] value, boolean withResponse) {
+        synchronized (leInterceptor) {
+            leGattCharacteristic.setValue(value, withResponse);
+            leInterceptor.setValue(this, value, withResponse);
         }
     }
 

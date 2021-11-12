@@ -1,10 +1,10 @@
 package houtbecke.rs.le;
 
-
+import javax.annotation.Nonnull;
 
 public interface ErrorLogger {
 
-        void log(int priority, String tag, String msg);
+        void log(int priority, @Nonnull String tag, @Nonnull String msg);
 
-        void logException(Exception e);
+        void logException(@Nonnull Exception e);
 }

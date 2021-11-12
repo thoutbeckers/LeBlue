@@ -1,5 +1,7 @@
 package houtbecke.rs.le.interceptor;
 
+import javax.annotation.Nonnull;
+
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.LeGattStatus;
@@ -15,7 +17,7 @@ public class InterceptingLeRemoteDeviceListener extends LeIntercepting implement
     }
 
     @Override
-    public void leDevicesConnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+    public void leDevicesConnected(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice) {
         InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
         InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(leRemoteDevice);
         leInterceptor.connected(this, iLeDevice, iLeRemoteDevice);
@@ -23,7 +25,7 @@ public class InterceptingLeRemoteDeviceListener extends LeIntercepting implement
     }
 
     @Override
-    public void leDevicesDisconnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+    public void leDevicesDisconnected(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice) {
         InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
         InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(leRemoteDevice);
         leInterceptor.disconnected(this, iLeDevice, iLeRemoteDevice);
@@ -31,21 +33,21 @@ public class InterceptingLeRemoteDeviceListener extends LeIntercepting implement
     }
 
     @Override
-    public void leDevicesClosed(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+    public void leDevicesClosed(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice) {
         InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
         InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(leRemoteDevice);
-        leInterceptor.closed(this,iLeDevice, iLeRemoteDevice);
+        leInterceptor.closed(this, iLeDevice, iLeRemoteDevice);
         leRemoteDeviceListener.leDevicesClosed(iLeDevice, iLeRemoteDevice);
     }
 
     @Override
-    public void serviceDiscovered(LeDevice leDevice, LeRemoteDevice leRemoteDevice, LeGattStatus status, LeGattService[] gatts) {
+    public void serviceDiscovered(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice, @Nonnull LeGattStatus status, @Nonnull
+            LeGattService[] gatts) {
         InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
         InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(leRemoteDevice);
 
         InterceptingLeGattService[] iLeGattServices = new InterceptingLeGattService[gatts.length];
-        for (int k=0; k < gatts.length; k++)
-            iLeGattServices[k] = leInterceptor.getInterceptingLeGattService(gatts[k]);
+        for (int k = 0; k < gatts.length; k++) { iLeGattServices[k] = leInterceptor.getInterceptingLeGattService(gatts[k]); }
 
         leInterceptor.servicesDiscovered(this, iLeDevice, iLeRemoteDevice, status, iLeGattServices);
         leRemoteDeviceListener.serviceDiscovered(iLeDevice, iLeRemoteDevice, status, iLeGattServices);
@@ -53,7 +55,7 @@ public class InterceptingLeRemoteDeviceListener extends LeIntercepting implement
     }
 
     @Override
-    public void rssiRead(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi) {
+    public void rssiRead(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice, int rssi) {
         InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
         InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(leRemoteDevice);
 

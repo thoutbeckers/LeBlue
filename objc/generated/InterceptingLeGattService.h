@@ -40,13 +40,13 @@
 - (instancetype __nonnull)initWithLeGattService:(id<LeGattService>)leGattService
                               withLeInterceptor:(LeInterceptor *)leInterceptor;
 
-- (jboolean)enableCharacteristicNotificationWithJavaUtilUUID:(JavaUtilUUID *)characteristic;
+- (jboolean)enableCharacteristicNotificationWithJavaUtilUUID:(JavaUtilUUID * __nonnull)characteristic;
 
 - (jboolean)isEqual:(id)o;
 
-- (id<LeGattCharacteristic>)getCharacteristicWithJavaUtilUUID:(JavaUtilUUID *)uuid;
+- (id<LeGattCharacteristic> __nonnull)getCharacteristicWithJavaUtilUUID:(JavaUtilUUID * __nonnull)uuid;
 
-- (JavaUtilUUID *)getUuid;
+- (JavaUtilUUID * __nonnull)getUuid;
 
 - (NSUInteger)hash;
 

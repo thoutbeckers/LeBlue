@@ -13,6 +13,19 @@
 #include "LeInterceptor.h"
 #include "LeRemoteDevice.h"
 #include "LeRemoteDeviceListener.h"
+#include "java/lang/annotation/Annotation.h"
+#include "javax/annotation/Nonnull.h"
+#include "javax/annotation/meta/When.h"
+
+__attribute__((unused)) static IOSObjectArray *InterceptingLeRemoteDeviceListener__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *InterceptingLeRemoteDeviceListener__Annotations$1(void);
+
+__attribute__((unused)) static IOSObjectArray *InterceptingLeRemoteDeviceListener__Annotations$2(void);
+
+__attribute__((unused)) static IOSObjectArray *InterceptingLeRemoteDeviceListener__Annotations$3(void);
+
+__attribute__((unused)) static IOSObjectArray *InterceptingLeRemoteDeviceListener__Annotations$4(void);
 
 @implementation InterceptingLeRemoteDeviceListener
 
@@ -86,13 +99,13 @@
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, 0, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 1, 2, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 3, 2, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 4, 2, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 5, 6, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 7, 8, -1, -1, -1, -1 },
-    { NULL, "Z", 0x1, 9, 10, -1, -1, -1, -1 },
-    { NULL, "I", 0x1, 11, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 1, 2, -1, -1, -1, 3 },
+    { NULL, "V", 0x1, 4, 2, -1, -1, -1, 5 },
+    { NULL, "V", 0x1, 6, 2, -1, -1, -1, 7 },
+    { NULL, "V", 0x1, 8, 9, -1, -1, -1, 10 },
+    { NULL, "V", 0x1, 11, 12, -1, -1, -1, 13 },
+    { NULL, "Z", 0x1, 14, 15, -1, -1, -1, -1 },
+    { NULL, "I", 0x1, 16, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -109,7 +122,7 @@
   static const J2ObjcFieldInfo fields[] = {
     { "leRemoteDeviceListener_", "LLeRemoteDeviceListener;", .constantValue.asLong = 0, 0x10, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "LLeRemoteDeviceListener;LLeInterceptor;", "leDevicesConnected", "LLeDevice;LLeRemoteDevice;", "leDevicesDisconnected", "leDevicesClosed", "serviceDiscovered", "LLeDevice;LLeRemoteDevice;LLeGattStatus;[LLeGattService;", "rssiRead", "LLeDevice;LLeRemoteDevice;I", "equals", "LNSObject;", "hashCode" };
+  static const void *ptrTable[] = { "LLeRemoteDeviceListener;LLeInterceptor;", "leDevicesConnected", "LLeDevice;LLeRemoteDevice;", (void *)&InterceptingLeRemoteDeviceListener__Annotations$0, "leDevicesDisconnected", (void *)&InterceptingLeRemoteDeviceListener__Annotations$1, "leDevicesClosed", (void *)&InterceptingLeRemoteDeviceListener__Annotations$2, "serviceDiscovered", "LLeDevice;LLeRemoteDevice;LLeGattStatus;[LLeGattService;", (void *)&InterceptingLeRemoteDeviceListener__Annotations$3, "rssiRead", "LLeDevice;LLeRemoteDevice;I", (void *)&InterceptingLeRemoteDeviceListener__Annotations$4, "equals", "LNSObject;", "hashCode" };
   static const J2ObjcClassInfo _InterceptingLeRemoteDeviceListener = { "InterceptingLeRemoteDeviceListener", "houtbecke.rs.le.interceptor", ptrTable, methods, fields, 7, 0x1, 8, 1, -1, -1, -1, -1, -1 };
   return &_InterceptingLeRemoteDeviceListener;
 }
@@ -127,6 +140,26 @@ InterceptingLeRemoteDeviceListener *new_InterceptingLeRemoteDeviceListener_initW
 
 InterceptingLeRemoteDeviceListener *create_InterceptingLeRemoteDeviceListener_initWithLeRemoteDeviceListener_withLeInterceptor_(id<LeRemoteDeviceListener> leRemoteDeviceListener, LeInterceptor *leInterceptor) {
   J2OBJC_CREATE_IMPL(InterceptingLeRemoteDeviceListener, initWithLeRemoteDeviceListener_withLeInterceptor_, leRemoteDeviceListener, leInterceptor)
+}
+
+IOSObjectArray *InterceptingLeRemoteDeviceListener__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *InterceptingLeRemoteDeviceListener__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *InterceptingLeRemoteDeviceListener__Annotations$2() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *InterceptingLeRemoteDeviceListener__Annotations$3() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:4 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *InterceptingLeRemoteDeviceListener__Annotations$4() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:3 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(InterceptingLeRemoteDeviceListener)

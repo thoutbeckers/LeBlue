@@ -66,7 +66,7 @@
                      withInterceptingLeRemoteDevice:(InterceptingLeRemoteDevice *)iLeRemoteDevice
                                             withInt:(jint)rssi
                                    withLeScanRecord:(id<LeScanRecord>)leScanRecord {
-  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceFound) withBaseIntercepting:iLeDeviceListener withBaseIntercepting:iLeDevice withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", rssi), LeUtil_bytesToStringWithByteArray_([((id<LeScanRecord>) nil_chk(leScanRecord)) getRawData]) } count:2 type:NSString_class_()]];
+  [self drainEventWithLeEventType:JreLoadEnum(LeEventType, remoteDeviceFound) withBaseIntercepting:iLeDeviceListener withBaseIntercepting:iLeDevice withBaseIntercepting:iLeRemoteDevice withNSStringArray:[IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", rssi), @"" } count:2 type:NSString_class_()]];
 }
 
 - (void)deviceStateWithInterceptingLeDeviceListener:(InterceptingLeDeviceListener *)iLeDeviceListener

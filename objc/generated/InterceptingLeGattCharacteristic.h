@@ -42,7 +42,7 @@
 
 - (jboolean)isEqual:(id)o;
 
-- (jint)getIntValueWithLeFormat:(LeFormat *)format
+- (jint)getIntValueWithLeFormat:(LeFormat * __nonnull)format
                         withInt:(jint)index;
 
 - (IOSByteArray *)getValue;
@@ -51,9 +51,9 @@
 
 - (void)read;
 
-- (void)setValueWithByteArray:(IOSByteArray *)value;
+- (void)setValueWithByteArray:(IOSByteArray * __nonnull)value;
 
-- (void)setValueWithByteArray:(IOSByteArray *)value
+- (void)setValueWithByteArray:(IOSByteArray * __nonnull)value
                   withBoolean:(jboolean)withResponse;
 
 // Disallowed inherited constructors, do not use.

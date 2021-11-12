@@ -45,13 +45,13 @@
 
 - (NSUInteger)hash;
 
-- (void)leCharacteristicChangedWithJavaUtilUUID:(JavaUtilUUID *)uuid
-                             withLeRemoteDevice:(id<LeRemoteDevice>)remoteDevice
-                       withLeGattCharacteristic:(id<LeGattCharacteristic>)characteristic;
+- (void)leCharacteristicChangedWithJavaUtilUUID:(JavaUtilUUID * __nonnull)uuid
+                             withLeRemoteDevice:(id<LeRemoteDevice> __nonnull)remoteDevice
+                       withLeGattCharacteristic:(id<LeGattCharacteristic> __nonnull)characteristic;
 
-- (void)leCharacteristicNotificationChangedWithJavaUtilUUID:(JavaUtilUUID *)uuid
-                                         withLeRemoteDevice:(id<LeRemoteDevice>)remoteDevice
-                                   withLeGattCharacteristic:(id<LeGattCharacteristic>)characteristic
+- (void)leCharacteristicNotificationChangedWithJavaUtilUUID:(JavaUtilUUID * __nonnull)uuid
+                                         withLeRemoteDevice:(id<LeRemoteDevice> __nonnull)remoteDevice
+                                   withLeGattCharacteristic:(id<LeGattCharacteristic> __nonnull)characteristic
                                                 withBoolean:(jboolean)success;
 
 // Disallowed inherited constructors, do not use.

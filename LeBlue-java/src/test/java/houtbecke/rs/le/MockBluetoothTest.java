@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+
 import houtbecke.rs.le.interceptor.InterceptingLeDevice;
 import houtbecke.rs.le.interceptor.LeSessionInterceptor;
 import houtbecke.rs.le.mock.LeDeviceMock;
@@ -104,7 +106,8 @@ public class MockBluetoothTest {
 
         device.addListener(new LeDeviceListener() {
             @Override
-            public void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, LeScanRecord scanRecord) {
+            public void leDeviceFound(@Nonnull LeDevice leDeviceFound, @Nonnull LeRemoteDevice leFoundRemoteDevice, int rssi,
+                                      @Nonnull LeScanRecord scanRecord) {
                 assert getDevice().equals(leDeviceFound);
                 assert leFoundRemoteDevice != null;
                 assert rssi == 123;
@@ -115,7 +118,7 @@ public class MockBluetoothTest {
             }
 
             @Override
-            public void leDeviceState(LeDevice leDevice, LeDeviceState leDeviceState) {
+            public void leDeviceState(@Nonnull LeDevice leDevice, @Nonnull LeDeviceState leDeviceState) {
 
             }
 
@@ -140,28 +143,29 @@ public class MockBluetoothTest {
 
         LeRemoteDeviceListener remoteDeviceListener= new LeRemoteDeviceListener() {
             @Override
-            public void leDevicesConnected(LeDevice leDeviceFoundOn, LeRemoteDevice leRemoteDevice) {
+            public void leDevicesConnected(@Nonnull LeDevice leDeviceFoundOn, @Nonnull LeRemoteDevice leRemoteDevice) {
                 assert getDevice().equals(leDeviceFoundOn);
                 assert getRemoteDevice().equals(leRemoteDevice);
                 connected[0] = true;
             }
 
             @Override
-            public void leDevicesDisconnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+            public void leDevicesDisconnected(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice) {
                 assert getDevice().equals(leDevice);
                 assert getRemoteDevice().equals(leRemoteDevice);
                 disconnected[0] = true;
             }
 
             @Override
-            public void leDevicesClosed(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+            public void leDevicesClosed(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice) {
                 assert getDevice().equals(leDevice);
                 assert getRemoteDevice().equals(leRemoteDevice);
                 closed[0] = true;
             }
 
             @Override
-            public void serviceDiscovered(LeDevice leDevice, LeRemoteDevice leRemoteDevice, LeGattStatus status, LeGattService[] gatts) {
+            public void serviceDiscovered(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice, @Nonnull LeGattStatus status, @Nonnull
+                    LeGattService[] gatts) {
                 discovered[0] = true;
                 assert getDevice().equals(leDevice);
                 assert leRemoteDevice.equals(getRemoteDevice());
@@ -171,7 +175,7 @@ public class MockBluetoothTest {
             }
 
             @Override
-            public void rssiRead(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi) {
+            public void rssiRead(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice, int rssi) {
                 assert getDevice().equals(leDevice);
                 assert leRemoteDevice.equals(getRemoteDevice());
                 assert (RSSI == rssi);
@@ -210,7 +214,8 @@ public class MockBluetoothTest {
 
         remoteDevice.setCharacteristicListener(new LeCharacteristicListener() {
             @Override
-            public void leCharacteristicChanged(UUID uuid, LeRemoteDevice leRemoteDevice, LeGattCharacteristic leCharacteristic) {
+            public void leCharacteristicChanged(@Nonnull UUID uuid, @Nonnull LeRemoteDevice leRemoteDevice,
+                                                @Nonnull LeGattCharacteristic leCharacteristic) {
                 assert uuid.equals(UUID.fromString("12345678-1234-1234-1234-123456789cccc"));
                 assert getRemoteDevice().equals(leRemoteDevice);
                 assert !leCharacteristic.equals(characteristic) : "make sure this is a different characteristic";
@@ -218,7 +223,8 @@ public class MockBluetoothTest {
             }
 
             @Override
-            public void leCharacteristicNotificationChanged(UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic, boolean success) {
+            public void leCharacteristicNotificationChanged(@Nonnull UUID uuid, @Nonnull LeRemoteDevice remoteDevice,
+                                                            @Nonnull LeGattCharacteristic characteristic, boolean success) {
                 notificationChanged[0] = true;
             }
 
@@ -234,7 +240,8 @@ public class MockBluetoothTest {
 
         remoteDevice.setCharacteristicWriteListener(new LeCharacteristicWriteListener() {
             @Override
-            public void leCharacteristicWritten(UUID uuid, LeRemoteDevice leRemoteDevice, LeGattCharacteristic leCharacteristic,boolean success) {
+            public void leCharacteristicWritten(@Nonnull UUID uuid, @Nonnull LeRemoteDevice leRemoteDevice,
+                                                @Nonnull LeGattCharacteristic leCharacteristic, boolean success) {
                 assert uuid.equals(UUID.fromString("12345678-1234-1234-1234-123456789cccc"));
                 assert getRemoteDevice().equals(leRemoteDevice);
                 assert !leCharacteristic.equals(characteristic) : "make sure this is a different characteristic";

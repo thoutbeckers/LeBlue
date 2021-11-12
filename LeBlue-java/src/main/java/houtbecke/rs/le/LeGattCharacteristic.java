@@ -1,16 +1,18 @@
 package houtbecke.rs.le;
 
-import java.util.UUID;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public interface LeGattCharacteristic {
 
+    @Nullable
     byte[] getValue();
 
-    int getIntValue(LeFormat format, int index);
+    void setValue(@Nonnull byte[] value);
 
-    void setValue(byte[] value);
+    int getIntValue(@Nonnull LeFormat format, int index);
 
-    void setValue(byte[] value,boolean withResponse);
+    void setValue(@Nonnull byte[] value, boolean withResponse);
 
     void read();
 }

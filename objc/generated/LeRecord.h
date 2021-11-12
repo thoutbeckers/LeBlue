@@ -24,7 +24,7 @@
 
 - (jint)getType;
 
-- (IOSByteArray *)getRecordContent;
+- (IOSByteArray * __nullable)getRecordContent;
 
 @end
 

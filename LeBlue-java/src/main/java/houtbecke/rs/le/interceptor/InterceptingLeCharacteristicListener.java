@@ -2,6 +2,8 @@ package houtbecke.rs.le.interceptor;
 
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeRemoteDevice;
@@ -16,22 +18,23 @@ public class InterceptingLeCharacteristicListener extends LeIntercepting impleme
     }
 
     @Override
-    public void leCharacteristicChanged(UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic) {
-            InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(remoteDevice);
-            InterceptingLeGattCharacteristic iLeGattCharacteristic  = leInterceptor.getInterceptingLeGattCharacteristic(characteristic);
-            if (leCharacteristicListener != null)
-                leCharacteristicListener.leCharacteristicChanged(uuid,iLeRemoteDevice,iLeGattCharacteristic );
-            leInterceptor.characteristicChanged(this, uuid, iLeRemoteDevice,iLeGattCharacteristic );
+    public void leCharacteristicChanged(@Nonnull UUID uuid, @Nonnull LeRemoteDevice remoteDevice, @Nonnull LeGattCharacteristic characteristic) {
+        InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(remoteDevice);
+        InterceptingLeGattCharacteristic iLeGattCharacteristic = leInterceptor.getInterceptingLeGattCharacteristic(characteristic);
+        if (leCharacteristicListener != null) { leCharacteristicListener.leCharacteristicChanged(uuid, iLeRemoteDevice, iLeGattCharacteristic); }
+        leInterceptor.characteristicChanged(this, uuid, iLeRemoteDevice, iLeGattCharacteristic);
 
     }
 
     @Override
-    public void leCharacteristicNotificationChanged(UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic, boolean success) {
-            InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(remoteDevice);
-            InterceptingLeGattCharacteristic iLeGattCharacteristic  = leInterceptor.getInterceptingLeGattCharacteristic(characteristic);
-            if (leCharacteristicListener != null)
-                leCharacteristicListener.leCharacteristicNotificationChanged(uuid,iLeRemoteDevice,iLeGattCharacteristic,success );
-            leInterceptor.characteristicNotificationChanged(this, uuid, iLeRemoteDevice, iLeGattCharacteristic, success );
+    public void leCharacteristicNotificationChanged(@Nonnull UUID uuid, @Nonnull LeRemoteDevice remoteDevice,
+                                                    @Nonnull LeGattCharacteristic characteristic, boolean success) {
+        InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(remoteDevice);
+        InterceptingLeGattCharacteristic iLeGattCharacteristic = leInterceptor.getInterceptingLeGattCharacteristic(characteristic);
+        if (leCharacteristicListener != null) {
+            leCharacteristicListener.leCharacteristicNotificationChanged(uuid, iLeRemoteDevice, iLeGattCharacteristic, success);
+        }
+        leInterceptor.characteristicNotificationChanged(this, uuid, iLeRemoteDevice, iLeGattCharacteristic, success);
     }
 
     @Override

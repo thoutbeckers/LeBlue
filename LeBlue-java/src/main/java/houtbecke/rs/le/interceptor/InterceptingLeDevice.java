@@ -3,6 +3,8 @@ package houtbecke.rs.le.interceptor;
 import java.util.List;
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+
 import houtbecke.rs.le.ErrorLogger;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
@@ -16,10 +18,9 @@ public class InterceptingLeDevice extends LeIntercepting implements LeDevice {
         leInterceptor.iDevices.put(leDevice, this);
     }
 
-
     @Override
-    public synchronized void addListener(LeDeviceListener listener) {
-        synchronized(leInterceptor) {
+    public synchronized void addListener(@Nonnull LeDeviceListener listener) {
+        synchronized (leInterceptor) {
             InterceptingLeDeviceListener iListener = leInterceptor.getInterceptingLeDeviceListener(listener);
             leDevice.addListener(iListener);
             leInterceptor.listenerAdded(this, iListener);
@@ -27,8 +28,8 @@ public class InterceptingLeDevice extends LeIntercepting implements LeDevice {
     }
 
     @Override
-    public synchronized void removeListener(LeDeviceListener listener) {
-        synchronized(leInterceptor) {
+    public synchronized void removeListener(@Nonnull LeDeviceListener listener) {
+        synchronized (leInterceptor) {
             leDevice.removeListener(leInterceptor.getInterceptingLeDeviceListener(listener));
             leInterceptor.listenerRemoved(this);
         }
@@ -61,16 +62,16 @@ public class InterceptingLeDevice extends LeIntercepting implements LeDevice {
     }
 
     @Override
-    public synchronized void startScanning(UUID... uuids) {
-        synchronized(leInterceptor) {
+    public synchronized void startScanning(@Nonnull UUID... uuids) {
+        synchronized (leInterceptor) {
             leInterceptor.startedScanning(this, uuids);
             leDevice.startScanning(uuids);
         }
     }
 
     @Override
-    public void startScanning(List<List<UUID>> filters) {
-        synchronized(leInterceptor) {
+    public void startScanning(@Nonnull List<List<UUID>> filters) {
+        synchronized (leInterceptor) {
             leInterceptor.startedScanning(this, filters);
             leDevice.startScanning(filters);
         }

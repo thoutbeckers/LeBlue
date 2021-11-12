@@ -1,4 +1,6 @@
 
+#include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "InterceptingLeCharacteristicListener.h"
 #include "InterceptingLeGattCharacteristic.h"
 #include "InterceptingLeRemoteDevice.h"
@@ -9,7 +11,14 @@
 #include "LeInterceptor.h"
 #include "LeRemoteDevice.h"
 #include "java/lang/Boolean.h"
+#include "java/lang/annotation/Annotation.h"
 #include "java/util/UUID.h"
+#include "javax/annotation/Nonnull.h"
+#include "javax/annotation/meta/When.h"
+
+__attribute__((unused)) static IOSObjectArray *InterceptingLeCharacteristicListener__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *InterceptingLeCharacteristicListener__Annotations$1(void);
 
 @implementation InterceptingLeCharacteristicListener
 
@@ -57,10 +66,10 @@
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, 0, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 1, 2, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 3, 4, -1, -1, -1, -1 },
-    { NULL, "Z", 0x1, 5, 6, -1, -1, -1, -1 },
-    { NULL, "I", 0x1, 7, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 1, 2, -1, -1, -1, 3 },
+    { NULL, "V", 0x1, 4, 5, -1, -1, -1, 6 },
+    { NULL, "Z", 0x1, 7, 8, -1, -1, -1, -1 },
+    { NULL, "I", 0x1, 9, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -74,7 +83,7 @@
   static const J2ObjcFieldInfo fields[] = {
     { "leCharacteristicListener_", "LLeCharacteristicListener;", .constantValue.asLong = 0, 0x11, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "LLeCharacteristicListener;LLeInterceptor;", "leCharacteristicChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;", "leCharacteristicNotificationChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", "equals", "LNSObject;", "hashCode" };
+  static const void *ptrTable[] = { "LLeCharacteristicListener;LLeInterceptor;", "leCharacteristicChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;", (void *)&InterceptingLeCharacteristicListener__Annotations$0, "leCharacteristicNotificationChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", (void *)&InterceptingLeCharacteristicListener__Annotations$1, "equals", "LNSObject;", "hashCode" };
   static const J2ObjcClassInfo _InterceptingLeCharacteristicListener = { "InterceptingLeCharacteristicListener", "houtbecke.rs.le.interceptor", ptrTable, methods, fields, 7, 0x1, 5, 1, -1, -1, -1, -1, -1 };
   return &_InterceptingLeCharacteristicListener;
 }
@@ -92,6 +101,14 @@ InterceptingLeCharacteristicListener *new_InterceptingLeCharacteristicListener_i
 
 InterceptingLeCharacteristicListener *create_InterceptingLeCharacteristicListener_initWithLeCharacteristicListener_withLeInterceptor_(id<LeCharacteristicListener> leCharacteristicListener, LeInterceptor *leInterceptor) {
   J2OBJC_CREATE_IMPL(InterceptingLeCharacteristicListener, initWithLeCharacteristicListener_withLeInterceptor_, leCharacteristicListener, leInterceptor)
+}
+
+IOSObjectArray *InterceptingLeCharacteristicListener__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:3 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *InterceptingLeCharacteristicListener__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:4 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(InterceptingLeCharacteristicListener)

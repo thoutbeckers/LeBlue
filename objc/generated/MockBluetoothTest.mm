@@ -33,6 +33,8 @@
 #include "java/util/HashSet.h"
 #include "java/util/Set.h"
 #include "java/util/UUID.h"
+#include "javax/annotation/Nonnull.h"
+#include "javax/annotation/meta/When.h"
 #include "org/junit/Assert.h"
 #include "org/junit/Before.h"
 #include "org/junit/Test.h"
@@ -121,6 +123,10 @@ __attribute__((unused)) static MockBluetoothTest_1 *new_MockBluetoothTest_1_init
 
 __attribute__((unused)) static MockBluetoothTest_1 *create_MockBluetoothTest_1_initWithMockBluetoothTest_withJavaLangBooleanArray_(MockBluetoothTest *outer$, IOSObjectArray *capture$0);
 
+__attribute__((unused)) static IOSObjectArray *MockBluetoothTest_1__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *MockBluetoothTest_1__Annotations$1(void);
+
 @interface MockBluetoothTest_2 : NSObject < LeRemoteDeviceListener > {
  @public
   MockBluetoothTest *this$0_;
@@ -170,6 +176,16 @@ __attribute__((unused)) static MockBluetoothTest_2 *new_MockBluetoothTest_2_init
 
 __attribute__((unused)) static MockBluetoothTest_2 *create_MockBluetoothTest_2_initWithMockBluetoothTest_withJavaLangBooleanArray_withJavaLangBooleanArray_withJavaLangBooleanArray_withJavaLangBooleanArray_withLeGattServiceArray_withJavaLangBooleanArray_withIntArray_(MockBluetoothTest *outer$, IOSObjectArray *capture$0, IOSObjectArray *capture$1, IOSObjectArray *capture$2, IOSObjectArray *capture$3, IOSObjectArray *capture$4, IOSObjectArray *capture$5, IOSIntArray *capture$6);
 
+__attribute__((unused)) static IOSObjectArray *MockBluetoothTest_2__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *MockBluetoothTest_2__Annotations$1(void);
+
+__attribute__((unused)) static IOSObjectArray *MockBluetoothTest_2__Annotations$2(void);
+
+__attribute__((unused)) static IOSObjectArray *MockBluetoothTest_2__Annotations$3(void);
+
+__attribute__((unused)) static IOSObjectArray *MockBluetoothTest_2__Annotations$4(void);
+
 @interface MockBluetoothTest_3 : NSObject < LeCharacteristicListener > {
  @public
   MockBluetoothTest *this$0_;
@@ -202,6 +218,10 @@ __attribute__((unused)) static MockBluetoothTest_3 *new_MockBluetoothTest_3_init
 
 __attribute__((unused)) static MockBluetoothTest_3 *create_MockBluetoothTest_3_initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_withJavaLangBooleanArray_(MockBluetoothTest *outer$, id<LeGattCharacteristic> capture$0, IOSObjectArray *capture$1, IOSObjectArray *capture$2);
 
+__attribute__((unused)) static IOSObjectArray *MockBluetoothTest_3__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *MockBluetoothTest_3__Annotations$1(void);
+
 @interface MockBluetoothTest_4 : NSObject < LeCharacteristicWriteListener > {
  @public
   MockBluetoothTest *this$0_;
@@ -227,6 +247,8 @@ __attribute__((unused)) static void MockBluetoothTest_4_initWithMockBluetoothTes
 __attribute__((unused)) static MockBluetoothTest_4 *new_MockBluetoothTest_4_initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_(MockBluetoothTest *outer$, id<LeGattCharacteristic> capture$0, IOSObjectArray *capture$1) NS_RETURNS_RETAINED;
 
 __attribute__((unused)) static MockBluetoothTest_4 *create_MockBluetoothTest_4_initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_(MockBluetoothTest *outer$, id<LeGattCharacteristic> capture$0, IOSObjectArray *capture$1);
+
+__attribute__((unused)) static IOSObjectArray *MockBluetoothTest_4__Annotations$0(void);
 
 @implementation MockBluetoothTest
 
@@ -284,12 +306,12 @@ J2OBJC_IGNORE_DESIGNATED_END
   [((LeSessionController *) nil_chk(sessionController_)) startDefaultSession];
   OrgJunitAssert_assertTrueWithBoolean_([((LeSessionController *) nil_chk(sessionController_)) waitTillSessionStarted]);
   IOSObjectArray *foundRemoteDevice = [IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
-  [((InterceptingLeDevice *) nil_chk(((InterceptingLeDevice *) cast_chk(device_, [InterceptingLeDevice class])))) addListenerWithLeDeviceListener:create_MockBluetoothTest_1_initWithMockBluetoothTest_withJavaLangBooleanArray_(self, foundRemoteDevice)];
-  [((InterceptingLeDevice *) nil_chk(((InterceptingLeDevice *) cast_chk(device_, [InterceptingLeDevice class])))) startScanning];
+  [((id<LeDevice>) nil_chk(device_)) addListenerWithLeDeviceListener:create_MockBluetoothTest_1_initWithMockBluetoothTest_withJavaLangBooleanArray_(self, foundRemoteDevice)];
+  [((id<LeDevice>) nil_chk(device_)) startScanning];
   JavaLangThread_sleepWithLong_(100);
-  JreAssert(IOSObjectArray_Get(foundRemoteDevice, 0), @"houtbecke/rs/le/MockBluetoothTest.java:128 condition failed: assert foundRemoteDevice[0];");
-  JreAssert([((NSString *) nil_chk([((id<LeRemoteDevice>) nil_chk(remoteDevice_)) getAddress])) isEqual:@"0001:0002:0003:0004"], @"houtbecke/rs/le/MockBluetoothTest.java:130 condition failed: assert remoteDevice.getAddress().equals(\"0001:0002:0003:0004\");");
-  JreAssert([((NSString *) nil_chk([((id<LeRemoteDevice>) nil_chk(remoteDevice_)) getName])) isEqual:@"test device"], @"houtbecke/rs/le/MockBluetoothTest.java:131 condition failed: assert remoteDevice.getName().equals(\"test device\");");
+  JreAssert(IOSObjectArray_Get(foundRemoteDevice, 0), @"houtbecke/rs/le/MockBluetoothTest.java:127 condition failed: assert foundRemoteDevice[0];");
+  JreAssert([((NSString *) nil_chk([((id<LeRemoteDevice>) nil_chk(remoteDevice_)) getAddress])) isEqual:@"0001:0002:0003:0004"], @"houtbecke/rs/le/MockBluetoothTest.java:129 condition failed: assert remoteDevice.getAddress().equals(\"0001:0002:0003:0004\");");
+  JreAssert([((NSString *) nil_chk([((id<LeRemoteDevice>) nil_chk(remoteDevice_)) getName])) isEqual:@"test device"], @"houtbecke/rs/le/MockBluetoothTest.java:130 condition failed: assert remoteDevice.getName().equals(\"test device\");");
   IOSObjectArray *connected = [IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
   IOSObjectArray *disconnected = [IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
   IOSObjectArray *closed = [IOSObjectArray arrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(false) } count:1 type:JavaLangBoolean_class_()];
@@ -515,9 +537,9 @@ J2OBJC_NAME_MAPPING(MockBluetoothTest, "houtbecke.rs.le", "")
                withLeRemoteDevice:(id<LeRemoteDevice>)leFoundRemoteDevice
                           withInt:(jint)rssi
                  withLeScanRecord:(id<LeScanRecord>)scanRecord {
-  JreAssert([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDeviceFound], @"houtbecke/rs/le/MockBluetoothTest.java:111 condition failed: assert getDevice().equals(leDeviceFound);");
-  JreAssert(leFoundRemoteDevice != nil, @"houtbecke/rs/le/MockBluetoothTest.java:112 condition failed: assert leFoundRemoteDevice != null;");
-  JreAssert(rssi == 123, @"houtbecke/rs/le/MockBluetoothTest.java:113 condition failed: assert rssi == 123;");
+  JreAssert([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDeviceFound], @"houtbecke/rs/le/MockBluetoothTest.java:110 condition failed: assert getDevice().equals(leDeviceFound);");
+  JreAssert(leFoundRemoteDevice != nil, @"houtbecke/rs/le/MockBluetoothTest.java:111 condition failed: assert leFoundRemoteDevice != null;");
+  JreAssert(rssi == 123, @"houtbecke/rs/le/MockBluetoothTest.java:112 condition failed: assert rssi == 123;");
   [this$0_ setRemoteDeviceWithLeRemoteDevice:leFoundRemoteDevice];
   IOSObjectArray_Set(nil_chk(val$foundRemoteDevice_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
 }
@@ -535,8 +557,8 @@ J2OBJC_NAME_MAPPING(MockBluetoothTest, "houtbecke.rs.le", "")
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 0, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 2, 3, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 0, 1, -1, -1, -1, 2 },
+    { NULL, "V", 0x1, 3, 4, -1, -1, -1, 5 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -549,8 +571,8 @@ J2OBJC_NAME_MAPPING(MockBluetoothTest, "houtbecke.rs.le", "")
     { "this$0_", "LMockBluetoothTest;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
     { "val$foundRemoteDevice_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "leDeviceFound", "LLeDevice;LLeRemoteDevice;ILLeScanRecord;", "leDeviceState", "LLeDevice;LLeDeviceState;", "LMockBluetoothTest;", "testController" };
-  static const J2ObjcClassInfo _MockBluetoothTest_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 3, 2, 4, -1, 5, -1, -1 };
+  static const void *ptrTable[] = { "leDeviceFound", "LLeDevice;LLeRemoteDevice;ILLeScanRecord;", (void *)&MockBluetoothTest_1__Annotations$0, "leDeviceState", "LLeDevice;LLeDeviceState;", (void *)&MockBluetoothTest_1__Annotations$1, "LMockBluetoothTest;", "testController" };
+  static const J2ObjcClassInfo _MockBluetoothTest_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 3, 2, 6, -1, 7, -1, -1 };
   return &_MockBluetoothTest_1;
 }
 
@@ -570,6 +592,14 @@ MockBluetoothTest_1 *create_MockBluetoothTest_1_initWithMockBluetoothTest_withJa
   J2OBJC_CREATE_IMPL(MockBluetoothTest_1, initWithMockBluetoothTest_withJavaLangBooleanArray_, outer$, capture$0)
 }
 
+IOSObjectArray *MockBluetoothTest_1__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:4 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockBluetoothTest_1__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
 @implementation MockBluetoothTest_2
 
 - (instancetype)initWithMockBluetoothTest:(MockBluetoothTest *)outer$
@@ -586,22 +616,22 @@ MockBluetoothTest_1 *create_MockBluetoothTest_1_initWithMockBluetoothTest_withJa
 
 - (void)leDevicesConnectedWithLeDevice:(id<LeDevice>)leDeviceFoundOn
                     withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice {
-  JreAssert([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDeviceFoundOn], @"houtbecke/rs/le/MockBluetoothTest.java:147 condition failed: assert getDevice().equals(leDeviceFoundOn);");
-  JreAssert([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice], @"houtbecke/rs/le/MockBluetoothTest.java:148 condition failed: assert getRemoteDevice().equals(leRemoteDevice);");
+  JreAssert([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDeviceFoundOn], @"houtbecke/rs/le/MockBluetoothTest.java:146 condition failed: assert getDevice().equals(leDeviceFoundOn);");
+  JreAssert([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice], @"houtbecke/rs/le/MockBluetoothTest.java:147 condition failed: assert getRemoteDevice().equals(leRemoteDevice);");
   IOSObjectArray_Set(nil_chk(val$connected_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
 }
 
 - (void)leDevicesDisconnectedWithLeDevice:(id<LeDevice>)leDevice
                        withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice {
-  JreAssert([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDevice], @"houtbecke/rs/le/MockBluetoothTest.java:154 condition failed: assert getDevice().equals(leDevice);");
-  JreAssert([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice], @"houtbecke/rs/le/MockBluetoothTest.java:155 condition failed: assert getRemoteDevice().equals(leRemoteDevice);");
+  JreAssert([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDevice], @"houtbecke/rs/le/MockBluetoothTest.java:153 condition failed: assert getDevice().equals(leDevice);");
+  JreAssert([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice], @"houtbecke/rs/le/MockBluetoothTest.java:154 condition failed: assert getRemoteDevice().equals(leRemoteDevice);");
   IOSObjectArray_Set(nil_chk(val$disconnected_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
 }
 
 - (void)leDevicesClosedWithLeDevice:(id<LeDevice>)leDevice
                  withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice {
-  JreAssert([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDevice], @"houtbecke/rs/le/MockBluetoothTest.java:161 condition failed: assert getDevice().equals(leDevice);");
-  JreAssert([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice], @"houtbecke/rs/le/MockBluetoothTest.java:162 condition failed: assert getRemoteDevice().equals(leRemoteDevice);");
+  JreAssert([((id<LeDevice>) nil_chk([this$0_ getDevice])) isEqual:leDevice], @"houtbecke/rs/le/MockBluetoothTest.java:160 condition failed: assert getDevice().equals(leDevice);");
+  JreAssert([((id<LeRemoteDevice>) nil_chk([this$0_ getRemoteDevice])) isEqual:leRemoteDevice], @"houtbecke/rs/le/MockBluetoothTest.java:161 condition failed: assert getRemoteDevice().equals(leRemoteDevice);");
   IOSObjectArray_Set(nil_chk(val$closed_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
 }
 
@@ -642,11 +672,11 @@ MockBluetoothTest_1 *create_MockBluetoothTest_1_initWithMockBluetoothTest_withJa
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 0, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 2, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 3, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 4, 5, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 6, 7, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 0, 1, -1, -1, -1, 2 },
+    { NULL, "V", 0x1, 3, 1, -1, -1, -1, 4 },
+    { NULL, "V", 0x1, 5, 1, -1, -1, -1, 6 },
+    { NULL, "V", 0x1, 7, 8, -1, -1, -1, 9 },
+    { NULL, "V", 0x1, 10, 11, -1, -1, -1, 12 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -668,8 +698,8 @@ MockBluetoothTest_1 *create_MockBluetoothTest_1_initWithMockBluetoothTest_withJa
     { "val$rssiRead_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
     { "val$rssiValue_", "[I", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "leDevicesConnected", "LLeDevice;LLeRemoteDevice;", "leDevicesDisconnected", "leDevicesClosed", "serviceDiscovered", "LLeDevice;LLeRemoteDevice;LLeGattStatus;[LLeGattService;", "rssiRead", "LLeDevice;LLeRemoteDevice;I", "LMockBluetoothTest;", "testController" };
-  static const J2ObjcClassInfo _MockBluetoothTest_2 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 6, 8, 8, -1, 9, -1, -1 };
+  static const void *ptrTable[] = { "leDevicesConnected", "LLeDevice;LLeRemoteDevice;", (void *)&MockBluetoothTest_2__Annotations$0, "leDevicesDisconnected", (void *)&MockBluetoothTest_2__Annotations$1, "leDevicesClosed", (void *)&MockBluetoothTest_2__Annotations$2, "serviceDiscovered", "LLeDevice;LLeRemoteDevice;LLeGattStatus;[LLeGattService;", (void *)&MockBluetoothTest_2__Annotations$3, "rssiRead", "LLeDevice;LLeRemoteDevice;I", (void *)&MockBluetoothTest_2__Annotations$4, "LMockBluetoothTest;", "testController" };
+  static const J2ObjcClassInfo _MockBluetoothTest_2 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 6, 8, 13, -1, 14, -1, -1 };
   return &_MockBluetoothTest_2;
 }
 
@@ -693,6 +723,26 @@ MockBluetoothTest_2 *new_MockBluetoothTest_2_initWithMockBluetoothTest_withJavaL
 
 MockBluetoothTest_2 *create_MockBluetoothTest_2_initWithMockBluetoothTest_withJavaLangBooleanArray_withJavaLangBooleanArray_withJavaLangBooleanArray_withJavaLangBooleanArray_withLeGattServiceArray_withJavaLangBooleanArray_withIntArray_(MockBluetoothTest *outer$, IOSObjectArray *capture$0, IOSObjectArray *capture$1, IOSObjectArray *capture$2, IOSObjectArray *capture$3, IOSObjectArray *capture$4, IOSObjectArray *capture$5, IOSIntArray *capture$6) {
   J2OBJC_CREATE_IMPL(MockBluetoothTest_2, initWithMockBluetoothTest_withJavaLangBooleanArray_withJavaLangBooleanArray_withJavaLangBooleanArray_withJavaLangBooleanArray_withLeGattServiceArray_withJavaLangBooleanArray_withIntArray_, outer$, capture$0, capture$1, capture$2, capture$3, capture$4, capture$5, capture$6)
+}
+
+IOSObjectArray *MockBluetoothTest_2__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockBluetoothTest_2__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockBluetoothTest_2__Annotations$2() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockBluetoothTest_2__Annotations$3() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:4 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockBluetoothTest_2__Annotations$4() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:3 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 @implementation MockBluetoothTest_3
@@ -732,8 +782,8 @@ MockBluetoothTest_2 *create_MockBluetoothTest_2_initWithMockBluetoothTest_withJa
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 0, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 2, 3, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 0, 1, -1, -1, -1, 2 },
+    { NULL, "V", 0x1, 3, 4, -1, -1, -1, 5 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -748,8 +798,8 @@ MockBluetoothTest_2 *create_MockBluetoothTest_2_initWithMockBluetoothTest_withJa
     { "val$changed_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
     { "val$notificationChanged_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "leCharacteristicChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;", "leCharacteristicNotificationChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", "LMockBluetoothTest;", "testController" };
-  static const J2ObjcClassInfo _MockBluetoothTest_3 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 3, 4, 4, -1, 5, -1, -1 };
+  static const void *ptrTable[] = { "leCharacteristicChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;", (void *)&MockBluetoothTest_3__Annotations$0, "leCharacteristicNotificationChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", (void *)&MockBluetoothTest_3__Annotations$1, "LMockBluetoothTest;", "testController" };
+  static const J2ObjcClassInfo _MockBluetoothTest_3 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 3, 4, 6, -1, 7, -1, -1 };
   return &_MockBluetoothTest_3;
 }
 
@@ -769,6 +819,14 @@ MockBluetoothTest_3 *new_MockBluetoothTest_3_initWithMockBluetoothTest_withLeGat
 
 MockBluetoothTest_3 *create_MockBluetoothTest_3_initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_withJavaLangBooleanArray_(MockBluetoothTest *outer$, id<LeGattCharacteristic> capture$0, IOSObjectArray *capture$1, IOSObjectArray *capture$2) {
   J2OBJC_CREATE_IMPL(MockBluetoothTest_3, initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_withJavaLangBooleanArray_, outer$, capture$0, capture$1, capture$2)
+}
+
+IOSObjectArray *MockBluetoothTest_3__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:3 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockBluetoothTest_3__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:4 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 @implementation MockBluetoothTest_4
@@ -800,7 +858,7 @@ MockBluetoothTest_3 *create_MockBluetoothTest_3_initWithMockBluetoothTest_withLe
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 0, 1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 0, 1, -1, -1, -1, 2 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -813,8 +871,8 @@ MockBluetoothTest_3 *create_MockBluetoothTest_3_initWithMockBluetoothTest_withLe
     { "val$characteristic_", "LLeGattCharacteristic;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
     { "val$changed_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "leCharacteristicWritten", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", "LMockBluetoothTest;", "testController" };
-  static const J2ObjcClassInfo _MockBluetoothTest_4 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 2, 3, 2, -1, 3, -1, -1 };
+  static const void *ptrTable[] = { "leCharacteristicWritten", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", (void *)&MockBluetoothTest_4__Annotations$0, "LMockBluetoothTest;", "testController" };
+  static const J2ObjcClassInfo _MockBluetoothTest_4 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 2, 3, 3, -1, 4, -1, -1 };
   return &_MockBluetoothTest_4;
 }
 
@@ -833,4 +891,8 @@ MockBluetoothTest_4 *new_MockBluetoothTest_4_initWithMockBluetoothTest_withLeGat
 
 MockBluetoothTest_4 *create_MockBluetoothTest_4_initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_(MockBluetoothTest *outer$, id<LeGattCharacteristic> capture$0, IOSObjectArray *capture$1) {
   J2OBJC_CREATE_IMPL(MockBluetoothTest_4, initWithMockBluetoothTest_withLeGattCharacteristic_withJavaLangBooleanArray_, outer$, capture$0, capture$1)
+}
+
+IOSObjectArray *MockBluetoothTest_4__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:4 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }

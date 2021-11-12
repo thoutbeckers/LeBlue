@@ -38,21 +38,21 @@
 
 - (instancetype __nonnull)initWithByteArray:(IOSByteArray *)scanrecord;
 
-- (NSString *)getLocalName;
+- (NSString * __nullable)getLocalName;
 
-- (IOSByteArray *)getManufacturerData;
+- (IOSByteArray * __nullable)getManufacturerData;
 
-- (IOSByteArray *)getRawData;
+- (IOSByteArray * __nullable)getRawData;
 
-- (IOSObjectArray *)getRecords;
+- (IOSObjectArray * __nonnull)getRecords;
 
-- (IOSObjectArray *)getRecordsWithIntArray:(IOSIntArray *)types;
+- (IOSObjectArray * __nonnull)getRecordsWithIntArray:(IOSIntArray *)types;
 
-- (IOSByteArray *)getServiceDataWithJavaUtilUUID:(JavaUtilUUID *)serviceUUID;
+- (IOSByteArray * __nullable)getServiceDataWithJavaUtilUUID:(JavaUtilUUID * __nonnull)serviceUUID;
 
-- (IOSObjectArray *)getServices;
+- (IOSObjectArray * __nonnull)getServices;
 
-- (jboolean)hasServiceWithJavaUtilUUID:(JavaUtilUUID *)uuid;
+- (jboolean)hasServiceWithJavaUtilUUID:(JavaUtilUUID * __nonnull)uuid;
 
 #pragma mark Package-Private
 

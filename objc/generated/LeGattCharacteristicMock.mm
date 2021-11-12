@@ -1,10 +1,21 @@
 
+#include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "IOSPrimitiveArray.h"
 #include "J2ObjC_source.h"
 #include "LeFormat.h"
 #include "LeGattCharacteristicMock.h"
 #include "LeMockController.h"
 #include "java/lang/Boolean.h"
+#include "java/lang/annotation/Annotation.h"
+#include "javax/annotation/Nonnull.h"
+#include "javax/annotation/meta/When.h"
+
+__attribute__((unused)) static IOSObjectArray *LeGattCharacteristicMock__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *LeGattCharacteristicMock__Annotations$1(void);
+
+__attribute__((unused)) static IOSObjectArray *LeGattCharacteristicMock__Annotations$2(void);
 
 @implementation LeGattCharacteristicMock
 
@@ -44,9 +55,9 @@
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, 0, -1, -1, -1, -1 },
     { NULL, "[B", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "I", 0x1, 1, 2, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 3, 4, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 3, 5, -1, -1, -1, -1 },
+    { NULL, "I", 0x1, 1, 2, -1, -1, -1, 3 },
+    { NULL, "V", 0x1, 4, 5, -1, -1, -1, 6 },
+    { NULL, "V", 0x1, 4, 7, -1, -1, -1, 8 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
@@ -62,7 +73,7 @@
   static const J2ObjcFieldInfo fields[] = {
     { "mockController_", "LLeMockController;", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "LLeMockController;", "getIntValue", "LLeFormat;I", "setValue", "[B", "[BZ" };
+  static const void *ptrTable[] = { "LLeMockController;", "getIntValue", "LLeFormat;I", (void *)&LeGattCharacteristicMock__Annotations$0, "setValue", "[B", (void *)&LeGattCharacteristicMock__Annotations$1, "[BZ", (void *)&LeGattCharacteristicMock__Annotations$2 };
   static const J2ObjcClassInfo _LeGattCharacteristicMock = { "LeGattCharacteristicMock", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x1, 6, 1, -1, -1, -1, -1, -1 };
   return &_LeGattCharacteristicMock;
 }
@@ -80,6 +91,18 @@ LeGattCharacteristicMock *new_LeGattCharacteristicMock_initWithLeMockController_
 
 LeGattCharacteristicMock *create_LeGattCharacteristicMock_initWithLeMockController_(id<LeMockController> mockController) {
   J2OBJC_CREATE_IMPL(LeGattCharacteristicMock, initWithLeMockController_, mockController)
+}
+
+IOSObjectArray *LeGattCharacteristicMock__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *LeGattCharacteristicMock__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:1 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *LeGattCharacteristicMock__Annotations$2() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeGattCharacteristicMock)

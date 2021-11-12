@@ -2,6 +2,9 @@ package houtbecke.rs.le.mock;
 
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeCharacteristicWriteListener;
 import houtbecke.rs.le.LeRemoteDevice;
@@ -57,12 +60,12 @@ public class LeRemoteDeviceMock implements LeRemoteDevice {
     }
 
     @Override
-    public void startServicesDiscovery(UUID... uuids) {
-        mockController.remoteDeviceStartServiceDiscovery(this,uuids);
+    public void startServicesDiscovery(@Nonnull UUID... uuids) {
+        mockController.remoteDeviceStartServiceDiscovery(this, uuids);
     }
 
     @Override
-    public void setCharacteristicWriteListener(LeCharacteristicWriteListener listener, UUID... uuids) {
+    public void setCharacteristicWriteListener(LeCharacteristicWriteListener listener, @Nullable UUID... uuids) {
         mockController.remoteDeviceSetCharacteristicWriteListener(this, listener, uuids);
 
     }

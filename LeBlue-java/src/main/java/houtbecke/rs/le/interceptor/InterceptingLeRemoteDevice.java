@@ -2,6 +2,9 @@ package houtbecke.rs.le.interceptor;
 
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeCharacteristicWriteListener;
 import houtbecke.rs.le.LeRemoteDevice;
@@ -75,19 +78,18 @@ public class InterceptingLeRemoteDevice extends LeIntercepting implements LeRemo
     }
 
     @Override
-    public void startServicesDiscovery(UUID... uuids) {
-        synchronized(leInterceptor) {
-            leInterceptor.serviceDiscoveryStarted(this,uuids);
+    public void startServicesDiscovery(@Nonnull UUID... uuids) {
+        synchronized (leInterceptor) {
+            leInterceptor.serviceDiscoveryStarted(this, uuids);
             leRemoteDevice.startServicesDiscovery(uuids);
         }
     }
 
     @Override
-    public void setCharacteristicWriteListener(LeCharacteristicWriteListener listener, UUID... uuids) {
-        synchronized(leInterceptor) {
+    public void setCharacteristicWriteListener(LeCharacteristicWriteListener listener, @Nullable UUID... uuids) {
+        synchronized (leInterceptor) {
             InterceptingLeCharacteristicWriteListener iCharacteristicsWriteListener = null;
-            if (listener!= null)
-                iCharacteristicsWriteListener = leInterceptor.getInterceptingCharacteristicsWriteListener(listener);
+            if (listener != null) { iCharacteristicsWriteListener = leInterceptor.getInterceptingCharacteristicsWriteListener(listener); }
             leInterceptor.characteristicWriteListenerSet(this, iCharacteristicsWriteListener, uuids);
             leRemoteDevice.setCharacteristicWriteListener(iCharacteristicsWriteListener, uuids);
         }

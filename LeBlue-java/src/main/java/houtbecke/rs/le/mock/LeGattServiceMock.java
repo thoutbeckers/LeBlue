@@ -2,10 +2,11 @@ package houtbecke.rs.le.mock;
 
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 import houtbecke.rs.le.interceptor.InterceptingLeGattService;
-import houtbecke.rs.le.interceptor.InterceptingLeRemoteDevice;
 
 public class LeGattServiceMock implements LeGattService {
 
@@ -17,18 +18,20 @@ public class LeGattServiceMock implements LeGattService {
         this.mockController = mockController;
     }
 
+    @Nonnull
     @Override
     public UUID getUuid() {
         return mockController.serviceGetUuid(this);
     }
 
+    @Nonnull
     @Override
-    public LeGattCharacteristic getCharacteristic(UUID uuid) {
+    public LeGattCharacteristic getCharacteristic(@Nonnull UUID uuid) {
         return mockController.serviceGetCharacteristic(this, uuid);
     }
 
     @Override
-    public boolean enableCharacteristicNotification(UUID characteristic) {
+    public boolean enableCharacteristicNotification(@Nonnull UUID characteristic) {
         return mockController.serviceEnableCharacteristicNotification(this, characteristic);
     }
 

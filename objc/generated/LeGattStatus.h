@@ -67,7 +67,7 @@ typedef NS_ENUM(NSUInteger, LeGattStatus_Enum) {
 
 #pragma mark Public
 
-+ (LeGattStatus *)fromStringWithNSString:(NSString *)status;
++ (LeGattStatus * __nullable)fromStringWithNSString:(NSString * __nonnull)status;
 
 + (LeGattStatus *)valueOfWithNSString:(NSString *)name;
 

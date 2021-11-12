@@ -45,6 +45,5 @@ dependencies {
     implementation project(':LeBlue-java')
     implementation "no.nordicsemi.android.support.v18:scanner:${nordicScannerVersion}"
     implementation "androidx.core:core:${androidCoreVersion}"
-
-
+    compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }

@@ -2,6 +2,8 @@ package houtbecke.rs.le.interceptor;
 
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeCharacteristicWriteListener;
 import houtbecke.rs.le.LeGattCharacteristic;
@@ -17,14 +19,16 @@ public class InterceptingLeCharacteristicWriteListener extends LeIntercepting im
     }
 
     @Override
-    public void leCharacteristicWritten(UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic, boolean success) {
-            InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(remoteDevice);
-            InterceptingLeGattCharacteristic iLeGattCharacteristic  = leInterceptor.getInterceptingLeGattCharacteristic(characteristic);
+    public void leCharacteristicWritten(@Nonnull UUID uuid, @Nonnull LeRemoteDevice remoteDevice, @Nonnull LeGattCharacteristic characteristic,
+                                        boolean success) {
+        InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(remoteDevice);
+        InterceptingLeGattCharacteristic iLeGattCharacteristic = leInterceptor.getInterceptingLeGattCharacteristic(characteristic);
 
-            if (leCharacteristicWriteListener != null)
-                leCharacteristicWriteListener.leCharacteristicWritten(uuid,iLeRemoteDevice,iLeGattCharacteristic,success);
+        if (leCharacteristicWriteListener != null) {
+            leCharacteristicWriteListener.leCharacteristicWritten(uuid, iLeRemoteDevice, iLeGattCharacteristic, success);
+        }
 
-            leInterceptor.characteristicWritten(this, uuid, iLeRemoteDevice,iLeGattCharacteristic,success );
+        leInterceptor.characteristicWritten(this, uuid, iLeRemoteDevice, iLeGattCharacteristic, success);
     }
 
     @Override

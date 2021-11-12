@@ -19,27 +19,20 @@
 #define LeScanRecord_
 
 @class IOSByteArray;
-@class IOSIntArray;
 @class IOSObjectArray;
 @class JavaUtilUUID;
 
 @protocol LeScanRecord < JavaObject >
 
-- (IOSObjectArray *)getRecords;
+- (IOSObjectArray * __nonnull)getServices;
 
-- (IOSObjectArray *)getRecordsWithIntArray:(IOSIntArray *)types;
+- (jboolean)hasServiceWithJavaUtilUUID:(JavaUtilUUID * __nonnull)uuid;
 
-- (IOSObjectArray *)getServices;
+- (NSString * __nullable)getLocalName;
 
-- (jboolean)hasServiceWithJavaUtilUUID:(JavaUtilUUID *)uuid;
+- (IOSByteArray * __nullable)getManufacturerData;
 
-- (NSString *)getLocalName;
-
-- (IOSByteArray *)getManufacturerData;
-
-- (IOSByteArray *)getRawData;
-
-- (IOSByteArray *)getServiceDataWithJavaUtilUUID:(JavaUtilUUID *)serviceId;
+- (IOSByteArray * __nullable)getServiceDataWithJavaUtilUUID:(JavaUtilUUID * __nonnull)serviceId;
 
 @end
 

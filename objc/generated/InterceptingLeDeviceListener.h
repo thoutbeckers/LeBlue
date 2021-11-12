@@ -46,13 +46,13 @@
 
 - (NSUInteger)hash;
 
-- (void)leDeviceFoundWithLeDevice:(id<LeDevice>)leDevice
-               withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice
+- (void)leDeviceFoundWithLeDevice:(id<LeDevice> __nonnull)leDevice
+               withLeRemoteDevice:(id<LeRemoteDevice> __nonnull)leRemoteDevice
                           withInt:(jint)rssi
-                 withLeScanRecord:(id<LeScanRecord>)scanRecord;
+                 withLeScanRecord:(id<LeScanRecord> __nonnull)scanRecord;
 
-- (void)leDeviceStateWithLeDevice:(id<LeDevice>)leDevice
-                withLeDeviceState:(LeDeviceState *)leDeviceState;
+- (void)leDeviceStateWithLeDevice:(id<LeDevice> __nonnull)leDevice
+                withLeDeviceState:(LeDeviceState * __nonnull)leDeviceState;
 
 // Disallowed inherited constructors, do not use.
 

@@ -23,10 +23,10 @@
 @protocol ErrorLogger < JavaObject >
 
 - (void)logWithInt:(jint)priority
-      withNSString:(NSString *)tag
-      withNSString:(NSString *)msg;
+      withNSString:(NSString * __nonnull)tag
+      withNSString:(NSString * __nonnull)msg;
 
-- (void)logExceptionWithJavaLangException:(JavaLangException *)e;
+- (void)logExceptionWithJavaLangException:(JavaLangException * __nonnull)e;
 
 @end
 

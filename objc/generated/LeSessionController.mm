@@ -1836,8 +1836,6 @@ LeSessionController_1 *create_LeSessionController_1_initWithLeSessionController_
     started_ = true;
     [this$0_ updateCurrentEventWithEvent:nil];
     [((id<JavaUtilConcurrentLocksCondition>) nil_chk(this$0_->condition_)) signalAll];
-    
-    ;
   }
   @finally {
     [this$0_->lock_ unlock];

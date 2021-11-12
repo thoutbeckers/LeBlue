@@ -25,11 +25,11 @@
 
 @protocol LeRemoteDevice < JavaObject >
 
-- (void)addListenerWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)listener;
+- (void)addListenerWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener> __nonnull)listener;
 
-- (void)removeListenerWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener>)listener;
+- (void)removeListenerWithLeRemoteDeviceListener:(id<LeRemoteDeviceListener> __nonnull)listener;
 
-- (NSString *)getAddress;
+- (NSString * __nonnull)getAddress;
 
 - (void)connect;
 
@@ -39,15 +39,15 @@
 
 - (void)startServicesDiscovery;
 
-- (void)startServicesDiscoveryWithJavaUtilUUIDArray:(IOSObjectArray *)uuids;
+- (void)startServicesDiscoveryWithJavaUtilUUIDArray:(IOSObjectArray * __nonnull)uuids;
 
-- (void)setCharacteristicWriteListenerWithLeCharacteristicWriteListener:(id<LeCharacteristicWriteListener>)listener
-                                                  withJavaUtilUUIDArray:(IOSObjectArray *)uuids;
+- (void)setCharacteristicWriteListenerWithLeCharacteristicWriteListener:(id<LeCharacteristicWriteListener> __nullable)listener
+                                                  withJavaUtilUUIDArray:(IOSObjectArray * __nullable)uuids;
 
-- (void)setCharacteristicListenerWithLeCharacteristicListener:(id<LeCharacteristicListener>)listener
-                                        withJavaUtilUUIDArray:(IOSObjectArray *)uuids;
+- (void)setCharacteristicListenerWithLeCharacteristicListener:(id<LeCharacteristicListener> __nullable)listener
+                                        withJavaUtilUUIDArray:(IOSObjectArray * __nullable)uuids;
 
-- (NSString *)getName;
+- (NSString * __nullable)getName;
 
 - (void)readRssi;
 

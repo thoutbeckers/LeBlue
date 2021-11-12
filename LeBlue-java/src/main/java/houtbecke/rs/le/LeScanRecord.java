@@ -2,15 +2,22 @@ package houtbecke.rs.le;
 
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 public interface LeScanRecord {
 
-    LeRecord[] getRecords();
-    LeRecord[] getRecords(int... types);
+    @Nonnull
     UUID[] getServices();
-    boolean hasService(UUID uuid );
-    String getLocalName();
-    byte[] getManufacturerData();
-    byte[] getRawData();
 
-    byte[] getServiceData(UUID serviceId);
+    boolean hasService(@Nonnull UUID uuid);
+
+    @Nullable
+    String getLocalName();
+
+    @Nullable
+    byte[] getManufacturerData();
+
+    @Nullable
+    byte[] getServiceData(@Nonnull UUID serviceId);
 }

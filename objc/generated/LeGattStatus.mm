@@ -1,11 +1,20 @@
 
+#include "IOSClass.h"
 #include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
 #include "LeGattStatus.h"
 #include "java/lang/Enum.h"
 #include "java/lang/IllegalArgumentException.h"
+#include "java/lang/annotation/Annotation.h"
+#include "javax/annotation/Nonnull.h"
+#include "javax/annotation/Nullable.h"
+#include "javax/annotation/meta/When.h"
 
 __attribute__((unused)) static void LeGattStatus_initWithNSString_withInt_(LeGattStatus *self, NSString *__name, jint __ordinal);
+
+__attribute__((unused)) static IOSObjectArray *LeGattStatus__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *LeGattStatus__Annotations$1(void);
 
 J2OBJC_INITIALIZED_DEFN(LeGattStatus)
 
@@ -67,9 +76,9 @@ LeGattStatus *LeGattStatus_values_[9];
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
-    { NULL, "LLeGattStatus;", 0x9, 0, 1, -1, -1, -1, -1 },
+    { NULL, "LLeGattStatus;", 0x9, 0, 1, -1, -1, 2, 3 },
     { NULL, "[LLeGattStatus;", 0x9, -1, -1, -1, -1, -1, -1 },
-    { NULL, "LLeGattStatus;", 0x9, 2, 1, -1, -1, -1, -1 },
+    { NULL, "LLeGattStatus;", 0x9, 4, 1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -79,18 +88,18 @@ LeGattStatus *LeGattStatus_values_[9];
   methods[2].selector = @selector(valueOfWithNSString:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
-    { "SUCCESS", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 3, -1, -1 },
-    { "READ_NOT_PERMITTED", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 4, -1, -1 },
-    { "WRITE_NOT_PERMITTED", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 5, -1, -1 },
-    { "INSUFFICIENT_AUTHENTICATION", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 6, -1, -1 },
-    { "REQUEST_NOT_SUPPORTED", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 7, -1, -1 },
-    { "INSUFFICIENT_ENCRYPTION", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 8, -1, -1 },
-    { "INVALID_OFFSET", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 9, -1, -1 },
-    { "INVALID_ATTRIBUTE_LENGTH", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 10, -1, -1 },
-    { "FAILURE", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 11, -1, -1 },
+    { "SUCCESS", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 5, -1, -1 },
+    { "READ_NOT_PERMITTED", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 6, -1, -1 },
+    { "WRITE_NOT_PERMITTED", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 7, -1, -1 },
+    { "INSUFFICIENT_AUTHENTICATION", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 8, -1, -1 },
+    { "REQUEST_NOT_SUPPORTED", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 9, -1, -1 },
+    { "INSUFFICIENT_ENCRYPTION", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 10, -1, -1 },
+    { "INVALID_OFFSET", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 11, -1, -1 },
+    { "INVALID_ATTRIBUTE_LENGTH", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 12, -1, -1 },
+    { "FAILURE", "LLeGattStatus;", .constantValue.asLong = 0, 0x4019, -1, 13, -1, -1 },
   };
-  static const void *ptrTable[] = { "fromString", "LNSString;", "valueOf", &JreEnum(LeGattStatus, SUCCESS), &JreEnum(LeGattStatus, READ_NOT_PERMITTED), &JreEnum(LeGattStatus, WRITE_NOT_PERMITTED), &JreEnum(LeGattStatus, INSUFFICIENT_AUTHENTICATION), &JreEnum(LeGattStatus, REQUEST_NOT_SUPPORTED), &JreEnum(LeGattStatus, INSUFFICIENT_ENCRYPTION), &JreEnum(LeGattStatus, INVALID_OFFSET), &JreEnum(LeGattStatus, INVALID_ATTRIBUTE_LENGTH), &JreEnum(LeGattStatus, FAILURE), "Ljava/lang/Enum<Lhoutbecke/rs/le/LeGattStatus;>;" };
-  static const J2ObjcClassInfo _LeGattStatus = { "LeGattStatus", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x4011, 3, 9, -1, -1, -1, 12, -1 };
+  static const void *ptrTable[] = { "fromString", "LNSString;", (void *)&LeGattStatus__Annotations$0, (void *)&LeGattStatus__Annotations$1, "valueOf", &JreEnum(LeGattStatus, SUCCESS), &JreEnum(LeGattStatus, READ_NOT_PERMITTED), &JreEnum(LeGattStatus, WRITE_NOT_PERMITTED), &JreEnum(LeGattStatus, INSUFFICIENT_AUTHENTICATION), &JreEnum(LeGattStatus, REQUEST_NOT_SUPPORTED), &JreEnum(LeGattStatus, INSUFFICIENT_ENCRYPTION), &JreEnum(LeGattStatus, INVALID_OFFSET), &JreEnum(LeGattStatus, INVALID_ATTRIBUTE_LENGTH), &JreEnum(LeGattStatus, FAILURE), "Ljava/lang/Enum<Lhoutbecke/rs/le/LeGattStatus;>;" };
+  static const J2ObjcClassInfo _LeGattStatus = { "LeGattStatus", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x4011, 3, 9, -1, -1, -1, 14, -1 };
   return &_LeGattStatus;
 }
 
@@ -151,6 +160,14 @@ LeGattStatus *LeGattStatus_fromOrdinal(NSUInteger ordinal) {
     return nil;
   }
   return LeGattStatus_values_[ordinal];
+}
+
+IOSObjectArray *LeGattStatus__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNullable() } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
+
+IOSObjectArray *LeGattStatus__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:1 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeGattStatus)

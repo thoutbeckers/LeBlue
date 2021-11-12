@@ -1,4 +1,5 @@
 
+#include "IOSClass.h"
 #include "IOSObjectArray.h"
 #include "InterceptingLeRemoteDevice.h"
 #include "J2ObjC_source.h"
@@ -10,6 +11,14 @@
 #include "LeRemoteDeviceListener.h"
 #include "LeRemoteDeviceMock.h"
 #include "java/lang/Integer.h"
+#include "java/lang/annotation/Annotation.h"
+#include "javax/annotation/Nonnull.h"
+#include "javax/annotation/Nullable.h"
+#include "javax/annotation/meta/When.h"
+
+__attribute__((unused)) static IOSObjectArray *LeRemoteDeviceMock__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *LeRemoteDeviceMock__Annotations$1(void);
 
 @implementation LeRemoteDeviceMock
 
@@ -103,15 +112,15 @@
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x81, 4, 5, -1, -1, -1, -1 },
-    { NULL, "V", 0x81, 6, 7, -1, -1, -1, -1 },
-    { NULL, "V", 0x81, 8, 9, -1, -1, -1, -1 },
+    { NULL, "V", 0x81, 4, 5, -1, -1, -1, 6 },
+    { NULL, "V", 0x81, 7, 8, -1, -1, -1, 9 },
+    { NULL, "V", 0x81, 10, 11, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "Z", 0x1, 10, 11, -1, -1, -1, -1 },
-    { NULL, "I", 0x1, 12, -1, -1, -1, -1, -1 },
+    { NULL, "Z", 0x1, 12, 13, -1, -1, -1, -1 },
+    { NULL, "I", 0x1, 14, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -139,7 +148,7 @@
     { "leDeviceMock_", "LLeDeviceMock;", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
     { "key_", "LJavaLangInteger;", .constantValue.asLong = 0, 0x10, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "ILLeMockController;LLeDeviceMock;", "addListener", "LLeRemoteDeviceListener;", "removeListener", "startServicesDiscovery", "[LJavaUtilUUID;", "setCharacteristicWriteListener", "LLeCharacteristicWriteListener;[LJavaUtilUUID;", "setCharacteristicListener", "LLeCharacteristicListener;[LJavaUtilUUID;", "equals", "LNSObject;", "hashCode" };
+  static const void *ptrTable[] = { "ILLeMockController;LLeDeviceMock;", "addListener", "LLeRemoteDeviceListener;", "removeListener", "startServicesDiscovery", "[LJavaUtilUUID;", (void *)&LeRemoteDeviceMock__Annotations$0, "setCharacteristicWriteListener", "LLeCharacteristicWriteListener;[LJavaUtilUUID;", (void *)&LeRemoteDeviceMock__Annotations$1, "setCharacteristicListener", "LLeCharacteristicListener;[LJavaUtilUUID;", "equals", "LNSObject;", "hashCode" };
   static const J2ObjcClassInfo _LeRemoteDeviceMock = { "LeRemoteDeviceMock", "houtbecke.rs.le.mock", ptrTable, methods, fields, 7, 0x1, 17, 3, -1, -1, -1, -1, -1 };
   return &_LeRemoteDeviceMock;
 }
@@ -159,6 +168,14 @@ LeRemoteDeviceMock *new_LeRemoteDeviceMock_initWithInt_withLeMockController_with
 
 LeRemoteDeviceMock *create_LeRemoteDeviceMock_initWithInt_withLeMockController_withLeDeviceMock_(jint key, id<LeMockController> mockController, LeDeviceMock *leDeviceMock) {
   J2OBJC_CREATE_IMPL(LeRemoteDeviceMock, initWithInt_withLeMockController_withLeDeviceMock_, key, mockController, leDeviceMock)
+}
+
+IOSObjectArray *LeRemoteDeviceMock__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:1 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *LeRemoteDeviceMock__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNullable() } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeRemoteDeviceMock)

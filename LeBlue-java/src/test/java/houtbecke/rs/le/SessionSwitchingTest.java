@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+
 import houtbecke.rs.le.mock.LeDeviceMock;
 import houtbecke.rs.le.mock.LeSessionController;
 import houtbecke.rs.le.session.EventSinkFiller;
@@ -58,7 +60,8 @@ public class SessionSwitchingTest {
 
         device.addListener(new LeDeviceListener() {
             @Override
-            public void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, LeScanRecord scanRecord) {
+            public void leDeviceFound(@Nonnull LeDevice leDeviceFound, @Nonnull LeRemoteDevice leFoundRemoteDevice, int rssi,
+                                      @Nonnull LeScanRecord scanRecord) {
                 assert getDevice().equals(leDeviceFound);
                 assert leFoundRemoteDevice != null;
                 assert rssi == 123;
@@ -68,8 +71,9 @@ public class SessionSwitchingTest {
 
                 foundRemoteDevice[0] = true;
             }
+
             @Override
-            public void leDeviceState(LeDevice leDevice, LeDeviceState leDeviceState) {
+            public void leDeviceState(@Nonnull LeDevice leDevice, @Nonnull LeDeviceState leDeviceState) {
 
             }
 
@@ -82,28 +86,29 @@ public class SessionSwitchingTest {
         final Object[] service  = new Object[1];
         remoteDevice.addListener(new LeRemoteDeviceListener() {
             @Override
-            public void leDevicesConnected(LeDevice leDeviceFoundOn, LeRemoteDevice leRemoteDevice) {
+            public void leDevicesConnected(@Nonnull LeDevice leDeviceFoundOn, @Nonnull LeRemoteDevice leRemoteDevice) {
                 assert getRemoteDevice().equals(leRemoteDevice);
             }
 
             @Override
-            public void leDevicesDisconnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+            public void leDevicesDisconnected(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice) {
 
             }
 
             @Override
-            public void leDevicesClosed(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+            public void leDevicesClosed(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice) {
 
             }
 
             @Override
-            public void serviceDiscovered(LeDevice leDevice, LeRemoteDevice leRemoteDevice, LeGattStatus status, LeGattService[] gatts) {
+            public void serviceDiscovered(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice, @Nonnull LeGattStatus status, @Nonnull
+                    LeGattService[] gatts) {
                 assert leRemoteDevice.equals(getRemoteDevice());
                 service[0] = (gatts[0]);
             }
 
             @Override
-            public void rssiRead(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi) {
+            public void rssiRead(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice, int rssi) {
 
             }
 
@@ -121,13 +126,15 @@ public class SessionSwitchingTest {
 
         remoteDevice.setCharacteristicListener(new LeCharacteristicListener() {
             @Override
-            public void leCharacteristicChanged(UUID uuid, LeRemoteDevice leRemoteDevice, LeGattCharacteristic leCharacteristic) {
-               // assert leCharacteristic.getValue() == new ArrayList<Integer>(Arrays.asList(0, 1, 2));
+            public void leCharacteristicChanged(@Nonnull UUID uuid, @Nonnull LeRemoteDevice leRemoteDevice,
+                                                @Nonnull LeGattCharacteristic leCharacteristic) {
+                // assert leCharacteristic.getValue() == new ArrayList<Integer>(Arrays.asList(0, 1, 2));
                 valueRead[0] = true;
             }
 
             @Override
-            public void leCharacteristicNotificationChanged(UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic, boolean success) {
+            public void leCharacteristicNotificationChanged(@Nonnull UUID uuid, @Nonnull LeRemoteDevice remoteDevice,
+                                                            @Nonnull LeGattCharacteristic characteristic, boolean success) {
 
             }
 

@@ -2,12 +2,16 @@ package houtbecke.rs.le;
 
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 public interface LeRemoteDevice {
 
-    void addListener(LeRemoteDeviceListener listener);
+    void addListener(@Nonnull LeRemoteDeviceListener listener);
 
-    void removeListener(LeRemoteDeviceListener listener);
+    void removeListener(@Nonnull LeRemoteDeviceListener listener);
 
+    @Nonnull
     String getAddress();
 
     void connect();
@@ -18,12 +22,13 @@ public interface LeRemoteDevice {
 
     void startServicesDiscovery();
 
-    void startServicesDiscovery(UUID... uuids);
+    void startServicesDiscovery(@Nonnull UUID... uuids);
 
-    void setCharacteristicWriteListener(LeCharacteristicWriteListener listener, UUID... uuids);
+    void setCharacteristicWriteListener(@Nullable LeCharacteristicWriteListener listener, @Nullable UUID... uuids);
 
-    void setCharacteristicListener(LeCharacteristicListener listener, UUID... uuids);
+    void setCharacteristicListener(@Nullable LeCharacteristicListener listener, @Nullable UUID... uuids);
 
+    @Nullable
     String getName();
 
     void readRssi();

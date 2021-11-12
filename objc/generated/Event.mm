@@ -66,8 +66,7 @@
   Event *event = (Event *) cast_chk(o, [Event class]);
   if (source_ != event->source_) return false;
   if (type_ != event->type_) return false;
-  if (!JavaUtilArrays_deepEqualsWithNSObjectArray_withNSObjectArray_(values_, event->values_)) return false;
-  return true;
+  return JavaUtilArrays_deepEqualsWithNSObjectArray_withNSObjectArray_(values_, event->values_);
 }
 
 - (NSUInteger)hash {

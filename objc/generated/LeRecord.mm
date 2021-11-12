@@ -1,17 +1,23 @@
 
+#include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
 #include "LeRecord.h"
+#include "java/lang/annotation/Annotation.h"
+#include "javax/annotation/Nullable.h"
 
 @interface LeRecord : NSObject
 
 @end
+
+__attribute__((unused)) static IOSObjectArray *LeRecord__Annotations$0(void);
 
 @implementation LeRecord
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, "I", 0x401, -1, -1, -1, -1, -1, -1 },
-    { NULL, "[B", 0x401, -1, -1, -1, -1, -1, -1 },
+    { NULL, "[B", 0x401, -1, -1, -1, -1, 0, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -19,11 +25,16 @@
   methods[0].selector = @selector(getType);
   methods[1].selector = @selector(getRecordContent);
   #pragma clang diagnostic pop
-  static const J2ObjcClassInfo _LeRecord = { "LeRecord", "houtbecke.rs.le", NULL, methods, NULL, 7, 0x609, 2, 0, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { (void *)&LeRecord__Annotations$0 };
+  static const J2ObjcClassInfo _LeRecord = { "LeRecord", "houtbecke.rs.le", ptrTable, methods, NULL, 7, 0x609, 2, 0, -1, -1, -1, -1, -1 };
   return &_LeRecord;
 }
 
 @end
+
+IOSObjectArray *LeRecord__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNullable() } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(LeRecord)
 

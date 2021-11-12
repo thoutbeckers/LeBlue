@@ -1,7 +1,18 @@
 package houtbecke.rs.le;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Assert;
+import org.junit.Before;
 
 import java.util.UUID;
+
+import javax.annotation.Nonnull;
 
 import houtbecke.rs.le.mock.LeDeviceMock;
 import houtbecke.rs.le.mock.LeSessionController;
@@ -9,16 +20,6 @@ import houtbecke.rs.le.session.EventSinkFiller;
 import houtbecke.rs.le.session.LeEventType;
 import houtbecke.rs.le.session.ListEventSinkSource;
 import houtbecke.rs.le.session.SessionObject;
-
-import org.junit.Assert;
-import org.junit.Before;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MockerTest {
@@ -68,7 +69,8 @@ public class MockerTest {
 
         device.addListener(new LeDeviceListener() {
             @Override
-            public synchronized void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, LeScanRecord scanRecord) {
+            public synchronized void leDeviceFound(@Nonnull LeDevice leDeviceFound, @Nonnull LeRemoteDevice leFoundRemoteDevice, int rssi, @Nonnull
+                    LeScanRecord scanRecord) {
                 synchronized (MockerTest.this) {
                     assertEquals(getDevice(), leDeviceFound);
                     assertNotNull(leFoundRemoteDevice);
@@ -76,8 +78,8 @@ public class MockerTest {
 
                     System.out.println(leFoundRemoteDevice.getAddress());
 
-                    if (leFoundRemoteDevice.getAddress().equals("0001:0002:0003:0004") || leFoundRemoteDevice.getAddress().equals("0005:0006:0007:0008"))
-                        setRemoteDevice(leFoundRemoteDevice);
+                    if (leFoundRemoteDevice.getAddress().equals("0001:0002:0003:0004") ||
+                            leFoundRemoteDevice.getAddress().equals("0005:0006:0007:0008")) { setRemoteDevice(leFoundRemoteDevice); }
 
                     foundRemoteDevices[0]++;
                     MockerTest.this.notify();
@@ -86,7 +88,7 @@ public class MockerTest {
             }
 
             @Override
-            public void leDeviceState(LeDevice leDevice, LeDeviceState leDeviceState) {
+            public void leDeviceState(@Nonnull LeDevice leDevice, @Nonnull LeDeviceState leDeviceState) {
 
             }
 
@@ -94,12 +96,13 @@ public class MockerTest {
 
         (device).addListener(new LeDeviceListener() {
             @Override
-            public void leDeviceFound(LeDevice leDeviceFound, LeRemoteDevice leFoundRemoteDevice, int rssi, LeScanRecord scanRecord) {
-                foundRemoteDevice2[0]= true;
+            public void leDeviceFound(@Nonnull LeDevice leDeviceFound, @Nonnull LeRemoteDevice leFoundRemoteDevice, int rssi,
+                                      @Nonnull LeScanRecord scanRecord) {
+                foundRemoteDevice2[0] = true;
             }
 
             @Override
-            public void leDeviceState(LeDevice leDevice, LeDeviceState leDeviceState) {
+            public void leDeviceState(@Nonnull LeDevice leDevice, @Nonnull LeDeviceState leDeviceState) {
 
             }
 
@@ -130,7 +133,7 @@ public class MockerTest {
 
         remoteDevice.addListener(new LeRemoteDeviceListener() {
             @Override
-            public void leDevicesConnected(LeDevice leDeviceFoundOn, LeRemoteDevice leRemoteDevice) {
+            public void leDevicesConnected(@Nonnull LeDevice leDeviceFoundOn, @Nonnull LeRemoteDevice leRemoteDevice) {
                 assertEquals(getDevice(), leDeviceFoundOn);
                 assertEquals(getRemoteDevice(), leRemoteDevice);
                 synchronized (MockerTest.this) {
@@ -141,27 +144,28 @@ public class MockerTest {
             }
 
             @Override
-            public void leDevicesDisconnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+            public void leDevicesDisconnected(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice) {
 
             }
 
             @Override
-            public void leDevicesClosed(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+            public void leDevicesClosed(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice) {
 
             }
 
             @Override
-            public void serviceDiscovered(LeDevice leDevice, LeRemoteDevice leRemoteDevice, LeGattStatus status, LeGattService[] gatts) {
+            public void serviceDiscovered(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice, @Nonnull LeGattStatus status, @Nonnull
+                    LeGattService[] gatts) {
                 discovered[0] = true;
                 assertEquals(getDevice(), leDevice);
-                assertEquals(leRemoteDevice,getRemoteDevice());
-                assertEquals(LeGattStatus.SUCCESS,status);
+                assertEquals(leRemoteDevice, getRemoteDevice());
+                assertEquals(LeGattStatus.SUCCESS, status);
                 assertEquals(gatts.length, 2);
                 service[0] = (gatts[0]);
             }
 
             @Override
-            public void rssiRead(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi) {
+            public void rssiRead(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice, int rssi) {
 
             }
 
@@ -203,16 +207,18 @@ public class MockerTest {
 
         remoteDevice.setCharacteristicListener(new LeCharacteristicListener() {
             @Override
-            public void leCharacteristicChanged(UUID uuid, LeRemoteDevice leRemoteDevice, LeGattCharacteristic leCharacteristic) {
+            public void leCharacteristicChanged(@Nonnull UUID uuid, @Nonnull LeRemoteDevice leRemoteDevice,
+                                                @Nonnull LeGattCharacteristic leCharacteristic) {
                 assertEquals(uuid, UUID.fromString("12345678-1234-1234-1234-123456789bbcc"));
                 assertEquals(remoteDevice, leRemoteDevice);
                 assertNotEquals("make sure this is a different characteristic", leCharacteristic, characteristic);
-                changed[0]=true;
+                changed[0] = true;
             }
 
             @Override
-            public void leCharacteristicNotificationChanged(UUID uuid, LeRemoteDevice remoteDevice, LeGattCharacteristic characteristic, boolean success) {
-                changedNotification[0]=true;
+            public void leCharacteristicNotificationChanged(@Nonnull UUID uuid, @Nonnull LeRemoteDevice remoteDevice,
+                                                            @Nonnull LeGattCharacteristic characteristic, boolean success) {
+                changedNotification[0] = true;
             }
 
         }, UUID.fromString("12345678-1234-1234-1234-123456789bbcc"));
@@ -236,27 +242,28 @@ public class MockerTest {
 
         remoteDevice.addListener(new LeRemoteDeviceListener() {
             @Override
-            public void leDevicesConnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+            public void leDevicesConnected(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice) {
 
             }
 
             @Override
-            public void leDevicesDisconnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+            public void leDevicesDisconnected(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice) {
 
             }
 
             @Override
-            public void leDevicesClosed(LeDevice leDevice, LeRemoteDevice leRemoteDevice) {
+            public void leDevicesClosed(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice) {
 
             }
 
             @Override
-            public void serviceDiscovered(LeDevice leDevice, LeRemoteDevice leRemoteDevice, LeGattStatus status, LeGattService[] gatts) {
+            public void serviceDiscovered(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice, @Nonnull LeGattStatus status, @Nonnull
+                    LeGattService[] gatts) {
                 service[0] = gatts[0];
             }
 
             @Override
-            public void rssiRead(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi) {
+            public void rssiRead(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice, int rssi) {
 
             }
 

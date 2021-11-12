@@ -23,11 +23,11 @@
 
 @protocol LeGattService < JavaObject >
 
-- (JavaUtilUUID *)getUuid;
+- (JavaUtilUUID * __nonnull)getUuid;
 
-- (id<LeGattCharacteristic>)getCharacteristicWithJavaUtilUUID:(JavaUtilUUID *)uuid;
+- (id<LeGattCharacteristic> __nonnull)getCharacteristicWithJavaUtilUUID:(JavaUtilUUID * __nonnull)uuid;
 
-- (jboolean)enableCharacteristicNotificationWithJavaUtilUUID:(JavaUtilUUID *)characteristic;
+- (jboolean)enableCharacteristicNotificationWithJavaUtilUUID:(JavaUtilUUID * __nonnull)characteristic;
 
 @end
 

@@ -1,4 +1,6 @@
 
+#include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "IOSPrimitiveArray.h"
 #include "InterceptingLeGattCharacteristic.h"
 #include "J2ObjC_source.h"
@@ -8,6 +10,15 @@
 #include "LeIntercepting.h"
 #include "LeInterceptor.h"
 #include "java/lang/Boolean.h"
+#include "java/lang/annotation/Annotation.h"
+#include "javax/annotation/Nonnull.h"
+#include "javax/annotation/meta/When.h"
+
+__attribute__((unused)) static IOSObjectArray *InterceptingLeGattCharacteristic__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *InterceptingLeGattCharacteristic__Annotations$1(void);
+
+__attribute__((unused)) static IOSObjectArray *InterceptingLeGattCharacteristic__Annotations$2(void);
 
 @implementation InterceptingLeGattCharacteristic
 
@@ -76,12 +87,12 @@
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, 0, -1, -1, -1, -1 },
     { NULL, "[B", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "I", 0x1, 1, 2, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 3, 4, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 3, 5, -1, -1, -1, -1 },
+    { NULL, "I", 0x1, 1, 2, -1, -1, -1, 3 },
+    { NULL, "V", 0x1, 4, 5, -1, -1, -1, 6 },
+    { NULL, "V", 0x1, 4, 7, -1, -1, -1, 8 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "Z", 0x1, 6, 7, -1, -1, -1, -1 },
-    { NULL, "I", 0x1, 8, -1, -1, -1, -1, -1 },
+    { NULL, "Z", 0x1, 9, 10, -1, -1, -1, -1 },
+    { NULL, "I", 0x1, 11, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -98,7 +109,7 @@
   static const J2ObjcFieldInfo fields[] = {
     { "leGattCharacteristic_", "LLeGattCharacteristic;", .constantValue.asLong = 0, 0x11, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "LLeGattCharacteristic;LLeInterceptor;", "getIntValue", "LLeFormat;I", "setValue", "[B", "[BZ", "equals", "LNSObject;", "hashCode" };
+  static const void *ptrTable[] = { "LLeGattCharacteristic;LLeInterceptor;", "getIntValue", "LLeFormat;I", (void *)&InterceptingLeGattCharacteristic__Annotations$0, "setValue", "[B", (void *)&InterceptingLeGattCharacteristic__Annotations$1, "[BZ", (void *)&InterceptingLeGattCharacteristic__Annotations$2, "equals", "LNSObject;", "hashCode" };
   static const J2ObjcClassInfo _InterceptingLeGattCharacteristic = { "InterceptingLeGattCharacteristic", "houtbecke.rs.le.interceptor", ptrTable, methods, fields, 7, 0x1, 8, 1, -1, -1, -1, -1, -1 };
   return &_InterceptingLeGattCharacteristic;
 }
@@ -116,6 +127,18 @@ InterceptingLeGattCharacteristic *new_InterceptingLeGattCharacteristic_initWithL
 
 InterceptingLeGattCharacteristic *create_InterceptingLeGattCharacteristic_initWithLeGattCharacteristic_withLeInterceptor_(id<LeGattCharacteristic> leGattCharacteristic, LeInterceptor *leInterceptor) {
   J2OBJC_CREATE_IMPL(InterceptingLeGattCharacteristic, initWithLeGattCharacteristic_withLeInterceptor_, leGattCharacteristic, leInterceptor)
+}
+
+IOSObjectArray *InterceptingLeGattCharacteristic__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *InterceptingLeGattCharacteristic__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:1 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *InterceptingLeGattCharacteristic__Annotations$2() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(InterceptingLeGattCharacteristic)

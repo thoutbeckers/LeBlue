@@ -1,5 +1,8 @@
 package houtbecke.rs.le.fourdotthree;
 
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+import static no.nordicsemi.android.support.v18.scanner.ScanSettings.CALLBACK_TYPE_MATCH_LOST;
+
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -14,6 +17,7 @@ import android.os.Handler;
 import android.os.ParcelUuid;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
@@ -41,17 +45,12 @@ import no.nordicsemi.android.support.v18.scanner.ScanFilter;
 import no.nordicsemi.android.support.v18.scanner.ScanResult;
 import no.nordicsemi.android.support.v18.scanner.ScanSettings;
 
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-import static no.nordicsemi.android.support.v18.scanner.ScanSettings.CALLBACK_TYPE_MATCH_LOST;
-
 public class LeDevice43 implements LeDevice {
 
     final Context context;
 
-
-    public void setErrorLogger(ErrorLogger errorLogger) {
-        if (errorLogger!=null)
-            this.errorLogger = errorLogger;
+    public void setErrorLogger(@NonNull ErrorLogger errorLogger) {
+        if (errorLogger != null) { this.errorLogger = errorLogger; }
     }
 
     protected void log(int priority, String tag, String msg){
@@ -91,22 +90,20 @@ public class LeDevice43 implements LeDevice {
         }
     }
 
-
     @Override
-    public void addListener(LeDeviceListener listener) {
+    public void addListener(@javax.annotation.Nonnull LeDeviceListener listener) {
         listenerReadWriteLock.writeLock().lock();
-        try
-        {
+        try {
             listeners.add(listener);
         } finally {
             listenerReadWriteLock.writeLock().unlock();
         }
     }
+
     @Override
-    public void removeListener(LeDeviceListener listener) {
+    public void removeListener(@javax.annotation.Nonnull LeDeviceListener listener) {
         listenerReadWriteLock.writeLock().lock();
-        try
-        {
+        try {
             listeners.remove(listener);
         } finally {
             listenerReadWriteLock.writeLock().unlock();
@@ -254,29 +251,29 @@ public class LeDevice43 implements LeDevice {
     }
 
     @Override
-    public void startScanning(final UUID... uuids) {
-        if(!hasPermission()) {
+    public void startScanning(@javax.annotation.Nonnull final UUID... uuids) {
+        if (!hasPermission()) {
             return;
         }
 
         final BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
         final List<ScanFilter> scanFilters = new ArrayList<>();
-        for(UUID uuid : uuids) {
+        for (UUID uuid : uuids) {
             scanFilters.add(new ScanFilter.Builder().setServiceUuid(new ParcelUuid(uuid)).build());
         }
         startScanning(scanner, scanFilters);
     }
 
     @Override
-    public void startScanning(final List<List<UUID>> filters) {
-        if(!hasPermission()) {
+    public void startScanning(@javax.annotation.Nonnull final List<List<UUID>> filters) {
+        if (!hasPermission()) {
             return;
         }
 
         final BluetoothLeScannerCompat scanner = BluetoothLeScannerCompat.getScanner();
         final List<ScanFilter> scanFilters = new ArrayList<>();
-        for(List<UUID> filter : filters) {
-            for(UUID uuid : filter) {
+        for (List<UUID> filter : filters) {
+            for (UUID uuid : filter) {
                 scanFilters.add(new ScanFilter.Builder().setServiceUuid(new ParcelUuid(uuid)).build());
             }
         }

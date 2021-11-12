@@ -38,7 +38,7 @@
 - (instancetype __nonnull)initWithInt:(jint)key
                  withLeMockController:(id<LeMockController>)leMockController;
 
-- (void)addListenerWithLeDeviceListener:(id<LeDeviceListener>)listener;
+- (void)addListenerWithLeDeviceListener:(id<LeDeviceListener> __nonnull)listener;
 
 - (jboolean)checkBleHardwareAvailable;
 
@@ -48,15 +48,15 @@
 
 - (jboolean)isBtEnabled;
 
-- (void)removeListenerWithLeDeviceListener:(id<LeDeviceListener>)listener;
+- (void)removeListenerWithLeDeviceListener:(id<LeDeviceListener> __nonnull)listener;
 
 - (void)setErrorLoggerWithErrorLogger:(id<ErrorLogger>)errorLogger;
 
 - (void)startScanning;
 
-- (void)startScanningWithJavaUtilList:(id<JavaUtilList>)filters;
+- (void)startScanningWithJavaUtilList:(id<JavaUtilList> __nonnull)filters;
 
-- (void)startScanningWithJavaUtilUUIDArray:(IOSObjectArray *)uuids;
+- (void)startScanningWithJavaUtilUUIDArray:(IOSObjectArray * __nonnull)uuids;
 
 - (void)stopScanning;
 

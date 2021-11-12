@@ -1,4 +1,6 @@
 
+#include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "InterceptingLeCharacteristicWriteListener.h"
 #include "InterceptingLeGattCharacteristic.h"
 #include "InterceptingLeRemoteDevice.h"
@@ -10,7 +12,12 @@
 #include "LeInterceptor.h"
 #include "LeRemoteDevice.h"
 #include "java/lang/Boolean.h"
+#include "java/lang/annotation/Annotation.h"
 #include "java/util/UUID.h"
+#include "javax/annotation/Nonnull.h"
+#include "javax/annotation/meta/When.h"
+
+__attribute__((unused)) static IOSObjectArray *InterceptingLeCharacteristicWriteListener__Annotations$0(void);
 
 @implementation InterceptingLeCharacteristicWriteListener
 
@@ -49,9 +56,9 @@
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, 0, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 1, 2, -1, -1, -1, -1 },
-    { NULL, "Z", 0x1, 3, 4, -1, -1, -1, -1 },
-    { NULL, "I", 0x1, 5, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 1, 2, -1, -1, -1, 3 },
+    { NULL, "Z", 0x1, 4, 5, -1, -1, -1, -1 },
+    { NULL, "I", 0x1, 6, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -64,7 +71,7 @@
   static const J2ObjcFieldInfo fields[] = {
     { "leCharacteristicWriteListener_", "LLeCharacteristicWriteListener;", .constantValue.asLong = 0, 0x11, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "LLeCharacteristicWriteListener;LLeInterceptor;", "leCharacteristicWritten", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", "equals", "LNSObject;", "hashCode" };
+  static const void *ptrTable[] = { "LLeCharacteristicWriteListener;LLeInterceptor;", "leCharacteristicWritten", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", (void *)&InterceptingLeCharacteristicWriteListener__Annotations$0, "equals", "LNSObject;", "hashCode" };
   static const J2ObjcClassInfo _InterceptingLeCharacteristicWriteListener = { "InterceptingLeCharacteristicWriteListener", "houtbecke.rs.le.interceptor", ptrTable, methods, fields, 7, 0x1, 4, 1, -1, -1, -1, -1, -1 };
   return &_InterceptingLeCharacteristicWriteListener;
 }
@@ -82,6 +89,10 @@ InterceptingLeCharacteristicWriteListener *new_InterceptingLeCharacteristicWrite
 
 InterceptingLeCharacteristicWriteListener *create_InterceptingLeCharacteristicWriteListener_initWithLeCharacteristicWriteListener_withLeInterceptor_(id<LeCharacteristicWriteListener> leCharacteristicWriteListener, LeInterceptor *leInterceptor) {
   J2OBJC_CREATE_IMPL(InterceptingLeCharacteristicWriteListener, initWithLeCharacteristicWriteListener_withLeInterceptor_, leCharacteristicWriteListener, leInterceptor)
+}
+
+IOSObjectArray *InterceptingLeCharacteristicWriteListener__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:4 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(InterceptingLeCharacteristicWriteListener)

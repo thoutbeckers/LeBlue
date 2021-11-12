@@ -25,9 +25,9 @@
 
 @protocol LeDevice < JavaObject >
 
-- (void)addListenerWithLeDeviceListener:(id<LeDeviceListener>)listener;
+- (void)addListenerWithLeDeviceListener:(id<LeDeviceListener> __nonnull)listener;
 
-- (void)removeListenerWithLeDeviceListener:(id<LeDeviceListener>)listener;
+- (void)removeListenerWithLeDeviceListener:(id<LeDeviceListener> __nonnull)listener;
 
 - (jboolean)checkBleHardwareAvailable;
 
@@ -35,13 +35,13 @@
 
 - (void)startScanning;
 
-- (void)startScanningWithJavaUtilUUIDArray:(IOSObjectArray *)uuids;
+- (void)startScanningWithJavaUtilUUIDArray:(IOSObjectArray * __nonnull)uuids;
 
-- (void)startScanningWithJavaUtilList:(id<JavaUtilList>)filters;
+- (void)startScanningWithJavaUtilList:(id<JavaUtilList> __nonnull)filters;
 
 - (void)stopScanning;
 
-- (void)setErrorLoggerWithErrorLogger:(id<ErrorLogger>)errorLogger;
+- (void)setErrorLoggerWithErrorLogger:(id<ErrorLogger> __nonnull)errorLogger;
 
 - (void)disable;
 

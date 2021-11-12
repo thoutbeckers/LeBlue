@@ -46,23 +46,23 @@
 
 - (NSUInteger)hash;
 
-- (void)leDevicesClosedWithLeDevice:(id<LeDevice>)leDevice
-                 withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice;
+- (void)leDevicesClosedWithLeDevice:(id<LeDevice> __nonnull)leDevice
+                 withLeRemoteDevice:(id<LeRemoteDevice> __nonnull)leRemoteDevice;
 
-- (void)leDevicesConnectedWithLeDevice:(id<LeDevice>)leDevice
-                    withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice;
+- (void)leDevicesConnectedWithLeDevice:(id<LeDevice> __nonnull)leDevice
+                    withLeRemoteDevice:(id<LeRemoteDevice> __nonnull)leRemoteDevice;
 
-- (void)leDevicesDisconnectedWithLeDevice:(id<LeDevice>)leDevice
-                       withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice;
+- (void)leDevicesDisconnectedWithLeDevice:(id<LeDevice> __nonnull)leDevice
+                       withLeRemoteDevice:(id<LeRemoteDevice> __nonnull)leRemoteDevice;
 
-- (void)rssiReadWithLeDevice:(id<LeDevice>)leDevice
-          withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice
+- (void)rssiReadWithLeDevice:(id<LeDevice> __nonnull)leDevice
+          withLeRemoteDevice:(id<LeRemoteDevice> __nonnull)leRemoteDevice
                      withInt:(jint)rssi;
 
-- (void)serviceDiscoveredWithLeDevice:(id<LeDevice>)leDevice
-                   withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice
-                     withLeGattStatus:(LeGattStatus *)status
-               withLeGattServiceArray:(IOSObjectArray *)gatts;
+- (void)serviceDiscoveredWithLeDevice:(id<LeDevice> __nonnull)leDevice
+                   withLeRemoteDevice:(id<LeRemoteDevice> __nonnull)leRemoteDevice
+                     withLeGattStatus:(LeGattStatus * __nonnull)status
+               withLeGattServiceArray:(IOSObjectArray * __nonnull)gatts;
 
 // Disallowed inherited constructors, do not use.
 

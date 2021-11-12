@@ -1,5 +1,7 @@
 package houtbecke.rs.le.mock;
 
+import javax.annotation.Nonnull;
+
 import houtbecke.rs.le.LeFormat;
 import houtbecke.rs.le.LeGattCharacteristic;
 
@@ -17,18 +19,18 @@ public class LeGattCharacteristicMock implements LeGattCharacteristic {
     }
 
     @Override
-    public int getIntValue(LeFormat format, int index) {
+    public int getIntValue(@Nonnull LeFormat format, int index) {
         return mockController.characteristicGetIntValue(this, format, index);
     }
 
     @Override
-    public void setValue(byte[] value) {
+    public void setValue(@Nonnull byte[] value) {
         mockController.characteristicSetValue(this, value);
     }
 
     @Override
-    public void setValue(byte[] value, boolean withResponse) {
-        mockController.characteristicSetValue(this, value,withResponse);
+    public void setValue(@Nonnull byte[] value, boolean withResponse) {
+        mockController.characteristicSetValue(this, value, withResponse);
     }
 
     @Override

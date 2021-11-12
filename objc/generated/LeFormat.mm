@@ -96,7 +96,7 @@ LeFormat *LeFormat_values_[8];
     { "FORMAT_SINT32", "LLeFormat;", .constantValue.asLong = 0, 0x4019, -1, 8, -1, -1 },
     { "FORMAT_SFLOAT", "LLeFormat;", .constantValue.asLong = 0, 0x4019, -1, 9, -1, -1 },
     { "FORMAT_FLOAT", "LLeFormat;", .constantValue.asLong = 0, 0x4019, -1, 10, -1, -1 },
-    { "format_", "I", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
+    { "format_", "I", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "fromString", "LNSString;", "valueOf", &JreEnum(LeFormat, FORMAT_UINT8), &JreEnum(LeFormat, FORMAT_UINT16), &JreEnum(LeFormat, FORMAT_UINT32), &JreEnum(LeFormat, FORMAT_SINT8), &JreEnum(LeFormat, FORMAT_SINT16), &JreEnum(LeFormat, FORMAT_SINT32), &JreEnum(LeFormat, FORMAT_SFLOAT), &JreEnum(LeFormat, FORMAT_FLOAT), "Ljava/lang/Enum<Lhoutbecke/rs/le/LeFormat;>;" };
   static const J2ObjcClassInfo _LeFormat = { "LeFormat", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x4011, 4, 9, -1, -1, -1, 11, -1 };

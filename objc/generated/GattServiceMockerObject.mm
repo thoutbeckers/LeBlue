@@ -58,7 +58,7 @@
                                  withNSString:(NSString *)uuid
                                  withNSString:(NSString *)enable {
   [((SessionObject *) nil_chk(sessionObject_)) setSourceIdentificationWithInt:characteristicId withNSString:uuid];
-  [self withMockWithEventType:JreLoadEnum(LeEventType, serviceEnableCharacteristicNotification) withMockedResponse:create_MockedResponseObject_initWithEvent_(create_Event_initWithEventType_withInt_withInt_withNSStringArray_(JreLoadEnum(LeEventType, mockCharacteristicNotificationChanged), [self getDelay], sessionSource_, [IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", characteristicId), [((NSString *) nil_chk(uuid)) description], JreStrcat("I", remoteId), enable } count:4 type:NSString_class_()]))];
+  [self withMockWithEventType:JreLoadEnum(LeEventType, serviceEnableCharacteristicNotification) withMockedResponse:create_MockedResponseObject_initWithEvent_(create_Event_initWithEventType_withInt_withInt_withNSStringArray_(JreLoadEnum(LeEventType, mockCharacteristicNotificationChanged), [self getDelay], sessionSource_, [IOSObjectArray arrayWithObjects:(id[]){ JreStrcat("I", characteristicId), uuid, JreStrcat("I", remoteId), enable } count:4 type:NSString_class_()]))];
   return self;
 }
 

@@ -1,4 +1,5 @@
 
+#include "IOSClass.h"
 #include "IOSObjectArray.h"
 #include "InterceptingLeCharacteristicListener.h"
 #include "InterceptingLeCharacteristicWriteListener.h"
@@ -11,6 +12,14 @@
 #include "LeInterceptor.h"
 #include "LeRemoteDevice.h"
 #include "LeRemoteDeviceListener.h"
+#include "java/lang/annotation/Annotation.h"
+#include "javax/annotation/Nonnull.h"
+#include "javax/annotation/Nullable.h"
+#include "javax/annotation/meta/When.h"
+
+__attribute__((unused)) static IOSObjectArray *InterceptingLeRemoteDevice__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *InterceptingLeRemoteDevice__Annotations$1(void);
 
 @implementation InterceptingLeRemoteDevice
 
@@ -151,16 +160,16 @@
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x81, 4, 5, -1, -1, -1, -1 },
-    { NULL, "V", 0x81, 6, 7, -1, -1, -1, -1 },
-    { NULL, "V", 0x81, 8, 9, -1, -1, -1, -1 },
+    { NULL, "V", 0x81, 4, 5, -1, -1, -1, 6 },
+    { NULL, "V", 0x81, 7, 8, -1, -1, -1, 9 },
+    { NULL, "V", 0x81, 10, 11, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "Z", 0x1, 10, 11, -1, -1, -1, -1 },
-    { NULL, "I", 0x1, 12, -1, -1, -1, -1, -1 },
-    { NULL, "LNSString;", 0x1, 13, -1, -1, -1, -1, -1 },
+    { NULL, "Z", 0x1, 12, 13, -1, -1, -1, -1 },
+    { NULL, "I", 0x1, 14, -1, -1, -1, -1, -1 },
+    { NULL, "LNSString;", 0x1, 15, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -187,7 +196,7 @@
   static const J2ObjcFieldInfo fields[] = {
     { "leRemoteDevice_", "LLeRemoteDevice;", .constantValue.asLong = 0, 0x11, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "LLeRemoteDevice;LLeInterceptor;", "addListener", "LLeRemoteDeviceListener;", "removeListener", "startServicesDiscovery", "[LJavaUtilUUID;", "setCharacteristicWriteListener", "LLeCharacteristicWriteListener;[LJavaUtilUUID;", "setCharacteristicListener", "LLeCharacteristicListener;[LJavaUtilUUID;", "equals", "LNSObject;", "hashCode", "toString" };
+  static const void *ptrTable[] = { "LLeRemoteDevice;LLeInterceptor;", "addListener", "LLeRemoteDeviceListener;", "removeListener", "startServicesDiscovery", "[LJavaUtilUUID;", (void *)&InterceptingLeRemoteDevice__Annotations$0, "setCharacteristicWriteListener", "LLeCharacteristicWriteListener;[LJavaUtilUUID;", (void *)&InterceptingLeRemoteDevice__Annotations$1, "setCharacteristicListener", "LLeCharacteristicListener;[LJavaUtilUUID;", "equals", "LNSObject;", "hashCode", "toString" };
   static const J2ObjcClassInfo _InterceptingLeRemoteDevice = { "InterceptingLeRemoteDevice", "houtbecke.rs.le.interceptor", ptrTable, methods, fields, 7, 0x1, 18, 1, -1, -1, -1, -1, -1 };
   return &_InterceptingLeRemoteDevice;
 }
@@ -205,6 +214,14 @@ InterceptingLeRemoteDevice *new_InterceptingLeRemoteDevice_initWithLeRemoteDevic
 
 InterceptingLeRemoteDevice *create_InterceptingLeRemoteDevice_initWithLeRemoteDevice_withLeInterceptor_(id<LeRemoteDevice> leRemoteDevice, LeInterceptor *leInterceptor) {
   J2OBJC_CREATE_IMPL(InterceptingLeRemoteDevice, initWithLeRemoteDevice_withLeInterceptor_, leRemoteDevice, leInterceptor)
+}
+
+IOSObjectArray *InterceptingLeRemoteDevice__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:1 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *InterceptingLeRemoteDevice__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNullable() } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(InterceptingLeRemoteDevice)

@@ -68,11 +68,11 @@
                                         withJavaUtilUUIDArray:(IOSObjectArray *)uuids;
 
 - (void)setCharacteristicWriteListenerWithLeCharacteristicWriteListener:(id<LeCharacteristicWriteListener>)listener
-                                                  withJavaUtilUUIDArray:(IOSObjectArray *)uuids;
+                                                  withJavaUtilUUIDArray:(IOSObjectArray * __nullable)uuids;
 
 - (void)startServicesDiscovery;
 
-- (void)startServicesDiscoveryWithJavaUtilUUIDArray:(IOSObjectArray *)uuids;
+- (void)startServicesDiscoveryWithJavaUtilUUIDArray:(IOSObjectArray * __nonnull)uuids;
 
 - (NSString *)description;
 

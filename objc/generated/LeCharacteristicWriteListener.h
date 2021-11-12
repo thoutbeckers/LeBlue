@@ -24,10 +24,10 @@
 
 @protocol LeCharacteristicWriteListener < JavaObject >
 
-- (void)leCharacteristicWrittenWithJavaUtilUUID:(JavaUtilUUID *)uuid
-                             withLeRemoteDevice:(id<LeRemoteDevice>)remoteDevice
-                       withLeGattCharacteristic:(id<LeGattCharacteristic>)characteristic
-                                    withBoolean:(jboolean)succes;
+- (void)leCharacteristicWrittenWithJavaUtilUUID:(JavaUtilUUID * __nonnull)uuid
+                             withLeRemoteDevice:(id<LeRemoteDevice> __nonnull)remoteDevice
+                       withLeGattCharacteristic:(id<LeGattCharacteristic> __nonnull)characteristic
+                                    withBoolean:(jboolean)success;
 
 @end
 

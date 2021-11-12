@@ -23,14 +23,14 @@
 
 @protocol LeGattCharacteristic < JavaObject >
 
-- (IOSByteArray *)getValue;
+- (IOSByteArray * __nullable)getValue;
 
-- (jint)getIntValueWithLeFormat:(LeFormat *)format
+- (jint)getIntValueWithLeFormat:(LeFormat * __nonnull)format
                         withInt:(jint)index;
 
-- (void)setValueWithByteArray:(IOSByteArray *)value;
+- (void)setValueWithByteArray:(IOSByteArray * __nonnull)value;
 
-- (void)setValueWithByteArray:(IOSByteArray *)value
+- (void)setValueWithByteArray:(IOSByteArray * __nonnull)value
                   withBoolean:(jboolean)withResponse;
 
 - (void)read;

@@ -10,6 +10,8 @@ import android.bluetooth.BluetoothProfile;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +20,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArraySet;
+
+import javax.annotation.Nonnull;
 
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeCharacteristicWriteListener;
@@ -47,12 +51,12 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
     @Override
-    public void addListener(LeRemoteDeviceListener listener) {
+    public void addListener(@Nonnull LeRemoteDeviceListener listener) {
         listeners.add(listener);
     }
 
     @Override
-    public void removeListener(LeRemoteDeviceListener listener) {
+    public void removeListener(@Nonnull LeRemoteDeviceListener listener) {
         listeners.remove(listener);
     }
 
@@ -100,7 +104,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
     @Override
-    public void startServicesDiscovery(UUID... uuids) {
+    public void startServicesDiscovery(@Nullable UUID... uuids) {
         //scanning for specific services is not supported on android
         this.startServicesDiscovery();
 
@@ -112,32 +116,34 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
     @Override
-    public void setCharacteristicListener(LeCharacteristicListener listener, UUID... uuids) {
+    public void setCharacteristicListener(@Nullable LeCharacteristicListener listener, @Nullable UUID... uuids) {
 
         if (uuids == null || uuids.length == 0) {
             if (listener == null) { uuidCharacteristicListeners.remove(null); } else {
                 uuidCharacteristicListeners.put(null, listener);
             }
         } else {
-            for (UUID uuid : uuids)
+            for (UUID uuid : uuids) {
                 if (listener == null) { uuidCharacteristicListeners.remove(uuid); } else {
                     uuidCharacteristicListeners.put(uuid, listener);
                 }
+            }
         }
     }
 
     @Override
-    public void setCharacteristicWriteListener(LeCharacteristicWriteListener listener, UUID... uuids) {
+    public void setCharacteristicWriteListener(@Nullable LeCharacteristicWriteListener listener, @Nullable UUID... uuids) {
 
         if (uuids == null || uuids.length == 0) {
             if (listener == null) { uuidCharacteristicWriteListeners.remove(null); } else {
                 uuidCharacteristicWriteListeners.put(null, listener);
             }
         } else {
-            for (UUID uuid : uuids)
+            for (UUID uuid : uuids) {
                 if (listener == null) { uuidCharacteristicWriteListeners.remove(uuid); } else {
                     uuidCharacteristicWriteListeners.put(uuid, listener);
                 }
+            }
         }
     }
 

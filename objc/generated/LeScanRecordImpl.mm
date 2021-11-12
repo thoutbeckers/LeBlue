@@ -6,6 +6,7 @@
 #include "LeRecord.h"
 #include "LeScanRecordImpl.h"
 #include "java/lang/Short.h"
+#include "java/lang/annotation/Annotation.h"
 #include "java/nio/ByteBuffer.h"
 #include "java/nio/ByteOrder.h"
 #include "java/util/ArrayList.h"
@@ -13,6 +14,27 @@
 #include "java/util/Collection.h"
 #include "java/util/List.h"
 #include "java/util/UUID.h"
+#include "javax/annotation/Nonnull.h"
+#include "javax/annotation/Nullable.h"
+#include "javax/annotation/meta/When.h"
+
+__attribute__((unused)) static IOSObjectArray *LeScanRecordImpl__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *LeScanRecordImpl__Annotations$1(void);
+
+__attribute__((unused)) static IOSObjectArray *LeScanRecordImpl__Annotations$2(void);
+
+__attribute__((unused)) static IOSObjectArray *LeScanRecordImpl__Annotations$3(void);
+
+__attribute__((unused)) static IOSObjectArray *LeScanRecordImpl__Annotations$4(void);
+
+__attribute__((unused)) static IOSObjectArray *LeScanRecordImpl__Annotations$5(void);
+
+__attribute__((unused)) static IOSObjectArray *LeScanRecordImpl__Annotations$6(void);
+
+__attribute__((unused)) static IOSObjectArray *LeScanRecordImpl__Annotations$7(void);
+
+__attribute__((unused)) static IOSObjectArray *LeScanRecordImpl__Annotations$8(void);
 
 @interface LeScanRecordImpl_1 : NSObject < LeRecord > {
  @public
@@ -166,12 +188,13 @@ __attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_ini
     id<LeRecord> const *e__ = b__ + a__->size_;
     while (b__ < e__) {
       id<LeRecord> record = *b__++;
-      if (((IOSByteArray *) nil_chk([((id<LeRecord>) nil_chk(record)) getRecordContent]))->size_ < 3) {
+      IOSByteArray *recordContent = [((id<LeRecord>) nil_chk(record)) getRecordContent];
+      if (((IOSByteArray *) nil_chk(recordContent))->size_ < 3) {
         continue;
       }
-      IOSByteArray *serviceDataId = JavaUtilArrays_copyOfRangeWithByteArray_withInt_withInt_(scanrecord_, 0, 2);
-      IOSByteArray *serviceData = JavaUtilArrays_copyOfRangeWithByteArray_withInt_withInt_(scanrecord_, 2, ((IOSByteArray *) nil_chk(scanrecord_))->size_ - 2);
-      JavaNioByteBuffer *serviceDataIdWrapped = JavaNioByteBuffer_wrapWithByteArray_(serviceDataId);
+      IOSByteArray *serviceDataId = JavaUtilArrays_copyOfRangeWithByteArray_withInt_withInt_(recordContent, 0, 2);
+      IOSByteArray *serviceData = JavaUtilArrays_copyOfRangeWithByteArray_withInt_withInt_(recordContent, 2, recordContent->size_);
+      JavaNioByteBuffer *serviceDataIdWrapped = [((JavaNioByteBuffer *) nil_chk(JavaNioByteBuffer_wrapWithByteArray_(serviceDataId))) orderWithJavaNioByteOrder:JreLoadStatic(JavaNioByteOrder, LITTLE_ENDIAN)];
       JavaUtilUUID *foundServiceUUID = JavaUtilUUID_fromStringWithNSString_(NSString_java_formatWithNSString_withNSObjectArray_(@"%08x-0000-1000-8000-00805f9b34fb", [IOSObjectArray arrayWithObjects:(id[]){ JavaLangShort_valueOfWithShort_([((JavaNioByteBuffer *) nil_chk(serviceDataIdWrapped)) getShort]) } count:1 type:NSObject_class_()]));
       if ([((JavaUtilUUID *) nil_chk(foundServiceUUID)) isEqual:serviceUUID]) {
         return serviceData;
@@ -190,15 +213,15 @@ __attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_ini
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, 0, -1, -1, -1, -1 },
-    { NULL, "[LLeRecord;", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "[LLeRecord;", 0x81, 1, 2, -1, -1, -1, -1 },
-    { NULL, "[LJavaUtilUUID;", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "Z", 0x1, 3, 4, -1, -1, -1, -1 },
-    { NULL, "LNSString;", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "[B", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "[B", 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, "[LLeRecord;", 0x1, -1, -1, -1, -1, 1, -1 },
+    { NULL, "[LLeRecord;", 0x81, 2, 3, -1, -1, 4, -1 },
+    { NULL, "[LJavaUtilUUID;", 0x1, -1, -1, -1, -1, 5, -1 },
+    { NULL, "Z", 0x1, 6, 7, -1, -1, -1, 8 },
+    { NULL, "LNSString;", 0x1, -1, -1, -1, -1, 9, -1 },
+    { NULL, "[B", 0x1, -1, -1, -1, -1, 10, -1 },
+    { NULL, "[B", 0x1, -1, -1, -1, -1, 11, -1 },
     { NULL, "V", 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, "[B", 0x1, 5, 4, -1, -1, -1, -1 },
+    { NULL, "[B", 0x1, 12, 7, -1, -1, 13, 14 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -216,9 +239,9 @@ __attribute__((unused)) static LeScanRecordImpl_1 *create_LeScanRecordImpl_1_ini
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "scanrecord_", "[B", .constantValue.asLong = 0, 0x10, -1, -1, -1, -1 },
-    { "records_", "LJavaUtilCollection;", .constantValue.asLong = 0, 0x10, -1, -1, 6, -1 },
+    { "records_", "LJavaUtilCollection;", .constantValue.asLong = 0, 0x10, -1, -1, 15, -1 },
   };
-  static const void *ptrTable[] = { "[B", "getRecords", "[I", "hasService", "LJavaUtilUUID;", "getServiceData", "Ljava/util/Collection<Lhoutbecke/rs/le/LeRecord;>;" };
+  static const void *ptrTable[] = { "[B", (void *)&LeScanRecordImpl__Annotations$0, "getRecords", "[I", (void *)&LeScanRecordImpl__Annotations$1, (void *)&LeScanRecordImpl__Annotations$2, "hasService", "LJavaUtilUUID;", (void *)&LeScanRecordImpl__Annotations$3, (void *)&LeScanRecordImpl__Annotations$4, (void *)&LeScanRecordImpl__Annotations$5, (void *)&LeScanRecordImpl__Annotations$6, "getServiceData", (void *)&LeScanRecordImpl__Annotations$7, (void *)&LeScanRecordImpl__Annotations$8, "Ljava/util/Collection<Lhoutbecke/rs/le/LeRecord;>;" };
   static const J2ObjcClassInfo _LeScanRecordImpl = { "LeScanRecordImpl", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x1, 10, 2, -1, -1, -1, -1, -1 };
   return &_LeScanRecordImpl;
 }
@@ -238,6 +261,42 @@ LeScanRecordImpl *new_LeScanRecordImpl_initWithByteArray_(IOSByteArray *scanreco
 
 LeScanRecordImpl *create_LeScanRecordImpl_initWithByteArray_(IOSByteArray *scanrecord) {
   J2OBJC_CREATE_IMPL(LeScanRecordImpl, initWithByteArray_, scanrecord)
+}
+
+IOSObjectArray *LeScanRecordImpl__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
+
+IOSObjectArray *LeScanRecordImpl__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
+
+IOSObjectArray *LeScanRecordImpl__Annotations$2() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
+
+IOSObjectArray *LeScanRecordImpl__Annotations$3() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:1 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *LeScanRecordImpl__Annotations$4() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNullable() } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
+
+IOSObjectArray *LeScanRecordImpl__Annotations$5() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNullable() } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
+
+IOSObjectArray *LeScanRecordImpl__Annotations$6() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNullable() } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
+
+IOSObjectArray *LeScanRecordImpl__Annotations$7() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNullable() } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
+
+IOSObjectArray *LeScanRecordImpl__Annotations$8() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:1 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(LeScanRecordImpl)
