@@ -1,7 +1,3 @@
-
-#include "CharacteristicsMockerObject.h"
-#include "DeviceMockerObject.h"
-#include "EventSinkFiller.h"
 #include "GattServiceMockerObject.h"
 #include "IOSClass.h"
 #include "IOSObjectArray.h"

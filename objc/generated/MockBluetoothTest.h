@@ -1,7 +1,3 @@
-
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_MockBluetoothTest")
 #ifdef RESTRICT_MockBluetoothTest
 #define INCLUDE_ALL_MockBluetoothTest 0
 #else

@@ -1,7 +1,3 @@
-
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_SessionSwitchingTest")
 #ifdef RESTRICT_SessionSwitchingTest
 #define INCLUDE_ALL_SessionSwitchingTest 0
 #else
