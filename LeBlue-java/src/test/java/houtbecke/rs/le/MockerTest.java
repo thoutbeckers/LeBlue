@@ -207,7 +207,7 @@ public class MockerTest {
 
         remoteDevice.setCharacteristicListener(new LeCharacteristicListener() {
             @Override
-            public void leCharacteristicChanged(@Nonnull UUID uuid, @Nonnull LeRemoteDevice leRemoteDevice,
+            public void leCharacteristicChanged(@Nonnull UUID uuid, @Nonnull UUID serviceUuid, @Nonnull LeRemoteDevice leRemoteDevice,
                                                 @Nonnull LeGattCharacteristic leCharacteristic) {
                 assertEquals(uuid, UUID.fromString("12345678-1234-1234-1234-123456789bbcc"));
                 assertEquals(remoteDevice, leRemoteDevice);
@@ -216,7 +216,7 @@ public class MockerTest {
             }
 
             @Override
-            public void leCharacteristicNotificationChanged(@Nonnull UUID uuid, @Nonnull LeRemoteDevice remoteDevice,
+            public void leCharacteristicNotificationChanged(@Nonnull UUID uuid, @Nonnull UUID serviceUuid, @Nonnull LeRemoteDevice remoteDevice,
                                                             @Nonnull LeGattCharacteristic characteristic, boolean success) {
                 changedNotification[0] = true;
             }

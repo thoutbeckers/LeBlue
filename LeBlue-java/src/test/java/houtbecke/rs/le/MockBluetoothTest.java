@@ -214,7 +214,7 @@ public class MockBluetoothTest {
 
         remoteDevice.setCharacteristicListener(new LeCharacteristicListener() {
             @Override
-            public void leCharacteristicChanged(@Nonnull UUID uuid, @Nonnull LeRemoteDevice leRemoteDevice,
+            public void leCharacteristicChanged(@Nonnull UUID uuid,  @Nonnull UUID serviceUuid, @Nonnull LeRemoteDevice leRemoteDevice,
                                                 @Nonnull LeGattCharacteristic leCharacteristic) {
                 assert uuid.equals(UUID.fromString("12345678-1234-1234-1234-123456789cccc"));
                 assert getRemoteDevice().equals(leRemoteDevice);
@@ -223,7 +223,7 @@ public class MockBluetoothTest {
             }
 
             @Override
-            public void leCharacteristicNotificationChanged(@Nonnull UUID uuid, @Nonnull LeRemoteDevice remoteDevice,
+            public void leCharacteristicNotificationChanged(@Nonnull UUID uuid, @Nonnull UUID serviceUuid, @Nonnull LeRemoteDevice remoteDevice,
                                                             @Nonnull LeGattCharacteristic characteristic, boolean success) {
                 notificationChanged[0] = true;
             }

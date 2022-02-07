@@ -559,6 +559,7 @@ public class LeSessionController implements LeMockController {
                                 for (LeCharacteristicListener leCharacteristicListener : session.getRemoteDeviceMocker(event.source).getCharacteristicListeners(LeSessionController.this, event.source)) {
                                     leCharacteristicListener.leCharacteristicChanged(
                                             uuid,
+                                            null,
                                             getRemoteDevice(event.source),
                                             characteristic
                                     );
@@ -577,6 +578,7 @@ public class LeSessionController implements LeMockController {
                                     uuid = UUID.fromString(event.values[0]);
                                 getCharacteristicListener(event.source).leCharacteristicChanged(
                                         uuid,
+                                        null,
                                         getRemoteDevice(event.values[1]),
                                         getCharacteristic(event.values[2])
                                 );
@@ -594,6 +596,7 @@ public class LeSessionController implements LeMockController {
                                 LeCharacteristicWriteListener  characteristicWriteListener=getCharacteristicWriteListener(event.source);
                                 characteristicWriteListener.leCharacteristicWritten(
                                         uuid,
+                                        null,
                                         getRemoteDevice(event.values[1]),
                                         getCharacteristic(event.values[2]),
                                         true
@@ -611,6 +614,7 @@ public class LeSessionController implements LeMockController {
                                 for (LeCharacteristicListener leCharacteristicListener : session.getRemoteDeviceMocker(Integer.valueOf(event.values[2])).getCharacteristicListeners(LeSessionController.this, Integer.valueOf(event.values[2]))) {
                                     leCharacteristicListener.leCharacteristicNotificationChanged(
                                             uuid2,
+                                            null,
                                             getRemoteDevice(event.values[2]),
                                             characteristic2,
                                             Boolean.parseBoolean(event.values[3])
@@ -629,6 +633,7 @@ public class LeSessionController implements LeMockController {
                                     uuid = UUID.fromString(event.values[0]);
                                 getCharacteristicListener(event.source).leCharacteristicNotificationChanged(
                                         uuid,
+                                        null,
                                         getRemoteDevice(event.values[1]),
                                         getCharacteristic(event.values[2]),
                                         Boolean.parseBoolean(event.values[3])

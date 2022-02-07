@@ -275,20 +275,21 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
         try {
 
-            UUID uuid = characteristic.getUuid();
+            UUID characteristicUuid = characteristic.getUuid();
+            UUID serviceUuid = characteristic.getService().getUuid();
 
             byte[] bytes = characteristic.getValue();
 
             LeCharacteristicListener nullListener = uuidCharacteristicListeners.get(null);
-            LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(uuid);
+            LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(characteristicUuid);
 
             if ((nullListener != null || uuidListener != null) && gatt != null) {
                 LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic, this);
                 if (nullListener != null) {
-                    nullListener.leCharacteristicNotificationChanged(uuid, this, characteristic43, success);
+                    nullListener.leCharacteristicNotificationChanged(characteristicUuid, serviceUuid,  this, characteristic43, success);
                 }
                 if (uuidListener != null) {
-                    uuidListener.leCharacteristicNotificationChanged(uuid, this, characteristic43, success);
+                    uuidListener.leCharacteristicNotificationChanged(characteristicUuid, serviceUuid, this, characteristic43, success);
                 }
             }
         } catch (Throwable t) {
@@ -300,20 +301,21 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
         try {
 
-            UUID uuid = characteristic.getUuid();
+            UUID characteristicUuid = characteristic.getUuid();
+            UUID serviceUuid = characteristic.getService().getUuid();
 
             byte[] bytes = characteristic.getValue();
 
             LeCharacteristicListener nullListener = uuidCharacteristicListeners.get(null);
-            LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(uuid);
+            LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(characteristicUuid);
 
             if ((nullListener != null || uuidListener != null) && gatt != null) {
                 LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic, this);
                 if (nullListener != null) {
-                    nullListener.leCharacteristicChanged(uuid, this, characteristic43);
+                    nullListener.leCharacteristicChanged(characteristicUuid, serviceUuid, this, characteristic43);
                 }
                 if (uuidListener != null) {
-                    uuidListener.leCharacteristicChanged(uuid, this, characteristic43);
+                    uuidListener.leCharacteristicChanged(characteristicUuid, serviceUuid, this, characteristic43);
                 }
             }
         } catch (Throwable t) {
@@ -331,18 +333,19 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
             if (status != BluetoothGatt.GATT_SUCCESS) {
                 leDevice43.log(Log.ERROR, "LeBlue", "onCharacteristicWrite " + status);
             }
-            UUID uuid = characteristic.getUuid();
+            UUID characteristicUuid = characteristic.getUuid();
+            UUID serviceUuid = characteristic.getService().getUuid();
 
             LeCharacteristicWriteListener nullListener = uuidCharacteristicWriteListeners.get(null);
-            LeCharacteristicWriteListener uuidListener = uuidCharacteristicWriteListeners.get(uuid);
+            LeCharacteristicWriteListener uuidListener = uuidCharacteristicWriteListeners.get(characteristicUuid);
 
             if ((nullListener != null || uuidListener != null) && gatt != null) {
                 LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic, this);
                 if (nullListener != null) {
-                    nullListener.leCharacteristicWritten(uuid, this, characteristic43, succes);
+                    nullListener.leCharacteristicWritten(characteristicUuid, serviceUuid, this, characteristic43, succes);
                 }
                 if (uuidListener != null) {
-                    uuidListener.leCharacteristicWritten(uuid, this, characteristic43, succes);
+                    uuidListener.leCharacteristicWritten(characteristicUuid, serviceUuid, this, characteristic43, succes);
                 }
             }
         } catch (Throwable t) {

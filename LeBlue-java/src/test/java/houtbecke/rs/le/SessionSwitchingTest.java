@@ -126,7 +126,7 @@ public class SessionSwitchingTest {
 
         remoteDevice.setCharacteristicListener(new LeCharacteristicListener() {
             @Override
-            public void leCharacteristicChanged(@Nonnull UUID uuid, @Nonnull LeRemoteDevice leRemoteDevice,
+            public void leCharacteristicChanged(@Nonnull UUID uuid, @Nonnull UUID serviceUuid, @Nonnull LeRemoteDevice leRemoteDevice,
                                                 @Nonnull LeGattCharacteristic leCharacteristic) {
                 // assert leCharacteristic.getValue() == new ArrayList<Integer>(Arrays.asList(0, 1, 2));
                 valueRead[0] = true;
