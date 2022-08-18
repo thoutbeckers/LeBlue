@@ -1,5 +1,6 @@
 package houtbecke.rs.le.fourdotthree;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
@@ -47,6 +48,7 @@ class LeGattService43 implements LeGattService {
         return new LeGattCharacteristic43(gatt, characteristic, leRemoteDevice43);
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public boolean enableCharacteristicNotification(@javax.annotation.Nonnull UUID characteristic) {
         final BluetoothGatt gatt = leRemoteDevice43.gatt;

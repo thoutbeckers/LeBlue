@@ -1,5 +1,6 @@
 package houtbecke.rs.le.fourdotthree;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 
@@ -50,7 +51,8 @@ class LeGattCharacteristic43 implements LeGattCharacteristic {
     }
 
 
-    protected void setValueNow(byte[] value,boolean withResponse) {
+    @SuppressLint("MissingPermission")
+    protected void setValueNow(byte[] value, boolean withResponse) {
 
         if (withResponse)
             characteristic.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT);

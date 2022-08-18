@@ -4,6 +4,7 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static no.nordicsemi.android.support.v18.scanner.ScanSettings.CALLBACK_TYPE_MATCH_LOST;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
@@ -271,20 +272,6 @@ public class LeDevice43 implements LeDevice {
         scanner.stopScan(scanCallback);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {return true;}
-        if (o == null || !(o instanceof LeDevice43)) {return false;}
-        LeDevice43 that = (LeDevice43) o;
-        return that.bluetoothAdapter.getAddress().equals(bluetoothAdapter.getAddress());
-
-    }
-
-    @Override
-    public int hashCode() {
-        return bluetoothAdapter.getAddress().hashCode();
-    }
-
     LeGattStatus toGattStatus(int status) {
         switch (status) {
             case BluetoothGatt.GATT_SUCCESS:
@@ -309,10 +296,12 @@ public class LeDevice43 implements LeDevice {
         }
     }
 
+    @SuppressLint("MissingPermission")
     public void disable() {
         bluetoothAdapter.disable();
     }
 
+    @SuppressLint("MissingPermission")
     public void enable() {
         bluetoothAdapter.enable();
     }

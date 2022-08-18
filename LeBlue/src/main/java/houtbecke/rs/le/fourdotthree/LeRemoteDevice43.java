@@ -1,5 +1,6 @@
 package houtbecke.rs.le.fourdotthree;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCallback;
@@ -65,6 +66,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         return remoteDevice43.getAddress();
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void connect() {
         leDevice43.remoteDevices.put(remoteDevice43.getAddress(), this);
@@ -80,6 +82,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         }
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void disconnect() {
         if (gatt != null) {
@@ -110,6 +113,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void startServicesDiscovery() {
         if (gatt != null) { gatt.discoverServices(); }
@@ -147,6 +151,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         }
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
         super.onConnectionStateChange(gatt, status, newState);
@@ -220,6 +225,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         }
     }
 
+    @SuppressLint("MissingPermission")
     public void sendFirst() {
         synchronized (queue) {
 
@@ -354,11 +360,13 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public String getName() {
         return remoteDevice43.getName();
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void readRssi() {
         if (gatt != null) {
@@ -417,6 +425,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         return false;
     }
 
+    @SuppressLint("MissingPermission")
     private void unpair(final BluetoothDevice bluetoothDevice) {
         // unpair to prevent connection problems
         if (bluetoothDevice.getBondState() != BluetoothDevice.BOND_NONE) {
