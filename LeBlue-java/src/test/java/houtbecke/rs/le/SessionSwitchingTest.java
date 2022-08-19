@@ -133,7 +133,9 @@ public class SessionSwitchingTest {
             }
 
             @Override
-            public void leCharacteristicNotificationChanged(@Nonnull UUID uuid, @Nonnull LeRemoteDevice remoteDevice,
+            public void leCharacteristicNotificationChanged(@Nonnull UUID uuid,
+                                                            @Nonnull UUID serviceUuid,
+                                                            @Nonnull LeRemoteDevice remoteDevice,
                                                             @Nonnull LeGattCharacteristic characteristic, boolean success) {
 
             }
