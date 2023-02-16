@@ -1,5 +1,31 @@
 package houtbecke.rs.le.mock;
 
+import static houtbecke.rs.le.session.LeEventType.characteristicGetIntValue;
+import static houtbecke.rs.le.session.LeEventType.characteristicGetValue;
+import static houtbecke.rs.le.session.LeEventType.characteristicRead;
+import static houtbecke.rs.le.session.LeEventType.characteristicSetValue;
+import static houtbecke.rs.le.session.LeEventType.deviceAddListener;
+import static houtbecke.rs.le.session.LeEventType.deviceCheckBleHardwareAvailable;
+import static houtbecke.rs.le.session.LeEventType.deviceIsBtEnabled;
+import static houtbecke.rs.le.session.LeEventType.deviceRemoveListener;
+import static houtbecke.rs.le.session.LeEventType.deviceStartScanning;
+import static houtbecke.rs.le.session.LeEventType.deviceStopScanning;
+import static houtbecke.rs.le.session.LeEventType.mockWaitForPoint;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceAddListener;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceClose;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceConnect;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceDisconnect;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceGetAddress;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceGetName;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceReadRssi;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceRemoveListener;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceSetCharacteristicListener;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceSetCharacteristicWriteListener;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceStartServiceDiscovery;
+import static houtbecke.rs.le.session.LeEventType.serviceEnableCharacteristicNotification;
+import static houtbecke.rs.le.session.LeEventType.serviceGetCharacteristic;
+import static houtbecke.rs.le.session.LeEventType.serviceGetUUID;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,13 +47,10 @@ import houtbecke.rs.le.LeRemoteDeviceListener;
 import houtbecke.rs.le.LeUtil;
 import houtbecke.rs.le.session.Event;
 import houtbecke.rs.le.session.EventSource;
-import houtbecke.rs.le.session.EventType;
 import houtbecke.rs.le.session.LeEventType;
 import houtbecke.rs.le.session.MockedResponse;
 import houtbecke.rs.le.session.Mocker;
 import houtbecke.rs.le.session.Session;
-
-import static houtbecke.rs.le.session.LeEventType.*;
 
 public class LeSessionController implements LeMockController {
 
@@ -247,7 +270,6 @@ public class LeSessionController implements LeMockController {
             started = true;
                 updateCurrentEvent(null);
                 LeSessionController.this.condition.signalAll();
-                ;
 
             }finally {
                 LeSessionController.this.lock.unlock();
@@ -537,6 +559,7 @@ public class LeSessionController implements LeMockController {
                                 for (LeCharacteristicListener leCharacteristicListener : session.getRemoteDeviceMocker(event.source).getCharacteristicListeners(LeSessionController.this, event.source)) {
                                     leCharacteristicListener.leCharacteristicChanged(
                                             uuid,
+                                            null,
                                             getRemoteDevice(event.source),
                                             characteristic
                                     );
@@ -555,6 +578,7 @@ public class LeSessionController implements LeMockController {
                                     uuid = UUID.fromString(event.values[0]);
                                 getCharacteristicListener(event.source).leCharacteristicChanged(
                                         uuid,
+                                        null,
                                         getRemoteDevice(event.values[1]),
                                         getCharacteristic(event.values[2])
                                 );
@@ -572,6 +596,7 @@ public class LeSessionController implements LeMockController {
                                 LeCharacteristicWriteListener  characteristicWriteListener=getCharacteristicWriteListener(event.source);
                                 characteristicWriteListener.leCharacteristicWritten(
                                         uuid,
+                                        null,
                                         getRemoteDevice(event.values[1]),
                                         getCharacteristic(event.values[2]),
                                         true
@@ -589,6 +614,7 @@ public class LeSessionController implements LeMockController {
                                 for (LeCharacteristicListener leCharacteristicListener : session.getRemoteDeviceMocker(Integer.valueOf(event.values[2])).getCharacteristicListeners(LeSessionController.this, Integer.valueOf(event.values[2]))) {
                                     leCharacteristicListener.leCharacteristicNotificationChanged(
                                             uuid2,
+                                            null,
                                             getRemoteDevice(event.values[2]),
                                             characteristic2,
                                             Boolean.parseBoolean(event.values[3])
@@ -607,6 +633,7 @@ public class LeSessionController implements LeMockController {
                                     uuid = UUID.fromString(event.values[0]);
                                 getCharacteristicListener(event.source).leCharacteristicNotificationChanged(
                                         uuid,
+                                        null,
                                         getRemoteDevice(event.values[1]),
                                         getCharacteristic(event.values[2]),
                                         Boolean.parseBoolean(event.values[3])

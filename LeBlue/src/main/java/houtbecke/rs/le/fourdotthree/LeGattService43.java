@@ -1,5 +1,6 @@
 package houtbecke.rs.le.fourdotthree;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
@@ -22,6 +23,7 @@ class LeGattService43 implements LeGattService {
         this.leRemoteDevice43 = leRemoteDevice43;
     }
 
+    @javax.annotation.Nonnull
     @Override
     public UUID getUuid() {
         return serviceUUID;
@@ -34,31 +36,28 @@ class LeGattService43 implements LeGattService {
         return gatt.getService(this.serviceUUID);
     }
 
-
+    @javax.annotation.Nonnull
     @Override
-    public LeGattCharacteristic getCharacteristic(UUID uuid) {
+    public LeGattCharacteristic getCharacteristic(@javax.annotation.Nonnull UUID uuid) {
         final BluetoothGattService service = getGattService();
-        if (service == null)
-            return null;
+        if (service == null) { return null; }
         final BluetoothGattCharacteristic characteristic = service.getCharacteristic(uuid);
         final BluetoothGatt gatt = leRemoteDevice43.gatt;
 
-        if (characteristic == null || gatt == null)
-            return null;
-        return new LeGattCharacteristic43(gatt, characteristic,leRemoteDevice43);
+        if (characteristic == null || gatt == null) { return null; }
+        return new LeGattCharacteristic43(gatt, characteristic, leRemoteDevice43);
     }
 
+    @SuppressLint("MissingPermission")
     @Override
-    public boolean enableCharacteristicNotification(UUID characteristic) {
+    public boolean enableCharacteristicNotification(@javax.annotation.Nonnull UUID characteristic) {
         final BluetoothGatt gatt = leRemoteDevice43.gatt;
 
         BluetoothGattCharacteristic characteristic43 = getGattService().getCharacteristic(characteristic);
-        if (characteristic43 == null)
-            return false;
-        if (gatt == null)
-            return false;
+        if (characteristic43 == null) { return false; }
+        if (gatt == null) { return false; }
 
-        if(gatt.setCharacteristicNotification(characteristic43, true)) {
+        if (gatt.setCharacteristicNotification(characteristic43, true)) {
 
             BluetoothGattDescriptor descriptor = characteristic43.getDescriptor(LeDefinedUUIDs.Descriptor.CHAR_CLIENT_CONFIG);
             if (descriptor != null) {

@@ -1,9 +1,11 @@
 package houtbecke.rs.le;
 
+import javax.annotation.Nullable;
+
 public interface LeRecord {
 
-    public int getType();
-    public byte[] getRecordContent();
+    int getType();
 
-
+    @Nullable
+    byte[] getRecordContent();
 }

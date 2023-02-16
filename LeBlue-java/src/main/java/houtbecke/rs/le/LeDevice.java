@@ -3,20 +3,22 @@ package houtbecke.rs.le;
 import java.util.List;
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+
 public interface LeDevice {
     /**
      * Add a listener for getting updates on LE devices
      *
      * @param listener the listener to add
      */
-    void addListener(LeDeviceListener listener);
+    void addListener(@Nonnull LeDeviceListener listener);
 
     /**
      * Remove a listener for getting updates on LE devices
      *
      * @param listener the listener to remove
      */
-    void removeListener(LeDeviceListener listener);
+    void removeListener(@Nonnull LeDeviceListener listener);
 
     /**
      * Run test and check if this device has BT and BLE hardware available
@@ -42,17 +44,16 @@ public interface LeDevice {
      *
      * @param uuids the uuids of device types
      */
-    void startScanning(UUID... uuids);
+    void startScanning(@Nonnull UUID... uuids);
 
-    void startScanning(List<List<UUID>> filters);
+    void startScanning(@Nonnull List<List<UUID>> filters);
 
         /**
          * Stop scanning for Bluetooth LE devices nearby
          */
     void stopScanning();
 
-
-    void setErrorLogger(ErrorLogger errorLogger);
+    void setErrorLogger(@Nonnull ErrorLogger errorLogger);
 
     void disable();
     void enable();

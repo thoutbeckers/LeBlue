@@ -1,7 +1,7 @@
 package houtbecke.rs.le;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public enum LeGattStatus {
     SUCCESS,
@@ -14,11 +14,10 @@ public enum LeGattStatus {
     INVALID_ATTRIBUTE_LENGTH,
     FAILURE;
 
-    public static LeGattStatus fromString(String status) {
+    @Nullable
+    public static LeGattStatus fromString(@Nonnull String status) {
 
-        for (LeGattStatus leGattStatus: LeGattStatus.values())
-            if (leGattStatus.toString().equals(status))
-                return leGattStatus;
+        for (LeGattStatus leGattStatus : LeGattStatus.values()) { if (leGattStatus.toString().equals(status)) { return leGattStatus; } }
         return null;
     }
 }

@@ -1,7 +1,3 @@
-
-#include "Event.h"
-#include "EventSinkFiller.h"
-#include "EventSinkTest.h"
 #include "EventType.h"
 #include "IOSClass.h"
 #include "IOSObjectArray.h"

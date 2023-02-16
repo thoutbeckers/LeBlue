@@ -1,7 +1,3 @@
-
-#include "IOSClass.h"
-#include "IOSObjectArray.h"
-#include "IOSPrimitiveArray.h"
 #include "J2ObjC_source.h"
 #include "LeDefinedUUIDs.h"
 #include "LeScanRecord.h"

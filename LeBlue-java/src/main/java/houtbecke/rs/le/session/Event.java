@@ -58,9 +58,7 @@ public class Event {
 
         if (source != event.source) return false;
         if (type != event.type) return false;
-        if (!Arrays.deepEquals(values, event.values)) return false;
-
-        return true;
+        return Arrays.deepEquals(values, event.values);
     }
 
     @Override

@@ -1,7 +1,3 @@
-
-#include "IOSClass.h"
-#include "IOSObjectArray.h"
-#include "J2ObjC_source.h"
 #include "MockedResponseObject.h"
 #include "MockedResponseTest.h"
 #include "java/lang/annotation/Annotation.h"

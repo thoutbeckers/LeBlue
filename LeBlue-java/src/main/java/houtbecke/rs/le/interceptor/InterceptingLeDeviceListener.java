@@ -1,5 +1,7 @@
 package houtbecke.rs.le.interceptor;
 
+import javax.annotation.Nonnull;
+
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
 import houtbecke.rs.le.LeDeviceState;
@@ -15,11 +17,11 @@ public class InterceptingLeDeviceListener extends LeIntercepting implements LeDe
     }
 
     @Override
-    public void leDeviceFound(LeDevice leDevice, LeRemoteDevice leRemoteDevice, int rssi, LeScanRecord scanRecord) {
-            InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
-            InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(leRemoteDevice);
-            leInterceptor.deviceFound(this, iLeDevice, iLeRemoteDevice, rssi, scanRecord);
-            leDeviceListener.leDeviceFound(iLeDevice, iLeRemoteDevice, rssi, scanRecord);
+    public void leDeviceFound(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice, int rssi, @Nonnull LeScanRecord scanRecord) {
+        InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
+        InterceptingLeRemoteDevice iLeRemoteDevice = leInterceptor.getInterceptingLeRemoteDevice(leRemoteDevice);
+        leInterceptor.deviceFound(this, iLeDevice, iLeRemoteDevice, rssi, scanRecord);
+        leDeviceListener.leDeviceFound(iLeDevice, iLeRemoteDevice, rssi, scanRecord);
 
     }
 
@@ -39,14 +41,12 @@ public class InterceptingLeDeviceListener extends LeIntercepting implements LeDe
         return leDeviceListener.hashCode();
     }
 
-
     @Override
-    public void leDeviceState(LeDevice leDevice, LeDeviceState leDeviceState) {
+    public void leDeviceState(@Nonnull LeDevice leDevice, @Nonnull LeDeviceState leDeviceState) {
 
         InterceptingLeDevice iLeDevice = leInterceptor.getInterceptingLeDevice(leDevice);
         leInterceptor.deviceState(this, iLeDevice, leDeviceState);
-        leDeviceListener.leDeviceState(iLeDevice,leDeviceState);
-
+        leDeviceListener.leDeviceState(iLeDevice, leDeviceState);
 
     }
 }

@@ -8,6 +8,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 public class LeScanRecordImpl implements LeScanRecord {
 
     final byte[] scanrecord;
@@ -18,13 +21,13 @@ public class LeScanRecordImpl implements LeScanRecord {
         parse();
     }
 
-    @Override
+    @Nonnull
     public LeRecord[] getRecords() {
         LeRecord[] ret = new LeRecord[records.size()];
         return records.toArray(ret);
     }
 
-    @Override
+    @Nonnull
     public LeRecord[] getRecords(int... types) {
         int len = 0;
         for (LeRecord record : records)
@@ -43,6 +46,7 @@ public class LeScanRecordImpl implements LeScanRecord {
     }
 
     @Override
+    @Nonnull
     public UUID[] getServices() {
         LeRecord[] uuids16 = getRecords(2, 3);
         LeRecord[] uuids128 = getRecords(6, 7);
@@ -68,7 +72,7 @@ public class LeScanRecordImpl implements LeScanRecord {
         return uuidList.toArray(uuids);
     }
 
-    public boolean hasService(UUID uuid) {
+    public boolean hasService(@Nonnull UUID uuid) {
         UUID[] uuids = getServices();
         for (UUID u : uuids) {
             if (u.equals(uuid)) return true;
@@ -76,7 +80,7 @@ public class LeScanRecordImpl implements LeScanRecord {
         return false;
     }
 
-    @Override
+    @Nullable
     public String getLocalName() {
         LeRecord[] localName = getRecords(9);
         if (localName.length > 0) {
@@ -86,6 +90,7 @@ public class LeScanRecordImpl implements LeScanRecord {
         }
     }
 
+    @Nullable
     @Override
     public byte[] getManufacturerData() {
         LeRecord[] manufacturerData = getRecords(0xFF);
@@ -95,7 +100,7 @@ public class LeScanRecordImpl implements LeScanRecord {
         return null;
     }
 
-    @Override
+    @Nullable
     public byte[] getRawData() {
         return scanrecord;
     }
@@ -122,4 +127,28 @@ public class LeScanRecordImpl implements LeScanRecord {
         }
     }
 
+    @Nullable
+    @Override
+    public byte[] getServiceData(@Nonnull UUID serviceUUID) {
+        LeRecord[] serviceDataRecords = getRecords(0x16);
+        for (LeRecord record : serviceDataRecords) {
+            byte[] recordContent = record.getRecordContent();
+            if (recordContent.length < 3) {
+                continue;
+            }
+
+            byte[] serviceDataId = Arrays.copyOfRange(recordContent, 0, 2);
+            byte[] serviceData = Arrays.copyOfRange(recordContent, 2, recordContent.length);
+            ByteBuffer serviceDataIdWrapped = ByteBuffer.wrap(serviceDataId).order(ByteOrder.LITTLE_ENDIAN);
+
+            UUID foundServiceUUID = UUID.fromString(String.format("%08x-0000-1000-8000-00805f9b34fb", serviceDataIdWrapped.getShort()));
+
+            if (foundServiceUUID.equals(serviceUUID)) {
+                return serviceData;
+            }
+
+        }
+
+        return null;
+    }
 }

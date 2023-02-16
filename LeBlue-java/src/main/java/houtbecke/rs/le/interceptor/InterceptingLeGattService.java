@@ -2,6 +2,8 @@ package houtbecke.rs.le.interceptor;
 
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+
 import houtbecke.rs.le.LeGattCharacteristic;
 import houtbecke.rs.le.LeGattService;
 
@@ -14,6 +16,7 @@ public class InterceptingLeGattService extends LeIntercepting implements LeGattS
         this.leGattService = leGattService;
     }
 
+    @Nonnull
     @Override
     public UUID getUuid() {
         synchronized(leInterceptor) {
@@ -23,9 +26,10 @@ public class InterceptingLeGattService extends LeIntercepting implements LeGattS
         }
     }
 
+    @Nonnull
     @Override
-    public LeGattCharacteristic getCharacteristic(UUID uuid) {
-        synchronized(leInterceptor) {
+    public LeGattCharacteristic getCharacteristic(@Nonnull UUID uuid) {
+        synchronized (leInterceptor) {
             LeGattCharacteristic leGattCharacteristic = leGattService.getCharacteristic(uuid);
             if (leGattCharacteristic == null) return null;
             InterceptingLeGattCharacteristic iLeGattCharacteristic = leInterceptor.serviceGotCharacteristic(this, leGattCharacteristic);
@@ -35,8 +39,8 @@ public class InterceptingLeGattService extends LeIntercepting implements LeGattS
     }
 
     @Override
-    public boolean enableCharacteristicNotification(UUID characteristic) {
-        synchronized(leInterceptor) {
+    public boolean enableCharacteristicNotification(@Nonnull UUID characteristic) {
+        synchronized (leInterceptor) {
             boolean enabled = leGattService.enableCharacteristicNotification(characteristic);
             leInterceptor.enabledCharacteristicNotification(this, characteristic, enabled);
             return enabled;

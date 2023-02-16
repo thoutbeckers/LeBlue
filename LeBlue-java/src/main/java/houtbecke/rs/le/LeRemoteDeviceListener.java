@@ -1,15 +1,18 @@
 package houtbecke.rs.le;
 
+import javax.annotation.Nonnull;
+
 public interface LeRemoteDeviceListener {
 
-    void leDevicesConnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice);
+    void leDevicesConnected(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice);
 
-    void leDevicesDisconnected(LeDevice leDevice, LeRemoteDevice leRemoteDevice);
+    void leDevicesDisconnected(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice);
 
-    void leDevicesClosed(LeDevice leDevice, LeRemoteDevice leRemoteDevice);
+    void leDevicesClosed(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice);
 
-    void serviceDiscovered(LeDevice leDevice, LeRemoteDevice leRemoteDevice, LeGattStatus status, LeGattService[] gatts);
+    void serviceDiscovered(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice, @Nonnull LeGattStatus status,
+                           @Nonnull LeGattService[] gatts);
 
-    void rssiRead(LeDevice leDevice, LeRemoteDevice leRemoteDevice,int rssi);
+    void rssiRead(@Nonnull LeDevice leDevice, @Nonnull LeRemoteDevice leRemoteDevice, int rssi);
 
 }

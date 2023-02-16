@@ -28,6 +28,8 @@ buildscript {
         classpath "com.android.tools.build:gradle:${androidGradleVersion}"
     }
 }
+def jsr = "$System.env.J2OBJC_HOME/lib/jsr305-3.0.0.jar"
+
 
 task translateLeBlueJava(type:Exec) {
     FileTree tree = fileTree(dir: 'LeBLue-java/src/main/java')
@@ -40,6 +42,7 @@ task translateLeBlueJava(type:Exec) {
     args '-sourcepath', tree.dir ,''
     args '--swift-friendly'
     args '-x', 'objective-c++'
+    args '-cp', "$jsr"
     args tree
 }
 
@@ -56,6 +59,7 @@ task translateLeBlueJavaTest(type:Exec) {
     args '-d', file('objc/generated/').path
     args '--swift-friendly'
     args '-x', 'objective-c++'
+    args '-cp', "$jsr"
     String dir1 = tree.dir
     String dir2 = mainTree.dir
     args '-sourcepath',dir1 + ":" + dir2

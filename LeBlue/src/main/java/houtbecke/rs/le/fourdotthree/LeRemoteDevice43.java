@@ -1,5 +1,6 @@
 package houtbecke.rs.le.fourdotthree;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCallback;
@@ -10,6 +11,8 @@ import android.bluetooth.BluetoothProfile;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +21,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArraySet;
+
+import javax.annotation.Nonnull;
 
 import houtbecke.rs.le.LeCharacteristicListener;
 import houtbecke.rs.le.LeCharacteristicWriteListener;
@@ -47,12 +52,12 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
     @Override
-    public void addListener(LeRemoteDeviceListener listener) {
+    public void addListener(@Nonnull LeRemoteDeviceListener listener) {
         listeners.add(listener);
     }
 
     @Override
-    public void removeListener(LeRemoteDeviceListener listener) {
+    public void removeListener(@Nonnull LeRemoteDeviceListener listener) {
         listeners.remove(listener);
     }
 
@@ -61,6 +66,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         return remoteDevice43.getAddress();
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void connect() {
         leDevice43.remoteDevices.put(remoteDevice43.getAddress(), this);
@@ -76,6 +82,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         }
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void disconnect() {
         if (gatt != null) {
@@ -100,47 +107,51 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     }
 
     @Override
-    public void startServicesDiscovery(UUID... uuids) {
+    public void startServicesDiscovery(@Nullable UUID... uuids) {
         //scanning for specific services is not supported on android
         this.startServicesDiscovery();
 
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void startServicesDiscovery() {
         if (gatt != null) { gatt.discoverServices(); }
     }
 
     @Override
-    public void setCharacteristicListener(LeCharacteristicListener listener, UUID... uuids) {
+    public void setCharacteristicListener(@Nullable LeCharacteristicListener listener, @Nullable UUID... uuids) {
 
         if (uuids == null || uuids.length == 0) {
             if (listener == null) { uuidCharacteristicListeners.remove(null); } else {
                 uuidCharacteristicListeners.put(null, listener);
             }
         } else {
-            for (UUID uuid : uuids)
+            for (UUID uuid : uuids) {
                 if (listener == null) { uuidCharacteristicListeners.remove(uuid); } else {
                     uuidCharacteristicListeners.put(uuid, listener);
                 }
+            }
         }
     }
 
     @Override
-    public void setCharacteristicWriteListener(LeCharacteristicWriteListener listener, UUID... uuids) {
+    public void setCharacteristicWriteListener(@Nullable LeCharacteristicWriteListener listener, @Nullable UUID... uuids) {
 
         if (uuids == null || uuids.length == 0) {
             if (listener == null) { uuidCharacteristicWriteListeners.remove(null); } else {
                 uuidCharacteristicWriteListeners.put(null, listener);
             }
         } else {
-            for (UUID uuid : uuids)
+            for (UUID uuid : uuids) {
                 if (listener == null) { uuidCharacteristicWriteListeners.remove(uuid); } else {
                     uuidCharacteristicWriteListeners.put(uuid, listener);
                 }
+            }
         }
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
         super.onConnectionStateChange(gatt, status, newState);
@@ -214,6 +225,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         }
     }
 
+    @SuppressLint("MissingPermission")
     public void sendFirst() {
         synchronized (queue) {
 
@@ -235,7 +247,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
     @Override
     public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
         try {
-            this.characteristicNotificationChanged(gatt, descriptor.getCharacteristic(), (status == gatt.GATT_SUCCESS));
+            this.characteristicNotificationChanged(gatt, descriptor.getCharacteristic(), (status == BluetoothGatt.GATT_SUCCESS));
             if (status != BluetoothGatt.GATT_SUCCESS) {
                 leDevice43.log(Log.ERROR, "LeBlue", "onDescriptorWrite " + status);
             }
@@ -254,7 +266,9 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         if (status != BluetoothGatt.GATT_SUCCESS) {
             leDevice43.log(Log.ERROR, "LeBlue", "onDescriptorWrite " + status);
         }
-        if (status == gatt.GATT_SUCCESS) { this.characteristicUpdated(gatt, characteristic); }
+        if (status == BluetoothGatt.GATT_SUCCESS) {
+            this.characteristicUpdated(gatt, characteristic);
+        }
 
     }
 
@@ -267,20 +281,21 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
         try {
 
-            UUID uuid = characteristic.getUuid();
+            UUID characteristicUuid = characteristic.getUuid();
+            UUID serviceUuid = characteristic.getService().getUuid();
 
             byte[] bytes = characteristic.getValue();
 
             LeCharacteristicListener nullListener = uuidCharacteristicListeners.get(null);
-            LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(uuid);
+            LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(characteristicUuid);
 
             if ((nullListener != null || uuidListener != null) && gatt != null) {
                 LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic, this);
                 if (nullListener != null) {
-                    nullListener.leCharacteristicNotificationChanged(uuid, this, characteristic43, success);
+                    nullListener.leCharacteristicNotificationChanged(characteristicUuid, serviceUuid,  this, characteristic43, success);
                 }
                 if (uuidListener != null) {
-                    uuidListener.leCharacteristicNotificationChanged(uuid, this, characteristic43, success);
+                    uuidListener.leCharacteristicNotificationChanged(characteristicUuid, serviceUuid, this, characteristic43, success);
                 }
             }
         } catch (Throwable t) {
@@ -292,20 +307,21 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
         try {
 
-            UUID uuid = characteristic.getUuid();
+            UUID characteristicUuid = characteristic.getUuid();
+            UUID serviceUuid = characteristic.getService().getUuid();
 
             byte[] bytes = characteristic.getValue();
 
             LeCharacteristicListener nullListener = uuidCharacteristicListeners.get(null);
-            LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(uuid);
+            LeCharacteristicListener uuidListener = uuidCharacteristicListeners.get(characteristicUuid);
 
             if ((nullListener != null || uuidListener != null) && gatt != null) {
                 LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic, this);
                 if (nullListener != null) {
-                    nullListener.leCharacteristicChanged(uuid, this, characteristic43);
+                    nullListener.leCharacteristicChanged(characteristicUuid, serviceUuid, this, characteristic43);
                 }
                 if (uuidListener != null) {
-                    uuidListener.leCharacteristicChanged(uuid, this, characteristic43);
+                    uuidListener.leCharacteristicChanged(characteristicUuid, serviceUuid, this, characteristic43);
                 }
             }
         } catch (Throwable t) {
@@ -319,22 +335,23 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         sendFirst();
 
         try {
-            boolean succes = (status == gatt.GATT_SUCCESS);
+            boolean succes = (status == BluetoothGatt.GATT_SUCCESS);
             if (status != BluetoothGatt.GATT_SUCCESS) {
                 leDevice43.log(Log.ERROR, "LeBlue", "onCharacteristicWrite " + status);
             }
-            UUID uuid = characteristic.getUuid();
+            UUID characteristicUuid = characteristic.getUuid();
+            UUID serviceUuid = characteristic.getService().getUuid();
 
             LeCharacteristicWriteListener nullListener = uuidCharacteristicWriteListeners.get(null);
-            LeCharacteristicWriteListener uuidListener = uuidCharacteristicWriteListeners.get(uuid);
+            LeCharacteristicWriteListener uuidListener = uuidCharacteristicWriteListeners.get(characteristicUuid);
 
             if ((nullListener != null || uuidListener != null) && gatt != null) {
                 LeGattCharacteristic43 characteristic43 = new LeGattCharacteristic43(gatt, characteristic, this);
                 if (nullListener != null) {
-                    nullListener.leCharacteristicWritten(uuid, this, characteristic43, succes);
+                    nullListener.leCharacteristicWritten(characteristicUuid, serviceUuid, this, characteristic43, succes);
                 }
                 if (uuidListener != null) {
-                    uuidListener.leCharacteristicWritten(uuid, this, characteristic43, succes);
+                    uuidListener.leCharacteristicWritten(characteristicUuid, serviceUuid, this, characteristic43, succes);
                 }
             }
         } catch (Throwable t) {
@@ -343,11 +360,13 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
 
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public String getName() {
         return remoteDevice43.getName();
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void readRssi() {
         if (gatt != null) {
@@ -396,7 +415,7 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         //workaround for https://code.google.com/p/android/issues/detail?id=81130
         try {
             BluetoothGatt localBluetoothGatt = gatt;
-            Method localMethod = localBluetoothGatt.getClass().getMethod("refresh", new Class[0]);
+            Method localMethod = localBluetoothGatt.getClass().getMethod("refresh");
             if (localMethod != null) {
                 boolean bool = ((Boolean) localMethod.invoke(localBluetoothGatt, new Object[0])).booleanValue();
                 return bool;
@@ -406,12 +425,12 @@ public class LeRemoteDevice43 extends BluetoothGattCallback implements LeRemoteD
         return false;
     }
 
+    @SuppressLint("MissingPermission")
     private void unpair(final BluetoothDevice bluetoothDevice) {
         // unpair to prevent connection problems
         if (bluetoothDevice.getBondState() != BluetoothDevice.BOND_NONE) {
             try {
                 Method localMethod = bluetoothDevice.getClass().getMethod("removeBond", (Class[]) null);
-                ;
                 if (localMethod != null) {
                     localMethod.invoke(bluetoothDevice, (Object[]) null);
                 }

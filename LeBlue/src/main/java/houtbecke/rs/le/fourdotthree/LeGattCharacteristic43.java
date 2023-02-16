@@ -1,5 +1,6 @@
 package houtbecke.rs.le.fourdotthree;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 
@@ -34,23 +35,24 @@ class LeGattCharacteristic43 implements LeGattCharacteristic {
     }
 
     @Override
-    public int getIntValue(LeFormat format, int index) {
+    public int getIntValue(@javax.annotation.Nonnull LeFormat format, int index) {
         return characteristic.getIntValue(format.format(), index);
     }
 
     @Override
-    public void setValue(byte[] value) {
-        setValue(value,true);
+    public void setValue(@javax.annotation.Nonnull byte[] value) {
+        setValue(value, true);
     }
 
     @Override
-    public void setValue(byte[] value,boolean withResponse) {
+    public void setValue(@javax.annotation.Nonnull byte[] value, boolean withResponse) {
 
         leRemoteDevice43.addToQueue(this, value, withResponse);
     }
 
 
-    protected void setValueNow(byte[] value,boolean withResponse) {
+    @SuppressLint("MissingPermission")
+    protected void setValueNow(byte[] value, boolean withResponse) {
 
         if (withResponse)
             characteristic.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT);

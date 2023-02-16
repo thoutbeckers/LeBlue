@@ -1,7 +1,3 @@
-
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_MockerTest")
 #ifdef RESTRICT_MockerTest
 #define INCLUDE_ALL_MockerTest 0
 #else

@@ -10,7 +10,8 @@ repositories {
 
 dependencies {
     testImplementation "junit:junit:$junitVersion"
-
+    compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+    testCompileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }
 
 jacocoTestReport {

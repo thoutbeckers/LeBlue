@@ -3,6 +3,8 @@ package houtbecke.rs.le.mock;
 import java.util.List;
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+
 import houtbecke.rs.le.ErrorLogger;
 import houtbecke.rs.le.LeDevice;
 import houtbecke.rs.le.LeDeviceListener;
@@ -17,12 +19,12 @@ public class LeDeviceMock implements LeDevice {
     LeMockController controller;
 
     @Override
-    public void addListener(LeDeviceListener listener) {
+    public void addListener(@Nonnull LeDeviceListener listener) {
         controller.deviceAddListener(this, listener);
     }
 
     @Override
-    public void removeListener(LeDeviceListener listener) {
+    public void removeListener(@Nonnull LeDeviceListener listener) {
         controller.deviceRemoveListener(this, listener);
     }
 
@@ -43,12 +45,12 @@ public class LeDeviceMock implements LeDevice {
     }
 
     @Override
-    public void startScanning(UUID... uuids) {
+    public void startScanning(@Nonnull UUID... uuids) {
         controller.deviceStartScanning(this, uuids);
     }
 
     @Override
-    public void startScanning(List<List<UUID>> filters) {
+    public void startScanning(@Nonnull List<List<UUID>> filters) {
         controller.deviceStartScanning(this, filters);
     }
 

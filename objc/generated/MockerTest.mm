@@ -1,7 +1,3 @@
-
-#include "CharacteristicsMockerObject.h"
-#include "DeviceMockerObject.h"
-#include "EventSinkFiller.h"
 #include "GattServiceMockerObject.h"
 #include "IOSClass.h"
 #include "IOSObjectArray.h"
@@ -31,6 +27,8 @@
 #include "java/lang/Thread.h"
 #include "java/lang/annotation/Annotation.h"
 #include "java/util/UUID.h"
+#include "javax/annotation/Nonnull.h"
+#include "javax/annotation/meta/When.h"
 #include "org/junit/Assert.h"
 #include "org/junit/Before.h"
 #include "org/junit/Test.h"
@@ -115,6 +113,10 @@ __attribute__((unused)) static MockerTest_1 *new_MockerTest_1_initWithMockerTest
 
 __attribute__((unused)) static MockerTest_1 *create_MockerTest_1_initWithMockerTest_withIntArray_(MockerTest *outer$, IOSIntArray *capture$0);
 
+__attribute__((unused)) static IOSObjectArray *MockerTest_1__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *MockerTest_1__Annotations$1(void);
+
 @interface MockerTest_2 : NSObject < LeDeviceListener > {
  @public
   IOSObjectArray *val$foundRemoteDevice2_;
@@ -139,6 +141,10 @@ __attribute__((unused)) static void MockerTest_2_initWithJavaLangBooleanArray_(M
 __attribute__((unused)) static MockerTest_2 *new_MockerTest_2_initWithJavaLangBooleanArray_(IOSObjectArray *capture$0) NS_RETURNS_RETAINED;
 
 __attribute__((unused)) static MockerTest_2 *create_MockerTest_2_initWithJavaLangBooleanArray_(IOSObjectArray *capture$0);
+
+__attribute__((unused)) static IOSObjectArray *MockerTest_2__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *MockerTest_2__Annotations$1(void);
 
 @interface MockerTest_3 : NSObject < LeRemoteDeviceListener > {
  @public
@@ -181,6 +187,16 @@ __attribute__((unused)) static MockerTest_3 *new_MockerTest_3_initWithMockerTest
 
 __attribute__((unused)) static MockerTest_3 *create_MockerTest_3_initWithMockerTest_withJavaLangBooleanArray_withJavaLangBooleanArray_withLeGattServiceArray_(MockerTest *outer$, IOSObjectArray *capture$0, IOSObjectArray *capture$1, IOSObjectArray *capture$2);
 
+__attribute__((unused)) static IOSObjectArray *MockerTest_3__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *MockerTest_3__Annotations$1(void);
+
+__attribute__((unused)) static IOSObjectArray *MockerTest_3__Annotations$2(void);
+
+__attribute__((unused)) static IOSObjectArray *MockerTest_3__Annotations$3(void);
+
+__attribute__((unused)) static IOSObjectArray *MockerTest_3__Annotations$4(void);
+
 @interface MockerTest_4 : NSObject < LeCharacteristicListener > {
  @public
   MockerTest *this$0_;
@@ -212,6 +228,10 @@ __attribute__((unused)) static void MockerTest_4_initWithMockerTest_withLeGattCh
 __attribute__((unused)) static MockerTest_4 *new_MockerTest_4_initWithMockerTest_withLeGattCharacteristic_withJavaLangBooleanArray_withJavaLangBooleanArray_(MockerTest *outer$, id<LeGattCharacteristic> capture$0, IOSObjectArray *capture$1, IOSObjectArray *capture$2) NS_RETURNS_RETAINED;
 
 __attribute__((unused)) static MockerTest_4 *create_MockerTest_4_initWithMockerTest_withLeGattCharacteristic_withJavaLangBooleanArray_withJavaLangBooleanArray_(MockerTest *outer$, id<LeGattCharacteristic> capture$0, IOSObjectArray *capture$1, IOSObjectArray *capture$2);
+
+__attribute__((unused)) static IOSObjectArray *MockerTest_4__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *MockerTest_4__Annotations$1(void);
 
 @interface MockerTest_5 : NSObject < LeRemoteDeviceListener > {
  @public
@@ -247,6 +267,16 @@ __attribute__((unused)) static void MockerTest_5_initWithLeGattServiceArray_(Moc
 __attribute__((unused)) static MockerTest_5 *new_MockerTest_5_initWithLeGattServiceArray_(IOSObjectArray *capture$0) NS_RETURNS_RETAINED;
 
 __attribute__((unused)) static MockerTest_5 *create_MockerTest_5_initWithLeGattServiceArray_(IOSObjectArray *capture$0);
+
+__attribute__((unused)) static IOSObjectArray *MockerTest_5__Annotations$0(void);
+
+__attribute__((unused)) static IOSObjectArray *MockerTest_5__Annotations$1(void);
+
+__attribute__((unused)) static IOSObjectArray *MockerTest_5__Annotations$2(void);
+
+__attribute__((unused)) static IOSObjectArray *MockerTest_5__Annotations$3(void);
+
+__attribute__((unused)) static IOSObjectArray *MockerTest_5__Annotations$4(void);
 
 @implementation MockerTest
 
@@ -308,7 +338,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   OrgJunitAssert_assertTrueWithBoolean_([((JavaLangBoolean *) nil_chk(IOSObjectArray_Get(discovered, 0))) booleanValue]);
   OrgJunitAssert_assertTrueWithBoolean_([((JavaUtilUUID *) nil_chk([((id<LeGattService>) nil_chk(IOSObjectArray_Get(service, 0))) getUuid])) isEqual:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789aaaa")]);
   id<LeGattCharacteristic> characteristic = [((id<LeGattService>) nil_chk(IOSObjectArray_Get(service, 0))) getCharacteristicWithJavaUtilUUID:JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789bbbb")];
-  JreAssert(characteristic != nil, @"houtbecke/rs/le/MockerTest.java:186 condition failed: assert characteristic != null;");
+  JreAssert(characteristic != nil, @"houtbecke/rs/le/MockerTest.java:190 condition failed: assert characteristic != null;");
   IOSByteArray *byteArray1 = [((id<LeGattCharacteristic>) nil_chk(characteristic)) getValue];
   OrgJunitAssert_assertEqualsWithLong_withLong_(IOSByteArray_Get(nil_chk(byteArray1), 0), 0);
   OrgJunitAssert_assertEqualsWithLong_withLong_(IOSByteArray_Get(byteArray1, 1), 1);
@@ -460,7 +490,9 @@ J2OBJC_NAME_MAPPING(MockerTest, "houtbecke.rs.le", "")
       OrgJunitAssert_assertNotNullWithId_(leFoundRemoteDevice);
       OrgJunitAssert_assertEqualsWithLong_withLong_(rssi, 123);
       [((JavaIoPrintStream *) nil_chk(JreLoadStatic(JavaLangSystem, out))) printlnWithNSString:[((id<LeRemoteDevice>) nil_chk(leFoundRemoteDevice)) getAddress]];
-      if ([((NSString *) nil_chk([leFoundRemoteDevice getAddress])) isEqual:@"0001:0002:0003:0004"] || [((NSString *) nil_chk([leFoundRemoteDevice getAddress])) isEqual:@"0005:0006:0007:0008"]) [this$0_ setRemoteDeviceWithLeRemoteDevice:leFoundRemoteDevice];
+      if ([((NSString *) nil_chk([leFoundRemoteDevice getAddress])) isEqual:@"0001:0002:0003:0004"] || [((NSString *) nil_chk([leFoundRemoteDevice getAddress])) isEqual:@"0005:0006:0007:0008"]) {
+        [this$0_ setRemoteDeviceWithLeRemoteDevice:leFoundRemoteDevice];
+      }
       (*IOSIntArray_GetRef(nil_chk(val$foundRemoteDevices_), 0))++;
       [this$0_ java_notify];
     }
@@ -480,8 +512,8 @@ J2OBJC_NAME_MAPPING(MockerTest, "houtbecke.rs.le", "")
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x21, 0, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 2, 3, -1, -1, -1, -1 },
+    { NULL, "V", 0x21, 0, 1, -1, -1, -1, 2 },
+    { NULL, "V", 0x1, 3, 4, -1, -1, -1, 5 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -494,8 +526,8 @@ J2OBJC_NAME_MAPPING(MockerTest, "houtbecke.rs.le", "")
     { "this$0_", "LMockerTest;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
     { "val$foundRemoteDevices_", "[I", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "leDeviceFound", "LLeDevice;LLeRemoteDevice;ILLeScanRecord;", "leDeviceState", "LLeDevice;LLeDeviceState;", "LMockerTest;", "testController" };
-  static const J2ObjcClassInfo _MockerTest_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 3, 2, 4, -1, 5, -1, -1 };
+  static const void *ptrTable[] = { "leDeviceFound", "LLeDevice;LLeRemoteDevice;ILLeScanRecord;", (void *)&MockerTest_1__Annotations$0, "leDeviceState", "LLeDevice;LLeDeviceState;", (void *)&MockerTest_1__Annotations$1, "LMockerTest;", "testController" };
+  static const J2ObjcClassInfo _MockerTest_1 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 3, 2, 6, -1, 7, -1, -1 };
   return &_MockerTest_1;
 }
 
@@ -513,6 +545,14 @@ MockerTest_1 *new_MockerTest_1_initWithMockerTest_withIntArray_(MockerTest *oute
 
 MockerTest_1 *create_MockerTest_1_initWithMockerTest_withIntArray_(MockerTest *outer$, IOSIntArray *capture$0) {
   J2OBJC_CREATE_IMPL(MockerTest_1, initWithMockerTest_withIntArray_, outer$, capture$0)
+}
+
+IOSObjectArray *MockerTest_1__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:4 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockerTest_1__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 @implementation MockerTest_2
@@ -541,8 +581,8 @@ MockerTest_1 *create_MockerTest_1_initWithMockerTest_withIntArray_(MockerTest *o
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 0, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 2, 3, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 0, 1, -1, -1, -1, 2 },
+    { NULL, "V", 0x1, 3, 4, -1, -1, -1, 5 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -554,8 +594,8 @@ MockerTest_1 *create_MockerTest_1_initWithMockerTest_withIntArray_(MockerTest *o
   static const J2ObjcFieldInfo fields[] = {
     { "val$foundRemoteDevice2_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "leDeviceFound", "LLeDevice;LLeRemoteDevice;ILLeScanRecord;", "leDeviceState", "LLeDevice;LLeDeviceState;", "LMockerTest;", "testController" };
-  static const J2ObjcClassInfo _MockerTest_2 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 3, 1, 4, -1, 5, -1, -1 };
+  static const void *ptrTable[] = { "leDeviceFound", "LLeDevice;LLeRemoteDevice;ILLeScanRecord;", (void *)&MockerTest_2__Annotations$0, "leDeviceState", "LLeDevice;LLeDeviceState;", (void *)&MockerTest_2__Annotations$1, "LMockerTest;", "testController" };
+  static const J2ObjcClassInfo _MockerTest_2 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 3, 1, 6, -1, 7, -1, -1 };
   return &_MockerTest_2;
 }
 
@@ -572,6 +612,14 @@ MockerTest_2 *new_MockerTest_2_initWithJavaLangBooleanArray_(IOSObjectArray *cap
 
 MockerTest_2 *create_MockerTest_2_initWithJavaLangBooleanArray_(IOSObjectArray *capture$0) {
   J2OBJC_CREATE_IMPL(MockerTest_2, initWithJavaLangBooleanArray_, capture$0)
+}
+
+IOSObjectArray *MockerTest_2__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:4 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockerTest_2__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 @implementation MockerTest_3
@@ -630,11 +678,11 @@ MockerTest_2 *create_MockerTest_2_initWithJavaLangBooleanArray_(IOSObjectArray *
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 0, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 2, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 3, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 4, 5, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 6, 7, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 0, 1, -1, -1, -1, 2 },
+    { NULL, "V", 0x1, 3, 1, -1, -1, -1, 4 },
+    { NULL, "V", 0x1, 5, 1, -1, -1, -1, 6 },
+    { NULL, "V", 0x1, 7, 8, -1, -1, -1, 9 },
+    { NULL, "V", 0x1, 10, 11, -1, -1, -1, 12 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -652,8 +700,8 @@ MockerTest_2 *create_MockerTest_2_initWithJavaLangBooleanArray_(IOSObjectArray *
     { "val$discovered_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
     { "val$service_", "[LLeGattService;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "leDevicesConnected", "LLeDevice;LLeRemoteDevice;", "leDevicesDisconnected", "leDevicesClosed", "serviceDiscovered", "LLeDevice;LLeRemoteDevice;LLeGattStatus;[LLeGattService;", "rssiRead", "LLeDevice;LLeRemoteDevice;I", "LMockerTest;", "testController" };
-  static const J2ObjcClassInfo _MockerTest_3 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 6, 4, 8, -1, 9, -1, -1 };
+  static const void *ptrTable[] = { "leDevicesConnected", "LLeDevice;LLeRemoteDevice;", (void *)&MockerTest_3__Annotations$0, "leDevicesDisconnected", (void *)&MockerTest_3__Annotations$1, "leDevicesClosed", (void *)&MockerTest_3__Annotations$2, "serviceDiscovered", "LLeDevice;LLeRemoteDevice;LLeGattStatus;[LLeGattService;", (void *)&MockerTest_3__Annotations$3, "rssiRead", "LLeDevice;LLeRemoteDevice;I", (void *)&MockerTest_3__Annotations$4, "LMockerTest;", "testController" };
+  static const J2ObjcClassInfo _MockerTest_3 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 6, 4, 13, -1, 14, -1, -1 };
   return &_MockerTest_3;
 }
 
@@ -673,6 +721,26 @@ MockerTest_3 *new_MockerTest_3_initWithMockerTest_withJavaLangBooleanArray_withJ
 
 MockerTest_3 *create_MockerTest_3_initWithMockerTest_withJavaLangBooleanArray_withJavaLangBooleanArray_withLeGattServiceArray_(MockerTest *outer$, IOSObjectArray *capture$0, IOSObjectArray *capture$1, IOSObjectArray *capture$2) {
   J2OBJC_CREATE_IMPL(MockerTest_3, initWithMockerTest_withJavaLangBooleanArray_withJavaLangBooleanArray_withLeGattServiceArray_, outer$, capture$0, capture$1, capture$2)
+}
+
+IOSObjectArray *MockerTest_3__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockerTest_3__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockerTest_3__Annotations$2() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockerTest_3__Annotations$3() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:4 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockerTest_3__Annotations$4() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:3 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 @implementation MockerTest_4
@@ -712,8 +780,8 @@ MockerTest_3 *create_MockerTest_3_initWithMockerTest_withJavaLangBooleanArray_wi
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 0, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 2, 3, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 0, 1, -1, -1, -1, 2 },
+    { NULL, "V", 0x1, 3, 4, -1, -1, -1, 5 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -728,8 +796,8 @@ MockerTest_3 *create_MockerTest_3_initWithMockerTest_withJavaLangBooleanArray_wi
     { "val$changed_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
     { "val$changedNotification_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "leCharacteristicChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;", "leCharacteristicNotificationChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", "LMockerTest;", "testController" };
-  static const J2ObjcClassInfo _MockerTest_4 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 3, 4, 4, -1, 5, -1, -1 };
+  static const void *ptrTable[] = { "leCharacteristicChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;", (void *)&MockerTest_4__Annotations$0, "leCharacteristicNotificationChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", (void *)&MockerTest_4__Annotations$1, "LMockerTest;", "testController" };
+  static const J2ObjcClassInfo _MockerTest_4 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 3, 4, 6, -1, 7, -1, -1 };
   return &_MockerTest_4;
 }
 
@@ -749,6 +817,14 @@ MockerTest_4 *new_MockerTest_4_initWithMockerTest_withLeGattCharacteristic_withJ
 
 MockerTest_4 *create_MockerTest_4_initWithMockerTest_withLeGattCharacteristic_withJavaLangBooleanArray_withJavaLangBooleanArray_(MockerTest *outer$, id<LeGattCharacteristic> capture$0, IOSObjectArray *capture$1, IOSObjectArray *capture$2) {
   J2OBJC_CREATE_IMPL(MockerTest_4, initWithMockerTest_withLeGattCharacteristic_withJavaLangBooleanArray_withJavaLangBooleanArray_, outer$, capture$0, capture$1, capture$2)
+}
+
+IOSObjectArray *MockerTest_4__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:3 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockerTest_4__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:4 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 @implementation MockerTest_5
@@ -790,11 +866,11 @@ MockerTest_4 *create_MockerTest_4_initWithMockerTest_withLeGattCharacteristic_wi
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 0, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 2, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 3, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 4, 5, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 6, 7, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 0, 1, -1, -1, -1, 2 },
+    { NULL, "V", 0x1, 3, 1, -1, -1, -1, 4 },
+    { NULL, "V", 0x1, 5, 1, -1, -1, -1, 6 },
+    { NULL, "V", 0x1, 7, 8, -1, -1, -1, 9 },
+    { NULL, "V", 0x1, 10, 11, -1, -1, -1, 12 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -809,8 +885,8 @@ MockerTest_4 *create_MockerTest_4_initWithMockerTest_withLeGattCharacteristic_wi
   static const J2ObjcFieldInfo fields[] = {
     { "val$service_", "[LLeGattService;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "leDevicesConnected", "LLeDevice;LLeRemoteDevice;", "leDevicesDisconnected", "leDevicesClosed", "serviceDiscovered", "LLeDevice;LLeRemoteDevice;LLeGattStatus;[LLeGattService;", "rssiRead", "LLeDevice;LLeRemoteDevice;I", "LMockerTest;", "testController" };
-  static const J2ObjcClassInfo _MockerTest_5 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8018, 6, 1, 8, -1, 9, -1, -1 };
+  static const void *ptrTable[] = { "leDevicesConnected", "LLeDevice;LLeRemoteDevice;", (void *)&MockerTest_5__Annotations$0, "leDevicesDisconnected", (void *)&MockerTest_5__Annotations$1, "leDevicesClosed", (void *)&MockerTest_5__Annotations$2, "serviceDiscovered", "LLeDevice;LLeRemoteDevice;LLeGattStatus;[LLeGattService;", (void *)&MockerTest_5__Annotations$3, "rssiRead", "LLeDevice;LLeRemoteDevice;I", (void *)&MockerTest_5__Annotations$4, "LMockerTest;", "testController" };
+  static const J2ObjcClassInfo _MockerTest_5 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 6, 1, 13, -1, 14, -1, -1 };
   return &_MockerTest_5;
 }
 
@@ -827,4 +903,24 @@ MockerTest_5 *new_MockerTest_5_initWithLeGattServiceArray_(IOSObjectArray *captu
 
 MockerTest_5 *create_MockerTest_5_initWithLeGattServiceArray_(IOSObjectArray *capture$0) {
   J2OBJC_CREATE_IMPL(MockerTest_5, initWithLeGattServiceArray_, capture$0)
+}
+
+IOSObjectArray *MockerTest_5__Annotations$0() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockerTest_5__Annotations$1() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockerTest_5__Annotations$2() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:2 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockerTest_5__Annotations$3() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:4 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+}
+
+IOSObjectArray *MockerTest_5__Annotations$4() {
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:3 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }

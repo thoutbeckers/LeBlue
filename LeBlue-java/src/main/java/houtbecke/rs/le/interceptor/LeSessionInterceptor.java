@@ -1,5 +1,40 @@
 package houtbecke.rs.le.interceptor;
 
+import static houtbecke.rs.le.session.LeEventType.characteristicChanged;
+import static houtbecke.rs.le.session.LeEventType.characteristicGetIntValue;
+import static houtbecke.rs.le.session.LeEventType.characteristicGetValue;
+import static houtbecke.rs.le.session.LeEventType.characteristicNotificationChanged;
+import static houtbecke.rs.le.session.LeEventType.characteristicRead;
+import static houtbecke.rs.le.session.LeEventType.characteristicSetValue;
+import static houtbecke.rs.le.session.LeEventType.characteristicWritten;
+import static houtbecke.rs.le.session.LeEventType.deviceAddListener;
+import static houtbecke.rs.le.session.LeEventType.deviceCheckBleHardwareAvailable;
+import static houtbecke.rs.le.session.LeEventType.deviceIsBtEnabled;
+import static houtbecke.rs.le.session.LeEventType.deviceRemoveListener;
+import static houtbecke.rs.le.session.LeEventType.deviceStartScanning;
+import static houtbecke.rs.le.session.LeEventType.deviceState;
+import static houtbecke.rs.le.session.LeEventType.deviceStopScanning;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceAddListener;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceClose;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceClosed;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceConnect;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceConnected;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceDisconnect;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceDisconnected;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceFound;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceGetAddress;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceGetName;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceReadRssi;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceRemoveListener;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceRssiRead;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceServicesDiscovered;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceSetCharacteristicListener;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceSetCharacteristicWriteListener;
+import static houtbecke.rs.le.session.LeEventType.remoteDeviceStartServiceDiscovery;
+import static houtbecke.rs.le.session.LeEventType.serviceEnableCharacteristicNotification;
+import static houtbecke.rs.le.session.LeEventType.serviceGetCharacteristic;
+import static houtbecke.rs.le.session.LeEventType.serviceGetUUID;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -11,8 +46,6 @@ import houtbecke.rs.le.LeUtil;
 import houtbecke.rs.le.session.Event;
 import houtbecke.rs.le.session.EventSink;
 import houtbecke.rs.le.session.LeEventType;
-
-import static houtbecke.rs.le.session.LeEventType.*;
 
 public class LeSessionInterceptor extends LeInterceptor {
 
@@ -43,7 +76,7 @@ public class LeSessionInterceptor extends LeInterceptor {
 
     @Override
     public void deviceFound(InterceptingLeDeviceListener iLeDeviceListener, InterceptingLeDevice iLeDevice, InterceptingLeRemoteDevice iLeRemoteDevice, int rssi, LeScanRecord leScanRecord) {
-        drainEvent(remoteDeviceFound, iLeDeviceListener, iLeDevice, iLeRemoteDevice, rssi+"", LeUtil.bytesToString(leScanRecord.getRawData()));
+        drainEvent(remoteDeviceFound, iLeDeviceListener, iLeDevice, iLeRemoteDevice, rssi + "", "");
     }
 
     @Override
