@@ -9,9 +9,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation "junit:junit:$junitVersion"
-    compileOnly "com.google.code.findbugs:jsr305:3.0.2"
-    testCompileOnly "com.google.code.findbugs:jsr305:3.0.2"
+    testImplementation libs.junit
+    compileOnly libs.jsr305
+    testCompileOnly libs.jsr305
 }
 
 jacocoTestReport {

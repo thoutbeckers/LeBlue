@@ -1,4 +1,8 @@
-apply plugin: 'com.android.library'
+
+plugins {
+    alias libs.plugins.android.library
+}
+
 apply plugin: 'jacoco'
 
 repositories {
@@ -39,10 +43,10 @@ android.testOptions.unitTests.all {
 
 dependencies {
     compileOnly 'javax.inject:javax.inject:1'
-    compileOnly "com.google.code.gson:gson:${gsonVersion}"
-    testImplementation "junit:junit:${junitVersion}"
+    compileOnly libs.gson
+    testImplementation libs.junit
     implementation project(':LeBlue-java')
-    implementation "no.nordicsemi.android.support.v18:scanner:${nordicScannerVersion}"
-    implementation "androidx.core:core:${androidCoreVersion}"
-    compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+    implementation libs.nordicScanner
+    implementation libs.androidx.core
+    compileOnly libs.jsr305
 }
