@@ -1,20 +1,15 @@
-
 plugins {
     alias libs.plugins.android.library
 }
 
 apply plugin: 'jacoco'
 
-repositories {
-    mavenCentral()
-}
-
 android {
-    compileSdkVersion compileSdkVersionProp.toInteger()
+    compileSdkVersion libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
-        minSdkVersion minSdkVersionProp
-        targetSdkVersion targetSdkVersionProp.toInteger()
+        minSdkVersion libs.versions.minSdk.get().toInteger()
+        targetSdkVersion libs.versions.targetSdk.get().toInteger()
         versionCode 1
         versionName "1.0"
     }
@@ -44,7 +39,7 @@ android.testOptions.unitTests.all {
 dependencies {
     compileOnly 'javax.inject:javax.inject:1'
     compileOnly libs.gson
-    testImplementation libs.junit
+    testImplementation libs.junit4
     implementation project(':LeBlue-java')
     implementation libs.nordicScanner
     implementation libs.androidx.core

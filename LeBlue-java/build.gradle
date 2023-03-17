@@ -4,12 +4,8 @@ apply plugin: 'jacoco'
 targetCompatibility = '1.8'
 sourceCompatibility = '1.8'
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testImplementation libs.junit
+    testImplementation libs.junit4
     compileOnly libs.jsr305
     testCompileOnly libs.jsr305
 }
