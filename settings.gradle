@@ -1,7 +1,26 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+//can be remove after we switch to gradle 8
+enableFeaturePreview('VERSION_CATALOGS')
+
+
 include ':LeBlue-java'
 
 if (!(System.env.CI && System.env.TRAVIS_OS_NAME == 'osx')) {
-    include ':example', ':LeBlue'
+    include ':LeBlue'
 }
 else {
     println "OSX on Travis detected, this does not have an Android SDK so we exclude android modules."

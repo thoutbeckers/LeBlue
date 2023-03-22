@@ -1,33 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-allprojects {
-    buildscript {
-        repositories {
-            mavenCentral()
-        }
-    }
-    repositories {
-        mavenCentral()
-        google()
-    }
+
+plugins {
+    alias libs.plugins.android.application apply false
+    alias libs.plugins.android.library apply false
 }
 
-buildscript {
-
-    repositories {
-        mavenCentral()
-        google()
-    }
-
-
-    dependencies {
-
-        // make sure an up to date version of httpmime is used for the coveralls plugin
-        classpath "org.apache.httpcomponents:httpmime:${httpmimeVersion}"
-
-        classpath "org.kt3k.gradle.plugin:coveralls-gradle-plugin:${coverallsGradlePluginVersion}"
-        classpath "com.android.tools.build:gradle:${androidGradleVersion}"
-    }
-}
 def jsr = "$System.env.J2OBJC_HOME/lib/jsr305-3.0.0.jar"
 
 
