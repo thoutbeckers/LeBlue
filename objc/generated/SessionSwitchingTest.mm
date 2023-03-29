@@ -1,3 +1,7 @@
+
+#include "CharacteristicsMockerObject.h"
+#include "DeviceMockerObject.h"
+#include "EventSinkFiller.h"
 #include "GattServiceMockerObject.h"
 #include "IOSClass.h"
 #include "IOSObjectArray.h"
@@ -146,10 +150,12 @@ __attribute__((unused)) static IOSObjectArray *SessionSwitchingTest_2__Annotatio
 - (instancetype)initWithJavaLangBooleanArray:(IOSObjectArray *)capture$0;
 
 - (void)leCharacteristicChangedWithJavaUtilUUID:(JavaUtilUUID *)uuid
+                               withJavaUtilUUID:(JavaUtilUUID *)serviceUuid
                              withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice
                        withLeGattCharacteristic:(id<LeGattCharacteristic>)leCharacteristic;
 
 - (void)leCharacteristicNotificationChangedWithJavaUtilUUID:(JavaUtilUUID *)uuid
+                                           withJavaUtilUUID:(JavaUtilUUID *)serviceUuid
                                          withLeRemoteDevice:(id<LeRemoteDevice>)remoteDevice
                                    withLeGattCharacteristic:(id<LeGattCharacteristic>)characteristic
                                                 withBoolean:(jboolean)success;
@@ -221,15 +227,15 @@ J2OBJC_IGNORE_DESIGNATED_END
   IOSObjectArray_Set(valueRead, 0, JavaLangBoolean_valueOfWithBoolean_(false));
   [((id<LeRemoteDevice>) nil_chk(remoteDevice_)) setCharacteristicListenerWithLeCharacteristicListener:create_SessionSwitchingTest_3_initWithJavaLangBooleanArray_(valueRead) withJavaUtilUUIDArray:[IOSObjectArray arrayWithObjects:(id[]){ JavaUtilUUID_fromStringWithNSString_(@"12345678-1234-1234-1234-123456789cccc") } count:1 type:JavaUtilUUID_class_()]];
   [((LeSessionController *) nil_chk(sessionController_)) pointReachedWithNSString:@"ready"];
-  JreAssert(![((JavaLangBoolean *) nil_chk(IOSObjectArray_Get(valueRead, 0))) booleanValue], @"houtbecke/rs/le/SessionSwitchingTest.java:145 condition failed: assert !valueRead[0];");
+  JreAssert(![((JavaLangBoolean *) nil_chk(IOSObjectArray_Get(valueRead, 0))) booleanValue], @"houtbecke/rs/le/SessionSwitchingTest.java:147 condition failed: assert !valueRead[0];");
   [((LeSessionController *) nil_chk(sessionController_)) startSessionWithNSString:@"values"];
   JavaLangThread_sleepWithLong_(100);
-  JreAssert(IOSObjectArray_Get(valueRead, 0), @"houtbecke/rs/le/SessionSwitchingTest.java:150 condition failed: assert valueRead[0];");
+  JreAssert(IOSObjectArray_Get(valueRead, 0), @"houtbecke/rs/le/SessionSwitchingTest.java:152 condition failed: assert valueRead[0];");
   [((LeSessionController *) nil_chk(sessionController_)) pointReachedWithNSString:@"done"];
   [((LeSessionController *) nil_chk(sessionController_)) waitForFinishedSession];
-  JreAssert(![((ListEventSinkSource *) nil_chk(events1)) hasMoreEvent], @"houtbecke/rs/le/SessionSwitchingTest.java:156 condition failed: assert !events1.hasMoreEvent();");
-  JreAssert(![((ListEventSinkSource *) nil_chk(events2)) hasMoreEvent], @"houtbecke/rs/le/SessionSwitchingTest.java:157 condition failed: assert !events2.hasMoreEvent();");
-  JreAssert([((LeSessionController *) nil_chk(sessionController_)) getSessionException] == nil, @"houtbecke/rs/le/SessionSwitchingTest.java:158 condition failed: assert sessionController.getSessionException() == null;");
+  JreAssert(![((ListEventSinkSource *) nil_chk(events1)) hasMoreEvent], @"houtbecke/rs/le/SessionSwitchingTest.java:158 condition failed: assert !events1.hasMoreEvent();");
+  JreAssert(![((ListEventSinkSource *) nil_chk(events2)) hasMoreEvent], @"houtbecke/rs/le/SessionSwitchingTest.java:159 condition failed: assert !events2.hasMoreEvent();");
+  JreAssert([((LeSessionController *) nil_chk(sessionController_)) getSessionException] == nil, @"houtbecke/rs/le/SessionSwitchingTest.java:160 condition failed: assert sessionController.getSessionException() == null;");
 }
 
 - (LeSessionController *)getSessionController {
@@ -536,12 +542,14 @@ IOSObjectArray *SessionSwitchingTest_2__Annotations$4() {
 }
 
 - (void)leCharacteristicChangedWithJavaUtilUUID:(JavaUtilUUID *)uuid
+                               withJavaUtilUUID:(JavaUtilUUID *)serviceUuid
                              withLeRemoteDevice:(id<LeRemoteDevice>)leRemoteDevice
                        withLeGattCharacteristic:(id<LeGattCharacteristic>)leCharacteristic {
   IOSObjectArray_Set(nil_chk(val$valueRead_), 0, JavaLangBoolean_valueOfWithBoolean_(true));
 }
 
 - (void)leCharacteristicNotificationChangedWithJavaUtilUUID:(JavaUtilUUID *)uuid
+                                           withJavaUtilUUID:(JavaUtilUUID *)serviceUuid
                                          withLeRemoteDevice:(id<LeRemoteDevice>)remoteDevice
                                    withLeGattCharacteristic:(id<LeGattCharacteristic>)characteristic
                                                 withBoolean:(jboolean)success {
@@ -562,13 +570,13 @@ IOSObjectArray *SessionSwitchingTest_2__Annotations$4() {
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
   #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaLangBooleanArray:);
-  methods[1].selector = @selector(leCharacteristicChangedWithJavaUtilUUID:withLeRemoteDevice:withLeGattCharacteristic:);
-  methods[2].selector = @selector(leCharacteristicNotificationChangedWithJavaUtilUUID:withLeRemoteDevice:withLeGattCharacteristic:withBoolean:);
+  methods[1].selector = @selector(leCharacteristicChangedWithJavaUtilUUID:withJavaUtilUUID:withLeRemoteDevice:withLeGattCharacteristic:);
+  methods[2].selector = @selector(leCharacteristicNotificationChangedWithJavaUtilUUID:withJavaUtilUUID:withLeRemoteDevice:withLeGattCharacteristic:withBoolean:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "val$valueRead_", "[LJavaLangBoolean;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "leCharacteristicChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;", (void *)&SessionSwitchingTest_3__Annotations$0, "leCharacteristicNotificationChanged", "LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", (void *)&SessionSwitchingTest_3__Annotations$1, "LSessionSwitchingTest;", "testController" };
+  static const void *ptrTable[] = { "leCharacteristicChanged", "LJavaUtilUUID;LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;", (void *)&SessionSwitchingTest_3__Annotations$0, "leCharacteristicNotificationChanged", "LJavaUtilUUID;LJavaUtilUUID;LLeRemoteDevice;LLeGattCharacteristic;Z", (void *)&SessionSwitchingTest_3__Annotations$1, "LSessionSwitchingTest;", "testController" };
   static const J2ObjcClassInfo _SessionSwitchingTest_3 = { "", "houtbecke.rs.le", ptrTable, methods, fields, 7, 0x8000, 3, 1, 6, -1, 7, -1, -1 };
   return &_SessionSwitchingTest_3;
 }
@@ -589,9 +597,9 @@ SessionSwitchingTest_3 *create_SessionSwitchingTest_3_initWithJavaLangBooleanArr
 }
 
 IOSObjectArray *SessionSwitchingTest_3__Annotations$0() {
-  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:3 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()] } count:4 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }
 
 IOSObjectArray *SessionSwitchingTest_3__Annotations$1() {
-  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:4 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
+  return [IOSObjectArray arrayWithObjects:(id[]){ [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithObjects:(id[]){ create_JavaxAnnotationNonnull(JreLoadEnum(JavaxAnnotationMetaWhen, ALWAYS)) } count:1 type:JavaLangAnnotationAnnotation_class_()], [IOSObjectArray arrayWithLength:0 type:JavaLangAnnotationAnnotation_class_()] } count:5 type:IOSClass_arrayType(JavaLangAnnotationAnnotation_class_(), 1)];
 }

@@ -1,3 +1,7 @@
+
+#include "J2ObjC_header.h"
+
+#pragma push_macro("INCLUDE_ALL_LeUtilTest")
 #ifdef RESTRICT_LeUtilTest
 #define INCLUDE_ALL_LeUtilTest 0
 #else

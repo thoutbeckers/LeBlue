@@ -18,6 +18,7 @@ task translateLeBlueJava(type:Exec) {
     args '-d', file('objc/generated/').path
     args '-sourcepath', tree.dir ,''
     args '--swift-friendly'
+    args '-use-arc'
     args '-x', 'objective-c++'
     args '-cp', "$jsr"
     args tree

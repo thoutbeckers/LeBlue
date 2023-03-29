@@ -1,3 +1,7 @@
+
+#include "J2ObjC_header.h"
+
+#pragma push_macro("INCLUDE_ALL_MockedResponseTest")
 #ifdef RESTRICT_MockedResponseTest
 #define INCLUDE_ALL_MockedResponseTest 0
 #else
